@@ -128,7 +128,7 @@ Leveling lives at the floor: each leg is cut 1" short and gets a 3/8-16 insert i
 
 **Access**: the practical answer is to stop crawling under the bed at camp entirely — **level the VAN at the wheels** (Andersen/Camco-style curved ramps, standard van-life practice) each site, and set the interior feet ONCE against the van's own floor irregularities. After that first setup you shouldn't need to touch a knob; the two bubble levels tell you at a glance whether the wheels need a ramp.
 
-**Blocks + calculator (the no-feet workflow)**: the two bubble levels read DEGREES (-7 to 7). Degrees plus the wheelbase are all the math needs, so there's a phone calculator for it — **[Sienna Block Calculator](https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9)** (also saved in the repo as `leveling_calculator.html`): enter the two readings and which end/side is low, and it returns how many Lynx-style leveling blocks to stack under each tire, the total, and the residual tilt after driving up. One 10-pack of blocks covers ~2.9° of correction at 1.5"/block over the 120.1" wheelbase — beyond ~4 blocks per tire, find a flatter spot. This makes the interior feet a ONE-TIME set (against the van's own floor irregularities), not a per-site chore — and if you'd rather delete the feet entirely, replace them with fixed shims set once and let the blocks do all site leveling (saves ~$72, loses the fine-trim option).
+**Blocks + calculator (the no-feet workflow)**: the two bubble levels read DEGREES (-7 to 7). Degrees plus the wheelbase are all the math needs, so there's a phone calculator for it — **[Sienna Block Calculator](https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9)** (also saved in the repo as `leveling_calculator.html`): enter the two readings and which end/side is low, and it returns how many Lynx-style leveling blocks to stack under each tire, the total, and the residual tilt after driving up. One 10-pack of blocks covers ~2.9° of correction at 1.5"/block over the 120.5" wheelbase — beyond ~4 blocks per tire, find a flatter spot. This makes the interior feet a ONE-TIME set (against the van's own floor irregularities), not a per-site chore — and if you'd rather delete the feet entirely, replace them with fixed shims set once and let the blocks do all site leveling (saves ~$72, loses the fine-trim option).
 
 **Installing the calculator on a phone** (two ways):
 
@@ -139,7 +139,7 @@ Leveling lives at the floor: each leg is cut 1" short and gets a 3/8-16 insert i
 
 1. Park in the spot you actually want, engine off, **parking brake on**.
 2. Read the two bed-mounted levels: the fore-aft level on the platform's driver-side rail (pitch) and the side-to-side level on the headboard nook (roll). Each reads in degrees; the bubble floats toward the HIGH side, so the opposite end/side is the LOW one.
-3. Enter both degree readings and tap which end (nose/tail) and side (driver/passenger) are low. One-time settings under "Van & block settings": wheelbase 120.1", track ~68", and the height each block adds — Lynx-style ≈ 1.5", but **measure your own stack once** and enter that.
+3. Enter both degree readings and tap which end (nose/tail) and side (driver/passenger) are low. One-time settings under "Van & block settings": wheelbase 120.5", track ~68", and the height each block adds — Lynx-style ≈ 1.5", but **measure your own stack once** and enter that.
 4. The van diagram shows blocks per tire. Lay each stack just ahead of its low tire, **drive up slowly**, and chock a wheel.
 5. Re-read the levels and refine once if needed — suspension squish and block nesting make a second small pass normal. If any tire calls for more than 4 blocks, the calculator says so: re-park (turning the van around often halves the stack) rather than building a tower.
 
@@ -1192,9 +1192,9 @@ Finished sizes; add saw kerf. Full context in Section 3.
 
 Per-site leveling is done at the **wheels** with the [Lynx blocks](https://www.amazon.com/Lynx-Levelers-00015-Leveling-Blocks/dp/B000BUV1RK), driven by the phone **[Sienna Block Calculator](https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9)** (open it in Chrome and *Add to Home screen*, or use the offline copy `sienna_block_calculator.html`). The interior leg feet are then a **one-time** set against the van's own floor.
 
-**Using it:** park (engine off, brake on) → read the two bed-mounted bubble levels (pitch on the platform rail, roll on the headboard cubby) in degrees → enter both readings + which end/side is low → it returns blocks-per-tire. Set the one-time van settings once (wheelbase 120.1", track ~68", and *your measured* block height, Lynx ≈ 1.5"). Stack ahead of the low tires, drive up slowly, chock, re-check; if any tire needs >4 blocks, re-park.
+**Using it:** park (engine off, brake on) → read the two bed-mounted bubble levels (pitch on the platform rail, roll on the headboard cubby) in degrees → enter both readings + which end/side is low → it returns blocks-per-tire. Set the one-time van settings once (wheelbase 120.5", track ~68", and *your measured* block height, Lynx ≈ 1.5"). Stack ahead of the low tires, drive up slowly, chock, re-check; if any tire needs >4 blocks, re-park.
 
-**The math** (so it's not a black box): a low END needs `tan(pitch°) × wheelbase` of lift; a low SIDE needs `tan(roll°) × track`. Blocks per tire = `round(that deficit ÷ block height)`. One 10-pack (1.5"/block over the 120.1" wheelbase) covers about 2.9° of pitch correction.
+**The math** (so it's not a black box): a low END needs `tan(pitch°) × wheelbase` of lift; a low SIDE needs `tan(roll°) × track`. Blocks per tire = `round(that deficit ÷ block height)`. One 10-pack (1.5"/block over the 120.5" wheelbase) covers about 2.9° of pitch correction.
 
 ### Appendix E — Weight Budget & Weight-Distribution Analysis
 

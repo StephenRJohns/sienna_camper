@@ -27,6 +27,9 @@
   .lvlblk + .lvlblk { margin-top:16px; }
   .lvlttl { font-size:13.5px; font-weight:600; margin:0 0 6px; }
   .lvlttl small { display:block; font-weight:400; color:var(--ink-soft); }
+  .van3d { display:block; width:176px; height:auto; margin:2px auto 8px; color:var(--ink-soft); }
+  .van3d .vg { transition:transform .12s ease; }
+  @media (prefers-reduced-motion: reduce) { .van3d .vg { transition:none; } }
   svg.level { width:100%; height:auto; display:block; touch-action:none; cursor:grab; border-radius:11px; }
   svg.level:active { cursor:grabbing; }
   svg.level:focus-visible { outline:2px solid var(--vial); outline-offset:2px; }
@@ -83,6 +86,19 @@
 
     <div class="lvlblk" data-axis="pitch">
       <p class="lvlttl">Fore&ndash;aft (pitch) <small>the level on the platform's driver-side rail</small></p>
+      <svg class="van3d" viewBox="0 0 200 74" aria-hidden="true">
+        <line x1="10" y1="66" x2="190" y2="66" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <g class="vg" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round">
+          <path d="M16,52 L16,40 Q16,35 23,31 L44,22 Q49,19 58,19 L150,19 Q162,19 170,26 L182,40 Q184,44 184,52 Z"/>
+          <path d="M50,22 L58,31 L84,31 L84,22 Z" stroke-width="1.6"/>
+          <rect x="90" y="24" width="34" height="9" rx="1.5" stroke-width="1.6"/>
+          <rect x="130" y="24" width="30" height="9" rx="1.5" stroke-width="1.6"/>
+          <circle cx="56" cy="54" r="10" fill="var(--card)"/><circle cx="56" cy="54" r="3.5" stroke-width="1.6"/>
+          <circle cx="150" cy="54" r="10" fill="var(--card)"/><circle cx="150" cy="54" r="3.5" stroke-width="1.6"/>
+        </g>
+        <text x="20" y="72" font-size="8" fill="var(--ink-soft)" font-family="system-ui">front</text>
+        <text x="180" y="72" font-size="8" text-anchor="end" fill="var(--ink-soft)" font-family="system-ui">rear</text>
+      </svg>
       <svg class="level" viewBox="0 0 320 96" tabindex="0" role="slider" aria-label="Fore-aft level, degrees" aria-valuemin="-7" aria-valuemax="7" aria-valuenow="0"></svg>
       <div class="ends"><span>&larr; Cab / front high</span><span>Tailgate / rear high &rarr;</span></div>
       <div class="readout level" data-role="readout">Level</div>
@@ -90,6 +106,22 @@
 
     <div class="lvlblk" data-axis="roll">
       <p class="lvlttl">Side&ndash;to&ndash;side (roll) <small>the level on the headboard nook</small></p>
+      <svg class="van3d" viewBox="0 0 200 74" aria-hidden="true">
+        <line x1="10" y1="66" x2="190" y2="66" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <g class="vg" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round">
+          <path d="M62,18 Q62,14 68,14 L132,14 Q138,14 138,18 L138,54 L62,54 Z"/>
+          <path d="M138,18 L152,25 L152,49 L138,54" stroke-width="1.9"/>
+          <rect x="72" y="21" width="56" height="15" rx="2" stroke-width="1.6"/>
+          <line x1="88" y1="43" x2="112" y2="43" stroke-width="1.6"/>
+          <rect x="64" y="38" width="6" height="8" stroke-width="1.4"/>
+          <rect x="130" y="38" width="6" height="8" stroke-width="1.4"/>
+          <rect x="60" y="52" width="82" height="5" rx="2" stroke-width="1.6"/>
+          <path d="M58,54 a10,10 0 0 0 20,0" fill="var(--card)"/>
+          <path d="M124,54 a10,10 0 0 0 20,0" fill="var(--card)"/>
+        </g>
+        <text x="20" y="72" font-size="8" fill="var(--ink-soft)" font-family="system-ui">driver</text>
+        <text x="180" y="72" font-size="8" text-anchor="end" fill="var(--ink-soft)" font-family="system-ui">pass.</text>
+      </svg>
       <svg class="level" viewBox="0 0 320 96" tabindex="0" role="slider" aria-label="Side-to-side level, degrees" aria-valuemin="-7" aria-valuemax="7" aria-valuenow="0"></svg>
       <div class="ends"><span>&larr; Driver high</span><span>Passenger high &rarr;</span></div>
       <div class="readout level" data-role="readout">Level</div>
@@ -114,8 +146,8 @@
     <details>
       <summary>Van &amp; block settings</summary>
       <div class="cfg">
-        <label for="wb">Wheelbase <small>4th-gen Sienna: 120.1"</small></label>
-        <input id="wb" type="number" step="0.1" min="60" max="200" value="120.1" inputmode="decimal">
+        <label for="wb">Wheelbase <small>2026 Sienna: 120.5"</small></label>
+        <input id="wb" type="number" step="0.1" min="60" max="200" value="120.5" inputmode="decimal">
         <label for="tr">Track width <small>outside tire centers, ~68"</small></label>
         <input id="tr" type="number" step="0.1" min="40" max="90" value="68" inputmode="decimal">
         <label for="bh">Height per block <small>Lynx-style &asymp; 1.5" — measure YOUR stack once</small></label>
@@ -200,6 +232,10 @@
     var out = blk.querySelector('[data-role="readout"]');
     out.className = lab.cls;
     out.innerHTML = lab.dir ? (lab.txt + ' <span class="dir">— ' + lab.dir + '</span>') : lab.txt;
+    // tilt the little van to match the reading (bubble floats to the HIGH side,
+    // so the LOW end drops — negative rotation lowers the left/front/driver end)
+    var vg = blk.querySelector(".van3d .vg");
+    if (vg) vg.setAttribute("transform", "rotate(" + Math.max(-20, Math.min(20, -d * 2.5)).toFixed(1) + " 100 38)");
   }
 
   function setDeg(blk, d) {
@@ -240,7 +276,7 @@
   function cfg(id, fallback) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v > 0 ? v : fallback; }
 
   function render() {
-    var wb = cfg("wb",120.1), tr = cfg("tr",68), bh = cfg("bh",1.5);
+    var wb = cfg("wb",120.5), tr = cfg("tr",68), bh = cfg("bh",1.5);
     var ps = state.pitch, rs = state.roll;
     var pLift = Math.tan(Math.abs(ps) * Math.PI/180) * wb;   // low END lift
     var rLift = Math.tan(Math.abs(rs) * Math.PI/180) * tr;   // low SIDE lift
