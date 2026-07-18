@@ -1,0 +1,184 @@
+<title>Project Smores — Cut List</title>
+<style>
+  :root {
+    --paper: #ffffff; --ink: #1c1b17; --ink-soft: #67635a; --line: #d7d3c8;
+    --accent: #275b73;        /* steel blue — blueprint/shop */
+    --accent-soft: #e4edf1;
+    --band: #f4f2ec;          /* zebra row */
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #14161a; --ink: #e9e7de; --ink-soft: #9fa39b; --line: #2f333a;
+            --accent: #6fb4d6; --accent-soft: #1d2b33; --band: #1a1d22; }
+  }
+  :root[data-theme="light"] { --paper:#fff; --ink:#1c1b17; --ink-soft:#67635a; --line:#d7d3c8; --accent:#275b73; --accent-soft:#e4edf1; --band:#f4f2ec; }
+  :root[data-theme="dark"]  { --paper:#14161a; --ink:#e9e7de; --ink-soft:#9fa39b; --line:#2f333a; --accent:#6fb4d6; --accent-soft:#1d2b33; --band:#1a1d22; }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body { margin: 0; padding: 22px 16px 48px; background: var(--paper); color: var(--ink);
+    font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; display: flex; justify-content: center; }
+  main { width: 100%; max-width: 820px; }
+
+  header { border-bottom: 3px solid var(--ink); padding-bottom: 10px; margin-bottom: 4px; }
+  .eyebrow { font: 700 11px/1 system-ui; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 5px; }
+  h1 { font-size: 25px; font-weight: 800; margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--ink-soft); font-size: 13px; margin: 5px 0 0; }
+
+  /* shopping-summary strip */
+  .buy { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 20px; }
+  .buy div { border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; background: var(--accent-soft); }
+  .buy .n { font: 800 18px/1 var(--mono); color: var(--accent); }
+  .buy .w { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; letter-spacing: 0.02em; }
+
+  section { margin-bottom: 22px; break-inside: avoid; }
+  .grouphead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+    background: var(--ink); color: var(--paper); padding: 6px 10px; border-radius: 6px 6px 0 0; }
+  .grouphead h2 { font-size: 14px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin: 0; }
+  .grouphead .meta { font: 700 12px/1 var(--mono); opacity: 0.85; }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead th { font: 700 10.5px/1 system-ui; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft);
+    text-align: left; padding: 7px 8px; border-bottom: 1.5px solid var(--line); }
+  th.q, td.q { text-align: center; width: 42px; }
+  th.d, td.d { width: 168px; }
+  th.c, td.c { width: 30px; text-align: center; }
+  tbody td { padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) { background: var(--band); }
+  td.q { font: 700 15px/1.2 var(--mono); color: var(--accent); }
+  td.d { font: 600 13px/1.35 var(--mono); font-variant-numeric: tabular-nums; }
+  td.name b { font-weight: 700; }
+  td.name small { display: block; color: var(--ink-soft); font-size: 11.5px; margin-top: 2px; }
+  input[type=checkbox] { appearance: none; width: 16px; height: 16px; border: 1.6px solid var(--ink-soft);
+    border-radius: 4px; cursor: pointer; vertical-align: middle; margin-top: 2px; }
+  input[type=checkbox]:checked { background: var(--accent); border-color: var(--accent); }
+  input[type=checkbox]:checked::after { content: "✓"; color: #fff; font-size: 11px; display: block; text-align: center; line-height: 13px; }
+  input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .note { font-size: 12px; color: var(--ink-soft); margin: 4px 2px 0; }
+  .toolbar { display: flex; gap: 8px; margin: 0 0 16px; }
+  .toolbar button { border: 1px solid var(--line); background: var(--paper); color: var(--ink);
+    padding: 7px 13px; border-radius: 7px; font: 600 12.5px/1 system-ui; cursor: pointer; }
+  .toolbar button:hover { background: var(--accent-soft); }
+
+  footer { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 12px; color: var(--ink-soft); }
+  footer b { color: var(--ink); }
+
+  @media print {
+    :root { --paper:#fff; --ink:#000; --ink-soft:#444; --line:#bbb; --accent:#000; --accent-soft:#fff; --band:#f2f2f2; }
+    body { padding: 0; font-size: 11.5px; }
+    .toolbar { display: none; }
+    .grouphead { background: #000 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .buy div { background: #fff; }
+    section { break-inside: avoid; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+
+<main>
+  <header>
+    <p class="eyebrow">Project Smores &middot; Sienna Camper Build</p>
+    <h1>Cut List — Shop Sheet</h1>
+    <p class="sub">Every plywood and lumber piece to cut, grouped by material. Check a box when it's cut. Dimensions are finished sizes; add saw kerf and confirm against your measured van before cutting.</p>
+  </header>
+
+  <div class="buy" aria-label="Materials to buy">
+    <div><div class="n">1</div><div class="w">sheet &mdash; 3/4" Baltic birch, 4&times;8</div></div>
+    <div><div class="n">1</div><div class="w">sheet &mdash; 1/2" Baltic birch, 4&times;8</div></div>
+    <div><div class="n">12</div><div class="w">boards &mdash; 2&times;2 pine, 8&nbsp;ft</div></div>
+    <div><div class="n">7</div><div class="w">boards &mdash; 1&times;4 pine, 8&nbsp;ft</div></div>
+    <div><div class="n">1</div><div class="w">3/4" half-round pine trim, 4&nbsp;ft+</div></div>
+    <div><div class="n">&mdash;</div><div class="w">scrap: fiddle lips, glide strips, cleats</div></div>
+  </div>
+
+  <div class="toolbar">
+    <button id="reset" type="button">Clear checks</button>
+    <button id="print" type="button">Print</button>
+  </div>
+
+  <div id="list"></div>
+
+  <footer>
+    <p style="margin:0 0 6px"><b>Notes.</b> The <b>fridge and kitchen unit are bought products</b> — no plywood/lumber for them. The <b>headboard/pantry needs no frame lumber</b> (it mounts on Panel C's deck). Legs are cut <b>1" short (16")</b> — the leveling foot makes each an effective 17". Bottom rails sit at the leg bottoms (underside 1").</p>
+    <p style="margin:0"><b>Joinery:</b> plywood face joints get Ryobi <b>R-series biscuits</b> (R3 on the headboard shelves at 2"/7"/12", R1 on drawer/box corners and the nook divider); 2&times;2 frame corners get 2&times; 2" screws + a corner bracket. Full method in the plan's Joinery &amp; Fastener Guide. The ½" sheet nests to ~95% — lay out carefully.</p>
+  </footer>
+</main>
+
+<script>
+const GROUPS = [
+  ["3/4\" Baltic birch plywood", "1 sheet (4×8) — ~90% used; save the offcut for the control-panel backer", [
+    ["Panel C fixed top", 1, "36\" × 46\"", "screwed + glued to Panel C's 2×2 rails"],
+    ["Headboard/pantry side panels", 2, "14\" × 22\"", "the carcass sides (biscuit the shelves into these)"],
+    ["Headboard/pantry fixed full-depth shelves", 2, "46\" × 14\"", "bed shelf + upper shelf — the carcass webs (R3 biscuits)"],
+    ["Headboard/pantry base cleats", 2, "46\" × 3\"", "plain rip; cam levers clamp cleats + deck into T-nuts"],
+    ["Kitchen-drawer hanging cheeks", 2, "26\" × 6.2\"", "screwed up into Panel C's deck, flanking the drawer"],
+  ]],
+  ["1/2\" Baltic birch plywood", "1 sheet (4×8) — ~95% used, nest carefully", [
+    ["Panel A drawer — bottom", 1, "20\" × 25\"", "DELTA 3 drawer box"],
+    ["Panel A drawer — side walls", 2, "25\" × 14.5\"", "R1 biscuits at the corners"],
+    ["Panel A drawer — front/back walls", 2, "20\" × 14.5\"", ""],
+    ["Panel C front wall", 1, "46\" × 17\"", "120mm fan hole + 2× 1\" grommets + low intake louver — see Front Wall render"],
+    ["Fridge tray", 1, "17.72\" × 28.74\"", "the Rocky 40 rides on this on the slide"],
+    ["Headboard/pantry nook divider", 1, "46\" × 4.25\"", "middle tier, 2.75\" from the bed face (R1 biscuits)"],
+    ["Headboard/pantry adjustable shelf", 1, "46\" × 14\"", "rests on 4 pins in the 13\" bottom bay"],
+    ["Kitchen-drawer box — bottom", 1, "16\" × 26\"", "R1 biscuits at the corners"],
+    ["Kitchen-drawer box — sides", 2, "26\" × 4\"", ""],
+    ["Kitchen-drawer box — front/back", 2, "15\" × 4\"", "4.5\" exterior height"],
+  ]],
+  ["2×2 pine — frames", "12 boards, 8 ft each (964\" total, ~9% waste margin)", [
+    ["Panel A long rails", 2, "29\"", ""],
+    ["Panel B long rails", 2, "29\"", ""],
+    ["Panel C long rails", 2, "36\"", ""],
+    ["End rails (all 3 panels)", 6, "46\"", "2 per panel"],
+    ["Center divider (Panel A only)", 1, "26\"", "splits Panel A: drawer + WAVE 3 runs"],
+    ["Legs (all 3 panels)", 12, "16\"", "cut 1\" short; leveling foot = effective 17\". Panel C rear pair at the true corners"],
+    ["Bottom rails — 46\" (cube frames)", 5, "46\"", "Panel A 2 ends, Panel B 2 ends, Panel C front (underside 1\")"],
+    ["Bottom rails — 26\" (Panel B sides)", 2, "26\"", "Panel B is the full 4-face cube"],
+  ]],
+  ["1×4 pine — bed platform", "7 boards, 8 ft each (2 slats per board)", [
+    ["Side rails", 2, "58\"", "set 52\" apart outside-to-outside; ends at the B/C seam"],
+    ["Slats", 10, "45\"", "pocket-screwed (or R2-biscuited) between the rails, ~2.6\" gaps"],
+  ]],
+  ["Trim, cleats & scrap", "from a trim board + plywood/UHMW offcuts", [
+    ["Half-round pine trim (3/4\")", 1, "46\"", "glued/pinned along the bed-cubby shelf lip"],
+    ["Fiddle lips (ripped ply/pine, 1.5\")", 7, "~44.5\"", "one per food-shelf front edge — retention"],
+    ["WAVE 3 overhead shelf (1/2\" ply)", 1, "~20.75\" × 14\"", "on 1×1 cleats above the WAVE 3 — from offcut"],
+    ["WAVE 3 glide strips (UHMW/laminate)", 2, "20\" × 1\"", "left-bay floor, cuts sliding friction"],
+    ["DELTA 3 locating cleats (1×1 pine)", 4, "small blocks", "bracket the DELTA 3 footprint in the drawer"],
+  ]],
+];
+
+const list = document.getElementById("list");
+let store = {};
+try { store = JSON.parse(localStorage.getItem("smoresCut") || "{}"); } catch (e) {}
+let id = 0;
+
+GROUPS.forEach(([name, meta, rows]) => {
+  const sec = document.createElement("section");
+  const totQ = rows.reduce((a, r) => a + (typeof r[1] === "number" ? r[1] : 0), 0);
+  sec.innerHTML =
+    `<div class="grouphead"><h2>${name}</h2><span class="meta">${totQ} pieces &middot; ${meta}</span></div>` +
+    `<table><thead><tr><th class="c"></th><th>Piece</th><th class="q">Qty</th><th class="d">Finished size</th></tr></thead><tbody></tbody></table>`;
+  const tb = sec.querySelector("tbody");
+  rows.forEach(([nm, q, dim, note]) => {
+    const key = "c" + (id++);
+    const tr = document.createElement("tr");
+    tr.innerHTML =
+      `<td class="c"><input type="checkbox" ${store[key] ? "checked" : ""} data-k="${key}" aria-label="Cut ${nm.replace(/"/g,'')}"></td>` +
+      `<td class="name"><b>${nm}</b>${note ? `<small>${note}</small>` : ""}</td>` +
+      `<td class="q">${q}</td><td class="d">${dim}</td>`;
+    tb.appendChild(tr);
+  });
+  list.appendChild(sec);
+});
+
+list.addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  store[e.target.dataset.k] = e.target.checked;
+  try { localStorage.setItem("smoresCut", JSON.stringify(store)); } catch (err) {}
+});
+document.getElementById("reset").addEventListener("click", () => {
+  store = {}; try { localStorage.removeItem("smoresCut"); } catch (e) {}
+  document.querySelectorAll("input[type=checkbox]").forEach(c => c.checked = false);
+});
+document.getElementById("print").addEventListener("click", () => window.print());
+</script>
