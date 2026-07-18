@@ -164,9 +164,9 @@ module section1() {
     translate([0, hb_y0]) color("DarkGray") square([W, 0.15]); // divider line at the headboard's front edge
     label("HEADBOARD/PANTRY (on Panel C's deck, above)", W/2, y_tg - headboard_length - 2.2, 1.0);
 
-    // 1: Power strip 1 — now mounted ON the headboard's personal
-    // shelf, at its mattress-facing edge (hb_y0), NOT Panel A — see
-    // headboard-storage-detail
+    // 1: Power strip 1 — now mounted in the headboard's BED CUBBY
+    // (the enclosed middle-band nook), at its mattress-facing edge
+    // (hb_y0), NOT Panel A — see headboard-storage-detail
     translate([8, hb_y0 + 1.5]) strip_icon(4);
     marker(1, 8, hb_y0 + 4);
 
@@ -198,7 +198,9 @@ module section1() {
     marker(5, 45.5, y_ab + 3.5);
     marker(6, 38, y_ab + 2.2);
 
-    // 7: Power strip 2 — at the kitchen unit (cooktop)
+    // 7: Power strip 2 — mounted ON the slide-out kitchen unit so it
+    // travels to the cook position; its cord to the console carries a
+    // slack loop for the slide travel (Section 5)
     translate([10, y_tg - 3.8]) strip_icon(4);
     marker(7, 3.5, y_tg - 7);
 
@@ -206,11 +208,11 @@ module section1() {
     translate([33, y_tg - 1.9]) enclosure_icon(5, 2.6);
     marker(8, 28, y_tg - 4.5);
 
-    // 9: intake fan — fridge's Panel-B-facing wall
+    // 9: intake fan — on Panel C's FRONT wall, over the fridge's B-facing end
     translate([fr_x0 + fridge_ext_length/2, y_bc - 2.6]) fan_icon(1.7);
     marker(9, fr_x0 + fridge_ext_length/2 - 6, y_bc - 2.6);
 
-    // 10: exhaust fan + NTC — fridge's kitchen-facing wall, vents into cabinet
+    // 10: exhaust fan (blows into cabinet) + NTC probe (just inside the bay at that wall) — fridge's kitchen-facing side
     translate([fr_x0 - 2.4, y_bc + fridge_ext_width/2 + 4]) fan_icon(1.7);
     color("SeaGreen") translate([fr_x0 - 1.2, y_bc + fridge_ext_width/2 + 8]) circle(r = 0.45);
     marker(10, fr_x0 - 7, y_bc + fridge_ext_width/2 + 4);
@@ -310,16 +312,16 @@ module section3() {
 // ---- legend (Section 1's numbered markers) ----------------------
 module legend() {
     items = [
-        "Power strip 1 — on the headboard's personal shelf (phone/light/Claymore fan)",
+        "Power strip 1 — in the headboard's bed cubby (phone/light/Claymore fan)",
         "Power strip 1's OWN dedicated cord — headboard/pantry (Panel C's tailgate end) down to the front console",
         "Inline connector pairs — Power strip 1's line, one at each of the 2 seams it now crosses (C->B, B->A)",
         "Cooktop cord run — 16AWG SAE cable, along the right frame rail, its own dedicated line",
         "SAE quick-disconnects — cooktop line, one at each seam it crosses",
         "1\" grommets — cooktop line pass-throughs through the end rails",
-        "Power strip 2 — at the kitchen unit (cooktop)",
+        "Power strip 2 — ON the slide-out kitchen unit (cooktop); cord has slack for the slide",
         "Control enclosure — inside the cabinet, behind its door (Section 2 below)",
-        "Intake fan 120mm — fridge's Panel-B-facing wall",
-        "Exhaust fan 120mm + NTC probe — kitchen-facing wall, vents into cabinet",
+        "Intake fan 120mm — on Panel C's FRONT wall, over the fridge's B-facing end",
+        "Exhaust fan 120mm (into cabinet) + NTC probe (inside the bay at that wall, in the hot exhaust)",
         "Fridge DC line — DELTA 3 (Panel A) forward to the fridge (Panel C), own dedicated run",
         "SAE quick-disconnects — fridge DC line, one at each seam it crosses",
         "DELTA 3 AC charging cord — front console (1500W, verified) back to Panel A's drawer",

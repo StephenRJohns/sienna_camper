@@ -61,11 +61,23 @@ module drawing() {
         translate([fan_x, fan_z]) circle(r = fan_d/2, $fn = 48);
         translate([gr_x, gr_z]) circle(r = gr_d/2, $fn = 32);
         translate([gr2_x, gr2_z]) circle(r = gr_d/2, $fn = 32);
+        translate([intake_vent_x - intake_vent_w/2, intake_vent_z - intake_vent_h/2])
+            square([intake_vent_w, intake_vent_h]);
     }
     // hole edges
     translate([fan_x, fan_z]) ring(fan_d/2);
     translate([gr_x, gr_z]) ring(gr_d/2);
     translate([gr2_x, gr2_z]) ring(gr_d/2);
+    // low intake vent: rectangular opening with louver hints
+    color("black") difference() {
+        translate([intake_vent_x - intake_vent_w/2 - stroke, intake_vent_z - intake_vent_h/2 - stroke])
+            square([intake_vent_w + 2*stroke, intake_vent_h + 2*stroke]);
+        translate([intake_vent_x - intake_vent_w/2, intake_vent_z - intake_vent_h/2])
+            square([intake_vent_w, intake_vent_h]);
+    }
+    color("DimGray") for (i = [1 : 3])
+        translate([intake_vent_x - intake_vent_w/2 + 0.4, intake_vent_z - intake_vent_h/2 + i * intake_vent_h/4])
+            square([intake_vent_w - 0.8, 0.12]); // louver slats
     // fan mounting screw holes: 105mm (4.13in) square pattern,
     // standard 120mm fan bolt circle
     for (dx = [-2.07, 2.07]) for (dz = [-2.07, 2.07])
@@ -99,11 +111,13 @@ module drawing() {
     label(str("fan hole: ", fan_d, "\" dia (120mm) — hole saw or jigsaw"), fan_x + fan_d/2 + 1.5, fan_z + 1.6, 1.15, "left");
     label("4x #8 fan screws on a 4.13\" (105mm) square", fan_x + fan_d/2 + 1.5, fan_z + 0.2, 1.0, "left");
     label(str("grommets: ", gr_d, "\" dia x2 — fridge DC line (low) + Power strip 1's line (upper)"), gr2_x + 1.5, gr2_z + 2.6, 1.05, "left");
+    label(str("LOW INTAKE VENT: ", intake_vent_w, "\" x ", intake_vent_h, "\" louver — admits cool floor-level air"), intake_vent_x, intake_vent_z - intake_vent_h/2 - 1.2, 1.0);
+    dim_v(WW + 16.5, 0, intake_vent_z, str(intake_vent_z, "\" floor -> vent center"));
     label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
 
     // ---- title + notes ----
     label("PANEL C FRONT WALL — 1/2\" ply, flat pattern (the ONLY wall on any panel)", WW/2, WH + 6.4, 1.8);
-    label("Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole, blowing IN.", WW/2, WH + 4.4, 1.15);
+    label("Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.", WW/2, WH + 4.4, 1.15);
     label("Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + cabinet door + kitchen + kitchen drawer fill it.", WW/2, WH + 3.1, 1.05);
     label("DRIVER side at left (the fridge bay's side) — PASSENGER at right. All positions computed from params.scad.", WW/2, -13, 1.05);
 }

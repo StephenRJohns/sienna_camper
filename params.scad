@@ -326,6 +326,23 @@ pcwall_t = 0.5;         // 1/2in ply
 pcwall_h = leg_height;  // 17 — van floor up to the front rail's underside
 pcwall_grommet_dia = 1; // fridge DC line pass-through
 
+// Passive cooling vents (owner, July 2026 refinements). Both are
+// cheap louvered RV vents, no wiring:
+//  - a LOW intake louver in the front wall's driver-side corner
+//    admits the coolest floor-level cabin air straight to the
+//    fridge's condenser, supplementing the powered intake fan above
+//    it (summer-heat margin);
+//  - a LOW louver in the utility-cabinet door gives the exhaust fan's
+//    warm air a direct path OUT low toward the tailgate instead of
+//    only bleeding around the door edges.
+intake_vent_w = 7;    // low front-wall intake louver — width
+intake_vent_h = 2.5;  // height
+intake_vent_x = 5.5;  // center X from the driver edge (low-driver corner, clear of the fan)
+intake_vent_z = 5;    // center Z, just above the front bottom rail (top at 3.5)
+cabinet_vent_w = 3;   // low cabinet-door exhaust louver — width (fits the ~4.3in door)
+cabinet_vent_h = 4;   // height
+cabinet_vent_z = 5;   // center Z, low in the door
+
 /* [Fridge — BougeRV ROCKY 40 (CR04001), 41QT dual-zone] */
 // Dimensions VERIFIED against the user manual the owner saved at
 // ~/Downloads/Rocky_metal_fridge_user_manual.pdf: body 712x450x401mm

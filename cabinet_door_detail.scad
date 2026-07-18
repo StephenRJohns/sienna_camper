@@ -61,6 +61,15 @@ module drawing() {
     // door panel, in place
     wbox([door_x0, -door_t, 0], [door_w, door_t, door_h]);
 
+    // low exhaust louver — gives the exhaust fan's warm air a direct
+    // path OUT low toward the tailgate (not just door-edge leakage)
+    vx0 = door_x0 + door_w/2 - cabinet_vent_w/2;
+    ifill(INK) translate([vx0, -door_t - 0.05, cabinet_vent_z - cabinet_vent_h/2])
+        cube([cabinet_vent_w, 0.1, cabinet_vent_h]);
+    ifill("Gainsboro") for (i = [1 : 3])
+        translate([vx0 + 0.3, -door_t - 0.1, cabinet_vent_z - cabinet_vent_h/2 + i * cabinet_vent_h/4])
+            cube([cabinet_vent_w - 0.6, 0.12, 0.1]); // louver slats
+
     // hinges — kitchen-side edge, pulled out along -Y to separate
     // them visually from the door + kitchen unit they bridge
     for (hz = [door_h * 0.2, door_h * 0.8])
@@ -76,15 +85,17 @@ module drawing() {
     marker3d(1, [door_x0 + door_w/2, -door_t/2, door_h * 0.6], [10, 6]);
     marker3d(2, [door_x0 + door_w, -door_t - pull + 0.4, door_h * 0.2], [11, -4]);
     marker3d(3, [door_x0 + 0.25, -door_t - pull + 0.4, door_h/2], [-10, -8]);
+    marker3d(4, [door_x0 + door_w/2, -door_t, cabinet_vent_z], [-11, -5]);
 
     cap(str("UTILITY CABINET DOOR — exploded detail (", door_w, "\" wide x ", door_h, "\" tall x ", door_t, "\" thick)"), 13, -16, 2.0);
     cap("Hinged on the kitchen-side edge, swinging open toward the fridge — magnetic catch holds it shut on the free edge.", 13, -19, 1.4);
-    cap("Cosmetic/dust-and-draft control only, not airtight — the exhaust fan doesn't need its own separate vent to atmosphere.", 13, -21.5, 1.4);
+    cap("A low louver (4) gives the exhaust fan's warm air a direct path OUT toward the tailgate — the rest stays dust/draft control.", 13, -21.5, 1.4);
 
     side_list(door_x0 + door_w + 20, door_h + 10, [
         ["1", "Door panel", str(door_w, "\" x ", door_h, "\" x ", door_t, "\", 3/4\" ply offcut"), "BurlyWood — matches the utility cabinet's own scrap"],
         ["2", "Hinges (x2)", "small butt hinges, kitchen-side edge", "4x #6 x 5/8\" screws each"],
         ["3", "Magnetic catch", "free (fridge-side) edge", "holds the door shut in transit"],
+        ["4", "Low exhaust louver", str(cabinet_vent_w, "\" x ", cabinet_vent_h, "\", centered, ", cabinet_vent_z, "\" up"), "vents the fridge's warm exhaust out low toward the tailgate"],
     ]);
 }
 

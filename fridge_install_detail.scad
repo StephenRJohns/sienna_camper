@@ -144,7 +144,7 @@ module drawing() {
     flow_arrow(fridge_x0 + fridge_ext_length/2, panel_c_length + 1.5, fridge_x0 + fridge_ext_length/2, panel_c_length - 3.5);
     flow_arrow(fridge_x0 + 3, 10, fridge_x0 + fridge_ext_length - 2, 10);
     flow_arrow(fridge_x0 + fridge_ext_length - 2, fridge_ext_width/2, fridge_x0 + fridge_ext_length + 3.5, fridge_ext_width/2);
-    color("SteelBlue") translate([fridge_x0 + 2, 7.2]) text("airflow: in at the front wall, across the fridge, OUT into the cabinet", size = 0.95);
+    color("SteelBlue") translate([fridge_x0 + 2, 7.2]) text("airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT into the cabinet + through its low door louver", size = 0.95);
     fx_anchors = [fridge_x0 + 1, fridge_x0 + fridge_ext_length - 1];
     fy_anchors = [2.3, 18];
     for (ax = fx_anchors) for (ay = fy_anchors) anchor_icon(ax, ay);

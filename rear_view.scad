@@ -134,14 +134,22 @@ module rear_view() {
     color("Gainsboro") translate([door_x0, 0]) rect_outline(door_x1 - door_x0, leg_height);
     label("Cabinet", (door_x0 + door_x1)/2, leg_height - 2, 0.9);
     label("door", (door_x0 + door_x1)/2, leg_height - 3.6, 0.9);
+    // low exhaust louver in the door
+    color("DimGray") translate([(door_x0 + door_x1)/2 - cabinet_vent_w/2, cabinet_vent_z - cabinet_vent_h/2])
+        rect_outline(cabinet_vent_w, cabinet_vent_h, 0.15);
+    for (i = [1:3]) color("DimGray")
+        translate([(door_x0 + door_x1)/2 - cabinet_vent_w/2 + 0.3, cabinet_vent_z - cabinet_vent_h/2 + i*cabinet_vent_h/4])
+            square([cabinet_vent_w - 0.6, 0.1]);
 
-    // Exhaust fan + NTC sensor now mount on the fridge's LEFT
-    // (kitchen-facing) wall, venting into the utility cabinet — a
-    // real X position, correctly shown here at true scale (unlike the
-    // intake fan below, which is on a Y-axis face this X-Z view can't
-    // represent at its true position). All explanatory text for both
-    // fans lives in the caption strip below Y=0, clear of the door
-    // label above and each other.
+    // Exhaust fan mounts on the fridge's RIGHT (kitchen-facing) wall,
+    // blowing INTO the utility cabinet. The NTC sensor sits just
+    // INSIDE the fridge bay at that same wall, right in the exhaust
+    // airflow off the fridge's hot side — NOT out in the cabinet (the
+    // cabinet air is downstream/diluted and would make the fans lag).
+    // Both are at a real X position, shown here at true scale (unlike
+    // the intake fan below, on a Y-axis face this X-Z view can't place
+    // at its true position). Fan explanatory text lives in the caption
+    // strip below Y=0, clear of the door label above.
     fan_z = fridge_ext_height/2 + fridge_tray_t;
     exhaust_x = fridge_x0 + fridge_ext_length/2;
     // fan icons drawn as actual fans (ring + hub + 4 blades), not
@@ -156,7 +164,9 @@ module rear_view() {
         }
     }
     fan_icon(exhaust_x, fan_z, exhaust_fan_dia/2);
-    color("GreenYellow") translate([exhaust_x + 1.8, fan_z + 2.5]) circle(r = sensor_dia/2, $fn = 20);
+    // NTC probe: just INSIDE the bay at the exhaust wall (negative X
+    // offset keeps it within the fridge footprint, not the cabinet)
+    color("GreenYellow") translate([exhaust_x - 1.8, fan_z + 2]) circle(r = sensor_dia/2, $fn = 20);
 
     // Intake fan — on a Y-axis face (Panel C's front wall), not
     // representable at its true position in this X-Z view; shown as
@@ -165,8 +175,8 @@ module rear_view() {
     fan_in_x = fridge_x0 - 3;
     fan_icon(fan_in_x, fan_z, 1.1);
 
-    label("Exhaust fan + NTC sensor: fridge's right wall, vents into cabinet", exhaust_x + 4, -3.4, 0.85);
-    label("Intake fan: icon only — really on Panel C's FRONT wall (see its render)", fan_in_x, -4.8, 0.85);
+    label("Exhaust fan: fridge's right wall, blows INTO the cabinet | NTC probe: just inside the bay at that wall (in the hot exhaust, NOT the cabinet)", exhaust_x - 2, -3.4, 0.85);
+    label("Intake fan + a passive LOW cool-air louver: both on Panel C's FRONT wall (see its render) | cabinet door has a LOW exhaust louver", fan_in_x + 6, -4.8, 0.85);
 
     // control panel: switches, surge protector, fan speed
     // controller — INSIDE the utility cabinet, behind its door
@@ -186,7 +196,7 @@ module rear_view() {
     marker(3, fridge_x0 - fridge_ext_length/2 + 2.5, fridge_tray_t + 2.5); // fridge
     marker(4, fan_in_x, fan_z + 3.2);                               // intake fan icon
     marker(5, exhaust_x - 4.2, fan_z);                              // exhaust fan
-    marker(6, exhaust_x + 2, fan_z + 6);                            // NTC sensor
+    marker(6, exhaust_x - 1.8, fan_z + 3);                          // NTC sensor — inside the bay at the exhaust wall
     marker(7, cab_cx - 3.2, 9.5);                                   // control panel (inside the cabinet)
     marker(8, kx + 5, 2.5);                                         // power strip 2
     marker(9, -van_interior_width/2 + 1.25, 8.5);                  // vent intrusion (left zone shown)
