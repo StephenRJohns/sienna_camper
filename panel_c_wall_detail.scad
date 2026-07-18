@@ -111,8 +111,7 @@ module drawing() {
     label(str("fan hole: ", fan_d, "\" dia (120mm) — hole saw or jigsaw"), fan_x + fan_d/2 + 1.5, fan_z + 1.6, 1.15, "left");
     label("4x #8 fan screws on a 4.13\" (105mm) square", fan_x + fan_d/2 + 1.5, fan_z + 0.2, 1.0, "left");
     label(str("grommets: ", gr_d, "\" dia x2 — fridge DC line (low) + Power strip 1's line (upper)"), gr2_x + 1.5, gr2_z + 2.6, 1.05, "left");
-    label(str("LOW INTAKE VENT: ", intake_vent_w, "\" x ", intake_vent_h, "\" louver — admits cool floor-level air"), intake_vent_x, intake_vent_z - intake_vent_h/2 - 1.2, 1.0);
-    dim_v(WW + 16.5, 0, intake_vent_z, str(intake_vent_z, "\" floor -> vent center"));
+    label(str("LOW INTAKE VENT: ", intake_vent_w, "\" x ", intake_vent_h, "\" louver at ", intake_vent_x, "\" over, ", intake_vent_z, "\" up — admits cool floor-level air"), intake_vent_x + 2, intake_vent_z - intake_vent_h/2 - 1.2, 1.0);
     label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
 
     // ---- title + notes ----
