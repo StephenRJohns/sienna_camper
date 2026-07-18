@@ -32,8 +32,8 @@
   svg.level { position:absolute; touch-action:none; cursor:grab; filter:drop-shadow(0 2px 4px rgba(0,0,0,.35)); }
   svg.level:active { cursor:grabbing; }
   svg.level:focus-visible { outline:2px solid var(--vial); outline-offset:2px; }
-  .lv-roll  { left:11%; top:57%; width:41%; transform:rotate(0deg); }
-  .lv-pitch { left:51%; top:45%; width:38%; transform:rotate(-20deg); }
+  .lv-roll  { left:14%; top:58%; width:36%; transform:none; transform-origin:center; }
+  .lv-pitch { left:53%; top:48%; width:30%; transform:skewY(-20deg); transform-origin:center; }
   .taglbl { position:absolute; font:600 10.5px system-ui; color:var(--ink-soft); pointer-events:none; }
   .ros { display:flex; flex-direction:column; gap:5px; }
   .ro { font-size:13px; display:flex; align-items:baseline; gap:8px; }
@@ -226,24 +226,13 @@
     render();
   }
 
-  // current CSS rotation of the level (degrees, clockwise +), read from its matrix
-  function elemRotDeg(svg) {
-    var t = getComputedStyle(svg).transform;
-    var m = t && t.match(/matrix\(([^)]+)\)/);
-    if (!m) return 0;
-    var v = m[1].split(",");
-    return Math.atan2(parseFloat(v[1]), parseFloat(v[0])) * 180 / Math.PI;
-  }
-
-  // map a screen point onto the (possibly rotated) level's own axis -> degrees,
-  // by projecting the offset-from-center onto the level's local x direction
-  function xToDeg(svg, clientX, clientY) {
+  // The pitch level is skewY'd to lie flush on the box's side face, and roll
+  // is un-transformed on the flat rear face. skewY preserves x-coordinates,
+  // so the scale still maps straight from the horizontal position — no
+  // projection needed; the finger's X alone drives the reading.
+  function xToDeg(svg, clientX) {
     var r = svg.getBoundingClientRect();
-    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-    var th = elemRotDeg(svg) * Math.PI / 180;
-    var along = (clientX - cx) * Math.cos(th) + (clientY - cy) * Math.sin(th);
-    var wpx = parseFloat(getComputedStyle(svg).width) || r.width;
-    return (along / (wpx / 320)) / PERDEG;
+    return ((clientX - r.left) / r.width * 320 - CX) / PERDEG;
   }
 
   document.querySelectorAll("svg.level").forEach(function (svg) {
