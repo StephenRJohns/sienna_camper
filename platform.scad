@@ -532,7 +532,31 @@ module headboard_module(y_offset) {
         // (headboard_shelf_depth deep) from the middle food tier
         translate([-headboard_width/2, y_offset + y_div, z_top + headboard_personal_shelf_z + wall_t])
             cube([headboard_width, wall_t, headboard_nook_divider_h]);
+
+        // ADJUSTABLE shelf in the bottom bay (on pins, shown at its
+        // default height — lifts out or repositions per trip)
+        if (headboard_adj_shelf)
+            translate([-headboard_width/2, y_offset, z_top + headboard_adj_shelf_z])
+                cube([headboard_width, headboard_length, wall_t]);
     }
+
+    // FIDDLE LIPS — 1.5in front rails on each food shelf's kitchen
+    // (far, +Y) edge and the full-depth tiers' mattress (near, Y=0)
+    // edge; primary retention against the slide-out that braking
+    // causes. Drawn as thin strips standing up at each shelf's front.
+    lip_h = headboard_fiddle_lip_h;
+    food_floors = [0, headboard_adj_shelf_z + wall_t, headboard_personal_shelf_z + wall_t, headboard_upper_shelf_z + wall_t];
+    color("Peru") for (fz = food_floors) {
+        // kitchen-face lip (far edge)
+        translate([-headboard_width/2, y_offset + headboard_length - 0.4, z_top + fz])
+            cube([headboard_width, 0.4, lip_h]);
+        // mattress-face lip (near edge) — skip the bed-shelf level (the
+        // cubby's own half-round lip lives there instead)
+        if (fz != headboard_personal_shelf_z + wall_t)
+            translate([-headboard_width/2, y_offset, z_top + fz])
+                cube([headboard_width, 0.4, lip_h]);
+    }
+
     color("SaddleBrown") // half-round edging lip, front (mattress-facing) edge of the bed shelf
         translate([-headboard_width/2, y_offset + 0.4, z_top + headboard_personal_shelf_z + wall_t])
             rotate([0, 90, 0]) cylinder(h = headboard_width, r = 0.4, $fn = 16);

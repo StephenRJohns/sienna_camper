@@ -89,18 +89,25 @@ module drawing() {
     iarrow([-W/2 + PT/2, y0 + L/2, z_deck + shell_lift - 2], [-W/2 + PT/2, y0 + L/2, z_deck + shell_lift - 0.3]);
     iarrow([W/2 - PT/2, y0 + L/2, z_deck + shell_lift - 2], [W/2 - PT/2, y0 + L/2, z_deck + shell_lift - 0.3]);
 
-    // ---- 2 FULL-DEPTH shelves (the carcass webs): pulled out along
+    // ---- shelves: 2 FIXED full-depth (the carcass webs) + 1
+    // ADJUSTABLE (rests on pins in the bottom bay), pulled out along
     // +Y beyond the kitchen-facing edge, one arrow each back to its
-    // installed slot ----
-    shelf_zs = [headboard_upper_shelf_z, headboard_personal_shelf_z];
-    for (i = [0 : 1]) {
+    // installed slot. The adjustable one gets no screw fasteners
+    // (pins), and a dashed drop line to show it repositions ----
+    shelf_zs = [headboard_upper_shelf_z, headboard_personal_shelf_z, headboard_adj_shelf_z];
+    for (i = [0 : 2]) {
         zi = z_deck + shell_lift + shelf_zs[i];
         y_pulled = y0 + pull * (i + 1.2);
         wbox([-W/2, y_pulled, zi], [W, L, PT]);
-        for (x = [-W/2 + PT/2, W/2 - PT/2]) for (yf = [0.25, 0.75])
+        if (i < 2) for (x = [-W/2 + PT/2, W/2 - PT/2]) for (yf = [0.25, 0.75])
             fastener([x, y_pulled + L * yf, zi + PT/2], 0.35, 90);
+        else for (x = [-W/2 + PT/2, W/2 - PT/2]) for (yf = [0.25, 0.75])  // pin dots, not screws
+            ifill("DimGray") translate([x, y_pulled + L * yf, zi]) sphere(r = 0.25, $fn = 8);
         iarrow([0, y_pulled - 0.5, zi + PT/2], [0, y0 + L/2, zi + PT/2]);
     }
+    // shelf-pin hole column on the shell's near side panel (bottom bay)
+    for (z = [headboard_pin_lo : 2 : headboard_pin_hi])
+        ifill(INK) translate([-W/2 + PT + 0.3, y0 + 0.4, z_deck + shell_lift + z]) sphere(r = 0.2, $fn = 8);
 
     // half-round edging + Power strip 1 + roll bubble level, riding
     // the BED shelf's mattress-facing (near) lip — that 2.75in strip
@@ -128,6 +135,7 @@ module drawing() {
     marker3d(4, [0, y0 + y_div + PT/2, nd_z + headboard_nook_divider_h/2], [14, 3]);
     marker3d(1, [-W/2 + W * 0.15, y0 + pull * 1.2 + L, z_deck + shell_lift + shelf_zs[0]], [-8, -4]);
     marker3d(2, [-W/2 + W * 0.7, y0 + pull * 2.2 + L, z_deck + shell_lift + shelf_zs[1]], [8, -3]);
+    marker3d(8, [-W/2 + W * 0.5, y0 + pull * 3.2 + L, z_deck + shell_lift + shelf_zs[2]], [10, -4]);
     marker3d(5, [-W * 0.05, top_y + 0.5, top_z + PT], [-13, 6]);
     marker3d(6, [0, top_y + 0.3, top_z + PT + 0.35], [-7, -11]);
     marker3d(7, [W * 0.28 + 1.5, top_y + 1, top_z + PT + 0.6], [12, 10]);
@@ -135,20 +143,21 @@ module drawing() {
     // ---- captions — all placed below the whole drawing's projected
     // extent (Y down to about -9.4 at the frame's own front corner) ----
     cap("HEADBOARD/PANTRY — exploded detail (mounted on Panel C's deck, Component 4/1)", 13, -16, 2.0);
-    cap(str("2 FULL-DEPTH shelves -> 3 tiers; nook divider (4) spans the MIDDLE tier into an ENCLOSED bed cubby ", Yp, "\" (bed side) | food ", Yf, "\" (kitchen side)"), 13, -19, 1.4);
-    cap("Open food tiers above AND below the cubby, NO full-height divider, NO TOP. The shell clamps to Panel C's deck (3); 2 L-angle braces tie into Panel C's side rails.", 13, -22, 1.3);
-    cap("Empty the food tiers before lifting. Half-round edging (6), Power strip 1 (7) and the roll bubble level sit on the bed shelf (5).", 13, -24.5, 1.3);
+    cap(str("2 FIXED shelves + 1 ADJUSTABLE (8) -> up to 4 food tiers; nook divider (4) makes the MIDDLE tier an ENCLOSED bed cubby ", Yp, "\" (bed) | food ", Yf, "\" (kitchen)"), 13, -19, 1.4);
+    cap("The 13\" bottom bay runs as one tall bay OR splits into two ~6\" tiers on the pin holes. NO full-height divider, NO TOP. Shell clamps to Panel C's deck (3) + 2 L-angle braces.", 13, -22, 1.3);
+    cap("RETENTION (1): a 1.5\" fiddle lip on EVERY food shelf + a lash strap across each opening + bins for small items + non-slip liner (a net only on the soft-goods tier).", 13, -24.5, 1.3);
 
     // side list to the right of the drawing's own rightmost projected
     // extent (~42 at its widest, the shell's kitchen-facing top corner)
-    side_list(48, 55, [
-        ["1", "Bungee/shock-cord net", "x3 kitchen face + x2 bed face (bottom/top tiers)", "unhook one corner to restock"],
-        ["2", "Full-depth shelves", str("x", n, ", ", W, "\" x ", L, "\", 3/4\" ply (bed shelf ", headboard_personal_shelf_z, "\" + upper ", headboard_upper_shelf_z, "\")"), "the carcass webs — glued + screwed into both side panels"],
+    side_list(48, 58, [
+        ["1", "Retention system", "1.5\" fiddle lip per shelf + lash strap per opening + bins + non-slip liner", "holds rigid items (plates/cans/bottles/utensils) under braking — replaces plain nets"],
+        ["2", "Fixed full-depth shelves", str("x", n, ", ", W, "\" x ", L, "\", 3/4\" ply (bed ", headboard_personal_shelf_z, "\" + upper ", headboard_upper_shelf_z, "\")"), "the carcass webs — glued + screwed into both side panels"],
         ["3", "Clamp-down base cleats", "2x 46\" x 3\" ply strips + 4x 1/4-20 Kipp CAM LEVERS into T-nuts", "flip the levers to release — NO tools; 2 L-angle braces to Panel C's side rails"],
         ["4", "Nook divider", str(W, "\" x ", headboard_nook_divider_h, "\", 1/2\" ply — MIDDLE tier, ", Yp, "\" from the bed face"), "encloses the cubby: bed shelf to upper shelf, into both side panels"],
         ["5", "Bed cubby", str(Yp, "\" deep strip of the bed shelf, surface at ", headboard_personal_shelf_z + panel_thickness, "\" (9\" above the mattress)"), "phones, glasses, flashlights, USB charging"],
         ["6", "Half-round edging", "3/4\" half-round trim, mattress-facing lip", "keeps small items from sliding off in transit"],
         ["7", "Power strip 1 + bubble level", "both mounted on the nook", "strip: own cord run (Section 5); level reads ROLL while leveling"],
+        ["8", "Adjustable shelf", str(W, "\" x ", L, "\", 3/4\" ply — rests on 4 pins in the bottom bay"), str("reposition ", headboard_pin_lo, "-", headboard_pin_hi, "\" or lift out: one tall bay or two ~6\" tiers")],
     ]);
 }
 

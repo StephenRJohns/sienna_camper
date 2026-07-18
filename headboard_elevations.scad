@@ -4,16 +4,13 @@
 // ============================================================
 // Companion to headboard_storage_detail.scad (the exploded isometric)
 // and Section 6 Component 1. Owner's July-18 layout: NO full-height
-// divider and NO top. Two FULL-DEPTH shelves split the height into 3
-// tiers; the BED SHELF is the lower of the two, and a nook divider
-// spans the MIDDLE tier between the two shelves to make an ENCLOSED
-// personal cubby (floor = bed shelf, back = divider, ceiling = upper
-// shelf), open only toward the mattress. Full-depth food fills the
-// tall bottom tier and the top tier. Four views:
-//   1. MATTRESS-FACING — what you see lying in bed (the enclosed bed
-//      cubby in the middle band, open food tiers above + below)
-//   2. KITCHEN-FACING — the netted food tiers from the open tailgate
-//   3/4. LEFT + RIGHT SIDE — the 14in-deep cross-sections
+// divider and NO top. Two FULL-DEPTH shelves; the BED SHELF is the
+// lower of the two, and a nook divider spans the MIDDLE tier to make
+// an ENCLOSED personal cubby. The tall bottom bay gets one ADJUSTABLE
+// shelf on pins (run it as one 13in bay or two ~6in tiers per trip).
+// RETENTION is the marine-galley system now — a front FIDDLE LIP on
+// each food shelf (primary) + an elastic lash strap across each
+// opening + bins + non-slip liner (not plain bungee nets).
 //
 // Render with: openscad -o renders/headboard-elevations.svg headboard_elevations.scad
 // ============================================================
@@ -28,9 +25,11 @@ H  = headboard_height;  // 22
 PT = panel_thickness;   // 0.75
 Yf = headboard_food_depth;   // 10.5 — middle tier's kitchen side, behind the nook divider
 Yp = headboard_shelf_depth;  // 2.75 — bed cubby depth
-psz = headboard_personal_shelf_z; // 13.0 — BED shelf (lower), the cubby floor; surface 13.75 = 9" above the mattress
+psz = headboard_personal_shelf_z; // 13.0 — BED shelf (lower); surface 13.75 = 9" above the mattress
 zu  = headboard_upper_shelf_z;    // 18.0 — UPPER food shelf, the cubby ceiling
+za  = headboard_adj_shelf_z;      // 6.5 — ADJUSTABLE shelf, default position in the bottom bay
 ndh = headboard_nook_divider_h;   // 4.25 — nook divider fills the enclosed middle tier
+lip = headboard_fiddle_lip_h;     // 1.5 — front fiddle-lip height
 
 module rect_outline(w, l, s = stroke) {
     color("black") difference() {
@@ -41,116 +40,126 @@ module rect_outline(w, l, s = stroke) {
 module label(txt, x, y, size = 1.25, halign = "center") {
     color("black") translate([x, y]) text(txt, size = size, halign = halign, valign = "center");
 }
+module dash_h(x0, x1, z, seg = 1.2, gap = 0.8) {
+    n = floor((x1 - x0) / (seg + gap));
+    for (i = [0 : n]) translate([x0 + i * (seg + gap), z]) square([min(seg, x1 - (x0 + i*(seg+gap))), 0.16]);
+}
 
-// front/back elevations share a carcass: 2 side panels, open middle,
-// open top (there is NO top panel)
 module face_frame() {
     color("BurlyWood") {
-        translate([0, 0]) square([PT, H]);          // left side panel edge
-        translate([W - PT, 0]) square([PT, H]);     // right side panel edge
+        translate([0, 0]) square([PT, H]);
+        translate([W - PT, 0]) square([PT, H]);
     }
     rect_outline(W, H);
 }
-
-// both full-depth shelves, seen edge-on from either face
+// the two fixed shelves solid + the adjustable one dashed
 module shelf_edges() {
     for (sz = [psz, zu])
         color("BurlyWood") translate([PT, sz]) square([W - 2*PT, PT]);
+    color("SaddleBrown") dash_h(PT, W - PT, za + PT/2);      // adjustable shelf (dashed)
 }
-
-// vertical bungee-net hint across a tier opening
-module net_hint(z0, z1) {
-    color("DimGray") for (k = [0 : 3])
-        translate([PT + 2 + k * (W - 2*PT - 4)/4, z0]) square([0.2, z1 - z0]);
+// pin-hole columns up both side panels, bottom bay only
+module pin_cols() {
+    for (z = [headboard_pin_lo : headboard_pin_step : headboard_pin_hi])
+        for (x = [PT + 0.7, W - PT - 0.7])
+            color("DimGray") translate([x, z]) circle(r = 0.16, $fn = 12);
+}
+// fiddle lip seen face-on: a filled bar sitting on the shelf front
+module lip_bar(z) { color("Peru") translate([PT, z]) square([W - 2*PT, lip * 0.55]); }
+// elastic lash strap across a tier opening (horizontal, mid-height)
+module strap(z0, z1) {
+    zc = (z0 + z1)/2;
+    color("DimGray") translate([PT + 0.5, zc - 0.13]) square([W - 2*PT - 1, 0.26]);
+    for (x = [PT + 1, W - PT - 1]) color("DimGray") translate([x, zc]) circle(r = 0.35, $fn = 16); // anchors
 }
 
 module mattress_facing() {
     face_frame();
     shelf_edges();
-    // the enclosed bed cubby occupies the middle band on this face;
-    // its floor is the bed shelf, its ceiling the upper shelf
-    color("SaddleBrown") translate([PT, psz + PT]) square([W - 2*PT, 0.4]); // half-round lip on the bed shelf
+    pin_cols();
+    // bed cubby fit-out on the bed shelf
+    color("SaddleBrown") translate([PT, psz + PT]) square([W - 2*PT, 0.4]); // half-round lip
     color("Black") translate([W * 0.62, psz + PT + 0.5]) square([5, 2]);    // Power strip 1
-    color("DimGray") translate([W * 0.22, psz + PT + 0.5]) square([2.5, 0.75]); // RV bar bubble level (roll)
-    net_hint(0.4, psz - 0.4);              // bottom food tier, bed side
-    net_hint(zu + PT + 0.4, H - 0.4);      // top food tier, bed side
+    color("DimGray") translate([W * 0.22, psz + PT + 0.5]) square([2.5, 0.75]); // roll bubble level
+    // fiddle lips + straps on the bed-facing food tiers (bottom pair + top)
+    lip_bar(0.2); lip_bar(za + PT + 0.05); lip_bar(zu + PT + 0.05);
+    strap(0.2, za - 0.3); strap(za + PT, psz - 0.3); strap(zu + PT, H - 0.3);
     label("MATTRESS-FACING (looking from the bed toward the tailgate)", W/2, H + 5, 1.5);
-    label(str("BED CUBBY (enclosed) in the middle band: floor 9\" above the mattress, ", Yp, "\" deep, ceiling above"), W/2, H + 2.6, 1.15);
+    label(str("BED CUBBY (enclosed) in the middle band: floor 9\" above the mattress, ", Yp, "\" deep"), W/2, H + 2.6, 1.15);
     label("half-round lip + Power strip 1 + ROLL bubble level, all on the bed shelf", W/2, psz + PT + ndh/2, 1.05);
-    label("open food tiers above AND below the cubby — bungee each", W/2, psz - 2, 1.05);
+    label("open food tiers above AND below the cubby — fiddle lip + lash strap on each", W/2, psz - 2, 1.05);
     label(str("side panels: 3/4\" ply, ", L, "\" x ", H, "\" (x2) — NO top panel"), W/2, 1.6, 1.1);
 }
 
 module kitchen_facing() {
     face_frame();
     shelf_edges();
-    net_hint(0.4, psz - 0.4);                 // bottom tier
-    net_hint(psz + PT + 0.4, zu - 0.4);       // middle tier (kitchen side, behind the cubby)
-    net_hint(zu + PT + 0.4, H - 0.4);         // top tier
+    pin_cols();
+    // fiddle lips + straps on every food tier, kitchen face
+    lip_bar(0.2); lip_bar(za + PT + 0.05); lip_bar(psz + PT + 0.05); lip_bar(zu + PT + 0.05);
+    strap(0.2, za - 0.3); strap(za + PT, psz - 0.3); strap(psz + PT, zu - 0.3); strap(zu + PT, H - 0.3);
     label("KITCHEN-FACING (looking forward from the open tailgate)", W/2, H + 5, 1.5);
-    label("2 full-depth shelves -> 3 netted tiers (no top — the top tier loads from above too)", W/2, H + 2.6, 1.15);
-    label(str("shelves: 3/4\" ply, ", W - 2*PT, "\" x ", L, "\" FULL depth (x2) — the carcass webs"), W/2, psz - 2, 1.15);
-    label(str("middle tier: ", Yf, "\" deep this side (bed cubby behind); top + bottom: the full ", L, "\""), W/2, psz + PT + ndh/2, 1.02);
-    label("bungee/shock-cord net, screw-eye anchors, every tier", W/2, zu + PT + (H - zu - PT)/2, 1.0);
-    label(str("side panels: 3/4\" ply, ", L, "\" x ", H, "\" (x2)"), W/2, 1.6, 1.1);
+    label("2 fixed shelves + 1 ADJUSTABLE (dashed) -> 4 food tiers, no top", W/2, H + 2.6, 1.15);
+    label(str("bottom bay ", psz, "\" tall — 1 adjustable shelf on pins (", headboard_pin_lo, "-", headboard_pin_hi, "\"): one tall bay OR two ~6\" tiers"), W/2, za - 1.6, 1.02);
+    label("fiddle lip + lash strap every tier (bins for utensils, non-slip liner under all)", W/2, psz + PT + ndh/2, 1.0);
+    label(str("shelves: 3/4\" ply, ", W - 2*PT, "\" x ", L, "\" FULL depth (x2 fixed + x1 adjustable)"), W/2, 1.6, 1.1);
 }
 
 // side elevation: Y (depth) x Z. mattress side at local Y=0 (left).
 module side_elev(mirror_it = false) {
     sx = mirror_it ? -1 : 1;
     translate([mirror_it ? L : 0, 0]) scale([sx, 1]) {
-        rect_outline(L, H); // the side panel itself, seen face-on
-        // 2 full-depth shelves, edge-on
+        rect_outline(L, H);
         for (sz = [psz, zu])
             color("BurlyWood") translate([stroke, sz]) square([L - 2*stroke, PT]);
-        // nook divider (edge-on), MIDDLE tier — spans bed shelf up to
-        // the upper shelf, enclosing the cubby (labelled "bed Shelf")
-        color("SeaGreen") translate([Yp, psz + PT]) square([PT, ndh]);
+        color("SaddleBrown") translate([stroke, za]) square([L - 2*stroke, PT * 0.7]); // adjustable shelf
+        color("SeaGreen") translate([Yp, psz + PT]) square([PT, ndh]);                 // nook divider
         label("bed", Yp/2 + 0.3, psz + PT + ndh/2 + 0.6, 1.0);
         label("shelf", Yp/2 + 0.3, psz + PT + ndh/2 - 0.7, 0.9);
-        // base cleat + bolt-down row at the floor, centered on the depth
+        // fiddle lips at the front edges (front = kitchen at Y=L; also
+        // mattress at Y=0 for the full-depth tiers)
+        color("Peru") for (fz = [0, za + PT, zu + PT]) {
+            translate([L - PT - 0.35, fz]) square([0.35, lip]);   // kitchen edge
+            translate([PT, fz]) square([0.35, lip]);              // mattress edge
+        }
+        color("Peru") translate([L - PT - 0.35, psz + PT]) square([0.35, lip]); // middle food tier, kitchen edge only
+        // pin holes up the side panel, bottom bay
+        for (z = [headboard_pin_lo : headboard_pin_step : headboard_pin_hi])
+            color("DimGray") translate([PT + 0.5, z]) circle(r = 0.16, $fn = 12);
+        // base cleat + brace stub
         color("DimGray") translate([L/2 - 1.5, -1.2]) square([3, 1.2]);
-        // sway brace stub: from ~20in up the mattress face, angling
-        // forward/down to Panel C's OWN side rail below the deck
         color("DimGray") hull() { translate([0.4, 20]) circle(0.35); translate([-4.5, 13]) circle(0.35); }
     }
 }
 
 module drawing() {
-    // top row: the two 46in-wide faces
     mattress_facing();
     translate([W + 14, 0]) kitchen_facing();
 
-    // bottom row: the two 14in-deep sides
-    translate([6, -H - 18]) {
+    translate([6, -H - 20]) {
         side_elev(false);
         label("LEFT SIDE (driver side)", L/2, H + 4.4, 1.4);
         label("mattress <- | -> kitchen", L/2, H + 2.2, 1.0);
-        label(str("side panel: 3/4\" ply, ", L, "\" x ", H, "\""), L/2, -3.2, 1.05);
-        label(str("shelves: 3/4\" ply, full ", L, "\" depth, at ", psz, "\" (bed) and ", zu, "\" (upper)"), L/2 + 3, -5.4, 1.05);
-        label("base: 2x 46\"x3\" ply cleats, 4x 1/4-20 Kipp cam levers + T-nuts thru deck", L/2 + 3, -7.6, 1.05);
+        label("side panel 3/4\" ply", L/2, -3.2, 1.05);
     }
-    translate([6 + L + 30, -H - 18]) {
+    translate([6 + L + 30, -H - 20]) {
         side_elev(true);
-        // Power strip 1's cord route (crimson): from the strip on the
-        // bed shelf, down the side panel, out a 1" deck grommet, then
-        // under the deck and out the front wall's upper grommet
         color("Crimson") {
             translate([L - Yp * 0.6, 0.6]) square([0.22, psz + PT - 0.6]);
             translate([L - Yp * 0.6 + 0.11, 0.6]) difference() { circle(r = 0.7, $fn = 20); circle(r = 0.5, $fn = 20); }
         }
         label("RIGHT SIDE (passenger side)", L/2, H + 4.4, 1.4);
         label("kitchen <- | -> mattress", L/2, H + 2.2, 1.0);
-        label("mirror image of the left side — same parts", L/2, -3.2, 1.05);
-        label(str("nook divider (green): 1/2\" ply, ", W - 2*PT, "\" x ", ndh, "\", at ", Yp, "\" from the mattress face, MIDDLE tier"), L/2 + 4, -5.4, 1.05);
-        label("stub arrows = 30\" steel L-angle braces, ~45 deg down to Panel C's side rail", L/2 + 4, -7.6, 1.05);
-        label("crimson = Power strip 1 cord: down the side panel, 1\" grommet thru the deck, out the front wall (Section 5)", L/2 + 4, -9.8, 1.05);
+        label("mirror image — same parts", L/2, -3.2, 1.05);
     }
 
-    // shared caption
-    label("HEADBOARD/PANTRY — ALL 4 SIDES (14\" deep x 46\" wide x 22\" tall, on Panel C's deck — NO TOP, open tiers)", W + 7, -H - 32, 1.8);
-    label("Carcass: 2 side panels + 2 FULL-DEPTH shelves, 3/4\" ply, glued + screwed (2\" screws, 2 per shelf end); nook divider 1/2\" ply.", W + 7, -H - 35, 1.2);
-    label("Clamped to Panel C's deck (4x 1/4-20 Kipp CAM LEVERS into T-nuts) + 2 L-angle braces (cam-lever nuts at the rail ends) — flips off in a minute, NO tools.", W + 7, -H - 37.5, 1.2);
+    // shared full-width caption (no side-by-side label collisions)
+    cx = W + 7;
+    label("HEADBOARD/PANTRY — ALL 4 SIDES (14\" deep x 46\" wide x 22\" tall, on Panel C's deck — NO TOP)", cx, -H - 34, 1.8);
+    label(str("Carcass: 2 side panels + 2 FIXED full-depth shelves (at ", psz, "\" bed + ", zu, "\" upper) + 1 ADJUSTABLE shelf on pins in the bottom bay, 3/4\" ply; nook divider 1/2\" ply, MIDDLE tier."), cx, -H - 36.6, 1.2);
+    label("Legend: Peru bars = 1.5\" fiddle lips (front rails, both faces); grey = elastic lash straps; green = nook divider; dotted columns = shelf-pin holes (1\" o.c.); crimson = Power strip 1 cord.", cx, -H - 38.8, 1.2);
+    label("Retention: a fiddle lip on EVERY food shelf + a lash strap across each opening + bins for utensils/small items + non-slip liner under all (a net only on the soft-goods tier).", cx, -H - 41, 1.2);
+    label("Clamped to Panel C's deck (4x Kipp CAM LEVERS into T-nuts) + 2 L-angle braces (base: 2x 46\"x3\" ply cleats) — flips off in a minute, NO tools.", cx, -H - 43.2, 1.2);
 }
 
 drawing();

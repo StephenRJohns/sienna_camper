@@ -93,6 +93,28 @@ headboard_height = 22;  // above Panel C's deck level — as tall as the roof al
 headboard_shelf_depth = 2.75;     // clear depth, mattress-facing personal NOOK in the top tier — fixed, not derived
 headboard_food_shelf_count = 2;   // FULL-DEPTH shelf boards -> 3 full-width tiers (owner's July 2026 pattern: no full-height divider, no top; only a short nook divider in the top tier)
 
+// Bottom-bay ADJUSTABLE shelf (owner, July 2026): the 13in bottom
+// tier is deep enough for tall bottles/boxes/pots but wastes air
+// above short items, so it gets ONE extra full-depth shelf on pins —
+// run the bay as a single 13in bay OR split it into two ~6in tiers
+// per trip. Pin-hole columns up both side panels let the board sit
+// anywhere between headboard_pin_lo and headboard_pin_hi.
+headboard_adj_shelf   = true;
+headboard_adj_shelf_z = 6.5;  // default board position (splits the bottom bay ~6.5in / ~5.75in)
+headboard_pin_lo      = 3;    // lowest pin hole above the deck
+headboard_pin_hi      = 11;   // highest pin hole below the bed shelf
+headboard_pin_step    = 1;    // pin-hole spacing (5mm shelf-pin holes)
+
+// RETENTION (owner, July 2026): plain bungee nets don't hold rigid
+// camp-kitchen items (plates, cans, bottles, utensils) under braking
+// — they slide, rattle, and load the screw-eyes. Switched to the
+// marine-galley system: a FRONT FIDDLE LIP on each food shelf
+// (primary retention — stops the forward slide under braking) + an
+// elastic lash strap across each opening (for the taller items) +
+// bins for small/loose items + non-slip liner. A net stays only on
+// the one soft-goods tier (bread/chips/produce).
+headboard_fiddle_lip_h = 1.5;  // front-lip height on each food shelf
+
 /* [Panels A/B/C — fixed tops, one continuous full-length deck] */
 // The deck is now ONE continuous raised platform on uniform legs —
 // not sleeping panels plus a separate shorter rear row. Panel C's

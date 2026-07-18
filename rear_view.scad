@@ -89,6 +89,10 @@ module rear_view() {
         for (sz = [headboard_upper_shelf_z, headboard_personal_shelf_z])
             translate([-headboard_width/2 + 1, z_deck + panel_thickness + sz])
                 square([headboard_width - 2, 0.18]);
+        // adjustable shelf (dashed) in the bottom bay
+        for (dx = [0 : 3 : headboard_width - 4])
+            translate([-headboard_width/2 + 1 + dx, z_deck + panel_thickness + headboard_adj_shelf_z])
+                square([1.8, 0.16]);
     }
     label(str("Headboard/pantry (", headboard_width, "\" x ", headboard_height, "\") — food tiers face you; see Headboard Elevations"),
           -3, z_deck + panel_thickness + headboard_height + 1.6, 1.3);
