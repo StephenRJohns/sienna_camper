@@ -1,0 +1,323 @@
+<title>Project Smores — Shopping List</title>
+<style>
+  :root {
+    --paper: #f1efe7; --card: #fbfaf6; --ink: #24221b; --ink-soft: #6c6659;
+    --line: #ddd8cb; --line-soft: #eae6db;
+    --accent: #9c5e18;       /* ochre — prices, totals */
+    --accent-soft: #f0e2cd;
+    --done: #3f6b3a;         /* pine — got it */
+    --done-soft: #e0ecdc;
+    --owned: #5a6b86;        /* slate — already owned */
+    --owned-soft: #e2e6ee;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15140e; --card: #201e17; --ink: #ece9de; --ink-soft: #a49f8e;
+      --line: #37342a; --line-soft: #2a281f;
+      --accent: #d99a48; --accent-soft: #3a2c16;
+      --done: #74ad6c; --done-soft: #24331f;
+      --owned: #93a4c2; --owned-soft: #232934;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f1efe7; --card: #fbfaf6; --ink: #24221b; --ink-soft: #6c6659;
+    --line: #ddd8cb; --line-soft: #eae6db; --accent: #9c5e18; --accent-soft: #f0e2cd;
+    --done: #3f6b3a; --done-soft: #e0ecdc; --owned: #5a6b86; --owned-soft: #e2e6ee;
+  }
+  :root[data-theme="dark"] {
+    --paper: #15140e; --card: #201e17; --ink: #ece9de; --ink-soft: #a49f8e;
+    --line: #37342a; --line-soft: #2a281f; --accent: #d99a48; --accent-soft: #3a2c16;
+    --done: #74ad6c; --done-soft: #24331f; --owned: #93a4c2; --owned-soft: #232934;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body {
+    margin: 0; padding: 24px 16px 64px; background: var(--paper); color: var(--ink);
+    font: 15.5px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: flex; justify-content: center;
+  }
+  main { width: 100%; max-width: 780px; }
+
+  /* header */
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+  h1 { font-size: clamp(26px, 5vw, 34px); font-weight: 800; letter-spacing: -0.02em; margin: 0; line-height: 1.05; text-wrap: balance; }
+  .lede { color: var(--ink-soft); margin: 8px 0 0; font-size: 14.5px; max-width: 62ch; }
+
+  /* summary bar */
+  .summary { position: sticky; top: 0; z-index: 5; margin: 20px 0 10px; padding: 14px 16px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 1px 0 var(--line); }
+  .sumrow { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: baseline; }
+  .stat { display: flex; flex-direction: column; }
+  .stat .big { font: 700 20px/1 var(--mono); font-variant-numeric: tabular-nums; }
+  .stat .lbl { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); margin-top: 3px; }
+  .stat.total .big { color: var(--accent); }
+  .stat.got .big { color: var(--done); }
+  .bar { margin-top: 12px; height: 7px; border-radius: 4px; background: var(--line-soft); overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width .25s ease; }
+
+  /* filters */
+  .filters { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 18px; }
+  .filters button { border: 1px solid var(--line); background: var(--card); color: var(--ink-soft);
+    padding: 6px 13px; border-radius: 999px; font: 600 12.5px/1 system-ui, sans-serif; cursor: pointer; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .filters button:focus-visible, .row label:focus-visible, .buy:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* category */
+  section { margin-bottom: 22px; }
+  .cathead { display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding: 0 4px 8px; border-bottom: 2px solid var(--ink); margin-bottom: 4px; }
+  .cathead h2 { font-size: 15px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; margin: 0; }
+  .cathead .sub { font: 600 12.5px/1 var(--mono); font-variant-numeric: tabular-nums; color: var(--ink-soft); white-space: nowrap; }
+  .cathead .sub b { color: var(--accent); font-weight: 700; }
+
+  /* row */
+  .row { display: grid; grid-template-columns: 26px 1fr auto; gap: 4px 12px; align-items: start;
+    padding: 11px 4px; border-bottom: 1px solid var(--line-soft); }
+  .row:last-child { border-bottom: 0; }
+  .row.hide { display: none; }
+  .cb { grid-row: 1 / span 2; margin-top: 2px; }
+  .cb input { appearance: none; width: 20px; height: 20px; border: 2px solid var(--line); border-radius: 5px;
+    background: var(--card); cursor: pointer; display: grid; place-content: center; }
+  .cb input:checked { background: var(--done); border-color: var(--done); }
+  .cb input:checked::after { content: "✓"; color: #fff; font-size: 13px; font-weight: 900; line-height: 1; }
+  .name { font-weight: 600; }
+  .name .qty { display: inline-block; font: 700 11.5px/1 var(--mono); color: var(--accent); background: var(--accent-soft);
+    padding: 3px 6px; border-radius: 5px; margin-right: 7px; vertical-align: 1px; font-variant-numeric: tabular-nums; }
+  .spec { grid-column: 2; color: var(--ink-soft); font-size: 12.8px; margin-top: 3px; }
+  .price { grid-row: 1 / span 2; text-align: right; font: 700 14px/1.3 var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .row.done .name, .row.done .price { opacity: 0.5; }
+  .row.done .name > span:not(.qty):not(.tag) { text-decoration: line-through; text-decoration-color: var(--ink-soft); }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: 1px; }
+  .tag.p { background: var(--done-soft); color: var(--done); }
+  .tag.o { background: var(--owned-soft); color: var(--owned); }
+  .tag.u { background: var(--accent-soft); color: var(--accent); }
+  .buy { grid-column: 2; justify-self: start; margin-top: 7px; display: inline-flex; align-items: center; gap: 5px;
+    font: 600 12px/1 system-ui, sans-serif; color: var(--accent); text-decoration: none;
+    border: 1px solid var(--accent); border-radius: 7px; padding: 5px 10px; }
+  .buy:hover { background: var(--accent-soft); }
+  .buy::after { content: "↗"; font-size: 11px; }
+
+  .footnote { margin-top: 28px; padding: 16px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; font-size: 13.5px; color: var(--ink-soft); }
+  .footnote a { color: var(--accent); }
+  .footnote b { color: var(--ink); }
+
+  @media (max-width: 460px) {
+    .row { grid-template-columns: 24px 1fr; }
+    .price { grid-row: auto; grid-column: 2; text-align: left; margin-top: 4px; }
+    .summary { position: static; }
+  }
+  @media print {
+    .filters, .summary { position: static; }
+    .buy { border: 0; padding: 0; color: var(--ink-soft); }
+    body { padding: 0; }
+  }
+</style>
+
+<main>
+  <header>
+    <p class="eyebrow">Project Smores &middot; Sienna Camper Build</p>
+    <h1>Materials Shopping List</h1>
+    <p class="lede">Everything the build needs, grouped by trip to the store. Tap a box when it's in the cart — your progress and totals save on this device. Prices are estimates; a few big-ticket items are unverified until you check the live listing.</p>
+  </header>
+
+  <div class="summary" aria-live="polite">
+    <div class="sumrow">
+      <div class="stat got"><span class="big" id="s-got">0 / 0</span><span class="lbl">Items got</span></div>
+      <div class="stat"><span class="big" id="s-spent">$0</span><span class="lbl">In the cart</span></div>
+      <div class="stat total"><span class="big" id="s-total">$0</span><span class="lbl">Full build (excl. owned gear)</span></div>
+    </div>
+    <div class="bar"><i id="s-bar"></i></div>
+  </div>
+
+  <div class="filters" role="group" aria-label="Filter list">
+    <button data-f="all" aria-pressed="true">All</button>
+    <button data-f="buy" aria-pressed="false">Still to buy</button>
+    <button data-f="done" aria-pressed="false">Got it</button>
+    <button data-f="owned" aria-pressed="false">Already owned</button>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="footnote">
+    <p style="margin:0 0 8px"><b>Notes.</b> Items tagged <span class="tag p">purchased</span> were already bought (July 2026); <span class="tag o">owned</span> gear (the EcoFlow DELTA 3 + WAVE 3) isn't priced here; <span class="tag u">unverified</span> prices need a live-listing check before you count on them. Several links are multi-packs — buy the pack, keep the spares.</p>
+    <p style="margin:0">Leveling is done at the wheels with the <a href="https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9">Sienna Block Calculator</a> (free) plus the Lynx blocks below. Full build plan and all dimensioned drawings live in <b>Project_Smores.pdf</b>.</p>
+  </div>
+</main>
+
+<script>
+const DATA = [
+  ["Lumber &amp; Plywood", [
+    ["3/4\" Baltic birch plywood", "4x8 sheet — Panel C top, headboard side panels/shelves/cleats, kitchen-drawer cheeks", "1 sheet", 65, 65, null, "buy"],
+    ["1/2\" Baltic birch plywood", "4x8 sheet — drawer box, fridge tray, kitchen-drawer box, Panel C front wall, nook divider", "1 sheet", 50, 50, null, "buy"],
+    ["2x2 pine, 8ft", "Panel frames, legs, cube-frame bottom rails (or 1\"x1\" aluminum L-channel)", "12 boards", 96, 180, null, "buy"],
+    ["1x4 pine, 8ft", "Bed platform — two 58\" side rails + ten 45\" slats (two per board)", "7 boards", 35, 35, null, "buy"],
+    ["3/4\" half-round pine trim, 46\"", "Bed-cubby shelf front lip", "1", 7, 7, null, "buy"],
+  ]],
+  ["Frame Hardware &amp; Fasteners", [
+    ["Headboard mounting set", "4x Kipp 1/4-20 cam levers (hold-down) + 2x 30\" slotted steel L-angle braces + 4x 1/4-20 bolts/nylocs + 4x 1/4-20 studs + Kipp cam-lever nuts + T-nuts/washers", "1 set", 85, 85, "https://www.amazon.com/Kipp-04232-1011A2X30-Levers-External-Surface/dp/B013I9ZY1E", "buy"],
+    ["Kipp 1/4-20 internal-thread cam levers", "Brace-end nuts (tool-free release) — part of the set above", "4", 0, 0, "https://www.amazon.com/Kipp-04232-1011A2-Levers-Internal-Surface/dp/B013I9Z5NG", "buy"],
+    ["Corner brackets", "Frame joints, 4 per panel x 3 panels", "12", 12, 12, null, "buy"],
+    ["Diagonal corner braces", "Panel A/B racking stiffness (recovers what the tops used to give)", "8", 24, 24, null, "buy"],
+    ["Wood screws, 1.25\" &amp; 2\"", "Assorted box", "2 boxes", 20, 20, null, "buy"],
+    ["Wood glue", "", "1", 8, 8, null, "buy"],
+    ["Alignment dowel pins", "3/8\" dowel rod, cut to 4 pins (seam registration)", "1", 3, 3, null, "buy"],
+    ["Anti-rattle bumper strip", "Adhesive felt/foam weatherstrip roll (module seams)", "1", 10, 10, null, "buy"],
+  ]],
+  ["Drawers &amp; Slides", [
+    ["Panel drawer slides, 20\"", "GlideRite 100lb ball-bearing, 5-pair pack (only 1 pair needed — 4 spares)", "1 pack", 46.99, 46.99, "https://www.amazon.com/20-inch-Extension-Ball-Bearing-Drawer-Over-Travel/dp/B07KFLS2C9", "done"],
+    ["Drawer catch", "Friction catch or small turn latch — Panel A drawer", "1", 3, 3, null, "buy"],
+    ["Kitchen drawer slide pair, 24\"", "Full-extension side-mount, 100lb class", "1 pair", 16, 16, null, "buy"],
+    ["Kitchen drawer magnetic catch", "", "1", 3, 3, null, "buy"],
+    ["Fridge slide pair, 24\" heavy-duty", "VADANIA #D76 locking, 379lb, 3-fold full extension (locks closed + extended)", "1 pair", 79.20, 79.20, "https://www.amazon.com/VADANIA-Industrial-Extension-Bearing-Widening/dp/B08C56Z6GF", "done"],
+  ]],
+  ["Leveling", [
+    ["Leg leveling feet w/ T-nut kit", "3/8-16, 330lb/foot, 4-pack — buy 3 packs (12 feet)", "3 packs", 36, 36, "https://www.amazon.com/Furniture-Levelers-Adjustable-Leveling-Cabinets-Sofa/dp/B081ZT4Q4G", "buy"],
+    ["Star-knob hand grips", "Peachtree 3/8-16 thru-hole, 4-pack — buy 3 packs (12) + 12x 3/8-16 jam nuts", "3 packs", 36, 36, "https://www.amazon.com/Star-Thru-Hole-Knob-Woodworking/dp/B000UH7Y84", "buy"],
+    ["RV bar bubble levels", "RV Designer E409 screw-on 2-pack (pitch on platform rail, roll on headboard cubby)", "1 pack", 9, 9, "https://www.amazon.com/RV-Designer-E409-Screw-Bubble/dp/B004MDYRZU", "buy"],
+    ["RV leveling blocks + wheel chock", "Lynx Levelers 10-pack — per-site leveling at the wheels (pairs with the Block Calculator)", "1 set", 40, 40, "https://www.amazon.com/Lynx-Levelers-00015-Leveling-Blocks/dp/B000BUV1RK", "buy"],
+  ]],
+  ["Fridge &amp; Kitchen", [
+    ["BougeRV Rocky 40 fridge", "CR04001, 41QT dual-zone, 28.03 x 17.72 x 15.79\", 40.6 lb, 60W max — reversible lid", "1", 400, 500, "https://www.bougerv.com/products/rocky-12v-camp-fridge", "buy", "u"],
+    ["JAGAHAHA slide-out camp kitchen", "Wooden overland unit w/ 2-burner stove space + built-in slide, 26 x 20 x 11.8\" closed", "1", 300, 350, "https://www.amazon.com/dp/B0FLDCNYZX", "buy", "u"],
+    ["COOKTRON induction cooktop", "2-burner + removable cast-iron griddle, 18.1 x 9.1 x 4.3\" — fits the kitchen's stove tray", "1", 190, 190, "https://www.amazon.com/dp/B09MCR1SDT", "buy"],
+    ["Cook N Home cookware set", "10-piece 18/10 stainless, induction-compatible", "1 set", 65, 90, "https://www.amazon.com/Cook-Home-10-Piece-Stainless-Cookware/dp/B00VEAJKT2", "buy"],
+  ]],
+  ["Electrical &amp; Cooling", [
+    ["120mm 12V fans", "GDSTIME dual-ball-bearing — need 2 (intake + exhaust); verify 12V / 120x120x25mm", "2", 18, 20, "https://www.amazon.com/GDSTIME-Bearings-Brushless-Cooling-Exhaust/dp/B00N1Y4BMA", "buy"],
+    ["W1209 temp controller + NTC probe", "HiLetgo 2-pack w/ case (1 needed, 1 spare) — drives the fridge fans", "1 pack", 10, 10, "https://www.amazon.com/HiLetgo-Temperature-Controller-Thermostat-One-Channel/dp/B07VDWRZKB", "buy"],
+    ["Nilight 6-way fuse block", "Blade fuses + negative bus, waterproof cover, fuse assortment included", "1", 17.98, 17.98, "https://www.amazon.com/Nilight-Negative-Standard-Waterproof-Automotive/dp/B09NPQBXCG", "done"],
+    ["Ampper illuminated switches", "12V 20A round rockers, 10-pack (3 needed: fridge / cooktop / fans)", "1 pack", 8.99, 8.99, "https://www.amazon.com/Illuminated-Rocker-Switches-Ampper-Terminals/dp/B0BZPY5D9L", "done"],
+    ["Control-panel enclosure", "LMioEtool IP65 hinged ABS box, 5.9 x 3.9 x 2.8\"", "1", 12, 15, "https://www.amazon.com/LMioEtool-Waterproof-Dustproof-Universal-Electrical/dp/B0CJJCKXK3", "buy"],
+    ["Snap-in louvered RV vents", "1 low intake (front wall) + 1 low exhaust (cabinet door)", "2", 12, 12, null, "buy"],
+    ["1\" rubber cable grommets", "EASYEAH 20-pack — covers all 10 pass-throughs", "1 pack", 9.99, 9.99, "https://www.amazon.com/Diameter-Hole%EF%BC%8CRubber-Synthetic-Protection-Double-Sided/dp/B085S6S6KH", "done"],
+    ["6-outlet power strips", "CRST metal, individual switches — Power strip 1 + 2", "2", 50, 50, "https://www.amazon.com/CRST-Individual-Protectors-ECO-Friendly-Protector/dp/B097JH3W3W", "buy"],
+    ["AC extension cords, 16AWG 3ft", "DEWENWILS SJTW 2-pack — buy 2 packs (cooktop line chained + DELTA 3 charging line)", "2 packs", 26, 26, "https://www.amazon.com/DEWENWILS-Extension-Weatherproof-Outdoor-Grounded/dp/B0891VDLV5", "buy"],
+    ["Fridge DC cord + SAE disconnects", "OYMSAE 12ft 16AWG SAE-to-SAE 2-pack — the SAE plugs are the seam disconnects", "1 pack", 14, 14, "https://www.amazon.com/OYMSAE-Extension-Disconnect-Connector-Automotive/dp/B0B2JLGJCR", "buy"],
+    ["3-way AC outlet splitter", "GE 52203 wall tap — cooktop + Power strip 1 + DELTA 3 charging share the console outlet", "1", 6, 13, "https://www.amazon.com/GE-Adapter-Grounded-Outlets-52203/dp/B00006IBFC", "buy"],
+    ["Screw-mount cord clips", "VIPMOON 1/4\" R-type nylon, 100-pack (~10-12 used) — NOT adhesive", "1 pack", 9, 9, "https://www.amazon.com/VIPMOON-Mounting-Fastener-Electrical-Management/dp/B07HGZ83JB", "buy"],
+  ]],
+  ["Anchoring &amp; Restraint", [
+    ["Snap-Loc E-track anchors", "1000lb WLL bolt-on — 4 for the fridge slide + 4 for the kitchen unit", "8", 56, 56, null, "buy"],
+    ["5/16\" carriage bolts + nuts + washers", "2 per E-track anchor, through the floor pan", "16", 12, 12, null, "buy"],
+    ["Erickson ratchet straps", "500lb WLL, 1\" x 10', 4-pack — kitchen unit tie-down", "1 pack", 32, 32, null, "buy"],
+  ]],
+  ["Comfort &amp; Interior", [
+    ["HEST Dually Long mattress", "78 x 50 x 4\" solid foam, memory top, washable waterproof cover included", "1", 530, 590, "https://hest.com/products/dually", "buy"],
+    ["Claymore V600+ tripod fan", "Personal comfort, on Power strip 1", "1", 46, 46, null, "buy"],
+    ["Tension rod + blackout curtain fabric", "Cab-to-cargo privacy divider", "1", 40, 40, null, "buy"],
+    ["PeaceOut Sienna bug nets", "Sienna-specific sliding-door pair, magnetic — no-see-um mesh", "1 pair", 197, 197, "https://peaceout.ca/en/products/toyota-sienna-front-sliding-doors-bug-nets", "buy", "u"],
+    ["EcoFlow WAVE car vent kit", "Window seal + duct pass-throughs (no-tent sleeping config)", "1", 39, 39, "https://us.ecoflow.com/products/wave-car-vent-kit", "buy"],
+    ["Non-slip mat", "WAVE 3 point-of-use surface", "1", 12, 12, null, "buy"],
+    ["WAVE 3 hose/cord storage hook", "Inside the utility cabinet", "1", 4, 4, null, "buy"],
+    ["WAVE 3 glide strips", "UHMW or laminate scrap, Panel A left-bay floor", "2", 6, 6, null, "buy"],
+    ["DELTA 3 drawer hardware set", "Locating cleats + 2 D-rings + cam strap + grommet", "1 set", 15, 15, null, "buy"],
+  ]],
+  ["Finishing &amp; Vehicle", [
+    ["Wood sealant / varnish", "", "1", 20, 20, null, "buy"],
+    ["Sandpaper + misc finishing", "", "1", 15, 15, null, "buy"],
+    ["Ling Labs SRS seat emulators", "Sienna 2nd row (0651 Round + 6134 Rectangle) — airbag system reads normally with seats out", "1 set", 50, 100, null, "buy", "u"],
+  ]],
+  ["Already Owned — don't re-buy", [
+    ["EcoFlow DELTA 3 Plus + Smart Extra Battery", "2048Wh — powers the fridge, fans, and Power strip 1 stack (Panel A)", "—", 0, 0, null, "owned"],
+    ["EcoFlow WAVE 3", "Portable AC / heater — stows in Panel A's left bay", "—", 0, 0, null, "owned"],
+  ]],
+];
+
+const fmt = (lo, hi) => lo === hi ? "$" + (Math.round(lo) === lo ? lo : lo.toFixed(2)) : "$" + Math.round(lo) + "–" + Math.round(hi);
+let STORE = {};
+try { STORE = JSON.parse(localStorage.getItem("smoresShop") || "{}"); } catch (e) {}
+let filter = "all";
+const list = document.getElementById("list");
+let id = 0;
+
+DATA.forEach(([cat, items]) => {
+  const sec = document.createElement("section");
+  const head = document.createElement("div");
+  head.className = "cathead";
+  const h2 = document.createElement("h2"); h2.innerHTML = cat;
+  const sub = document.createElement("div"); sub.className = "sub";
+  head.append(h2, sub); sec.append(head);
+
+  let lo = 0, hi = 0, buyable = 0;
+  items.forEach(it => {
+    const [n, s, q, il, ih, url, st, tag] = it;
+    const key = "i" + (id++);
+    const owned = st === "owned";
+    if (!owned) { lo += il; hi += ih; buyable++; }
+    const done0 = STORE[key] !== undefined ? STORE[key] : (st === "done");
+
+    const row = document.createElement("div");
+    row.className = "row" + (done0 ? " done" : "");
+    row.dataset.key = key; row.dataset.owned = owned ? "1" : "0";
+
+    let cbHtml = "";
+    if (!owned) cbHtml = `<label class="cb"><input type="checkbox" ${done0 ? "checked" : ""} aria-label="Got ${n.replace(/"/g,'')}"></label>`;
+    else cbHtml = `<span class="cb"></span>`;
+
+    const tagHtml = tag === "u" ? ` <span class="tag u">unverified</span>`
+      : st === "done" ? ` <span class="tag p">purchased</span>`
+      : owned ? ` <span class="tag o">owned</span>` : "";
+
+    row.innerHTML =
+      cbHtml +
+      `<div class="name"><span class="qty">${q}</span><span>${n}</span>${tagHtml}</div>` +
+      `<div class="price">${owned ? "—" : fmt(il, ih)}</div>` +
+      (s ? `<div class="spec">${s}</div>` : "") +
+      (url ? `<a class="buy" href="${url}" target="_blank" rel="noopener">View product</a>` : "");
+    sec.append(row);
+  });
+  sub.innerHTML = buyable ? `${buyable} item${buyable > 1 ? "s" : ""} &middot; <b>${fmt(lo, hi)}</b>` : "owned gear";
+  list.append(sec);
+});
+
+function refresh() {
+  let total_lo = 0, total_hi = 0, spent_lo = 0, spent_hi = 0, got = 0, buyN = 0;
+  document.querySelectorAll(".row").forEach(row => {
+    if (row.dataset.owned === "1") return;
+    const priceTxt = row.querySelector(".price").textContent;
+    const nums = priceTxt.replace(/[$]/g, "").split("–").map(Number);
+    const rlo = nums[0], rhi = nums[1] !== undefined ? nums[1] : nums[0];
+    total_lo += rlo; total_hi += rhi; buyN++;
+    const cb = row.querySelector("input");
+    if (cb && cb.checked) { got++; spent_lo += rlo; spent_hi += rhi; }
+  });
+  document.getElementById("s-got").textContent = got + " / " + buyN;
+  document.getElementById("s-spent").textContent = fmt(spent_lo, spent_hi);
+  document.getElementById("s-total").textContent = fmt(total_lo, total_hi);
+  document.getElementById("s-bar").style.width = (buyN ? (got / buyN * 100) : 0) + "%";
+}
+
+list.addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  const row = e.target.closest(".row");
+  const on = e.target.checked;
+  row.classList.toggle("done", on);
+  STORE[row.dataset.key] = on;
+  try { localStorage.setItem("smoresShop", JSON.stringify(STORE)); } catch (err) {}
+  refresh();
+});
+
+document.querySelectorAll(".filters button").forEach(b => {
+  b.addEventListener("click", () => {
+    filter = b.dataset.f;
+    document.querySelectorAll(".filters button").forEach(o => o.setAttribute("aria-pressed", o === b ? "true" : "false"));
+    document.querySelectorAll(".row").forEach(row => {
+      const owned = row.dataset.owned === "1";
+      const done = row.classList.contains("done");
+      let show = true;
+      if (filter === "buy") show = !owned && !done;
+      else if (filter === "done") show = !owned && done;
+      else if (filter === "owned") show = owned;
+      row.classList.toggle("hide", !show);
+    });
+    document.querySelectorAll("section").forEach(sec => {
+      const any = [...sec.querySelectorAll(".row")].some(r => !r.classList.contains("hide"));
+      sec.style.display = any ? "" : "none";
+    });
+  });
+});
+
+refresh();
+</script>
