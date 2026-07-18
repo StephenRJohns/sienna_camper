@@ -6,11 +6,12 @@
 // July 2026): Panel A has none (both bays face the side doors),
 // Panel B has none (bare-frame deep storage, never seen), and Panel
 // C gets exactly this piece on its front (B-facing) face. It does
-// two jobs: mounts the 120mm intake fan that feeds the fridge
-// cavity, and passes the fridge DC line through a grommet. Panel
-// C's sides stay open (van wall ~1in away) and its tailgate face
-// needs no wall — fridge + cabinet door + kitchen unit + kitchen
-// drawer face fill it completely.
+// several jobs: mounts the 120mm intake fan (with a low passive
+// cool-air louver below it), and passes the fridge DC line and
+// Power strip 1's line through two grommets. Panel C's sides stay
+// open (van wall ~1in away) and its tailgate face needs no wall —
+// fridge + cabinet door + kitchen unit + kitchen drawer face fill
+// it completely.
 //
 // Render with: openscad -o renders/panel-c-wall-detail.svg panel_c_wall_detail.scad
 // ============================================================
@@ -22,7 +23,7 @@ stroke = 0.18;
 WW = panel_width;   // 46 — wall width
 WH = pcwall_h;      // 17 — floor to the front rail's underside
 fan_d  = intake_fan_dia;                              // 4.75 (120mm)
-fan_x  = panel_width/2 + x_fridge_module;             // 11.36 — centered on the fridge bay (which now sits against the rear corner leg, 1.5 in from the edge)
+fan_x  = panel_width/2 + x_fridge_module;             // 10.86 — centered on the fridge bay (which now sits against the rear corner leg, 1.5 in from the edge)
 fan_z  = fridge_tray_t + fridge_ext_height/2;         // 8.4 — centered on the fridge's height
 gr_d   = pcwall_grommet_dia;                          // 1 — fridge DC line
 gr_x   = 3;   // from the driver edge — the DC line hugs the driver-side floor run

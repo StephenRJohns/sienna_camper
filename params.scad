@@ -348,7 +348,8 @@ cabinet_vent_z = 5;   // center Z, low in the door
 // ~/Downloads/Rocky_metal_fridge_user_manual.pdf: body 712x450x401mm
 // (28.03 x 17.72 x 15.79in); the product page's 28.74in depth
 // includes the handles — that larger figure is used for the bay.
-// 46.8 lb empty, 80W rated, 12/24V DC + AC + solar input, dual-zone
+// 40.6 lb (18.4 kg) empty per the manual spec table, 60W max / 45W
+// ECO, 12/24V DC + AC + solar input, dual-zone
 // (17L + 19L boxes, removable partition), optional detachable B240
 // battery (inserts at the compressor end — face that end toward the
 // TAILGATE so the battery swaps without a full slide-out). The LID
@@ -368,8 +369,9 @@ fridge_ext_height = 15.79; // Z — drives leg_height above (16.29 with tray, 0.
 fridge_side_clearance = 2;  // with forced airflow; manual's passive figures are 7.9/3.9in
 
 /* [Fridge slide — heavy duty, loaded weight is real] */
-// Empty the BougeRV is ~24 lb, but loaded it can hit 60-90 lb — too
-// heavy to pull by hand without tipping or binding. It sits on its
+// Empty the Rocky 40 is 40.6 lb (18.4 kg, manual), and loaded with
+// food/drinks it can hit ~60-90 lb — too heavy to pull by hand
+// without tipping or binding. It sits on its
 // own plywood tray (screwed down, with a lip) riding a pair of
 // heavy-duty full-extension slides rated well above the load.
 fridge_slide_length = 24;   // 24in, 200lb-rated full-extension slide pair
