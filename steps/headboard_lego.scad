@@ -12,12 +12,12 @@
 //
 // Owner's July 2026 pattern: NO full-height divider, NO top — two
 // FULL-DEPTH shelves make 3 full-width tiers; a short nook divider
-// in the TOP tier splits the personal nook (mattress side) from the
+// in the MIDDLE tier encloses a bed cubby (mattress side) from the
 // top food tier (kitchen side).
 //
 //   1  2 side panels + 2 full-depth shelves — the whole carcass
 //   2  bolt-down base cleats + L-angle sway braces to Panel C's rails
-//   3  nook divider (top tier) + bungee/net retention, both faces
+//   3  nook divider (middle tier, enclosed cubby) + bungee/net, both faces
 //   4  nook fit-out: half-round edging + Power strip 1 + roll bubble level
 // Part letters: E side panel, H full-depth shelves, F nook divider,
 // G base cleats.
@@ -35,12 +35,12 @@ RS = frame_rail_sz;
 LH = leg_height;
 PT = panel_thickness;
 HH = headboard_height;   // 22, shelving height above deck level
-Yf = headboard_food_depth;       // 10.5 — the TOP tier's kitchen side, behind the nook divider
-Yp = headboard_shelf_depth;      // 2.75 — personal nook depth (fixed)
+Yf = headboard_food_depth;       // 10.5 — the MIDDLE tier's kitchen side, behind the nook divider
+Yp = headboard_shelf_depth;      // 2.75 — bed cubby depth (fixed)
 n  = headboard_food_shelf_count; // 2 full-depth shelves -> 3 tiers
-zm = headboard_mid_shelf_z;      // 8.375
-zp = headboard_personal_shelf_z; // 16.75
-ndh = headboard_nook_divider_h;  // 4.5
+zm = headboard_upper_shelf_z;    // 18.0 — upper food shelf (cubby ceiling)
+zp = headboard_personal_shelf_z; // 13.0 — bed shelf (cubby floor), 9" above the mattress
+ndh = headboard_nook_divider_h;  // 4.25 — divider fills the enclosed middle tier
 z_deck = LH + RS + PT;   // top of Panel C's own deck = shelving floor
 y0 = PCL - L;            // headboard zone's start within Panel C's own length (tailgate end)
 y_div = headboard_shelf_depth; // nook divider position within the headboard zone, from the mattress-facing (local Y=0) end
@@ -109,16 +109,16 @@ module s3_parts() {
 module s3_assembly() {
     panel_c_ctx();
     shell_geom(0, true);
-    // nook divider dropped into the TOP tier, Yp back from the bed face
+    // nook divider spans the MIDDLE tier (bed shelf to upper shelf), Yp back from the bed face
     wbox([-W/2, y0 + y_div, z_deck + zp + PT], [W, PT, ndh]);
     iarrow([0, y0 + y_div + PT/2, z_deck + HH + 5], [0, y0 + y_div + PT/2, z_deck + zp + PT + ndh + 0.5]);
-    // screwed down into the top shelf + into both side panels
+    // screwed into the bed shelf + up to the upper shelf + into both side panels
     for (x = [-W/2 + PT/2, W/2 - PT/2])
         fastener([x, y0 + y_div + PT/2, z_deck + zp + PT + ndh * 0.6], 0.4, 90);
     fastener([0, y0 + y_div + PT/2, z_deck + zp + PT + 0.2], 0.4, 0);
     callout("F", [-W/2, y0 + y_div + PT/2, z_deck + zp + PT + ndh], [-7, 4]);
-    cap(str("nook divider at ", Yp, "\" from the bed face, TOP tier only. Then bungee/net EVERY opening: 3 kitchen-face tiers"), 0, -20, 1.7);
-    cap("+ the bottom/middle tiers' bed face — with no divider down there, the bungees are what keep braking from throwing food onto the bed.", 0, -23, 1.7);
+    cap(str("nook divider at ", Yp, "\" from the bed face, MIDDLE tier — encloses the bed cubby. Then bungee/net EVERY opening: 3 kitchen-face tiers"), 0, -20, 1.7);
+    cap("+ the bottom/top tiers' bed face — those are open food (only the middle band is the enclosed cubby); the bungees keep braking from throwing food onto the bed.", 0, -23, 1.7);
 }
 
 module s4_parts() {
@@ -131,13 +131,13 @@ module s4_assembly() {
     shell_geom(0, true);
     // nook divider now context too
     wbox([-W/2, y0 + y_div, z_deck + zp + PT], [W, PT, ndh], [0, 0], true);
-    // half-round edging along the top shelf's mattress-facing lip
+    // half-round edging along the bed shelf's mattress-facing lip
     ifill(INK) translate([-W/2 + 1, y0 + 0.3, z_deck + zp + PT]) rotate([0, 90, 0]) cylinder(h = W - 2, r = 0.35, $fn = 12);
     // Power strip 1 + roll bubble level, on the nook surface
     ifill("Black") translate([W * 0.25, y0 + 0.9, z_deck + zp + PT]) cube([3, 1.6, 0.6]);
     ifill("DimGray") translate([-W * 0.32, y0 + 0.9, z_deck + zp + PT]) cube([2.5, 0.8, 0.5]);
     iarrow([0, y0 - 2, z_deck + zp + PT + 3], [0, y0 + 0.5, z_deck + zp + PT + 0.5], 0.4);
-    cap("fit out the personal nook (top shelf, bed side): half-round lip glued + pinned, Power strip 1, and the ROLL bubble level —", 0, -20, 1.7);
+    cap("fit out the bed cubby (bed shelf, mattress side): half-round lip glued + pinned, Power strip 1, and the ROLL bubble level —", 0, -20, 1.7);
     cap("read it from the bed or side door while turning the leg-foot knobs; the PITCH level lives on the platform's driver-side rail edge.", 0, -23, 1.7);
 }
 

@@ -523,17 +523,17 @@ module headboard_module(y_offset) {
 
         // 2 FULL-DEPTH shelves -> 3 full-width tiers (no full-height
         // divider anymore, and no top — these ARE the carcass webs)
-        for (sz = [headboard_mid_shelf_z, headboard_personal_shelf_z])
+        for (sz = [headboard_upper_shelf_z, headboard_personal_shelf_z])
             translate([-headboard_width/2, y_offset, z_top + sz])
                 cube([headboard_width, headboard_length, wall_t]);
 
-        // short nook divider, TOP tier only: splits the personal nook
-        // (mattress side, headboard_shelf_depth deep) from the top
-        // food tier — sits on the top shelf, runs to the open top edge
+        // nook divider, MIDDLE tier: spans the bed shelf up to the
+        // upper shelf, enclosing the mattress-side bed cubby
+        // (headboard_shelf_depth deep) from the middle food tier
         translate([-headboard_width/2, y_offset + y_div, z_top + headboard_personal_shelf_z + wall_t])
             cube([headboard_width, wall_t, headboard_nook_divider_h]);
     }
-    color("SaddleBrown") // half-round edging lip, front (mattress-facing) edge of the personal shelf
+    color("SaddleBrown") // half-round edging lip, front (mattress-facing) edge of the bed shelf
         translate([-headboard_width/2, y_offset + 0.4, z_top + headboard_personal_shelf_z + wall_t])
             rotate([0, 90, 0]) cylinder(h = headboard_width, r = 0.4, $fn = 16);
 }

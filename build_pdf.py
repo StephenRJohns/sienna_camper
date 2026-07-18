@@ -158,27 +158,17 @@ def main():
         + floorplan_block,
     )
 
-    # Replace the isometric/top-down/side-profile 3-column table (now
-    # that top-down has its own full-size section above) with two
-    # full-width stacked figures instead of a cramped side-by-side
-    # table — halving the display width was exactly what made their
-    # small annotation labels unreadable.
+    # Replace the top-down/side-profile 2-column table (top-down also
+    # has its own full-size floorplan section above) with a single
+    # full-width side-profile figure — the murky 3D isometric and
+    # fit-check projections were dropped as low-value.
     md_text = md_text.replace(
-        "| Isometric | Top-down | Side profile |\n|---|---|---|\n"
-        "| ![Isometric view](renders/isometric.svg) | ![Top-down view](renders/top-down.svg) | ![Side profile](renders/side-profile.svg) |",
-        "![Isometric view](renders/isometric.png)\n\n"
+        "| Top-down | Side profile |\n|---|---|\n"
+        "| ![Top-down view](renders/top-down.svg) | ![Side profile](renders/side-profile.svg) |",
         "![Side profile](renders/side-profile.png)",
     )
 
-    # split the fit-check line's lead-in text from its image onto
-    # separate lines — markdown wraps inline text+image in one <p>,
-    # and a <figure> can't legally nest inside that <p>
-    md_text = md_text.replace(
-        "Fit check, platform inside the van's interior envelope: ![Fit-check isometric](renders/fit-check-isometric.svg)",
-        "Fit check, platform inside the van's interior envelope:\n\n![Fit-check isometric](renders/fit-check-isometric.png)",
-    )
-
-    # same split for the rear-view line
+    # split the rear-view line
     md_text = md_text.replace(
         "Rear view, looking forward from the open tailgate at Panel C with the fridge and kitchen unit both stowed for driving: ![Rear view](renders/rear-view.svg)",
         "Rear view, looking forward from the open tailgate at Panel C with the fridge and kitchen unit both stowed for driving:\n\n![Rear view](renders/rear-view.png)",
@@ -205,7 +195,7 @@ def main():
     # isometric/side-profile/fit-check images as captioned figures too —
     # match the whole enclosing <p> so we don't nest a block-level
     # <figure> inside it (invalid HTML that Chrome silently mangles)
-    for alt in ["Isometric view", "Side profile", "Fit-check isometric", "Rear view",
+    for alt in ["Side profile", "Rear view",
                 "Fridge install detail", "Fridge wiring diagram", "Fridge slide detail",
                 "Sway brace detail", "Kitchen drawer detail"]:
         html_body = re.sub(

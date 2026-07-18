@@ -233,13 +233,15 @@ leg_cut_length = leg_height - leveling_foot_nominal_h; // 16 — the actual saw 
 // deck surface -> mattress underside: just the flush platform now —
 // it rests DIRECTLY on the box top rails, no adjusters between
 bed_platform_stack = bed_frame_thickness; // 0.75in
-// Nook shelf surface 9in above the MATTRESS TOP (owner, July 2026 —
-// was 12in), with a 6in-tall nook: divider rises 6in off the shelf
-// and stops there (the headboard's open top edge is another ~2.25in
-// up — bungee that bed-face gap so nothing rides over).
-headboard_personal_shelf_z = bed_platform_stack + mattress_total_thickness + 9 - panel_thickness; // 13.0 — board position; SURFACE at 13.75 above the deck = 9in above the mattress top
-headboard_mid_shelf_z = headboard_personal_shelf_z / 2; // 6.5 — the MIDDLE full-depth shelf, splitting the space below into 2 more full-width tiers
-headboard_nook_divider_h = 6; // the nook's height: divider sits ON the upper shelf and rises exactly this much (fixed, no longer runs to the top edge)
+// Bed shelf 9in above the MATTRESS TOP (owner). The personal nook is
+// now an ENCLOSED middle-band cubby (owner's July-18 layout sketch):
+// a full-depth food tier runs ABOVE it and a taller one BELOW it, and
+// the nook divider spans the middle tier from the bed shelf up to the
+// upper shelf, so the cubby has a floor, a back wall, and a ceiling —
+// open only toward the mattress.
+headboard_personal_shelf_z = bed_platform_stack + mattress_total_thickness + 9 - panel_thickness; // 13.0 — bed-shelf board; SURFACE at 13.75 = 9in above the mattress top
+headboard_upper_shelf_z    = 18;  // upper food shelf — makes the top tier (18.75..22) and forms the bed cubby's ceiling; the bottom tier (0..13) is one tall open compartment
+headboard_nook_divider_h = headboard_upper_shelf_z - (headboard_personal_shelf_z + panel_thickness); // 4.25 — divider fills the middle tier, bed-shelf top to upper-shelf underside (enclosed cubby)
 
 /* [Side door opening — UNVERIFIED, confirm by physical measurement] */
 // Same status as the gate opening numbers below: a typical 4th-gen
@@ -667,6 +669,8 @@ assert(panel_module_height + headboard_height <= van_interior_height,
            "in above the floor but the cabin is only ", van_interior_height, "in tall"));
 assert(headboard_shelf_depth >= 1.5,
        str("Personal shelf is only ", headboard_shelf_depth, "in deep — too shallow for a phone/glasses case"));
-assert(headboard_personal_shelf_z + panel_thickness <= headboard_height,
-       str("Personal shelf sits ", headboard_personal_shelf_z, "in up, but the shelving unit is only ",
-           headboard_height, "in tall — raise headboard_height or lower the shelf"));
+assert(headboard_upper_shelf_z + panel_thickness <= headboard_height,
+       str("Upper food shelf sits ", headboard_upper_shelf_z, "in up, but the shelving unit is only ",
+           headboard_height, "in tall — raise headboard_height or lower the shelves"));
+assert(headboard_upper_shelf_z > headboard_personal_shelf_z + panel_thickness,
+       "Upper shelf must sit above the bed shelf with the nook cubby between them");

@@ -86,7 +86,7 @@ module rear_view() {
     color("DarkGray") {
         translate([-headboard_width/2, z_deck + panel_thickness])
             rect_outline(headboard_width, headboard_height, 0.25);
-        for (sz = [headboard_mid_shelf_z, headboard_personal_shelf_z])
+        for (sz = [headboard_upper_shelf_z, headboard_personal_shelf_z])
             translate([-headboard_width/2 + 1, z_deck + panel_thickness + sz])
                 square([headboard_width - 2, 0.18]);
     }
