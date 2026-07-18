@@ -34,9 +34,23 @@ echo "Rendering side profile..."
 openscad -o renders/side-profile.svg side_view.scad
 openscad -o renders/side-profile.png $IMG $FLAT_CAM side_view.scad
 
-echo "Rendering rear view..."
+echo "Rendering rear view (stowed)..."
 openscad -o renders/rear-view.svg rear_view.scad
 openscad -o renders/rear-view.png $IMG $FLAT_CAM rear_view.scad
+
+echo "Rendering rear view (deployed)..."
+openscad -o renders/rear-view-deployed.svg rear_view_deployed.scad
+openscad -o renders/rear-view-deployed.png $IMG $FLAT_CAM rear_view_deployed.scad
+
+echo "Rendering side elevations (driver + passenger)..."
+openscad -o renders/side-driver.svg -D 'side="driver"' view_side.scad
+openscad -o renders/side-driver.png $IMG $FLAT_CAM -D 'side="driver"' view_side.scad
+openscad -o renders/side-passenger.svg -D 'side="passenger"' view_side.scad
+openscad -o renders/side-passenger.png $IMG $FLAT_CAM -D 'side="passenger"' view_side.scad
+
+echo "Rendering headboard front (mattress-facing)..."
+openscad -o renders/headboard-front.svg view_headboard_front.scad
+openscad -o renders/headboard-front.png --imgsize=3000,2200 $FLAT_CAM view_headboard_front.scad
 
 echo "Rendering fridge install detail (top-down)..."
 openscad -o renders/fridge-install-detail.svg fridge_install_detail.scad
