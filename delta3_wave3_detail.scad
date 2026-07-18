@@ -209,6 +209,39 @@ module drawing() {
         label_left("Hoses + cord stow on a hook inside the utility", 0, -16.8, 0.9);
         label_left("cabinet (between fridge + kitchen) when not in use.", 0, -18.2, 0.9);
     }
+
+    // ============================================================
+    // SECTION 3: FOUND STORAGE — side sections showing the reclaimed
+    // headroom above each unit (both are Z features the top-down
+    // views above can't show)
+    // ============================================================
+    translate([0, -112]) {
+        label("FOUND STORAGE — dead headroom reclaimed (side sections)", 22, drawer_height + 7, 1.4);
+
+        // --- left: DELTA 3 drawer, side section ---
+        translate([0, 0]) {
+            rect_outline(delta3_length + 2, drawer_height);           // drawer box (side)
+            color("DarkGray") translate([1, 0.4]) square([delta3_length, delta3_plus_height]); // DELTA 3 stack
+            label("DELTA 3", 1 + delta3_length/2, delta3_plus_height/2, 1.0);
+            // tray in the ~3in headroom on top
+            color("Peru") translate([1, delta3_plus_height + 0.4]) rect_outline(delta3_length, delta3_tray_h, 0.18);
+            label("lift-out tray", 1 + delta3_length/2, delta3_plus_height + delta3_tray_h/2 + 0.4, 0.9);
+            label(str("DELTA 3 drawer: ", drawer_height, "\" tall, unit ", delta3_plus_height, "\" ->"), (delta3_length+2)/2, -2, 0.95);
+            label(str("~", round((drawer_height - delta3_plus_height)*10)/10, "\" of dead air on top = a cable/cord tray"), (delta3_length+2)/2, -3.6, 0.9);
+        }
+        // --- right: WAVE 3 bay, side section ---
+        translate([delta3_length + 10, 0]) {
+            rect_outline(wave3_depth + 2, leg_height);                // bay (side, to deck underside)
+            color("DimGray") translate([1, 0]) square([wave3_depth, wave3_height]); // WAVE 3
+            label("WAVE 3", 1 + wave3_depth/2, wave3_height/2, 1.0);
+            // shelf on cleats above it
+            color("BurlyWood") translate([0.6, wave3_shelf_z]) square([wave3_depth + 0.8, panel_thickness]);
+            color("Gray") { translate([0.6, wave3_shelf_z - 0.8]) square([0.6, 0.8]); translate([wave3_depth + 0.6, wave3_shelf_z - 0.8]) square([0.6, 0.8]); } // cleats
+            label(str("shelf @ ", round(wave3_shelf_z*10)/10, "\""), 1 + wave3_depth/2, wave3_shelf_z + 1.4, 0.85);
+            label(str("WAVE 3 bay: ", leg_height, "\" tall, unit ", wave3_height, "\" ->"), (wave3_depth+2)/2, -2, 0.95);
+            label(str("~", round(wave3_shelf_clear*10)/10, "\" clear above = a shelf on cleats (unit slides out under it)"), (wave3_depth+2)/2, -3.6, 0.9);
+        }
+    }
 }
 
 // NOTE: no outer color("black") wrapper here — every helper above

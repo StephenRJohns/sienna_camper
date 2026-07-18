@@ -231,6 +231,12 @@ module wave3_bay_module(length, y_offset, wireframe = false) {
     color("DimGray", 0.85)
         translate([x0, y0, 0])
             bx(wave3_width, wave3_depth, wave3_height, wireframe);
+    // FOUND-STORAGE shelf on cleats just above the WAVE 3 (the unit
+    // still slides out beneath it) — flat soft goods / hoses
+    bx0 = -drawer_divider_t/2 - wave3_bay_width;
+    color("BurlyWood")
+        translate([bx0, y_offset + frame_rail_sz, wave3_shelf_z])
+            bx(wave3_bay_width, length - 2 * frame_rail_sz, panel_thickness, wireframe);
 }
 
 // One sliding drawer box: side = -1 (left, -X) or 1 (right, +X).

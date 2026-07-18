@@ -228,7 +228,7 @@ leg_inset      = vent_intrusion_width; // legs sit inset this much from the deck
 // Panel C gets its FRONT face only (the appliances slide out the
 // tailgate at floor level, and their bays occupy both sides' floor
 // runs). The existing diagonal corner braces stay on top.
-bottom_rail_z  = 2;     // underside of the bottom rails — clears the leveling feet + star knobs below
+bottom_rail_z  = 1;     // underside of the bottom rails — dropped to the leg bottoms (owner, July 2026): as low as they go without hitting the leveling feet (0-1in) below, giving the tallest box section (marginally stiffer) and the lowest floor-edge curb. Leaves hand room at the corners to reach the star knobs.
 
 // Leg leveling feet — back at the FLOOR (the between-layers
 // adjusters cost 1.25in of headroom for no real gain): each leg is
@@ -519,6 +519,18 @@ wave3_depth  = 11.7; // Y
 wave3_height = 13.2; // Z
 wave3_weight = 33.7; // lb, unit only
 wave3_bay_width = panel_width/2 - frame_rail_sz - drawer_divider_t/2; // raw open-storage bay width, no box/slide clearance subtracted — same formula as drawer_travel before its 0.75in slide allowance
+
+// FOUND STORAGE (owner, July 2026) — reclaim the dead headroom above
+// two units, no structural change:
+//  - the DELTA 3 stack is 11.16in tall in a 14.5in drawer -> ~3in of
+//    clear headroom above it takes a shallow lift-out TRAY (cables,
+//    the DELTA 3's own cords, dongles);
+//  - the WAVE 3 is 13.2in tall in the 17in left bay -> a thin SHELF
+//    on cleats just above it holds flat soft goods / the WAVE 3's
+//    hoses+remote, and the WAVE 3 still slides out beneath it.
+delta3_tray_h  = 3;                       // shallow tray on top of the DELTA 3 stack
+wave3_shelf_z  = wave3_height + 0.5;       // 13.7 — cleat-mounted shelf just above the WAVE 3
+wave3_shelf_clear = leg_height - wave3_shelf_z - panel_thickness/2; // ~2.9in usable above the shelf
 wave3_intake_hose_dia  = 6; // in
 wave3_exhaust_hose_dia = 5; // in
 
