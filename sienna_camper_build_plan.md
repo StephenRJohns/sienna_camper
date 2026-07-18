@@ -1035,3 +1035,124 @@ The 2nd-row seats come out entirely for camper mode (Section 1) and go back in f
 ### Storage Tip
 
 When in camper mode, the vehicle-side plugs sit flat on the floor. Use a small piece of plastic wrap or a ziplock bag secured with a rubber band around the emulators to prevent dirt, dust, or spilled camping liquids from getting into the electrical contact points.
+
+
+---
+
+## Appendices — Working Sheets
+
+These four references consolidate the plan into sheets you actually work from. Each is **also a live web page** (interactive check-off boxes, or a calculator; all printable):
+
+- **Shopping List** — https://claude.ai/code/artifact/24d09bf4-2f51-42d5-879d-003ab1c65326
+- **Cut List** — https://claude.ai/code/artifact/fc8fa178-40f9-40dc-9ecf-f8dc181ad479
+- **Build Sequence** — https://claude.ai/code/artifact/eff00cab-1e69-4a54-8eec-2d9346072e92
+- **Leveling Block Calculator** — https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9
+
+Appendices B and C consolidate Sections 4 and 3; Appendix A (build order) and Appendix D (leveling calculator) are new here.
+
+### Appendix A — Build Sequence & Assembly Order
+
+The order to build in — **dependency-first, not the Component numbering.** Work top to bottom; the "needs" is what must be finished before each phase.
+
+**Phase 0 — MEASURE & PREP, before any cutting** (Section 0, 9) — *critical*
+1. Measure the real van and update `params.scad`: interior length (96" est.), liftgate (48×36"), both side-door openings, floor-to-wall width at ~19" and ~23" up (need ≥53" for the 52" platform). *UNVERIFIED — a bad number breaks an assert.*
+2. Confirm the rear-corner floor vents don't reach the last ~4" (Panel C's rear legs sit there). *UNVERIFIED.*
+3. Remove the 2nd-row seats; install the Ling Labs SRS emulators (Section 9).
+4. Buy & verify materials (Appendix B); confirm the Rocky 40 + JAGAHAHA live-listing dimensions/prices.
+
+**Phase 1 — Cut all plywood & lumber** (Section 3 / Appendix C)
+1. Cut both sheets + all boards. The ½" sheet nests to ~95% — lay it out before cutting.
+2. Drill the leg leveling-insert holes and the headboard shelf-pin columns now (far easier before assembly).
+3. Pre-cut the Panel C front-wall openings (fan hole, 2 grommets, louver — Front Wall render).
+
+**Phase 2 — Build the three frames** (Components 2/3/4, step 1)
+1. Panel A frame: rails + 4 legs + divider + 2 END-face bottom rails (underside 1") + 2 diagonal braces. Corners: 2× 2" screws + bracket + glue.
+2. Panel B frame — the full cube: bottom rails on ALL 4 faces, no divider/drawers.
+3. Panel C frame: front pair inset 2.5", REAR pair at the true corners; FRONT-face bottom rail only.
+4. Install the 12 leveling feet + star knobs.
+
+**Phase 3 — Panel C build-out (fridge / kitchen / cooling)** (Components 4 + 7)
+1. Screw down the fixed top + front wall (mount the low intake louver).
+2. Drill & bolt the 8 E-track floor anchors — **inspect underneath for fuel/brake lines first**, seal each hole. *Verify.*
+3. Fridge on its tray + locking slide (driver corner); kitchen unit strapped down (passenger corner). Let the fridge stand 12h before first power-up.
+4. Hang the kitchen drawer + cabinet door (with its low exhaust louver).
+5. Cooling + control cluster: intake fan (blows IN), exhaust fan + NTC on the fridge's kitchen-facing wall, W1209 + fuse block + switches on the backer board inside the cabinet.
+
+**Phase 4 — Headboard / pantry** (Component 1 — *needs Panel C's finished deck*)
+1. Build the carcass with biscuits: shelves 3× R3/end at 2/7/12"; nook divider 2× R1/edge; glue + clamp.
+2. Base cleats + cam-lever T-nuts; 2 L-angle sway braces.
+3. Adjustable shelf on pins; fiddle lips + lash straps + bins + liner (one soft-goods net).
+4. Clamp onto Panel C (8 cam levers); mount Power strip 1 + ROLL bubble level in the bed cubby; route its cord.
+
+**Phase 5 — Panel A build-out (EcoFlow bays)** (Components 2 + 8)
+1. Right bay: R1-biscuited drawer box on a 20" slide + catch; DELTA 3 cleats + D-rings + a cable tray.
+2. Left bay: 2 glide strips + an overhead shelf on 1×1 cleats at ~13.7" (WAVE 3 slides out beneath it).
+
+**Phase 6 — Bed platform** (Component 2 — *needs Panel A & B built*)
+1. Assemble 2× 58" rails + 10× 45" slats (pocket screws or R2 biscuits), ends flush at the B/C seam.
+2. Screw the PITCH bubble level to the driver-side rail edge.
+
+**Phase 7 — Seam hardware** (Component 5): bumper strips + 2 alignment pins at the A/B and B/C seams.
+
+**Phase 8 — Cord runs** (Component 6): the four lines to the console — cooktop (AC), Power strip 1 (AC), fridge DC, DELTA 3 charging — grommets + inline/SAE disconnects at each seam + a 3-way console splitter.
+
+**Phase 9 — Install in the van** (Components 10 + 8)
+1. Set Panel A → B → C; register the alignment pins.
+2. Connect power + stow the DELTA 3 stack and WAVE 3.
+3. Lay the platform → HEST mattress → tension-rod curtain.
+
+**Phase 10 — Commission & test** (Component 10) — *critical*
+1. Lift-out / reinstall dry run (each panel by its top rails; headboard by its 8 cam levers).
+2. Level the van at the WHEELS (Appendix D) + set the interior feet once.
+3. Power-up + cooling test (fridge stood 12h; fans ramp off the NTC); pull every drawer/slide.
+4. Owner-place the low-level CO monitor + fire extinguisher.
+
+### Appendix B — Materials Shopping List
+
+Consolidates Section 4's BOM into a shopping order with links. Prices are estimates; items marked **UNVERIFIED** need a live-listing check. **Purchased** = already bought (July 2026); **owned** = existing gear, not priced.
+
+**Lumber & Plywood** — 3/4" Baltic birch sheet ($65), 1/2" Baltic birch sheet ($50), 12× 2×2 pine 8ft ($96–180), 7× 1×4 pine 8ft ($35), 3/4" half-round pine trim 46" ($7).
+
+**Frame / fasteners** — headboard mounting set: Kipp cam levers + L-angle braces + T-nuts ($85); corner brackets ×12 ($12); diagonal corner braces ×8 ($24); wood screws ($20); wood glue ($8); [Ryobi R-series biscuit assortment](https://www.amazon.com/) ($12); alignment dowel pins ($3); anti-rattle bumper strip ($10).
+
+**Drawers & slides** — Panel A drawer slides (GlideRite 20" 100lb 5-pack, *purchased*, $47); drawer catch ($3); kitchen-drawer slide 24" ($16) + catch ($3); fridge slide 24" heavy-duty locking (VADANIA, *purchased*, $79).
+
+**Leveling** — leg leveling feet (3 four-packs, $36); star-knob grips (3 four-packs, $36); RV bubble levels E409 2-pack ($9); [Lynx leveling blocks 10-pack](https://www.amazon.com/Lynx-Levelers-00015-Leveling-Blocks/dp/B000BUV1RK) + chock ($40).
+
+**Fridge & kitchen** — [BougeRV Rocky 40](https://www.bougerv.com/products/rocky-12v-camp-fridge) ($400–500, **UNVERIFIED**); [JAGAHAHA slide-out kitchen](https://www.amazon.com/dp/B0FLDCNYZX) ($300–350, **UNVERIFIED**); [COOKTRON induction cooktop](https://www.amazon.com/dp/B09MCR1SDT) ($190); [Cook N Home cookware set](https://www.amazon.com/Cook-Home-10-Piece-Stainless-Cookware/dp/B00VEAJKT2) ($65–90).
+
+**Electrical & cooling** — 120mm 12V fans ×2 ($18–20); W1209 controller + probe ($10); Nilight fuse block (*purchased*, $18); Ampper switches 10-pack (*purchased*, $9); enclosure ($12–15); snap-in louver vents ×2 ($12); grommets (EASYEAH 20-pack, *purchased*, $10); power strips ×2 ($50); AC cords ($26); fridge DC/SAE cord ($14); 3-way splitter ($6–13); cord clips ($9).
+
+**Anchoring** — E-track anchors ×8 ($56); 5/16" carriage bolts ×16 ($12); ratchet straps 4-pack ($32).
+
+**Comfort & interior** — [HEST Dually Long mattress](https://hest.com/products/dually) ($530–590); Claymore V600+ fan ($46); tension rod + blackout curtain ($40); [PeaceOut Sienna bug nets](https://peaceout.ca/en/products/toyota-sienna-front-sliding-doors-bug-nets) (~$197); [EcoFlow WAVE vent kit](https://us.ecoflow.com/products/wave-car-vent-kit) ($39); non-slip mat ($12); WAVE 3 hose hook ($4); WAVE 3 glide strips ($6); DELTA 3 drawer hardware ($15).
+
+**Found storage** — DELTA 3 drawer tray ($8); WAVE 3 overhead shelf, from offcut ($5); utility-cabinet bins ×2 ($8).
+
+**Finishing / vehicle** — pantry retention set (fiddle lips, straps, bins, liner, pins, net, $45); half-round edging ($7); wood sealant ($20); sandpaper/misc ($15); Ling Labs SRS emulators (~$50–100, **UNVERIFIED**).
+
+**Already owned (not priced):** EcoFlow DELTA 3 Plus + Smart Extra Battery, EcoFlow WAVE 3.
+
+**Total: ~$2,990–3,385 with the fridge + kitchen, or ~$2,290–2,535 if you already own equivalents** (see Section 4 for the full itemized BOM and every purchase link).
+
+### Appendix C — Cut List (consolidated)
+
+Finished sizes; add saw kerf. Full context in Section 3.
+
+**3/4" Baltic birch plywood — 1 sheet (4×8):** Panel C top 1× 36×46"; headboard side panels 2× 14×22"; headboard fixed shelves 2× 46×14"; headboard base cleats 2× 46×3"; kitchen-drawer cheeks 2× 26×6.2".
+
+**1/2" Baltic birch plywood — 1 sheet (4×8), ~95% used:** Panel A drawer — bottom 1× 20×25", sides 2× 25×14.5", front/back 2× 20×14.5"; Panel C front wall 1× 46×17" (fan + 2 grommets + louver); fridge tray 1× 17.72×28.74"; headboard nook divider 1× 46×4.25"; headboard adjustable shelf 1× 46×14"; kitchen-drawer box — bottom 1× 16×26", sides 2× 26×4", front/back 2× 15×4".
+
+**2×2 pine — 12 boards (8ft), 964" total:** Panel A long rails 2× 29"; Panel B long rails 2× 29"; Panel C long rails 2× 36"; end rails 6× 46"; center divider (Panel A) 1× 26"; legs 12× 16" (cut 1" short); bottom rails 5× 46" + 2× 26".
+
+**1×4 pine — 7 boards (8ft), bed platform:** side rails 2× 58"; slats 10× 45".
+
+**Trim / cleats / scrap:** half-round pine trim 1× 46"; fiddle lips 7× ~44.5"; WAVE 3 overhead shelf 1× ~20.75×14" (½" ply offcut); WAVE 3 glide strips 2× 20×1" (UHMW/laminate); DELTA 3 locating cleats 4× 1×1 blocks.
+
+### Appendix D — Leveling: Block Calculator
+
+Per-site leveling is done at the **wheels** with the [Lynx blocks](https://www.amazon.com/Lynx-Levelers-00015-Leveling-Blocks/dp/B000BUV1RK), driven by the phone **[Sienna Block Calculator](https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9)** (open it in Chrome and *Add to Home screen*, or use the offline copy `sienna_block_calculator.html`). The interior leg feet are then a **one-time** set against the van's own floor.
+
+**Using it:** park (engine off, brake on) → read the two bed-mounted bubble levels (pitch on the platform rail, roll on the headboard cubby) in degrees → enter both readings + which end/side is low → it returns blocks-per-tire. Set the one-time van settings once (wheelbase 120.1", track ~68", and *your measured* block height, Lynx ≈ 1.5"). Stack ahead of the low tires, drive up slowly, chock, re-check; if any tire needs >4 blocks, re-park.
+
+**The math** (so it's not a black box): a low END needs `tan(pitch°) × wheelbase` of lift; a low SIDE needs `tan(roll°) × track`. Blocks per tire = `round(that deficit ÷ block height)`. One 10-pack (1.5"/block over the 120.1" wheelbase) covers about 2.9° of pitch correction.
