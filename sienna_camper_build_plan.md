@@ -132,6 +132,19 @@ Leveling lives at the floor: each leg is cut 1" short and gets a 3/8-16 insert i
 
 **Blocks + calculator (the no-feet workflow)**: the two bubble levels read DEGREES (-7 to 7). Degrees plus the wheelbase are all the math needs, so there's a phone calculator for it — **[Sienna Block Calculator](https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9)** (also saved in the repo as `leveling_calculator.html`): enter the two readings and which end/side is low, and it returns how many Lynx-style leveling blocks to stack under each tire, the total, and the residual tilt after driving up. One 10-pack of blocks covers ~2.9° of correction at 1.5"/block over the 120.1" wheelbase — beyond ~4 blocks per tire, find a flatter spot. This makes the interior feet a ONE-TIME set (against the van's own floor irregularities), not a per-site chore — and if you'd rather delete the feet entirely, replace them with fixed shims set once and let the blocks do all site leveling (saves ~$72, loses the fine-trim option).
 
+**Installing the calculator on a phone** (two ways):
+
+1. *Online*: open the [calculator link](https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9) in Chrome on the phone (it needs the claude.ai login), then Chrome menu → **Add to Home screen** — it gets an icon and opens full-screen. Needs signal at launch.
+2. *Offline — the one to rely on at camp*: `leveling_calculator.html` is a single self-contained file with zero network dependencies. Send the copy from this repo (or `~/Downloads/sienna_block_calculator.html`) to the phone by email/Drive/Nearby Share, open it once via **Files → Open with → Chrome**, and bookmark it. It runs with no signal forever and remembers the settings below.
+
+**Using it at a site:**
+
+1. Park in the spot you actually want, engine off, **parking brake on**.
+2. Read the two bed-mounted levels: the fore-aft level on the platform's driver-side rail (pitch) and the side-to-side level on the headboard nook (roll). Each reads in degrees; the bubble floats toward the HIGH side, so the opposite end/side is the LOW one.
+3. Enter both degree readings and tap which end (nose/tail) and side (driver/passenger) are low. One-time settings under "Van & block settings": wheelbase 120.1", track ~68", and the height each block adds — Lynx-style ≈ 1.5", but **measure your own stack once** and enter that.
+4. The van diagram shows blocks per tire. Lay each stack just ahead of its low tire, **drive up slowly**, and chock a wheel.
+5. Re-read the levels and refine once if needed — suspension squish and block nesting make a second small pass normal. If any tire calls for more than 4 blocks, the calculator says so: re-park (turning the van around often halves the stack) rather than building a tower.
+
 ### DELTA 3 / WAVE 3 Stowage Detail
 
 Stowage for the EcoFlow gear: the DELTA 3 Plus + Smart Extra Battery, stowed unstacked side by side in Panel A's right drawer, and the WAVE 3, stored as open bay storage (no drawer box, no slide) in Panel A's left bay (its hoses/cord stow separately — item 12 in the fridge installation detail above):
