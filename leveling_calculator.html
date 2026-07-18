@@ -35,12 +35,17 @@
   .lv-roll  { left:14%; top:58%; width:36%; transform:none; transform-origin:center; }
   .lv-pitch { left:56%; top:47.5%; width:29%; transform:skewY(-20deg); transform-origin:center; }
   .taglbl { position:absolute; font:600 10.5px system-ui; color:var(--ink-soft); pointer-events:none; }
-  .ros { display:flex; flex-direction:column; gap:7px; }
-  .ro { font-size:16px; display:flex; align-items:baseline; gap:10px; }
-  .ro .rok { color:var(--ink-soft); font-weight:600; min-width:158px; }
-  .ro .rov { font:700 19px/1.2 var(--readout); color:var(--ink); }
-  .ro .rov.level { color:var(--vial); }
-  .ro .rov .dir { font:600 14px system-ui; color:var(--ink-soft); }
+  .ros { display:flex; flex-direction:column; gap:12px; margin-top:4px; }
+  .ro { font-size:16px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+  .ro .rok { color:var(--ink-soft); font-weight:600; flex:1 1 100%; }
+  .step { flex:none; width:52px; height:52px; border:1.5px solid var(--line); border-radius:12px;
+    background:var(--card); color:var(--ink); font:700 26px/1 system-ui; cursor:pointer;
+    -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+  .step:active { background:var(--vial-soft); border-color:var(--vial); }
+  .step:focus-visible { outline:2px solid var(--vial); outline-offset:2px; }
+  .rov { font:800 24px/1.2 var(--readout); color:var(--ink); min-width:74px; text-align:center; font-variant-numeric:tabular-nums; }
+  .rov.level { color:var(--vial); }
+  .ro .dir { font:600 14px system-ui; color:var(--ink-soft); flex:1 1 auto; }
 
   .van-wrap { display:flex; justify-content:center; padding:10px 0 4px; }
   .van { position:relative; width:340px; height:500px; border:3px solid var(--line); border-radius:80px 80px 44px 44px; }
@@ -103,8 +108,20 @@
     </div>
 
     <div class="ros">
-      <div class="ro"><span class="rok">Fore&ndash;aft (pitch)</span><span class="rov level" data-role="readout" data-for="pitch">Level</span></div>
-      <div class="ro"><span class="rok">Side&ndash;to&ndash;side (roll)</span><span class="rov level" data-role="readout" data-for="roll">Level</span></div>
+      <div class="ro">
+        <span class="rok">Fore&ndash;aft (pitch) &middot; the SIDE level</span>
+        <button class="step" data-axis="pitch" data-d="-1" aria-label="Tilt pitch toward rear">&minus;</button>
+        <span class="rov level" data-role="readout" data-for="pitch">Level</span>
+        <button class="step" data-axis="pitch" data-d="1" aria-label="Tilt pitch toward front">+</button>
+        <span class="dir" data-dir-for="pitch"></span>
+      </div>
+      <div class="ro">
+        <span class="rok">Side&ndash;to&ndash;side (roll) &middot; the TAILGATE level</span>
+        <button class="step" data-axis="roll" data-d="-1" aria-label="Tilt roll toward driver">&minus;</button>
+        <span class="rov level" data-role="readout" data-for="roll">Level</span>
+        <button class="step" data-axis="roll" data-d="1" aria-label="Tilt roll toward passenger">+</button>
+        <span class="dir" data-dir-for="roll"></span>
+      </div>
     </div>
 
   </section>
@@ -216,8 +233,12 @@
     var lab = labelFor(axis, d);
     var out = readoutFor(axis);
     out.className = "rov" + (lab.zero ? " level" : "");
-    out.innerHTML = lab.dir ? (lab.txt + ' <span class="dir">— ' + lab.dir + '</span>') : lab.txt;
+    out.textContent = lab.txt;
+    var de = document.querySelector('[data-dir-for="' + axis + '"]');
+    if (de) de.textContent = lab.dir ? "— " + lab.dir : "";
   }
+
+  function levelByAxis(axis) { return document.querySelector('svg.level[data-axis="' + axis + '"]'); }
 
   function setDeg(svg, d) {
     d = Math.max(-7, Math.min(7, Math.round(d * 2) / 2));
@@ -254,6 +275,14 @@
       else if (e.key === "Home" || e.key === "0") { setDeg(svg, 0); e.preventDefault(); }
     });
     updateLevel(svg);
+  });
+
+  // big − / + step buttons — the easy control on a phone (0.5° per tap)
+  document.querySelectorAll(".step").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var axis = b.dataset.axis;
+      setDeg(levelByAxis(axis), state[axis] + parseFloat(b.dataset.d) * 0.5);
+    });
   });
 
   function cfg(id, fallback) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v > 0 ? v : fallback; }
