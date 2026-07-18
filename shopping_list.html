@@ -93,11 +93,10 @@
   .tag.p { background: var(--done-soft); color: var(--done); }
   .tag.o { background: var(--owned-soft); color: var(--owned); }
   .tag.u { background: var(--accent-soft); color: var(--accent); }
-  .buy { grid-column: 2; justify-self: start; margin-top: 7px; display: inline-flex; align-items: center; gap: 5px;
-    font: 600 12px/1 system-ui, sans-serif; color: var(--accent); text-decoration: none;
-    border: 1px solid var(--accent); border-radius: 7px; padding: 5px 10px; }
-  .buy:hover { background: var(--accent-soft); }
-  .buy::after { content: "↗"; font-size: 11px; }
+  .buy { grid-column: 2; justify-self: start; margin-top: 6px; display: inline-block; max-width: 100%;
+    font: 500 11.5px/1.45 var(--mono); color: var(--accent); text-decoration: none; word-break: break-all; }
+  .buy::before { content: "↗ "; font-family: system-ui, sans-serif; }
+  .buy:hover { text-decoration: underline; }
 
   .footnote { margin-top: 28px; padding: 16px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; font-size: 13.5px; color: var(--ink-soft); }
   .footnote a { color: var(--accent); }
@@ -110,7 +109,7 @@
   }
   @media print {
     .filters, .summary { position: static; }
-    .buy { border: 0; padding: 0; color: var(--ink-soft); }
+    .buy { color: var(--ink-soft); }
     body { padding: 0; }
   }
 </style>
@@ -265,7 +264,7 @@ DATA.forEach(([cat, items]) => {
       `<div class="name"><span class="qty">${q}</span><span>${n}</span>${tagHtml}</div>` +
       `<div class="price">${owned ? "—" : fmt(il, ih)}</div>` +
       (s ? `<div class="spec">${s}</div>` : "") +
-      (url ? `<a class="buy" href="${url}" target="_blank" rel="noopener">View product</a>` : "");
+      (url ? `<a class="buy" href="${url}" target="_blank" rel="noopener">${url}</a>` : "");
     sec.append(row);
   });
   sub.innerHTML = buyable ? `${buyable} item${buyable > 1 ? "s" : ""} &middot; <b>${fmt(lo, hi)}</b>` : "owned gear";
