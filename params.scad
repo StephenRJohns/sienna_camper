@@ -55,22 +55,23 @@ gate_opening_height = 36; // UNVERIFIED — upper corners are heavily rounded, r
                           // effective clearance near the edges; treat this as optimistic
 
 /* [Headboard/pantry — NO LONGER its own lift-out module. It's a
-   shelving superstructure, French-cleat mounted directly onto Panel
-   C's existing fixed deck, occupying the LAST headboard_length (14in)
-   of Panel C's own length — the end flush to the tailgate, right next
-   to the kitchen/fridge void underneath. Layout, tailgate to front
-   seats: Kitchen (Panel C's fridge/kitchen void) -> this shelving ->
-   Bed (rest of Panel C + Panel B + Panel A) -> front seats.
-   Double-sided: the KITCHEN-facing side (local Y toward
-   headboard_length, i.e. the actual tailgate edge) is food storage;
-   the MATTRESS-facing side (local Y toward 0, i.e. where the bed
-   picks up) is the ONE personal shelf. No separate frame/legs/floor
-   contact of its own — it rides entirely on Panel C's structure.
+   shelving superstructure, CAM-LEVER clamped directly onto Panel
+   C's existing fixed deck (tool-free), occupying the LAST
+   headboard_length (14in) of Panel C's own length — the end flush to
+   the tailgate, right next to the kitchen/fridge void underneath.
+   Layout, tailgate to front seats: Kitchen (Panel C's fridge/kitchen
+   void) -> this shelving -> Bed (rest of Panel C + Panel B + Panel A)
+   -> front seats. CURRENT LAYOUT (see the markdown + elevation
+   renders for the full story): 2 fixed full-depth shelves + 1
+   adjustable shelf on pins make full-width food tiers held by fiddle
+   lips + lash straps; the personal area is an ENCLOSED bed cubby in
+   the middle tier (not a single open shelf). No separate frame/legs/
+   floor contact of its own — it rides entirely on Panel C's structure.
    headboard_length used to be just 8in (the leftover open floor at
    the front, once the headboard stopped needing its own module) —
    Panel A now moves flush to the front seatbacks instead (see
    panel_a_y0 below) so that 8in of previously-wasted floor gets used:
-   2in restores the mattress to a full untrimmed 80in queen, and the
+   2in restores the full 80in sleeping run (the HEST Dually Long mattress is 78in), and the
    remaining 6in adds to this shelving's own depth. ]
    WORTH VERIFYING: this 22in-tall structure sits right at the
    tailgate opening — confirm it doesn't interfere with the tailgate's
@@ -129,7 +130,7 @@ headboard_fiddle_lip_h = 1.5;  // front-lip height on each food shelf
 // own separate length; it rides on the LAST headboard_length (14")
 // of Panel C's own 36", so the sleeping run available for the
 // mattress is panels_total_length - headboard_length = 80" — a full,
-// untrimmed queen length, with zero spare either way.
+// 80in sleeping run — the HEST Dually Long mattress (78in) leaves ~2in of spare.
 panel_a_length   = 29;
 panel_b_length   = 29;
 panel_c_length   = 36; // holds the fridge + kitchen unit underneath, AND the headboard/pantry (last 14in) on top
@@ -205,11 +206,11 @@ bed_frame_thickness = bed_slat_t; // 0.75 — one flush plane, rests directly on
 // section is built INTO the sleeping platform (a lift-off deck
 // hatch over the fridge, not a separate free-standing module at
 // its own height), so leg_height must be tall enough to hide the
-// fridge's full 15.53in height underneath the deck, plus a little
+// fridge's full 15.79in height underneath the deck, plus a little
 // wiggle room. That's also why it went up from the original 11in
 // (sized only for a folded 3rd-row well) — measure your well depth
 // and adjust if 17in doesn't clear it (Section 1/2).
-leg_height     = 17;    // 15.53in fridge height + ~1.5in clearance, rounded
+leg_height     = 17;    // 15.79in fridge height + ~1.5in clearance, rounded
 frame_rail_sz  = 1.5;   // 2x2 pine actual dimension (Section 3)
 leg_inset      = vent_intrusion_width; // legs sit inset this much from the deck's outer edge so they land clear of the floor-level vent intrusion
 // EXCEPTION: Panel C's REAR leg pair sits at the TRUE corners (zero
@@ -403,10 +404,10 @@ fridge_tray_t       = 0.5;  // plywood tray thickness
 // TWO 120mm fans, both wired to the same PWM temperature controller
 // (Section 4/7): the INTAKE fan (mounted on the fridge bay's front,
 // Panel-B-facing wall) pushes outside cabin air INTO the bay; the
-// EXHAUST fan (mounted on the bay's tailgate-facing wall, where an
+// EXHAUST fan (mounted on the bay's KITCHEN-facing wall, blowing into the utility cabinet, where an
 // earlier draft of this plan used a passive vent instead) actively
 // pulls warm air OUT into the control compartment next door. An NTC
-// thermistor probe sits inside the bay, on the tailgate-facing wall
+// thermistor probe sits inside the bay, on the kitchen-facing wall
 // next to the exhaust fan (in the path of the warmest air, so it
 // reacts quickly when the compressor is working), and feeds the
 // controller that drives both fans together — they only spin up
@@ -423,7 +424,7 @@ sensor_dia = 0.4; // NTC thermistor probe, shown as a small marker
 // don't collide even though the fridge now exits through the same
 // tailgate opening the end rail spans. Small vertical panel, not its
 // own floor footprint.
-control_panel_width = 2.8; // the LMioEtool enclosure mounted TALL-ways (its 2.8in dimension across) — the cabinet gap is only ~3.3in now that the appliances sit against Panel C's rear corner legs
+control_panel_width = 2.8; // the LMioEtool enclosure mounted TALL-ways (its 2.8in dimension across) — the cabinet gap is ~4.3in now that the appliances sit against Panel C's rear corner legs
 
 // Fridge zone width: the fridge itself plus a small margin each
 // side for the slide hardware, flush to Panel C's RIGHT edge so its
@@ -568,7 +569,7 @@ panel_module_height = leg_height + frame_rail_sz + panel_thickness; // 19.25
 // same fixed top as A/B — no hatch needed since access is through
 // the side door, not from above) — so its "module height" for
 // gate-fit purposes is really just Panel C's own height, same as
-// every other panel. The fridge itself (15.53in) sits on its slide
+// every other panel. The fridge itself (15.79in) sits on its slide
 // tray inside the leg_height void, hidden below deck level, not
 // stacked on top of the frame — that's what let leg_height (17in)
 // absorb the fridge's height without the panel getting any taller.
@@ -696,7 +697,7 @@ assert(panel_module_height <= gate_opening_height,
            gate_opening_height, "in"));
 
 // Headboard/pantry: no longer its own base — it's a shelving
-// superstructure French-cleat mounted onto Panel C's already-covered
+// superstructure cam-lever clamped onto Panel C's already-covered
 // deck (Panel C's own frame/legs are already checked by the two
 // gate-fit asserts above). It's still a SEPARATE piece for removal
 // purposes, lifting off Panel C's deck on its own so its own height
