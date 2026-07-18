@@ -1,0 +1,206 @@
+<title>Project Smores — Build Sequence</title>
+<style>
+  :root {
+    --paper: #f6f4ee; --card: #fffefb; --ink: #211f18; --ink-soft: #6a6456; --line: #ddd8ca;
+    --accent: #1f6b56;        /* pine green — "build / go" */
+    --accent-soft: #dfeee7;
+    --warn: #b5451c;          /* terracotta — critical / measure-first */
+    --warn-soft: #f6e4d8;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper:#131611; --card:#1c201a; --ink:#e9e8dd; --ink-soft:#a3a091; --line:#33372d;
+            --accent:#6cc0a6; --accent-soft:#1f3029; --warn:#e78a5f; --warn-soft:#3a2418; }
+  }
+  :root[data-theme="light"] { --paper:#f6f4ee; --card:#fffefb; --ink:#211f18; --ink-soft:#6a6456; --line:#ddd8ca; --accent:#1f6b56; --accent-soft:#dfeee7; --warn:#b5451c; --warn-soft:#f6e4d8; }
+  :root[data-theme="dark"]  { --paper:#131611; --card:#1c201a; --ink:#e9e8dd; --ink-soft:#a3a091; --line:#33372d; --accent:#6cc0a6; --accent-soft:#1f3029; --warn:#e78a5f; --warn-soft:#3a2418; }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body { margin: 0; padding: 22px 15px 56px; background: var(--paper); color: var(--ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; display: flex; justify-content: center; }
+  main { width: 100%; max-width: 760px; }
+
+  .eyebrow { font: 700 11px/1 system-ui; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0 0 6px; }
+  h1 { font-size: clamp(24px, 5vw, 31px); font-weight: 800; margin: 0; letter-spacing: -0.015em; }
+  .lede { color: var(--ink-soft); font-size: 14px; margin: 8px 0 0; max-width: 64ch; }
+
+  .summary { position: sticky; top: 0; z-index: 5; margin: 18px 0 6px; padding: 12px 15px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 11px; }
+  .summary .row { display: flex; align-items: baseline; gap: 16px; justify-content: space-between; }
+  .summary .big { font: 800 17px/1 var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+  .summary .lbl { font-size: 12px; color: var(--ink-soft); }
+  .bar { margin-top: 10px; height: 6px; border-radius: 4px; background: var(--line); overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+  .tools { display: flex; gap: 7px; margin: 12px 0 20px; }
+  .tools button { border: 1px solid var(--line); background: var(--card); color: var(--ink); padding: 6px 12px;
+    border-radius: 7px; font: 600 12px/1 system-ui; cursor: pointer; }
+  .tools button:hover { background: var(--accent-soft); }
+
+  .phase { margin-bottom: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; break-inside: avoid; }
+  .phase.done-all { opacity: 0.72; }
+  .phead { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--accent-soft); }
+  .phead .num { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff;
+    display: grid; place-content: center; font: 800 14px/1 var(--mono); }
+  .phead h2 { font-size: 16px; font-weight: 800; margin: 0; flex: 1; letter-spacing: -0.01em; }
+  .phead .ref { font: 600 11.5px/1.3 var(--mono); color: var(--ink-soft); text-align: right; }
+  .phase.critical .phead { background: var(--warn-soft); }
+  .phase.critical .phead .num { background: var(--warn); }
+
+  ul.steps { list-style: none; margin: 0; padding: 6px 14px 12px; }
+  ul.steps li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  ul.steps li:last-child { border-bottom: 0; }
+  ul.steps input { appearance: none; width: 18px; height: 18px; border: 1.7px solid var(--ink-soft); border-radius: 5px; cursor: pointer; margin-top: 1px; }
+  ul.steps input:checked { background: var(--accent); border-color: var(--accent); }
+  ul.steps input:checked::after { content: "✓"; color: #fff; font-size: 12px; display: block; text-align: center; line-height: 15px; }
+  .txt b { font-weight: 700; }
+  .txt small { display: block; color: var(--ink-soft); font-size: 12.5px; margin-top: 2px; }
+  li.done .txt b, li.done .txt { text-decoration: line-through; text-decoration-color: var(--ink-soft); color: var(--ink-soft); }
+  .flag { display: inline-block; font: 700 10px/1 system-ui; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: 1px; background: var(--warn-soft); color: var(--warn); }
+  input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  footer { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 12.5px; color: var(--ink-soft); }
+  footer b { color: var(--ink); }
+  @media (max-width: 440px) { .summary { position: static; } }
+  @media print {
+    :root { --paper:#fff; --card:#fff; --ink:#000; --ink-soft:#444; --line:#bbb; --accent:#000; --accent-soft:#eee; --warn:#000; --warn-soft:#eee; }
+    body { padding: 0; font-size: 12px; } .tools, .bar { display: none; } .summary { position: static; }
+    .phase, .phead { break-inside: avoid; } .phead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+
+<main>
+  <header>
+    <p class="eyebrow">Project Smores &middot; Sienna Camper Build</p>
+    <h1>Build Sequence &amp; Assembly Order</h1>
+    <p class="lede">The order to actually build in — dependency-first, not the plan's Component numbering. Do the phases top to bottom; the "needs" notes call out what must be finished before you start each one. Check a step when it's done; progress saves on this device.</p>
+  </header>
+
+  <div class="summary" aria-live="polite">
+    <div class="row"><span class="big" id="s-count">0 / 0 steps</span><span class="lbl" id="s-phase">Start at Phase 0</span></div>
+    <div class="bar"><i id="s-bar"></i></div>
+  </div>
+  <div class="tools">
+    <button id="reset" type="button">Clear checks</button>
+    <button id="print" type="button">Print</button>
+  </div>
+
+  <div id="phases"></div>
+
+  <footer>
+    <p style="margin:0 0 6px"><b>Why this order:</b> cut everything before you frame; build all three frames before their build-outs; <b>Panel C before the headboard</b> (the headboard clamps onto Panel C's finished deck); the bed platform after Panel A &amp; B exist (it caps them); cord runs and seam hardware once the panels are built but before final install.</p>
+    <p style="margin:0"><b>Full detail</b> for every step is in <b>Project_Smores.pdf</b> (Components 1–10 + Sections 0/6/8/9); pair this with the Cut List and Shopping List. Anything tagged <span class="flag">verify</span> is an unverified estimate — measure it on the real van first.</p>
+  </footer>
+</main>
+
+<script>
+const PHASES = [
+  { n: "0", title: "Measure & prep — BEFORE any cutting", ref: "Section 0, 9", crit: true, steps: [
+    ["Measure the real van and update params.scad", "Interior length (96\" estimate), liftgate opening (48×36\"), both side-door openings, and floor-to-wall width at ~19\" and ~23\" up (need ≥53\" for the 52\" platform). Every render fails if a measured number breaks an assert.", "verify"],
+    ["Check the rear-corner floor vents", "Panel C's rear legs sit at the true corners — confirm the floor vents don't reach the last ~4\" there.", "verify"],
+    ["Remove the 2nd-row seats + install SRS emulators", "Ling Labs 0651 + 6134 into the floor plugs so the airbag system reads normally (Section 9).", ""],
+    ["Buy & verify materials", "Work the Shopping List; confirm the Rocky 40 + JAGAHAHA live-listing dimensions and prices before ordering.", ""],
+  ]},
+  { n: "1", title: "Cut all plywood & lumber", ref: "Section 3 · Cut List", crit: false, steps: [
+    ["Cut the two plywood sheets + all boards", "Everything on the Cut List: ¾\" ply, ½\" ply, 12× 2×2, 7× 1×4, trim. The ½\" sheet nests to ~95% — lay it out before cutting.", ""],
+    ["Drill leg insert holes + headboard pin holes now", "½\" × ¾\" leveling-insert hole in each leg's bottom end grain; 5mm shelf-pin columns (3–11\") in the headboard side panels. Far easier before assembly.", ""],
+    ["Pre-cut the Panel C front-wall openings", "120mm fan hole, two 1\" grommets, low intake louver — positions in the Front Wall render.", ""],
+  ]},
+  { n: "2", title: "Build the three frames", ref: "Comp. 2/3/4 · step 1", crit: false, steps: [
+    ["Panel A frame", "2×2 rails + 4 legs + center divider + 2 END-face bottom rails (underside 1\") + 2 diagonal corner braces. Corners: 2× 2\" screws + bracket + glue.", ""],
+    ["Panel B frame — the full cube", "Same, but bottom rails on ALL 4 faces and NO divider/drawers. Stiffest of the three.", ""],
+    ["Panel C frame", "Front pair inset 2.5\"; REAR pair at the true corners. FRONT-face bottom rail only (tailgate face stays open).", ""],
+    ["Install the 12 leveling feet + star knobs", "3/8-16 insert + glide bolt + jam-nutted star knob in each leg bottom.", ""],
+  ]},
+  { n: "3", title: "Panel C build-out (fridge / kitchen / cooling)", ref: "Comp. 4 + 7", crit: false, steps: [
+    ["Screw down the fixed top + front wall", "Top: 1¼\" screws ~8\" o.c. Front wall: 8 perimeter screws; mount the low intake louver.", ""],
+    ["Drill & bolt the E-track floor anchors", "8 anchors through the floor pan — INSPECT UNDERNEATH for fuel/brake lines and wiring first; seal each hole.", "verify"],
+    ["Fridge on its slide + tray, then the kitchen unit", "Rocky 40 on the tray + 24\" locking slide against the driver corner leg; JAGAHAHA against the passenger corner leg, strapped down. Let the fridge stand 12h before first power-up.", ""],
+    ["Hang the kitchen drawer + cabinet door", "Drawer on cheeks in the dead air above the kitchen; cabinet door with its low exhaust louver.", ""],
+    ["Cooling + control cluster", "Intake fan over the wall hole (blows IN); exhaust fan + NTC probe on the fridge's kitchen-facing wall (into the cabinet); W1209 controller + fuse block + switches on the backer board INSIDE the cabinet.", ""],
+  ]},
+  { n: "4", title: "Headboard / pantry", ref: "Comp. 1", crit: false, steps: [
+    ["Build the carcass with biscuits", "2 side panels + 2 fixed shelves — 3× R3 biscuits/end at 2/7/12\"; nook divider 2× R1/edge. Glue + clamp (no screws on show faces).", ""],
+    ["Base cleats + T-nuts + sway braces", "Cleats screwed to the underside w/ cam-lever T-nuts; 2 L-angle braces (cam-lever nuts at the rail ends).", ""],
+    ["Adjustable shelf + fiddle-lip retention", "Adjustable shelf on pins in the bottom bay; fiddle lip on every food shelf + lash straps + bins + liner (one soft-goods net).", ""],
+    ["Clamp onto Panel C + wire Power strip 1", "8 cam levers (4 base + 4 brace). Mount Power strip 1 + the ROLL bubble level in the bed cubby; route its cord out the deck grommet.", ""],
+  ]},
+  { n: "5", title: "Panel A build-out (EcoFlow bays)", ref: "Comp. 2 + 8", crit: false, steps: [
+    ["Drawer box (biscuited) + slide + catch", "Right bay: R1-biscuited box on a 20\" slide + a catch. DELTA 3 locating cleats + D-rings + a top tray for cables.", ""],
+    ["WAVE 3 bay: glide strips + overhead shelf", "2 glide strips on the left-bay floor; a shelf on 1×1 cleats at ~13.7\" (the WAVE 3 slides out beneath it).", ""],
+  ]},
+  { n: "6", title: "Bed platform", ref: "Comp. 2", crit: false, steps: [
+    ["Assemble 2 rails + 10 slats", "58\" rails 52\" apart; 45\" slats pocket-screwed (or R2-biscuited) between them, ~2.6\" gaps — one flush ¾\" plane, ends at the B/C seam.", ""],
+    ["Screw on the PITCH bubble level", "On the driver-side rail's outer edge at mid-span.", ""],
+  ]},
+  { n: "7", title: "Seam hardware", ref: "Comp. 5", crit: false, steps: [
+    ["Bumpers + alignment pins at A/B and B/C", "Anti-rattle bumper strip + 2 dowel pins per seam — drill mating holes as a clamped pair.", ""],
+  ]},
+  { n: "8", title: "Cord runs", ref: "Comp. 6", crit: false, steps: [
+    ["Route the four lines to the console", "Cooktop (AC), Power strip 1 (AC), fridge DC (DELTA 3→fridge), DELTA 3 charging (AC). Grommets + inline/SAE disconnects at each seam + a 3-way splitter at the console.", ""],
+  ]},
+  { n: "9", title: "Install in the van", ref: "Comp. 10 + 8", crit: false, steps: [
+    ["Set Panel A → B → C on the floor", "Drop each in, register the alignment pins, seat the bumpers.", ""],
+    ["Connect power + stow the EcoFlow gear", "DELTA 3 Plus + Smart Extra Battery in Panel A's drawer (fridge DC + charging plugged in); WAVE 3 in the left bay.", ""],
+    ["Lay the platform, mattress, curtain", "Platform onto Panel A/B's rails; HEST Dually Long on top; tension-rod curtain behind the cab.", ""],
+  ]},
+  { n: "10", title: "Commission & test", ref: "Comp. 10", crit: true, steps: [
+    ["Lift-out / reinstall dry run", "Each panel comes free by its top rails and drops back without binding; the headboard flips off with its 8 cam levers.", ""],
+    ["Level the van + set the feet once", "Level at the WHEELS with blocks (Block Calculator app); then set the interior leveling feet once against the van's own floor.", ""],
+    ["Power-up + cooling test", "Fridge on (stood 12h first); confirm the fans ramp off the NTC; pull every drawer/slide; check the fridge/kitchen strap tension.", ""],
+    ["Owner-place safety gear", "Mount the low-level CO monitor (audible from the bed) + the fire extinguisher — deliberately not located in the plan.", ""],
+  ]},
+];
+
+const wrap = document.getElementById("phases");
+let store = {}; try { store = JSON.parse(localStorage.getItem("smoresBuild") || "{}"); } catch (e) {}
+let id = 0;
+
+PHASES.forEach(ph => {
+  const sec = document.createElement("section");
+  sec.className = "phase" + (ph.crit ? " critical" : "");
+  sec.dataset.phase = ph.n;
+  let li = "";
+  ph.steps.forEach(([t, s, flag]) => {
+    const key = "b" + (id++);
+    const done = !!store[key];
+    li += `<li class="${done ? "done" : ""}" data-k="${key}"><input type="checkbox" ${done ? "checked" : ""} aria-label="${t.replace(/"/g,'')}">` +
+      `<span class="txt"><b>${t}</b>${flag ? `<span class="flag">${flag}</span>` : ""}<small>${s}</small></span></li>`;
+  });
+  sec.innerHTML =
+    `<div class="phead"><span class="num">${ph.n}</span><h2>${ph.title}</h2><span class="ref">${ph.ref}</span></div><ul class="steps">${li}</ul>`;
+  wrap.appendChild(sec);
+});
+
+function refresh() {
+  const all = [...document.querySelectorAll("ul.steps input")];
+  const done = all.filter(c => c.checked).length;
+  document.getElementById("s-count").textContent = done + " / " + all.length + " steps";
+  document.getElementById("s-bar").style.width = (all.length ? done / all.length * 100 : 0) + "%";
+  // current phase = first with an unchecked step
+  let cur = "Done — build complete";
+  for (const sec of document.querySelectorAll(".phase")) {
+    const boxes = [...sec.querySelectorAll("input")];
+    const alldone = boxes.every(b => b.checked);
+    sec.classList.toggle("done-all", alldone);
+    if (cur.startsWith("Done") && !alldone) cur = "You're in Phase " + sec.dataset.phase;
+  }
+  document.getElementById("s-phase").textContent = cur;
+}
+wrap.addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  const li = e.target.closest("li");
+  li.classList.toggle("done", e.target.checked);
+  store[li.dataset.k] = e.target.checked;
+  try { localStorage.setItem("smoresBuild", JSON.stringify(store)); } catch (err) {}
+  refresh();
+});
+document.getElementById("reset").addEventListener("click", () => {
+  store = {}; try { localStorage.removeItem("smoresBuild"); } catch (e) {}
+  document.querySelectorAll("ul.steps input").forEach(c => c.checked = false);
+  document.querySelectorAll("li").forEach(l => l.classList.remove("done"));
+  refresh();
+});
+document.getElementById("print").addEventListener("click", () => window.print());
+refresh();
+</script>
