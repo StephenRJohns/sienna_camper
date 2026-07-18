@@ -224,9 +224,10 @@ leveling_foot_thread   = "3/8-16"; // insert + glide bolt thread size, text only
 // (2 people + mattress + platform + boxes + cargo) over 12 feet =
 // ~60lb/foot nominal vs the feet's 330lb rating each — a 5x margin
 // before dynamic factors. The feet are not the weak point; see the
-// Section 6 leveling note for the access answer (level the VAN at
-// the wheels per site; the interior feet are set once) and the
-// optional electric-actuator design.
+// Section 6 leveling note for the access answer: level the VAN at
+// the wheels per site (leveling blocks + the Block Calculator); the
+// interior feet are set ONCE. Electric feet were considered and
+// REJECTED (owner, July 2026).
 leg_cut_length = leg_height - leveling_foot_nominal_h; // 16 — the actual saw cut; foot makes up the rest
 
 // deck surface -> mattress underside: just the flush platform now —
