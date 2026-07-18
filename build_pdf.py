@@ -15,7 +15,7 @@ import markdown
 ROOT = Path(__file__).parent
 MD_PATH = ROOT / "sienna_camper_build_plan.md"
 HTML_PATH = ROOT / "build_plan.html"
-PDF_PATH = ROOT / "Project_Smore.pdf"
+PDF_PATH = ROOT / "Project_Smores.pdf"
 
 CSS = """
 @page { size: Letter; margin: 0.65in; }
