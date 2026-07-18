@@ -1,0 +1,299 @@
+<title>Sienna Block Calculator</title>
+<style>
+  :root {
+    --ground: #f4f3ec;
+    --card: #ffffff;
+    --ink: #22271f;
+    --ink-soft: #5d6355;
+    --line: #d9d8cc;
+    --vial: #3f9b1e;          /* bubble-level green — the "level" state */
+    --vial-soft: #e3f2d8;
+    --block: #e8842c;         /* Lynx-block orange — block counts */
+    --block-soft: #fbe9d4;
+    --warn: #c23b22;
+    --warn-soft: #f7ddd6;
+    --readout: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #171a14;
+      --card: #20241c;
+      --ink: #e8e9e0;
+      --ink-soft: #a9ae9e;
+      --line: #3a3f33;
+      --vial: #8fd14f;
+      --vial-soft: #2a3521;
+      --block: #f0954a;
+      --block-soft: #3d2c1a;
+      --warn: #ef7a63;
+      --warn-soft: #45231c;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f4f3ec; --card: #ffffff; --ink: #22271f; --ink-soft: #5d6355;
+    --line: #d9d8cc; --vial: #3f9b1e; --vial-soft: #e3f2d8;
+    --block: #e8842c; --block-soft: #fbe9d4; --warn: #c23b22; --warn-soft: #f7ddd6;
+  }
+  :root[data-theme="dark"] {
+    --ground: #171a14; --card: #20241c; --ink: #e8e9e0; --ink-soft: #a9ae9e;
+    --line: #3a3f33; --vial: #8fd14f; --vial-soft: #2a3521;
+    --block: #f0954a; --block-soft: #3d2c1a; --warn: #ef7a63; --warn-soft: #45231c;
+  }
+  html { background: var(--ground); }
+  body {
+    margin: 0; padding: 18px 14px 40px; background: var(--ground); color: var(--ink);
+    font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+    display: flex; justify-content: center;
+  }
+  main { width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 14px; }
+  h1 { font-size: 21px; font-weight: 800; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+  .sub { color: var(--ink-soft); font-size: 13.5px; margin: 2px 0 0; }
+  section {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 14px 16px;
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 10px;
+  }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { flex: 1 1 100%; font-size: 13.5px; font-weight: 600; }
+  .lbl small { display: block; font-weight: 400; color: var(--ink-soft); }
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    border: 0; background: transparent; color: var(--ink-soft); padding: 8px 12px;
+    font: 600 13.5px/1 system-ui, sans-serif; cursor: pointer;
+  }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button[aria-pressed="true"] { background: var(--vial-soft); color: var(--ink); }
+  .seg button:focus-visible, .step button:focus-visible, input:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--vial); outline-offset: 1px;
+  }
+  .step { display: flex; align-items: center; gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .step button {
+    border: 0; background: transparent; color: var(--ink); width: 42px; padding: 8px 0;
+    font: 700 17px/1 system-ui, sans-serif; cursor: pointer;
+  }
+  .step .val {
+    min-width: 64px; text-align: center; font: 700 17px/1.1 var(--readout);
+    font-variant-numeric: tabular-nums; padding: 8px 4px; border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+  .step .val small { display: block; font: 400 10px/1.4 system-ui, sans-serif; color: var(--ink-soft); }
+  /* result: top-down van */
+  .van-wrap { display: flex; justify-content: center; padding: 6px 0 2px; }
+  .van {
+    position: relative; width: 200px; height: 300px; border: 2px solid var(--line);
+    border-radius: 48px 48px 26px 26px; background: transparent;
+  }
+  .van .cab { position: absolute; left: 18px; right: 18px; top: 34px; height: 0; border-top: 1.5px solid var(--line); }
+  .van .tag {
+    position: absolute; left: 0; right: 0; text-align: center; font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-soft); text-transform: uppercase;
+  }
+  .tire {
+    position: absolute; width: 76px; padding: 7px 6px 8px; border-radius: 9px;
+    border: 1.5px solid var(--line); background: var(--card); text-align: center;
+  }
+  .tire .n { font: 800 24px/1 var(--readout); font-variant-numeric: tabular-nums; }
+  .tire .in { font-size: 10.5px; color: var(--ink-soft); }
+  .tire .stack { display: flex; justify-content: center; gap: 2px; margin-top: 5px; min-height: 8px; }
+  .tire .stack i { width: 14px; height: 7px; border-radius: 2px; background: var(--block); }
+  .tire.zero .n { color: var(--vial); }
+  .tire.raised { border-color: var(--block); }
+  .tire.raised .n { color: var(--block); }
+  #fl { top: 44px; left: -20px; } #fr { top: 44px; right: -20px; }
+  #rl { bottom: 20px; left: -20px; } #rr { bottom: 20px; right: -20px; }
+  .verdict {
+    margin-top: 12px; border-radius: 8px; padding: 10px 12px; font-size: 14px;
+    background: var(--vial-soft);
+  }
+  .verdict.blocks { background: var(--block-soft); }
+  .verdict.bad { background: var(--warn-soft); }
+  .verdict b { font-variant-numeric: tabular-nums; }
+  details { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 10px; }
+  summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+  .cfg { display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; align-items: center; margin-top: 10px; }
+  .cfg label { font-size: 13.5px; }
+  .cfg label small { display: block; color: var(--ink-soft); }
+  .cfg input {
+    width: 82px; padding: 7px 8px; border: 1px solid var(--line); border-radius: 7px;
+    background: var(--card); color: var(--ink); font: 600 15px/1 var(--readout); text-align: right;
+  }
+  ol.how { margin: 8px 0 0; padding-left: 20px; font-size: 13.5px; color: var(--ink-soft); }
+  ol.how li { margin: 5px 0; }
+  ol.how b { color: var(--ink); }
+  @media (prefers-reduced-motion: no-preference) {
+    .tire { transition: border-color 0.15s ease; }
+  }
+</style>
+
+<main>
+  <header>
+    <h1>Sienna Block Calculator</h1>
+    <p class="sub">Read the two bubble levels on the bed, get blocks-per-tire. No feet, no crawling.</p>
+  </header>
+
+  <section aria-label="Level readings">
+    <p class="eyebrow">1 &middot; Level readings (degrees)</p>
+
+    <div class="row">
+      <span class="lbl">Fore&ndash;aft level <small>on the platform's driver-side rail</small></span>
+      <div class="step" role="group" aria-label="Pitch degrees">
+        <button type="button" data-t="pitch" data-d="-1" aria-label="Decrease pitch">&minus;</button>
+        <span class="val" id="pitchVal">0.0<small>deg</small></span>
+        <button type="button" data-t="pitch" data-d="1" aria-label="Increase pitch">+</button>
+      </div>
+      <div class="seg" role="group" aria-label="Which end is low" id="pitchSide">
+        <button type="button" data-v="nose" aria-pressed="false">Nose low</button>
+        <button type="button" data-v="tail" aria-pressed="true">Tail low</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="lbl">Side-to-side level <small>on the headboard nook</small></span>
+      <div class="step" role="group" aria-label="Roll degrees">
+        <button type="button" data-t="roll" data-d="-1" aria-label="Decrease roll">&minus;</button>
+        <span class="val" id="rollVal">0.0<small>deg</small></span>
+        <button type="button" data-t="roll" data-d="1" aria-label="Increase roll">+</button>
+      </div>
+      <div class="seg" role="group" aria-label="Which side is low" id="rollSide">
+        <button type="button" data-v="driver" aria-pressed="true">Driver low</button>
+        <button type="button" data-v="pass" aria-pressed="false">Passenger low</button>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Blocks per tire">
+    <p class="eyebrow">2 &middot; Blocks under each tire</p>
+    <div class="van-wrap">
+      <div class="van">
+        <span class="tag" style="top:10px">Nose</span>
+        <div class="cab"></div>
+        <div class="tire" id="fl"><div class="n">0</div><div class="in">0.0"</div><div class="stack"></div></div>
+        <div class="tire" id="fr"><div class="n">0</div><div class="in">0.0"</div><div class="stack"></div></div>
+        <div class="tire" id="rl"><div class="n">0</div><div class="in">0.0"</div><div class="stack"></div></div>
+        <div class="tire" id="rr"><div class="n">0</div><div class="in">0.0"</div><div class="stack"></div></div>
+        <span class="tag" style="bottom:8px">Tailgate</span>
+      </div>
+    </div>
+    <div class="verdict" id="verdict">Dead level — park it and put the kettle on.</div>
+
+    <details>
+      <summary>Van &amp; block settings</summary>
+      <div class="cfg">
+        <label for="wb">Wheelbase <small>4th-gen Sienna: 120.1"</small></label>
+        <input id="wb" type="number" step="0.1" min="60" max="200" value="120.1" inputmode="decimal">
+        <label for="tr">Track width <small>outside tire centers, ~68"</small></label>
+        <input id="tr" type="number" step="0.1" min="40" max="90" value="68" inputmode="decimal">
+        <label for="bh">Height per block <small>Lynx-style &asymp; 1.5" — measure YOUR stack once</small></label>
+        <input id="bh" type="number" step="0.05" min="0.25" max="4" value="1.5" inputmode="decimal">
+      </div>
+    </details>
+
+    <details>
+      <summary>How to use it</summary>
+      <ol class="how">
+        <li>Park in the spot you actually want, engine off, <b>parking brake on</b>.</li>
+        <li>Read both levels off the bed (they're screwed down — Section 6 of the build plan) and enter the degrees + which end/side floats the bubble <b>high</b> (that side is UP; the opposite is LOW).</li>
+        <li>Lay the block stacks just ahead of the low tires, <b>drive up slowly</b>, chock a wheel.</li>
+        <li>Re-read the levels. Suspension squish and stack nesting mean one refinement round is normal.</li>
+      </ol>
+    </details>
+  </section>
+</main>
+
+<script>
+(function () {
+  var state = { pitch: 0, roll: 0, lowEnd: "tail", lowSide: "driver" };
+  try {
+    var saved = JSON.parse(localStorage.getItem("siennaBlocks") || "{}");
+    ["wb", "tr", "bh"].forEach(function (k) {
+      if (saved[k]) document.getElementById(k).value = saved[k];
+    });
+  } catch (e) {}
+
+  function cfg(id, fallback) {
+    var v = parseFloat(document.getElementById(id).value);
+    return isFinite(v) && v > 0 ? v : fallback;
+  }
+
+  function render() {
+    var wb = cfg("wb", 120.1), tr = cfg("tr", 68), bh = cfg("bh", 1.5);
+    var pLift = Math.tan(state.pitch * Math.PI / 180) * wb;  // low END needs this
+    var rLift = Math.tan(state.roll  * Math.PI / 180) * tr;  // low SIDE needs this
+    var frontLow = state.lowEnd === "nose", driverLow = state.lowSide === "driver";
+
+    // deficit per wheel = plane height below the highest wheel
+    var wheels = {
+      fl: (frontLow ? pLift : 0) + (driverLow ? rLift : 0),
+      fr: (frontLow ? pLift : 0) + (!driverLow ? rLift : 0),
+      rl: (!frontLow ? pLift : 0) + (driverLow ? rLift : 0),
+      rr: (!frontLow ? pLift : 0) + (!driverLow ? rLift : 0)
+    };
+    var total = 0, maxBlocks = 0, achieved = {};
+    Object.keys(wheels).forEach(function (id) {
+      var need = wheels[id];
+      var n = Math.round(need / bh);
+      achieved[id] = n * bh;
+      total += n; if (n > maxBlocks) maxBlocks = n;
+      var el = document.getElementById(id);
+      el.querySelector(".n").textContent = n;
+      el.querySelector(".in").textContent = need.toFixed(1) + '" low';
+      var st = el.querySelector(".stack");
+      st.innerHTML = "";
+      for (var i = 0; i < Math.min(n, 6); i++) st.appendChild(document.createElement("i"));
+      el.className = "tire " + (n > 0 ? "raised" : "zero");
+    });
+
+    // residual tilt after the rounded stacks
+    var resP = Math.atan((((wheels.fl + wheels.fr) - (achieved.fl + achieved.fr)) / 2
+                        - ((wheels.rl + wheels.rr) - (achieved.rl + achieved.rr)) / 2) / wb) * 180 / Math.PI;
+    var resR = Math.atan((((wheels.fl + wheels.rl) - (achieved.fl + achieved.rl)) / 2
+                        - ((wheels.fr + wheels.rr) - (achieved.fr + achieved.rr)) / 2) / tr) * 180 / Math.PI;
+
+    var v = document.getElementById("verdict");
+    if (maxBlocks > 4) {
+      v.className = "verdict bad";
+      v.innerHTML = "That's a <b>" + maxBlocks + "-block</b> stack &mdash; past the safe/stable range for tire blocks. Find a flatter spot or turn the van around (a nose-low park often halves the stack).";
+    } else if (total === 0) {
+      v.className = "verdict";
+      v.textContent = "Dead level — park it and put the kettle on.";
+    } else {
+      v.className = "verdict blocks";
+      v.innerHTML = "<b>" + total + " block" + (total === 1 ? "" : "s") + "</b> total. Residual tilt after driving up: <b>" +
+        Math.abs(resP).toFixed(1) + "&deg;</b> pitch, <b>" + Math.abs(resR).toFixed(1) +
+        "&deg;</b> roll (under half a block each, by construction). Chock, then re-check the levels.";
+    }
+    try {
+      localStorage.setItem("siennaBlocks", JSON.stringify({ wb: wb, tr: tr, bh: bh }));
+    } catch (e) {}
+  }
+
+  document.querySelectorAll(".step button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = b.dataset.t, d = parseFloat(b.dataset.d) * 0.5;
+      state[t] = Math.min(7, Math.max(0, Math.round((state[t] + d) * 2) / 2));
+      document.getElementById(t + "Val").innerHTML = state[t].toFixed(1) + "<small>deg</small>";
+      render();
+    });
+  });
+  [["pitchSide", "lowEnd", { nose: "nose", tail: "tail" }],
+   ["rollSide", "lowSide", { driver: "driver", pass: "pass" }]].forEach(function (grp) {
+    document.getElementById(grp[0]).querySelectorAll("button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        state[grp[1]] = b.dataset.v === "pass" ? "pass" : b.dataset.v;
+        b.parentElement.querySelectorAll("button").forEach(function (o) {
+          o.setAttribute("aria-pressed", o === b ? "true" : "false");
+        });
+        render();
+      });
+    });
+  });
+  ["wb", "tr", "bh"].forEach(function (id) {
+    document.getElementById(id).addEventListener("input", render);
+  });
+  render();
+})();
+</script>

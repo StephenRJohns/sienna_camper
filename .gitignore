@@ -1,0 +1,6 @@
+# intermediate HTML produced by build_pdf.py on the way to the PDF
+build_plan.html
+# the old output name, superseded by Project_Smore.pdf
+sienna_camper_build_plan.pdf
+__pycache__/
+*.pyc
