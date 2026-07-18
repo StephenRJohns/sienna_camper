@@ -212,7 +212,8 @@ def main():
                 "DELTA 3 and WAVE 3 stowage detail", "Electrical layout",
                 "Headboard storage detail", "Panel A detail", "Panel B detail",
                 "Panel C detail", "Cabinet door detail", "Bed frame detail",
-                "Leveling foot detail", "Panel C front wall detail", "Headboard elevations"]:
+                "Leveling foot detail", "Panel C front wall detail", "Headboard elevations",
+                "Joinery and fastener guide"]:
         html_body = re.sub(
             rf'<p><img alt="{re.escape(alt)}" src="([^"]+)"[^>]*/?></p>',
             rf'<figure class="floorplan-figure"><img src="\1"><figcaption>{alt}</figcaption></figure>',

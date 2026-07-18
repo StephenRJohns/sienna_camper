@@ -93,6 +93,10 @@ echo "Rendering Panel C front wall detail..."
 openscad -o renders/panel-c-wall-detail.svg panel_c_wall_detail.scad
 openscad -o renders/panel-c-wall-detail.png --imgsize=3250,1800 $FLAT_CAM panel_c_wall_detail.scad
 
+echo "Rendering joinery & fastener guide..."
+openscad -o renders/joinery-detail.svg joinery_detail.scad
+openscad -o renders/joinery-detail.png --imgsize=3400,3400 $FLAT_CAM joinery_detail.scad
+
 echo "Rendering electrical layout detail..."
 openscad -o renders/electrical-layout.svg electrical_layout_detail.scad
 openscad -o renders/electrical-layout.png --imgsize=2700,4850 $FLAT_CAM electrical_layout_detail.scad
