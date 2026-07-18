@@ -60,6 +60,11 @@
   .row + .row { margin-top: 12px; }
   .lbl { flex: 1 1 100%; font-size: 13.5px; font-weight: 600; }
   .lbl small { display: block; font-weight: 400; color: var(--ink-soft); }
+  .note { font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); margin: -2px 0 12px;
+    background: var(--vial-soft); border-radius: 7px; padding: 8px 10px; }
+  .note b { color: var(--ink); font-weight: 700; }
+  .hint { flex: 1 1 100%; font-size: 12px; line-height: 1.45; color: var(--ink-soft); margin-top: 4px; }
+  .hint b { color: var(--ink); font-weight: 600; }
   .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
   .seg button {
     border: 0; background: transparent; color: var(--ink-soft); padding: 8px 12px;
@@ -137,9 +142,10 @@
 
   <section aria-label="Level readings">
     <p class="eyebrow">1 &middot; Level readings (degrees)</p>
+    <p class="note">Your RV bar level's scale <b>is degrees</b> — each mark = 1&deg;, running &minus;7 to +7. Just read the number the bubble sits at and enter it below; no conversion needed. The bubble always drifts toward the <b>high</b> side.</p>
 
     <div class="row">
-      <span class="lbl">Fore&ndash;aft level <small>on the platform's driver-side rail</small></span>
+      <span class="lbl">Fore&ndash;aft (pitch) <small>read the level on the platform's driver-side rail</small></span>
       <div class="step" role="group" aria-label="Pitch degrees">
         <button type="button" data-t="pitch" data-d="-1" aria-label="Decrease pitch">&minus;</button>
         <span class="val" id="pitchVal">0.0<small>deg</small></span>
@@ -149,10 +155,11 @@
         <button type="button" data-v="nose" aria-pressed="false">Nose low</button>
         <button type="button" data-v="tail" aria-pressed="true">Tail low</button>
       </div>
+      <span class="hint"><b>Which end sits LOW?</b> The bubble drifts to the high end, so the low end is the one it moves <i>away</i> from. <b>Nose</b> = front/cab end, <b>Tail</b> = tailgate. (Bubble toward the cab &rarr; nose is high &rarr; pick <b>Tail low</b>.)</span>
     </div>
 
     <div class="row">
-      <span class="lbl">Side-to-side level <small>on the headboard nook</small></span>
+      <span class="lbl">Side&ndash;to&ndash;side (roll) <small>read the level on the headboard nook</small></span>
       <div class="step" role="group" aria-label="Roll degrees">
         <button type="button" data-t="roll" data-d="-1" aria-label="Decrease roll">&minus;</button>
         <span class="val" id="rollVal">0.0<small>deg</small></span>
@@ -162,6 +169,7 @@
         <button type="button" data-v="driver" aria-pressed="true">Driver low</button>
         <button type="button" data-v="pass" aria-pressed="false">Passenger low</button>
       </div>
+      <span class="hint"><b>Which side sits LOW?</b> Again the bubble drifts to the high side. <b>Driver</b> / <b>Passenger</b> as you sit facing forward. (Bubble toward the passenger &rarr; that side is high &rarr; pick <b>Driver low</b>.)</span>
     </div>
   </section>
 
@@ -196,7 +204,7 @@
       <summary>How to use it</summary>
       <ol class="how">
         <li>Park in the spot you actually want, engine off, <b>parking brake on</b>.</li>
-        <li>Read both levels off the bed (they're screwed down — Section 6 of the build plan) and enter the degrees + which end/side floats the bubble <b>high</b> (that side is UP; the opposite is LOW).</li>
+        <li>Read both levels off the bed (they're screwed down — Section 6 of the build plan). Enter the <b>degrees</b> each one shows (each mark = 1&deg;, scale &minus;7 to +7), then set the toggle to the end/side that's <b>low</b> — the bubble drifts toward the high side, so the low side is the one it moves away from.</li>
         <li>Lay the block stacks just ahead of the low tires, <b>drive up slowly</b>, chock a wheel.</li>
         <li>Re-read the levels. Suspension squish and stack nesting mean one refinement round is normal.</li>
       </ol>
