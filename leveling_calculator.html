@@ -1,175 +1,98 @@
 <title>Sienna Block Calculator</title>
 <style>
   :root {
-    --ground: #f4f3ec;
-    --card: #ffffff;
-    --ink: #22271f;
-    --ink-soft: #5d6355;
-    --line: #d9d8cc;
-    --vial: #3f9b1e;          /* bubble-level green — the "level" state */
-    --vial-soft: #e3f2d8;
-    --block: #e8842c;         /* Lynx-block orange — block counts */
-    --block-soft: #fbe9d4;
-    --warn: #c23b22;
-    --warn-soft: #f7ddd6;
-    --readout: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --ground:#f4f3ec; --card:#ffffff; --ink:#22271f; --ink-soft:#5d6355; --line:#d9d8cc;
+    --vial:#3f9b1e; --vial-soft:#e3f2d8; --block:#e8842c; --block-soft:#fbe9d4;
+    --warn:#c23b22; --warn-soft:#f7ddd6;
+    --readout:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --ground: #171a14;
-      --card: #20241c;
-      --ink: #e8e9e0;
-      --ink-soft: #a9ae9e;
-      --line: #3a3f33;
-      --vial: #8fd14f;
-      --vial-soft: #2a3521;
-      --block: #f0954a;
-      --block-soft: #3d2c1a;
-      --warn: #ef7a63;
-      --warn-soft: #45231c;
-    }
+    :root { --ground:#171a14; --card:#20241c; --ink:#e8e9e0; --ink-soft:#a9ae9e; --line:#3a3f33;
+            --vial:#8fd14f; --vial-soft:#2a3521; --block:#f0954a; --block-soft:#3d2c1a; --warn:#ef7a63; --warn-soft:#45231c; }
   }
-  :root[data-theme="light"] {
-    --ground: #f4f3ec; --card: #ffffff; --ink: #22271f; --ink-soft: #5d6355;
-    --line: #d9d8cc; --vial: #3f9b1e; --vial-soft: #e3f2d8;
-    --block: #e8842c; --block-soft: #fbe9d4; --warn: #c23b22; --warn-soft: #f7ddd6;
-  }
-  :root[data-theme="dark"] {
-    --ground: #171a14; --card: #20241c; --ink: #e8e9e0; --ink-soft: #a9ae9e;
-    --line: #3a3f33; --vial: #8fd14f; --vial-soft: #2a3521;
-    --block: #f0954a; --block-soft: #3d2c1a; --warn: #ef7a63; --warn-soft: #45231c;
-  }
-  html { background: var(--ground); }
-  body {
-    margin: 0; padding: 18px 14px 40px; background: var(--ground); color: var(--ink);
-    font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
-    display: flex; justify-content: center;
-  }
-  main { width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 14px; }
-  h1 { font-size: 21px; font-weight: 800; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
-  .sub { color: var(--ink-soft); font-size: 13.5px; margin: 2px 0 0; }
-  section {
-    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
-    padding: 14px 14px 16px;
-  }
-  .eyebrow {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
-    color: var(--ink-soft); margin: 0 0 10px;
-  }
-  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .row + .row { margin-top: 12px; }
-  .lbl { flex: 1 1 100%; font-size: 13.5px; font-weight: 600; }
-  .lbl small { display: block; font-weight: 400; color: var(--ink-soft); }
-  .note { font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); margin: -2px 0 12px;
-    background: var(--vial-soft); border-radius: 7px; padding: 8px 10px; }
-  .note b { color: var(--ink); font-weight: 700; }
-  .hint { flex: 1 1 100%; font-size: 12px; line-height: 1.45; color: var(--ink-soft); margin-top: 4px; }
-  .hint b { color: var(--ink); font-weight: 600; }
-  .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .seg button {
-    border: 0; background: transparent; color: var(--ink-soft); padding: 8px 12px;
-    font: 600 13.5px/1 system-ui, sans-serif; cursor: pointer;
-  }
-  .seg button + button { border-left: 1px solid var(--line); }
-  .seg button[aria-pressed="true"] { background: var(--vial-soft); color: var(--ink); }
-  .seg button:focus-visible, .step button:focus-visible, input:focus-visible, summary:focus-visible {
-    outline: 2px solid var(--vial); outline-offset: 1px;
-  }
-  .step { display: flex; align-items: center; gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .step button {
-    border: 0; background: transparent; color: var(--ink); width: 42px; padding: 8px 0;
-    font: 700 17px/1 system-ui, sans-serif; cursor: pointer;
-  }
-  .step .val {
-    min-width: 64px; text-align: center; font: 700 17px/1.1 var(--readout);
-    font-variant-numeric: tabular-nums; padding: 8px 4px; border-left: 1px solid var(--line);
-    border-right: 1px solid var(--line);
-  }
-  .step .val small { display: block; font: 400 10px/1.4 system-ui, sans-serif; color: var(--ink-soft); }
-  /* result: top-down van */
-  .van-wrap { display: flex; justify-content: center; padding: 6px 0 2px; }
-  .van {
-    position: relative; width: 200px; height: 300px; border: 2px solid var(--line);
-    border-radius: 48px 48px 26px 26px; background: transparent;
-  }
-  .van .cab { position: absolute; left: 18px; right: 18px; top: 34px; height: 0; border-top: 1.5px solid var(--line); }
-  .van .tag {
-    position: absolute; left: 0; right: 0; text-align: center; font-size: 10.5px; font-weight: 700;
-    letter-spacing: 0.08em; color: var(--ink-soft); text-transform: uppercase;
-  }
-  .tire {
-    position: absolute; width: 76px; padding: 7px 6px 8px; border-radius: 9px;
-    border: 1.5px solid var(--line); background: var(--card); text-align: center;
-  }
-  .tire .n { font: 800 24px/1 var(--readout); font-variant-numeric: tabular-nums; }
-  .tire .in { font-size: 10.5px; color: var(--ink-soft); }
-  .tire .stack { display: flex; justify-content: center; gap: 2px; margin-top: 5px; min-height: 8px; }
-  .tire .stack i { width: 14px; height: 7px; border-radius: 2px; background: var(--block); }
-  .tire.zero .n { color: var(--vial); }
-  .tire.raised { border-color: var(--block); }
-  .tire.raised .n { color: var(--block); }
-  #fl { top: 44px; left: -20px; } #fr { top: 44px; right: -20px; }
-  #rl { bottom: 20px; left: -20px; } #rr { bottom: 20px; right: -20px; }
-  .verdict {
-    margin-top: 12px; border-radius: 8px; padding: 10px 12px; font-size: 14px;
-    background: var(--vial-soft);
-  }
-  .verdict.blocks { background: var(--block-soft); }
-  .verdict.bad { background: var(--warn-soft); }
-  .verdict b { font-variant-numeric: tabular-nums; }
-  details { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 10px; }
-  summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
-  .cfg { display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; align-items: center; margin-top: 10px; }
-  .cfg label { font-size: 13.5px; }
-  .cfg label small { display: block; color: var(--ink-soft); }
-  .cfg input {
-    width: 82px; padding: 7px 8px; border: 1px solid var(--line); border-radius: 7px;
-    background: var(--card); color: var(--ink); font: 600 15px/1 var(--readout); text-align: right;
-  }
-  ol.how { margin: 8px 0 0; padding-left: 20px; font-size: 13.5px; color: var(--ink-soft); }
-  ol.how li { margin: 5px 0; }
-  ol.how b { color: var(--ink); }
-  @media (prefers-reduced-motion: no-preference) {
-    .tire { transition: border-color 0.15s ease; }
-  }
+  :root[data-theme="light"]{--ground:#f4f3ec;--card:#fff;--ink:#22271f;--ink-soft:#5d6355;--line:#d9d8cc;--vial:#3f9b1e;--vial-soft:#e3f2d8;--block:#e8842c;--block-soft:#fbe9d4;--warn:#c23b22;--warn-soft:#f7ddd6;}
+  :root[data-theme="dark"]{--ground:#171a14;--card:#20241c;--ink:#e8e9e0;--ink-soft:#a9ae9e;--line:#3a3f33;--vial:#8fd14f;--vial-soft:#2a3521;--block:#f0954a;--block-soft:#3d2c1a;--warn:#ef7a63;--warn-soft:#45231c;}
+  html { background:var(--ground); }
+  body { margin:0; padding:18px 14px 40px; background:var(--ground); color:var(--ink);
+    font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif; display:flex; justify-content:center; }
+  main { width:100%; max-width:440px; display:flex; flex-direction:column; gap:14px; }
+  h1 { font-size:21px; font-weight:800; margin:0; letter-spacing:-0.01em; text-wrap:balance; }
+  .sub { color:var(--ink-soft); font-size:13.5px; margin:2px 0 0; }
+  section { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 14px 16px; }
+  .eyebrow { font-size:11px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 6px; }
+  .note { font-size:12.5px; line-height:1.45; color:var(--ink-soft); margin:0 0 14px;
+    background:var(--vial-soft); border-radius:7px; padding:8px 10px; }
+  .note b { color:var(--ink); font-weight:700; }
+
+  .lvlblk + .lvlblk { margin-top:16px; }
+  .lvlttl { font-size:13.5px; font-weight:600; margin:0 0 6px; }
+  .lvlttl small { display:block; font-weight:400; color:var(--ink-soft); }
+  svg.level { width:100%; height:auto; display:block; touch-action:none; cursor:grab; border-radius:11px; }
+  svg.level:active { cursor:grabbing; }
+  svg.level:focus-visible { outline:2px solid var(--vial); outline-offset:2px; }
+  .ends { display:flex; justify-content:space-between; font-size:11px; font-weight:600; color:var(--ink-soft); margin-top:3px; padding:0 4px; }
+  .readout { text-align:center; font:700 14.5px/1.2 var(--readout); margin-top:7px; color:var(--ink); }
+  .readout.level { color:var(--vial); }
+  .readout .dir { font:600 12px system-ui; color:var(--ink-soft); }
+
+  .van-wrap { display:flex; justify-content:center; padding:6px 0 2px; }
+  .van { position:relative; width:200px; height:300px; border:2px solid var(--line); border-radius:48px 48px 26px 26px; }
+  .van .cab { position:absolute; left:18px; right:18px; top:34px; height:0; border-top:1.5px solid var(--line); }
+  .van .tag { position:absolute; left:0; right:0; text-align:center; font-size:10.5px; font-weight:700; letter-spacing:0.08em; color:var(--ink-soft); text-transform:uppercase; }
+  .tire { position:absolute; width:76px; padding:7px 6px 8px; border-radius:9px; border:1.5px solid var(--line); background:var(--card); text-align:center; }
+  .tire .n { font:800 24px/1 var(--readout); font-variant-numeric:tabular-nums; }
+  .tire .in { font-size:10.5px; color:var(--ink-soft); }
+  .tire .stack { display:flex; justify-content:center; gap:2px; margin-top:5px; min-height:8px; }
+  .tire .stack i { width:14px; height:7px; border-radius:2px; background:var(--block); }
+  .tire.zero .n { color:var(--vial); }
+  .tire.raised { border-color:var(--block); } .tire.raised .n { color:var(--block); }
+  #fl { top:44px; left:-20px; } #fr { top:44px; right:-20px; }
+  #rl { bottom:20px; left:-20px; } #rr { bottom:20px; right:-20px; }
+  .verdict { margin-top:12px; border-radius:8px; padding:10px 12px; font-size:14px; background:var(--vial-soft); }
+  .verdict.blocks { background:var(--block-soft); } .verdict.bad { background:var(--warn-soft); }
+  .verdict b { font-variant-numeric:tabular-nums; }
+  details { border-top:1px solid var(--line); margin-top:12px; padding-top:10px; }
+  summary { cursor:pointer; font-size:13px; font-weight:600; color:var(--ink-soft); }
+  summary:focus-visible { outline:2px solid var(--vial); outline-offset:1px; }
+  .cfg { display:grid; grid-template-columns:1fr auto; gap:10px 12px; align-items:center; margin-top:10px; }
+  .cfg label { font-size:13.5px; } .cfg label small { display:block; color:var(--ink-soft); }
+  .cfg input { width:82px; padding:7px 8px; border:1px solid var(--line); border-radius:7px; background:var(--card); color:var(--ink); font:600 15px/1 var(--readout); text-align:right; }
+  ol.how { margin:8px 0 0; padding-left:20px; font-size:13.5px; color:var(--ink-soft); }
+  ol.how li { margin:5px 0; } ol.how b { color:var(--ink); }
 </style>
+
+<!-- shared SVG gradient defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="vialg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#8ff059"/><stop offset="0.5" stop-color="#4bbf28"/><stop offset="1" stop-color="#2c8b18"/>
+  </linearGradient>
+  <radialGradient id="bub" cx="0.4" cy="0.35" r="0.75">
+    <stop offset="0" stop-color="#fbffe9"/><stop offset="0.6" stop-color="#c9ee9d"/><stop offset="1" stop-color="#8ccc5a"/>
+  </radialGradient>
+</defs></svg>
 
 <main>
   <header>
     <h1>Sienna Block Calculator</h1>
-    <p class="sub">Read the two bubble levels on the bed, get blocks-per-tire. No feet, no crawling.</p>
+    <p class="sub">Match the two bubble levels on the bed, get blocks-per-tire. No feet, no crawling.</p>
   </header>
 
   <section aria-label="Level readings">
-    <p class="eyebrow">1 &middot; Level readings (degrees)</p>
-    <p class="note">Your RV bar level's scale <b>is degrees</b> — each mark = 1&deg;, running &minus;7 to +7. Just read the number the bubble sits at and enter it below; no conversion needed. The bubble always drifts toward the <b>high</b> side.</p>
+    <p class="eyebrow">1 &middot; Match your bubble levels</p>
+    <p class="note"><b>Drag each bubble</b> to sit exactly where it sits on your real RV bar level — the bubble floats toward the <b>high</b> side. That's all: the position gives both the degrees and which way is downhill. (Or tap the level and use the arrow keys.)</p>
 
-    <div class="row">
-      <span class="lbl">Fore&ndash;aft (pitch) <small>read the level on the platform's driver-side rail</small></span>
-      <div class="step" role="group" aria-label="Pitch degrees">
-        <button type="button" data-t="pitch" data-d="-1" aria-label="Decrease pitch">&minus;</button>
-        <span class="val" id="pitchVal">0.0<small>deg</small></span>
-        <button type="button" data-t="pitch" data-d="1" aria-label="Increase pitch">+</button>
-      </div>
-      <div class="seg" role="group" aria-label="Which end is low" id="pitchSide">
-        <button type="button" data-v="nose" aria-pressed="false">Nose low</button>
-        <button type="button" data-v="tail" aria-pressed="true">Tail low</button>
-      </div>
-      <span class="hint"><b>Which end sits LOW?</b> The bubble drifts to the high end, so the low end is the one it moves <i>away</i> from. <b>Nose</b> = front/cab end, <b>Tail</b> = tailgate. (Bubble toward the cab &rarr; nose is high &rarr; pick <b>Tail low</b>.)</span>
+    <div class="lvlblk" data-axis="pitch">
+      <p class="lvlttl">Fore&ndash;aft (pitch) <small>the level on the platform's driver-side rail</small></p>
+      <svg class="level" viewBox="0 0 320 96" tabindex="0" role="slider" aria-label="Fore-aft level, degrees" aria-valuemin="-7" aria-valuemax="7" aria-valuenow="0"></svg>
+      <div class="ends"><span>&larr; Cab / front high</span><span>Tailgate / rear high &rarr;</span></div>
+      <div class="readout level" data-role="readout">Level</div>
     </div>
 
-    <div class="row">
-      <span class="lbl">Side&ndash;to&ndash;side (roll) <small>read the level on the headboard nook</small></span>
-      <div class="step" role="group" aria-label="Roll degrees">
-        <button type="button" data-t="roll" data-d="-1" aria-label="Decrease roll">&minus;</button>
-        <span class="val" id="rollVal">0.0<small>deg</small></span>
-        <button type="button" data-t="roll" data-d="1" aria-label="Increase roll">+</button>
-      </div>
-      <div class="seg" role="group" aria-label="Which side is low" id="rollSide">
-        <button type="button" data-v="driver" aria-pressed="true">Driver low</button>
-        <button type="button" data-v="pass" aria-pressed="false">Passenger low</button>
-      </div>
-      <span class="hint"><b>Which side sits LOW?</b> Again the bubble drifts to the high side. <b>Driver</b> / <b>Passenger</b> as you sit facing forward. (Bubble toward the passenger &rarr; that side is high &rarr; pick <b>Driver low</b>.)</span>
+    <div class="lvlblk" data-axis="roll">
+      <p class="lvlttl">Side&ndash;to&ndash;side (roll) <small>the level on the headboard nook</small></p>
+      <svg class="level" viewBox="0 0 320 96" tabindex="0" role="slider" aria-label="Side-to-side level, degrees" aria-valuemin="-7" aria-valuemax="7" aria-valuenow="0"></svg>
+      <div class="ends"><span>&larr; Driver high</span><span>Passenger high &rarr;</span></div>
+      <div class="readout level" data-role="readout">Level</div>
     </div>
   </section>
 
@@ -204,9 +127,9 @@
       <summary>How to use it</summary>
       <ol class="how">
         <li>Park in the spot you actually want, engine off, <b>parking brake on</b>.</li>
-        <li>Read both levels off the bed (they're screwed down — Section 6 of the build plan). Enter the <b>degrees</b> each one shows (each mark = 1&deg;, scale &minus;7 to +7), then set the toggle to the end/side that's <b>low</b> — the bubble drifts toward the high side, so the low side is the one it moves away from.</li>
+        <li>Look at each RV bar level on the bed (they're screwed down — Section 6 of the build plan). <b>Drag the matching bubble above</b> to the same spot — it floats toward the HIGH side, so the low side is the opposite.</li>
         <li>Lay the block stacks just ahead of the low tires, <b>drive up slowly</b>, chock a wheel.</li>
-        <li>Re-read the levels. Suspension squish and stack nesting mean one refinement round is normal.</li>
+        <li>Re-check the levels. Suspension squish and stack nesting mean one refinement round is normal.</li>
       </ol>
     </details>
   </section>
@@ -214,26 +137,115 @@
 
 <script>
 (function () {
-  var state = { pitch: 0, roll: 0, lowEnd: "tail", lowSide: "driver" };
+  var SVGNS = "http://www.w3.org/2000/svg";
+  var CX = 160, PERDEG = 16, X0 = 160 - 7*16, X1 = 160 + 7*16; // scale ends at 48 / 272
+  var state = { pitch: 0, roll: 0 };
+
   try {
     var saved = JSON.parse(localStorage.getItem("siennaBlocks") || "{}");
-    ["wb", "tr", "bh"].forEach(function (k) {
-      if (saved[k]) document.getElementById(k).value = saved[k];
-    });
+    ["wb","tr","bh"].forEach(function (k){ if (saved[k]) document.getElementById(k).value = saved[k]; });
   } catch (e) {}
 
-  function cfg(id, fallback) {
-    var v = parseFloat(document.getElementById(id).value);
-    return isFinite(v) && v > 0 ? v : fallback;
+  function el(name, attrs) {
+    var n = document.createElementNS(SVGNS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+  // quadratic vial: M48,58 Q160,78 272,58  -> y(t)
+  function vialY(t) { return (1-t)*(1-t)*58 + 2*(1-t)*t*78 + t*t*58; }
+  function degToX(d) { return CX + d*PERDEG; }
+  function degToT(d) { return 0.5 + d/14; }
+
+  function buildLevel(svg) {
+    // bezel + screw holes
+    svg.appendChild(el("rect", {x:1,y:1,width:318,height:94,rx:12,fill:"#1c1c1c",stroke:"#000","stroke-width":1.5}));
+    svg.appendChild(el("rect", {x:5,y:5,width:310,height:16,rx:7,fill:"#262626"}));
+    [26,294].forEach(function (cx){
+      svg.appendChild(el("circle", {cx:cx,cy:20,r:6,fill:"#2c2c2c",stroke:"#4c4c4c"}));
+      svg.appendChild(el("circle", {cx:cx,cy:20,r:2.4,fill:"#0d0d0d"}));
+    });
+    // ticks + numbers
+    for (var d = -7; d <= 7; d++) {
+      var x = degToX(d), major = (Math.abs(d) === 0);
+      svg.appendChild(el("line", {x1:x,y1:34,x2:x,y2:major?42:39,stroke:"#e9e9e9","stroke-width":major?1.6:1}));
+      var t = el("text", {x:x,y:31,"text-anchor":"middle","font-family":"system-ui,sans-serif","font-size":10.5,"font-weight":700,fill:"#f2f2f2"});
+      t.textContent = Math.abs(d);
+      svg.appendChild(t);
+    }
+    // vial
+    svg.appendChild(el("path", {d:"M48,58 Q160,78 272,58",fill:"none",stroke:"url(#vialg)","stroke-width":13,"stroke-linecap":"round"}));
+    svg.appendChild(el("path", {d:"M48,58 Q160,78 272,58",fill:"none",stroke:"#c8f6a2","stroke-width":3,"stroke-linecap":"round",opacity:0.45}));
+    // bubble (moved by update)
+    var bub = el("circle", {r:8.5,fill:"url(#bub)",stroke:"#0e0e0e","stroke-width":1,class:"bubble"});
+    svg.appendChild(bub);
+    svg._bubble = bub;
   }
 
-  function render() {
-    var wb = cfg("wb", 120.1), tr = cfg("tr", 68), bh = cfg("bh", 1.5);
-    var pLift = Math.tan(state.pitch * Math.PI / 180) * wb;  // low END needs this
-    var rLift = Math.tan(state.roll  * Math.PI / 180) * tr;  // low SIDE needs this
-    var frontLow = state.lowEnd === "nose", driverLow = state.lowSide === "driver";
+  function labelFor(axis, d) {
+    if (d === 0) return { txt: "Level", dir: "", cls: "readout level" };
+    var mag = Math.abs(d).toFixed(1);
+    var dir = axis === "pitch"
+      ? (d > 0 ? "rear (tailgate) end is high" : "front (cab) end is high")
+      : (d > 0 ? "passenger side is high" : "driver side is high");
+    return { txt: mag + "°", dir: dir, cls: "readout blocks" };
+  }
 
-    // deficit per wheel = plane height below the highest wheel
+  function updateLevel(blk) {
+    var axis = blk.dataset.axis, d = state[axis], svg = blk.querySelector("svg.level");
+    var x = degToX(d), y = vialY(degToT(d));
+    svg._bubble.setAttribute("cx", x);
+    svg._bubble.setAttribute("cy", y - 0.5);
+    svg.setAttribute("aria-valuenow", d);
+    var lab = labelFor(axis, d);
+    var out = blk.querySelector('[data-role="readout"]');
+    out.className = lab.cls;
+    out.innerHTML = lab.dir ? (lab.txt + ' <span class="dir">— ' + lab.dir + '</span>') : lab.txt;
+  }
+
+  function setDeg(blk, d) {
+    d = Math.max(-7, Math.min(7, Math.round(d * 2) / 2));
+    state[blk.dataset.axis] = d;
+    updateLevel(blk);
+    render();
+  }
+
+  function xToDeg(svg, clientX) {
+    var r = svg.getBoundingClientRect();
+    var xvb = (clientX - r.left) / r.width * 320;
+    return (xvb - CX) / PERDEG;
+  }
+
+  document.querySelectorAll(".lvlblk").forEach(function (blk) {
+    var svg = blk.querySelector("svg.level");
+    buildLevel(svg);
+    var dragging = false;
+    svg.addEventListener("pointerdown", function (e) {
+      dragging = true; svg.setPointerCapture(e.pointerId);
+      setDeg(blk, xToDeg(svg, e.clientX)); e.preventDefault();
+    });
+    svg.addEventListener("pointermove", function (e) {
+      if (dragging) setDeg(blk, xToDeg(svg, e.clientX));
+    });
+    svg.addEventListener("pointerup", function () { dragging = false; });
+    svg.addEventListener("pointercancel", function () { dragging = false; });
+    svg.addEventListener("keydown", function (e) {
+      var d = state[blk.dataset.axis];
+      if (e.key === "ArrowLeft" || e.key === "ArrowDown") { setDeg(blk, d - 0.5); e.preventDefault(); }
+      else if (e.key === "ArrowRight" || e.key === "ArrowUp") { setDeg(blk, d + 0.5); e.preventDefault(); }
+      else if (e.key === "Home" || e.key === "0") { setDeg(blk, 0); e.preventDefault(); }
+    });
+    updateLevel(blk);
+  });
+
+  function cfg(id, fallback) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v > 0 ? v : fallback; }
+
+  function render() {
+    var wb = cfg("wb",120.1), tr = cfg("tr",68), bh = cfg("bh",1.5);
+    var ps = state.pitch, rs = state.roll;
+    var pLift = Math.tan(Math.abs(ps) * Math.PI/180) * wb;   // low END lift
+    var rLift = Math.tan(Math.abs(rs) * Math.PI/180) * tr;   // low SIDE lift
+    var frontLow = ps > 0, driverLow = rs > 0;               // bubble toward rear => front low; toward pass => driver low
+
     var wheels = {
       fl: (frontLow ? pLift : 0) + (driverLow ? rLift : 0),
       fr: (frontLow ? pLift : 0) + (!driverLow ? rLift : 0),
@@ -242,66 +254,33 @@
     };
     var total = 0, maxBlocks = 0, achieved = {};
     Object.keys(wheels).forEach(function (id) {
-      var need = wheels[id];
-      var n = Math.round(need / bh);
-      achieved[id] = n * bh;
-      total += n; if (n > maxBlocks) maxBlocks = n;
-      var el = document.getElementById(id);
-      el.querySelector(".n").textContent = n;
-      el.querySelector(".in").textContent = need.toFixed(1) + '" low';
-      var st = el.querySelector(".stack");
-      st.innerHTML = "";
+      var need = wheels[id], n = Math.round(need / bh);
+      achieved[id] = n * bh; total += n; if (n > maxBlocks) maxBlocks = n;
+      var e = document.getElementById(id);
+      e.querySelector(".n").textContent = n;
+      e.querySelector(".in").textContent = need.toFixed(1) + '" low';
+      var st = e.querySelector(".stack"); st.innerHTML = "";
       for (var i = 0; i < Math.min(n, 6); i++) st.appendChild(document.createElement("i"));
-      el.className = "tire " + (n > 0 ? "raised" : "zero");
+      e.className = "tire " + (n > 0 ? "raised" : "zero");
     });
-
-    // residual tilt after the rounded stacks
-    var resP = Math.atan((((wheels.fl + wheels.fr) - (achieved.fl + achieved.fr)) / 2
-                        - ((wheels.rl + wheels.rr) - (achieved.rl + achieved.rr)) / 2) / wb) * 180 / Math.PI;
-    var resR = Math.atan((((wheels.fl + wheels.rl) - (achieved.fl + achieved.rl)) / 2
-                        - ((wheels.fr + wheels.rr) - (achieved.fr + achieved.rr)) / 2) / tr) * 180 / Math.PI;
+    var resP = Math.atan((((wheels.fl+wheels.fr)-(achieved.fl+achieved.fr))/2 - ((wheels.rl+wheels.rr)-(achieved.rl+achieved.rr))/2)/wb)*180/Math.PI;
+    var resR = Math.atan((((wheels.fl+wheels.rl)-(achieved.fl+achieved.rl))/2 - ((wheels.fr+wheels.rr)-(achieved.fr+achieved.rr))/2)/tr)*180/Math.PI;
 
     var v = document.getElementById("verdict");
     if (maxBlocks > 4) {
       v.className = "verdict bad";
       v.innerHTML = "That's a <b>" + maxBlocks + "-block</b> stack &mdash; past the safe/stable range for tire blocks. Find a flatter spot or turn the van around (a nose-low park often halves the stack).";
     } else if (total === 0) {
-      v.className = "verdict";
-      v.textContent = "Dead level — park it and put the kettle on.";
+      v.className = "verdict"; v.textContent = "Dead level — park it and put the kettle on.";
     } else {
       v.className = "verdict blocks";
-      v.innerHTML = "<b>" + total + " block" + (total === 1 ? "" : "s") + "</b> total. Residual tilt after driving up: <b>" +
-        Math.abs(resP).toFixed(1) + "&deg;</b> pitch, <b>" + Math.abs(resR).toFixed(1) +
-        "&deg;</b> roll (under half a block each, by construction). Chock, then re-check the levels.";
+      v.innerHTML = "<b>" + total + " block" + (total===1?"":"s") + "</b> total. Residual tilt after driving up: <b>" +
+        Math.abs(resP).toFixed(1) + "&deg;</b> pitch, <b>" + Math.abs(resR).toFixed(1) + "&deg;</b> roll (under half a block each, by construction). Chock, then re-check the levels.";
     }
-    try {
-      localStorage.setItem("siennaBlocks", JSON.stringify({ wb: wb, tr: tr, bh: bh }));
-    } catch (e) {}
+    try { localStorage.setItem("siennaBlocks", JSON.stringify({ wb:wb, tr:tr, bh:bh })); } catch (e) {}
   }
 
-  document.querySelectorAll(".step button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      var t = b.dataset.t, d = parseFloat(b.dataset.d) * 0.5;
-      state[t] = Math.min(7, Math.max(0, Math.round((state[t] + d) * 2) / 2));
-      document.getElementById(t + "Val").innerHTML = state[t].toFixed(1) + "<small>deg</small>";
-      render();
-    });
-  });
-  [["pitchSide", "lowEnd", { nose: "nose", tail: "tail" }],
-   ["rollSide", "lowSide", { driver: "driver", pass: "pass" }]].forEach(function (grp) {
-    document.getElementById(grp[0]).querySelectorAll("button").forEach(function (b) {
-      b.addEventListener("click", function () {
-        state[grp[1]] = b.dataset.v === "pass" ? "pass" : b.dataset.v;
-        b.parentElement.querySelectorAll("button").forEach(function (o) {
-          o.setAttribute("aria-pressed", o === b ? "true" : "false");
-        });
-        render();
-      });
-    });
-  });
-  ["wb", "tr", "bh"].forEach(function (id) {
-    document.getElementById(id).addEventListener("input", render);
-  });
+  ["wb","tr","bh"].forEach(function (id){ document.getElementById(id).addEventListener("input", render); });
   render();
 })();
 </script>
