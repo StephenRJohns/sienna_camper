@@ -125,7 +125,7 @@ module drawing() {
 
     label_left("Heavy-duty full-extension slide pair, 24\", 200lb-rated per pair —", fridge_ext_width + 1.5, rail_z + fridge_ext_height - 2, 1.0);
     label_left("loaded fridge can realistically hit 60-90lb, well within rating.", fridge_ext_width + 1.5, rail_z + fridge_ext_height - 3.4, 1.0);
-    label_left("Tray (0.5\" ply) screwed to the inner rail; fridge screwed", fridge_ext_width + 1.5, rail_z + fridge_ext_height - 5.4, 1.0);
+    label_left("Tray (3/8\" ply + edge frame) screwed to the inner rail; fridge screwed", fridge_ext_width + 1.5, rail_z + fridge_ext_height - 5.4, 1.0);
     label_left("to the tray with a lip so it can't shift in transit.", fridge_ext_width + 1.5, rail_z + fridge_ext_height - 6.8, 1.0);
 
     label("Y (in., toward Panel B) ->", fridge_ext_width/2 - 12, -8.5, 1.1);

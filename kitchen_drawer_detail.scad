@@ -118,7 +118,7 @@ module rear_section() {
 
     dim_h(dx0, dx0 + kdrawer_box_w, z_d0 - 1.6, str(kdrawer_box_w, "\" box (~", kdrawer_box_w - 1, "\" clear inside)"));
     dim_h(ck_in_x1, ck_out_x0, z_rail1 + 3.4, str(kdrawer_span, "\" between cheek faces"));
-    label("2x 3/4\" ply cheeks, screwed UP into the deck (2\" screws every 6\")", 0, z_rail1 + 6.2, 1.05);
+    label("2x 1/2\" ply cheeks, screwed UP into the deck (2\" screws every 6\")", 0, z_rail1 + 6.2, 1.05);
     label("outer cheek also screws into the side rail's inner face", 0, z_rail1 + 4.8, 1.0);
     label("24\" side-mount slides, 100lb pair — one per cheek", dx0 + kdrawer_box_w/2, z_d0 - 4.2, 1.05);
 

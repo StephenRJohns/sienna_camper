@@ -114,7 +114,7 @@ Each floor panel, exploded (Panel A: frame + legs + center divider + one right d
 
 ### Bed Platform Detail
 
-Component 2's one-piece slatted bed platform (58" x 52", 10 slats pocket-screwed between two full-length 1x4 side rails — one flush 3/4" plane, cantilevered 3" past the boxes on each side), exploded. Per-site leveling is done at the WHEELS with blocks (Block Calculator, Section 6); the interior leg feet are a one-time set. It rests DIRECTLY on Panel A/B's top rails and ENDS at the B/C seam — Panel C's own fixed deck sits at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck. It lifts straight off; leveling happens at the leg feet, down at the floor, and an RV bar bubble level screwed to the driver-side rail's outer edge reads fore-aft pitch while you turn the knobs (its twin on the headboard nook reads roll):
+Component 2's one-piece slatted bed platform (58" x 52", 8 slats pocket-screwed between two full-length 1x4 side rails — one flush 3/4" plane, cantilevered 3" past the boxes on each side), exploded. Per-site leveling is done at the WHEELS with blocks (Block Calculator, Section 6); the interior leg feet are a one-time set. It rests DIRECTLY on Panel A/B's top rails and ENDS at the B/C seam — Panel C's own fixed deck sits at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck. It lifts straight off; leveling happens at the leg feet, down at the floor, and an RV bar bubble level screwed to the driver-side rail's outer edge reads fore-aft pitch while you turn the knobs (its twin on the headboard nook reads roll):
 
 ![Bed frame detail](renders/bed-frame-detail.svg)
 
@@ -208,7 +208,7 @@ The side doors only matter for **Panel A**: its right drawer (DELTA 3) pulls out
 
 - **Headboard/pantry** (14" deep x 46" wide x 22" tall above the deck — as tall as the roof allows, ~2.75" of ceiling clearance to spare against the verified 44" interior height): **no longer its own module** — no frame, no legs, no floor contact of its own. It's a shelving superstructure, **clamped down to Panel C's existing deck** (4x Kipp cam levers into T-nuts under the deck — tool-free, bike-QR style) and braced against driving sway by **2 steel L-angle braces running forward/down to Panel C's OWN side rails** (cam-lever nuts at the rail ends) (~45°, one per side — triangulates the fore-aft rocking that braking/accel would otherwise work into the tall unit; re-anchored from Panel B, whose rails the flush bed platform now caps — Sway Brace Detail render), occupying the last 14" of Panel C's own 36" length (the end flush to the tailgate, right next to the fridge/kitchen void). **3 fixed tiers + an adjustable shelf, no full-height divider, no top**: two FULL-DEPTH (14") shelves — the **bed shelf** at 13" above the deck and an **upper shelf** at 18" — split the 22" height into 3 tiers. The tall 13" bottom bay (deck up to the bed shelf) takes an **adjustable shelf on pins** — run it as one tall bay for bottles/boxes/pots, or split it into two ~6" tiers for cans/plates/packets, per trip — and the top tier (above the upper shelf) is full-depth food storage. Retention is the **marine-galley system**: a 1.5" front **fiddle lip** on every food shelf (the primary stop against the forward slide braking causes) + an elastic **lash strap** across each opening + **bins** for utensils/small items + **non-slip liner** — a bungee net stays only on the one soft-goods tier (bread/chips/produce). The MIDDLE tier, between the two shelves, is split by a 4.25" nook divider into an **enclosed bed cubby** facing the mattress: 2.75" deep, floored by the bed shelf (surface 9" above the mattress top), backed by the divider, and ceilinged by the upper shelf — carrying the half-round edging lip, Power strip 1 (phones/glasses/flashlights/USB), and the roll bubble level. The remaining 10.5" of that middle tier faces the kitchen as food storage. It still comes off Panel C separately — flip the 4 base cam levers and the 4 brace-end cam levers (8 total, no tools) — so its own height clears the liftgate opening on its own. See the Headboard Storage Detail render and Section 6, Component 1.
 - **One continuous sleeping deck**, 46" wide x 94" long (Panels A + B + C, on uniform legs, flush with the front seatbacks — no gap), deck surface sitting 19.25" above the van floor (17" legs + 1.5" frame rail + 3/4" ply). `leg_height` is driven by the fridge's 15.79" height (see below), not by the folded 3rd-row well depth — confirm 17" clears your actual well before cutting.
-- **Panel A and Panel B share the same frame, and neither has a top of its own.** Panel A has a center divider splitting its bay in two, reached through the side doors: the right (passenger) side is the one real drawer (DELTA 3), the left (driver) side is WAVE 3 open storage (the unit is too wide for a boxed drawer — Section 1). **Panel B has NO drawers and no divider** — the sliding-door openings sit over the old 2nd-row footprint (Panel A), not over Panel B, so nothing pulled sideways from Panel B could clear a door. Its whole bay is deep storage instead: lift the platform + mattress and load it from above (long-term/bulky items you don't touch at camp). The one-piece slatted bed platform (Component 2, 10 slats between 2 full-length side rails, 58" x 52" — cantilevered 3" past the boxes each side, 3/4" thick) spans Panel A + B ONLY and ENDS at the B/C seam: Panel C's own fixed deck is at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck (an 80" platform would have to sit ON that deck — 3/4" too high). It rests DIRECTLY on Panel A/B's top rails as one flush 3/4" plane (slats pocket-screwed between the two side rails). Leveling happens at the leg feet down at the floor — each leg is cut 1" short and carries a hand-adjustable leveling foot. Sourcing: cut ten 45" slats from five 1x4 x 8ft pine boards (two per board) plus two 58" side rails from two more — seven boards total, no bought slat kit to fight with (many queen slat sets ride on metal frames or webbing that don't survive cutting down — Section 4 + Component 2). It lifts off (as a whole) for bay access from above — that's Panel B's ONLY access, and the occasional deep-cleaning route for Panel A.
+- **Panel A and Panel B share the same frame, and neither has a top of its own.** Panel A has a center divider splitting its bay in two, reached through the side doors: the right (passenger) side is the one real drawer (DELTA 3), the left (driver) side is WAVE 3 open storage (the unit is too wide for a boxed drawer — Section 1). **Panel B has NO drawers and no divider** — the sliding-door openings sit over the old 2nd-row footprint (Panel A), not over Panel B, so nothing pulled sideways from Panel B could clear a door. Its whole bay is deep storage instead: lift the platform + mattress and load it from above (long-term/bulky items you don't touch at camp). The one-piece slatted bed platform (Component 2, 8 slats between 2 full-length side rails, 58" x 52" — cantilevered 3" past the boxes each side, 3/4" thick) spans Panel A + B ONLY and ENDS at the B/C seam: Panel C's own fixed deck is at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck (an 80" platform would have to sit ON that deck — 3/4" too high). It rests DIRECTLY on Panel A/B's top rails as one flush 3/4" plane (slats pocket-screwed between the two side rails). Leveling happens at the leg feet down at the floor — each leg is cut 1" short and carries a hand-adjustable leveling foot. Sourcing: cut eight 45" slats from four 1x4 x 8ft pine boards (two per board) plus two 58" side rails from two more — six boards total (weight swap: was ten slats/seven boards), no bought slat kit to fight with (many queen slat sets ride on metal frames or webbing that don't survive cutting down — Section 4 + Component 2). It lifts off (as a whole) for bay access from above — that's Panel B's ONLY access, and the occasional deep-cleaning route for Panel A.
 - **Trade-off: no top means no enclosure — answered with CUBE FRAMES.** Removing the plywood tops loses torsional rigidity and a dust barrier. Two fixes are now specified: diagonal corner braces up top, and **bottom rails closing each frame into a box** (underside 1" up — dropped to the leg bottoms, just clear of the leveling feet, for the tallest box section and the lowest floor-edge curb) on every face that can take one — Panel A's two END faces (its sides must stay open for the drawer/WAVE 3), ALL 4 faces of Panel B (the full cube), and Panel C's FRONT face (its tailgate face stays open for the appliances; its fixed top + new front wall already stiffen it). A closed frame racks far less than rails + brackets alone. The bed frame's slats still have gaps — small items can fall through into the bays below.
 - **Panel C has no drawers.** Its under-deck void instead holds two bought products side by side across the 46" width: a **BougeRV Rocky 40 (41-quart, dual-zone)** — 17.72" side left-right, reversible lid (manual §4.4), optional detachable B240 battery at the tailgate-facing end — on a heavy-duty slide, against the driver-side REAR CORNER leg (1.5" in from the edge); and a **JAGAHAHA slide-out camp kitchen** (26"L x 20"W x 11.8"H closed, with its own 2-burner stove space and built-in slide), against the passenger-side rear corner leg — its shelves swing out on that side. (Panel C's rear leg pair sits at the TRUE corners — inset legs would stand exactly in the appliances' slide paths, a collision the Rocky 40's extra width exposed. Verify the floor vents don't reach those corners — Section 0.) **Both pull straight out the open tailgate** (not a side door). Neither is something this plan builds from plywood — both are bought, standalone units. Unlike everything else in this build, both are **bolted through the van's floor pan** via E-track anchors (Section 8) — too heavy to rely on the same "rests unbolted" approach as the sleeping panels. A utility cabinet with a hinged door fills the gap between them: the exhaust fan blows the fridge bay's warm air INTO it, and a low louver in the door lets that warm air escape low toward the tailgate (rather than only bleeding around the door edges); the control panel (switches + surge protector) mounts INSIDE the cabinet, just behind the door on a backer board hung from the deck underside — open the door to reach everything electrical.
 - A **HEST Dually Long mattress (78" x 50" x 4", solid foam — no air chambers)** rides on the 52" cantilevered platform: **25" of width per person** (vs 23" at the old 46") and ~2" of spare length parked at the head end under the headboard shelf. The platform overhangs the 46" boxes by 3" per side — the boxes stay at 46" (floor vents + liftgate pass-through), but the mattress lives 19-27" up where the van is wider than its 48.5" floor pinch. **UNVERIFIED: measure wall-to-wall at ~19" and ~23" above the floor along the whole run (need >=53") before cutting the platform** — Section 0. Budget fallback: the DIY 2-layer foam build (Section 4/Component 9), same 50x78 footprint.
@@ -265,7 +265,7 @@ The panels are open 2x2 frames — plywood skins exist only where something need
 |---|---|---|
 | Panel A | **None** | Both bays face the side doors — a skirt would block the only access. Passenger side: DELTA 3 drawer. Driver side: WAVE 3 open bay. |
 | Panel B | **None** | Nothing to see or reach — it sits under the platform between A and C. Bare frame, deep storage from above. |
-| Panel C — front (B-facing) | **The ONE wall**: 1/2" ply, 46" x 17" | Mounts the 120mm intake fan, holds the low intake louver, and passes both the fridge DC line and Power strip 1's line (two 1" grommets) — every opening dimensioned in the Panel C Front Wall render. |
+| Panel C — front (B-facing) | **The ONE wall**: 3/8" ply, 46" x 17" | Mounts the 120mm intake fan, holds the low intake louver, and passes both the fridge DC line and Power strip 1's line (two 1" grommets) — every opening dimensioned in the Panel C Front Wall render. |
 | Panel C — sides | None | The van wall is ~1" away; the exhaust fan still pulls a net flow across the fridge, so side leakage doesn't matter. |
 | Panel C — rear (tailgate) | None needed | Fully occupied already: fridge face + utility-cabinet door + kitchen unit face + kitchen drawer face. |
 
@@ -313,32 +313,56 @@ Coordinates for the fixed/structural items (drawers, panels, fridge, kitchen) co
 
 The fridge and kitchen unit are bought products (Section 4) — **neither needs any plywood or lumber**, which is why this cut list is smaller than it would be if they were built. `render.sh` still generates a top-down/side/rear-view diagram of everything assembled, but the cutting layouts below are given as plain tables rather than bespoke nested-piece diagrams — simpler to keep correct as dimensions change, and just as usable at the saw.
 
-### Plywood — 1 sheet 3/4" Baltic birch + 1 sheet 1/2" Baltic birch (or shop-grade), 48"x96" (4x8) each
+### Material options & upgrades (owner review, July 2026)
 
-3/4" ply is for the structural pieces that still need it (Panel C's top, the headboard/pantry's side panels/full-depth shelves/base cleats — it has no top of its own, since it mounts right on Panel C's); 1/2" is for the one drawer box, the fridge's tray, the kitchen drawer, the headboard/pantry's nook divider, and Panel C's front wall — pieces that don't need to be as stiff or as show-quality. **Panel A and Panel B no longer have their own tops at all** (Component 2), the headboard/pantry uses Panel C's, and **Panel B's two drawers are gone** (side doors don't reach it) — dropping the count to one sheet of each:
+The base build is **Baltic birch plywood + pine framing**, chosen for cost and availability. Two optional upgrades trade a little weight and money for durability — worth it in targeted spots, overkill everywhere:
 
-**3/4" sheet 1** — Panel C's top, the headboard/pantry's side panels/full-depth shelves/base cleats, and the kitchen drawer's 2 hanging cheeks, ~90% of the sheet — save the remaining offcut for the control-panel backer board (Section 6):
+- **Plywood is already Baltic birch** for every panel that matters (Panel C's deck, the drawer/kitchen boxes, the fridge tray, the whole headboard/pantry). No change needed — birch is the dent- and screw-holding win people usually ask for, and it's already specified.
+- **Poplar (or ash/maple) for the top rails.** Pine dents, and the *one* place that matters is the exposed **2×2 top rails you grip to lift each module** — those get handled constantly. Swapping just those rails to poplar (a hardwood) resists denting and holds biscuits/screws noticeably better than pine, which suits the biscuit joinery. Cost: poplar is ~20% denser (a few lb of added lift weight across the rails) and pricier per board — so upgrade the **grip rails only**, and leave the hidden framing and the under-mattress 1×4 slats as pine (weight and cost win there, and they never show or get bumped). Budget ~$25–40 extra.
+- **Aluminum angle for the diagonal corner braces.** The Panel A/B corner braces can be aluminum L-angle instead of steel/wood — lighter (these modules are carried) and rust-proof. **Keep steel on the headboard sway braces**, though: those resist *compression/buckling*, where aluminum's lower stiffness (~⅓ of steel's) would need sizing up. Budget ~$10–15 for the aluminum swap.
+
+Neither upgrade changes any dimension in the cut list below — same sizes, different stock. The weight deltas are folded into the note in **Appendix E (Weight Budget)**.
+
+**Weight-reduction swaps (APPLIED, July 2026).** Separately, and pulling the *other* way, the owner asked to lighten the build wherever safe — so the plywood was thinned wherever it isn't carrying real load, and the bed dropped from 10 to 8 slats. This is already reflected in the cut list above and in Appendix E (~21 lb off the structure, build ~449 → ~424 lb):
+
+- **Headboard shelves + side panels → 1/2"** (was 3/4") — the biggest single saving (~12 lb off the heaviest lift-off piece). The fixed shelves keep their front fiddle lip as a stiffening flange; add a shallow rear rail (or one center support if you load it heavy) so the 46" span doesn't sag.
+- **Battery-drawer walls, fridge tray, Panel C front wall → 3/8"** (was 1/2") — non-structural; the drawer corners get glued + biscuited, the tray gets a glued edge frame.
+- **Kitchen-drawer cheeks → 1/2"** (was 3/4"); **bed platform → 8 slats** (fine under the solid-foam mattress).
+- **Kept 3/4":** Panel C's deck and the headboard base cleats — they carry sitting load and the cam-lever clamp pull-out. **Note the tension with the poplar upgrade above:** poplar *adds* ~20% weight, so if you're chasing weight, keep poplar to the grip rails only or skip it.
+
+Honest trade: this reshuffles the plywood so it now needs a 3/8" half-sheet (~+$25) even though it's lighter — a poor cost-per-pound, chosen for easier module lifts, not payload (which already has margin, Appendix E).
+
+### Plywood — 1 sheet 3/4" + 1 sheet 1/2" + a 3/8" half-sheet, Baltic birch (4x8), (or shop-grade)
+
+**Weight-swap note (owner, July 2026):** the plywood was thinned wherever it isn't carrying real load — the biggest weight saving in the build (~21 lb off the structure; see Appendix E). Only the pieces that take load or the cam-lever clamp pull-out stay **3/4"** (Panel C's deck + the headboard base cleats). The headboard carcass (side panels + all shelves), the kitchen boxes, and the battery-drawer bottom drop to **1/2"**. The three purely non-structural pieces — the battery drawer's walls, the fridge tray, and Panel C's front wall — drop to **3/8"**. This adds one 3/8" half-sheet to the buy (~$25) but the 3/4" sheet is now only lightly used (spare stock). **Panel A/B have no tops** (Component 2), the headboard uses Panel C's deck, and **Panel B has no drawers.**
+
+**3/4" sheet** — only the load/clamp pieces: Panel C's deck and the headboard base cleats. This sheet is now largely spare — keep the big offcut for the control-panel backer board (Section 6) and repairs:
 
 | Piece | Qty | Dimensions |
 |---|---|---|
-| Panel C top | 1 | 36" x 46" |
-| Headboard/pantry side panel | 2 | 14" x 22" |
-| Headboard/pantry FIXED full-depth shelves | 2 | 46" x 14" (3/4", the carcass webs — glued + screwed to the sides) |
-| Headboard/pantry base cleats | 2 | 46" x 3" (plain rip — screwed to the shelving underside; cam levers clamp cleats + deck into T-nuts) |
-| Kitchen drawer hanging cheeks | 2 | 26" x 6.2" (screwed up into Panel C's deck, flanking the drawer) |
+| Panel C top (deck) | 1 | 36" x 46" |
+| Headboard/pantry base cleats | 2 | 46" x 3" (screwed to the shelving underside; cam levers clamp cleats + deck into T-nuts) |
 
-**1/2" sheet 1** — 1 drawer box (Panel A right — Panel A's left bay is WAVE 3 open storage, no box, and Panel B has no drawers at all), the fridge's tray, the kitchen drawer's box, Panel C's front wall, the headboard/pantry's nook divider, and the headboard/pantry's adjustable food shelf (46" x 14"), ~30.5 sq ft of material against ~32 sq ft of usable sheet area — tight, so nest carefully (the bed platform is 1x4 board lumber — Section 4 — not cut from this sheet):
+**1/2" sheet** — the headboard/pantry carcass (2 side panels + 2 fixed shelves + 1 adjustable shelf + nook divider), the kitchen drawer box + its 2 hanging cheeks, and the battery drawer's bottom. ~30 sq ft against ~32 usable — nest carefully:
 
 | Piece | Qty | Dimensions |
 |---|---|---|
-| Drawer bottom (Panel A right) | 1 | 20" x 25" |
-| Drawer side wall | 2 | 25" x 14.5" |
-| Drawer front/back wall | 2 | 20" x 14.5" |
-| Panel C front wall | 1 | 46" x 17" — 120mm fan hole + two 1" grommet holes, positions in the Panel C Front Wall render |
-| Fridge tray | 1 | 17.72" x 28.74" |
-| Headboard/pantry nook divider | 1 | 46" x 4.25" (middle tier, 2.75" from the mattress face — encloses the cubby) |
-| Headboard/pantry ADJUSTABLE shelf | 1 | 46" x 14" (1/2" ply — rests on 4 pins in the 13" bottom bay; the front fiddle lip stiffens it) |
+| Headboard/pantry side panel | 2 | 14" x 22" (1/2" — compression load, no bending) |
+| Headboard/pantry FIXED full-depth shelves | 2 | 46" x 14" (1/2" — glued + biscuited to the sides; the front fiddle lip is a stiffening flange, add a shallow rear rail) |
+| Headboard/pantry ADJUSTABLE shelf | 1 | 46" x 14" (rests on 4 pins in the 13" bottom bay) |
+| Headboard/pantry nook divider | 1 | 46" x 4.25" (middle tier — encloses the cubby) |
 | Kitchen drawer box | 5 pieces | bottom 16" x 26"; 2 sides 26" x 4"; front/back 15" x 4" (4.5" exterior height) |
+| Kitchen drawer hanging cheeks | 2 | 26" x 6.2" (1/2" — screwed up into Panel C's deck, flanking the drawer) |
+| Battery drawer bottom (Panel A right) | 1 | 20" x 25" (1/2" — the base under the 48 lb stack) |
+
+**3/8" half-sheet** (weight swap) — the three non-structural pieces. ~18 sq ft, so a half 4x8 covers it:
+
+| Piece | Qty | Dimensions |
+|---|---|---|
+| Battery drawer side wall | 2 | 25" x 14.5" (3/8" — glue + biscuit the corners) |
+| Battery drawer front/back wall | 2 | 20" x 14.5" (3/8") |
+| Fridge tray | 1 | 17.72" x 28.74" (3/8" + a glued 3/4" x 3/4" edge frame for stiffness) |
+| Panel C front wall | 1 | 46" x 17" (3/8") — 120mm fan hole + two 1" grommet holes, positions in the Panel C Front Wall render |
 | WAVE 3 glide strips (scrap, not from these sheets) | 2 | 20" x 1", UHMW or laminate offcut |
 
 ### Frame lumber — 2x2 pine (or 1"x1" aluminum L-channel), sold in 8ft (96") lengths
@@ -396,9 +420,10 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 
 | Item | Qty | Est. Unit Cost | Est. Total |
 |---|---|---|---|
-| 3/4" Baltic birch plywood, 4x8 sheet (Panel C top + headboard/pantry side panels/full-depth shelves/base cleats + kitchen drawer cheeks) | 1 | $65 | $65 |
+| 3/4" Baltic birch plywood, 4x8 sheet (Panel C deck + headboard base cleats — now lightly used after the weight swap; the big offcut is spare stock) | 1 | $65 | $65 |
 | Headboard/pantry mounting: 4x Kipp cam levers w/ 1/4-20 studs + fender washers + T-nuts (hold-down), 2x 30" slotted steel angle braces, 4x 1/4-20 bolts + nylocs (brace tops), 4x 1/4-20 studs + Kipp cam-lever NUTS (brace rail ends) | 1 set | $85 | $85 |
-| 1/2" Baltic birch or shop-grade plywood, 4x8 sheet (Panel A drawer box + fridge tray + kitchen drawer box + Panel C front wall + nook divider) | 1 | $50 | $50 |
+| 1/2" Baltic birch or shop-grade plywood, 4x8 sheet (headboard carcass — sides + all shelves + nook divider — + kitchen drawer box & cheeks + battery-drawer bottom) | 1 | $50 | $50 |
+| 3/8" Baltic birch plywood, half-sheet — weight swap (battery-drawer walls + fridge tray + Panel C front wall) | 1 | $25 | $25 |
 | 2x2 pine (8ft lengths) or aluminum L-channel | 12 | $8–15 | $96–180 |
 | Panel drawer slides, 20" full-extension (1 pair — Panel A's right/DELTA 3 drawer; Panel B has no drawers, Panel A's left bay has none either) | 1 pair | $16 | $16 |
 | Drawer catches (friction catch or small turn latch) | 1 | $3 | $3 |
@@ -415,7 +440,7 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | Panel A/B diagonal corner braces (x8, recovers racking rigidity lost with the tops) | 8 | $3 | $24 |
 | Leg leveling feet — [Heavy Duty 3/8-16 furniture levelers w/ T-nut kit, 4-pack](https://www.amazon.com/Furniture-Levelers-Adjustable-Leveling-Cabinets-Sofa/dp/B081ZT4Q4G) (330 lb per foot; buy 3 packs = 12) | 3 packs | $12 | $36 |
 | Foot hand-grip knobs — [Peachtree 3/8-16 thru-hole star knobs, ~2" dia, 4-pack](https://www.amazon.com/Star-Thru-Hole-Knob-Woodworking/dp/B000UH7Y84) (1 per foot, jam-locked on the bolt; buy 3 packs = 12) + 12x 3/8-16 jam nuts | 3 packs | $12 | $36 |
-| Bed platform lumber — 1x4 x 8ft pine boards (two 58" side rails + ten 45" slats, two per board) | 7 | $5 | $35 |
+| Bed platform lumber — 1x4 x 8ft pine boards (two 58" side rails + eight 45" slats, two per board) | 6 | $5 | $30 |
 | Kitchen drawer slide pair — 24" full-extension side-mount, 100lb class | 1 | $16 | $16 |
 | Kitchen drawer magnetic catch (box + cheeks come from the plywood sheets' spare area) | 1 | $3 | $3 |
 | RV bar bubble levels — RV Designer E409 screw-on 2-pack (PITCH on the platform's driver-side rail edge, ROLL on the headboard nook) | 1 | $9 | $9 |
@@ -427,7 +452,7 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | 16 AWG extension cord (household AC-rated — Power strip 1's own dedicated run, headboard/pantry at the tailgate end straight to the console, ~8ft — now one of the longest lines) | 1 | $15 | $15 |
 | 16 AWG DC cord (automotive/solar SAE-rated — fridge line, DELTA 3 in Panel A back to the fridge in Panel C, ~8ft) | 1 | $15 | $15 |
 | 16 AWG cord (household AC-rated — DELTA 3 AC charging line, front console to Panel A, ~3-4ft) | 1 | $8 | $8 |
-| Cord clips/channel cover strip | 1 | $10 | $10 |
+| Per-module surface wire raceway — a CordMate II kit for the 3 AC lines (~$28) + a 123" open-slot raceway kit for the DC line (~$18, screws included), AC and DC in separate channels + screw-mount cord clips | 1 set | $46 | $46 |
 | Inline male/female extension-cord connector pairs (2 for the cooktop line's 2 seams, 2 for Power strip 1's line's 2 seams — AC-rated, only the DELTA 3 charging line crosses no seams, see Section 5) | 4 | $8 | $32 |
 | SAE quick-disconnect connectors (2 for the fridge DC line's 2 seams — DC-rated, matches the fridge's actual 12V circuit) | 2 | $8 | $16 |
 | 3-way AC outlet splitter (front console — the cooktop, Power strip 1, and the DELTA 3's charging cord are now 3 lines wanting console power, whether there are 1 or 2 physical outlets — see Section 5's shared-circuit note) | 1 | $10 | $10 |
@@ -492,7 +517,7 @@ Specific products verified against this plan's specs, full URLs shown for copy-p
 
 Slides + electrical together run **~$290-305**. These links satisfy the corresponding BOM rows above — don't double-count.
 
-**Estimated total (summing the BOM table above): ~$3,005–3,400 with the fridge + kitchen included, or ~$2,305–2,550 if you already own equivalents** — the owner-supplied CO monitor and fire extinguisher aren't priced here. The itemized BOM table is the authoritative figure; the breakdown below traces where the money goes and how the design's cost evolved. It includes ~$116 for the bed platform and its leveling — seven 1x4 boards (~$35), 12 leg leveling feet w/ T-nuts (3 four-packs, ~$36), 12 star-knob grips + jam nuts (~$36), and the RV Designer E409 bubble-level 2-pack (~$9: pitch on the rail edge, roll on the headboard nook); ~$19 for the kitchen drawer hung above the kitchen unit (slide pair + catch — its box and cheeks come out of the plywood sheets' spare area); ~$24 for Panel A/B's diagonal corner braces, added to recover some of the racking rigidity lost when their tops came off, ~$50–100 UNVERIFIED for the Ling Labs SRS seat emulators (Section 9), ~$43 for Power strip 1's own dedicated cord run (now one of the longest lines, crossing 2 seams — its own ~8ft cord, 2 grommets, and 2 inline connector pairs), and ~$52 for the headboard/pantry's retention system (fiddle lips, ~6 lash straps, bins, non-slip liner, shelf pins, a soft-goods net) + the adjustable bottom-bay shelf (1/2" ply off the spare sheet) + half-round shelf edging). The July-18 round adds ~$191: a Lynx-style leveling-block 10-pack + chock (+$40 — per-site leveling moves to the wheels, driven by the Block Calculator), Kipp cam levers replacing the headboard's hex bolts and wing nuts (+$60 — tool-free, bike-QR style), three extra 2x2 boards for the cube-frame bottom rails (+$24 mid-range), a 10th cable grommet (+$6), two passive louvered cooling vents — a low cool-air intake scoop in the front wall and a low exhaust louver in the cabinet door (+$12), a pantry upgrade — an adjustable bottom-bay shelf plus the fiddle-lip/lash-strap/bins/liner retention system replacing the old nets-everywhere approach (a single soft-goods net stays) (+$33 net over the old $12 net), and 4 over-center seam draw-latches that clamp the three modules into one rigid beam (+$16); Panel B losing its drawers entirely (owner-confirmed: the side doors don't reach it — its bay is top-loaded deep storage now) saves ~$86: two slide pairs, two catches, and a whole 1/2" plywood sheet, less ~$8 for Panel C's new front wall hardware coming out of that freed sheet. Panel A's left bay going to WAVE 3 open storage instead of a 4th drawer nets out close to a wash: -$19 (one less drawer slide pair, one less catch, no more plywood tray) offset by the glide strips and a non-slip mat. Moving the fridge and fan system onto the DELTA 3 stack (instead of the van's rear outlet) adds ~$79: a 2nd cord (fridge DC line, Panel A to Panel C) and its own charging cord (front console to Panel A), the grommets and disconnects both need, and a 3-way splitter now that 3 lines want the console's power instead of 2. Relocating the headboard/pantry onto Panel C's deck instead of its own module saves ~$20-34: one fewer module's worth of frame lumber (2 fewer 2x2 boards) and corner brackets, since it no longer needs a frame of its own. This is above the old built-from-plywood design's ~$1,245–1,452 mainly because of three swaps that trade DIY labor (or an inadequate factory feature) for bought reliability: a real BougeRV Rocky 40 + JAGAHAHA kitchen (~$700–850 combined, Rocky price UNVERIFIED) instead of building fridge/kitchen boxes from the same plywood as the panels, the fridge cooling/control electronics (2 fans, controller, sensor, surge protector — new this redesign, ~$85–120 combined), and real E-track floor anchors + rated straps (~$100) replacing the factory cargo hooks once those turned out to be rated for cargo nets only, not securing a 45-90lb item. The mattress is now a bought HEST Dually Long (~$530–590, cover included) — the DIY 2-layer fallback (~$185–255) stays in the BOM as the budget swap. The plywood total dropped to ~$115 across 2 sheets (one 3/4", one 1/2") now that Panel A and B have no tops, Panel B has no drawers, and the headboard/pantry uses Panel C's top — down from 4 sheets earlier in this redesign.
+**Estimated total (summing the BOM table above): ~$3,065–3,460 with the fridge + kitchen included, or ~$2,365–2,610 if you already own equivalents** — the owner-supplied CO monitor and fire extinguisher aren't priced here. The itemized BOM table is the authoritative figure; the breakdown below traces where the money goes and how the design's cost evolved. It includes ~$111 for the bed platform and its leveling — six 1x4 boards (~$30, weight swap dropped it from seven), 12 leg leveling feet w/ T-nuts (3 four-packs, ~$36), 12 star-knob grips + jam nuts (~$36), and the RV Designer E409 bubble-level 2-pack (~$9: pitch on the rail edge, roll on the headboard nook); ~$19 for the kitchen drawer hung above the kitchen unit (slide pair + catch — its box and cheeks come out of the plywood sheets' spare area); ~$24 for Panel A/B's diagonal corner braces, added to recover some of the racking rigidity lost when their tops came off, ~$50–100 UNVERIFIED for the Ling Labs SRS seat emulators (Section 9), ~$43 for Power strip 1's own dedicated cord run (now one of the longest lines, crossing 2 seams — its own ~8ft cord, 2 grommets, and 2 inline connector pairs), and ~$52 for the headboard/pantry's retention system (fiddle lips, ~6 lash straps, bins, non-slip liner, shelf pins, a soft-goods net) + the adjustable bottom-bay shelf (1/2" ply off the spare sheet) + half-round shelf edging). The July-18 round adds ~$191: a Lynx-style leveling-block 10-pack + chock (+$40 — per-site leveling moves to the wheels, driven by the Block Calculator), Kipp cam levers replacing the headboard's hex bolts and wing nuts (+$60 — tool-free, bike-QR style), three extra 2x2 boards for the cube-frame bottom rails (+$24 mid-range), a 10th cable grommet (+$6), two passive louvered cooling vents — a low cool-air intake scoop in the front wall and a low exhaust louver in the cabinet door (+$12), a pantry upgrade — an adjustable bottom-bay shelf plus the fiddle-lip/lash-strap/bins/liner retention system replacing the old nets-everywhere approach (a single soft-goods net stays) (+$33 net over the old $12 net), and 4 over-center seam draw-latches that clamp the three modules into one rigid beam (+$16); Panel B losing its drawers entirely (owner-confirmed: the side doors don't reach it — its bay is top-loaded deep storage now) saves ~$86: two slide pairs, two catches, and a whole 1/2" plywood sheet, less ~$8 for Panel C's new front wall hardware coming out of that freed sheet. Panel A's left bay going to WAVE 3 open storage instead of a 4th drawer nets out close to a wash: -$19 (one less drawer slide pair, one less catch, no more plywood tray) offset by the glide strips and a non-slip mat. Moving the fridge and fan system onto the DELTA 3 stack (instead of the van's rear outlet) adds ~$79: a 2nd cord (fridge DC line, Panel A to Panel C) and its own charging cord (front console to Panel A), the grommets and disconnects both need, and a 3-way splitter now that 3 lines want the console's power instead of 2. Relocating the headboard/pantry onto Panel C's deck instead of its own module saves ~$20-34: one fewer module's worth of frame lumber (2 fewer 2x2 boards) and corner brackets, since it no longer needs a frame of its own. This is above the old built-from-plywood design's ~$1,245–1,452 mainly because of three swaps that trade DIY labor (or an inadequate factory feature) for bought reliability: a real BougeRV Rocky 40 + JAGAHAHA kitchen (~$700–850 combined, Rocky price UNVERIFIED) instead of building fridge/kitchen boxes from the same plywood as the panels, the fridge cooling/control electronics (2 fans, controller, sensor, surge protector — new this redesign, ~$85–120 combined), and real E-track floor anchors + rated straps (~$100) replacing the factory cargo hooks once those turned out to be rated for cargo nets only, not securing a 45-90lb item. The mattress is now a bought HEST Dually Long (~$530–590, cover included) — the DIY 2-layer fallback (~$185–255) stays in the BOM as the budget swap. The plywood was ~$115 across 2 sheets (one 3/4", one 1/2") after Panel A/B lost their tops, Panel B its drawers, and the headboard moved onto Panel C's deck — down from 4 sheets earlier. The July-2026 **weight swap** then thinned the non-critical panels to 1/2"/3/8" (~21 lb off the structure, Appendix E) and the bed to 8 slats: it shaves ~$5 on the 1x4s but adds a 3/8" half-sheet (~$25), so plywood is now ~$140 across a 3/4" sheet (lightly used), a 1/2" sheet (full), and a 3/8" half-sheet — a poor cost-per-pound, but the owner prioritized easier module lifts. A later review round also adds the per-module surface wire raceway — a CordMate II kit for the AC lines + an open-slot kit for the DC line, AC/DC separated (~$46, Section 5) — replacing the loose cord clips for cleaner, serviceable runs. Two optional material upgrades are documented but NOT in the total above — poplar top-rails (~$25–40) and aluminum corner braces (~$10–15), see Section 3's "Material options & upgrades."
 
 ---
 
@@ -503,6 +528,8 @@ Every purchased electrical component at its real position — icon-based top-dow
 ![Electrical layout](renders/electrical-layout.svg)
 
 **The fridge (and its fan system) now runs off the DELTA 3 stack, not the van's rear outlet** — see the "Why the fridge and fan system now run off the DELTA 3 stack" note in Section 1 for the full reasoning (reliability while people are away from the vehicle, backed by real runtime/recharge numbers). This does mean the fridge needs a cord after all, unlike the previous design's direct-plug simplification — a DC line from the DELTA 3 (Panel A's right drawer) forward to the fridge (Panel C), crossing the same 2 module seams the cooktop's cord does. The Sienna's rear 12V accessory outlet is simply unused now — nothing in this design plugs into it, so it's free for anything else later.
+
+**Cord management — run each module's cords in a surface raceway, not loose clips (owner, July 2026).** Instead of loose zip-tied/clip-covered runs, route the cords through a **segmented plastic surface raceway (wire duct / Wiremold-style)** — a short length screwed to the inside of each module's frame, one channel per panel, meeting at the existing seam disconnects. Two rules keep it correct: (1) the raceway must stay **segmented per module** (a separate length in A, B, and C) — NOT one continuous conduit spanning the seams, or a panel can't be lifted out; the inline AC connectors / SAE DC disconnects still live at each seam. (2) Keep the **120V AC and 12V DC lines in separate channels** (a divided duct, or two small ducts side by side) — don't bundle them together. This protects the cords from abrasion, makes every run traceable, and lets you pull or add a wire later without fishing it through the frame — a real serviceability win over clipped cords for a small added cost (see the raceway line in Section 4's BOM). Where a run has to cross into a module's interior bay, a snap-cover raceway lifts open without unscrewing.
 
 **Four cords need routing in total, each on its own independent line — none of them share a run:**
 
@@ -574,8 +601,8 @@ Cut every piece for every component up front, per Section 3's cut list, before s
 
 **Parts needed:**
 
-- Headboard/pantry side panels — 2, 14" x 22", 3/4" ply
-- Headboard/pantry full-depth shelves — 2, 46" x 14", 3/4" ply (the carcass webs — there is no full-height divider and no top)
+- Headboard/pantry side panels — 2, 14" x 22", 1/2" ply (weight swap: was 3/4" — compression load, no bending)
+- Headboard/pantry full-depth shelves — 2, 46" x 14", 1/2" ply (weight swap: was 3/4" — the carcass webs; keep the front fiddle lip as a stiffening flange, add a shallow rear rail. No full-height divider, no top)
 - Headboard/pantry base cleats — 2, 46" x 3", 3/4" ply (plain rip, screwed to the shelving underside)
 - Clamp-down hardware — 4x Kipp cam levers (1/4-20 x 30mm stud) + fender washers + T-nuts (through the base cleats + Panel C's deck — flip to release, no tools)
 - Sway braces — 2x slotted steel angle (L-profile), 1-1/2" x 1-1/2" x 1/8" x ~30", bolted at every end: 2x 1/4-20 + nylocs per top end, 2x 1/4-20 studs + Kipp cam-lever nuts per rail end — Sway Brace Detail render
@@ -629,12 +656,12 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 - Center divider — 1, 26" cut, 2x2 pine
 - Corner brackets — 4
 - Diagonal corner braces — 2 (recovers racking rigidity lost without a top)
-- Drawer box — 1 (right/DELTA 3 side only), 5 pieces: bottom 20"x25", 2 side walls 25"x14.5", 2 front/back walls 20"x14.5", all 1/2" ply
+- Drawer box — 1 (right/DELTA 3 side only), 5 pieces: bottom 20"x25" (1/2" ply), 2 side walls 25"x14.5" + 2 front/back walls 20"x14.5" (3/8" ply) — weight swap: walls 1/2"→3/8", glue + biscuit the corners since it carries the 48 lb DELTA stack
 - Drawer slide — 1 pair, 20" full-extension
 - Drawer catch — 1, friction catch or small turn latch
 - DELTA 3 drawer hardware (right drawer) — 1x1 pine locating cleats, 2 screw-eye D-rings + cam strap, 1" cable grommet
 - WAVE 3 glide strips (left bay floor) — 2, UHMW or laminate scrap, cuts friction sliding the unit in/out by hand
-- Bed platform lumber — seven 1x4 x 8ft pine boards: two 58" side rails + ten 45" slats, two per board (Bed Platform Detail render)
+- Bed platform lumber — six 1x4 x 8ft pine boards: two 58" side rails + eight 45" slats, two per board (Bed Platform Detail render)
 - RV bar bubble levels — 1x 2-pack (RV Designer E409, screws included): PITCH one mounts here, ROLL one goes to the headboard nook (Component 1)
 
 <div class="lego-card">
@@ -664,9 +691,9 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 </div>
 <div class="lego-step">
 <div class="lego-num">5</div>
-<div class="lego-parts"><p class="lego-noparts">seven 1x4 boards: 2 rails + 10 slats + pocket screws (parts list above)</p></div>
+<div class="lego-parts"><p class="lego-noparts">six 1x4 boards: 2 rails + 8 slats + pocket screws (parts list above)</p></div>
 <div class="lego-main"><img src="renders/bed-frame-detail.png" alt="Bed platform exploded detail">
-<p class="lego-caption">Cut two 58" side rails and ten 45" slats from seven 1x4 x 8ft pine boards (slats two per board; rails one per board). Lay the rails on edge-guides 52" apart outside-to-outside, space the slats evenly between them (~2.6" gaps), and pocket-screw each slat end into the rails' inner edges (2x 1-1/4" pocket screws per end; 2" corner braces work if you don't have a pocket-hole jig). Everything sits in one flush 3/4" plane that ENDS at the B/C seam — Panel C's own deck is at the same height, so the sleeping surface stays flush and the mattress's last ~20" rides that deck. The platform adds only 3/4" to the stack. Last, screw one RV bar bubble level to the driver-side rail's outer edge at mid-span (the 3/4" face fits it exactly) — it reads fore-aft PITCH from the slider door while you turn the leg-foot knobs; its twin reads ROLL from the headboard nook (Component 1).</p></div>
+<p class="lego-caption">Cut two 58" side rails and eight 45" slats from six 1x4 x 8ft pine boards (slats two per board; rails one per board). Lay the rails on edge-guides 52" apart outside-to-outside, space the slats evenly between them (~4.3" gaps — fine under the solid-foam HEST mattress), and pocket-screw each slat end into the rails' inner edges (2x 1-1/4" pocket screws per end; 2" corner braces work if you don't have a pocket-hole jig). Everything sits in one flush 3/4" plane that ENDS at the B/C seam — Panel C's own deck is at the same height, so the sleeping surface stays flush and the mattress's last ~20" rides that deck. The platform adds only 3/4" to the stack. Last, screw one RV bar bubble level to the driver-side rail's outer edge at mid-span (the 3/4" face fits it exactly) — it reads fore-aft PITCH from the slider door while you turn the leg-foot knobs; its twin reads ROLL from the headboard nook (Component 1).</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">6</div>
@@ -710,7 +737,7 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 - Legs — 4, 16" cut, 2x2 pine (leveling feet make up the inch; REAR pair at the true corners)
 - Bottom rail — 1, 46" cut, 2x2 pine (FRONT face only)
 - Corner brackets — 4
-- Front wall — 1, 46" x 17", 1/2" ply, with the 120mm fan hole + two 1" grommet holes + the 7" x 2.5" low intake louver pre-cut (Panel C Front Wall render — every opening dimensioned)
+- Front wall — 1, 46" x 17", 3/8" ply, with the 120mm fan hole + two 1" grommet holes + the 7" x 2.5" low intake louver pre-cut (Panel C Front Wall render — every opening dimensioned)
 - Louvered RV vents — 2 snap-in (1 low intake in the front wall, 1 low exhaust in the cabinet door)
 - No divider, no drawers — the void stays fully open for Component 7 (Fridge & Kitchen Install)
 
@@ -729,7 +756,7 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 </div>
 <div class="lego-step">
 <div class="lego-num">3</div>
-<div class="lego-parts"><p class="lego-noparts">front wall: 46" x 17" 1/2" ply, holes pre-cut per the Panel C Front Wall render</p></div>
+<div class="lego-parts"><p class="lego-noparts">front wall: 46" x 17" 3/8" ply, holes pre-cut per the Panel C Front Wall render</p></div>
 <div class="lego-main"><img src="renders/panel-c-wall-detail.png" alt="Panel C front wall flat pattern">
 <p class="lego-caption">Cut the front wall and its openings to the render's dimensions — the 4.75" (120mm) fan hole centered on the fridge bay (10.86" from the driver edge, 8.4" up), two 1" grommet holes at 3" in (fridge DC line at 3" up, Power strip 1's line at 5.5" up), and the 7" x 2.5" LOW INTAKE LOUVER in the driver-side corner (5.5" over, 5" up) — a passive cool-air scoop that feeds the fridge the coolest floor-level cabin air, screened with a snap-in RV louver vent — then screw it to the front (B-facing) face: 2x #8 x 1-1/4" into each front leg + 2 into the top rail + 2 into the bottom rail (8 total). This is the ONLY wall on any panel; the intake fan bolts over the fan hole in Component 7. Panel C's sides stay open and its tailgate face is fully occupied by the fridge, cabinet door, kitchen unit, and kitchen drawer.</p></div>
 </div>
@@ -769,7 +796,7 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 - Cable grommets — 10, 1" diameter (2 cooktop line, 3 Power strip 1 line, 3 fridge DC line, 2 DELTA 3 charging line)
 - Inline male/female extension-cord connector pairs — 4 (AC-rated, 2 for the cooktop line's 2 seams, 2 for Power strip 1's line's 2 seams)
 - SAE quick-disconnect connectors — 2 (DC-rated, for the fridge DC line's 2 seams — only the DELTA 3 charging line crosses no seams)
-- Cord clips / channel cover strip — 1
+- Per-module surface wire raceway (AC + DC separated) + screw-mount cord clips — 1 set
 - 3-way AC outlet splitter — 1 (front console, now shared by 3 lines — see Section 5)
 
 <div class="lego-card">
@@ -803,7 +830,7 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 
 **Parts needed:**
 
-- BougeRV Rocky 40 (41QT dual-zone) + fridge tray (1/2" ply, 17.72" x 28.74")
+- BougeRV Rocky 40 (41QT dual-zone) + fridge tray (3/8" ply + glued 3/4" edge frame, 17.72" x 28.74")
 - Heavy-duty 24" full-extension drawer slide pair, 200lb-rated
 - JAGAHAHA slide-out camp kitchen + COOKTRON induction cooktop
 - 120mm 12V fan + PWM temperature controller w/ NTC probe
@@ -811,7 +838,7 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 - 8 Snap-Loc E-Track anchors, 16 5/16" carriage bolts/nuts/fender washers
 - 4 Erickson 500lb ratchet straps
 - Utility cabinet door hardware — 2 small hinges + 1 magnetic catch + 1 low louvered vent (3" x 4")
-- Kitchen drawer — box (1/2" ply, 16" x 26" x 4.5") + 2 hanging cheeks (3/4" ply, 26" x 6.2") + 24" full-extension slide pair (100lb) + magnetic catch
+- Kitchen drawer — box (1/2" ply, 16" x 26" x 4.5") + 2 hanging cheeks (1/2" ply, 26" x 6.2" — weight swap: was 3/4") + 24" full-extension slide pair (100lb) + magnetic catch
 
 <div class="lego-card">
 <div class="lego-step">
@@ -828,7 +855,7 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 </div>
 <div class="lego-step">
 <div class="lego-num">3</div>
-<div class="lego-parts"><p class="lego-noparts">fridge + 1/2" ply tray + 24" 200lb slide pair</p></div>
+<div class="lego-parts"><p class="lego-noparts">fridge + 3/8" ply tray (edge frame) + 24" 200lb slide pair</p></div>
 <div class="lego-main"><img src="renders/fridge-slide-detail.png" alt="Fridge slide mechanism">
 <p class="lego-caption">Mount the Rocky 40 on its plywood tray on the heavy-duty slide pair; bolt the slide's outer rail to its 4 E-track anchors, against Panel C's driver-side rear corner leg (1.5" in from the edge), pulling straight out the open tailgate between the corner legs. Face the compressor/battery end toward the tailgate (B240 swaps without a full slide-out), re-hinge the reversible lid to open toward the van wall, and let the unit stand 12 hours before first power-up (manual). Connect its DC input to the fridge line routed in from the DELTA 3 (Component 6, step 3) — leave enough slack for the slide's full travel.</p></div>
 </div>
@@ -860,7 +887,7 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 <div class="lego-num">8</div>
 <div class="lego-parts"><p class="lego-noparts">kitchen drawer box + 2 hanging cheeks + 24" slide pair + magnetic catch</p></div>
 <div class="lego-main"><img src="renders/kitchen-drawer-detail.png" alt="Kitchen drawer install">
-<p class="lego-caption">Hang the kitchen drawer in the dead air above the kitchen unit (Kitchen Drawer Detail render): screw the two 3/4" ply cheeks UP into Panel C's deck — 2" screws every 6", the outer cheek also screwed into the side rail's inner face — biscuit the box corners (2x R1 each + glue, Joinery & Fastener Guide), mount the 24" slides inside the cheeks, and hang the 16" x 26" x 4.5" box (~3.5" clear inside). It clears the kitchen's lid by 1/2", passes under the tailgate-face rail, and pulls out the open tailgate like everything else in Panel C. Give its face the same look and magnetic catch as the utility-cabinet door so nothing rattles in transit. Utensils, cutting board, flat dry goods, the cooktop's griddle plate.</p></div>
+<p class="lego-caption">Hang the kitchen drawer in the dead air above the kitchen unit (Kitchen Drawer Detail render): screw the two 1/2" ply cheeks UP into Panel C's deck — 2" screws every 6", the outer cheek also screwed into the side rail's inner face — biscuit the box corners (2x R1 each + glue, Joinery & Fastener Guide), mount the 24" slides inside the cheeks, and hang the 16" x 26" x 4.5" box (~3.5" clear inside). It clears the kitchen's lid by 1/2", passes under the tailgate-face rail, and pulls out the open tailgate like everything else in Panel C. Give its face the same look and magnetic catch as the utility-cabinet door so nothing rattles in transit. Utensils, cutting board, flat dry goods, the cooktop's griddle plate.</p></div>
 </div>
 </div>
 
@@ -873,6 +900,8 @@ Build this one before Component 1 (Headboard/Pantry) — its shelving superstruc
 - Non-slip mat (camp-use point of use — Panel C's deck or the front seat, not the storage bay)
 - EcoFlow WAVE Series Car Vent Kit (no-tent sleeping configuration only)
 - FOUND STORAGE: DELTA 3 drawer top tray (shallow lift-out bin) + WAVE 3 overhead shelf (1/2" ply + 1x1 cleats, from offcut) + 2 utility-cabinet bins
+
+**Battery placement — low and counterbalanced (owner review, July 2026).** Heavy batteries want to sit **low and centered**, and this design already gets both most of the way there: the DELTA 3 stack (~48 lb) rides in Panel A's floor-level under-deck drawer — about as **low** as it can go. On the **lateral** axis it looks off to one side (passenger), but the ~34 lb WAVE 3 sits in the **opposite** (driver) bay of the same Panel A, so the two heaviest movable items counterbalance each other — the whole build's lateral center of mass ends up only **~1.8" off centerline** (Appendix E), which is trivial on a ~4,500 lb van. So the "get it centered" concern is effectively already answered. A longer drawer sliding the DELTA to the true centerline was considered and **not adopted**: a 48 lb load cantilevered at the end of a long slide is tippy when open and hard on the hardware, it fouls the bed-platform cantilever near Panel B, and it wouldn't free clean storage (the drawer sweeps its own travel path). If you still want to nudge it inboard for free, shift Panel A's center divider a couple inches toward the driver side to re-center the DELTA bay. See **Appendix E** for the full weight-distribution analysis.
 
 <div class="lego-card">
 <div class="lego-step">
@@ -1050,14 +1079,15 @@ When in camper mode, the vehicle-side plugs sit flat on the floor. Use a small p
 
 ## Appendices — Working Sheets
 
-These four references consolidate the plan into sheets you actually work from. Each is **also a live web page** (interactive check-off boxes, or a calculator; all printable):
+These references consolidate the plan into sheets you actually work from. Four are **also a live web page** (interactive check-off boxes, or a calculator; all printable); the weight budget is also a spreadsheet file:
 
 - **Shopping List** — https://claude.ai/code/artifact/24d09bf4-2f51-42d5-879d-003ab1c65326
 - **Cut List** — https://claude.ai/code/artifact/fc8fa178-40f9-40dc-9ecf-f8dc181ad479
 - **Build Sequence** — https://claude.ai/code/artifact/eff00cab-1e69-4a54-8eec-2d9346072e92
 - **Leveling Block Calculator** — https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9
+- **Weight Budget** — spreadsheet in the repo as `weight_budget.csv`
 
-Appendices B and C consolidate Sections 4 and 3; Appendix A (build order) and Appendix D (leveling calculator) are new here.
+Appendices B and C consolidate Sections 4 and 3; Appendix A (build order), Appendix D (leveling calculator), and Appendix E (weight budget) are new here.
 
 ### Appendix A — Build Sequence & Assembly Order
 
@@ -1120,7 +1150,7 @@ The order to build in — **dependency-first, not the Component numbering.** Wor
 
 Consolidates Section 4's BOM into a shopping order with links. Prices are estimates; items marked **UNVERIFIED** need a live-listing check. **Purchased** = already bought (July 2026); **owned** = existing gear, not priced.
 
-**Lumber & Plywood** — 3/4" Baltic birch sheet ($65), 1/2" Baltic birch sheet ($50), 12× 2×2 pine 8ft ($96–180), 7× 1×4 pine 8ft ($35), 3/4" half-round pine trim 46" ($7).
+**Lumber & Plywood** — 3/4" Baltic birch sheet ($65), 1/2" Baltic birch sheet ($50), 3/8" Baltic birch half-sheet ($25, weight swap), 12× 2×2 pine 8ft ($96–180), 6× 1×4 pine 8ft ($30), 3/4" half-round pine trim 46" ($7).
 
 **Frame / fasteners** — headboard mounting set: Kipp cam levers + L-angle braces + T-nuts ($85); corner brackets ×12 ($12); diagonal corner braces ×8 ($24); wood screws ($20); wood glue ($8); [Ryobi R-series biscuit assortment](https://www.amazon.com/) ($12); alignment dowel pins ($3); anti-rattle bumper strip ($10).
 
@@ -1142,7 +1172,7 @@ Consolidates Section 4's BOM into a shopping order with links. Prices are estima
 
 **Already owned (not priced):** EcoFlow DELTA 3 Plus + Smart Extra Battery, EcoFlow WAVE 3.
 
-**Total: ~$3,005–3,400 with the fridge + kitchen, or ~$2,305–2,550 if you already own equivalents** (see Section 4 for the full itemized BOM and every purchase link).
+**Total: ~$3,065–3,460 with the fridge + kitchen, or ~$2,365–2,610 if you already own equivalents** (see Section 4 for the full itemized BOM and every purchase link).
 
 ### Appendix C — Cut List (consolidated)
 
@@ -1154,7 +1184,7 @@ Finished sizes; add saw kerf. Full context in Section 3.
 
 **2×2 pine — 12 boards (8ft), 964" total:** Panel A long rails 2× 29"; Panel B long rails 2× 29"; Panel C long rails 2× 36"; end rails 6× 46"; center divider (Panel A) 1× 26"; legs 12× 16" (cut 1" short); bottom rails 5× 46" + 2× 26".
 
-**1×4 pine — 7 boards (8ft), bed platform:** side rails 2× 58"; slats 10× 45".
+**1×4 pine — 6 boards (8ft), bed platform:** side rails 2× 58"; slats 8× 45".
 
 **Trim / cleats / scrap:** half-round pine trim 1× 46"; fiddle lips 7× ~44.5"; WAVE 3 overhead shelf 1× ~20.75×14" (½" ply offcut); WAVE 3 glide strips 2× 20×1" (UHMW/laminate); DELTA 3 locating cleats 4× 1×1 blocks.
 
@@ -1165,3 +1195,65 @@ Per-site leveling is done at the **wheels** with the [Lynx blocks](https://www.a
 **Using it:** park (engine off, brake on) → read the two bed-mounted bubble levels (pitch on the platform rail, roll on the headboard cubby) in degrees → enter both readings + which end/side is low → it returns blocks-per-tire. Set the one-time van settings once (wheelbase 120.1", track ~68", and *your measured* block height, Lynx ≈ 1.5"). Stack ahead of the low tires, drive up slowly, chock, re-check; if any tire needs >4 blocks, re-park.
 
 **The math** (so it's not a black box): a low END needs `tan(pitch°) × wheelbase` of lift; a low SIDE needs `tan(roll°) × track`. Blocks per tire = `round(that deficit ÷ block height)`. One 10-pack (1.5"/block over the 120.1" wheelbase) covers about 2.9° of pitch correction.
+
+### Appendix E — Weight Budget & Weight-Distribution Analysis
+
+Every component's weight, computed from the real material dimensions (Baltic birch at 42.5 lb/ft³, pine at 28 lb/ft³) plus manufacturer specs for the appliances/power gear. The live spreadsheet is in the repo as **`weight_budget.csv`** (open it in any spreadsheet app; regenerate with `weight_budget.py` if you change materials). Figures marked *est.* are estimates to confirm.
+
+| Component | Category | Weight (lb) | Zone | Notes |
+|---|---|--:|:--:|---|
+| Panel A frame (2×2 pine) | Structure | 12.1 | front | rails+legs+divider+bottom rails |
+| Panel A drawer box + slides (⅜" birch, ½" bottom) | Structure | 22.2 | front | holds the DELTA 3 stack |
+| Panel B frame (2×2 pine, full cube) | Structure | 13.1 | mid | bare-frame deep-storage box |
+| Panel C frame (2×2 pine) | Structure | 10.0 | rear | rails+legs+front bottom rail |
+| Panel C deck (¾" birch, 36×46) | Structure | 30.5 | rear | fixed top over fridge/kitchen |
+| Panel C front wall (⅜" birch) | Structure | 7.2 | mid | intake fan + grommets |
+| Fridge tray (⅜" birch + edge frame) | Structure | 4.7 | rear | on the fridge slide |
+| Kitchen drawer + ½" cheeks (birch) | Structure | 13.1 | rear | hung over the kitchen unit |
+| Headboard/pantry (½" birch shelving, ¾" cleats) | Structure | 41.8 | rear | 2 side panels + 3 shelves + cleats + trim |
+| Bed platform (1×4 pine, 2 rails + 8 slats) | Structure | 20.2 | front | flush slat deck over A+B |
+| Fridge (BougeRV Rocky 40, empty) | Appliances | 40.6 | rear | manual spec; +20–40 lb loaded |
+| Kitchen unit (JAGAHAHA) | Appliances | 45.0 | rear | listing spec |
+| EcoFlow DELTA 3 Plus + Extra Battery | Power/climate | 48.0 | front | Panel A passenger drawer |
+| EcoFlow WAVE 3 A/C | Power/climate | 33.7 | front | Panel A driver bay |
+| Mattress (HEST Dually Long) | Bedding | 35.0 *est.* | mid | solid foam + waterproof cover |
+| Fridge + kitchen-drawer slides (heavy) | Hardware/misc | 8.0 | rear | 24" heavy-duty pairs |
+| 12 leveling feet + star knobs + inserts | Hardware/misc | 5.0 | mid | 4 per panel |
+| E-track anchors (8) + ratchet straps | Hardware/misc | 8.0 | rear | floor tie-downs at Panel C |
+| Corner brackets, braces, screws, glue | Hardware/misc | 6.0 | mid | spread across all modules |
+| Seam draw-latches (4) + pins + bumpers | Hardware/misc | 1.5 | mid | at the A/B + B/C seams |
+| Electrical (2 fans, controller, fuse, 2 strips, cords) | Hardware/misc | 6.0 | mid | cooling + power runs |
+| Cooktop + cookware (stowed) | Hardware/misc | 12.0 | rear | induction top + pots in the kitchen |
+
+**Subtotals:** Structure **174.9** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **46.5**
+**Build total (empty, as installed): ≈ 424 lb** — after the July-2026 lighter-wood swaps (½"/⅜" plywood on the non-critical panels + 8 bed slats; see Section 3's "Material options & upgrades"). ~25 lb came off, most of it the headboard shelving (53.5 → 41.8 lb) and the battery drawer.
+
+**Loaded scenarios** (payload = everything you add to the van — build + people + cargo):
+
+| Scenario | Weight |
+|---|--:|
+| Build only (empty) | ≈ 424 lb |
+| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 544 lb |
+| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 884 lb |
+
+#### Weight distribution
+
+- **Fore–aft:** the build's own center of mass sits **≈ 54" back** from the front seatbacks — modestly rear of the 47" geometric center. Breaking it into thirds: **front 32%** (136 lb — Panel A + the DELTA 3/WAVE 3 stack + the bed platform), **middle 17%** (74 lb), **rear 50%** (214 lb). That rear half is the **tailgate cluster** — the headboard/pantry (42 lb), the fridge (41 lb), the kitchen unit (45 lb), and Panel C's own structure — all of which have to live at the back for slide-out access.
+- **Lateral:** **≈ 1.8" toward the passenger side** — trivial. This is by design: the DELTA 3 stack (48 lb, passenger) and the WAVE 3 (34 lb, driver) sit in opposite bays of Panel A, and the fridge (driver) and kitchen (passenger) also cross-balance in Panel C. The reviewer's "heavy battery off to one side" concern is effectively cancelled by the WAVE 3 on the other side.
+- **Height:** everything is low (floor-level bays) except the 22" headboard at the rear and, when parked, the sleeping load on the ~20–27" platform. Overall CG stays low — no rollover concern beyond a stock minivan.
+
+#### Effects on drivability
+
+- **Payload headroom:** loaded for travel (build + provisions + 2 people) is **≈ 884 lb**. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~220–420 lb margin** — comfortable, but not unlimited once you add water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
+- **Rear bias:** with 51% of the build mass in the rear third (much of it at/behind the rear axle), the fixed build alone loads the rear axle and slightly lightens the front — which reads as lighter steering, a bit more rear squat, and a raised headlight aim. **But while driving, the two occupants (340 lb) sit up front and more than offset that**, so the *loaded* vehicle is reasonably balanced. The rear bias matters most when driving **solo with a full rear and no front passenger**.
+- **Lateral / height:** negligible effect — the ~1.8" lateral offset is unnoticeable, and the low CG keeps handling stock-like.
+
+#### Recommendations
+
+1. **Verify payload + rear GAWR** on the door-jamb sticker before loading, and stay under both. The Woodland AWD has the least payload — treat ~1,100 lb as the working assumption until you read the sticker.
+2. **Stow heavy movable cargo forward/mid, not at the tailgate.** Water, canned food, and tools belong in **Panel B** (middle, near the axle) — that offsets the fixed rear cluster. Water is the big one: **8.3 lb/gal**, so a 6-gal jug is ~50 lb — keep it low and mid/forward.
+3. **Re-aim the headlights** after the build is in and loaded — rear squat raises the beam.
+4. **Set tire pressures to the door placard** (consider the upper end for the rear given the bias) and re-check with the van loaded.
+5. **Driving solo?** Expect a slightly lighter front end with a full rear — nothing unsafe at these weights, just drive to it.
+6. **Leg-foot load is not a concern:** ~424 lb + occupants + cargo over 12 feet is well under the feet's 330 lb-each rating (worst case ~75 lb/foot).
+7. **If you add heavy items later** (second battery, water tank, awning), re-run `weight_budget.py` and re-check the rear axle before a trip.

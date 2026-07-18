@@ -151,13 +151,13 @@ module drawing() {
     // extent (~42 at its widest, the shell's kitchen-facing top corner)
     side_list(48, 58, [
         ["1", "Retention system", "1.5\" fiddle lip per shelf + lash strap per opening + bins + non-slip liner", "holds rigid items (plates/cans/bottles/utensils) under braking — replaces plain nets"],
-        ["2", "Fixed full-depth shelves", str("x", n, ", ", W, "\" x ", L, "\", 3/4\" ply (bed ", headboard_personal_shelf_z, "\" + upper ", headboard_upper_shelf_z, "\")"), "the carcass webs — glued + screwed into both side panels"],
+        ["2", "Fixed full-depth shelves", str("x", n, ", ", W, "\" x ", L, "\", 1/2\" ply (bed ", headboard_personal_shelf_z, "\" + upper ", headboard_upper_shelf_z, "\")"), "the carcass webs — glued + biscuited into both side panels; keep the fiddle lip as a stiffening flange"],
         ["3", "Clamp-down base cleats", "2x 46\" x 3\" ply strips + 4x 1/4-20 Kipp CAM LEVERS into T-nuts", "flip the levers to release — NO tools; 2 L-angle braces to Panel C's side rails"],
         ["4", "Nook divider", str(W, "\" x ", headboard_nook_divider_h, "\", 1/2\" ply — MIDDLE tier, ", Yp, "\" from the bed face"), "encloses the cubby: bed shelf to upper shelf, into both side panels"],
         ["5", "Bed cubby", str(Yp, "\" deep strip of the bed shelf, surface at ", headboard_personal_shelf_z + panel_thickness, "\" (9\" above the mattress)"), "phones, glasses, flashlights, USB charging"],
         ["6", "Half-round edging", "3/4\" half-round trim, mattress-facing lip", "keeps small items from sliding off in transit"],
         ["7", "Power strip 1 + bubble level", "both mounted on the nook", "strip: own cord run (Section 5); level reads ROLL while leveling"],
-        ["8", "Adjustable shelf", str(W, "\" x ", L, "\", 3/4\" ply — rests on 4 pins in the bottom bay"), str("reposition ", headboard_pin_lo, "-", headboard_pin_hi, "\" or lift out: one tall bay or two ~6\" tiers")],
+        ["8", "Adjustable shelf", str(W, "\" x ", L, "\", 1/2\" ply — rests on 4 pins in the bottom bay"), str("reposition ", headboard_pin_lo, "-", headboard_pin_hi, "\" or lift out: one tall bay or two ~6\" tiers")],
     ]);
 }
 

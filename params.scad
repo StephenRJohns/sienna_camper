@@ -116,6 +116,19 @@ headboard_pin_step    = 1;    // pin-hole spacing (5mm shelf-pin holes)
 // the one soft-goods tier (bread/chips/produce).
 headboard_fiddle_lip_h = 1.5;  // front-lip height on each food shelf
 
+// WEIGHT SWAP (owner, July 2026): the headboard shelving is the heaviest
+// single lift-off piece (~54lb at 3/4in), so its FIXED full-depth shelves
+// and side panels drop to 1/2in birch — the biggest single weight saving
+// in the build (~12lb off that one piece). The 46in-wide shelves keep their
+// front FIDDLE LIP as a stiffening flange (add a shallow rear rail too) so
+// 1/2in won't sag under canned goods; add one center support post if you
+// load it heavy. The base cleats stay 3/4in — they take the cam-lever
+// clamp pull-out load. NOTE: the elevation renders still draw the shelving
+// at deck thickness for clarity — the 1/4in reduction isn't visible at
+// line-art scale; the Section 3 cut list is the authoritative build spec.
+headboard_shelf_t = 0.5;   // fixed full-depth shelves, was 3/4in
+headboard_side_t  = 0.5;   // side panels, was 3/4in (compression load, not bending)
+
 /* [Panels A/B/C — fixed tops, one continuous full-length deck] */
 // The deck is now ONE continuous raised platform on uniform legs —
 // not sleeping panels plus a separate shorter rear row. Panel C's
@@ -191,7 +204,7 @@ bed_frame_width    = 52;  // 3in overhang past the boxes on each side
 platform_overhang  = (bed_frame_width - panel_width) / 2; // 3 — reference
 bed_slat_t       = 0.75;  // 3/4in solid-wood slat (typical bought queen slat, ~1x4 pine/poplar)
 bed_slat_width   = 3.5;   // in, each slat's own width (1x4 actual)
-bed_slat_count   = 10;    // -> 9 gaps across the 58in span, ~2.6in each — fine for a foam mattress
+bed_slat_count   = 8;     // WEIGHT SWAP (owner, July 2026): dropped 10 -> 8 (-~4lb). 7 gaps across the 58in span, ~4.3in each — fine under the SOLID-FOAM HEST mattress (foam bridges the gaps; a sprung/coil mattress would want the closer spacing)
 // FLUSH LADDER platform: two 1x4 side rails run the full 58in, and
 // the slats (cut to 45in) sit BETWEEN them, pocket-screwed into the
 // rails' inner edges — everything in one 3/4in plane, top and bottom
@@ -300,7 +313,7 @@ side_door_y0 = 0; // UNVERIFIED PLACEHOLDER — not yet even roughly researched
 drawer_slide_length = 20; // standard full-extension slide hardware size
 drawer_divider_t    = frame_rail_sz; // center divider rail, same 2x2 stock as the frame
 drawer_side_clear   = 0.75; // gap between drawer box and rail/divider each side, for slide hardware
-drawer_box_t        = 0.5;  // drawer box material thickness (thin plywood/melamine), also used below to size clear interior space
+drawer_box_t        = 0.375; // WEIGHT SWAP (owner, July 2026): 1/2in -> 3/8in birch (-~4lb) — glue + biscuit the corners since it carries the 48lb DELTA stack; keep a 1/2in bottom. Also used below to size clear interior space (thinner box = more clearance, all fit asserts still pass)
 // drawer box footprint, derived from the panel's own dimensions —
 // assumes all three panels are the same length (true above; if you
 // change one panel's length independently, revisit this)
@@ -365,7 +378,7 @@ seam_latch_x     = panel_width/2 - leg_inset;        // 20.5 — latch sits over
 // the fridge), and its tailgate face needs no wall — fully occupied
 // by the fridge, cabinet door, kitchen unit, and kitchen drawer
 // face. See panel_c_wall_detail.scad for the dimensioned holes.
-pcwall_t = 0.5;         // 1/2in ply
+pcwall_t = 0.375;       // WEIGHT SWAP: 1/2in -> 3/8in ply (-~2.5lb) — non-structural wall, just holds the intake fan + grommets
 pcwall_h = leg_height;  // 17 — van floor up to the front rail's underside
 pcwall_grommet_dia = 1; // fridge DC line pass-through
 
@@ -418,7 +431,7 @@ fridge_side_clearance = 2;  // with forced airflow; manual's passive figures are
 // own plywood tray (screwed down, with a lip) riding a pair of
 // heavy-duty full-extension slides rated well above the load.
 fridge_slide_length = 24;   // 24in, 200lb-rated full-extension slide pair
-fridge_tray_t       = 0.5;  // plywood tray thickness
+fridge_tray_t       = 0.375; // WEIGHT SWAP: 1/2in -> 3/8in ply (-~1.5lb) with a glued edge frame for stiffness under the fridge on its slide
 
 /* [Fridge cooling — intake fan + exhaust fan + temp sensor] */
 // TWO 120mm fans, both wired to the same PWM temperature controller
@@ -487,7 +500,7 @@ kdrawer_span      = 17;    // cheek inner face to cheek inner face
 kdrawer_box_w     = kdrawer_span - 1; // 16 — 1/2in slide clearance per side
 kdrawer_box_len   = 26;    // Y — matches the kitchen unit's footprint
 kdrawer_slide_len = 24;    // side-mount full-extension pair, 100lb class
-kdrawer_cheek_t   = 0.75;  // hanging cheeks, 3/4in ply
+kdrawer_cheek_t   = 0.5;   // WEIGHT SWAP: 3/4in -> 1/2in ply hanging cheeks (-~2lb) — they only hang a shallow utensil drawer
 kdrawer_z0        = kitchen_box_height + kdrawer_gap_below; // 12.3 — drawer underside
 assert(kdrawer_z0 + kdrawer_box_h <= leg_height,
        str("Kitchen drawer top (", kdrawer_z0 + kdrawer_box_h,

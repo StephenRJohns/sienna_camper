@@ -222,7 +222,7 @@ module drawing() {
             ["3", "Fixed top", str(W, "\" x ", L, "\", 3/4\" ply"), "screwed down — NOT a lift-off lid, unlike Panel A/B's bed-frame cap"],
             ["4", "Fridge zone (reserved)", str(fridge_ext_length, "\" x ", fridge_ext_width, "\", flush LEFT/driver"), "bought product — see fridge-install-detail"],
             ["5", "Kitchen zone (reserved)", str(kitchen_box_width, "\" x ", kitchen_box_length, "\", flush RIGHT/passenger"), "bought product — see fridge-install-detail"],
-            ["6", "Front wall (the ONLY wall)", str(W, "\" x ", pcwall_h, "\", 1/2\" ply, on the B-facing face"), "fan hole + 2 grommets — Panel C Front Wall render"],
+            ["6", "Front wall (the ONLY wall)", str(W, "\" x ", pcwall_h, "\", 3/8\" ply, on the B-facing face"), "fan hole + 2 grommets — Panel C Front Wall render"],
             ["7", "Bottom rail (x1, FRONT face only)", str("2x2 pine, underside at ", bottom_rail_z, "\", behind the wall"), "tailgate face stays open (appliances exit there); REAR legs at the TRUE corners"],
         ]);
     } else if (!is_a) {
@@ -239,7 +239,7 @@ module drawing() {
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
             ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 3/4\" insert hole in each bottom (Panel B detail's inset)"],
             ["3", "Center divider", str(L - 2*RS, "\" cut, 2x2 pine"), "splits the bay — drawer (right) / WAVE 3 (left)"],
-            ["4", "Drawer box (right, DELTA 3 side)", str(drw_w, "\" x ", drw_d, "\" x ", drw_h, "\", 1/2\" ply"), "5 pieces, glued + pinned"],
+            ["4", "Drawer box (right, DELTA 3 side)", str(drw_w, "\" x ", drw_d, "\" x ", drw_h, "\", 3/8\" ply, 1/2\" bottom"), "5 pieces, glued + biscuited"],
             ["5", "Drawer slide (right)", str(drawer_slide_length, "\" full-extension pair"), "box-to-rail + box-to-divider"],
             ["6", "Drawer catch (right)", "friction catch or small turn latch", "keeps the drawer shut in transit"],
             ["7", "WAVE 3 + glide strips (left)", "2x glide strip, UHMW/laminate scrap", "no box, no slide — rests directly on the bay floor"],

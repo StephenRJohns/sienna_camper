@@ -88,7 +88,7 @@ module mattress_facing() {
     label(str("BED CUBBY (enclosed) in the middle band: floor 9\" above the mattress, ", Yp, "\" deep"), W/2, H + 2.6, 1.15);
     label("half-round lip + Power strip 1 + ROLL bubble level, all on the bed shelf", W/2, psz + PT + ndh/2, 1.05);
     label("open food tiers above AND below the cubby — fiddle lip + lash strap on each", W/2, psz - 2, 1.05);
-    label(str("side panels: 3/4\" ply, ", L, "\" x ", H, "\" (x2) — NO top panel"), W/2, 1.6, 1.1);
+    label(str("side panels: 1/2\" ply, ", L, "\" x ", H, "\" (x2) — NO top panel"), W/2, 1.6, 1.1);
 }
 
 module kitchen_facing() {
@@ -102,7 +102,7 @@ module kitchen_facing() {
     label("2 fixed shelves + 1 ADJUSTABLE (dashed) -> 4 food tiers, no top", W/2, H + 2.6, 1.15);
     label(str("bottom bay ", psz, "\" tall — 1 adjustable shelf on pins (", headboard_pin_lo, "-", headboard_pin_hi, "\"): one tall bay OR two ~6\" tiers"), W/2, za - 1.6, 1.02);
     label("fiddle lip + lash strap every tier (bins for utensils, non-slip liner under all)", W/2, psz + PT + ndh/2, 1.0);
-    label(str("shelves: 3/4\" ply, ", W - 2*PT, "\" x ", L, "\" FULL depth (x2 fixed + x1 adjustable)"), W/2, 1.6, 1.1);
+    label(str("shelves: 1/2\" ply, ", W - 2*PT, "\" x ", L, "\" FULL depth (x2 fixed + x1 adjustable)"), W/2, 1.6, 1.1);
 }
 
 // side elevation: Y (depth) x Z. mattress side at local Y=0 (left).
@@ -140,7 +140,7 @@ module drawing() {
         side_elev(false);
         label("LEFT SIDE (driver side)", L/2, H + 4.4, 1.4);
         label("mattress <- | -> kitchen", L/2, H + 2.2, 1.0);
-        label("side panel 3/4\" ply", L/2, -3.2, 1.05);
+        label("side panel 1/2\" ply", L/2, -3.2, 1.05);
     }
     translate([6 + L + 30, -H - 20]) {
         side_elev(true);
@@ -156,7 +156,7 @@ module drawing() {
     // shared full-width caption (no side-by-side label collisions)
     cx = W + 7;
     label("HEADBOARD/PANTRY — ALL 4 SIDES (14\" deep x 46\" wide x 22\" tall, on Panel C's deck — NO TOP)", cx, -H - 34, 1.8);
-    label(str("Carcass: 2 side panels + 2 FIXED full-depth shelves (at ", psz, "\" bed + ", zu, "\" upper) + 1 ADJUSTABLE shelf on pins in the bottom bay, 3/4\" ply; nook divider 1/2\" ply, MIDDLE tier."), cx, -H - 36.6, 1.2);
+    label(str("Carcass: 2 side panels + 2 FIXED full-depth shelves (at ", psz, "\" bed + ", zu, "\" upper) + 1 ADJUSTABLE shelf on pins in the bottom bay, 1/2\" ply (base cleats stay 3/4\"); nook divider 1/2\" ply, MIDDLE tier."), cx, -H - 36.6, 1.2);
     label("Legend: Peru bars = 1.5\" fiddle lips (front rails, both faces); grey = elastic lash straps; green = nook divider; dotted columns = shelf-pin holes (1\" o.c.); crimson = Power strip 1 cord.", cx, -H - 38.8, 1.2);
     label("Retention: a fiddle lip on EVERY food shelf + a lash strap across each opening + bins for utensils/small items + non-slip liner under all (a net only on the soft-goods tier).", cx, -H - 41, 1.2);
     label("Clamped to Panel C's deck (4x Kipp CAM LEVERS into T-nuts) + 2 L-angle braces (base: 2x 46\"x3\" ply cleats) — flips off in a minute, NO tools.", cx, -H - 43.2, 1.2);
