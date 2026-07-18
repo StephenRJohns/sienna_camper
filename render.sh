@@ -111,6 +111,10 @@ echo "Rendering joinery & fastener guide..."
 openscad -o renders/joinery-detail.svg joinery_detail.scad
 openscad -o renders/joinery-detail.png --imgsize=3400,3400 $FLAT_CAM joinery_detail.scad
 
+echo "Rendering seam draw-latch positioning..."
+openscad -o renders/seam-clamp-detail.svg seam_clamp_detail.scad
+openscad -o renders/seam-clamp-detail.png --imgsize=3200,2600 $FLAT_CAM seam_clamp_detail.scad
+
 echo "Rendering electrical layout detail..."
 openscad -o renders/electrical-layout.svg electrical_layout_detail.scad
 openscad -o renders/electrical-layout.png --imgsize=2700,4850 $FLAT_CAM electrical_layout_detail.scad

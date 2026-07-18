@@ -22,8 +22,8 @@
 //
 //   1. Fridge — DC line from the DELTA 3's output (Panel A's drawer),
 //      routed through Panel B into Panel C (2 quick-disconnects at
-//      the Panel A/B and B/C seams — Section 5). BougeRV's built-in
-//      dual 12/24V DC + 110-240V AC power supply needs no inverter
+//      the Panel A/B and B/C seams — Section 5). The Rocky 40's
+//      built-in dual 12/24V DC + AC power supply needs no inverter
 //      and no fusing beyond what's already inside the unit.
 //   2. Fan system — a second tap off the same DELTA 3 output, through
 //      a fuse/surge protector and a manual ON/OFF switch, into the
@@ -112,10 +112,11 @@ module drawing() {
 
     // ---- branch 1: fridge, DC line from the DELTA 3 ----
     wire(-15, 40.3, -15, 35.3);
-    box(-15, 32, 23, 5.5, [
-        ["BougeRV fridge", 1.3],
-        ["built-in 12/24V DC + 110-240V AC PSU", 0.9],
-        ["— no inverter needed", 0.9],
+    box(-16, 32, 28, 6, [
+        ["BougeRV Rocky 40 (CR04001)", 1.2],
+        ["dual-zone 41QT · 40.6 lb · 60W max / 45W ECO", 0.78],
+        ["built-in 12/24V DC + AC + solar input", 0.8],
+        ["— no inverter needed", 0.8],
     ]);
     label("Circuit 1: fridge — DC line from DELTA 3", -15, 27.5, 0.95);
     label("(Panel A -> B -> C, 2 quick-disconnects)", -15, 26.3, 0.95);

@@ -335,6 +335,26 @@ router_bit_dia  = 0.5;   // RETIRED
 bumper_thickness  = 0.25; // felt/rubber anti-rattle pad at each module seam
 alignment_pin_dia = 0.375; // locating dowel diameter, keeps modules registered
 
+/* [Seam draw-latches — clamp adjacent modules together (owner, July
+   2026)] */
+// Over-center draw latches tie each lift-out module to its neighbour at
+// the A/B and B/C seams. The alignment pins only LOCATE the modules;
+// these PULL them tight against the bumper strip so the three boxes act
+// as one long beam instead of three that can walk apart or rock
+// relative to each other. Combined with the bed platform (which already
+// ties the A/B tops together), a low latch completes a top-and-bottom
+// couple — that's what kills sway and rattle. They are HAND-released
+// (over-center handles), so the modules still lift out in seconds — the
+// modular design is preserved. Mounted LOW on the bottom-rail band, at
+// BOTH side faces of each seam, reachable from the side door / tailgate.
+// NOTE (honest scope): this buys rigidity + quiet, not a higher load
+// rating — the cube-framed boxes are already strong (see the leg-foot
+// load check). Don't rely on it to carry more weight.
+seam_latch_count = 4;                                // 2 seams x 2 sides
+seam_latch_z     = bottom_rail_z + frame_rail_sz/2;  // 1.75 — centered on the bottom-rail band
+seam_latch_len   = 3;                                // over-center draw latch, closed body length
+seam_latch_x     = panel_width/2 - leg_inset;        // 20.5 — latch sits over the inset leg line, each side
+
 /* [Panel C front wall — the ONE wall any panel gets] */
 // Skirts/walls audit (owner Q&A, July 2026): Panel A — none (both
 // bays face the side doors); Panel B — none (nothing visible, bare
