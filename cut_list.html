@@ -84,8 +84,9 @@
   <div class="buy" aria-label="Materials to buy">
     <div><div class="n">1</div><div class="w">sheet &mdash; 3/4" Baltic birch, 4&times;8</div></div>
     <div><div class="n">1</div><div class="w">sheet &mdash; 1/2" Baltic birch, 4&times;8</div></div>
+    <div><div class="n">&frac12;</div><div class="w">sheet &mdash; 3/8" Baltic birch (weight swap)</div></div>
     <div><div class="n">12</div><div class="w">boards &mdash; 2&times;2 pine, 8&nbsp;ft</div></div>
-    <div><div class="n">7</div><div class="w">boards &mdash; 1&times;4 pine, 8&nbsp;ft</div></div>
+    <div><div class="n">6</div><div class="w">boards &mdash; 1&times;4 pine, 8&nbsp;ft</div></div>
     <div><div class="n">1</div><div class="w">3/4" half-round pine trim, 4&nbsp;ft+</div></div>
     <div><div class="n">&mdash;</div><div class="w">scrap: fiddle lips, glide strips, cleats</div></div>
   </div>
@@ -105,24 +106,26 @@
 
 <script>
 const GROUPS = [
-  ["3/4\" Baltic birch plywood", "1 sheet (4×8) — ~90% used; save the offcut for the control-panel backer", [
-    ["Panel C fixed top", 1, "36\" × 46\"", "screwed + glued to Panel C's 2×2 rails"],
-    ["Headboard/pantry side panels", 2, "14\" × 22\"", "the carcass sides (biscuit the shelves into these)"],
-    ["Headboard/pantry fixed full-depth shelves", 2, "46\" × 14\"", "bed shelf + upper shelf — the carcass webs (R3 biscuits)"],
-    ["Headboard/pantry base cleats", 2, "46\" × 3\"", "plain rip; cam levers clamp cleats + deck into T-nuts"],
-    ["Kitchen-drawer hanging cheeks", 2, "26\" × 6.2\"", "screwed up into Panel C's deck, flanking the drawer"],
+  ["3/4\" Baltic birch plywood", "1 sheet (4×8) — now lightly used after the weight swap; the big offcut is spare stock", [
+    ["Panel C fixed deck", 1, "36\" × 46\"", "screwed + glued to Panel C's 2×2 rails — carries sitting load + the headboard clamps (kept 3/4\")"],
+    ["Headboard/pantry base cleats", 2, "46\" × 3\"", "kept 3/4\" — cam levers clamp cleats + deck into T-nuts (pull-out load)"],
   ]],
-  ["1/2\" Baltic birch plywood", "1 sheet (4×8) — ~95% used, nest carefully", [
-    ["Panel A drawer — bottom", 1, "20\" × 25\"", "DELTA 3 drawer box"],
-    ["Panel A drawer — side walls", 2, "25\" × 14.5\"", "R1 biscuits at the corners"],
-    ["Panel A drawer — front/back walls", 2, "20\" × 14.5\"", ""],
-    ["Panel C front wall", 1, "46\" × 17\"", "120mm fan hole + 2× 1\" grommets + low intake louver — see Front Wall render"],
-    ["Fridge tray", 1, "17.72\" × 28.74\"", "the Rocky 40 rides on this on the slide"],
-    ["Headboard/pantry nook divider", 1, "46\" × 4.25\"", "middle tier, 2.75\" from the bed face (R1 biscuits)"],
+  ["1/2\" Baltic birch plywood", "1 sheet (4×8) — ~95% used after the weight swap, nest carefully", [
+    ["Headboard/pantry side panels", 2, "14\" × 22\"", "weight swap 3/4→1/2 — compression load, no bending"],
+    ["Headboard/pantry fixed full-depth shelves", 2, "46\" × 14\"", "weight swap 3/4→1/2 — keep the fiddle lip as a stiffening flange + a shallow rear rail (R3 biscuits)"],
     ["Headboard/pantry adjustable shelf", 1, "46\" × 14\"", "rests on 4 pins in the 13\" bottom bay"],
+    ["Headboard/pantry nook divider", 1, "46\" × 4.25\"", "middle tier, 2.75\" from the bed face (R1 biscuits)"],
     ["Kitchen-drawer box — bottom", 1, "16\" × 26\"", "R1 biscuits at the corners"],
     ["Kitchen-drawer box — sides", 2, "26\" × 4\"", ""],
     ["Kitchen-drawer box — front/back", 2, "15\" × 4\"", "4.5\" exterior height"],
+    ["Kitchen-drawer hanging cheeks", 2, "26\" × 6.2\"", "weight swap 3/4→1/2 — screwed up into Panel C's deck"],
+    ["Panel A drawer — bottom", 1, "20\" × 25\"", "the 1/2\" base under the 48 lb DELTA stack"],
+  ]],
+  ["3/8\" Baltic birch plywood — weight swap", "half-sheet (4×8) — the 3 non-structural pieces", [
+    ["Panel A drawer — side walls", 2, "25\" × 14.5\"", "3/8 — glue + biscuit the corners"],
+    ["Panel A drawer — front/back walls", 2, "20\" × 14.5\"", "3/8"],
+    ["Fridge tray", 1, "17.72\" × 28.74\"", "3/8 + a glued 3/4\" edge frame; the Rocky 40 rides on this"],
+    ["Panel C front wall", 1, "46\" × 17\"", "3/8 — 120mm fan hole + 2× 1\" grommets + low intake louver"],
   ]],
   ["2×2 pine — frames", "12 boards, 8 ft each (964\" total, ~9% waste margin)", [
     ["Panel A long rails", 2, "29\"", ""],
@@ -134,9 +137,9 @@ const GROUPS = [
     ["Bottom rails — 46\" (cube frames)", 5, "46\"", "Panel A 2 ends, Panel B 2 ends, Panel C front (underside 1\")"],
     ["Bottom rails — 26\" (Panel B sides)", 2, "26\"", "Panel B is the full 4-face cube"],
   ]],
-  ["1×4 pine — bed platform", "7 boards, 8 ft each (2 slats per board)", [
+  ["1×4 pine — bed platform", "6 boards, 8 ft each (2 slats per board) — weight swap dropped 2 slats", [
     ["Side rails", 2, "58\"", "set 52\" apart outside-to-outside; ends at the B/C seam"],
-    ["Slats", 10, "45\"", "pocket-screwed (or R2-biscuited) between the rails, ~2.6\" gaps"],
+    ["Slats", 8, "45\"", "pocket-screwed (or R2-biscuited) between the rails, ~4.3\" gaps — fine under solid foam"],
   ]],
   ["Trim, cleats & scrap", "from a trim board + plywood/UHMW offcuts", [
     ["Half-round pine trim (3/4\")", 1, "46\"", "glued/pinned along the bed-cubby shelf lip"],
