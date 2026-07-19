@@ -157,6 +157,8 @@ module top_view() {
         rect_outline(van_interior_width, van_interior_length);
     label("Sienna interior envelope — hard max", 0, van_interior_length + 4, 2.0);
     label("FRONT", 0, van_interior_length + 1, 1.6);
+    label("DRIVER side", -van_interior_width/2 + 2, van_interior_length - 3, 1.5);
+    label("PASSENGER side", van_interior_width/2 - 2, van_interior_length - 3, 1.5);
 
     // floor-level vent intrusion zones (legs must stay clear of these,
     // deck itself can overhang — see leg_inset in params.scad)

@@ -49,6 +49,20 @@ module marker(n, x, y) {
         color("white") text(str(n), size = 1.6, halign = "center", valign = "center");
     }
 }
+// Counter-mirrored text emitters for the MIRRORED top-down section:
+// section 1 is drawn inside mirror([1,0,0]) so the tailgate-at-top
+// bird's-eye puts the PASSENGER side on the page LEFT (a real
+// overhead view, not a mirror image). These re-mirror just the
+// glyphs so the text stays readable; centered text stays centered.
+module mlabel(txt, x, y, size = 1.4) {
+    color("black") translate([x, y]) mirror([1, 0, 0]) text(txt, size = size, halign = "center", valign = "center");
+}
+module mmarker(n, x, y) {
+    translate([x, y]) {
+        color(marker_col(n)) circle(r = 1.5);
+        color("white") mirror([1, 0, 0]) text(str(n), size = 1.6, halign = "center", valign = "center");
+    }
+}
 module wire(pts, w = 0.28, col = "Black") { // solid polyline
     color(col) for (i = [0 : len(pts) - 2])
         hull() { translate(pts[i]) circle(w); translate(pts[i+1]) circle(w); }
@@ -134,6 +148,12 @@ module outletAC_icon() { // factory household AC duplex outlet, wall-plate style
 // SECTION 1 — top-down layout
 // ============================================================
 module section1() {
+    // MIRRORED so the bird's-eye orientation is true: tailgate at top
+    // -> nose points down the page -> PASSENGER side on the page LEFT.
+    translate([panel_width, 0]) mirror([1, 0, 0]) section1_content();
+}
+
+module section1_content() {
     y_front = 0;                                   // Panel A flush to the front seatbacks, no open-floor gap
     y_ab = y_front + panel_a_length;               // 29
     y_bc = y_ab + panel_b_length;                  // 58
@@ -141,21 +161,21 @@ module section1() {
     W = panel_width;
 
     rect_outline(W, y_tg);
-    label("ELECTRICAL LAYOUT — top-down (front of van at bottom, tailgate at top)", W/2, y_tg + 3.4, 1.5);
-    label("DRIVER side", 4, y_tg + 1.2, 1.1);
-    label("PASSENGER side", W - 6, y_tg + 1.2, 1.1);
+    mlabel("ELECTRICAL LAYOUT — top-down (front of van at bottom, tailgate at top)", W/2, y_tg + 3.4, 1.5);
+    mlabel("DRIVER side", 4, y_tg + 1.2, 1.1);
+    mlabel("PASSENGER side", W - 6, y_tg + 1.2, 1.1);
     color("Silver") for (y = [y_ab, y_bc]) translate([0, y - 0.1]) square([W, 0.2]);
-    label("PANEL A", W/2 - 12, (y_front + y_ab)/2, 1.2);
-    label("PANEL B", W/2, (y_ab + y_bc)/2 + 6, 1.2);
-    label("PANEL C", 27, y_bc + 2.2, 1.2);
+    mlabel("PANEL A", W/2 - 12, (y_front + y_ab)/2, 1.2);
+    mlabel("PANEL B", W/2, (y_ab + y_bc)/2 + 6, 1.2);
+    mlabel("PANEL C", 27, y_bc + 2.2, 1.2);
 
     // kitchen / cabinet / fridge footprints inside Panel C
     color("Gainsboro") translate([W - frame_rail_sz - kitchen_box_width, y_tg - kitchen_box_length]) square([kitchen_box_width - 0.4, kitchen_box_length - 0.4]);
-    label("KITCHEN", W - frame_rail_sz - kitchen_box_width/2, y_tg - kitchen_box_length/2, 1.1);
+    mlabel("KITCHEN", W - frame_rail_sz - kitchen_box_width/2, y_tg - kitchen_box_length/2, 1.1);
     fr_x0 = 1.9;                                   // fridge against the driver-side rear corner leg (1.5in leg + margin)
     color("Silver") translate([fr_x0, y_bc + 0.4]) square([fridge_ext_length - 0.4, fridge_ext_width]);
-    label("FRIDGE", fr_x0 + fridge_ext_length/2, y_bc + fridge_ext_width/2, 1.1);
-    label("cabinet", 19.5, y_tg - 6.5, 0.9);
+    mlabel("FRIDGE", fr_x0 + fridge_ext_length/2, y_bc + fridge_ext_width/2, 1.1);
+    mlabel("cabinet", 19.5, y_tg - 6.5, 0.9);
 
     // Rear-pantry footprint: the prefab drawer cluster ON Panel C's
     // deck, at the tailgate end (last pantry_len of Panel C's own length) —
@@ -164,13 +184,13 @@ module section1() {
     hb_y0 = y_tg - pantry_len;
     color("DarkGray") rect_outline(W, pantry_len, 0.15);
     translate([0, hb_y0]) color("DarkGray") square([W, 0.15]); // divider line at the pantry's front edge
-    label("REAR PANTRY — prefab drawers (on Panel C's deck, above)", W/2, y_tg - pantry_len - 2.2, 1.0);
+    mlabel("REAR PANTRY — prefab drawers (on Panel C's deck, above)", W/2, y_tg - pantry_len - 2.2, 1.0);
 
     // 1: Power strip 1 — on the deck edge in the pantry's open bay
     // (the enclosed middle-band nook), at its mattress-facing edge
     // (hb_y0), NOT Panel A — see the Rear Pantry render
     translate([8, hb_y0 + 1.5]) strip_icon(4);
-    marker(1, 8, hb_y0 + 4);
+    mmarker(1, 8, hb_y0 + 4);
 
     // 2+3: Power strip 1's OWN dedicated cord run — the pantry is
     // now at the TAILGATE end, not the front, so this cord runs the
@@ -180,44 +200,44 @@ module section1() {
     // fridge-DC/DELTA3 lines clustered on the right.
     ps1_cord = [[8, hb_y0], [8, y_bc + 3], [8, y_ab - 3], [18, -3.5]];
     wire(ps1_cord, 0.3, marker_col(2));
-    marker(2, 8, (y_bc + y_ab)/2);
+    mmarker(2, 8, (y_bc + y_ab)/2);
     for (y = [y_ab, y_bc]) translate([8, y]) sae_icon();
-    marker(3, 5, y_ab - 4);
+    mmarker(3, 5, y_ab - 4);
 
     // 4: cooktop cord run — kitchen forward along the right rail to the console
     cord = [[16, y_tg - 5], [42.5, y_tg - 8], [42.5, y_front - 3], [24, -3.5]];
     wire(cord, 0.3, marker_col(4));
     translate([24, -3.5]) outletAC_icon();
     translate([30, -3.5]) outletAC_icon();
-    label("front console — 2 AC outlets (per owner-supplied floor plan, UNVERIFIED)", 27, -6.2, 0.9);
-    marker(4, 44.8, 52);
+    mlabel("front console — 2 AC outlets (per owner-supplied floor plan, UNVERIFIED)", 27, -6.2, 0.9);
+    mmarker(4, 44.8, 52);
 
     // 5+6: SAE quick-disconnects + grommets where the COOKTOP cord crosses each seam
     for (y = [y_ab, y_bc]) {
         translate([42.5, y]) sae_icon();
         translate([40.2, y + 2.2]) grommet_icon();
     }
-    marker(5, 45.5, y_ab + 3.5);
-    marker(6, 38, y_ab + 2.2);
+    mmarker(5, 45.5, y_ab + 3.5);
+    mmarker(6, 38, y_ab + 2.2);
 
     // 7: Power strip 2 — mounted ON the slide-out kitchen unit so it
     // travels to the cook position; its cord to the console carries a
     // slack loop for the slide travel (Section 5)
     translate([10, y_tg - 3.8]) strip_icon(4);
-    marker(7, 3.5, y_tg - 7);
+    mmarker(7, 3.5, y_tg - 7);
 
     // 8: control enclosure — inside the utility cabinet, behind its door (footprint; see Section 2)
     translate([33, y_tg - 1.9]) enclosure_icon(5, 2.6);
-    marker(8, 28, y_tg - 4.5);
+    mmarker(8, 28, y_tg - 4.5);
 
     // 9: intake fan — on Panel C's FRONT wall, over the fridge's B-facing end
     translate([fr_x0 + fridge_ext_length/2, y_bc - 2.6]) fan_icon(1.7);
-    marker(9, fr_x0 + fridge_ext_length/2 - 6, y_bc - 2.6);
+    mmarker(9, fr_x0 + fridge_ext_length/2 - 6, y_bc - 2.6);
 
     // 10: exhaust fan (blows into cabinet) + NTC probe (just inside the bay at that wall) — fridge's kitchen-facing side
     translate([fr_x0 - 2.4, y_bc + fridge_ext_width/2 + 4]) fan_icon(1.7);
     color("SeaGreen") translate([fr_x0 - 1.2, y_bc + fridge_ext_width/2 + 8]) circle(r = 0.45);
-    marker(10, fr_x0 - 7, y_bc + fridge_ext_width/2 + 4);
+    mmarker(10, fr_x0 - 7, y_bc + fridge_ext_width/2 + 4);
 
 
     // 11+12: fridge DC line — DELTA 3 (Panel A right drawer) forward
@@ -227,9 +247,9 @@ module section1() {
     // onto the DELTA 3 — see Section 1/5.
     fridge_dc_cord = [[34, 20], [44, y_ab - 3], [44, y_bc + 3], [fr_x0 + 2, y_bc + 3]];
     wire(fridge_dc_cord, 0.3, marker_col(12));
-    marker(11, 34, 20);
+    mmarker(11, 34, 20);
     for (y = [y_ab, y_bc]) translate([44, y]) sae_icon();
-    marker(12, 47, y_bc - 6);
+    mmarker(12, 47, y_bc - 6);
 
     // 13: DELTA 3 AC charging cord — front console (confirmed 1500W)
     // back to the DELTA 3 in Panel A's right drawer, sharing the
@@ -238,11 +258,11 @@ module section1() {
     // see the shared-wattage note, Section 5)
     delta3_charge_cord = [[34, 20], [30, y_front - 3], [30, -3.5]];
     wire(delta3_charge_cord, 0.3, marker_col(14));
-    marker(13, 37, y_front + 4);
+    mmarker(13, 37, y_front + 4);
 
     // 14: DELTA 3 drawer grommet — WAVE 3 charge cable exit (Panel A right drawer)
     translate([34, y_ab - 1.6]) grommet_icon();
-    marker(14, 34, y_ab - 5);
+    mmarker(14, 34, y_ab - 5);
 }
 
 // ============================================================

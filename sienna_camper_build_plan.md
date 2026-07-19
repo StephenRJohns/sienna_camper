@@ -267,7 +267,7 @@ With no tops and no skirts, every panel's top rails are exposed — **grip those
 
 Two coordinate conventions, each picked to match how you'd actually stand at the access point in question — full reasoning and diagrams in `fridge_install_detail.scad` / `rear_view.scad`:
 
-- **Panel C** (fridge + kitchen system, AND the rear pantry — it sits on Panel C's deck, sharing this same coordinate frame): origin (0,0) at Panel C's **tailgate-facing left corner**, floor level. X increases right (0-46"), Y increases forward toward the Panel B seam (0-36"). Z increases up from the van floor. The rear pantry occupies Y 0-14 (the tailgate-most 14", above deck level) — the SAME Y range the fridge/kitchen's own tailgate-facing ends sit in, just at a different Z height (Z 19.25+ for the pantry vs. Z 0-16ish for the fridge/kitchen below deck).
+- **Panel C** (fridge + kitchen system, AND the rear pantry — it sits on Panel C's deck, sharing this same coordinate frame): origin (0,0) at Panel C's **tailgate-facing DRIVER-side corner**, floor level. X increases toward the passenger side (0-46"), Y increases forward toward the Panel B seam (0-36"). Z increases up from the van floor. The rear pantry occupies Y 0-14 (the tailgate-most 14", above deck level) — the SAME Y range the fridge/kitchen's own tailgate-facing ends sit in, just at a different Z height (Z 19.25+ for the pantry vs. Z 0-16ish for the fridge/kitchen below deck).
 - **Panel A, Panel B**: origin (0,0) at that panel's **own front-left corner** (front = toward the front seats). X increases right (0-46"), Y increases toward the tailgate (0 = that panel's own length). Z from the van floor.
 
 ![Fridge install detail](renders/fridge-install-detail.svg)

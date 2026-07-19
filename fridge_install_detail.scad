@@ -94,6 +94,8 @@ module drawing() {
     label(str("PANEL C — ", panel_width, "\" wide x ", panel_c_length, "\" deep, looking down from above"),
           panel_width/2, panel_c_length + 3, 1.6);
     label("TAILGATE (open) — Y = 0 here", panel_width/2, -2, 1.4);
+    label("DRIVER side (X=0)", 8, panel_c_length + 1.2, 1.1);
+    label("PASSENGER side", panel_width - 8, panel_c_length + 1.2, 1.1);
     label_left("Y, in.", -6, panel_c_length/2, 1.2);
     label_left("(toward Panel B)", -9, panel_c_length/2 - 1.8, 0.9);
     label("X, in. (left to right) ->", panel_width/2, -3.8, 1.1);
