@@ -1226,15 +1226,25 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Cooktop + cookware (stowed) | Hardware/misc | 12.0 | rear | induction top + pots in the kitchen |
 
 **Subtotals:** Structure **174.9** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **46.5**
-**Build total (empty, as installed): ≈ 424 lb** — after the July-2026 lighter-wood swaps (½"/⅜" plywood on the non-critical panels + 8 bed slats; see Section 3's "Material options & upgrades"). ~25 lb came off, most of it the headboard shelving (53.5 → 41.8 lb) and the battery drawer.
+**Build total (added): ≈ 424 lb** — after the July-2026 lighter-wood swaps (½"/⅜" plywood on the non-critical panels + 8 bed slats; see Section 3's "Material options & upgrades"). ~25 lb came off, most of it the headboard shelving (53.5 → 41.8 lb) and the battery drawer.
+
+**But the 2nd-row seats come OUT** (Section 9), so the conversion *removes* weight too:
+
+| | Weight |
+|---|--:|
+| Build (added) | +424 lb |
+| **2nd-row seats removed** (2 × ~48–70 lb) *est.* | **−120 lb** |
+| **NET permanent weight added vs. stock** | **≈ 304 lb** |
+
+So the van, converted and empty, weighs only about **304 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
 
 **Loaded scenarios** (payload = everything you add to the van — build + people + cargo):
 
 | Scenario | Weight |
 |---|--:|
-| Build only (empty) | ≈ 424 lb |
-| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 544 lb |
-| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 884 lb |
+| Net build (added − seats removed) | ≈ 304 lb |
+| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 424 lb |
+| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 764 lb |
 
 #### Weight distribution
 
@@ -1244,7 +1254,7 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 
 #### Effects on drivability
 
-- **Payload headroom:** loaded for travel (build + provisions + 2 people) is **≈ 884 lb**. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~220–420 lb margin** — comfortable, but not unlimited once you add water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
+- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 764 lb**. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~340–540 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
 - **Rear bias:** with 51% of the build mass in the rear third (much of it at/behind the rear axle), the fixed build alone loads the rear axle and slightly lightens the front — which reads as lighter steering, a bit more rear squat, and a raised headlight aim. **But while driving, the two occupants (340 lb) sit up front and more than offset that**, so the *loaded* vehicle is reasonably balanced. The rear bias matters most when driving **solo with a full rear and no front passenger**.
 - **Lateral / height:** negligible effect — the ~1.8" lateral offset is unnoticeable, and the low CG keeps handling stock-like.
 

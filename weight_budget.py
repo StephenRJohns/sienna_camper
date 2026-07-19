@@ -57,6 +57,12 @@ front = sum(r[2] for r in R if r[3] < 31)
 mid   = sum(r[2] for r in R if 31 <= r[3] < 63)
 rear  = sum(r[2] for r in R if r[3] >= 63)
 
+# ---- seat-removal credit (2nd-row seats come OUT — Section 9) ----
+# ~48-70 lb per seat (Sienna 60/40 bench = 48+70; captain's chairs similar),
+# so the pair is roughly 110-130 lb. ESTIMATE — weigh yours to confirm.
+SEATS_REMOVED = 120.0
+net = build - SEATS_REMOVED   # net permanent weight the conversion adds vs. stock (seatless)
+
 # ---- write CSV ----
 out = pathlib.Path("/home/stephen/sienna/weight_budget.csv")
 with out.open("w", newline="") as f:
@@ -65,7 +71,9 @@ with out.open("w", newline="") as f:
     for r in R: w.writerow(r)
     w.writerow([])
     for c,v in cats.items(): w.writerow([c+" subtotal","","%.1f"%v,"","",""])
-    w.writerow(["BUILD TOTAL (empty)","","%.1f"%build,"","",""])
+    w.writerow(["BUILD TOTAL (added)","","%.1f"%build,"","",""])
+    w.writerow(["Removed: 2nd-row seats x2 (est.)","credit","-%.0f"%SEATS_REMOVED,"","","WEIGH to confirm; ~48-70 lb each"])
+    w.writerow(["NET added vs stock (build - seats)","","%.1f"%net,"","",""])
 print("wrote", out)
 
 # ---- markdown table ----
@@ -78,13 +86,16 @@ for r in R:
 
 print("\n=== SUBTOTALS ===")
 for c,v in cats.items(): print(f"{c}: {v:.1f}")
-print(f"BUILD TOTAL (empty): {build:.1f}")
+print(f"BUILD TOTAL (added): {build:.1f}")
+print(f"Removed: 2nd-row seats x2 (est.): -{SEATS_REMOVED:.0f}")
+print(f"NET added vs stock (build - seats): {net:.1f}")
 print(f"\nFore-aft CG: {ycg:.1f}\" from front seatbacks (build spans 0-94\")")
 print(f"Lateral CG: {xcg:+.1f}\" ({'passenger' if xcg>0 else 'driver'} of centerline)")
 print(f"Front third (0-31\"): {front:.1f} lb ({100*front/build:.0f}%)")
 print(f"Mid third (31-63\"):  {mid:.1f} lb ({100*mid/build:.0f}%)")
 print(f"Rear third (63-94\"): {rear:.1f} lb ({100*rear/build:.0f}%)")
-print(f"\nLoaded scenarios:")
+print(f"\nLoaded scenarios (using NET, seats removed):")
 prov=120; occ=340
-print(f"  build+provisions(~{prov}): {build+prov:.0f} lb")
-print(f"  +2 occupants(~{occ}, up front while driving): {build+prov+occ:.0f} lb")
+print(f"  net build + provisions(~{prov}): {net+prov:.0f} lb")
+print(f"  + 2 occupants(~{occ}, up front while driving): {net+prov+occ:.0f} lb")
+print(f"  (gross build, seats still in, + provisions + occupants: {build+prov+occ:.0f} lb)")
