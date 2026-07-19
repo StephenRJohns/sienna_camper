@@ -1110,7 +1110,7 @@ Consolidates Section 4's BOM into a shopping order with links. Prices are estima
 
 **Lumber & Plywood** — 3/4" Baltic birch sheet ($65), 1/2" Baltic birch sheet ($50), 3/8" Baltic birch half-sheet ($25, weight swap), 12× 2×2 pine 8ft ($96–180), 6× 1×4 pine 8ft ($30), 3/4" half-round pine trim 46" ($7).
 
-**Frame / fasteners** — rear pantry: 2× IRIS 3-packs, Home Depot #500163 ($61) + cam strap/D-rings/felt/Velcro hold-down ($26) + pot crate ($15) + 4× Sterilite 28-Qt Panel B totes ($48); corner brackets ×12 ($12); diagonal corner braces ×8 ($24); seam draw-latches ×4 ($16); wood screws ($20); wood glue ($8); [Ryobi R-series biscuit assortment](https://www.amazon.com/) ($12); alignment dowel pins ($3); anti-rattle bumper strip ($10).
+**Frame / fasteners** — rear pantry: 2× IRIS 3-packs, Home Depot #500163 ($61) + cam strap/D-rings/felt/Velcro hold-down ($26) + pot crate ($15) + 2× Sterilite 28-Qt Panel B totes ($24) + the Modern Spare complete kit ($300–390, UNVERIFIED — stows in Panel B at the axle); corner brackets ×12 ($12); diagonal corner braces ×8 ($24); seam draw-latches ×4 ($16); wood screws ($20); wood glue ($8); [Ryobi R-series biscuit assortment](https://www.amazon.com/) ($12); alignment dowel pins ($3); anti-rattle bumper strip ($10).
 
 **Drawers & slides** — Panel A drawer slides (GlideRite 20" 100lb 5-pack, *purchased*, $47); drawer catch ($3); kitchen-drawer slide 24" ($16) + catch ($3); fridge slide 24" heavy-duty locking (VADANIA, *purchased*, $79).
 
