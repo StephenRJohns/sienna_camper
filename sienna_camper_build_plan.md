@@ -1095,7 +1095,7 @@ The order to build in — **dependency-first, not the Component numbering.** Wor
 
 **Phase 9 — Install in the van** (Components 10 + 8)
 1. Set Panel A → B → C; register the alignment pins.
-2. Connect power + stow the DELTA 3 stack and WAVE 3.
+2. Connect power + stow the DELTA 3 stack and WAVE 3; load Panel B — spare flat on its cleats + strap, jack case beside it, 2 totes on top.
 3. Lay the platform → HEST mattress → tension-rod curtain.
 
 **Phase 10 — Commission & test** (Component 10) — *critical*
@@ -1169,7 +1169,8 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Fridge tray (⅜" birch + edge frame) | Structure | 4.7 | rear | on the fridge slide |
 | Kitchen drawer + ½" cheeks (birch) | Structure | 13.1 | rear | hung over the kitchen unit |
 | Rear pantry: 4× IRIS 12"W drawer cluster + hold-down | Structure | 15.0 | rear | prefab 2×2 drawers (est.) + cleats/strap — replaces the ~42 lb plywood pantry |
-| Panel B: 4× Sterilite 28-Qt under-bed totes | Hardware/misc | 8.0 | mid | containerized deep storage, 2 wide × 2 high |
+| Panel B: 2× Sterilite 28-Qt under-bed totes | Hardware/misc | 4.0 | mid | restacked ON the spare (2 of the original 4) |
+| Modern Spare kit + jack (Panel B, flat at the axle) | Hardware/misc | 36.0 | mid | T145/85R18 kit + cleats/strap — VERIFY kit weight |
 | Bed platform (1×4 pine, 2 rails + 8 slats) | Structure | 20.2 | front | flush slat deck over A+B |
 | Fridge (BougeRV Rocky 40, empty) | Appliances | 40.6 | rear | manual spec; +20–40 lb loaded |
 | Kitchen unit (JAGAHAHA) | Appliances | 45.0 | rear | listing spec |
@@ -1184,36 +1185,36 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Electrical (2 fans, controller, fuse, 2 strips, cords) | Hardware/misc | 6.0 | mid | cooling + power runs |
 | Cooktop + cookware (stowed) | Hardware/misc | 12.0 | rear | induction top + pots in the kitchen |
 
-**Subtotals:** Structure **147.9** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **46.5**
-**Build total (added): ≈ 405 lb** — after the July-2026 lighter-wood swaps (½"/⅜" plywood + 8 bed slats) and the prefab-drawer pantry swap (Component 1, ~42 lb of plywood → ~15 lb of bought drawers), plus the 4 Panel B storage totes (~8 lb).
+**Subtotals:** Structure **148.1** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **86.5**
+**Build total (added): ≈ 437 lb** — after the lighter-wood swaps and the prefab-drawer pantry swap, plus Panel B's 2 storage totes (~4 lb) and the **Modern Spare kit stowed at the axle (~36 lb)** — carried inside deliberately instead of on a hitch basket, which would have added its own 30–60 lb of carrier plus a ~1.4× lever on the rear axle.
 
 **But the 2nd-row seats come OUT** (Section 9), so the conversion *removes* weight too:
 
 | | Weight |
 |---|--:|
-| Build (added) | +405 lb |
+| Build (added) | +437 lb |
 | **2nd-row seats removed** (2 × ~48–70 lb) *est.* | **−120 lb** |
-| **NET permanent weight added vs. stock** | **≈ 285 lb** |
+| **NET permanent weight added vs. stock** | **≈ 317 lb** |
 
-So the van, converted and empty, weighs only about **285 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
+So the van, converted and empty, weighs only about **317 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
 
 **Loaded scenarios** (payload = everything you add to the van — build + people + cargo):
 
 | Scenario | Weight |
 |---|--:|
-| Net build (added − seats removed) | ≈ 285 lb |
-| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 405 lb |
-| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 745 lb |
+| Net build (added − seats removed) | ≈ 317 lb |
+| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 437 lb |
+| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 777 lb |
 
 #### Weight distribution
 
-- **Fore–aft:** the build's own center of mass sits **≈ 52" back** from the front seatbacks — just aft of the 47" geometric center (the lighter prefab pantry pulled it forward from ~54"). Breaking it into thirds: **front 34%** (136 lb — Panel A + the DELTA 3/WAVE 3 stack + the bed platform), **middle 19%** (74 lb), **rear 47%** (187 lb). That rear share is the **tailgate cluster** — the prefab drawer pantry (~15 lb), the fridge (41 lb), the kitchen unit (45 lb), and Panel C's own structure — most of which has to live at the back for slide-out access.
+- **Fore–aft:** the build's own center of mass sits **≈ 51" back** from the front seatbacks — just aft of the 47" geometric center (the prefab pantry and the axle-stowed spare both pulled it forward). Breaking it into thirds: **front 31%** (136 lb — Panel A + the DELTA 3/WAVE 3 stack + the bed platform), **middle 26%** (114 lb — Panel B now carries the spare + totes at the axle), **rear 43%** (187 lb). That rear share is the **tailgate cluster** — the prefab drawer pantry (~15 lb), the fridge (41 lb), the kitchen unit (45 lb), and Panel C's own structure — most of which has to live at the back for slide-out access.
 - **Lateral:** **≈ 1.8" toward the passenger side** — trivial. This is by design: the DELTA 3 stack (48 lb, passenger) and the WAVE 3 (34 lb, driver) sit in opposite bays of Panel A, and the fridge (driver) and kitchen (passenger) also cross-balance in Panel C. The reviewer's "heavy battery off to one side" concern is effectively cancelled by the WAVE 3 on the other side.
 - **Height:** everything is low (floor-level bays) except the 16.8" pantry cluster at the rear and, when parked, the sleeping load on the ~20–27" platform. Overall CG stays low — no rollover concern beyond a stock minivan.
 
 #### Effects on drivability
 
-- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 745 lb**. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~355–555 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
+- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 777 lb** — and that already includes the spare tire + jack. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~325–525 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
 - **Rear bias:** with 51% of the build mass in the rear third (much of it at/behind the rear axle), the fixed build alone loads the rear axle and slightly lightens the front — which reads as lighter steering, a bit more rear squat, and a raised headlight aim. **But while driving, the two occupants (340 lb) sit up front and more than offset that**, so the *loaded* vehicle is reasonably balanced. The rear bias matters most when driving **solo with a full rear and no front passenger**.
 - **Lateral / height:** negligible effect — the ~1.8" lateral offset is unnoticeable, and the low CG keeps handling stock-like.
 
