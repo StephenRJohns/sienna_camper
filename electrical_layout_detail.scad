@@ -186,45 +186,50 @@ module section1_content() {
     translate([0, hb_y0]) color("DarkGray") square([W, 0.15]); // divider line at the pantry's front edge
     mlabel("REAR PANTRY — prefab drawers (on Panel C's deck, above)", W/2, y_tg - pantry_len - 2.2, 1.0);
 
-    // 1: Power strip 1 — on the deck edge in the pantry's open bay
-    // (the enclosed middle-band nook), at its mattress-facing edge
-    // (hb_y0), NOT Panel A — see the Rear Pantry render
-    translate([8, hb_y0 + 1.5]) strip_icon(4);
-    mmarker(1, 8, hb_y0 + 4);
+    // 1: Power strip 1 — on the deck edge in the pantry's OPEN BAY
+    // (passenger side, next to the pot crate) — see the Rear Pantry render
+    translate([38, hb_y0 + 6]) strip_icon(4);
+    mmarker(1, 32, hb_y0 + 8.5);
 
-    // 2+3: Power strip 1's OWN dedicated cord run — the pantry is
-    // now at the TAILGATE end, not the front, so this cord runs the
-    // long way down to the console, crossing BOTH remaining seams
-    // (Panel C -> B -> A) just like the cooktop and fridge DC lines.
-    // Routed along the left (kitchen) side, clear of the cooktop/
-    // fridge-DC/DELTA3 lines clustered on the right.
-    ps1_cord = [[8, hb_y0], [8, y_bc + 3], [8, y_ab - 3], [18, -3.5]];
+    // 3: the REAR AC outlet — back passenger area (VERIFIED to exist;
+    // exact spot + shared-inverter check in Section 0/5). Drawn just
+    // outside the deck on the passenger wall, near the tailgate.
+    translate([W + 5, y_tg - 10]) outletAC_icon();
+    mlabel("REAR AC outlet", W + 5, y_tg - 13, 0.95);
+    mlabel("(back passenger area — VERIFY exact spot)", W + 5, y_tg - 14.8, 0.8);
+    mmarker(3, W + 2, y_tg - 6.5);
+
+    // 2: Power strip 1's cord — a SHORT hop to the rear outlet beside
+    // it (the old full-length run to the front console is gone: the
+    // rear outlet sits right next to the pantry). No seams crossed.
+    ps1_cord = [[38, hb_y0 + 6], [W + 3, y_tg - 9]];
     wire(ps1_cord, 0.3, marker_col(2));
-    mmarker(2, 8, (y_bc + y_ab)/2);
-    for (y = [y_ab, y_bc]) translate([8, y]) sae_icon();
-    mmarker(3, 5, y_ab - 4);
+    mmarker(2, 41, hb_y0 - 1);
 
-    // 4: cooktop cord run — kitchen forward along the right rail to the console
-    cord = [[16, y_tg - 5], [42.5, y_tg - 8], [42.5, y_front - 3], [24, -3.5]];
+    // 4: cooktop cord — also a SHORT run to the rear outlet, with a
+    // slack loop for the kitchen's slide travel. No seams crossed.
+    cord = [[34.5, y_tg - 5.5], [39, y_tg - 7.5], [W + 3, y_tg - 10.5]];
     wire(cord, 0.3, marker_col(4));
-    translate([24, -3.5]) outletAC_icon();
-    translate([30, -3.5]) outletAC_icon();
-    mlabel("front console — 2 AC outlets (per owner-supplied floor plan, UNVERIFIED)", 27, -6.2, 0.9);
-    mmarker(4, 44.8, 52);
+    mmarker(4, 39, y_tg - 9.5);
 
-    // 5+6: SAE quick-disconnects + grommets where the COOKTOP cord crosses each seam
-    for (y = [y_ab, y_bc]) {
-        translate([42.5, y]) sae_icon();
-        translate([40.2, y + 2.2]) grommet_icon();
-    }
-    mmarker(5, 45.5, y_ab + 3.5);
-    mmarker(6, 38, y_ab + 2.2);
+    // front console: ONE AC outlet (1500W verified) — DELTA 3 charging only
+    translate([27, -3.5]) outletAC_icon();
+    mlabel("front console — 1 AC outlet (1500W VERIFIED) — DELTA 3 charging", 23, -6.2, 0.9);
+
+    // 5: 2-way tap at the rear outlet — Power strip 1 + the cooktop share it
+    translate([W + 5, y_tg - 7.6]) square([3.4, 0.5], center = true);
+    mmarker(5, W + 8, y_tg - 10);
+
+    // 6: grommets where the two short AC cords exit the deck edge
+    translate([40, hb_y0 + 0.6]) grommet_icon();
+    translate([42, y_tg - 6.5]) grommet_icon();
+    mmarker(6, 44, hb_y0 - 3);
 
     // 7: Power strip 2 — mounted ON the slide-out kitchen unit so it
-    // travels to the cook position; its cord to the console carries a
-    // slack loop for the slide travel (Section 5)
-    translate([10, y_tg - 3.8]) strip_icon(4);
-    mmarker(7, 3.5, y_tg - 7);
+    // travels to the cook position; its cord to the rear outlet keeps
+    // a slack loop for the slide travel (Section 5)
+    translate([34.5, y_tg - 3.8]) strip_icon(4);
+    mmarker(7, 28, y_tg - 4.5);
 
     // 8: control enclosure — inside the utility cabinet, behind its door (footprint; see Section 2)
     translate([33, y_tg - 1.9]) enclosure_icon(5, 2.6);
@@ -251,12 +256,12 @@ module section1_content() {
     for (y = [y_ab, y_bc]) translate([44, y]) sae_icon();
     mmarker(12, 47, y_bc - 6);
 
-    // 13: DELTA 3 AC charging cord — front console (confirmed 1500W)
-    // back to the DELTA 3 in Panel A's right drawer, sharing the
-    // cooktop's near-side outlet icon (all 3 AC lines — cooktop, PS1,
-    // DELTA3 — land on the console's shared circuit via a splitter,
-    // see the shared-wattage note, Section 5)
-    delta3_charge_cord = [[34, 20], [30, y_front - 3], [30, -3.5]];
+    // 13: DELTA 3 AC charging cord — the front console's ONE outlet
+    // (1500W verified) back to the DELTA 3 in Panel A's right drawer.
+    // The cooktop + Power strip 1 use the REAR outlet instead — but
+    // both outlets likely share the van's single 1500W inverter, so
+    // the wattage budget is still one pool (Section 5).
+    delta3_charge_cord = [[34, 20], [28, y_front - 3], [27, -3.5]];
     wire(delta3_charge_cord, 0.3, marker_col(14));
     mmarker(13, 37, y_front + 4);
 
@@ -335,18 +340,18 @@ module section3() {
 module legend() {
     items = [
         "Power strip 1 — on the rear-pantry deck edge (phone/light/Claymore fan)",
-        "Power strip 1's OWN dedicated cord — rear pantry (Panel C's tailgate end) down to the front console",
-        "Inline connector pairs — Power strip 1's line, one at each of the 2 seams it now crosses (C->B, B->A)",
-        "Cooktop cord run — 16AWG SAE cable, along the right frame rail, its own dedicated line",
-        "SAE quick-disconnects — cooktop line, one at each seam it crosses",
-        "1\" grommets — cooktop line pass-throughs through the end rails",
-        "Power strip 2 — ON the slide-out kitchen unit (cooktop); cord has slack for the slide",
+        "Power strip 1's cord — a SHORT hop to the rear outlet beside the pantry (no seams)",
+        "REAR AC outlet — back passenger area (exists, VERIFIED; exact spot + shared 1500W inverter: VERIFY)",
+        "Cooktop cord — SHORT run to the rear outlet, slack loop for the kitchen's slide (no seams)",
+        "2-way outlet tap at the rear outlet — Power strip 1 + the cooktop share it",
+        "1\" grommets — deck-edge exits for the two short AC cords",
+        "Power strip 2 — ON the slide-out kitchen unit (cooktop); cord slack for the slide, feeds from the rear outlet",
         "Control enclosure — inside the cabinet, behind its door (Section 2 below)",
         "Intake fan 120mm — on Panel C's FRONT wall, over the fridge's B-facing end",
         "Exhaust fan 120mm (into cabinet) + NTC probe (inside the bay at that wall, in the hot exhaust)",
         "Fridge DC line — DELTA 3 (Panel A) forward to the fridge (Panel C), own dedicated run",
         "SAE quick-disconnects — fridge DC line, one at each seam it crosses",
-        "DELTA 3 AC charging cord — front console (1500W, verified) back to Panel A's drawer",
+        "DELTA 3 AC charging cord — the front console's ONE outlet (1500W, verified) to Panel A's drawer",
         "DELTA 3 drawer grommet — WAVE 3 charge cable exit (see stowage detail)",
     ];
     label_left("Legend", 0, 4, 1.6);
