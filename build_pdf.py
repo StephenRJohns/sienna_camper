@@ -134,6 +134,11 @@ def main():
 
     # pull out section 2/3-level headings for a simple TOC
     headings = re.findall(r'^## (.+)$', md_text, flags=re.MULTILINE)
+    # the five appendices are ###-level under one ## heading — list them
+    # individually in the TOC so none of them (esp. the weight budget)
+    # hides behind the single "Appendices" line
+    appendices = re.findall(r'^### (Appendix .+)$', md_text, flags=re.MULTILINE)
+    headings = [h for h in headings if not h.startswith('Appendices')] + appendices
 
     # Insert a dedicated "Overhead Floorplan" callout right after
     # the existing Renders intro paragraph, before the render table,
