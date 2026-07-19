@@ -680,13 +680,6 @@ assert(panel_module_height <= gate_opening_height,
        str("Panel module is ", panel_module_height, "in tall but the gate opening is only ",
            gate_opening_height, "in"));
 
-// Headboard/pantry: no longer its own base — it's a shelving
-// superstructure cam-lever clamped onto Panel C's already-covered
-// deck (Panel C's own frame/legs are already checked by the two
-// gate-fit asserts above). It's still a SEPARATE piece for removal
-// purposes, lifting off Panel C's deck on its own so its own height
-// (not the combined Panel-C-plus-shelving height) has to clear the
-// gate opening.
 // Rear pantry (prefab drawer cluster): each unit is tiny vs. the gate,
 // so the only real checks are roof clearance and the deck footprint.
 assert(panel_module_height + pantry_cluster_h <= van_interior_height,
