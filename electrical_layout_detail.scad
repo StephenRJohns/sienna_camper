@@ -142,6 +142,8 @@ module section1() {
 
     rect_outline(W, y_tg);
     label("ELECTRICAL LAYOUT — top-down (front of van at bottom, tailgate at top)", W/2, y_tg + 3.4, 1.5);
+    label("DRIVER side", 4, y_tg + 1.2, 1.1);
+    label("PASSENGER side", W - 6, y_tg + 1.2, 1.1);
     color("Silver") for (y = [y_ab, y_bc]) translate([0, y - 0.1]) square([W, 0.2]);
     label("PANEL A", W/2 - 12, (y_front + y_ab)/2, 1.2);
     label("PANEL B", W/2, (y_ab + y_bc)/2 + 6, 1.2);

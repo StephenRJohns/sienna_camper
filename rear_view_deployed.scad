@@ -58,6 +58,8 @@ module deployed() {
     // ---------- IN THE VAN (above the floor line) ----------
     translate([-van_interior_width/2, 0]) rect_outline(van_interior_width, van_interior_height);
     label("Sienna interior envelope (width x height)", 0, van_interior_height + 3, 1.7);
+    label("DRIVER side", -van_interior_width/2 + 8, van_interior_height - 2, 1.4);
+    label("PASSENGER side", van_interior_width/2 - 10, van_interior_height - 2, 1.4);
 
     // Panel C frame + deck
     color("Gray") {

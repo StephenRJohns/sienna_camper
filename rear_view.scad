@@ -96,9 +96,9 @@ module rear_view() {
     }
     label(str("Rear pantry: 2x2 prefab drawer cluster (", pantry_cluster_w, "\" x ", pantry_cluster_h,
               "\") + pot bin in the open bay — see Rear Pantry render"),
-          -3, z_deck + panel_thickness + pantry_cluster_h + 3, 1.3);
+          -6, z_deck + panel_thickness + pantry_cluster_h + 2.2, 1.1);
 
-    // ---- kitchen unit (left), flush to Panel C's left edge ----
+    // ---- kitchen unit — RIGHT/passenger side (x_kitchen > 0) ----
     color("Gainsboro")
         translate([x_kitchen - kitchen_box_width/2, 0]) rect_outline(kitchen_box_width, kitchen_box_height);
     kx = x_kitchen; // 1.5in inboard now — flush against Panel C's rear corner leg
@@ -117,7 +117,7 @@ module rear_view() {
     color("DimGray") translate([kx - 1.5, 1.5]) square([3, 2]);
     label("Power strip 2 (cooktop)", kx, -1.5, 1.0);
 
-    // ---- fridge zone (right), flush to Panel C's right edge ----
+    // ---- fridge zone — LEFT/driver side (x_fridge_module < 0) ----
     // Only 3in of headroom between the fridge top and the deck
     // underside, so its label is ONE short line, not a stack.
     // fridge_x0 is the fridge's CENTER X (matches x_fridge_module in
@@ -230,6 +230,9 @@ module rear_view() {
     }
 
     label("Looking forward from the open tailgate at Panel C — both units shown stowed for driving", 0, -7.5, 1.4);
+    label("DRIVER side", -van_interior_width/2 + 8, van_interior_height - 2, 1.4);
+    label("PASSENGER side", van_interior_width/2 - 10, van_interior_height - 2, 1.4);
+    label("(sides in VEHICLE terms — standing at the tailgate, the driver side is on YOUR right)", 0, -9.5, 1.1);
 }
 
 rear_view(); // no outer color() wrapper — see the note above rect_outline()

@@ -29,6 +29,8 @@ module drawing() {
     // deck line
     color("Gray") translate([x0, -1.5]) rect_outline(W, 1.5);
     label(str("Panel C deck (", W, "\" wide, tailgate end) — cluster + bay just SIT on it, held by cleats + a strap"), 0, -3.2, 1.15);
+    label("DRIVER side", x0 + 5, -1.0, 1.1);
+    label("PASSENGER side", W/2 - 6, -1.0, 1.1);
 
     // ---- 2x2 drawer cluster (driver side) ----
     cw = pantry_cluster_w; ch = pantry_cluster_h; cx0 = x0; // cluster left edge at the driver edge

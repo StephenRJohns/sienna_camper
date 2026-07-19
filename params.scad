@@ -413,13 +413,16 @@ control_panel_width = 2.8; // the LMioEtool enclosure mounted TALL-ways (its 2.8
 // Fridge zone width: the fridge itself plus a small margin each
 // side for the slide hardware, flush to Panel C's RIGHT edge so its
 // tailgate-ward slide path stays clear of the kitchen unit's own
-// path on the left.
+// path on the RIGHT (passenger) side — fridge LEFT/driver, kitchen
+// RIGHT/passenger, per the owner.
 fridge_slide_margin = 0.5;
 fridge_module_width = fridge_ext_length + 2 * fridge_slide_margin;
 
 /* [Kitchen unit — real JAGAHAHA slide-out camp kitchen, standalone] */
 // Exterior dimensions from the actual product listing (JAGAHAHA
-// wooden overland slide-out kitchen w/ drawer, left side, 2-burner,
+// wooden overland slide-out kitchen w/ drawer — the maker's 'left
+// side' VARIANT (which side its own drawer is on, NOT its position
+// in the van; it mounts on the van's RIGHT/passenger side), 2-burner,
 // amazon.com/dp/B0FLDCNYZX): closed 26in L x 20in W x 11.8in H, 45
 // lb, extends to 70in when slid out in use (with the tailgate open —
 // that extension happens outside the vehicle, not something this
