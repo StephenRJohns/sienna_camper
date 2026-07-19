@@ -54,29 +54,41 @@ gate_opening_width  = 48; // UNVERIFIED — widest point of the liftgate opening
 gate_opening_height = 36; // UNVERIFIED — upper corners are heavily rounded, reducing
                           // effective clearance near the edges; treat this as optimistic
 
-/* [Rear pantry — PREFAB drawer cluster (owner, July 2026). The custom
-   old plywood pantry is GONE, replaced by BOUGHT storage: a
-   2-wide x 2-high array of "like-it" Modular Shallow Drawers (The
-   Container Store) sitting on the tailgate end of Panel C's deck, in
-   the same last-pantry_len footprint (so the 80in sleeping run is
-   unchanged), plus a rigid ~11in pot/pan bin in the leftover open
-   deck bay beside it. NOTHING is built or clamped: a cleat pocket
-   (cab side + both sides, tailgate side open) plus ONE cam-buckle
-   strap across the drawer fronts hold it — the strap doubles as the
-   keep-the-drawers-shut retainer, and each unit lifts straight out
-   (~3.2 lb each, trivially clears the liftgate). Power strip 1 and
-   the ROLL bubble level relocate to the deck edge in the open bay.
-   Layout, tailgate to front seats: Kitchen (Panel C's fridge/kitchen
-   void, below deck) -> this cluster (on the deck) -> Bed -> front
-   seats. */
-pantry_len       = 14;    // Y footprint reserved on Panel C's deck (the cluster itself is 13.75 deep)
-pantry_unit_w    = 13.5;  // one like-it drawer unit — X (width)
-pantry_unit_d    = 13.75; // Y (depth)
-pantry_unit_h    = 9.3;   // Z (height)
-pantry_cluster_w = 2 * pantry_unit_w; // 27 — 2 units wide, against the driver edge
-pantry_cluster_h = 2 * pantry_unit_h; // 18.6 — 2 units high (top at deck + 18.6 = 37.85, ~6in of roof clearance)
-pantry_bay_w     = 46 - pantry_cluster_w; // 19 — open deck bay, passenger side (pot bin + relocated power)
-pantry_pot_bin   = 11;    // rigid pot/pan bin footprint in the bay (~11x11)
+/* [Rear pantry — PREFAB drawer cluster (owner, July 2026). The old
+   plywood pantry is GONE, replaced by BOUGHT storage: a 2-wide x
+   2-high array of IRIS USA 12in-W stackable storage drawers (Home
+   Depot model 500163, sold as 3-packs — buy 2, use 4) sitting on the
+   tailgate end of Panel C's deck, in the same last-pantry_len
+   footprint (the 80in sleeping run is unchanged), plus a rigid pot/
+   pan crate in the leftover open deck bay beside it. NOTHING is
+   built or clamped: a cleat pocket (cab side + both sides, tailgate
+   side open) plus ONE cam-buckle strap across the drawer fronts hold
+   it — the strap doubles as the keep-the-drawers-shut retainer, and
+   each unit lifts straight out (a few lb each, trivially clears the
+   liftgate). Power strip 1 and the ROLL bubble level relocate to the
+   deck edge in the open bay. Layout, tailgate to front seats:
+   Kitchen (Panel C's void, below deck) -> this cluster (on the deck)
+   -> Bed -> front seats. */
+pantry_len       = 14;    // Y footprint reserved on Panel C's deck
+pantry_unit_w    = 12.1;  // one IRIS drawer unit — X (width)
+pantry_unit_d    = 14.3;  // Y (depth) — 0.3in proud of the deck edge, well inside the 2in hatch reserve
+pantry_unit_h    = 8.4;   // Z (height)
+pantry_cluster_w = 2 * pantry_unit_w; // 24.2 — 2 units wide, against the driver edge
+pantry_cluster_h = 2 * pantry_unit_h; // 16.8 — 2 units high (top at deck + 16.8 = 36.05, ~8in of roof clearance)
+pantry_bay_w     = 46 - pantry_cluster_w; // 21.8 — open deck bay, passenger side (pot crate + relocated power)
+pantry_pot_bin   = 13;    // rigid pot/pan crate footprint in the bay (~13x13 milk crate; the pots' 11x11 box drops inside)
+
+/* [Panel B deep storage — CONTAINERIZED (owner, July 2026): 4x
+   Sterilite 28-Qt under-bed lidded totes (23.5 x 16.9 x 5.9 each),
+   2 wide x 2 high on the van floor inside Panel B's bare-frame bay.
+   Top-loaded: lift the platform, lift out whole labeled totes
+   instead of rummaging a loose pile. Plain lidded totes, NOT the
+   slide-drawer kind — Panel B has no side access, so a drawer front
+   would be a wasted feature. ]*/
+panelb_tote_l = 23.5;  // fore-aft (bay clear span ~26in between legs)
+panelb_tote_w = 16.9;  // 2 across = 33.8 vs ~43in clear width
+panelb_tote_h = 5.9;   // 2 high = 11.8 (a 3rd layer still clears the 18.5in to the platform)
+panelb_tote_n = 4;
 
 /* [Panels A/B/C — fixed tops, one continuous full-length deck] */
 // The deck is now ONE continuous raised platform on uniform legs —
@@ -685,8 +697,10 @@ assert(panel_module_height <= gate_opening_height,
 assert(panel_module_height + pantry_cluster_h <= van_interior_height,
        str("Installed pantry cluster reaches ", panel_module_height + pantry_cluster_h,
            "in above the floor but the cabin is only ", van_interior_height, "in tall"));
-assert(pantry_unit_d <= pantry_len,
-       str("like-it drawer unit is ", pantry_unit_d, "in deep but only ", pantry_len,
-           "in of Panel C's deck is reserved for the pantry"));
+assert(pantry_unit_d <= pantry_len + hatch_curvature_clearance,
+       str("IRIS drawer unit is ", pantry_unit_d, "in deep but only ", pantry_len,
+           "in of deck + ", hatch_curvature_clearance, "in hatch reserve is available"));
+assert(panelb_tote_l <= panel_b_length - 2 * frame_rail_sz && 2 * panelb_tote_w <= panel_width - 2 * frame_rail_sz,
+       "Panel B totes don't fit the bay 2-wide — check tote dims");
 assert(pantry_pot_bin <= pantry_bay_w,
        str("Pot bin (", pantry_pot_bin, "in) is wider than the open deck bay (", pantry_bay_w, "in)"));

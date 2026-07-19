@@ -1,7 +1,7 @@
 // ============================================================
 // Rear pantry — prefab drawer cluster + pot bay (2D elevation).
 // Looking forward from the open tailgate at the tailgate end of
-// Panel C's deck: a 2x2 array of "like-it" modular drawers on the
+// Panel C's deck: a 2x2 array of IRIS 12in-W stackable drawers on the
 // driver side + a pot/pan bay + relocated power on the passenger
 // side, with the cleat-pocket + strap hold-down. Replaces the old
 // plywood pantry (Component 1).
@@ -31,7 +31,7 @@ module drawing() {
     label(str("Panel C deck (", W, "\" wide, tailgate end) — cluster + bay just SIT on it, held by cleats + a strap"), 0, -3.2, 1.15);
 
     // ---- 2x2 drawer cluster (driver side) ----
-    cw = 27; ch = 18.6; cx0 = x0;            // cluster left edge at the driver edge
+    cw = pantry_cluster_w; ch = pantry_cluster_h; cx0 = x0; // cluster left edge at the driver edge
     dcol = cw/2; drow = ch/2;
     color("Gainsboro") translate([cx0, 0]) rect_outline(cw, ch, 0.35);
     for (c = [0, 1]) for (r = [0, 1]) {
@@ -39,8 +39,8 @@ module drawing() {
         // drawer pull
         color("DimGray") translate([cx0 + c*dcol + dcol/2 - 1.4, r*drow + drow/2 - 0.4]) square([2.8, 0.8]);
     }
-    label("2x2 'like-it' modular drawers", cx0 + cw/2, ch + 3, 1.4);
-    label(str(cw, "\" W x ", ch, "\" H — 4 units, ~12.8 lb"), cx0 + cw/2, ch + 1.2, 1.1);
+    label("2x2 IRIS 12\"W stackable drawers", cx0 + cw/2, ch + 3, 1.4);
+    label(str(cw, "\" W x ", ch, "\" H — 4 units (2x Home Depot 3-packs)"), cx0 + cw/2, ch + 1.2, 1.1);
     label("canned goods LOW, boxed dry goods UP", cx0 + cw/2, ch/2, 1.0);
 
     // strap across the drawer fronts (double duty: shut + hold-down)
@@ -57,9 +57,9 @@ module drawing() {
     color("LightGray") translate([bx0, 0]) rect_outline(bw, ch, 0.2);
     label(str("~", bw, "\" open deck bay"), bx0 + bw/2, ch + 3, 1.3);
     // pot bin (~11 x 11)
-    color("BurlyWood") translate([bx0 + 1.5, 0]) rect_outline(11, 11, 0.3);
+    color("BurlyWood") translate([bx0 + 1.5, 0]) rect_outline(pantry_pot_bin, pantry_pot_bin, 0.3);
     label("pots/pans", bx0 + 7, 8, 1.05);
-    label("rigid ~11\" bin", bx0 + 7, 6.4, 0.9);
+    label("rigid ~13\" crate", bx0 + 7, 6.4, 0.9);
     label("+ corner cleat + bungee", bx0 + 7, 5, 0.85);
     color("SaddleBrown") translate([bx0 + 0.6, 0]) square([0.9, 5]);
     // relocated Power strip 1 + ROLL bubble level (deck edge)
@@ -83,7 +83,7 @@ module drawing() {
     items = ["Cam strap across drawer fronts (shut + hold-down)",
              "Birch cleats: cab side + both sides (tailgate open)",
              "Flush deck D-rings (strap anchors)",
-             "Pot/pan bin (~11\") in the open bay",
+             "Pot/pan crate (~13\") in the open bay",
              "Power strip 1 + ROLL level, relocated to the deck"];
     label("Hold-down + fit-out", leg_x, ch + 1, 1.5, "left");
     for (i = [0 : len(items) - 1]) {

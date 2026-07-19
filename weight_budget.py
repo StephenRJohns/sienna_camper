@@ -24,7 +24,8 @@ add("Panel C deck (3/4\" birch, 36x46)", "Structure", ply(36*46,0.75), 76, 0, "f
 add("Panel C front wall (3/8\" birch)", "Structure", ply(46*17,0.375), 60, 0, "intake fan + grommets")
 add("Fridge tray (3/8\" birch + edge frame)", "Structure", ply(17.72*28.74,0.375), 80, -12, "on the fridge slide")
 add("Kitchen drawer + cheeks (1/2\" birch)", "Structure", ply(744,0.5)+ply(322,0.5), 80, 13, "hung over the kitchen unit")
-add("Rear pantry: 4x like-it drawer units + hold-down", "Structure", 12.8+2.0, 87, 0, "2x2 prefab drawer cluster (12.8lb) + cleats/strap (~2lb) — replaces the ~42lb plywood pantry")
+add("Rear pantry: 4x IRIS 12\"W drawer units + hold-down", "Structure", 13.0+2.0, 87, -10, "2x2 prefab cluster (est ~3.2lb/unit) + cleats/strap — replaces the ~42lb plywood pantry")
+add("Panel B: 4x Sterilite 28-Qt under-bed totes (empty)", "Hardware/misc", 8.0, 43.5, 0, "containerized deep storage, 2 wide x 2 high")
 add("Bed platform (1x4 pine, 2 rails + 8 slats)", "Structure", pine_1x4(2*58+8*45), 29, 0, "flush slat deck over A+B")
 
 # ---- APPLIANCES ----
