@@ -24,7 +24,7 @@ Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat 
 | 8 | Side door opening height | `side_door_opening_height` | 40" — UNVERIFIED | |
 | — | Rear 12V accessory outlet — exact position | (no longer used by this design — the fridge and fan system now run off the DELTA 3 stack instead, Section 1. Informational only, not a blocker.) | — | |
 | — | Front console AC outlet — wattage rating | (Section 1/7 — drives the DELTA 3's AC charge rate and the cooktop's power check) | **1500W — VERIFIED** | 1500W |
-| ✔ | AC outlets — **VERIFIED: 2 total — 1 in the front center console (1500W) + 1 in the back passenger area.** Still to verify: the rear outlet's exact location, and that both share the single 1500W inverter | (Section 5 — the cooktop, Power strip 1, and the DELTA 3's charging cord are now 3 independent lines wanting console power; if there's only 1 physical outlet, or even with 2, a splitter combines them — no change to the wiring itself, just shared wattage budget, see Section 5's shared-circuit note) | — | |
+| ✔ | AC outlets — **VERIFIED: 2 total, both fed by the one 1500W inverter.** Front: center console. Rear: **passenger-side rear quarter trim — ~9.5" above the cargo floor, ~10" forward of the liftgate scuff plate, socket center ~16" laterally in from the right sidewall; directly above the 12V battery access panel, below the rear cup holders.** NEW verify item: confirm the quarter trim (cup holders) doesn't intrude inboard of the 46" deck width at deck height near that corner | (Section 5 — cooktop + Power strip 1 plug into the rear outlet via a 2-way tap; DELTA 3 charging has the front outlet; all share the one 1500W inverter budget) | — | |
 | — | Folded 3rd-row well depth | (confirms `leg_height` — 17", fridge-driven — actually clears it) | — | |
 | — | Factory sunroof present? Opening size if so | (only relevant if you pursue a roof vent later) | — | |
 | 9 | Cargo floor level — does it slope front-to-back, or is it flat? | (not currently modeled — every module's 4 legs are the same `leg_height`, which only gives a level deck if the floor itself is level) | assumed flat — UNVERIFIED | |
@@ -555,9 +555,9 @@ A second, independent cord charges the DELTA 3 stack itself from the front conso
 3. Continue along the van floor track to the front console AC outlet — same routing as the other two forward-running lines.
 4. Leave enough slack at the Panel A end that pulling the DELTA 3 drawer open doesn't strain the connection.
 
-**Outlet facts (VERIFIED): 2 AC outlets total — 1 front center console (1500W) + 1 back passenger area.** Still to pin down (Section 0): the rear outlet's exact location on the trim (which side, how high — it decides the two grommet positions above), and **whether both outlets ride the van's single 1500W inverter** (almost certainly yes on the Sienna hybrid).
+**Outlet facts (VERIFIED): 2 AC outlets total, both fed by the van's single 1500W inverter.** The rear outlet sits on the **passenger-side rear quarter trim: ~9.5" above the cargo floor, ~10" forward of the liftgate scuff plate**, socket center ~16" laterally in from the right sidewall (the trim curves), directly above the 12V battery access panel and below the rear cup holders. That places it **below deck level (19.25"), in the gap between the kitchen unit's outer face and the van wall** — the cooktop's cord reaches it inside the bay, and Power strip 1's cord drops off the deck edge down that gap. Plug access is easy with the kitchen slid out. **Serviceability note: the 12V battery access panel sits under/behind the kitchen's passenger rear corner — keep it clear: no E-track anchor over it, and battery service = unstrap + slide the kitchen out (Component 7).**
 
-**Shared-inverter wattage: every AC load still shares one 1500W pool.** Assuming both outlets feed from the same inverter, plugging the cooktop + Power strip 1 into the rear outlet and the DELTA 3 charger into the front one cleans up the *cords*, but not the *budget*: the DELTA 3's AC input alone (up to 1500W at full X-Stream speed) can consume the entire rated capacity. Running the induction cooktop while fast-charging the DELTA 3 could oversubscribe the inverter. In practice this rarely collides — cooktop use happens at camp with the engine off, DELTA 3 charging while driving — but if you ever want both at once (e.g., cooking at a rest stop with the engine idling), cap the DELTA 3's AC charge rate in its app (EcoFlow lets you limit input wattage) to leave headroom.
+**Shared-inverter wattage: every AC load shares one 1500W pool (confirmed — both outlets ride the same inverter).** Plugging the cooktop + Power strip 1 into the rear outlet and the DELTA 3 charger into the front one cleans up the *cords*, but not the *budget*: the DELTA 3's AC input alone (up to 1500W at full X-Stream speed) can consume the entire rated capacity. Running the induction cooktop while fast-charging the DELTA 3 could oversubscribe the inverter. In practice this rarely collides — cooktop use happens at camp with the engine off, DELTA 3 charging while driving — but if you ever want both at once (e.g., cooking at a rest stop with the engine idling), cap the DELTA 3's AC charge rate in its app (EcoFlow lets you limit input wattage) to leave headroom.
 
 **The WAVE 3 is the one thing still fully self-contained.** It draws from the DELTA 3 Plus (in Panel A's drawer) via its own charge cable, and isn't wired to any van circuit at all.
 
@@ -755,7 +755,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">1</div>
 <div class="lego-parts"><p class="lego-noparts">cooktop's short cord + 1 grommet + slack loop (parts list above)</p></div>
 <div class="lego-main"><img src="renders/steps/step-08-power-channel.png" alt="Power channel routing diagram">
-<p class="lego-caption">Drill the single grommet at the kitchen unit's corner post and run the cooktop's short cord to the REAR AC outlet in the back passenger area (a few feet — no seams, no inline connectors). Coil a slack loop sized to the kitchen's full ~70" slide extension near the stowed position so the cooktop keeps power at the cook position. Power strip 2 rides ON the slide-out unit. VERIFY the rear outlet's exact spot before drilling (Section 0/5).</p></div>
+<p class="lego-caption">Drill the single grommet at the kitchen unit's corner post and run the cooktop's short cord to the REAR AC outlet in the back passenger area (a few feet — no seams, no inline connectors). Coil a slack loop sized to the kitchen's full ~70" slide extension near the stowed position so the cooktop keeps power at the cook position. Power strip 2 rides ON the slide-out unit. The outlet is at ~9.5" up, ~10" forward of the liftgate scuff on the passenger quarter trim (verified) — position the grommet to line up with it.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
@@ -796,7 +796,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">1</div>
 <div class="lego-parts"><p class="lego-noparts">no parts — inspection only</p></div>
 <div class="lego-main">
-<p class="lego-caption"><strong>Before drilling anything</strong>, get under the van and confirm the anchor locations are clear of the fuel tank/lines, brake lines, and wiring harnesses.</p></div>
+<p class="lego-caption"><strong>Before drilling anything</strong>, get under the van and confirm the anchor locations are clear of the fuel tank/lines, brake lines, and wiring harnesses. ALSO: the hybrid's 12V battery access panel sits at the passenger rear corner (under the rear AC outlet) — keep every anchor clear of it so the panel stays serviceable.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
@@ -931,7 +931,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - **Price: $189.99** (confirmed current listing price).
 - Requires magnetic (induction-compatible) cookware — test with a magnet before buying pots/pans if you don't already own compatible ones (the included griddle pan is already induction-ready). See the cookware recommendation below.
 
-**Power check — confirmed:** the front console AC outlet is rated at **1500W (verified against the real van, Section 0)**, and a second AC outlet exists in the **back passenger area** (the cooktop + Power strip 1 plug in there — Section 5). Both almost certainly share the van's single 1500W inverter, so treat 1500W as the TOTAL AC budget across everything at once.
+**Power check — confirmed:** the front console AC outlet is rated at **1500W (verified against the real van, Section 0)**, and a second AC outlet exists in the **back passenger area** (the cooktop + Power strip 1 plug in there — Section 5). Both outlets are CONFIRMED to share the van's single 1500W inverter — treat 1500W as the TOTAL AC budget across everything at once.
 
 ### Cookware: Cook N Home 10-Piece Stainless Steel Set
 
@@ -971,7 +971,7 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 
 **Why this margin is enough**: DOT commercial cargo securement rules (49 CFR 393, Subpart I) require tie-downs rated for 0.435g forward / 0.5g rearward / 0.25g lateral deceleration, with combined working load at least 50% of the cargo's weight. A single 1000lb-WLL E-track anchor is roughly 11x the fridge's loaded weight (90lb) and 22x the kitchen unit's (45lb) — this plan uses 4 anchors per item, not 1, for a wide margin over that commercial-vehicle baseline, even though a DIY conversion isn't held to DOT's certification process.
 
-**Before you drill anything**: the E-track bolts go all the way through the van's floor pan. Get underneath the van and physically confirm each of the 8 locations (see the fridge install detail diagram, Section 2, for exact X/Y) is clear of the fuel tank, fuel lines, brake lines, and wiring harnesses before drilling — reposition an anchor if it isn't. Seal each hole with butyl or silicone sealant on both sides of the bolt to prevent water intrusion and rust.
+**Before you drill anything**: the E-track bolts go all the way through the van's floor pan. Get underneath the van and physically confirm each of the 8 locations (see the fridge install detail diagram, Section 2, for exact X/Y) is clear of the fuel tank, fuel lines, brake lines, and wiring harnesses before drilling — reposition an anchor if it isn't. Seal each hole with butyl or silicone sealant on both sides of the bolt to prevent water intrusion and rust. **And keep the passenger rear corner clear: the hybrid's 12V battery access panel lives there (directly under the rear AC outlet) — no anchor over it.**
 
 **Approximate weight per module** (plywood + frame + legs only, rough estimates — excludes mattress and small hardware):
 
@@ -1063,7 +1063,7 @@ The order to build in — **dependency-first, not the Component numbering.** Wor
 
 **Phase 3 — Panel C build-out (fridge / kitchen / cooling)** (Components 4 + 7)
 1. Screw down the fixed top + front wall (mount the low intake louver).
-2. Drill & bolt the 8 E-track floor anchors — **inspect underneath for fuel/brake lines first**, seal each hole. *Verify.*
+2. Drill & bolt the 8 E-track floor anchors — **inspect underneath for fuel/brake lines first**, seal each hole. *Verify.* **The hybrid's 12V battery access panel is at the passenger rear corner (under the rear outlet) — do NOT place an anchor over it, and keep it reachable by unstrapping/sliding the kitchen out.**
 3. Fridge on its tray + locking slide (driver corner); kitchen unit strapped down (passenger corner). Let the fridge stand 12h before first power-up.
 4. Hang the kitchen drawer + cabinet door (with its low exhaust louver).
 5. Cooling + control cluster: intake fan (blows IN), exhaust fan + NTC on the fridge's kitchen-facing wall, W1209 + fuse block + switches on the backer board inside the cabinet.

@@ -94,9 +94,9 @@ module drawing() {
     label("Fridge System Wiring — schematic, not to physical scale", 0, 58, 1.8);
 
     // ---- AC charge source: front console outlet, charges the DELTA 3 ----
-    box(0, 53, 34, 4.5, [
+    box(0, 53, 41, 4.5, [
         ["Front console AC outlet — 1500W", 1.3],
-        ["VERIFIED — charges DELTA 3 while driving", 1.0],
+        ["VERIFIED — charges DELTA 3; one 1500W inverter feeds BOTH van outlets", 0.9],
     ], "Gray");
 
     wire(0, 50.7, 0, 47.3);

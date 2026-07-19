@@ -196,7 +196,7 @@ module section1_content() {
     // outside the deck on the passenger wall, near the tailgate.
     translate([W + 5, y_tg - 10]) outletAC_icon();
     mlabel("REAR AC outlet", W + 5, y_tg - 13, 0.95);
-    mlabel("(back passenger area — VERIFY exact spot)", W + 5, y_tg - 14.8, 0.8);
+    mlabel("(passenger rear quarter — VERIFIED: ~9.5\" up, ~10\" fwd of the scuff)", W + 5, y_tg - 14.8, 0.8);
     mmarker(3, W + 2, y_tg - 6.5);
 
     // 2: Power strip 1's cord — a SHORT hop to the rear outlet beside
@@ -341,7 +341,7 @@ module legend() {
     items = [
         "Power strip 1 — on the rear-pantry deck edge (phone/light/Claymore fan)",
         "Power strip 1's cord — a SHORT hop to the rear outlet beside the pantry (no seams)",
-        "REAR AC outlet — back passenger area (exists, VERIFIED; exact spot + shared 1500W inverter: VERIFY)",
+        "REAR AC outlet — passenger rear quarter trim, ~9.5\" up, ~10\" fwd of the liftgate scuff (VERIFIED; shares the one 1500W inverter)",
         "Cooktop cord — SHORT run to the rear outlet, slack loop for the kitchen's slide (no seams)",
         "2-way outlet tap at the rear outlet — Power strip 1 + the cooktop share it",
         "1\" grommets — deck-edge exits for the two short AC cords",
