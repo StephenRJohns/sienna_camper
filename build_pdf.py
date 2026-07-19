@@ -215,7 +215,7 @@ def main():
     # overview/floorplan.
     for alt in ["Measurement guide: the van", "Measurement guide: fridge and kitchen",
                 "DELTA 3 and WAVE 3 stowage detail", "Electrical layout",
-                "Rear pantry layout", "Panel A detail", "Panel B detail",
+                "Rear pantry layout", "Spare tire stowage", "Panel A detail", "Panel B detail",
                 "Panel C detail", "Cabinet door detail", "Bed frame detail",
                 "Leveling foot detail", "Panel C front wall detail",
                 "Joinery and fastener guide"]:

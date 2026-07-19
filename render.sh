@@ -99,6 +99,10 @@ echo "Rendering joinery & fastener guide..."
 openscad -o renders/joinery-detail.svg joinery_detail.scad
 openscad -o renders/joinery-detail.png --imgsize=3400,3400 $FLAT_CAM joinery_detail.scad
 
+echo "Rendering spare-tire stowage detail..."
+openscad -o renders/spare-stow-detail.svg spare_stow_detail.scad
+openscad -o renders/spare-stow-detail.png --imgsize=3200,2400 $FLAT_CAM spare_stow_detail.scad
+
 echo "Rendering seam draw-latch positioning..."
 openscad -o renders/seam-clamp-detail.svg seam_clamp_detail.scad
 openscad -o renders/seam-clamp-detail.png --imgsize=3200,2600 $FLAT_CAM seam_clamp_detail.scad
