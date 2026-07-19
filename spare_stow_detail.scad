@@ -1,6 +1,6 @@
 // ============================================================
-// Spare-tire stowage detail (2D) — Modern Spare kit (27.7" dia x
-// 5.7" wide, T145/85R18) stowed FLAT inside Panel B's deep-storage
+// Spare-tire stowage detail (2D) — RJ-MODINI kit (28.5" dia, ~6.4"
+// stored w/ case, T155/85R18 on a steel wheel) stowed FLAT inside Panel B's deep-storage
 // bay, raised on cleats above the bottom-rail curb, with 2 of the
 // Sterilite totes restacked on top. Two views: top-down of Panel B
 // + a side elevation of the height stack.
@@ -17,8 +17,8 @@ include <params.scad>
 include <colors.scad>
 stroke = 0.3;
 
-spare_d  = 27.7;   // Modern Spare rolling diameter (T145/85R18)
-spare_t  = 5.7;    // section width = stack height lying flat
+spare_d  = 28.5;   // RJ-MODINI rolling diameter (T155/85R18 — matches OE within 2%)
+spare_t  = 6.4;    // stored width incl. case = stack height lying flat (T155 section 6.1)
 cleat_h  = 3;      // raises the spare above the bottom-rail curb (top at 2.5")
 
 module rect_outline(w, h, s = stroke) {
@@ -46,13 +46,13 @@ module topdown() {
     color("DimGray") translate([cx, cy]) difference() { circle(r = spare_d/2, $fn = 90); circle(r = spare_d/2 - 0.35, $fn = 90); }
     color("DimGray") translate([cx, cy]) difference() { circle(r = 5.2, $fn = 40); circle(r = 4.9, $fn = 40); } // alloy wheel
     color("DimGray") for (a = [0:72:288]) translate([cx, cy]) rotate(a) translate([7.5, 0]) circle(r = 0.5, $fn = 12);
-    label("Modern Spare", cx, cy + 2.2, 1.5);
+    label("RJ-MODINI kit", cx, cy + 2.2, 1.5);
     label(str(spare_d, "\" dia x ", spare_t, "\" — flat, valve UP"), cx, cy - 0.2, 1.1);
     label("on 3 cleats + strap", cx, cy - 2.4, 1.1);
     // 3 cleats under it (radial pads)
     color("SaddleBrown") for (a = [90, 210, 330]) translate([cx, cy]) rotate(a) translate([9.5, 0]) square([4, 2], center = true);
     // clearance callouts
-    label(str("bay 29\" x 43\" — disc clears the corner legs by >4\""), L/2, W + 2, 1.2);
+    label(str("bay 29\" x 43\" — 28.5\" disc fits with 1/4\" per end, clears the corner legs by >4\""), L/2, W + 2, 1.2);
     // jack + scissor kit beside it (passenger side)
     color("BurlyWood") translate([L/2 - 6, W - 11]) rect_outline(12, 8, 0.25);
     label("jack + wrench kit", L/2, W - 7, 1.05);
@@ -106,7 +106,7 @@ topdown();
 translate([panel_b_length + 14, 4]) elevation();
 
 leg_x = 0; leg_y = -9;
-items = ["Modern Spare kit (T145/85R18, ~30-35 lb w/ jack) — flat, valve up",
+items = ["RJ-MODINI kit (T155/85R18, steel wheel, ~40 lb w/ 2-ton jack) — flat, valve up",
          "3x wood cleats, ~3\" tall (from offcut) — lift it above the bottom-rail curb",
          "Jack + wrench kit in its case, strapped beside the totes",
          "Cam strap over the stack, anchored to Panel B's bottom rails"];

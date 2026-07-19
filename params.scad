@@ -89,15 +89,18 @@ panelb_tote_l = 23.5;  // fore-aft (bay clear span ~26in between legs)
 panelb_tote_w = 16.9;  // 2 across = 33.8 vs ~43in clear width
 panelb_tote_h = 5.9;   // restacked ON the spare: cleats 3 + spare 5.7 + tote 5.9 = 14.6 of 18.5
 panelb_tote_n = 2;     // was 4 — the spare tire now takes the other half of the bay
-// SPARE TIRE (owner, July 2026): a Modern Spare kit (T145/85R18,
-// 27.7in dia x 5.7in wide, ~30-35lb w/ jack) stows FLAT in Panel B's
+// SPARE TIRE (owner, July 2026): RJ-MODINI kit (T155/85R18 on an 18x4
+// STEEL wheel, 60.1mm hub-centric bore, 28.5in dia — only -2% vs the
+// ~29.1in OE tires, the closest-matched kit found — ~6.4in stored,
+// ~40lb w/ 2-ton jack/wrenches/case; VERIFY weight+dims on arrival;
+// the tool case nests inside the wheel barrel) stows FLAT in Panel B's
 // bay at the AXLE — the best weight placement in the van; no hitch
 // basket needed. Raised on 3in cleats above the bottom-rail curb,
 // cam-strapped to the bottom rails, 2 totes restacked on top. The
 // 27.7in disc clears the bay interior (29x43 between rails) — it
 // does NOT fit above the kitchen (only ~24in before the fridge).
-spare_dia   = 27.7;
-spare_w     = 5.7;
+spare_dia   = 28.5;
+spare_w     = 6.4;   // stored width incl. case (T155 section 6.1)
 spare_cleat = 3;
 assert(spare_dia <= panel_b_length && spare_cleat + spare_w + panelb_tote_h <= leg_height + frame_rail_sz,
        "Spare stack doesn't fit Panel B's bay — check spare/cleat/tote dims");
