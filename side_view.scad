@@ -10,7 +10,7 @@
 // true stack drawn at real heights — panel boxes on the floor (on
 // their leveling feet), the bed platform directly on Panel A/B's
 // top rails (ending flush at the B/C seam), the mattress on the
-// platform + Panel C's deck, the headboard/pantry on Panel C's
+// platform + Panel C's deck, the rear pantry on Panel C's
 // deck — and the remaining clearances called out on the right.
 //
 // Render with: openscad -o renders/side-profile.svg side_view.scad

@@ -55,7 +55,7 @@ gate_opening_height = 36; // UNVERIFIED — upper corners are heavily rounded, r
                           // effective clearance near the edges; treat this as optimistic
 
 /* [Rear pantry — PREFAB drawer cluster (owner, July 2026). The custom
-   plywood headboard/pantry is GONE, replaced by BOUGHT storage: a
+   old plywood pantry is GONE, replaced by BOUGHT storage: a
    2-wide x 2-high array of "like-it" Modular Shallow Drawers (The
    Container Store) sitting on the tailgate end of Panel C's deck, in
    the same last-pantry_len footprint (so the 80in sleeping run is

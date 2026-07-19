@@ -2,7 +2,7 @@
 
 ## Project context
 
-This repo (`/home/stephen/sienna`) is a fully parametric OpenSCAD model of a DIY Toyota Sienna camper conversion — a modular sleeping platform (headboard + 3 lift-out panels) with a fridge/kitchen install and EcoFlow power/AC stowage. Read these files first, in this order:
+This repo (`/home/stephen/sienna`) is a fully parametric OpenSCAD model of a DIY Toyota Sienna camper conversion — a modular sleeping platform (prefab rear pantry + 3 lift-out panels) with a fridge/kitchen install and EcoFlow power/AC stowage. Read these files first, in this order:
 
 1. `params.scad` — every real-world dimension lives here (plywood sizes, frame lumber, drawer clearances, appliance dimensions, etc.), with `assert()` guards that fail loudly if a downstream constraint breaks.
 2. `platform.scad` — the actual 3D geometry, built from `params.scad`'s values.

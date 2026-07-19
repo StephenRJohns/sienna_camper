@@ -7,7 +7,7 @@
 // The slide travel is along Y (toward the viewer, out the gate),
 // which a straight X-Z elevation can't show as motion — so the
 // convention here is: everything ABOVE the floor line is what stays
-// in the van (deck, headboard, the now-empty bays); everything
+// in the van (deck, pantry, the now-empty bays); everything
 // BELOW the floor line is drawn "pulled out the tailgate and set up
 // for use." Same direct-drawing technique as rear_view.scad.
 //
