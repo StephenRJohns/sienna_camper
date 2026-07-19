@@ -82,7 +82,7 @@ module drawing() {
         ["1", "Side rails (x2)", str(L, "\" x ", RW, "\" x ", bed_slat_t, "\" — 1x4 pine, full length"), "the platform's spine — slats screw into their inner edges"],
         ["2", str("Slats (x", bed_slat_count, ")"), str(SL, "\" x ", bed_slat_width, "\" x ", bed_slat_t, "\" — 1x4 pine, two per 8ft board"), str("~", round(slat_gap * 10) / 10, "\" gaps — fine for a foam mattress")],
         ["3", "Pocket screws", "2x 1-1/4\" pocket-hole screws per slat end", "Kreg-style jig; or 2\" corner braces if you don't have one"],
-        ["4", "Bubble level (PITCH)", "RV bar level 2-1/2\" x 3/4\", screwed to this rail's outer edge", "its twin (ROLL) mounts on the headboard nook — read while leveling"],
+        ["4", "Bubble level (PITCH)", "RV bar level 2-1/2\" x 3/4\", screwed to this rail's outer edge", "its twin (ROLL) mounts on the rear-pantry deck edge — read while leveling"],
     ]);
 }
 

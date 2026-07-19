@@ -42,9 +42,9 @@ translate([2, 38]) {
     lbl("2\"", 1, -1.7, 0.8); lbl("~6\"", 5, -1.7, 0.8); lbl("2\"", 39, -1.7, 0.8);
 }
 
-// ---- VIGNETTE 2 — headboard shelf into side (3/4, R3) ----
+// ---- VIGNETTE 2 — shelf-into-side reference joint (3/4, R3) ----
 translate([2, 30]) {
-    lbl("2 — HEADBOARD shelf into side panel (3/4\" ply): 3x R3 biscuits/end at 2\" / 7\" / 12\" from the front, centered on 3/4\", glue + clamp", 0, 3.4, 1.05, "left");
+    lbl("2 — REFERENCE: any shelf into a side panel (3/4\" ply): 3x R3 biscuits/end at 2\" / 7\" / 12\" from the front, centered on 3/4\", glue + clamp", 0, 3.4, 1.05, "left");
     color("BurlyWood") square([0.75, 4]); rr(0.75, 4);          // side panel edge
     color("BurlyWood") translate([0.75, 1.6]) square([14, 0.75]); translate([0.75, 1.6]) rr(14, 0.75); // shelf, plan
     // 3 biscuits along the shelf end (in the 0.75" thickness), at 2/7/12" from the front
@@ -89,11 +89,7 @@ translate([2, 7]) {
 translate([2, -1]) {
     rows = [
         ["COMPONENT", "JOINT", "METHOD (biscuit sizes are Ryobi R1/R2/R3)"],
-        ["Headboard side panels <-> 2 fixed shelves (3/4)", "face-to-edge", "3x R3 biscuits/end @ 2 / 7 / 12\" + glue (no screws on show face)"],
-        ["Headboard nook divider (1/2) <-> shelves", "edge-to-face", "2x R1 biscuits/edge + glue; 1-1/4\" screws into the side panels"],
-        ["Headboard fiddle lips (front rails)", "strip-to-shelf", "glue + 1\" brads (R1 biscuit if you rip the lip from 3/4\" stock)"],
-        ["Headboard base cleats <-> shelving underside", "face-to-face", "1-1/4\" screws + glue (they carry the cam-lever T-nuts)"],
-        ["Panel A drawer + kitchen drawer boxes (1/2)", "box corners", "2x R1 biscuits/corner + glue; bottom in a glued rabbet"],
+                ["Panel A drawer + kitchen drawer boxes (1/2)", "box corners", "2x R1 biscuits/corner + glue; bottom in a glued rabbet"],
         ["Fridge tray + slide apron (1/2 + pine)", "edge / face", "R1 biscuits OR 1-1/4\" screws + glue"],
         ["Kitchen-drawer hanging cheeks <-> deck (3/4)", "face-to-face", "2\" screws every ~6\" up into the deck"],
         ["WAVE 3 overhead shelf <-> 1x1 cleats", "shelf-on-cleat", "cleats screwed to the frame; shelf screws down to the cleats"],

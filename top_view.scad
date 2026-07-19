@@ -15,7 +15,7 @@
 // to Panel C's left edge) both live INSIDE Panel C's footprint —
 // see the rear-view diagram (renders/rear-view.svg) for the fridge
 // cooling system / control panel detail this view doesn't show. The
-// headboard/pantry shares that SAME footprint too, at a different Z
+// rear-pantry drawer cluster shares that SAME footprint too, at a different Z
 // height — it's a shelving superstructure mounted on TOP of Panel
 // C's deck, right above the fridge/kitchen void, at the tailgate end
 // (drawn here as a labeled outline overlapping the fridge/kitchen
@@ -206,23 +206,23 @@ module top_view() {
     label("(JAGAHAHA)", x_kitchen, fridge_y0 + 2.6, 1.2);
     label("slides out tailgate", x_kitchen, fridge_y0 + 1, 1.0);
 
-    // Headboard/pantry: shares the SAME X-Y footprint as the tailgate
+    // Rear pantry (prefab drawer cluster): shares the SAME X-Y footprint as the tailgate
     // end of the fridge/kitchen zone above, just at a different Z
     // height (mounted on Panel C's deck, above the void) — drawn as a
     // full-width outline overlapping both. Its own explanation lives
     // in the caption strip below (Panel C's own box is too crowded
     // with fridge/kitchen labels for more text here without colliding).
-    headboard_y0 = y_panel_c; // flush to the tailgate edge, same as fridge/kitchen
-    color("DarkGray") translate([-headboard_width/2, headboard_y0]) rect_outline(headboard_width, headboard_length);
+    pantry_y0 = y_panel_c; // flush to the tailgate edge, same as fridge/kitchen
+    // 2x2 drawer cluster against the driver edge + pot bin in the open bay
+    color("DarkGray") translate([-panel_width/2, pantry_y0]) rect_outline(pantry_cluster_w, pantry_len);
+    color("DarkGray") translate([-panel_width/2 + pantry_cluster_w + 1.5, pantry_y0]) rect_outline(pantry_pot_bin, pantry_pot_bin, 0.2);
 
-    // Power strip 1 — mounted on the headboard/pantry's personal shelf, right
-    // at the mattress-facing edge of the headboard/pantry zone (marker
-    // only here — full caption is in the strip below, Panel C's own
-    // box is too crowded with fridge/kitchen labels for more text)
-    color("DimGray") translate([0, headboard_y0 + headboard_length + 1]) square([3, 2], center = true);
+    // Power strip 1 — relocated to the deck edge in the pantry's open
+    // bay (marker only here — full caption in the strip below)
+    color("DimGray") translate([panel_width/2 - 5, pantry_y0 + pantry_len + 1]) square([3, 2], center = true);
 
     // front-to-back seams: bumper strip + 2 alignment pins between
-    // lift-out panels (not at the headboard, which is fixed)
+    // lift-out panels (not at the pantry, which just sits on the deck)
     seam_ys = [y_panel_a, y_panel_b];
     for (i = [0:1]) {
         y = seam_ys[i];
@@ -240,7 +240,7 @@ module top_view() {
           0, -10, 1.4);
     label("Fridge + kitchen unit live inside Panel C (not a separate row) — see rear-view diagram for cooling/control detail",
           0, -13, 1.3);
-    label("Headboard/pantry (dark gray outline, tailgate end of Panel C): mounted ON the deck above the fridge/kitchen void,",
+    label("Rear pantry (dark gray, tailgate end of Panel C): prefab 2x2 drawer cluster + pot bin ON the deck above the fridge/kitchen void,",
           0, -16, 1.3);
     label("not a separate footprint — food side faces the kitchen, personal shelf (Power strip 1) faces the mattress",
           0, -19, 1.3);

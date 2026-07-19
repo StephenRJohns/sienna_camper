@@ -15,7 +15,7 @@
 //
 // Orientation matches top_view.scad: front of the vehicle (Panel A,
 // now the frontmost sleeping panel) at the TOP, tailgate (Panel C,
-// with the headboard/pantry mounted on its deck) at the BOTTOM.
+// with the rear-pantry cluster on its deck) at the BOTTOM.
 include <../params.scad>
 
 stroke = 0.3;

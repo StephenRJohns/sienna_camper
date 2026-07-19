@@ -28,7 +28,7 @@ fan_z  = fridge_tray_t + fridge_ext_height/2;         // 8.4 — centered on the
 gr_d   = pcwall_grommet_dia;                          // 1 — fridge DC line
 gr_x   = 3;   // from the driver edge — the DC line hugs the driver-side floor run
 gr_z   = 3;   // low, at cord height
-gr2_x  = 3;   // 2nd grommet: Power strip 1's line, exiting the headboard's under-deck run
+gr2_x  = 3;   // 2nd grommet: Power strip 1's line, exiting the rear pantry's under-deck run
 gr2_z  = 5.5; // stacked above the DC grommet — the two lines run the same driver-side channel
 
 module label(txt, x, y, size = 1.2, halign = "center") {

@@ -4,7 +4,7 @@
 // Panel C's deck: a 2x2 array of "like-it" modular drawers on the
 // driver side + a pot/pan bay + relocated power on the passenger
 // side, with the cleat-pocket + strap hold-down. Replaces the old
-// plywood headboard/pantry (Component 1).
+// plywood pantry (Component 1).
 //
 // Render with: openscad -o renders/rear-pantry-detail.svg rear_pantry_detail.scad
 // ============================================================
@@ -67,7 +67,7 @@ module drawing() {
     color("GreenYellow") translate([bx0 + 15.5, 5]) rect_outline(3.5, 1.6, 0.15);
     label("Power strip 1", bx0 + 15.5, 3.6, 0.85);
     label("ROLL bubble level", bx0 + 17.2, 7, 0.85);
-    label("(both relocated here — the bed cubby is gone)", bx0 + 10, 12.5, 0.9);
+    label("(deck-edge mount — reach + read them from the bed)", bx0 + 10, 12.5, 0.9);
     // wiring along the back edge
     color("DimGray") for (i = [0:6]) translate([bx0 + 1 + i*2.4, ch - 1]) square([1.4, 0.4]);
     label("12V + wiring routed along the back edge", bx0 + bw/2, ch - 2.4, 0.85);

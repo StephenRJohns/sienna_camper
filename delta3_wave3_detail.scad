@@ -29,7 +29,7 @@
 // fore-aft (0 = toward Panel C/the tailgate, where the power cord
 // exits toward the WAVE3's charge cable; drawer_clear_depth = toward
 // the front seats — Panel A is now the frontmost sleeping panel,
-// there's no headboard between it and the front seats anymore).
+// there's nothing between it and the front seats anymore).
 //
 // SECTION 2 COORDINATE SYSTEM: origin at the left bay's inner
 // (divider-side) bottom-back corner — same reference frame as

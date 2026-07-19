@@ -54,19 +54,18 @@ module side_view() {
     z_pads     = z_rail_top;                                    // platform sits DIRECTLY on the box rails now
     z_plat_top = z_pads + bed_frame_thickness;                  // 20.5 — bed platform's sleeping surface
     z_matt_top = z_plat_top + mattress_total_thickness;         // 27.5 — mattress top
-    z_hb_top   = z_deck + headboard_height;                     // 41.25 — headboard/pantry top
-    z_shelf    = z_deck + headboard_personal_shelf_z;           // 40.25 — personal shelf surface
+    z_pan_top  = z_deck + pantry_cluster_h;                     // 37.85 — rear-pantry cluster top
 
     y_panel_a = 0;
     y_panel_b = y_panel_a + panel_a_length;
     y_panel_c = y_panel_b + panel_b_length;
-    y_headboard = y_panel_c + panel_c_length - headboard_length;
+    y_pantry = y_panel_c + panel_c_length - pantry_len;
 
     // ---- van envelope: floor + ceiling, hard max ----
     rect_outline(van_interior_length, van_interior_height);
     translate([0, -stroke]) square([van_interior_length, stroke]); // ground line
     label("VAN FLOOR", van_interior_length/2, -2.4, 1.6);
-    label(str("CEILING — ", van_interior_height, "\" interior height (hard max; curves down toward the walls — verify at the headboard's corners)"),
+    label(str("CEILING — ", van_interior_height, "\" interior height (hard max; curves down toward the walls)"),
           van_interior_length/2, van_interior_height + 2.4, 1.6);
 
     // ---- panel boxes: legs at both ends + rail line; Panel C also
@@ -99,25 +98,25 @@ module side_view() {
     label(str("Mattress ", mattress_length, "\" x ", mattress_total_thickness, "\" thick — top at ", z_matt_top, "\""),
           mattress_length/2, z_plat_top + mattress_total_thickness/2, 1.8);
 
-    // ---- headboard/pantry on Panel C's deck ----
-    translate([y_headboard, z_deck]) rect_outline(headboard_length, headboard_height);
-    label("Headboard/", y_headboard + headboard_length/2, z_deck + headboard_height - 4, 1.5);
-    label("pantry", y_headboard + headboard_length/2, z_deck + headboard_height - 6.5, 1.5);
-    label(str(headboard_height, "\" tall"), y_headboard + headboard_length/2, z_deck + headboard_height - 9, 1.3);
-    // personal shelf tick, mattress side
-    translate([y_headboard, z_shelf]) square([headboard_shelf_depth + 1, stroke * 1.5]);
+    // ---- rear pantry (prefab 2x2 drawer cluster) on Panel C's deck ----
+    translate([y_pantry, z_deck]) rect_outline(pantry_unit_d, pantry_cluster_h);
+    // seam between the two stacked drawer rows
+    translate([y_pantry, z_deck + pantry_unit_h]) square([pantry_unit_d, stroke]);
+    label("Rear", y_pantry + pantry_unit_d/2, z_deck + pantry_cluster_h - 3, 1.4);
+    label("pantry", y_pantry + pantry_unit_d/2, z_deck + pantry_cluster_h - 5.3, 1.4);
+    label("(prefab)", y_pantry + pantry_unit_d/2, z_deck + pantry_cluster_h - 7.6, 1.1);
 
     // ---- right-margin vertical dimension callouts ----
     dx = van_interior_length + 3;
     dim_v(dx, 0, z_rail_top, str("box: ", z_rail_top, "\" (16\" legs + 1\" leveling feet + 1.5\" rail)"), 1.3);
     dim_v(dx, z_rail_top, z_matt_top, str("+3/4\" platform +", mattress_total_thickness, "\" mattress = ", z_matt_top, "\""), 1.3);
     dim_v(dx, z_matt_top, van_interior_height, str("sitting headroom: ", van_interior_height - z_matt_top, "\""), 1.3);
-    dim_v(dx + 34, z_deck, z_hb_top, str("headboard: ", headboard_height, "\" (top at ", z_hb_top, "\")"), 1.3);
-    dim_v(dx + 34, z_hb_top, van_interior_height, str("to ceiling: ", van_interior_height - z_hb_top, "\""), 1.3);
+    dim_v(dx + 34, z_deck, z_pan_top, str("pantry cluster: ", pantry_cluster_h, "\" (top at ", z_pan_top, "\")"), 1.3);
+    dim_v(dx + 34, z_pan_top, van_interior_height, str("to ceiling: ", van_interior_height - z_pan_top, "\""), 1.3);
 
-    // shelf-headroom note, under the drawing
-    label(str("personal shelf surface at ", z_shelf + panel_thickness, "\" -> ", van_interior_height - z_shelf - panel_thickness,
-              "\" of headroom for items on it | mattress top to shelf: ", z_shelf - z_matt_top, "\""),
+    // pantry note, under the drawing
+    label(str("rear-pantry cluster top at ", z_pan_top, "\" -> ", van_interior_height - z_pan_top,
+              "\" of roof clearance | Power strip 1 + ROLL level on the deck edge beside it"),
           van_interior_length/2, -5.5, 1.5);
     label("FRONT SEATS at left — TAILGATE at right. Every height above is computed from params.scad, not sketched.",
           van_interior_length/2, -8.5, 1.4);

@@ -38,14 +38,13 @@ module drawing() {
     z_deck     = z_rail_top + panel_thickness;
     z_plat_top = z_rail_top + bed_frame_thickness;
     z_matt_top = z_plat_top + mattress_total_thickness;
-    z_hb_top   = z_deck + headboard_height;
 
     // In THIS elevation Y increases left->right. Tailgate at RIGHT,
     // front seats at LEFT, matching side_view.scad.
     y_a = 0;
     y_b = y_a + panel_a_length;
     y_c = y_b + panel_b_length;
-    y_hb = y_c + panel_c_length - headboard_length;
+    y_pan = y_c + panel_c_length - pantry_len;
 
     // van envelope + floor/ceiling
     rect_outline(van_interior_length, van_interior_height);
@@ -118,13 +117,14 @@ module drawing() {
         label("kitchen drawer", ky + kitchen_box_length/2, kdrawer_z0 + kdrawer_box_h/2, 0.85);
     }
 
-    // bed platform + mattress + headboard (shared stack, both sides)
+    // bed platform + mattress + rear pantry (shared stack, both sides)
     translate([y_a, z_rail_top]) rect_outline(bed_frame_length, bed_frame_thickness);
     translate([y_a, z_plat_top]) rect_outline(mattress_length, mattress_total_thickness);
     label(str("Mattress (top at ", z_matt_top, "\")"), mattress_length/2, z_plat_top + mattress_total_thickness/2, 1.4);
-    translate([y_hb, z_deck]) rect_outline(headboard_length, headboard_height);
-    label("Head-", y_hb + headboard_length/2, z_deck + headboard_height - 3, 1.15);
-    label("board", y_hb + headboard_length/2, z_deck + headboard_height - 5, 1.15);
+    translate([y_pan, z_deck]) rect_outline(pantry_unit_d, pantry_cluster_h);
+    translate([y_pan, z_deck + pantry_unit_h]) square([pantry_unit_d, stroke]);
+    label("Pan-", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 3, 1.15);
+    label("try", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 5, 1.15);
 
     label(str(is_driver ? "DRIVER" : "PASSENGER", " SIDE — looking in from this door.  FRONT SEATS at left, TAILGATE at right."),
           van_interior_length/2, -5.6, 1.5);

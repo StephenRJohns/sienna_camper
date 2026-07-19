@@ -164,7 +164,7 @@ module drawing() {
     // Platform assembly, to scale, inside the cargo envelope. ONE
     // continuous deck now (Panels A/B/C, all the same height) — the
     // fridge and kitchen unit live INSIDE Panel C's void, hidden below
-    // deck level, not a separate taller module. The headboard/pantry
+    // deck level, not a separate taller module. The rear pantry
     // is no longer its own module at the front — it's mounted ON TOP
     // of Panel C's deck at the tailgate end (see below).
     // -------------------------------------------------------
@@ -191,18 +191,18 @@ module drawing() {
         for (i = [0 : 2 : panel_c_length])
             translate([i, 0]) square([min(1, panel_c_length - i), stroke]);
 
-    // headboard/pantry: mounted ON Panel C's deck, at the tailgate end
-    // (the last headboard_length of Panel C's own length) — rises
+    // rear pantry (prefab drawer cluster): ON Panel C's deck, at the
+    // tailgate end (the last pantry_len of Panel C's own length) — rises
     // above deck level, relocated from the front
-    headboard_x0 = panels_x0 + panels_total_length - headboard_length;
-    color("Gray") translate([headboard_x0, floor_z])
+    pantry_x0 = panels_x0 + panels_total_length - pantry_len;
+    color("Gray") translate([pantry_x0, floor_z])
         difference() {
-            square([headboard_length, panel_module_height + headboard_height]);
-            translate([stroke, stroke]) square([headboard_length - 2*stroke, panel_module_height + headboard_height - 2*stroke]);
+            square([pantry_len, panel_module_height + pantry_cluster_h]);
+            translate([stroke, stroke]) square([pantry_len - 2*stroke, panel_module_height + pantry_cluster_h - 2*stroke]);
         }
 
     // mattress, true thickness, on the adjuster+platform stack —
-    // spans the 80in sleeping run (the headboard/pantry takes the rest)
+    // spans the 80in sleeping run (the rear pantry takes the rest)
     matt_z0 = floor_z + leg_height + frame_rail_sz + bed_platform_stack;
     matt_z1 = matt_z0 + mattress_total_thickness;
     color("Gray") translate([panels_x0, matt_z0])
@@ -229,9 +229,9 @@ module drawing() {
 
     color("black") translate([panels_x0 + panels_total_length/2, floor_z + 9])
         text("Panels A / B / C (boxes on the floor; full untrimmed queen mattress above)", size = 1.8, halign = "center", valign = "center");
-    color("black") translate([headboard_x0 + headboard_length/2, floor_z + panel_module_height + headboard_height + 3])
-        text("Headboard/pantry", size = 1.6, halign = "center", valign = "center");
-    color("black") translate([headboard_x0 + headboard_length/2, floor_z + panel_module_height + headboard_height + 1])
+    color("black") translate([pantry_x0 + pantry_len/2, floor_z + panel_module_height + pantry_cluster_h + 3])
+        text("Rear pantry (prefab)", size = 1.6, halign = "center", valign = "center");
+    color("black") translate([pantry_x0 + pantry_len/2, floor_z + panel_module_height + pantry_cluster_h + 1])
         text("(on Panel C's deck)", size = 1.3, halign = "center", valign = "center");
     color("black") translate([panels_x0 + panel_a_length + panel_b_length + panel_c_length/2, floor_z - 3])
         text("Fridge + kitchen unit hidden inside Panel C", size = 1.5, halign = "center", valign = "center");

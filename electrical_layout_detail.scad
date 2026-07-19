@@ -155,22 +155,22 @@ module section1() {
     label("FRIDGE", fr_x0 + fridge_ext_length/2, y_bc + fridge_ext_width/2, 1.1);
     label("cabinet", 19.5, y_tg - 6.5, 0.9);
 
-    // Headboard/pantry footprint: mounted ON Panel C's deck, at the
-    // tailgate end (last headboard_length of Panel C's own length) —
+    // Rear-pantry footprint: the prefab drawer cluster ON Panel C's
+    // deck, at the tailgate end (last pantry_len of Panel C's own length) —
     // shares the same X-Y footprint as the fridge/kitchen/cabinet
     // above (different Z height), drawn as a distinguishing outline
-    hb_y0 = y_tg - headboard_length;
-    color("DarkGray") rect_outline(W, headboard_length, 0.15);
-    translate([0, hb_y0]) color("DarkGray") square([W, 0.15]); // divider line at the headboard's front edge
-    label("HEADBOARD/PANTRY (on Panel C's deck, above)", W/2, y_tg - headboard_length - 2.2, 1.0);
+    hb_y0 = y_tg - pantry_len;
+    color("DarkGray") rect_outline(W, pantry_len, 0.15);
+    translate([0, hb_y0]) color("DarkGray") square([W, 0.15]); // divider line at the pantry's front edge
+    label("REAR PANTRY — prefab drawers (on Panel C's deck, above)", W/2, y_tg - pantry_len - 2.2, 1.0);
 
-    // 1: Power strip 1 — now mounted in the headboard's BED CUBBY
+    // 1: Power strip 1 — on the deck edge in the pantry's open bay
     // (the enclosed middle-band nook), at its mattress-facing edge
-    // (hb_y0), NOT Panel A — see headboard-storage-detail
+    // (hb_y0), NOT Panel A — see the Rear Pantry render
     translate([8, hb_y0 + 1.5]) strip_icon(4);
     marker(1, 8, hb_y0 + 4);
 
-    // 2+3: Power strip 1's OWN dedicated cord run — the headboard is
+    // 2+3: Power strip 1's OWN dedicated cord run — the pantry is
     // now at the TAILGATE end, not the front, so this cord runs the
     // long way down to the console, crossing BOTH remaining seams
     // (Panel C -> B -> A) just like the cooktop and fridge DC lines.
@@ -312,8 +312,8 @@ module section3() {
 // ---- legend (Section 1's numbered markers) ----------------------
 module legend() {
     items = [
-        "Power strip 1 — in the headboard's bed cubby (phone/light/Claymore fan)",
-        "Power strip 1's OWN dedicated cord — headboard/pantry (Panel C's tailgate end) down to the front console",
+        "Power strip 1 — on the rear-pantry deck edge (phone/light/Claymore fan)",
+        "Power strip 1's OWN dedicated cord — rear pantry (Panel C's tailgate end) down to the front console",
         "Inline connector pairs — Power strip 1's line, one at each of the 2 seams it now crosses (C->B, B->A)",
         "Cooktop cord run — 16AWG SAE cable, along the right frame rail, its own dedicated line",
         "SAE quick-disconnects — cooktop line, one at each seam it crosses",

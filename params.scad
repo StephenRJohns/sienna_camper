@@ -54,80 +54,29 @@ gate_opening_width  = 48; // UNVERIFIED — widest point of the liftgate opening
 gate_opening_height = 36; // UNVERIFIED — upper corners are heavily rounded, reducing
                           // effective clearance near the edges; treat this as optimistic
 
-/* [Headboard/pantry — NO LONGER its own lift-out module. It's a
-   shelving superstructure, CAM-LEVER clamped directly onto Panel
-   C's existing fixed deck (tool-free), occupying the LAST
-   headboard_length (14in) of Panel C's own length — the end flush to
-   the tailgate, right next to the kitchen/fridge void underneath.
+/* [Rear pantry — PREFAB drawer cluster (owner, July 2026). The custom
+   plywood headboard/pantry is GONE, replaced by BOUGHT storage: a
+   2-wide x 2-high array of "like-it" Modular Shallow Drawers (The
+   Container Store) sitting on the tailgate end of Panel C's deck, in
+   the same last-pantry_len footprint (so the 80in sleeping run is
+   unchanged), plus a rigid ~11in pot/pan bin in the leftover open
+   deck bay beside it. NOTHING is built or clamped: a cleat pocket
+   (cab side + both sides, tailgate side open) plus ONE cam-buckle
+   strap across the drawer fronts hold it — the strap doubles as the
+   keep-the-drawers-shut retainer, and each unit lifts straight out
+   (~3.2 lb each, trivially clears the liftgate). Power strip 1 and
+   the ROLL bubble level relocate to the deck edge in the open bay.
    Layout, tailgate to front seats: Kitchen (Panel C's fridge/kitchen
-   void) -> this shelving -> Bed (rest of Panel C + Panel B + Panel A)
-   -> front seats. CURRENT LAYOUT (see the markdown + elevation
-   renders for the full story): 2 fixed full-depth shelves + 1
-   adjustable shelf on pins make full-width food tiers held by fiddle
-   lips + lash straps; the personal area is an ENCLOSED bed cubby in
-   the middle tier (not a single open shelf). No separate frame/legs/
-   floor contact of its own — it rides entirely on Panel C's structure.
-   headboard_length used to be just 8in (the leftover open floor at
-   the front, once the headboard stopped needing its own module) —
-   Panel A now moves flush to the front seatbacks instead (see
-   panel_a_y0 below) so that 8in of previously-wasted floor gets used:
-   2in restores the full 80in sleeping run (the HEST Dually Long mattress is 78in), and the
-   remaining 6in adds to this shelving's own depth. ]
-   WORTH VERIFYING: this 22in-tall structure sits right at the
-   tailgate opening — confirm it doesn't interfere with the tailgate's
-   own swing-up clearance or with reaching the fridge/kitchen as they
-   slide out (Section 0). */
-headboard_length = 14;  // Y depth — how much of Panel C's own length this consumes
-headboard_width  = 46;  // matches panel_width
-headboard_height = 22;  // above Panel C's deck level — as tall as the roof allows (see assert below)
-                        // was 14; the extra height is all storage volume, split
-                        // front/back by headboard_food_depth below
-
-// depth split: kitchen-facing (food) compartment vs. mattress-facing
-// (personal-item) compartment, separated by one full-height divider
-// panel_thickness thick. The personal shelf is a fixed, deliberately
-// shallow depth (just enough for a phone/glasses case) — all of the
-// extra depth headboard_length gained (6in, see above) goes to the
-// food side instead, since that's the actual pantry storage. See
-// headboard_food_depth below (after panel_thickness is defined) for
-// the derived food-compartment depth.
-headboard_shelf_depth = 2.75;     // clear depth, mattress-facing personal NOOK in the top tier — fixed, not derived
-headboard_food_shelf_count = 2;   // FULL-DEPTH shelf boards -> 3 full-width tiers (owner's July 2026 pattern: no full-height divider, no top; only a short nook divider in the top tier)
-
-// Bottom-bay ADJUSTABLE shelf (owner, July 2026): the 13in bottom
-// tier is deep enough for tall bottles/boxes/pots but wastes air
-// above short items, so it gets ONE extra full-depth shelf on pins —
-// run the bay as a single 13in bay OR split it into two ~6in tiers
-// per trip. Pin-hole columns up both side panels let the board sit
-// anywhere between headboard_pin_lo and headboard_pin_hi.
-headboard_adj_shelf   = true;
-headboard_adj_shelf_z = 6.5;  // default board position (splits the bottom bay ~6.5in / ~5.75in)
-headboard_pin_lo      = 3;    // lowest pin hole above the deck
-headboard_pin_hi      = 11;   // highest pin hole below the bed shelf
-headboard_pin_step    = 1;    // pin-hole spacing (5mm shelf-pin holes)
-
-// RETENTION (owner, July 2026): plain bungee nets don't hold rigid
-// camp-kitchen items (plates, cans, bottles, utensils) under braking
-// — they slide, rattle, and load the screw-eyes. Switched to the
-// marine-galley system: a FRONT FIDDLE LIP on each food shelf
-// (primary retention — stops the forward slide under braking) + an
-// elastic lash strap across each opening (for the taller items) +
-// bins for small/loose items + non-slip liner. A net stays only on
-// the one soft-goods tier (bread/chips/produce).
-headboard_fiddle_lip_h = 1.5;  // front-lip height on each food shelf
-
-// WEIGHT SWAP (owner, July 2026): the headboard shelving is the heaviest
-// single lift-off piece (~54lb at 3/4in), so its FIXED full-depth shelves
-// and side panels drop to 1/2in birch — the biggest single weight saving
-// in the build (~12lb off that one piece). The 46in-wide shelves keep their
-// front FIDDLE LIP as a stiffening flange (add a shallow rear rail too) so
-// 1/2in won't sag under canned goods; add one center support post if you
-// load it heavy. The base cleats stay 3/4in — they take the cam-lever
-// clamp pull-out load. NOTE: the elevation renders still draw the shelving
-// at deck thickness for clarity — the 1/4in reduction isn't visible at
-// line-art scale; the Section 3 cut list is the authoritative build spec.
-headboard_shelf_t = 0.5;   // fixed full-depth shelves, was 3/4in
-headboard_side_t  = 0.5;   // side panels, was 3/4in (compression load, not bending)
+   void, below deck) -> this cluster (on the deck) -> Bed -> front
+   seats. */
+pantry_len       = 14;    // Y footprint reserved on Panel C's deck (the cluster itself is 13.75 deep)
+pantry_unit_w    = 13.5;  // one like-it drawer unit — X (width)
+pantry_unit_d    = 13.75; // Y (depth)
+pantry_unit_h    = 9.3;   // Z (height)
+pantry_cluster_w = 2 * pantry_unit_w; // 27 — 2 units wide, against the driver edge
+pantry_cluster_h = 2 * pantry_unit_h; // 18.6 — 2 units high (top at deck + 18.6 = 37.85, ~6in of roof clearance)
+pantry_bay_w     = 46 - pantry_cluster_w; // 19 — open deck bay, passenger side (pot bin + relocated power)
+pantry_pot_bin   = 11;    // rigid pot/pan bin footprint in the bay (~11x11)
 
 /* [Panels A/B/C — fixed tops, one continuous full-length deck] */
 // The deck is now ONE continuous raised platform on uniform legs —
@@ -139,22 +88,21 @@ headboard_side_t  = 0.5;   // side panels, was 3/4in (compression load, not bend
 // panels_total_length is 94" — Panel A now sits flush with the front
 // seatbacks (panel_a_y0 = 0, below) instead of leaving 8" of open
 // floor in front of it, so the 3 panels fill the entire usable_length
-// with nothing left over. The headboard/pantry still doesn't add its
-// own separate length; it rides on the LAST headboard_length (14")
+// with nothing left over. The rear pantry (prefab drawer cluster)
+// doesn't add its own separate length; it rides on the LAST pantry_len (14")
 // of Panel C's own 36", so the sleeping run available for the
-// mattress is panels_total_length - headboard_length = 80" — a full,
+// mattress is panels_total_length - pantry_len = 80" — a full,
 // 80in sleeping run — the HEST Dually Long mattress (78in) leaves ~2in of spare.
 panel_a_length   = 29;
 panel_b_length   = 29;
-panel_c_length   = 36; // holds the fridge + kitchen unit underneath, AND the headboard/pantry (last 14in) on top
+panel_c_length   = 36; // holds the fridge + kitchen unit underneath, AND the rear-pantry drawer cluster (last 14in) on top
 panel_width      = 46;  // deck width — see leg_inset for floor-level clearance
 panel_thickness  = 0.75; // 3/4" Baltic birch (Section 3)
-headboard_food_depth = headboard_length - headboard_shelf_depth - panel_thickness; // 10.5 — clear depth of the TOP tier's kitchen-facing side, behind the nook divider (the middle/bottom tiers are FULL depth now — no divider down there)
 // Mattress: bought HEST Dually Long (hest.com) — 78 x 50 x 4in solid
 // foam (memory-foam top over polyfoam, NO air chambers), washable
 // waterproof cover included. 25in of width per person on the 52in
 // cantilevered platform; the 2in of spare length sits at the head
-// end under the headboard shelf. BUDGET FALLBACK (Section 4/6): the
+// end at the rear-pantry cluster. BUDGET FALLBACK (Section 4/6): the
 // old DIY foam build — queen 60x80 blanks cut to 50x78, using the
 // foam_* layer params below (they only drive the fallback's step
 // diagrams now, steps/mattress_lego.scad).
@@ -165,14 +113,6 @@ foam_base_t    = 4;    // DIY FALLBACK: firm polyurethane base layer
 foam_mid_t     = 0;    // DIY FALLBACK: egg-crate layer DROPPED (thickness parity with the HEST)
 foam_topper_t  = 1.5;  // DIY FALLBACK: memory-foam topper
 mattress_total_thickness = 4; // HEST Dually Long thickness (DIY fallback: 4in base + 1.5in topper = 5.5, ~1.5in less headroom)
-
-// The ONE personal shelf sits 1ft above the mattress TOP (not the
-// deck) — a comfortable reach while lying on your back. Measured, per
-// the existing convention, as height above the shelving-compartment
-// floor (= Panel C's deck surface). The mattress base now sits a full
-// platform stack above that deck: adjuster pads (nominal 1in) + the
-// bed platform itself — see bed_platform_stack, defined after the
-// adjuster/platform sections below (OpenSCAD needs those first).
 
 // Component 2: the one-piece slatted bed platform. Stack order,
 // bottom to top: the panel boxes sit on the van floor on their
@@ -275,9 +215,8 @@ bed_platform_stack = bed_frame_thickness; // 0.75in
 // the nook divider spans the middle tier from the bed shelf up to the
 // upper shelf, so the cubby has a floor, a back wall, and a ceiling —
 // open only toward the mattress.
-headboard_personal_shelf_z = bed_platform_stack + mattress_total_thickness + 9 - panel_thickness; // 13.0 — bed-shelf board; SURFACE at 13.75 = 9in above the mattress top
-headboard_upper_shelf_z    = 18;  // upper food shelf — makes the top tier (18.75..22) and forms the bed cubby's ceiling; the bottom tier (0..13) is one tall open compartment
-headboard_nook_divider_h = headboard_upper_shelf_z - (headboard_personal_shelf_z + panel_thickness); // 4.25 — divider fills the middle tier, bed-shelf top to upper-shelf underside (enclosed cubby)
+// (The plywood pantry's bed-shelf/cubby geometry is gone with the prefab
+// swap — Power strip 1 + the ROLL level live on the deck edge instead.)
 
 /* [Side door opening — UNVERIFIED, confirm by physical measurement] */
 // Same status as the gate opening numbers below: a typical 4th-gen
@@ -571,16 +510,16 @@ wave3_exhaust_hose_dia = 5; // in
 // Derived values
 // ------------------------------------------------------------
 panels_total_length   = panel_a_length + panel_b_length + panel_c_length; // 94
-// The headboard/pantry no longer occupies its own separate slot — it
+// The rear pantry no longer occupies its own separate slot — it
 // rides on Panel C's own deck — so the assembly's real length is just
 // the 3 panels. With Panel A flush to the front seatbacks (panel_a_y0
 // = 0, below), this now fills usable_length(94) exactly — no leftover
 // open floor anywhere.
 assembly_total_length = panels_total_length; // 94 — must be <= usable_length (94)
 // bed_length is what's actually available for the mattress: Panel C's
-// own length minus the headboard/pantry's 14in bite out of its
+// own length minus the rear pantry's 14in bite out of its
 // tailgate end, plus all of Panel B and Panel A.
-bed_length = panels_total_length - headboard_length; // 80
+bed_length = panels_total_length - pantry_len; // 80
 rear_row_width = fridge_module_width + kitchen_box_width; // just for reference/BOM text — the two don't need to touch, see the gap check below
 
 // Kitchen unit on Panel C's RIGHT (passenger) side — its shelves
@@ -603,7 +542,7 @@ x_control_panel = (x_fridge_module + fridge_ext_length/2 + fridge_slide_margin
 // since it's up on legs, clear of the floor-level vent intrusion —
 // only the legs themselves need to stay inset; see leg_inset above)
 platform_width  = panel_width;
-platform_length = panels_total_length; // full sleeping-deck length, headboard excluded
+platform_length = panels_total_length; // full sleeping-deck length, pantry excluded
 
 // Total height of each module standing on its own legs — this is
 // what has to clear the liftgate opening height when carrying a
@@ -658,7 +597,7 @@ assert(fridge_ext_height <= leg_height,
            "in — it won't fit under the deck"));
 assert(mattress_length <= bed_length,
        str("Mattress (", mattress_length, "in) is longer than the ", bed_length,
-           "in sleeping run (Panel C minus the headboard/pantry's 14in, plus Panels B and A)"));
+           "in sleeping run (Panel C minus the rear pantry's 14in, plus Panels B and A)"));
 assert(drawer_height >= 4,
        str("Drawer box is only ", drawer_height, "in tall — raise leg_height or trim frame_rail_sz"));
 assert(drawer_depth >= 10,
@@ -697,7 +636,7 @@ assert(wave3_height <= drawer_height,
 // ------------------------------------------------------------
 door_y0 = side_door_y0;
 door_y1 = side_door_y0 + side_door_opening_width;
-// Panel A sits flush with the front seatbacks (Y=0) — the headboard
+// Panel A sits flush with the front seatbacks (Y=0) — the rear pantry
 // doesn't need its own slot here anymore (it's on Panel C now), and
 // rather than leave that 8in as unused open floor, Panel A moved up
 // to close the gap and the 3 panels grew to fill usable_length(94)
@@ -748,16 +687,13 @@ assert(panel_module_height <= gate_opening_height,
 // purposes, lifting off Panel C's deck on its own so its own height
 // (not the combined Panel-C-plus-shelving height) has to clear the
 // gate opening.
-assert(headboard_height <= gate_opening_height,
-       str("Headboard/pantry shelving unit is ", headboard_height, "in tall but the gate opening is only ",
-           gate_opening_height, "in — it must clear the gate on its own, separate from Panel C"));
-assert(panel_module_height + headboard_height <= van_interior_height,
-       str("Installed headboard/pantry reaches ", panel_module_height + headboard_height,
+// Rear pantry (prefab drawer cluster): each unit is tiny vs. the gate,
+// so the only real checks are roof clearance and the deck footprint.
+assert(panel_module_height + pantry_cluster_h <= van_interior_height,
+       str("Installed pantry cluster reaches ", panel_module_height + pantry_cluster_h,
            "in above the floor but the cabin is only ", van_interior_height, "in tall"));
-assert(headboard_shelf_depth >= 1.5,
-       str("Personal shelf is only ", headboard_shelf_depth, "in deep — too shallow for a phone/glasses case"));
-assert(headboard_upper_shelf_z + panel_thickness <= headboard_height,
-       str("Upper food shelf sits ", headboard_upper_shelf_z, "in up, but the shelving unit is only ",
-           headboard_height, "in tall — raise headboard_height or lower the shelves"));
-assert(headboard_upper_shelf_z > headboard_personal_shelf_z + panel_thickness,
-       "Upper shelf must sit above the bed shelf with the nook cubby between them");
+assert(pantry_unit_d <= pantry_len,
+       str("like-it drawer unit is ", pantry_unit_d, "in deep but only ", pantry_len,
+           "in of Panel C's deck is reserved for the pantry"));
+assert(pantry_pot_bin <= pantry_bay_w,
+       str("Pot bin (", pantry_pot_bin, "in) is wider than the open deck bay (", pantry_bay_w, "in)"));

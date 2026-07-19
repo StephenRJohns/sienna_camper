@@ -67,13 +67,17 @@ module deployed() {
     }
     label(str("Panel C deck (", panel_width, "\" wide)"), -panel_width/2 + 9, z_deck - 1.5, 1.1);
 
-    // headboard/pantry on the deck (context outline)
+    // rear pantry on the deck (context outline): 2x2 drawer cluster + pot bin
+    px0 = -panel_width/2;
     color("DarkGray") {
-        translate([-headboard_width/2, z_deck + panel_thickness]) rect_outline(headboard_width, headboard_height, 0.25);
-        for (sz = [headboard_upper_shelf_z, headboard_personal_shelf_z])
-            translate([-headboard_width/2 + 1, z_deck + panel_thickness + sz]) square([headboard_width - 2, 0.18]);
+        translate([px0, z_deck + panel_thickness]) rect_outline(pantry_cluster_w, pantry_cluster_h, 0.25);
+        for (c = [0, 1]) for (r = [0, 1])
+            translate([px0 + c*pantry_unit_w + 0.6, z_deck + panel_thickness + r*pantry_unit_h + 0.6])
+                rect_outline(pantry_unit_w - 1.2, pantry_unit_h - 1.2, 0.18);
+        translate([px0 + pantry_cluster_w + 1.5, z_deck + panel_thickness])
+            rect_outline(pantry_pot_bin, pantry_pot_bin, 0.2);
     }
-    label("Headboard/pantry (stays put)", 0, z_deck + panel_thickness + headboard_height + 1.6, 1.3);
+    label("Rear pantry: prefab drawer cluster + pot bin (stays put)", 0, z_deck + panel_thickness + pantry_cluster_h + 2.2, 1.3);
 
     // the now-EMPTY under-deck bays the appliances slid out of
     color("LightGray") {

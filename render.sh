@@ -48,10 +48,6 @@ openscad -o renders/side-driver.png $IMG $FLAT_CAM -D 'side="driver"' view_side.
 openscad -o renders/side-passenger.svg -D 'side="passenger"' view_side.scad
 openscad -o renders/side-passenger.png $IMG $FLAT_CAM -D 'side="passenger"' view_side.scad
 
-echo "Rendering headboard front (mattress-facing)..."
-openscad -o renders/headboard-front.svg view_headboard_front.scad
-openscad -o renders/headboard-front.png --imgsize=3000,2200 $FLAT_CAM view_headboard_front.scad
-
 echo "Rendering fridge install detail (top-down)..."
 openscad -o renders/fridge-install-detail.svg fridge_install_detail.scad
 openscad -o renders/fridge-install-detail.png $IMG $FLAT_CAM fridge_install_detail.scad
@@ -72,22 +68,12 @@ echo "Rendering rear pantry detail (prefab drawer cluster)..."
 openscad -o renders/rear-pantry-detail.svg rear_pantry_detail.scad
 openscad -o renders/rear-pantry-detail.png --imgsize=3000,2100 $FLAT_CAM rear_pantry_detail.scad
 
-# (Legacy plywood-pantry renders — superseded by the prefab swap, kept only
-# so any stray reference still resolves; not shown in the plan anymore.)
-echo "Rendering headboard storage detail (legacy)..."
-openscad -o renders/headboard-storage-detail.svg headboard_storage_detail.scad
-openscad -o renders/headboard-storage-detail.png --imgsize=3250,2500 $FLAT_CAM headboard_storage_detail.scad
-
 echo "Rendering floor panel details (A/B/C)..."
 for p in A B C; do
     lp=$(echo "$p" | tr 'A-Z' 'a-z')
     openscad -o renders/panel-$lp-detail.svg -D "panel=\"$p\"" panel_detail.scad
     openscad -o renders/panel-$lp-detail.png --imgsize=3250,2500 $FLAT_CAM -D "panel=\"$p\"" panel_detail.scad
 done
-
-echo "Rendering headboard elevations (all 4 sides)..."
-openscad -o renders/headboard-elevations.svg headboard_elevations.scad
-openscad -o renders/headboard-elevations.png --imgsize=3400,2500 $FLAT_CAM headboard_elevations.scad
 
 echo "Rendering cabinet door detail..."
 openscad -o renders/cabinet-door-detail.svg cabinet_door_detail.scad
@@ -100,10 +86,6 @@ openscad -o renders/leveling-foot-detail.png --imgsize=3250,2150 --camera=0,0,0,
 echo "Rendering bed frame detail..."
 openscad -o renders/bed-frame-detail.svg bed_frame_detail.scad
 openscad -o renders/bed-frame-detail.png --imgsize=3250,2150 $FLAT_CAM bed_frame_detail.scad
-
-echo "Rendering sway brace detail..."
-openscad -o renders/sway-brace-detail.svg sway_brace_detail.scad
-openscad -o renders/sway-brace-detail.png --imgsize=3250,2150 $FLAT_CAM sway_brace_detail.scad
 
 echo "Rendering kitchen drawer detail..."
 openscad -o renders/kitchen-drawer-detail.svg kitchen_drawer_detail.scad
@@ -184,7 +166,6 @@ for s in 2 3; do
             $IMG $FLAT_CAM -D "step=${s}" -D "view=\"${v}\"" -D 'panel="A"' steps/panel_ab_lego.scad
     done
 done
-lego_steps headboard_lego.scad hb 4
 lego_steps panel_c_lego.scad pc 2
 lego_steps mattress_lego.scad mat 2
 

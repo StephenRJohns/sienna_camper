@@ -2,7 +2,7 @@
 // perimeter rail (2 long rails + 2 end rails) + 4 legs, sized to
 // that module's own footprint. Same construction for Panels A/B/C
 // (Panel C's frame just has fridge/kitchen living in its void
-// instead of drawers — see Step 4/Section 1). The headboard/pantry
+// instead of drawers — see Step 4/Section 1). The rear pantry
 // is NOT its own module anymore — it mounts directly onto Panel C's
 // already-built deck (Component 4/1), no separate frame of its own.
 // The fridge and kitchen unit are bought products with no frame of
@@ -98,7 +98,7 @@ module assembled_section() {
 module drawing() {
     parts_kit();
     assembled_section();
-    label("Same frame on Panel A/B/C — fridge/kitchen unit are bought products, no frame; headboard/pantry mounts on Panel C's deck (no frame of its own)", 0, -108, 1.6);
+    label("Same frame on Panel A/B/C — fridge/kitchen unit are bought products, no frame; the rear-pantry drawer cluster just sits on Panel C's deck", 0, -108, 1.6);
 }
 
 color("black") drawing();

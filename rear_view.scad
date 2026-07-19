@@ -78,24 +78,25 @@ module rear_view() {
     }
     label(str("Panel C deck (", panel_width, "\" x ", z_deck + panel_thickness, "\" high)"), -panel_width/2 + 10, z_deck - 1.4, 1.2);
 
-    // ---- headboard/pantry, mounted ON the deck — from the open
-    // tailgate you're looking straight at its FOOD side (the netted
-    // tiers face the kitchen/tailgate). Thin outline + shelf lines so
-    // the control-panel/CO labels behind it stay readable; the full
-    // dimensioned story lives in headboard_elevations.scad. ----
+    // ---- rear pantry, ON the deck — from the open tailgate you're
+    // looking straight at the 2x2 prefab drawer cluster's drawer
+    // faces (driver side) + the open pot-bin bay (passenger side).
+    // The full dimensioned story lives in rear_pantry_detail.scad. ----
+    px0 = -panel_width/2;  // cluster sits against the driver edge
     color("DarkGray") {
-        translate([-headboard_width/2, z_deck + panel_thickness])
-            rect_outline(headboard_width, headboard_height, 0.25);
-        for (sz = [headboard_upper_shelf_z, headboard_personal_shelf_z])
-            translate([-headboard_width/2 + 1, z_deck + panel_thickness + sz])
-                square([headboard_width - 2, 0.18]);
-        // adjustable shelf (dashed) in the bottom bay
-        for (dx = [0 : 3 : headboard_width - 4])
-            translate([-headboard_width/2 + 1 + dx, z_deck + panel_thickness + headboard_adj_shelf_z])
-                square([1.8, 0.16]);
+        translate([px0, z_deck + panel_thickness])
+            rect_outline(pantry_cluster_w, pantry_cluster_h, 0.25);
+        // the 4 drawer faces
+        for (c = [0, 1]) for (r = [0, 1])
+            translate([px0 + c*pantry_unit_w + 0.6, z_deck + panel_thickness + r*pantry_unit_h + 0.6])
+                rect_outline(pantry_unit_w - 1.2, pantry_unit_h - 1.2, 0.18);
+        // pot bin in the open bay
+        translate([px0 + pantry_cluster_w + 1.5, z_deck + panel_thickness])
+            rect_outline(pantry_pot_bin, pantry_pot_bin, 0.2);
     }
-    label(str("Headboard/pantry (", headboard_width, "\" x ", headboard_height, "\") — food tiers face you; see Headboard Elevations"),
-          -3, z_deck + panel_thickness + headboard_height + 1.6, 1.3);
+    label(str("Rear pantry: 2x2 prefab drawer cluster (", pantry_cluster_w, "\" x ", pantry_cluster_h,
+              "\") + pot bin in the open bay — see Rear Pantry render"),
+          -3, z_deck + panel_thickness + pantry_cluster_h + 3, 1.3);
 
     // ---- kitchen unit (left), flush to Panel C's left edge ----
     color("Gainsboro")

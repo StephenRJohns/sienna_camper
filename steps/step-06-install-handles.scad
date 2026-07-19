@@ -1,5 +1,5 @@
 // Step 6: Rout a hand-hold hole through each end rail (two per
-// panel module — Panel A, Panel B, Panel C; none on the headboard/
+// panel module — Panel A, Panel B, Panel C; none on the pantry/
 // pantry, which has no frame of its own — it mounts directly on
 // Panel C's deck — and none on the fridge/kitchen unit, which are
 // bought products with no frame of their own either) — NOT

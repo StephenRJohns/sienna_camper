@@ -162,7 +162,7 @@ module alignment_pin(x, y, z, h = 0.75) {
 // Panel C KEEPS its fixed top, unlike A/B: the bed frame only
 // reaches about 22in into Panel C's own 36in length (bed_length minus
 // Panel A/B's combined 58in), leaving the last 14in for the
-// headboard/pantry's own zone — not exposed deck, but its French-
+// rear pantry's own zone — not exposed deck, but the drawer cluster's
 // cleat mounted shelving — and the fridge/kitchen void beneath needs
 // the enclosure regardless of what's resting on top of it. The bed's
 // foot end simply rests on top of Panel C's existing deck for the
@@ -472,113 +472,81 @@ module van_shell() {
 // Y offsets: Panels A/B/C as one continuous full-length sleeping
 // deck, flush against the front seatbacks (Y=0, see panel_a_y0 in
 // params.scad) — no gap between Panel A and the front seats. The
-// headboard/pantry NO LONGER has its own Y slot — it's a shelving
-// superstructure mounted on Panel C's deck (see headboard_module()
-// below). The fridge and kitchen unit live INSIDE Panel C's own void
+// the rear pantry has no Y slot of its own — it's a prefab drawer
+// cluster sitting on Panel C's deck (see pantry_module() below). The fridge and kitchen unit live INSIDE Panel C's own void
 // (see panel_module(..., has_kitchen_fridge=true)), not as a separate
 // zone.
 y_panel_a   = 0;
 y_panel_b   = panel_a_length;
 y_panel_c   = panel_a_length + panel_b_length;
 
-// front-to-back seams: just Panel A/B and Panel B/C now — the
-// headboard no longer sits between two modules of its own, so that
-// seam is gone. No seam within Panel C (fridge/kitchen/headboard
-// aren't separate lift-out modules from Panel C itself).
+// front-to-back seams: just Panel A/B and Panel B/C — no seam within
+// Panel C (fridge/kitchen/pantry aren't separate lift-out modules
+// from Panel C itself).
 seam_ys = [y_panel_b, y_panel_c];
 
-// Headboard/pantry: NO LONGER an independent lift-out module — no
-// frame, no legs, no top of its own. It's a shelving superstructure
-// French-cleat mounted directly onto Panel C's existing fixed deck,
-// occupying the LAST headboard_length (14in) of Panel C's own length —
-// the end flush to the tailgate. y_offset here is that boundary
-// (Panel C's own y_offset + panel_c_length - headboard_length): local
-// Y=0 is the mattress-facing edge (where the sleeping run picks back
-// up through Panel B and Panel A), local Y=headboard_length is the
-// actual tailgate edge (right next to the fridge/kitchen void below).
-//
-// Double-sided, split by one full-height divider at
-// Y = headboard_length - headboard_food_depth:
-//   - Y 0..(length-food_depth), facing the MATTRESS: the ONE personal
-//     shelf, at headboard_personal_shelf_z (1ft above the mattress
-//     top), with a half-round edging lip along its front (mattress-
-//     facing) edge and USB power (Power strip 1 — Section 5/6).
-//   - Y (length-food_depth)..length, facing the KITCHEN/tailgate:
-//     food storage, shelf boards create multiple tiers, no solid
-//     wall on that face — nets/bungees (Section 6) are the only
-//     retention.
-// No solid wall on either open face of the shelving itself; only the
-// 2 side panels are solid.
-module headboard_module(y_offset) {
+// Rear pantry: a PREFAB 2x2 drawer cluster (4x "like-it" Modular
+// Shallow Drawers) sitting on the tailgate end of Panel C's deck —
+// bought, not built. Held by a cleat pocket (cab side + both sides)
+// plus one cam-buckle strap across the drawer fronts; each unit lifts
+// straight out. The remaining ~19in of deck (passenger side) is the
+// open bay: a rigid pot/pan bin + the relocated Power strip 1 + ROLL
+// bubble level. y_offset here is the pantry boundary (Panel C's own
+// y_offset + panel_c_length - pantry_len): local Y=0 is the mattress-
+// facing edge, local Y=pantry_len the tailgate edge.
+module pantry_module(y_offset) {
     z = leg_height + frame_rail_sz;         // top of Panel C's frame rail
-    z_top = z + panel_thickness;            // Panel C's deck surface = shelving floor
-    wall_t = panel_thickness;
-    y_div = headboard_shelf_depth; // divider START position, measured from the mattress-facing (Y=0) end — leaves exactly headboard_shelf_depth for the personal shelf, then wall_t for the divider, then headboard_food_depth for food (sums to headboard_length)
+    z_top = z + panel_thickness;            // Panel C's deck surface
+    x0 = -panel_width/2;                    // driver edge — the cluster sits here
 
-    // bolt-down base cleats (schematic — bolt/T-nut detail in Section
-    // 6): 2 strips on the shelving unit's underside, through-bolted
-    // into Panel C's deck with 1/4-20 bolts + T-nuts
-    color("SaddleBrown")
-        translate([-headboard_width/2, y_offset + headboard_length/2 - 1.5, z_top])
-            cube([headboard_width, 3, wall_t]);
-
-    color("BurlyWood", 0.9) {
-        // 2 side panels — headboard_height tall, full depth
-        translate([-headboard_width/2, y_offset, z_top]) cube([wall_t, headboard_length, headboard_height]);
-        translate([headboard_width/2 - wall_t, y_offset, z_top]) cube([wall_t, headboard_length, headboard_height]);
-
-        // 2 FULL-DEPTH shelves -> 3 full-width tiers (no full-height
-        // divider anymore, and no top — these ARE the carcass webs)
-        for (sz = [headboard_upper_shelf_z, headboard_personal_shelf_z])
-            translate([-headboard_width/2, y_offset, z_top + sz])
-                cube([headboard_width, headboard_length, wall_t]);
-
-        // nook divider, MIDDLE tier: spans the bed shelf up to the
-        // upper shelf, enclosing the mattress-side bed cubby
-        // (headboard_shelf_depth deep) from the middle food tier
-        translate([-headboard_width/2, y_offset + y_div, z_top + headboard_personal_shelf_z + wall_t])
-            cube([headboard_width, wall_t, headboard_nook_divider_h]);
-
-        // ADJUSTABLE shelf in the bottom bay (on pins, shown at its
-        // default height — lifts out or repositions per trip)
-        if (headboard_adj_shelf)
-            translate([-headboard_width/2, y_offset, z_top + headboard_adj_shelf_z])
-                cube([headboard_width, headboard_length, wall_t]);
+    // 2x2 like-it drawer cluster (schematic: 4 boxes + drawer faces)
+    for (c = [0, 1]) for (r = [0, 1]) {
+        color("WhiteSmoke", 0.95)
+            translate([x0 + c*pantry_unit_w + 0.1, y_offset + pantry_len - pantry_unit_d, z_top + r*pantry_unit_h + 0.1])
+                cube([pantry_unit_w - 0.2, pantry_unit_d, pantry_unit_h - 0.2]);
+        color("Gainsboro") // drawer face, tailgate side
+            translate([x0 + c*pantry_unit_w + 0.7, y_offset + pantry_len - 0.2, z_top + r*pantry_unit_h + 0.7])
+                cube([pantry_unit_w - 1.4, 0.4, pantry_unit_h - 1.4]);
     }
 
-    // FIDDLE LIPS — 1.5in front rails on each food shelf's kitchen
-    // (far, +Y) edge and the full-depth tiers' mattress (near, Y=0)
-    // edge; primary retention against the slide-out that braking
-    // causes. Drawn as thin strips standing up at each shelf's front.
-    lip_h = headboard_fiddle_lip_h;
-    food_floors = [0, headboard_adj_shelf_z + wall_t, headboard_personal_shelf_z + wall_t, headboard_upper_shelf_z + wall_t];
-    color("Peru") for (fz = food_floors) {
-        // kitchen-face lip (far edge)
-        translate([-headboard_width/2, y_offset + headboard_length - 0.4, z_top + fz])
-            cube([headboard_width, 0.4, lip_h]);
-        // mattress-face lip (near edge) — skip the bed-shelf level (the
-        // cubby's own half-round lip lives there instead)
-        if (fz != headboard_personal_shelf_z + wall_t)
-            translate([-headboard_width/2, y_offset, z_top + fz])
-                cube([headboard_width, 0.4, lip_h]);
+    // hold-down cleats: cab-facing side + both sides (tailgate open)
+    color("SaddleBrown") {
+        translate([x0, y_offset + pantry_len - pantry_unit_d - 1, z_top])
+            cube([pantry_cluster_w, 1, 1]);                                  // cab-side cleat (the braking stop)
+        translate([x0 - 0.0, y_offset + pantry_len - pantry_unit_d, z_top]) cube([1, pantry_unit_d, 1]);
+        translate([x0 + pantry_cluster_w - 1, y_offset + pantry_len - pantry_unit_d, z_top]) cube([1, pantry_unit_d, 1]);
     }
 
-    color("SaddleBrown") // half-round edging lip, front (mattress-facing) edge of the bed shelf
-        translate([-headboard_width/2, y_offset + 0.4, z_top + headboard_personal_shelf_z + wall_t])
-            rotate([0, 90, 0]) cylinder(h = headboard_width, r = 0.4, $fn = 16);
+    // cam-buckle strap across the drawer fronts (keeps drawers shut +
+    // snugs the stack) — schematic band at mid-height
+    color("Crimson")
+        translate([x0 - 0.3, y_offset + pantry_len - 0.6, z_top + pantry_cluster_h/2 - 0.5])
+            cube([pantry_cluster_w + 0.6, 0.5, 1]);
+
+    // open bay (passenger side): pot/pan bin + relocated power strip
+    bx = x0 + pantry_cluster_w;             // bay start
+    color("BurlyWood", 0.9)                 // rigid pot/pan bin
+        translate([bx + 1.5, y_offset + pantry_len - pantry_pot_bin - 1, z_top])
+            cube([pantry_pot_bin, pantry_pot_bin, pantry_pot_bin]);
+    color("Black")                          // Power strip 1, deck edge
+        translate([bx + pantry_pot_bin + 3, y_offset + 1, z_top])
+            cube([4, 1.5, 1.5]);
+    color("GreenYellow")                    // ROLL bubble level beside it
+        translate([bx + pantry_pot_bin + 3, y_offset + 3.5, z_top])
+            cube([3.5, 0.8, 0.8]);
 }
 
 module full_platform() {
     panel_module(panel_a_length, panel_width, y_panel_a, false, false, true); // left bay = WAVE 3 open storage
     panel_module(panel_b_length, panel_width, y_panel_b, false, false, false, true); // bare bay — no drawers, the side doors don't reach Panel B
     panel_module(panel_c_length, panel_width, y_panel_c, false, true);
-    headboard_module(y_panel_c + panel_c_length - headboard_length); // mounted on Panel C's tailgate end
+    pantry_module(y_panel_c + panel_c_length - pantry_len); // prefab drawer cluster on Panel C's tailgate end
 
     z_deck = leg_height + frame_rail_sz;
 
     // anti-rattle bumpers + alignment pins at every front-to-back
     // seam between lift-out panels — just 2 now (A/B, B/C): the
-    // headboard no longer lifts out as its own module between two
+    // the pantry no longer lifts out as its own module between two
     // neighbors, so that seam is gone.
     for (i = [0:1]) {
         y = seam_ys[i];

@@ -88,7 +88,7 @@
   <div id="phases"></div>
 
   <footer>
-    <p style="margin:0 0 6px"><b>Why this order:</b> cut everything before you frame; build all three frames before their build-outs; <b>Panel C before the headboard</b> (the headboard clamps onto Panel C's finished deck); the bed platform after Panel A &amp; B exist (it caps them); cord runs and seam hardware once the panels are built but before final install.</p>
+    <p style="margin:0 0 6px"><b>Why this order:</b> cut everything before you frame; build all three frames before their build-outs; <b>Panel C before the pantry</b> (the prefab drawer cluster sits on Panel C's finished deck); the bed platform after Panel A &amp; B exist (it caps them); cord runs and seam hardware once the panels are built but before final install.</p>
     <p style="margin:0"><b>Full detail</b> for every step is in <b>Project_Smores.pdf</b> (Components 1–10 + Sections 0/6/8/9); pair this with the Cut List and Shopping List. Anything tagged <span class="flag">verify</span> is an unverified estimate — measure it on the real van first.</p>
   </footer>
 </main>
@@ -103,7 +103,7 @@ const PHASES = [
   ]},
   { n: "1", title: "Cut all plywood & lumber", ref: "Section 3 · Cut List", crit: false, steps: [
     ["Cut the two plywood sheets + all boards", "Everything on the Cut List: ¾\" ply, ½\" ply, 12× 2×2, 7× 1×4, trim. The ½\" sheet nests to ~95% — lay it out before cutting.", ""],
-    ["Drill leg insert holes + headboard pin holes now", "½\" × ¾\" leveling-insert hole in each leg's bottom end grain; 5mm shelf-pin columns (3–11\") in the headboard side panels. Far easier before assembly.", ""],
+    ["Drill leg insert holes now", "½\" × ¾\" leveling-insert hole in each leg's bottom end grain. Far easier before assembly.", ""],
     ["Pre-cut the Panel C front-wall openings", "120mm fan hole, two 1\" grommets, low intake louver — positions in the Front Wall render.", ""],
   ]},
   { n: "2", title: "Build the three frames", ref: "Comp. 2/3/4 · step 1", crit: false, steps: [
@@ -119,11 +119,11 @@ const PHASES = [
     ["Hang the kitchen drawer + cabinet door", "Drawer on cheeks in the dead air above the kitchen; cabinet door with its low exhaust louver.", ""],
     ["Cooling + control cluster", "Intake fan over the wall hole (blows IN); exhaust fan + NTC probe on the fridge's kitchen-facing wall (into the cabinet); W1209 controller + fuse block + switches on the backer board INSIDE the cabinet.", ""],
   ]},
-  { n: "4", title: "Headboard / pantry", ref: "Comp. 1", crit: false, steps: [
-    ["Build the carcass with biscuits", "2 side panels + 2 fixed shelves — 3× R3 biscuits/end at 2/7/12\"; nook divider 2× R1/edge. Glue + clamp (no screws on show faces).", ""],
-    ["Base cleats + T-nuts + sway braces", "Cleats screwed to the underside w/ cam-lever T-nuts; 2 L-angle braces (cam-lever nuts at the rail ends).", ""],
-    ["Adjustable shelf + fiddle-lip retention", "Adjustable shelf on pins in the bottom bay; fiddle lip on every food shelf + lash straps + bins + liner (one soft-goods net).", ""],
-    ["Clamp onto Panel C + wire Power strip 1", "8 cam levers (4 base + 4 brace). Mount Power strip 1 + the ROLL bubble level in the bed cubby; route its cord out the deck grommet.", ""],
+  { n: "4", title: "Rear pantry (prefab)", ref: "Comp. 1", crit: false, steps: [
+    ["Stack the 4 like-it drawer units 2×2", "On the deck's tailgate end, drawers facing the gate. Felt-tape the interlocking rails + Velcro-tie the top row to the bottom.", ""],
+    ["Screw down the cleat pocket + D-rings", "~1\" cleats on the cab side + both sides (tailgate open); 2 flush D-rings flanking the cluster.", ""],
+    ["Cam strap across the drawer fronts", "Keeps the drawers shut under acceleration AND snugs the stack. Unclip one end to open.", ""],
+    ["Pot bin + power in the open bay", "Rigid ~11\" pot/pan bin + corner cleat + bungee; mount Power strip 1 + the ROLL bubble level on the deck edge; route the cord (Comp. 6).", ""],
   ]},
   { n: "5", title: "Panel A build-out (EcoFlow bays)", ref: "Comp. 2 + 8", crit: false, steps: [
     ["Drawer box (biscuited) + slide + catch", "Right bay: R1-biscuited box on a 20\" slide + a catch. DELTA 3 locating cleats + D-rings + a top tray for cables.", ""],
@@ -146,7 +146,7 @@ const PHASES = [
     ["Lay the platform, mattress, curtain", "Platform onto Panel A/B's rails; HEST Dually Long on top; tension-rod curtain behind the cab.", ""],
   ]},
   { n: "10", title: "Commission & test", ref: "Comp. 10", crit: true, steps: [
-    ["Lift-out / reinstall dry run", "Each panel comes free by its top rails and drops back without binding; the headboard flips off with its 8 cam levers.", ""],
+    ["Lift-out / reinstall dry run", "Each panel comes free by its top rails and drops back without binding; each pantry drawer unit lifts out once the cam strap is loose.", ""],
     ["Level the van + set the feet once", "Level at the WHEELS with blocks (Block Calculator app); then set the interior leveling feet once against the van's own floor.", ""],
     ["Power-up + cooling test", "Fridge on (stood 12h first); confirm the fans ramp off the NTC; pull every drawer/slide; check the fridge/kitchen strap tension.", ""],
     ["Owner-place safety gear", "Mount the low-level CO monitor (audible from the bed) + the fire extinguisher — deliberately not located in the plan.", ""],

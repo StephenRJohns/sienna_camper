@@ -35,7 +35,7 @@ module s1_assembly() {
     // dashed cut line at x = MW, full length
     color(INK) dash2d(p2([MW, 0, foam_base_t]), p2([MW, DL, foam_base_t]), 0.18, 2);
     callout(str("cut at ", MW, "\" — long serrated or electric knife"), [MW, DL * 0.25, foam_base_t], [10, 8]);
-    callout(str("offcut ", BW - MW, "\" strip: pillow topper / headboard/pantry cushion"), [BW - (BW - MW)/2, DL * 0.8, foam_base_t], [8, -10]);
+    callout(str("offcut ", BW - MW, "\" strip: pillow topper / spare cushion"), [BW - (BW - MW)/2, DL * 0.8, foam_base_t], [8, -10]);
     cap(str("repeat for all 3 layers — length already matches at ", mattress_length, "\", no cut there"), BW * 0.4, -14, 2.0);
 }
 

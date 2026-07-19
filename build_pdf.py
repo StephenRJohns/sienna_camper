@@ -197,7 +197,7 @@ def main():
     # <figure> inside it (invalid HTML that Chrome silently mangles)
     for alt in ["Side profile", "Rear view",
                 "Fridge install detail", "Fridge wiring diagram", "Fridge slide detail",
-                "Sway brace detail", "Kitchen drawer detail", "Seam draw-latch positioning"]:
+                "Kitchen drawer detail", "Seam draw-latch positioning"]:
         html_body = re.sub(
             rf'<p><img alt="{re.escape(alt)}" src="([^"]+)"[^>]*/?></p>',
             rf'<figure><img src="\1"><figcaption>{alt}</figcaption></figure>',
