@@ -68,7 +68,13 @@ echo "Rendering DELTA 3 / WAVE 3 stowage detail..."
 openscad -o renders/delta3-wave3-detail.svg delta3_wave3_detail.scad
 openscad -o renders/delta3-wave3-detail.png --imgsize=2500,4700 $FLAT_CAM delta3_wave3_detail.scad
 
-echo "Rendering headboard storage detail..."
+echo "Rendering rear pantry detail (prefab drawer cluster)..."
+openscad -o renders/rear-pantry-detail.svg rear_pantry_detail.scad
+openscad -o renders/rear-pantry-detail.png --imgsize=3000,2100 $FLAT_CAM rear_pantry_detail.scad
+
+# (Legacy plywood-pantry renders — superseded by the prefab swap, kept only
+# so any stray reference still resolves; not shown in the plan anymore.)
+echo "Rendering headboard storage detail (legacy)..."
 openscad -o renders/headboard-storage-detail.svg headboard_storage_detail.scad
 openscad -o renders/headboard-storage-detail.png --imgsize=3250,2500 $FLAT_CAM headboard_storage_detail.scad
 
