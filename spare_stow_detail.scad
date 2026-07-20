@@ -100,16 +100,133 @@ module elevation() {
 }
 
 // ------------------------------------------------------------
+// VIEW 3 — INSTALLATION, exploded: what screws to what
+// ------------------------------------------------------------
+module lmarker(t, x, y) {
+    translate([x, y]) { color("DarkSlateBlue") circle(r = 1.3); color("white") text(t, size = 1.4, halign = "center", valign = "center"); }
+}
+module install() {
+    L = panel_b_length;
+    label("INSTALLATION — exploded stack (assemble the skid once, from offcut)", L/2 + 2, 33, 1.5);
+    // van floor
+    color("black") translate([-3, -0.5]) square([L + 6, 0.5]);
+    label("van floor — NOTHING screws into it; the skid just sits, liner grips", L/2, -2.2, 1.05);
+    // A: non-slip liner
+    color("DarkSlateGray") translate([2, 1.8]) square([L - 4, 0.35]);
+    lmarker("A", -1.5, 2);
+    // B: cradle skid — 2 battens + 3 cleats (side view shows 2 of the 3)
+    color("SaddleBrown") {
+        translate([3, 4.6]) square([L - 6, 0.75]);          // batten
+        for (x = [4.5, L/2 - 2, L - 8.5]) translate([x, 5.35]) square([4, 2.25]);  // cleats
+    }
+    lmarker("B", -1.5, 5.6);
+    label("glue + 1.25\" screws, cleats to battens", L/2, 8.6, 1.0);
+    // C: spare, valve up, tool case nested (dashed = inside the barrel)
+    color("DimGray") translate([0.65, 11]) rect_outline(spare_d, spare_t, 0.35);
+    color("Gray") translate([L/2 - 5, 12.2]) rect_outline(10, 3.6, 0.2);
+    label("tool case nests IN the wheel barrel", L/2, 10, 1.0);
+    label("spare FLAT, valve stem UP", L/2, 14.2, 1.05);
+    lmarker("C", -1.5, 14.2);
+    // D: totes
+    color("Gainsboro") translate([2.6, 19.5]) rect_outline(panelb_tote_l, panelb_tote_h, 0.3);
+    label("2 totes restack on top", L/2, 22.5, 1.05);
+    lmarker("D", -1.5, 22.4);
+    // E: strap + footman loops on the bottom rails
+    color("Crimson") {
+        translate([0.4, 19.5 + panelb_tote_h + 0.6]) square([L - 0.8, 0.5]);
+        translate([0.4, 2.6]) square([0.5, 17.5 + panelb_tote_h]);
+        translate([L - 0.9, 2.6]) square([0.5, 17.5 + panelb_tote_h]);
+    }
+    color("DarkGoldenrod") for (x = [-0.6, L - 0.9]) translate([x, 1.6]) square([1.5, 1]);
+    lmarker("E", L + 2.5, 26.5);
+    label("cam strap OVER the stack", L/2, 27.6, 1.05);
+    label("footman loops on the", L + 3.2, 1.9, 1.0, "left");
+    label("bottom rails, 2x", L + 3.2, 0.3, 1.0, "left");
+    // local legend
+    ly = -16;
+    lparts = ["A  non-slip liner offcut (grips the van floor — same roll as the drawer liner)",
+              "B  cradle skid: 3x 3\" cleats screwed to 2x 1x3 battens — one piece, can't wander",
+              "C  RJ-MODINI spare flat + tool case in the barrel (valve up = pressure checks in place)",
+              "D  2x Sterilite totes restacked on top",
+              "E  1\" cam-buckle strap -> 2x 1\" footman loops, #10 x 3/4\" screws into Panel B's bottom rails"];
+    for (i = [0 : len(lparts) - 1]) label(lparts[i], -3, ly - i * 2.2, 1.0, "left");
+}
+
+// ------------------------------------------------------------
+// VIEW 4 — ACCESS sequence (4 steps, emergency-only)
+// ------------------------------------------------------------
+module bay_side() {
+    L = panel_b_length;
+    rect_outline(1.5, leg_height);
+    translate([L - 1.5, 0]) rect_outline(1.5, leg_height);
+    translate([0, leg_height]) rect_outline(L, frame_rail_sz);
+    translate([0, bottom_rail_z]) rect_outline(L, frame_rail_sz);
+}
+module arrow_up(x, y, len = 4) {
+    color("ForestGreen") translate([x, y]) { square([0.6, len]); translate([0.3, len]) polygon([[-1.1, 0], [1.1, 0], [0, 1.8]]); }
+}
+module stack_in_bay(with_totes = true, with_case = true, strapped = true) {
+    L = panel_b_length;
+    color("SaddleBrown") translate([3, 0]) square([L - 6, cleat_h]);
+    color("DimGray") translate([0.65, cleat_h]) rect_outline(spare_d, spare_t, 0.35);
+    if (with_case) color("Gray") translate([L/2 - 5, cleat_h + 1.2]) rect_outline(10, 3.6, 0.2);
+    if (with_totes) color("Gainsboro") translate([2.6, cleat_h + spare_t]) rect_outline(panelb_tote_l, panelb_tote_h, 0.3);
+    if (strapped) color("Crimson") translate([0.9, (with_totes ? cleat_h + spare_t + panelb_tote_h : cleat_h + spare_t) + 0.15]) square([L - 1.8, 0.5]);
+}
+module access() {
+    L = panel_b_length;
+    pitch = L + 9;
+    label("ACCESS — 4 steps, no tools (emergency-only: you pay this ~never)", 2 * pitch - 4, 36, 1.6);
+    // step 1: platform + mattress off
+    translate([0 * pitch, 0]) {
+        bay_side(); stack_in_bay();
+        color("SteelBlue") translate([-2, leg_height + 6]) rect_outline(L + 4, 0.75);
+        color("MediumPurple") translate([-2, leg_height + 7]) rect_outline(L + 4, 2.5);
+        arrow_up(L/2 - 0.3, leg_height + 10.5);
+        label("1. lift the mattress +", L/2, -3, 1.15);
+        label("platform slats off", L/2, -4.9, 1.15);
+    }
+    // step 2: totes out
+    translate([1 * pitch, 0]) {
+        bay_side(); stack_in_bay(with_totes = false, strapped = false);
+        color("Gainsboro") translate([2.6, leg_height + 5]) rect_outline(panelb_tote_l, panelb_tote_h, 0.3);
+        arrow_up(L/2 - 0.3, leg_height + 12);
+        label("2. lift out the 2 totes", L/2, -3, 1.15);
+        label("(they stay packed)", L/2, -4.9, 1.15);
+    }
+    // step 3: strap + tool case
+    translate([2 * pitch, 0]) {
+        bay_side(); stack_in_bay(with_totes = false, with_case = false, strapped = false);
+        color("Crimson") { translate([0.9, cleat_h + spare_t + 0.3]) square([8, 0.5]); translate([8.9, cleat_h + spare_t - 1]) square([0.5, 2]); }
+        color("Gray") translate([L/2 - 5, leg_height + 5]) rect_outline(10, 3.6, 0.2);
+        arrow_up(L/2 - 0.3, leg_height + 9.8);
+        label("3. pop the cam buckle,", L/2, -3, 1.15);
+        label("lift out the tool case", L/2, -4.9, 1.15);
+    }
+    // step 4: tilt + roll out
+    translate([3 * pitch, 0]) {
+        bay_side();
+        color("SaddleBrown") translate([3, 0]) square([L - 6, cleat_h]);
+        color("DimGray") translate([L/2, spare_d/2]) difference() { circle(r = spare_d/2, $fn = 90); circle(r = spare_d/2 - 0.5, $fn = 90); }
+        color("ForestGreen") { translate([L - 2, spare_d/2]) square([7, 0.6]); translate([L + 5, spare_d/2 - 0.8]) polygon([[0, 0], [0, 2.2], [1.8, 1.1]]); }
+        label("4. tilt it upright, roll it", L/2, -3, 1.15);
+        label("over Panel C, out the gate", L/2, -4.9, 1.15);
+    }
+}
+
+// ------------------------------------------------------------
 // layout + legend
 // ------------------------------------------------------------
 topdown();
 translate([panel_b_length + 14, 4]) elevation();
+translate([2 * panel_b_length + 32, 12]) install();
+translate([0, -80]) access();
 
 leg_x = 0; leg_y = -9;
 items = ["RJ-MODINI kit (T155/85R18, steel wheel, ~40 lb w/ 2-ton jack) — flat, valve up",
-         "3x wood cleats, ~3\" tall (from offcut) — lift it above the bottom-rail curb",
-         "Jack + wrench kit in its case, strapped beside the totes",
-         "Cam strap over the stack, anchored to Panel B's bottom rails"];
+         "Cradle skid: 3x ~3\" cleats on 2 battens (offcut) — clears the bottom-rail curb, one piece",
+         "Jack + wrench kit in its case, nested in the wheel barrel",
+         "Cam strap over the stack -> 2 footman loops on Panel B's bottom rails"];
 label("Legend", leg_x, leg_y, 1.5, "left");
 for (i = [0 : len(items) - 1]) {
     marker(i + 1, leg_x + 1, leg_y - 3 - i * 2.8);
