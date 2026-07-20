@@ -40,6 +40,7 @@ h2 {
 }
 h2:first-of-type { page-break-before: avoid; }
 h3 { font-size: 12.5pt; color: #26496b; margin-top: 16pt; }
+h3.appendix { page-break-before: always; margin-top: 0; }
 p { margin: 6pt 0; }
 hr { display: none; }
 table {
@@ -190,6 +191,7 @@ def main():
     md_text = re.sub(r'(renders/(?:steps/)?[\w.-]+)\.svg', r'\1.png', md_text)
 
     html_body = markdown.markdown(md_text, extensions=["tables", "fenced_code", "sane_lists"])
+    html_body = html_body.replace("<h3>Appendix", '<h3 class="appendix">Appendix')
 
     # wrap step-diagram images (renders/steps/) so they render smaller/centered
     html_body = re.sub(

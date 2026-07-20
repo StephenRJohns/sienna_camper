@@ -79,7 +79,7 @@ module side_view() {
         translate([panel_ys[i], leg_height]) rect_outline(panel_lengths[i], frame_rail_sz); // top rail
         label(panel_names[i], panel_ys[i] + panel_lengths[i]/2, leg_height * 0.8, 1.7);
         label(str(panel_lengths[i], "\" x ", leg_height + frame_rail_sz, "\" box"), panel_ys[i] + panel_lengths[i]/2, leg_height * 0.62, 1.3);
-        label("on the floor", panel_ys[i] + panel_lengths[i]/2, leg_height * 0.47, 1.2);
+        if (i != 1) label("on the floor", panel_ys[i] + panel_lengths[i]/2, leg_height * 0.47, 1.2);
     }
     // Panel C's fixed deck
     translate([y_panel_c, z_rail_top]) rect_outline(panel_c_length, panel_thickness);
@@ -88,10 +88,24 @@ module side_view() {
     dashed_line(y_panel_c, y_panel_c + panel_c_length, leg_height * 0.4);
     label("fridge + kitchen below deck (see rear view)", y_panel_c + panel_c_length/2, leg_height * 0.4 - 2, 1.2);
 
+    // ---- spare tire + tool case ghost inside Panel B (flat on its skid) ----
+    color("DimGray") {
+        for (xx = [0 : 2.0 : spare_dia - 1.4])   // dashed top + bottom of the spare
+            translate([y_panel_b + 0.25 + xx, spare_cleat]) square([1.2, 0.25]);
+        for (xx = [0 : 2.0 : spare_dia - 1.4])
+            translate([y_panel_b + 0.25 + xx, spare_cleat + spare_w - 0.25]) square([1.2, 0.25]);
+        for (zz = [0 : 1.6 : spare_w - 1.0])     // dashed ends
+            translate([y_panel_b + 0.25, spare_cleat + zz]) square([0.25, 0.9]);
+        for (zz = [0 : 1.6 : spare_w - 1.0])
+            translate([y_panel_b + spare_dia + 0.25, spare_cleat + zz]) square([0.25, 0.9]);
+    }
+    label("RJ-MODINI spare, FLAT on its 3\" skid", y_panel_b + panel_b_length/2, spare_cleat + spare_w - 1.5, 0.95);
+    label("jack case in the wheel — 2 totes above", y_panel_b + panel_b_length/2, spare_cleat + 1.6, 0.95);
+
     // ---- bed platform: spans Panel A + B only, ends flush at the
     // B/C seam (Panel C's own deck is at the same surface height) ----
     translate([y_panel_a, z_pads]) rect_outline(bed_frame_length, bed_frame_thickness);
-    label(str("bed platform (", bed_frame_length, "\" x ", bed_frame_thickness, "\" — ends at the B/C seam, flush with Panel C's deck)"), bed_frame_length * 0.3, z_pads + bed_frame_thickness + 1.3, 1.3);
+    label(str("bed platform (", bed_frame_length, "\" x ", bed_frame_thickness, "\" below the mattress — ends at the B/C seam, flush with Panel C's deck)"), bed_frame_length/2, z_matt_top + 1.7, 1.3);
 
     // ---- mattress, true thickness ----
     translate([y_panel_a, z_plat_top]) rect_outline(mattress_length, mattress_total_thickness);

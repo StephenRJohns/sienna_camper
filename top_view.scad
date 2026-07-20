@@ -155,10 +155,10 @@ module top_view() {
     // van interior envelope (hard max — see params.scad)
     translate([-van_interior_width/2, 0])
         rect_outline(van_interior_width, van_interior_length);
-    label("Sienna interior envelope — hard max", 0, van_interior_length + 4, 2.0);
-    label("FRONT", 0, van_interior_length + 1, 1.6);
-    label("DRIVER side", -van_interior_width/2 + 2, van_interior_length - 3, 1.5);
-    label("PASSENGER side", van_interior_width/2 - 2, van_interior_length - 3, 1.5);
+    label("Sienna interior envelope — hard max", 0, van_interior_length + 6.5, 2.0);
+    label("FRONT", 0, van_interior_length + 3.5, 1.6);
+    label("DRIVER side", -van_interior_width/2 + 6, van_interior_length + 3.5, 1.5);
+    label("PASSENGER side", van_interior_width/2 - 6, van_interior_length + 3.5, 1.5);
 
     // floor-level vent intrusion zones (legs must stay clear of these,
     // deck itself can overhang — see leg_inset in params.scad)
@@ -182,6 +182,14 @@ module top_view() {
 
     module_block(panel_a_length, panel_width, "Panel A", y_panel_a);
     module_block(panel_b_length, panel_width, "Panel B", y_panel_b);
+    // spare tire ghost: thin ring + nested tool case, flat under the platform
+    color("Gray") translate([0, y_panel_b + panel_b_length/2]) difference() {
+        circle(r = spare_dia/2, $fn = 90); circle(r = spare_dia/2 - 0.3, $fn = 90);
+    }
+    color("Gray") translate([-5, y_panel_b + panel_b_length/2 + 3]) difference() {
+        square([10, 7]); translate([0.3, 0.3]) square([9.4, 6.4]);
+    }
+    label("RJ-MODINI spare + jack case (in the wheel), 2 totes on top", 0, y_panel_b + 4.2, 1.05);
 
     // Panel C: outline + hand-holds like the others, but its own
     // name/dims label sits near the TOP of the box (close to the
