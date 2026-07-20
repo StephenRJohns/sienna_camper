@@ -67,7 +67,7 @@ module deployed() {
         translate([panel_width/2 - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height);
         translate([-panel_width/2, z_deck]) rect_outline(panel_width, panel_thickness);
     }
-    label(str("Panel C deck (", panel_width, "\" wide)"), -panel_width/2 + 9, z_deck - 1.5, 1.1);
+    label(str("Panel C deck (", panel_width, "\" wide)"), -panel_width/2 + 9, z_deck - 3.2, 1.1);
 
     // rear pantry on the deck (context outline): 2x2 drawer cluster + pot bin
     px0 = -panel_width/2;

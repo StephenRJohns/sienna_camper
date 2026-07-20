@@ -20,8 +20,16 @@ is_driver = (side == "driver");
 module rect_outline(w, l, s = stroke) {
     color("black") difference() { square([w, l]); translate([s, s]) square([w - 2*s, l - 2*s]); }
 }
+// Text emitter that stays readable under the passenger-view mirror:
+// the whole drawing is mirrored for the passenger side (so the view
+// matches what you SEE standing at that door — front seats on the
+// RIGHT), and each label counter-mirrors itself in place, flipping
+// its halign so left-anchored tags stay left-anchored visually.
 module label(txt, x, y, size = 1.5, ha = "center") {
-    color("black") translate([x, y]) text(txt, size = size, halign = ha, valign = "center");
+    real_ha = (is_driver || ha == "center") ? ha : (ha == "left" ? "right" : "left");
+    color("black") translate([x, y])
+        mirror(is_driver ? [0, 0, 0] : [1, 0, 0])
+        text(txt, size = size, halign = real_ha, valign = "center");
 }
 module dash_box(w, h, s = 0.18, seg = 1.0, gap = 0.7) {
     // dashed rectangle outline (ghost of an under-deck item)
@@ -70,7 +78,7 @@ module drawing() {
         translate([pys[i], 0]) rect_outline(frame_rail_sz, leg_height);
         translate([pys[i] + plen[i] - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height);
         translate([pys[i], leg_height]) rect_outline(plen[i], frame_rail_sz);
-        label(pnm[i], pys[i] + frame_rail_sz + 2, leg_height - 2.2, 1.35, "left"); // corner tag, clear of the ghosts
+        label(pnm[i], pys[i] + frame_rail_sz + 2, leg_height - 1.1, 1.35, "left"); // corner tag, tucked under the top rail clear of the shelf lines
     }
     // Panel B is a bare deep-storage cube (nothing exits it sideways)
     label("bare-frame deep storage", y_b + panel_b_length/2, leg_height/2, 1.1);
@@ -126,11 +134,13 @@ module drawing() {
     label("Pan-", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 3, 1.15);
     label("try", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 5, 1.15);
 
-    label(str(is_driver ? "DRIVER" : "PASSENGER", " SIDE — looking in from this door.  FRONT SEATS at left, TAILGATE at right."),
+    label(str(is_driver ? "DRIVER SIDE — looking in from this door.  FRONT SEATS at left, TAILGATE at right."
+                        : "PASSENGER SIDE — looking in from this door.  TAILGATE at left, FRONT SEATS at right."),
           van_interior_length/2, -5.6, 1.5);
     label(is_driver ? "This side: WAVE 3 (Panel A) + fridge (Panel C).  Dashed = under-deck items reached from here."
                     : "This side: DELTA 3 power (Panel A) + kitchen unit (Panel C).  Dashed = under-deck items reached from here.",
           van_interior_length/2, -8, 1.25);
 }
 
-drawing();
+if (is_driver) drawing();
+else translate([van_interior_length, 0]) mirror([1, 0, 0]) drawing();  // passenger view mirrored = what you see from that door

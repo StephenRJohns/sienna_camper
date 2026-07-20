@@ -150,8 +150,8 @@ module drawing() {
             square([van_interior_length, van_interior_height]);
             translate([stroke, stroke]) square([van_interior_length - 2*stroke, van_interior_height - 2*stroke]);
         }
-    color("DimGray") translate([interior_x0 + van_interior_length/2, floor_z + van_interior_height + 3])
-        text(str("Cargo interior envelope (", van_interior_length, "in x ", van_interior_height, "in, 2nd row removed, UNVERIFIED length)"), size = 2.4, halign = "center", valign = "center");
+    color("black") translate([vehicle_length/2, -4.5])
+        text(str("Cargo interior envelope (thin outline): ", van_interior_length, "in x ", van_interior_height, "in, 2nd row removed — UNVERIFIED length"), size = 2.0, halign = "center", valign = "center");
 
     // liftgate opening callout (UNVERIFIED — see params.scad) drawn
     // against the tailgate face
@@ -233,8 +233,8 @@ module drawing() {
         text("Rear pantry (prefab)", size = 1.6, halign = "center", valign = "center");
     color("black") translate([pantry_x0 + pantry_len/2, floor_z + panel_module_height + pantry_cluster_h + 1])
         text("(on Panel C's deck)", size = 1.3, halign = "center", valign = "center");
-    color("black") translate([panels_x0 + panel_a_length + panel_b_length + panel_c_length/2, floor_z - 3])
-        text("Fridge + kitchen unit hidden inside Panel C", size = 1.5, halign = "center", valign = "center");
+    color("black") translate([panels_x0 + 6, floor_z - 3])
+        text("Fridge + kitchen unit hidden inside Panel C ->", size = 1.5, halign = "right", valign = "center");
 
     // front/rear labels for orientation
     color("black") translate([20, 70]) text("FRONT", size = 3.2, halign = "center", valign = "center");

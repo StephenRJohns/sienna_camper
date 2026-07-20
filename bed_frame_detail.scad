@@ -78,11 +78,11 @@ module drawing() {
     cap("One 3/4\" plane: slats sit BETWEEN the two full-length side rails, pocket-screwed — no battens below, nothing above.", 13, -17, 1.3);
     cap("Rests DIRECTLY on Panel A/B's top rails and ENDS at the B/C seam, flush with Panel C's deck (the mattress's last ~20\" rides that deck).", 13, -19.5, 1.3);
 
-    side_list(W/2 + 16, L * 0.55 + 16, [
+    side_list(W/2 + 24, L * 0.55 + 16, [
         ["1", "Side rails (x2)", str(L, "\" x ", RW, "\" x ", bed_slat_t, "\" — 1x4 pine, full length"), "the platform's spine — slats screw into their inner edges"],
         ["2", str("Slats (x", bed_slat_count, ")"), str(SL, "\" x ", bed_slat_width, "\" x ", bed_slat_t, "\" — 1x4 pine, two per 8ft board"), str("~", round(slat_gap * 10) / 10, "\" gaps — fine for a foam mattress")],
         ["3", "Pocket screws", "2x 1-1/4\" pocket-hole screws per slat end", "Kreg-style jig; or 2\" corner braces if you don't have one"],
-        ["4", "Bubble level (PITCH)", "RV bar level 2-1/2\" x 3/4\", screwed to this rail's outer edge", "its twin (ROLL) mounts on the rear-pantry deck edge — read while leveling"],
+        ["4", "Bubble level (PITCH)", "Larbeti stick-on bar level (self-adhesive — degrease the rail edge first)", "its twin (ROLL) mounts on the rear-pantry deck edge — read while leveling"],
     ]);
 }
 

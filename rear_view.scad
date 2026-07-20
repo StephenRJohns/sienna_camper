@@ -232,7 +232,7 @@ module rear_view() {
     label("Looking forward from the open tailgate at Panel C — both units shown stowed for driving", 0, -7.5, 1.4);
     label("DRIVER side", -van_interior_width/2 + 8, van_interior_height - 2, 1.4);
     label("PASSENGER side", van_interior_width/2 - 10, van_interior_height - 2, 1.4);
-    label("(sides in VEHICLE terms — standing at the tailgate, the driver side is on YOUR right)", 0, -9.5, 1.1);
+    label("(standing at the tailgate looking in, the DRIVER side is on YOUR LEFT — exactly as drawn)", 0, -9.5, 1.1);
 }
 
 rear_view(); // no outer color() wrapper — see the note above rect_outline()

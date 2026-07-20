@@ -5,9 +5,9 @@
 // Sterilite totes restacked on top. Two views: top-down of Panel B
 // + a side elevation of the height stack.
 //
-// Why Panel B: the 27.7" disc clears the bay's interior (29" x 43"
+// Why Panel B: the 28.5" disc clears the bay's interior (29" x 43"
 // between rails, corner legs missed by >4"), sits at the AXLE (the
-// best place in the van for 35 lb), and the spare is emergency-only
+// best place in the van for ~40 lb), and the spare is emergency-only
 // gear — the lift-the-platform access cost is paid ~never.
 //
 // Render with: openscad -o renders/spare-stow-detail.svg spare_stow_detail.scad
@@ -41,10 +41,10 @@ module topdown() {
     // corner legs
     color("Gray") for (x = [0, L - 1.5]) for (y = [0, W - 1.5])
         translate([x, y]) rect_outline(1.5, 1.5, 0.2);
-    // spare: 27.7 disc, driver side (drawn at low y)
+    // spare: 28.5 disc, driver side (drawn at low y)
     cx = L/2; cy = spare_d/2 + 0.5;
     color("DimGray") translate([cx, cy]) difference() { circle(r = spare_d/2, $fn = 90); circle(r = spare_d/2 - 0.35, $fn = 90); }
-    color("DimGray") translate([cx, cy]) difference() { circle(r = 5.2, $fn = 40); circle(r = 4.9, $fn = 40); } // alloy wheel
+    color("DimGray") translate([cx, cy]) difference() { circle(r = 5.2, $fn = 40); circle(r = 4.9, $fn = 40); } // steel wheel
     color("DimGray") for (a = [0:72:288]) translate([cx, cy]) rotate(a) translate([7.5, 0]) circle(r = 0.5, $fn = 12);
     label("RJ-MODINI kit", cx, cy + 2.2, 1.5);
     label(str(spare_d, "\" dia x ", spare_t, "\" — flat, valve UP"), cx, cy - 0.2, 1.1);
@@ -236,5 +236,5 @@ label("SPARE TIRE — INSIDE, in Panel B's bay at the AXLE (best weight placemen
       panel_b_length + 11, -27, 1.5);
 label("Trade-offs: 2 of Panel B's 4 totes restack ON the spare (2 come out); access = lift the platform + mattress — acceptable for emergency-only gear.",
       panel_b_length + 11, -29.6, 1.1);
-label("NOTE: the kitchen-drawer slot does NOT fit the spare (27.7\" disc vs ~24\" before the fridge blocks it) — the drawer stays.",
+label("NOTE: the kitchen-drawer slot does NOT fit the spare (28.5\" disc vs ~24\" before the fridge blocks it) — the drawer stays.",
       panel_b_length + 11, -31.8, 1.1);

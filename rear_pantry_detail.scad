@@ -29,8 +29,8 @@ module drawing() {
     // deck line
     color("Gray") translate([x0, -1.5]) rect_outline(W, 1.5);
     label(str("Panel C deck (", W, "\" wide, tailgate end) — cluster + bay just SIT on it, held by cleats + a strap"), 0, -3.2, 1.15);
-    label("DRIVER side", x0 + 5, -1.0, 1.1);
-    label("PASSENGER side", W/2 - 6, -1.0, 1.1);
+    label("DRIVER side", x0 + 5, -0.75, 0.8);
+    label("PASSENGER side", W/2 - 6, -0.75, 0.8);
 
     // ---- 2x2 drawer cluster (driver side) ----
     cw = pantry_cluster_w; ch = pantry_cluster_h; cx0 = x0; // cluster left edge at the driver edge
@@ -43,7 +43,7 @@ module drawing() {
     }
     label("2x2 IRIS 12\"W stackable drawers", cx0 + cw/2, ch + 3, 1.4);
     label(str(cw, "\" W x ", ch, "\" H — 4 units (2x Home Depot 3-packs)"), cx0 + cw/2, ch + 1.2, 1.1);
-    label("canned goods LOW, boxed dry goods UP", cx0 + cw/2, ch/2, 1.0);
+    label("canned goods LOW, boxed dry goods UP", cx0 + cw/2, ch/2 + 2.2, 1.0);
 
     // strap across the drawer fronts (double duty: shut + hold-down)
     color("Crimson") translate([cx0 - 1, drow - 0.4]) square([cw + 2, 0.8]);
@@ -94,7 +94,7 @@ module drawing() {
         label(items[i], leg_x + 3.2, y, 1.05, "left");
     }
 
-    label("REAR PANTRY — prefab 2x2 drawer cluster + pot bay (replaces the plywood pantry; ~29 lb lighter, nothing built)",
+    label("REAR PANTRY — prefab 2x2 drawer cluster + pot bay (replaces the plywood pantry; ~27 lb lighter, nothing built)",
           W/2 - 3, -6, 1.5, "center");
     label("Each drawer unit lifts straight out (loosen the strap) — removable, clears the liftgate. Cab-side cleat stops the forward slide under braking.",
           W/2 - 3, -8, 1.15, "center");

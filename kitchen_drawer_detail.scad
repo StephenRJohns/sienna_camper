@@ -76,7 +76,8 @@ module side_section() {
 
     // dims on the left margin
     dim_v(ky0 - 2.5, 0, kitchen_box_height, str(kitchen_box_height, "\""));
-    dim_v(ky0 - 2.5, kitchen_box_height, z_d0, str(kdrawer_gap_below, "\" clear"));
+    dim_v(ky0 - 2.5, kitchen_box_height, z_d0, "");
+    label(str(kdrawer_gap_below, "\" clear"), ky0 - 4.2, (kitchen_box_height + z_d0)/2, 1.0, "right");
     dim_v(ky0 - 6.5, z_d0, z_d1, str(kdrawer_box_h, "\""));
     label(str("drawer top ", z_d1, "\" — clears under the ", z_rail0, "\" rail"), 6, z_d1 + 3.2, 1.0, "left");
 
@@ -116,11 +117,11 @@ module rear_section() {
     color("black") translate([dx0, z_d0]) rect_outline(kdrawer_box_w, kdrawer_box_h);
     label("drawer", dx0 + kdrawer_box_w/2, (z_d0 + z_d1)/2, 1.2);
 
-    dim_h(dx0, dx0 + kdrawer_box_w, z_d0 - 1.6, str(kdrawer_box_w, "\" box (~", kdrawer_box_w - 1, "\" clear inside)"));
+    dim_h(dx0, dx0 + kdrawer_box_w, z_d0 - 1.2, str(kdrawer_box_w, "\" box (~", kdrawer_box_w - 1, "\" clear inside)"));
     dim_h(ck_in_x1, ck_out_x0, z_rail1 + 3.4, str(kdrawer_span, "\" between cheek faces"));
     label("2x 1/2\" ply cheeks, screwed UP into the deck (2\" screws every 6\")", 0, z_rail1 + 6.2, 1.05);
     label("outer cheek also screws into the side rail's inner face", 0, z_rail1 + 4.8, 1.0);
-    label("24\" side-mount slides, 100lb pair — one per cheek", dx0 + kdrawer_box_w/2, z_d0 - 4.2, 1.05);
+    label("24\" side-mount slides, 100lb pair — one per cheek", dx0 + kdrawer_box_w/2, z_d0 - 4.9, 1.05);
 
     label("REAR SECTION — looking in from the open tailgate (passenger side at right)", 0, -3.4, 1.2);
 }

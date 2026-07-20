@@ -237,15 +237,15 @@ module top_view() {
     // extent already established by the van outline
     label("REAR / TAILGATE", 0, -3.5, 1.8);
     label(str("Vent intrusion (", vent_intrusion_width, "\" per side, floor level only) shown along both edges — legs must stay clear"),
-          0, -7, 1.4);
+          0, -13, 1.4);
     label(str("Usable boundary line = ", hatch_curvature_clearance, "\" hatch-curvature reserve, nothing built below it toward the tailgate"),
-          0, -10, 1.4);
+          0, -15.5, 1.4);
     label("Fridge + kitchen unit live inside Panel C (not a separate row) — see rear-view diagram for cooling/control detail",
-          0, -13, 1.3);
+          0, -18, 1.3);
     label("Rear pantry (dark gray, tailgate end of Panel C): prefab 2x2 drawer cluster + pot bin ON the deck above the fridge/kitchen void,",
-          0, -16, 1.3);
+          0, -20.5, 1.3);
     label("not a separate footprint — food side faces the kitchen, personal shelf (Power strip 1) faces the mattress",
-          0, -19, 1.3);
+          0, -23, 1.3);
 }
 
 top_view(); // no outer color() wrapper — see the note above rect_outline()

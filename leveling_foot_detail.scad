@@ -73,8 +73,8 @@ module drawing() {
 
     marker3d(1, [RS/2, RS/2, NH + 2.5 + leg_show_h * 0.5], [14, 10]);
     marker3d(2, [RS/2, RS/2, NH + 2.5 + insert_h/2], [16, -2]);
-    marker3d(3, [RS/2, RS/2, pad_h + 0.55], [18, -10]);
-    marker3d(4, [RS/2, RS/2, pad_h/2], [16, -18]);
+    marker3d(3, [RS/2, RS/2, pad_h + 0.55], [22, -5]);
+    marker3d(4, [RS/2, RS/2, pad_h/2], [22, -9]);
 
     cap(str("LEG LEVELING FOOT — shown ", SC, "x actual size (", leveling_foot_count, " total: 4 per panel x 3 panels)"), 24, -12, 2.0);
     cap(str("Legs are CUT to ", leg_cut_length, "\" — the foot makes up the last ", NH, "\", keeping the effective ", leg_height, "\" leg height."), 24, -15.5, 1.3);

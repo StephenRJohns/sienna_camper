@@ -87,7 +87,7 @@ pantry_pot_bin   = 13;    // rigid pot/pan crate footprint in the bay (~13x13 mi
    would be a wasted feature. ]*/
 panelb_tote_l = 23.5;  // fore-aft (bay clear span ~26in between legs)
 panelb_tote_w = 16.9;  // 2 across = 33.8 vs ~43in clear width
-panelb_tote_h = 5.9;   // restacked ON the spare: cleats 3 + spare 5.7 + tote 5.9 = 14.6 of 18.5
+panelb_tote_h = 5.9;   // restacked ON the spare: cleats 3 + spare 6.4 + tote 5.9 = 15.3 of 18.5
 panelb_tote_n = 2;     // was 4 — the spare tire now takes the other half of the bay
 // SPARE TIRE (owner, July 2026): RJ-MODINI kit (T155/85R18 on an 18x4
 // STEEL wheel, 60.1mm hub-centric bore, 28.5in dia — only -2% vs the
@@ -383,7 +383,7 @@ cabinet_vent_z = 5;   // center Z, low in the door
 // before first power-up.
 fridge_ext_length = 17.72; // X — left-right (the 450mm side)
 fridge_ext_width  = 28.74; // Y — front-to-back depth into the bay (incl. handles)
-fridge_ext_height = 15.79; // Z — drives leg_height above (16.29 with tray, 0.71in spare)
+fridge_ext_height = 15.79; // Z — drives leg_height above (16.17 with the 3/8in tray, ~0.84in spare)
 // Clearance: the manual wants 200mm behind the compressor + 100mm
 // sides for PASSIVE venting — the bay can't give that, which is
 // exactly what the forced intake/exhaust fan system compensates for
