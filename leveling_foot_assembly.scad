@@ -21,8 +21,8 @@ SC = 6;                    // drawing scale: 6x actual size (labels give real in
 
 // real part dims (inches)
 leg_w    = frame_rail_sz;  // 1.5
-bore_d   = 0.5;
-bore_dp  = 0.75;
+bore_d   = 0.375;  // 3/8" pilot — insert OD is 7/16", threads must bite wood
+bore_dp  = 0.875;  // 7/8" deep: 3/4" insert + a hair of clearance
 stud_d   = 0.375;
 pad_d    = leveling_foot_pad_dia;   // 1.375 (Anwenk)
 pad_h    = 0.25;
@@ -30,8 +30,8 @@ knob_d   = 2.0;
 knob_t   = 0.4;
 nut_w    = 0.5625;         // 9/16 hex across flats
 nut_t    = 0.21;
-tn_flange = 0.85;          // T-nut flange dia
-tn_barrel = 0.49;          // T-nut barrel OD (fills the 1/2" bore)
+tn_flange = 0.625;         // insert flange dia (5/8", sits flush on the end grain)
+tn_barrel = 0.4375;        // insert body OD (7/16" coarse wood thread)
 expose   = leveling_foot_nominal_h; // 1.0 floor -> leg bottom
 leg_show = 2.4;            // portion of leg drawn before the break
 
@@ -63,12 +63,15 @@ module p_knob() {
     }
 }
 module p_nut() { color("goldenrod") translate([-nut_w/2*SC, 0]) square([nut_w*SC, nut_t*SC]); }
-module p_tnut() {  // origin = underside of the flange
+module p_tnut() {  // screw-in threaded insert; origin = underside of the flange
     color("goldenrod") {
-        translate([-tn_flange/2*SC, 0]) square([tn_flange*SC, 0.06*SC]);
-        translate([-tn_barrel/2*SC, 0.06*SC]) square([tn_barrel*SC, 0.5*SC]);
-        for (sx = [-1, 1]) translate([sx*(tn_flange/2 - 0.07)*SC - 0.035*SC, 0.06*SC]) square([0.07*SC, 0.3*SC]);
+        translate([-tn_flange/2*SC, 0]) square([tn_flange*SC, 0.08*SC]);
+        translate([-tn_barrel/2*SC, 0.08*SC]) square([tn_barrel*SC, 0.67*SC]);
+        // coarse external wood threads
+        for (sx = [-1, 1]) for (yy = [0.14 : 0.14 : 0.68])
+            translate([sx*tn_barrel/2*SC - (sx > 0 ? 0 : 0.05*SC), yy*SC]) square([0.05*SC, 0.05*SC]);
     }
+    color([0.98, 0.98, 0.94]) translate([-0.19*SC/2, 0.1*SC]) square([0.19*SC, 0.62*SC]);  // 3/8-16 bore
 }
 
 // ------------------------------------------------------------
@@ -84,8 +87,9 @@ module cross_section() {
     color("black") translate([-11, -0.8]) square([25, 0.8]);
     label("van floor", -13, -0.4, 1.2, "right");
 
-    // foot stack: pad, stud, knob, jam nut
+    // foot stack: pad, hex collar, stud, knob, jam nut
     p_pad();
+    color("silver") translate([-0.28*SC, pad_h*SC]) square([0.56*SC, 0.14*SC]);  // fixed hex collar
     translate([0, pad_h*SC]) p_stud(expose + bore_dp - 0.15 - pad_h);
     translate([0, 0.30*SC]) p_knob();
     translate([0, (0.30 + knob_t + 0.03)*SC]) p_nut();
@@ -115,7 +119,7 @@ module cross_section() {
     label("(travel +/- 1/2\")", -9.4, y_leg/2 - 1, 1.0, "right");
 
     dim_v(y_leg, y_bore, -6.2);                              // bore depth
-    label("3/4\" deep", -7.0, (y_leg + y_bore)/2, 1.1, "right");
+    label("7/8\" deep", -7.0, (y_leg + y_bore)/2, 1.1, "right");
 
     dim_h(-lw2, lw2, y_top + 5.2);                           // leg width
     label("1-1/2\" (2x2 leg)", 0, y_top + 6.8, 1.15);
@@ -126,11 +130,11 @@ module cross_section() {
     label("2\" knob", 0, -9.0, 1.1);
 
     // ---- leaders, staggered on the right ----
-    leader(b2, y_bore - 0.5, 9, 16);   label("1/2\" dia bore", 9.6, 16, 1.15, "left");
-    leader(tn_flange/2*SC, y_leg + 0.8, 9, 12);  label("3/8-16 T-nut (Anwenk)", 9.6, 12, 1.15, "left");
+    leader(b2, y_bore - 0.5, 9, 16);   label("3/8\" pilot hole (test-fit in offcut first)", 9.6, 16, 1.15, "left");
+    leader(tn_flange/2*SC, y_leg + 0.8, 9, 12);  label("screw-in insert (7/16\" OD, 3/8-16 bore)", 9.6, 12, 1.15, "left");
     leader(nut_w/2*SC, (0.30 + knob_t + 0.13)*SC, 9, 8);  label("3/8-16 jam nut — locks the knob", 9.6, 8, 1.15, "left");
     leader(knob_d/2*SC + 0.9, (0.30 + knob_t/2)*SC, 9, 4);  label("PW6103 star knob (hand wheel)", 9.6, 4, 1.15, "left");
-    leader(pad_d/2*SC*0.85, pad_h*SC*0.5, 9, 0.5);  label("nylon glide pad (Anwenk stud)", 9.6, 0.5, 1.15, "left");
+    leader(0.28*SC, (pad_h + 0.07)*SC, 9, 0.5);  label("fixed hex collar (wrench flat)", 9.6, 0.5, 1.15, "left");
 
     label("SECTION A-A — installed, mid-travel (6x actual size)", 0, -12.6, 1.5);
     label(str("effective leg: 16\" cut + 1\" foot = ", leg_height, "\" — deck height unchanged"), 0, -15, 1.15);
@@ -201,11 +205,11 @@ translate([44, -14]) exploded();
 translate([78, 6]) knob_top();
 
 // assembly steps, under the exploded view's x-range
-steps = ["A  drill the leg's end grain: 1/2\" dia x 3/4\" deep, centered",
-         "B  drive the T-nut up into the bore (dab of epoxy)",
+steps = ["A  drill the leg's end grain: 3/8\" pilot x 7/8\" deep, centered",
+         "B  screw the insert in flush (drive it on a spare bolt + jam nut)",
          "C  spin a 3/8-16 jam nut ~1\" up the stud",
          "D  thread the knob up to it; wrench the nut DOWN to lock them",
-         "E  screw the stud into the T-nut to 1\" exposure",
+         "E  screw the stud into the insert to 1\" exposure",
          "Locked together, knob + nut drive the stud: tip the corner, spin, done."];
 label("ASSEMBLY", 36, -19.5, 1.4, "left");
 for (i = [0 : len(steps) - 1]) label(steps[i], 36, -22 - i*2.3, 1.15, "left");
