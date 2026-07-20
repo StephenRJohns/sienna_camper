@@ -1,5 +1,7 @@
 # Project Smores — Full Build Plan
 
+*Free to view, share, and build from for personal, non-commercial use only. Commercial use, resale, or redistribution for profit is prohibited without prior written permission. © 2026 JJJJJ Enterprises, LLC — all rights reserved.*
+
 Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat removal/reinstall procedure incl. the SRS airbag emulators: Section 9). Layout, tailgate to front seats: **Kitchen (Panel C's fridge/kitchen void) → Rear pantry (prefab drawers on Panel C's deck) → Bed (Panel B + Panel A) → front seats.** The rear pantry is a **prefab drawer cluster** (owner, July 2026): a 2×2 array of IRIS USA 12"W stackable drawers sitting on the tailgate end of Panel C's deck, held by a cleat pocket + a cam strap, with a pot/pan crate in the ~21.8" of open deck beside it — nothing built, ~27 lb lighter, and each drawer unit lifts straight out (Component 1). Panel A and B have no top of their own (capped by the one-piece bed frame), while Panel C keeps its fixed top — all three on uniform legs, forming one continuous deck with 80" of sleeping length for the HEST Dually Long mattress (78" x 50" x 4") (Panel A now sits flush with the front seatbacks, using up the floor space that used to sit empty in front of it). Panel B is a bare-frame deep-storage bay — the side doors don't reach it, so it has no drawers and loads from above by lifting the platform; Panel A holds a right drawer (EcoFlow DELTA 3) plus a left open-storage bay (EcoFlow WAVE 3, no drawer box); Panel C's under-deck void instead houses a real BougeRV compressor fridge and a real JAGAHAHA slide-out camp kitchen, both on heavy-duty slides pulling straight out the open tailgate — bought products, not built from plywood — plus a shallow slide-out **kitchen drawer** hung under the deck in the dead air above the kitchen unit. The fridge and its cooling fans run off the EcoFlow DELTA 3 stack (Panel A) via their own DC line, so they keep running when people are away from the van regardless of ignition state; the DELTA 3 itself gets AC-charged from the front console outlet while driving, while the induction cooktop and Power strip 1 plug into the van's REAR AC outlet (back passenger area — verified to exist), right beside them: two short cords, no seam crossings.
 
 ## 0. Measurements to Take
@@ -1232,3 +1234,15 @@ So the van, converted and empty, weighs only about **321 lb more than a stock se
 5. **Driving solo?** Expect a slightly lighter front end with a full rear — nothing unsafe at these weights, just drive to it.
 6. **Leg-foot load is not a concern:** ~441 lb + occupants + cargo (~1,000 lb worst case) over 12 feet is well under the feet's 330 lb-each rating (~85 lb/foot worst case, a quarter of capacity).
 7. **If you add heavy items later** (second battery, water tank, awning), re-run `weight_budget.py` and re-check the rear axle before a trip.
+
+## License
+
+This build plan, its diagrams, and all accompanying project files (the "Materials") are © 2026 JJJJJ Enterprises, LLC and are provided free of charge for **personal, non-commercial use only**.
+
+- You may view, copy, print, and build from the Materials for your own personal project.
+- You may **not** sell, license, rent, or otherwise use the Materials — or derivatives of them — for any commercial purpose without prior written permission from JJJJJ Enterprises, LLC.
+- All rights not expressly granted above are reserved by JJJJJ Enterprises, LLC.
+
+### No Warranty
+
+THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. JJJJJ Enterprises, LLC makes no representation or warranty that the Materials are accurate, complete, or suitable for your specific vehicle, situation, or use case — dimensions, weights, and procedures are estimates that must be independently verified against your own vehicle before you rely on them. This is a personal DIY project, not professional engineering or automotive advice; the build involves woodworking, electrical wiring, and modifications that can affect vehicle weight distribution, payload, and safety systems (including SRS airbag components), and you undertake it at your own risk. IN NO EVENT SHALL JJJJJ ENTERPRISES, LLC BE LIABLE FOR ANY CLAIM, DAMAGES, INJURY, OR OTHER LIABILITY ARISING FROM OR IN CONNECTION WITH THE MATERIALS OR THEIR USE.
