@@ -210,11 +210,13 @@ steps = ["A  drill the leg's end grain: 1/2\" dia x 7/8\" deep, centered",
          "C  spin a 3/8-16 jam nut ~1\" up the stud",
          "D  thread the knob up to it; wrench the nut DOWN to lock them",
          "E  screw the stud into the insert to 1\" exposure",
-         "Locked together, knob + nut drive the stud: tip the corner, spin, done."];
+         "Locked together, knob + nut drive the stud: tip the corner, spin, done.",
+         "WHY the nut: jammed on the fixed collar instead, the knob locks one way",
+         "only and unscrews when reversed. The collar = wrench flat for a seized foot."];
 label("ASSEMBLY", 36, -19.5, 1.4, "left");
 for (i = [0 : len(steps) - 1]) label(steps[i], 36, -22 - i*2.3, 1.15, "left");
 
 label("LEG LEVELING FOOT — engineering drawing (parts as purchased, July 2026)", 34, 39, 1.9);
 label("12 feet total (4 per panel x 3 panels): 3x Anwenk leveler 4-packs + 3x Peachtree PW6103 knob 4-packs + 12x 3/8-16 jam nuts", 34, 36.4, 1.2);
-label("Rating: 1,320 lb per foot (Anwenk) — 4 feet under the heaviest panel = ~5,280 lb capacity vs ~450 lb actual load.", 22, -37.5, 1.2, "left");
-label("NOTE: skip the kit's stick-on felt pads — the bare nylon pad grips the van floor better and doesn't shed.", 22, -39.9, 1.2, "left");
+label("Rating: 1,320 lb per foot (Anwenk) — 4 feet under the heaviest panel = ~5,280 lb capacity vs ~450 lb actual load.", 22, -42, 1.2, "left");
+label("NOTE: skip the kit's stick-on felt pads — the bare nylon pad grips the van floor better and doesn't shed.", 22, -44.4, 1.2, "left");
