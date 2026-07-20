@@ -21,7 +21,7 @@ SC = 6;                    // drawing scale: 6x actual size (labels give real in
 
 // real part dims (inches)
 leg_w    = frame_rail_sz;  // 1.5
-bore_d   = 0.375;  // 3/8" pilot — insert OD is 7/16", threads must bite wood
+bore_d   = 0.5;    // 1/2" hole — the MAKER'S spec (insert core 7/16", crests bite wider)
 bore_dp  = 0.875;  // 7/8" deep: 3/4" insert + a hair of clearance
 stud_d   = 0.375;
 pad_d    = leveling_foot_pad_dia;   // 1.375 (Anwenk)
@@ -130,7 +130,7 @@ module cross_section() {
     label("2\" knob", 0, -9.0, 1.1);
 
     // ---- leaders, staggered on the right ----
-    leader(b2, y_bore - 0.5, 9, 16);   label("3/8\" pilot hole (test-fit in offcut first)", 9.6, 16, 1.15, "left");
+    leader(b2, y_bore - 0.5, 9, 16);   label("1/2\" hole, maker's spec (test-fit in offcut first)", 9.6, 16, 1.15, "left");
     leader(tn_flange/2*SC, y_leg + 0.8, 9, 12);  label("screw-in insert (7/16\" OD, 3/8-16 bore)", 9.6, 12, 1.15, "left");
     leader(nut_w/2*SC, (0.30 + knob_t + 0.13)*SC, 9, 8);  label("3/8-16 jam nut — locks the knob", 9.6, 8, 1.15, "left");
     leader(knob_d/2*SC + 0.9, (0.30 + knob_t/2)*SC, 9, 4);  label("PW6103 star knob (hand wheel)", 9.6, 4, 1.15, "left");
@@ -205,7 +205,7 @@ translate([44, -14]) exploded();
 translate([78, 6]) knob_top();
 
 // assembly steps, under the exploded view's x-range
-steps = ["A  drill the leg's end grain: 3/8\" pilot x 7/8\" deep, centered",
+steps = ["A  drill the leg's end grain: 1/2\" dia x 7/8\" deep, centered",
          "B  screw the insert in flush (drive it on a spare bolt + jam nut)",
          "C  spin a 3/8-16 jam nut ~1\" up the stud",
          "D  thread the knob up to it; wrench the nut DOWN to lock them",
