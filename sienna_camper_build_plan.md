@@ -655,6 +655,7 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 <div class="lego-num">6</div>
 <div class="lego-parts"><p class="lego-noparts">no new parts — the assembled platform from Step 5 (leveling feet already on the legs, Step 1)</p></div>
 <div class="lego-main"><img src="renders/leveling-foot-detail.png" alt="Leg leveling foot detail">
+<img src="renders/leveling-foot-assembly.png" alt="Leg leveling foot engineering drawing — section, exploded assembly, and knob top view">
 <p class="lego-caption">Set the finished platform down directly on Panel A + B's top rails and Panel C's mattress zone, centered so it overhangs the boxes 3" per side — nothing fastens it, it rests there and lifts straight off for drawer-bay access (it enters/exits the van tilted diagonally through the liftgate). Then LEVEL the boxes at the floor: with a level on the platform, tip each box corner slightly and spin that leg's star-knob foot until the bubble centers along both axes. Re-check after the van is parked on level ground.</p></div>
 </div>
 </div>

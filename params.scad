@@ -221,7 +221,7 @@ bottom_rail_z  = 1;     // underside of the bottom rails — dropped to the leg 
 leveling_foot_count    = 12;
 leveling_foot_travel   = 0.5;  // in, +/- adjustment from nominal
 leveling_foot_nominal_h = 1;   // in, exposed foot height at mid-adjustment (legs are cut this much short)
-leveling_foot_pad_dia  = 1.5;  // in, floor pad diameter
+leveling_foot_pad_dia  = 1.375; // in, floor pad diameter (Anwenk kit, from the listing — VERIFY on arrival)
 leveling_foot_thread   = "3/8-16"; // insert + glide bolt thread size, text only (not a dimension)
 // LOAD CHECK (owner concern, July 2026): worst case ~700lb total
 // (2 people + mattress + platform + boxes + cargo) over 12 feet =

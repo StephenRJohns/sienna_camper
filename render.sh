@@ -82,6 +82,8 @@ openscad -o renders/cabinet-door-detail.png --imgsize=3250,2150 $FLAT_CAM cabine
 echo "Rendering leveling foot detail..."
 openscad -o renders/leveling-foot-detail.svg leveling_foot_detail.scad
 openscad -o renders/leveling-foot-detail.png --imgsize=3250,2150 --camera=0,0,0,0,0,0,60 --projection=o --autocenter --viewall leveling_foot_detail.scad
+openscad -o renders/leveling-foot-assembly.svg leveling_foot_assembly.scad
+openscad -o renders/leveling-foot-assembly.png --imgsize=3200,2200 $FLAT_CAM leveling_foot_assembly.scad
 
 echo "Rendering bed frame detail..."
 openscad -o renders/bed-frame-detail.svg bed_frame_detail.scad
