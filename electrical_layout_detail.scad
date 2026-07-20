@@ -339,7 +339,7 @@ module section3() {
 // ---- legend (Section 1's numbered markers) ----------------------
 module legend() {
     items = [
-        "Power strip 1 — on the rear-pantry deck edge (phone/light/Claymore fan)",
+        "Power strip 1 — on the rear-pantry deck edge (phone/light/Windmill fan)",
         "Power strip 1's cord — a SHORT hop to the rear outlet beside the pantry (no seams)",
         "REAR AC outlet — passenger rear quarter trim, ~9.5\" up, ~10\" fwd of the liftgate scuff (VERIFIED; shares the one 1500W inverter)",
         "Cooktop cord — SHORT run to the rear outlet, slack loop for the kitchen's slide (no seams)",
