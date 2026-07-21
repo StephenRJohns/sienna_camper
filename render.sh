@@ -64,6 +64,10 @@ echo "Rendering DELTA 3 / WAVE 3 stowage detail..."
 openscad -o renders/delta3-wave3-detail.svg delta3_wave3_detail.scad
 openscad -o renders/delta3-wave3-detail.png --imgsize=2500,4700 $FLAT_CAM delta3_wave3_detail.scad
 
+echo "Rendering nighttime van + tent cooling setup detail..."
+openscad -o renders/night-cooling-setup-detail.svg night_cooling_setup_detail.scad
+openscad -o renders/night-cooling-setup-detail.png --imgsize=2600,4400 $FLAT_CAM night_cooling_setup_detail.scad
+
 echo "Rendering rear pantry detail (prefab drawer cluster)..."
 openscad -o renders/rear-pantry-detail.svg rear_pantry_detail.scad
 openscad -o renders/rear-pantry-detail.png --imgsize=3000,2100 $FLAT_CAM rear_pantry_detail.scad

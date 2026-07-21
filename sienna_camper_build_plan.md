@@ -1235,6 +1235,32 @@ So the van, converted and empty, weighs only about **321 lb more than a stock se
 6. **Leg-foot load is not a concern:** ~441 lb + occupants + cargo (~1,000 lb worst case) over 12 feet is well under the feet's 330 lb-each rating (~85 lb/foot worst case, a quarter of capacity).
 7. **If you add heavy items later** (second battery, water tank, awning), re-run `weight_budget.py` and re-check the rear axle before a trip.
 
+### Appendix F — Nighttime Van + Tent Cooling Setup
+
+A **night-only** cooling arrangement for hot-weather campsites (worked out for a Texas-summer trip, but applies anywhere overnight lows still run warm): condition the van and an attached tailgate tent as one shared air volume with the WAVE 3 alone, and skip the factory AC overnight entirely. This builds directly on the WAVE 3 "with a tent" configuration already described in Section 1 — this appendix just adds the setup diagram and the night-specific hints.
+
+![Nighttime van + tent cooling setup](renders/night-cooling-setup-detail.png)
+
+**Why no factory AC at night:** the Sienna Hybrid's electric AC compressor cools the cabin well, but it needs the van **sealed** (tailgate/doors shut) to work efficiently, and it cycles the gas engine on and off to keep the hybrid battery fed — noisy, intermittent, and it burns fuel right through the park's quiet hours. A tailgate-attached tent needs the opposite: the tailgate **open** so the connection sleeve has something to wrap around. Trying to run both at once means either the AC fights a leaky open tailgate (worse cooling, more engine cycling) or the tent's connection collapses — there's no clean way to combine them. The WAVE 3 has neither problem: it's silent-ish, battery-only, and its whole design point (Section 1) is blowing straight through the open tailgate into the shared van+tent space.
+
+**Setup steps (matches the numbered callouts in the diagram):**
+
+1. Carry the WAVE 3 from its Panel A storage bay back to Panel C's deck, just forward of the rear-pantry cluster, on a non-slip mat — facing the open tailgate.
+2. Route its intake/exhaust hoses past the pantry and out through the open tailgate gap to true outside air. No window seal needed — the open tailgate is the vent path.
+3. Leave the DELTA 3 Plus + Smart Extra Battery in Panel A's right (passenger) drawer — that's the WAVE 3's power source. Run its cord the length of the van (Panels A → B → C) to reach the unit.
+4. Attach the tent's elastic connection sleeve around the open tailgate/liftgate opening.
+5. Pitch the tent in its normal footprint just beyond the tailgate (swap in your own tent's dimensions — the diagram uses an example ~127" x 96" SUV tent as a stand-in).
+6. Zip every one of the tent's own mesh windows/vents shut except the one facing the van — every extra opening is cool air leaking out into the Texas night air.
+7. Turn the WAVE 3 on and let it condition the shared van+tent volume; hoses keep dumping heat/moisture out the tailgate gap the whole time.
+
+**Hints:**
+
+- **Add one small low-power circulation fan inside the tent**, aimed to push the WAVE 3's output toward the tent's far end — its own airflow may not reach that far unassisted, and a clip fan costs only a few watts against the 2048Wh bank.
+- **If you want the factory AC's extra cooling power too**, use it for a short **pre-bed knockdown** only: seal the van fully (tailgate shut, tent not yet attached) and run the AC 10-15 minutes before quiet hours to clear the day's heat soak, then switch to the WAVE 3 + tent setup above for the actual overnight run.
+- **Battery budget:** expect roughly 7-10 hours of overnight runtime from a full DELTA 3 stack in this configuration (nighttime ambient is far easier to hold than a daytime load) — plenty for one night; plan a solar/shore-power top-up if running it multiple nights back to back.
+- **If you need two independently-cooled sleeping zones instead of one shared space** (e.g., people sleeping in both the van and the tent), the WAVE 3 can't do both — the alternative is to seal the van and run the factory AC there while pitching the tent as a **fully stand-alone** shelter (its own door, sleeve not attached to the tailgate) with its own separate cooling. That trades the shared-air convenience for two independently sealed zones.
+- **Safety note carries over from Section 1/4:** this configuration doesn't run the engine overnight, so it doesn't add to the CO-monitor concern that a factory-AC-all-night approach would — but keep the low-level CO monitor active regardless if you ever do run the engine near the sleeping area.
+
 ## License
 
 This build plan, its diagrams, and all accompanying project files (the "Materials") are © 2026 JJJJJ Enterprises, LLC and are provided free of charge for **personal, non-commercial use only**.

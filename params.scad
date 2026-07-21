@@ -536,6 +536,19 @@ wave3_shelf_clear = leg_height - wave3_shelf_z - panel_thickness/2; // ~2.9in us
 wave3_intake_hose_dia  = 6; // in
 wave3_exhaust_hose_dia = 5; // in
 
+// Nighttime van+tent cooling setup (owner accessory, NOT part of the
+// build's own structure — no assert() against it): an example
+// footprint for a VEVOR SUV/tailgate tent (~10.6ft x 8ft), whose
+// elastic sleeve wraps the open liftgate/tailgate opening rather than
+// attaching to anything built here. Used only by
+// night_cooling_setup_detail.scad, to show the WAVE 3 running on
+// Panel C's deck blowing through the open tailgate into the shared
+// van+tent air volume (Section 1, "WAVE 3 sleeping configurations").
+// Swap these two numbers for your own tent's spec sheet — they don't
+// feed anything else in the model.
+tent_example_length = 127; // Y, ~10.6ft — VEVOR SUV tent
+tent_example_width  = 96;  // X, ~8ft
+
 // ------------------------------------------------------------
 // Derived values
 // ------------------------------------------------------------
