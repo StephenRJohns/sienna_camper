@@ -578,6 +578,8 @@ Cut every piece for every component up front, per Section 3's cut list, before s
 
 ### Component 1: Rear Pantry — Prefab Drawer Cluster + Pot Bay
 
+![Component 1 — finished component, accessory list & part list](renders/steps/comp-1-header.png)
+
 **SWAPPED (owner, July 2026): the custom plywood pantry is replaced by bought prefab drawer units** — no shelving to build, and ~27 lb lighter (out goes ~42 lb of plywood + mounting hardware; in comes ~15 lb of drawers + hold-down). A **2×2 array (2 wide × 2 high) of IRIS USA 12"W stackable storage drawers** (Home Depot #500163, two 3-packs — use 4, keep 2 spares) sits on the **tailgate end of Panel C's deck** — the same last-14" footprint the plywood pantry used, so the **80" sleeping run is unchanged** (the 14.3" unit depth sits 0.3" proud of the deck edge, inside the 2" hatch reserve). The cluster is **24.2" W × 14.3" D × 16.8" H**, which leaves **~21.8" of open deck on the passenger side** for a **pot/pan crate** plus the relocated power/wiring. Nothing is screwed into the units — a **cleat pocket + one cam strap** hold them, so each drawer unit **lifts straight out** (removable, clears the ~48" liftgate). **Deleted with the plywood pantry:** the 4 cam-lever clamps, the 2 steel L-angle sway braces + their bolts, the base cleats, the adjustable shelf, and the entire fiddle-lip/lash-strap/bin/liner retention kit — the drawers now contain their own contents. **The enclosed bed cubby is gone too**, so **Power strip 1 and the ROLL bubble level relocate to the deck edge** in the 19" bay (still reached and read from the bed). Build Panel C (Component 4) first — the cluster just sits on its finished deck.
 
 **Parts needed:**
@@ -601,6 +603,8 @@ Cut every piece for every component up front, per Section 3's cut list, before s
 5. **Load it.** Dense/heavy items (canned goods) in the bottom drawers, boxed dry goods up top, pots in the bin — then cinch the front strap before driving.
 
 ### Component 2: Panel A & Bed Platform
+
+![Component 2 — finished component, accessory list & part list](renders/steps/comp-2-header.png)
 
 Panel A and Panel B share the same frame construction — neither has a top of its own anymore; the one-piece slatted bed frame caps both at once (see Steps 6-7 below, and the Bed Frame Detail render). They diverge at the drawers: **Panel A's left (driver-side) bay is WAVE 3 open storage, not a drawer** — the WAVE 3 (20.4" wide) is too wide for a boxed drawer's 19" clear interior, so it rests directly on the bay floor instead, reached by hand through the driver's side door. Panel A ends up with only ONE actual drawer (right side, DELTA 3).
 
@@ -664,6 +668,8 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 
 ### Component 3: Panel B
 
+![Component 3 — finished component, accessory list & part list](renders/steps/comp-3-header.png)
+
 Same frame construction as Panel A — and that's the whole build. **Panel B has no drawers, no divider, and no skirts**: the sliding-door openings sit over Panel A's footprint, not Panel B's (owner-confirmed), so nothing pulled sideways from this panel could ever clear a door. Its bay is deep storage instead — lift the platform + mattress and load it from above. **The SPARE TIRE lives here** (RJ-MODINI kit, flat on 3" cleats at the axle — see the Spare Tire Stowage render), with **2× Sterilite 28-Qt lidded totes restacked on top** and the jack kit strapped beside it, so whole labeled boxes lift out instead of loose items. The Panel B detail render dimensions **every hole in the panel**: the 4 leg-bottom leveling-insert holes (1/2" dia x 7/8" deep, dead center of each leg's end grain) and the alignment-pin holes on both seam faces (2x 3/8" dia x 3/8" deep, 3" in from each side edge).
 
 **Parts needed:**
@@ -692,6 +698,8 @@ Same frame construction as Panel A — and that's the whole build. **Panel B has
 </div>
 
 ### Component 4: Panel C
+
+![Component 4 — finished component, accessory list & part list](renders/steps/comp-4-header.png)
 
 Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster sits on this panel's finished deck at the tailgate end (cleat pocket + cam strap — no fasteners into the units), with no frame or top of its own.
 
@@ -730,6 +738,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 
 ### Component 5: Anti-Rattle Bumpers, Alignment Pins & Seam Draw-Latches
 
+![Component 5 — finished component, accessory list & part list](renders/steps/comp-5-header.png)
+
 **Parts needed:**
 
 - Anti-rattle bumper strips — 2 (adhesive-backed felt or closed-cell foam weatherstrip), one per seam
@@ -752,6 +762,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 </div>
 
 ### Component 6: Cord Runs — Cooktop, Power Strip 1, Fridge DC & DELTA 3 Charging
+
+![Component 6 — finished component, accessory list & part list](renders/steps/comp-6-header.png)
 
 **Parts needed:**
 
@@ -792,6 +804,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 </div>
 
 ### Component 7: Fridge & Kitchen Install
+
+![Component 7 — finished component, accessory list & part list](renders/steps/comp-7-header.png)
 
 **Parts needed:**
 
@@ -858,6 +872,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 
 ### Component 8: EcoFlow Stowage (DELTA 3 + WAVE 3)
 
+![Component 8 — finished component, accessory list & part list](renders/steps/comp-8-header.png)
+
 **Parts needed:**
 
 - EcoFlow DELTA 3 Plus + Smart Extra Battery, EcoFlow WAVE 3 (already owned, not priced)
@@ -891,6 +907,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 
 ### Component 9: Mattress
 
+![Component 9 — finished component, accessory list & part list](renders/steps/comp-9-header.png)
+
 **Primary path — BUY, no build:** the HEST Dually Long (78" x 50" x 4") drops onto the platform as-is: solid foam, no inflation, washable waterproof cover included. Heads go at the rear-pantry end. Done.
 
 **Budget fallback — DIY 2-layer build** (the steps below): same 50" x 78" footprint, ~$185–255 all-in, 5.5" thick (costs ~1.5" of the headroom the HEST keeps).
@@ -917,6 +935,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 </div>
 
 ### Component 10: Final Assembly, Curtain & Test Fit
+
+![Component 10 — finished component, accessory list & part list](renders/steps/comp-10-header.png)
 
 **Parts needed:**
 

@@ -179,6 +179,16 @@ done
 lego_steps panel_c_lego.scad pc 2
 lego_steps mattress_lego.scad mat 2
 
+echo "Rendering per-component header banners (hero + accessory list + part list)..."
+# IKEA-style header trio per Section-6 component, driven by -D comp=N.
+# Wide banner aspect; the iso projection is baked into the geometry so
+# the standard flat camera is correct (same as the lego step diagrams).
+HDR_IMG="--imgsize=3600,1500"
+for n in $(seq 1 10); do
+    openscad -o "renders/steps/comp-${n}-header.svg" -D "comp=${n}" steps/component_headers.scad
+    openscad -o "renders/steps/comp-${n}-header.png" $HDR_IMG $FLAT_CAM -D "comp=${n}" steps/component_headers.scad
+done
+
 echo "Stripping default PNG background to transparent..."
 python3 make_bg_transparent.py renders >/dev/null
 

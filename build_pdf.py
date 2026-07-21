@@ -107,6 +107,12 @@ strong { color: #111; }
 .lego-main { flex: 1; min-width: 0; }
 .lego-main img { width: 100%; height: auto; }
 .lego-caption { font-size: 9pt; color: #222; margin: 3pt 0 0 0; }
+/* per-component IKEA-style header banner (hero + accessory list + part
+   list), embedded as a plain markdown image whose alt starts
+   "Component " — full width, bordered card, sits right under the h3. */
+img[alt^="Component "] { display: block; width: 100%; height: auto;
+    border: 1.5px solid #444; border-radius: 2pt; background: #fff;
+    padding: 4pt; margin: 4pt 0 10pt; page-break-inside: avoid; }
 /* purchase-links table: full URLs shown for copy-paste — break
    anywhere so an 80-char Amazon URL can't blow out the page width */
 .buy-links td { word-break: break-all; }

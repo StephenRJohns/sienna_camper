@@ -251,3 +251,59 @@ module lib_top_assembly(len, w) {
     lib_frame_ctx(len, w);
     lib_top_drop(len, w);
 }
+
+// ============================================================
+// HEADER-TRIO helpers (IKEA-style component header: hero drawing,
+// accessory list, numbered part list). All page-space 2D, layered
+// on top of / beside the projected iso geometry. Used by
+// component_headers.scad; accessory-cell + hardware icons live in
+// hardware_icons.scad (which includes this file).
+// ============================================================
+
+// numbered PART-LIST badge — a boxed 2-digit number ("01","02"...)
+// on a leader line back to a 3D anchor on the exploded geometry.
+// Mirrors callout() but with the reference's boxed-number style.
+// A solid black badge with a WHITE number on top — drawn this way (not
+// white-fill + black number) because OpenSCAD's preview PNG z-fights
+// coincident coplanar 2D fills and black wins; white-on-black always
+// renders (same technique as the accessory letter tabs / markers).
+module part_badge(n, anchor3, off = [6, 4], size = 1.9) {
+    q = p2(anchor3);
+    t = q + off;
+    color(INK) line2d(q, t - off * (2.6 / max(2.6, norm(off))));
+    translate(t) {
+        color(INK) square([size * 2.1, size * 1.7], center = true);
+        color("white") text(n, size = size, halign = "center", valign = "center");
+    }
+}
+
+// same badge as part_badge, but anchored at an explicit 2D page point
+// (for heroes drawn directly in page space, not projected 3D geometry).
+module badge2d(n, at, off = [6, 4], size = 1.9) {
+    t = at + off;
+    color(INK) line2d(at, t - off * (2.6 / max(2.6, norm(off))));
+    translate(t) {
+        color(INK) square([size * 2.1, size * 1.7], center = true);
+        color("white") text(n, size = size, halign = "center", valign = "center");
+    }
+}
+
+// a titled, bordered header section (2D page space). Draw the section
+// content with a translate into the box; the title sits in a bar on top.
+module hdr_frame(x, y, w, h, title, tsize = 2.6) {
+    translate([x, y]) {
+        color(INK) difference() {
+            square([w, h]);
+            translate([0.35, 0.35]) square([w - 0.7, h - 0.7]);
+        }
+        // title bar
+        color(INK) translate([0, h - 4.2]) square([w, 0.3]);
+        color(INK) translate([w / 2, h - 2.4]) text(title, size = tsize, halign = "center", valign = "center");
+    }
+}
+
+// thin divider between sub-cells (2D)
+module hdr_divider(x, y, len, vertical = false) {
+    color(INK) translate([x, y])
+        square(vertical ? [0.28, len] : [len, 0.28]);
+}
