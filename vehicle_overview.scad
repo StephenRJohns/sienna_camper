@@ -203,7 +203,7 @@ module drawing() {
 
     // mattress, true thickness, on the adjuster+platform stack —
     // spans the 80in sleeping run (the rear pantry takes the rest)
-    matt_z0 = floor_z + leg_height + frame_rail_sz + bed_platform_stack;
+    matt_z0 = floor_z + deck_surface_z; // platform/deck plane at 18.5 (deck recess — platform is flush AT the plane, not on top of it)
     matt_z1 = matt_z0 + mattress_total_thickness;
     color("Gray") translate([panels_x0, matt_z0])
         difference() {
@@ -216,7 +216,7 @@ module drawing() {
     // SITTING HEADROOM: mattress top -> ceiling, dimensioned with
     // ticks so the person-space is explicit
     hx = panels_x0 + 46;
-    headroom = van_interior_height - (leg_height + frame_rail_sz + bed_platform_stack + mattress_total_thickness);
+    headroom = van_interior_height - (deck_surface_z + mattress_total_thickness); // 21.5 since the deck recess
     color("black") {
         translate([hx - stroke/2, matt_z1]) square([stroke, floor_z + van_interior_height - matt_z1]);
         translate([hx - 2, matt_z1]) square([4, stroke]);

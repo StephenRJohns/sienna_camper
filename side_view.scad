@@ -49,12 +49,12 @@ module dim_v(x, z0, z1, txt, size = 1.4) {
 
 module side_view() {
     // ---- real stack heights, straight from params ----
-    z_rail_top = leg_height + frame_rail_sz;                    // 18.5 — top of the panel frame rails
-    z_deck     = z_rail_top + panel_thickness;                  // 19.25 — Panel C's deck surface (A/B have no deck)
-    z_pads     = z_rail_top;                                    // platform sits DIRECTLY on the box rails now
-    z_plat_top = z_pads + bed_frame_thickness;                  // 20.5 — bed platform's sleeping surface
-    z_matt_top = z_plat_top + mattress_total_thickness;         // 27.5 — mattress top
-    z_pan_top  = z_deck + pantry_cluster_h;                     // 37.85 — rear-pantry cluster top
+    z_rail_top = deck_surface_z;                                // 18.5 — Panel C rail tops = THE deck plane (deck recess)
+    z_deck     = deck_surface_z;                                // 18.5 — Panel C's deck surface, recessed flush with its rails
+    z_pads     = leg_height_ab + frame_rail_sz;                 // 17.75 — platform sits DIRECTLY on A/B's (shorter) box rails
+    z_plat_top = z_pads + bed_frame_thickness;                  // 18.5 — bed platform's sleeping surface, flush with Panel C
+    z_matt_top = z_plat_top + mattress_total_thickness;         // 22.5 — mattress top
+    z_pan_top  = z_deck + pantry_cluster_h;                     // 35.3 — rear-pantry cluster top
 
     y_panel_a = 0;
     y_panel_b = y_panel_a + panel_a_length;
@@ -73,16 +73,17 @@ module side_view() {
     panel_lengths = [panel_a_length, panel_b_length, panel_c_length];
     panel_names = ["Panel A", "Panel B", "Panel C"];
     panel_ys = [y_panel_a, y_panel_b, y_panel_c];
+    plh = [leg_height_ab, leg_height_ab, leg_height]; // A/B legs are 3/4" shorter (deck recess, params.scad)
     for (i = [0:2]) {
-        translate([panel_ys[i], 0]) rect_outline(frame_rail_sz, leg_height);
-        translate([panel_ys[i] + panel_lengths[i] - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height);
-        translate([panel_ys[i], leg_height]) rect_outline(panel_lengths[i], frame_rail_sz); // top rail
-        label(panel_names[i], panel_ys[i] + panel_lengths[i]/2, leg_height * 0.8, 1.7);
-        label(str(panel_lengths[i], "\" x ", leg_height + frame_rail_sz, "\" box"), panel_ys[i] + panel_lengths[i]/2, leg_height * 0.62, 1.3);
-        if (i != 1) label("on the floor", panel_ys[i] + panel_lengths[i]/2, leg_height * 0.47, 1.2);
+        translate([panel_ys[i], 0]) rect_outline(frame_rail_sz, plh[i]);
+        translate([panel_ys[i] + panel_lengths[i] - frame_rail_sz, 0]) rect_outline(frame_rail_sz, plh[i]);
+        translate([panel_ys[i], plh[i]]) rect_outline(panel_lengths[i], frame_rail_sz); // top rail
+        label(panel_names[i], panel_ys[i] + panel_lengths[i]/2, plh[i] * 0.8, 1.7);
+        label(str(panel_lengths[i], "\" x ", plh[i] + frame_rail_sz, "\" box"), panel_ys[i] + panel_lengths[i]/2, plh[i] * 0.62, 1.3);
+        if (i != 1) label("on the floor", panel_ys[i] + panel_lengths[i]/2, plh[i] * 0.47, 1.2);
     }
-    // Panel C's fixed deck
-    translate([y_panel_c, z_rail_top]) rect_outline(panel_c_length, panel_thickness);
+    // Panel C's fixed deck — RECESSED between its rails, flush with the rail tops
+    translate([y_panel_c + frame_rail_sz, z_rail_top - panel_thickness]) rect_outline(panel_c_length - 2 * frame_rail_sz, panel_thickness);
 
     // fridge + kitchen hidden below deck inside Panel C
     dashed_line(y_panel_c, y_panel_c + panel_c_length, leg_height * 0.4);
@@ -122,8 +123,8 @@ module side_view() {
 
     // ---- right-margin vertical dimension callouts ----
     dx = van_interior_length + 3;
-    dim_v(dx, 0, z_rail_top, str("box: ", z_rail_top, "\" (16\" legs + 1\" leveling feet + 1.5\" rail)"), 1.3);
-    dim_v(dx, z_rail_top, z_matt_top, str("+3/4\" platform +", mattress_total_thickness, "\" mattress = ", z_matt_top, "\""), 1.3);
+    dim_v(dx, 0, z_rail_top, str("Panel C box: ", z_rail_top, "\" (17\" legs incl. feet + 1.5\" rail); A/B boxes: ", leg_height_ab + frame_rail_sz, "\" — deck recess"), 1.3);
+    dim_v(dx, z_rail_top, z_matt_top, str("+", mattress_total_thickness, "\" mattress (3/4\" platform sits flush AT the plane) = ", z_matt_top, "\""), 1.3);
     dim_v(dx, z_matt_top, van_interior_height, str("sitting headroom: ", van_interior_height - z_matt_top, "\""), 1.3);
     dim_v(dx + 34, z_deck, z_pan_top, str("pantry cluster: ", pantry_cluster_h, "\" (top at ", z_pan_top, "\")"), 1.3);
     dim_v(dx + 34, z_pan_top, van_interior_height, str("to ceiling: ", van_interior_height - z_pan_top, "\""), 1.3);

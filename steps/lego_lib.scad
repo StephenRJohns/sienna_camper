@@ -140,29 +140,32 @@ module fastener_light(anchor3, r = 0.55, rot = 0) {
 // coords: X centered (-w/2..w/2), Y 0..len, Z floor-up — matches
 // platform.scad's module_frame()
 
-module lib_frame_ring(len, w, ctx = false) {
-    wbox([-w/2, 0, leg_height], [frame_rail_sz, len, frame_rail_sz], [0, 0], ctx);
-    wbox([w/2 - frame_rail_sz, 0, leg_height], [frame_rail_sz, len, frame_rail_sz], [0, 0], ctx);
-    wbox([-w/2, 0, leg_height], [w, frame_rail_sz, frame_rail_sz], [0, 0], ctx);
-    wbox([-w/2, len - frame_rail_sz, leg_height], [w, frame_rail_sz, frame_rail_sz], [0, 0], ctx);
+// lh: leg_height for Panel C, leg_height_ab for A/B (deck recess —
+// A/B legs are 0.75in shorter so the platform-on-rails plane matches
+// Panel C's recessed flush deck).
+module lib_frame_ring(len, w, ctx = false, lh = leg_height) {
+    wbox([-w/2, 0, lh], [frame_rail_sz, len, frame_rail_sz], [0, 0], ctx);
+    wbox([w/2 - frame_rail_sz, 0, lh], [frame_rail_sz, len, frame_rail_sz], [0, 0], ctx);
+    wbox([-w/2, 0, lh], [w, frame_rail_sz, frame_rail_sz], [0, 0], ctx);
+    wbox([-w/2, len - frame_rail_sz, lh], [w, frame_rail_sz, frame_rail_sz], [0, 0], ctx);
 }
 
-module lib_legs(len, w, drop = 0, ctx = false, rear_inset = -1) {
+module lib_legs(len, w, drop = 0, ctx = false, rear_inset = -1, lh = leg_height) {
     ri = rear_inset < 0 ? leg_inset : rear_inset;
     for (x = [-w/2 + leg_inset, w/2 - frame_rail_sz - leg_inset])
-        wbox([x, 0, -drop], [frame_rail_sz, frame_rail_sz, leg_height], [0, 0], ctx);
+        wbox([x, 0, -drop], [frame_rail_sz, frame_rail_sz, lh], [0, 0], ctx);
     for (x = [-w/2 + ri, w/2 - frame_rail_sz - ri])
-        wbox([x, len - frame_rail_sz, -drop], [frame_rail_sz, frame_rail_sz, leg_height], [0, 0], ctx);
+        wbox([x, len - frame_rail_sz, -drop], [frame_rail_sz, frame_rail_sz, lh], [0, 0], ctx);
 }
 
-module lib_frame_ctx(len, w) { // whole frame as previous-step context
-    lib_frame_ring(len, w, true);
-    lib_legs(len, w, 0, true);
+module lib_frame_ctx(len, w, lh = leg_height) { // whole frame as previous-step context
+    lib_frame_ring(len, w, true, lh);
+    lib_legs(len, w, 0, true, lh);
 }
 
 // step: FRAME — parts kit (plain labels, no leader lines — a kit
 // view is sparse enough that a label under each part reads fine)
-module lib_frame_parts(len, w) {
+module lib_frame_parts(len, w, lc = leg_cut_length, lh = leg_height) {
     // end rail recedes DOWN-right (X axis), side rail UP-right (Y
     // axis), leg straight up (Z) — the 2D offsets below account for
     // each part's own projected extent so labels never cross a part
@@ -170,8 +173,8 @@ module lib_frame_parts(len, w) {
     cap(str("A  2x end rail 2x2 x ", w, "\""), w * 0.35, -24, 2.6);
     wbox([0, 0, 0], [frame_rail_sz, len, frame_rail_sz], [0, -46]);
     cap(str("B  2x side rail 2x2 x ", len, "\""), len * 0.42, -50, 2.6);
-    wbox([0, 0, 0], [frame_rail_sz, frame_rail_sz, leg_height], [w * 1.1, -46]);
-    cap(str("C  4x leg 2x2 x ", leg_cut_length, "\" cut (+1\" leveling foot)"), w * 1.1 + 2, -50, 2.6);
+    wbox([0, 0, 0], [frame_rail_sz, frame_rail_sz, lh], [w * 1.1, -46]);
+    cap(str("C  4x leg 2x2 x ", lc, "\" cut (+1\" leveling foot)"), w * 1.1 + 2, -50, 2.6);
     cap(str("K  bottom rails 2x2 (cube frame — count/faces per panel, see assembly)"), w * 0.5, -56, 2.2);
     cap("+ 4 corner brackets, 2\" screws, glue", w * 0.5, -60, 2.2);
 }
@@ -181,17 +184,17 @@ module lib_frame_parts(len, w) {
 // tailgate face stays open, rear legs at the TRUE corners), or
 // "all" (Panel B — the full cube). These are the CUBE-FRAME bottom
 // rails at bottom_rail_z, just above the leveling feet.
-module lib_frame_assembly(len, w, bottom = "ends") {
+module lib_frame_assembly(len, w, bottom = "ends", lh = leg_height) {
     drop = 9;
     ri = bottom == "front" ? 0 : leg_inset; // rear-leg inset (Panel C: corners)
-    lib_frame_ring(len, w);
-    lib_legs(len, w, drop, false, ri);
+    lib_frame_ring(len, w, false, lh);
+    lib_legs(len, w, drop, false, ri, lh);
     for (x = [-w/2 + leg_inset, w/2 - frame_rail_sz - leg_inset])
-        iarrow([x + frame_rail_sz/2, frame_rail_sz/2, leg_height - drop + 1.5],
-               [x + frame_rail_sz/2, frame_rail_sz/2, leg_height - 0.5]);
+        iarrow([x + frame_rail_sz/2, frame_rail_sz/2, lh - drop + 1.5],
+               [x + frame_rail_sz/2, frame_rail_sz/2, lh - 0.5]);
     for (x = [-w/2 + ri, w/2 - frame_rail_sz - ri])
-        iarrow([x + frame_rail_sz/2, len - frame_rail_sz/2, leg_height - drop + 1.5],
-               [x + frame_rail_sz/2, len - frame_rail_sz/2, leg_height - 0.5]);
+        iarrow([x + frame_rail_sz/2, len - frame_rail_sz/2, lh - drop + 1.5],
+               [x + frame_rail_sz/2, len - frame_rail_sz/2, lh - 0.5]);
 
     // bottom rails (part K)
     wbox([-w/2 + leg_inset, 0, bottom_rail_z], [w - 2 * leg_inset, frame_rail_sz, frame_rail_sz]);
@@ -204,10 +207,10 @@ module lib_frame_assembly(len, w, bottom = "ends") {
     // corner bracket screws — end rail meets side rail at all 4 corners
     for (x = [frame_rail_sz/2 - w/2, w/2 - frame_rail_sz/2])
         for (y = [frame_rail_sz * 1.4, len - frame_rail_sz * 1.4])
-            fastener([x, y, leg_height + frame_rail_sz * 0.75]);
-    callout("A", [0, len - frame_rail_sz/2, leg_height + frame_rail_sz], [7, 6]);
-    callout("B", [w/2 - frame_rail_sz/2, len * 0.35, leg_height + frame_rail_sz], [8, -4]);
-    callout("C", [w/2 - frame_rail_sz - leg_inset + frame_rail_sz/2, 0, leg_height/2 - drop], [7, -3]);
+            fastener([x, y, lh + frame_rail_sz * 0.75]);
+    callout("A", [0, len - frame_rail_sz/2, lh + frame_rail_sz], [7, 6]);
+    callout("B", [w/2 - frame_rail_sz/2, len * 0.35, lh + frame_rail_sz], [8, -4]);
+    callout("C", [w/2 - frame_rail_sz - leg_inset + frame_rail_sz/2, 0, lh/2 - drop], [7, -3]);
     callout("K", [0, frame_rail_sz/2, bottom_rail_z + frame_rail_sz], [-8, -5]);
     cap(str("K: bottom rails (2x2, underside at ", bottom_rail_z, "\") close the frame into a box — ",
             bottom == "all" ? "all 4 faces (full cube)" :
@@ -215,14 +218,17 @@ module lib_frame_assembly(len, w, bottom = "ends") {
             "both end faces only (drawer + WAVE 3 exit the sides)"), 0, -30, 1.8);
 }
 
-// step: fixed TOP — parts kit
+// step: fixed TOP — parts kit. DECK RECESS: the top is cut to the
+// BETWEEN-RAILS opening and drops INTO the frame onto 3/4x3/4
+// cleats, flush with the rail tops (buys 3/4in of headroom).
 module lib_top_parts(len, w) {
-    wbox([0, 0, 0], [w, len, panel_thickness]);
+    wbox([0, 0, 0], [w - 2 * frame_rail_sz, len - 2 * frame_rail_sz, panel_thickness]);
     // the plank's projected extent is dominated by the WIDTH's
     // down-right descent (w * 0.408), not the length — anchor the
     // labels below that, or they cross the plank on short modules
-    cap(str("D  1x top ", len, "\" x ", w, "\"  (3/4\" ply)"), w * 0.42, -w * 0.42 - 3, 2.6);
-    cap("+ 1-1/4\" screws into the rails", w * 0.42, -w * 0.42 - 8, 2.2);
+    cap(str("D  1x top ", len - 2 * frame_rail_sz, "\" x ", w - 2 * frame_rail_sz, "\"  (3/4\" ply — drops BETWEEN the rails)"), w * 0.42, -w * 0.42 - 3, 2.6);
+    cap("E  3/4 x 3/4 bearer cleats on the rails' inner faces, tops 3/4\" down", w * 0.42, -w * 0.42 - 8, 2.2);
+    cap("+ 1-1/4\" screws down into the cleats + toe-screws into the rails", w * 0.42, -w * 0.42 - 13, 2.2);
 }
 
 // the lifted top + arrows/callout/guides WITHOUT any context —
@@ -231,19 +237,26 @@ module lib_top_parts(len, w) {
 // after the top would paint over it)
 module lib_top_drop(len, w) {
     lift = 9;
-    wbox([-w/2, 0, leg_height + frame_rail_sz + lift], [w, len, panel_thickness]);
+    // recessed: the (smaller) top hovers above the frame, drops
+    // BETWEEN the rails onto the bearer cleats — landed top surface
+    // flush with the rail tops (deck_surface_z)
+    wbox([-w/2 + frame_rail_sz, frame_rail_sz, deck_surface_z + lift], [w - 2 * frame_rail_sz, len - 2 * frame_rail_sz, panel_thickness]);
     for (x = [-w/3, w/3])
-        iarrow([x, len/2, leg_height + frame_rail_sz + lift - 1],
-               [x, len/2, leg_height + frame_rail_sz + 1.2]);
-    callout("D", [w/2 * 0.9, len, leg_height + frame_rail_sz + lift + panel_thickness], [6, 5]);
-    // dashed drop guides at the corners, plan-style
-    color(INK) for (cx = [-w/2, w/2 - frame_rail_sz])
-        dash2d(p2([cx, 0, leg_height + frame_rail_sz + lift]), p2([cx, 0, leg_height + frame_rail_sz]));
-    // screws down into the rails below, shown at their landed
-    // (post-drop) height along both long rails
-    for (x = [-w/2 + frame_rail_sz/2, w/2 - frame_rail_sz/2])
+        iarrow([x, len/2, deck_surface_z + lift - 1],
+               [x, len/2, deck_surface_z - panel_thickness + 1]);
+    callout("D", [(w/2 - frame_rail_sz) * 0.9, len - frame_rail_sz, deck_surface_z + lift + panel_thickness], [6, 5]);
+    // bearer cleats on the rails' inner faces (part E), landed height
+    for (cx = [-w/2 + frame_rail_sz, w/2 - frame_rail_sz - 0.75])
+        wbox([cx, frame_rail_sz, deck_surface_z - panel_thickness - 0.75], [0.75, len - 2 * frame_rail_sz, 0.75]);
+    callout("E", [w/2 - frame_rail_sz - 0.375, len * 0.3, deck_surface_z - panel_thickness - 0.375], [8, -4]);
+    // dashed drop guides at the inner-opening corners, plan-style
+    color(INK) for (cx = [-w/2 + frame_rail_sz, w/2 - frame_rail_sz])
+        dash2d(p2([cx, frame_rail_sz, deck_surface_z + lift]), p2([cx, frame_rail_sz, deck_surface_z]));
+    // screws down into the cleats below, shown at their landed
+    // (post-drop) height along both long edges
+    for (x = [-w/2 + frame_rail_sz + 0.4, w/2 - frame_rail_sz - 0.4])
         for (y = [len * 0.22, len * 0.5, len * 0.78])
-            fastener([x, y, leg_height + frame_rail_sz + panel_thickness * 0.6]);
+            fastener([x, y, deck_surface_z - panel_thickness * 0.4]);
 }
 
 // step: fixed TOP — exploded assembly (frame context + lifted top)

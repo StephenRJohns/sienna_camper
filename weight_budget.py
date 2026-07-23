@@ -16,13 +16,13 @@ R = []
 def add(name, cat, wt, y, x, note): R.append([name, cat, round(wt,1), y, x, note])
 
 # ---- STRUCTURE ----
-add("Panel A frame (2x2 pine)", "Structure", pine_len(332), 14.5, 0, "rails+legs+divider+bottom rails")
+add("Panel A frame (2x2 pine)", "Structure", pine_len(329), 14.5, 0, "rails+legs+divider+bottom rails (16.25in legs — deck recess)")
 add("Panel A drawer box + slides (3/8\" birch, 1/2\" bottom)", "Structure", ply(500,0.5)+ply(1305,0.375)+4, 14.5, 11, "holds the DELTA 3 stack")
-add("Panel B frame (2x2 pine, full cube)", "Structure", pine_len(358), 43.5, 0, "bare-frame deep-storage box")
+add("Panel B frame (2x2 pine, full cube)", "Structure", pine_len(355), 43.5, 0, "bare-frame deep-storage box (16.25in legs — deck recess)")
 add("Panel C frame (2x2 pine)", "Structure", pine_len(274), 76, 0, "rails+legs+front bottom rail")
-add("Panel C deck (3/4\" birch, 36x46)", "Structure", ply(36*46,0.75), 76, 0, "fixed top over fridge/kitchen")
+add("Panel C deck (3/4\" birch, 33x43 recessed + cleats)", "Structure", ply(33*43,0.75)+1.0, 76, 0, "drops between the rails onto bearer cleats, flush (deck recess)")
 add("Panel C front wall (3/8\" birch)", "Structure", ply(46*17,0.375), 60, 0, "intake fan + grommets")
-add("Fridge tray (3/8\" birch + edge frame)", "Structure", ply(17.72*28.74,0.375), 80, -12, "on the fridge slide")
+add("Fridge tray (3/8\" birch + 2 1x3 side aprons)", "Structure", ply(17.72*28.74,0.375)+pine_len(2*28.74, 2.5, 0.75), 80, -12, "hangs between the side-mount slide rails")
 add("Kitchen drawer + cheeks (1/2\" birch)", "Structure", ply(744,0.5)+ply(322,0.5), 80, 13, "hung over the kitchen unit")
 add("Rear pantry: 4x IRIS 12\"W drawer units + hold-down", "Structure", 13.0+2.0, 87, -10, "2x2 prefab cluster (est ~3.2lb/unit) + cleats/strap — replaces the ~42lb plywood pantry")
 add("Panel B: 2x Sterilite 28-Qt under-bed totes (empty)", "Hardware/misc", 4.0, 43.5, 5, "restacked ON the spare (2 of the original 4)")
@@ -42,6 +42,7 @@ add("Mattress (HEST Dually Long)", "Bedding", 35.0, 40, 0, "ESTIMATE - solid foa
 
 # ---- HARDWARE / MISC ----
 add("Fridge + kitchen-drawer slides (heavy)", "Hardware/misc", 8.0, 80, 0, "24\" heavy-duty pairs")
+add("Fridge-slide steel riser angles (2)", "Hardware/misc", 9.8, 80, -12, "2x2x3/16\" x 24\" steel, fixed rails -> E-track anchors (aluminum angle saves ~6 lb)")
 add("12 leveling feet + star knobs + inserts", "Hardware/misc", 5.0, 47, 0, "4 per panel")
 add("E-track anchors (8) + ratchet straps", "Hardware/misc", 8.0, 76, 0, "floor tie-downs at Panel C")
 add("Corner brackets, braces, screws, glue", "Hardware/misc", 6.0, 47, 0, "spread across all modules")
@@ -66,7 +67,7 @@ SEATS_REMOVED = 120.0
 net = build - SEATS_REMOVED   # net permanent weight the conversion adds vs. stock (seatless)
 
 # ---- write CSV ----
-out = pathlib.Path("/home/stephen/sienna/weight_budget.csv")
+out = pathlib.Path(__file__).parent / "weight_budget.csv"
 with out.open("w", newline="") as f:
     w = csv.writer(f)
     w.writerow(["Component","Category","Weight (lb)","Fore-aft y (in from front)","Lateral x (in, -driver/+pass)","Notes"])

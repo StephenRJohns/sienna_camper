@@ -1,11 +1,11 @@
 Component,Category,Weight (lb),Fore-aft y (in from front),"Lateral x (in, -driver/+pass)",Notes
-Panel A frame (2x2 pine),Structure,12.1,14.5,0,rails+legs+divider+bottom rails
+Panel A frame (2x2 pine),Structure,12.0,14.5,0,rails+legs+divider+bottom rails (16.25in legs — deck recess)
 "Panel A drawer box + slides (3/8"" birch, 1/2"" bottom)",Structure,22.2,14.5,11,holds the DELTA 3 stack
-"Panel B frame (2x2 pine, full cube)",Structure,13.1,43.5,0,bare-frame deep-storage box
+"Panel B frame (2x2 pine, full cube)",Structure,12.9,43.5,0,bare-frame deep-storage box (16.25in legs — deck recess)
 Panel C frame (2x2 pine),Structure,10.0,76,0,rails+legs+front bottom rail
-"Panel C deck (3/4"" birch, 36x46)",Structure,30.5,76,0,fixed top over fridge/kitchen
+"Panel C deck (3/4"" birch, 33x43 recessed + cleats)",Structure,27.2,76,0,"drops between the rails onto bearer cleats, flush (deck recess)"
 "Panel C front wall (3/8"" birch)",Structure,7.2,60,0,intake fan + grommets
-"Fridge tray (3/8"" birch + edge frame)",Structure,4.7,80,-12,on the fridge slide
+"Fridge tray (3/8"" birch + 2 1x3 side aprons)",Structure,6.4,80,-12,hangs between the side-mount slide rails
 "Kitchen drawer + cheeks (1/2"" birch)",Structure,13.1,80,13,hung over the kitchen unit
 "Rear pantry: 4x IRIS 12""W drawer units + hold-down",Structure,15.0,87,-10,2x2 prefab cluster (est ~3.2lb/unit) + cleats/strap — replaces the ~42lb plywood pantry
 Panel B: 2x Sterilite 28-Qt under-bed totes (empty),Hardware/misc,4.0,43.5,5,restacked ON the spare (2 of the original 4)
@@ -17,6 +17,7 @@ EcoFlow DELTA 3 Plus + Extra Battery,Power/climate,48.0,14.5,11,Panel A passenge
 EcoFlow WAVE 3 A/C,Power/climate,33.7,14.5,-11,Panel A driver bay
 Mattress (HEST Dually Long),Bedding,35.0,40,0,ESTIMATE - solid foam + cover
 Fridge + kitchen-drawer slides (heavy),Hardware/misc,8.0,80,0,"24"" heavy-duty pairs"
+Fridge-slide steel riser angles (2),Hardware/misc,9.8,80,-12,"2x2x3/16"" x 24"" steel, fixed rails -> E-track anchors (aluminum angle saves ~6 lb)"
 12 leveling feet + star knobs + inserts,Hardware/misc,5.0,47,0,4 per panel
 E-track anchors (8) + ratchet straps,Hardware/misc,8.0,76,0,floor tie-downs at Panel C
 "Corner brackets, braces, screws, glue",Hardware/misc,6.0,47,0,spread across all modules
@@ -24,11 +25,11 @@ Seam draw-latches (4) + alignment pins + bumpers,Hardware/misc,1.5,47,0,at the A
 "Electrical (2 fans, controller, fuse, 2 strips, cords)",Hardware/misc,6.0,55,0,cooling + power runs
 Cooktop + cookware (stowed),Hardware/misc,12.0,80,13,induction top + pots in the kitchen
 
-Structure subtotal,,148.1,,,
-Hardware/misc subtotal,,90.5,,,
+Structure subtotal,,146.2,,,
+Hardware/misc subtotal,,100.3,,,
 Appliances subtotal,,85.6,,,
 Power/climate subtotal,,81.7,,,
 Bedding subtotal,,35.0,,,
-BUILD TOTAL (added),,440.9,,,
+BUILD TOTAL (added),,448.8,,,
 Removed: 2nd-row seats x2 (est.),credit,-120,,,WEIGH to confirm; ~48-70 lb each
-NET added vs stock (build - seats),,320.9,,,
+NET added vs stock (build - seats),,328.8,,,

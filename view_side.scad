@@ -42,9 +42,10 @@ module dash_box(w, h, s = 0.18, seg = 1.0, gap = 0.7) {
 }
 
 module drawing() {
-    z_rail_top = leg_height + frame_rail_sz;
-    z_deck     = z_rail_top + panel_thickness;
-    z_plat_top = z_rail_top + bed_frame_thickness;
+    z_rail_top = deck_surface_z;                        // 18.5 — Panel C rail tops = the deck plane (deck recess)
+    z_deck     = deck_surface_z;                        // Panel C's recessed deck surface, flush with its rails
+    z_ab_rail  = leg_height_ab + frame_rail_sz;         // 17.75 — A/B rail tops (the platform's seat)
+    z_plat_top = z_ab_rail + bed_frame_thickness;       // 18.5 — flush with Panel C
     z_matt_top = z_plat_top + mattress_total_thickness;
 
     // In THIS elevation Y increases left->right. Tailgate at RIGHT,
@@ -74,15 +75,17 @@ module drawing() {
     plen = [panel_a_length, panel_b_length, panel_c_length];
     pnm  = ["Panel A", "Panel B", "Panel C"];
     pys  = [y_a, y_b, y_c];
+    plh  = [leg_height_ab, leg_height_ab, leg_height]; // A/B legs 3/4" shorter (deck recess)
     for (i = [0:2]) {
-        translate([pys[i], 0]) rect_outline(frame_rail_sz, leg_height);
-        translate([pys[i] + plen[i] - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height);
-        translate([pys[i], leg_height]) rect_outline(plen[i], frame_rail_sz);
-        label(pnm[i], pys[i] + frame_rail_sz + 2, leg_height - 1.1, 1.35, "left"); // corner tag, tucked under the top rail clear of the shelf lines
+        translate([pys[i], 0]) rect_outline(frame_rail_sz, plh[i]);
+        translate([pys[i] + plen[i] - frame_rail_sz, 0]) rect_outline(frame_rail_sz, plh[i]);
+        translate([pys[i], plh[i]]) rect_outline(plen[i], frame_rail_sz);
+        label(pnm[i], pys[i] + frame_rail_sz + 2, plh[i] - 1.1, 1.35, "left"); // corner tag, tucked under the top rail clear of the shelf lines
     }
     // Panel B is a bare deep-storage cube (nothing exits it sideways)
-    label("bare-frame deep storage", y_b + panel_b_length/2, leg_height/2, 1.1);
-    translate([y_c, z_rail_top]) rect_outline(panel_c_length, panel_thickness); // Panel C deck
+    label("bare-frame deep storage", y_b + panel_b_length/2, leg_height_ab/2, 1.1);
+    // Panel C deck — recessed between its rails, flush with the rail tops
+    translate([y_c + frame_rail_sz, z_rail_top - panel_thickness]) rect_outline(panel_c_length - 2 * frame_rail_sz, panel_thickness);
 
     // ---- under-deck contents facing THIS side ----
     // Panel A item
@@ -109,8 +112,8 @@ module drawing() {
     if (is_driver) {
         // fridge (fridge_ext_width deep, fridge_ext_height tall) in Panel C
         fy = y_c + panel_c_length - fridge_ext_width - 0.5;
-        translate([fy, fridge_tray_t]) dash_box(fridge_ext_width, fridge_ext_height);
-        color("Gray") translate([fy, 0]) square([fridge_ext_width, fridge_tray_t]);
+        translate([fy, fridge_tray_gap + fridge_tray_t]) dash_box(fridge_ext_width, fridge_ext_height);
+        color("Gray") translate([fy, fridge_tray_gap]) square([fridge_ext_width, fridge_tray_t]);
         label("Fridge (Rocky 40)", fy + fridge_ext_width/2, fridge_ext_height/2 + 1.5, 1.05);
         label("on a tray + slides", fy + fridge_ext_width/2, fridge_ext_height/2, 0.9);
         label("-> out the tailgate", fy + fridge_ext_width/2, fridge_ext_height/2 - 1.6, 0.9);
@@ -126,7 +129,7 @@ module drawing() {
     }
 
     // bed platform + mattress + rear pantry (shared stack, both sides)
-    translate([y_a, z_rail_top]) rect_outline(bed_frame_length, bed_frame_thickness);
+    translate([y_a, z_ab_rail]) rect_outline(bed_frame_length, bed_frame_thickness);
     translate([y_a, z_plat_top]) rect_outline(mattress_length, mattress_total_thickness);
     label(str("Mattress (top at ", z_matt_top, "\")"), mattress_length/2, z_plat_top + mattress_total_thickness/2, 1.4);
     translate([y_pan, z_deck]) rect_outline(pantry_unit_d, pantry_cluster_h);

@@ -134,6 +134,10 @@ for step in steps/step-*.scad; do
     # hand-holds were removed from the plan (bare frames are gripped
     # by their exposed top rails) — the file stays on disk, unrendered
     [ "$name" = "step-06-install-handles" ] && continue
+    # step-02/step-04 predate the no-tops redesign + deck recess and
+    # nothing references them — on disk, unrendered (like step-06)
+    [ "$name" = "step-02-build-frame" ] && continue
+    [ "$name" = "step-04-fixed-top-divider" ] && continue
     openscad -o "renders/steps/${name}.svg" "$step"
     openscad -o "renders/steps/${name}.png" $IMG $FLAT_CAM "$step"
 done

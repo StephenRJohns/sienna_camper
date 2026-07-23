@@ -137,7 +137,7 @@ module cross_section() {
     leader(0.28*SC, (pad_h + 0.07)*SC, 9, 0.5);  label("fixed hex collar (wrench flat)", 9.6, 0.5, 1.15, "left");
 
     label("SECTION A-A — installed, mid-travel (6x actual size)", 0, -12.6, 1.5);
-    label(str("effective leg: 16\" cut + 1\" foot = ", leg_height, "\" — deck height unchanged"), 0, -15, 1.15);
+    label(str("effective leg: cut + 1\" foot = ", leg_height, "\" (Panel C) / ", leg_height_ab, "\" (A/B) — deck plane at ", deck_surface_z, "\""), 0, -15, 1.15);
 }
 
 // ------------------------------------------------------------

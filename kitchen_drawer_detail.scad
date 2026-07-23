@@ -19,7 +19,7 @@ stroke = 0.2;
 
 z_rail0 = leg_height;                    // 17
 z_rail1 = leg_height + frame_rail_sz;    // 18.5
-z_deck  = z_rail1 + panel_thickness;     // 19.25
+z_deck  = z_rail1;                       // 18.5 — deck surface, recessed flush with the rail tops
 z_d0    = kdrawer_z0;                    // 12.3 — drawer underside
 z_d1    = kdrawer_z0 + kdrawer_box_h;    // 16.8 — drawer top
 
@@ -60,7 +60,7 @@ module side_section() {
         translate([0, 0]) rect_outline(frame_rail_sz, leg_height);
         translate([panel_c_length - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height);
         translate([0, z_rail0]) rect_outline(panel_c_length, frame_rail_sz);
-        translate([0, z_rail1]) rect_outline(panel_c_length, panel_thickness);
+        translate([frame_rail_sz, z_rail1 - panel_thickness]) rect_outline(panel_c_length - 2 * frame_rail_sz, panel_thickness); // deck, recessed between the rails
     }
     // kitchen unit
     color("DimGray") translate([ky0, 0]) rect_outline(kitchen_box_length, kitchen_box_height);
@@ -68,7 +68,7 @@ module side_section() {
     label(str(kitchen_box_height, "\" tall — slides out on its own rails"), ky0 + kitchen_box_length/2, kitchen_box_height/2 - 1.2, 1.0);
 
     // hanging cheek (edge-on, behind the drawer) — dashed top edge zone
-    color("Gray") translate([ky0, z_d0]) rect_outline(kdrawer_box_len, z_rail1 - z_d0);
+    color("Gray") translate([ky0, z_d0]) rect_outline(kdrawer_box_len, z_rail1 - panel_thickness - z_d0); // cheek reaches the recessed deck underside (17.75)
     // the drawer itself, part-open toward the tailgate
     color("black") translate([ky0 + pull, z_d0]) rect_outline(kdrawer_box_len, kdrawer_box_h);
     label("KITCHEN DRAWER — pulls out the tailgate", ky0 + pull + kdrawer_box_len/2, (z_d0 + z_d1)/2 + 0.9, 1.15);
@@ -95,9 +95,9 @@ module rear_section() {
 
     color("black") {
         translate([-panel_width/2 - 2, -stroke]) square([panel_width + 4, stroke]); // floor
-        // side rail (passenger) + deck
+        // side rail (passenger) + deck (recessed between the rails)
         translate([panel_width/2 - frame_rail_sz, z_rail0]) rect_outline(frame_rail_sz, frame_rail_sz);
-        translate([-panel_width/2, z_rail1]) rect_outline(panel_width, panel_thickness);
+        translate([-panel_width/2 + frame_rail_sz, z_rail1 - panel_thickness]) rect_outline(panel_width - 2 * frame_rail_sz, panel_thickness);
     }
     // kitchen unit
     color("DimGray") translate([kx0, 0]) rect_outline(kitchen_box_width, kitchen_box_height);
@@ -105,8 +105,8 @@ module rear_section() {
 
     // hanging cheeks, deck underside down to the drawer's underside
     color("black") {
-        translate([ck_in_x0, z_d0]) rect_outline(kdrawer_cheek_t, z_rail1 - z_d0);
-        translate([ck_out_x0, z_d0]) rect_outline(kdrawer_cheek_t, z_rail1 - z_d0);
+        translate([ck_in_x0, z_d0]) rect_outline(kdrawer_cheek_t, z_rail1 - panel_thickness - z_d0);
+        translate([ck_out_x0, z_d0]) rect_outline(kdrawer_cheek_t, z_rail1 - panel_thickness - z_d0);
     }
     // slides (one each side of the drawer, at mid-height)
     color("Gray") {

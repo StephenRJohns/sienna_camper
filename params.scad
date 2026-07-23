@@ -74,7 +74,7 @@ pantry_unit_w    = 12.1;  // one IRIS drawer unit — X (width)
 pantry_unit_d    = 14.3;  // Y (depth) — 0.3in proud of the deck edge, well inside the 2in hatch reserve
 pantry_unit_h    = 8.4;   // Z (height)
 pantry_cluster_w = 2 * pantry_unit_w; // 24.2 — 2 units wide, against the driver edge
-pantry_cluster_h = 2 * pantry_unit_h; // 16.8 — 2 units high (top at deck + 16.8 = 36.05, ~8in of roof clearance)
+pantry_cluster_h = 2 * pantry_unit_h; // 16.8 — 2 units high (top at deck 18.5 + 16.8 = 35.3, ~8.7in of roof clearance — a 3rd 8.4in tier now technically clears, by 0.3in)
 pantry_bay_w     = 46 - pantry_cluster_w; // 21.8 — open deck bay, passenger side (pot crate + relocated power)
 pantry_pot_bin   = 13;    // rigid pot/pan crate footprint in the bay (~13x13 milk crate; the pots' 11x11 box drops inside)
 
@@ -102,7 +102,7 @@ panelb_tote_n = 2;     // was 4 — the spare tire now takes the other half of t
 spare_dia   = 28.5;
 spare_w     = 6.4;   // stored width incl. case (T155 section 6.1)
 spare_cleat = 3;
-assert(spare_dia <= panel_b_length && spare_cleat + spare_w + panelb_tote_h <= leg_height + frame_rail_sz,
+assert(spare_dia <= panel_b_length && spare_cleat + spare_w + panelb_tote_h <= leg_height_ab + frame_rail_sz,
        "Spare stack doesn't fit Panel B's bay — check spare/cleat/tote dims");
 
 /* [Panels A/B/C — fixed tops, one continuous full-length deck] */
@@ -149,7 +149,8 @@ mattress_total_thickness = 4; // HEST Dually Long thickness (DIY fallback: 4in b
 //
 // The platform spans Panel A + B ONLY and ENDS at the B/C seam:
 // Panel C keeps its own fixed 3/4in deck at exactly the same
-// surface height (rail top + 3/4in), so the two meet flush and the
+// surface height (deck_surface_z, 18.5 — C's deck recessed flush,
+// A/B rails 3/4in lower under the platform), so the two meet flush and the
 // mattress's last ~20in simply rides Panel C's deck. An 80in
 // platform would have to sit ON that deck — 3/4in too high — so
 // don't build one.
@@ -164,7 +165,7 @@ bed_frame_length = panel_a_length + panel_b_length; // 58 — Panel A + B only; 
 // at 46 (legs must land between the floor vents; boxes pass the 48in
 // gate), but the mattress rides 19-27in up where the Sienna is wider
 // than the 48.5in floor pinch. UNVERIFIED: measure wall-to-wall at
-// ~19in and ~23in above the floor along the whole run — need >=53in
+// ~18.5in and ~22.5in above the floor along the whole run — need >=53in
 // for this width (Section 0). The 52x58 platform enters the van
 // tilted diagonally through the gate (gate diagonal ~60in).
 bed_frame_width    = 52;  // 3in overhang past the boxes on each side
@@ -190,9 +191,23 @@ bed_frame_thickness = bed_slat_t; // 0.75 — one flush plane, rests directly on
 // wiggle room. That's also why it went up from the original 11in
 // (sized only for a folded 3rd-row well) — measure your well depth
 // and adjust if 17in doesn't clear it (Section 1/2).
-leg_height     = 17;    // 15.79in fridge height + ~1.5in clearance, rounded
+leg_height     = 17;    // fridge_stack_top (16.67 = 0.5in tray gap + 3/8in tray + 15.79in fridge) + 0.33in running clearance under the tailgate end rail — see the fridge-slide SIDE-MOUNT stack + assert below
 frame_rail_sz  = 1.5;   // 2x2 pine actual dimension (Section 3)
 leg_inset      = vent_intrusion_width; // legs sit inset this much from the deck's outer edge so they land clear of the floor-level vent intrusion
+
+// DECK RECESS (owner, July 2026 — the one real headroom lever left):
+// the sleeping plane drops 3/4in by recessing the horizontal ply INTO
+// the rail plane instead of stacking it on top. Panel C's fixed deck
+// sits BETWEEN its rails on 3/4x3/4 cleats (deck top flush with the
+// rail tops); Panels A/B instead get legs cut deck_drop shorter, so
+// the 3/4in bed platform resting ON their rails tops out at the same
+// plane. Panel C's legs stay leg_height — the fridge stack + end-rail
+// clearance need all 17in, and nothing under its deck changes.
+// Sleeping surface: 19.25 -> 18.5; sitting headroom over the 4in
+// mattress: 20.75 -> 21.5.
+deck_drop      = panel_thickness;              // 0.75 — how far the sleeping plane dropped
+leg_height_ab  = leg_height - deck_drop;       // 16.25 — Panel A/B legs (platform-on-rails matches C's flush deck)
+deck_surface_z = leg_height + frame_rail_sz;   // 18.5 — the ONE deck/sleeping plane (Panel C rail tops)
 // EXCEPTION: Panel C's REAR leg pair sits at the TRUE corners (zero
 // inset) — the fridge/kitchen slide paths pass exactly where inset
 // legs would stand. UNVERIFIED (Section 0): confirm the floor vents
@@ -231,7 +246,8 @@ leveling_foot_thread   = "3/8-16"; // insert + glide bolt thread size, text only
 // the wheels per site (leveling blocks + the Block Calculator); the
 // interior feet are set ONCE. Electric feet were considered and
 // REJECTED (owner, July 2026).
-leg_cut_length = leg_height - leveling_foot_nominal_h; // 16 — the actual saw cut; foot makes up the rest
+leg_cut_length    = leg_height - leveling_foot_nominal_h;    // 16 — Panel C's actual saw cut; foot makes up the rest
+leg_cut_length_ab = leg_height_ab - leveling_foot_nominal_h; // 15.25 — Panel A/B legs (deck recess, see above)
 
 // deck surface -> mattress underside: just the flush platform now —
 // it rests DIRECTLY on the box top rails, no adjusters between
@@ -285,7 +301,7 @@ drawer_box_t        = 0.375; // WEIGHT SWAP (owner, July 2026): 1/2in -> 3/8in b
 // change one panel's length independently, revisit this)
 drawer_depth   = panel_a_length - 2 * frame_rail_sz - 1; // fore-aft (Y) span, between the front/back legs
 drawer_travel  = panel_width/2 - frame_rail_sz - drawer_divider_t/2 - drawer_side_clear; // X extent (how far it slides); drawer box's own outer width too, per drawer_module()
-drawer_height  = leg_height - frame_rail_sz - 1; // Z, inside the leg-height storage bay, under the fixed deck
+drawer_height  = leg_height_ab - frame_rail_sz - 1; // 13.75 — Z, inside Panel A's bay under the recessed platform plane (A/B legs are leg_height_ab now)
 // interior clear space once the box's own walls/floor are subtracted —
 // what actually fits inside a drawer (used for the DELTA3 stack fit
 // check below)
@@ -361,7 +377,7 @@ intake_vent_w = 7;    // low front-wall intake louver — width
 intake_vent_h = 2.5;  // height
 intake_vent_x = 5.5;  // center X from the driver edge (low-driver corner, clear of the fan)
 intake_vent_z = 5;    // center Z, just above the front bottom rail (top at 3.5)
-cabinet_vent_w = 3;   // low cabinet-door exhaust louver — width (fits the ~4.3in door)
+cabinet_vent_w = 2;   // low cabinet-door exhaust louver — width (the door narrowed to ~3.3in with the side-mount rail stack; was 3in in a ~4.3in door)
 cabinet_vent_h = 4;   // height
 cabinet_vent_z = 5;   // center Z, low in the door
 
@@ -383,21 +399,57 @@ cabinet_vent_z = 5;   // center Z, low in the door
 // before first power-up.
 fridge_ext_length = 17.72; // X — left-right (the 450mm side)
 fridge_ext_width  = 28.74; // Y — front-to-back depth into the bay (incl. handles)
-fridge_ext_height = 15.79; // Z — drives leg_height above (16.17 with the 3/8in tray, ~0.84in spare)
+fridge_ext_height = 15.79; // Z — drives leg_height above via fridge_stack_top (16.67 mounted: 0.5in tray gap + 3/8in tray + fridge — see the SIDE-MOUNT stack below)
 // Clearance: the manual wants 200mm behind the compressor + 100mm
 // sides for PASSIVE venting — the bay can't give that, which is
 // exactly what the forced intake/exhaust fan system compensates for
 // (aim the airflow across the compressor end).
 fridge_side_clearance = 2;  // with forced airflow; manual's passive figures are 7.9/3.9in
 
-/* [Fridge slide — heavy duty, loaded weight is real] */
+/* [Fridge slide — heavy duty, loaded weight is real. SIDE-MOUNT (owner,
+   July 2026)] */
 // Empty the Rocky 40 is 40.6 lb (18.4 kg, manual), and loaded with
 // food/drinks it can hit ~60-90 lb — too heavy to pull by hand
 // without tipping or binding. It sits on its
-// own plywood tray (screwed down, with a lip) riding a pair of
-// heavy-duty full-extension slides rated well above the load.
-fridge_slide_length = 24;   // 24in, 200lb-rated full-extension slide pair
-fridge_tray_t       = 0.375; // WEIGHT SWAP: 1/2in -> 3/8in ply (-~1.5lb) with a glued edge frame for stiffness under the fridge on its slide
+// own plywood tray riding a pair of heavy-duty full-extension slides
+// (VADANIA VD2576 24in industrial w/ lock, 379lb — purchased, see BOM)
+// rated well above the load.
+//
+// MOUNTING (fixes an undermount-vs-side-mount inconsistency an earlier
+// draft had): the VADANIA's 3in (76mm) rails stand VERTICALLY, one
+// flanking each side of the tray — NOTHING is stacked under the tray.
+// Per side, outboard-to-inboard: a steel riser angle through-bolted to
+// the E-track floor anchors (the rail's fixed member screws to its
+// vertical face), the rail itself, then a 1x3 side apron glued+screwed
+// to the tray's edge (the moving member screws to it; its top edge
+// doubles as the fridge's anti-shift lip, and the hold-down D-rings go
+// into it). The tray hangs BETWEEN the rails with a small floor gap,
+// so the slide hardware adds ZERO height to the fridge stack — an
+// undermount arrangement (rail flat under the tray) would add ~1.2in
+// and the fridge would no longer clear Panel C's tailgate end rail.
+// The cost lands on WIDTH instead: see fridge_rail_stack below and the
+// cabinet-gap assert — the utility cabinet narrows to ~3.3in.
+fridge_slide_length = 24;   // VADANIA VD2576 24in pair, 379lb, locks closed + extended
+fridge_tray_t       = 0.375; // WEIGHT SWAP: 1/2in -> 3/8in ply (-~1.5lb); stiffened by the 2 glued 1x3 side aprons
+fridge_tray_gap     = 0.5;  // clear air under the hanging tray panel (nothing beneath it)
+fridge_rail_t       = 0.75; // VADANIA rail thickness (19mm), standing vertically beside the tray
+fridge_riser_t      = 0.25; // steel riser angle between the fixed rail and its E-track anchors (2x2x3/16in angle + fit allowance)
+fridge_rail_stack   = fridge_rail_t + fridge_riser_t; // 1.0 per side, OUTBOARD of the tray apron (the apron itself lives in fridge_slide_margin)
+fridge_stack_top    = fridge_tray_gap + fridge_tray_t + fridge_ext_height; // 16.67 — top of the mounted fridge
+fridge_exit_clearance_min = 0.25; // required running clearance under Panel C's tailgate end rail (van bounce)
+// The DRIVER-side rail+riser tucks into the corner-leg band (the 1.5in
+// between Panel C's driver edge and the fridge module) — the fixed rail
+// is ~24in long vs the tray's 28.74in run, so setting it back ~2.5in
+// from the tailgate face clears the rear corner leg entirely. Only the
+// PASSENGER-side stack eats into the utility-cabinet gap.
+assert(fridge_rail_stack <= frame_rail_sz,
+       str("Driver-side rail+riser stack (", fridge_rail_stack,
+           "in) is thicker than the corner-leg band (", frame_rail_sz,
+           "in) it tucks into"));
+assert(fridge_stack_top + fridge_exit_clearance_min <= leg_height,
+       str("Mounted fridge stack tops out at ", fridge_stack_top,
+           "in (tray gap + tray + fridge) but must pass under Panel C's tailgate end rail at ",
+           leg_height, "in with ", fridge_exit_clearance_min, "in running clearance"));
 
 /* [Fridge cooling — intake fan + exhaust fan + temp sensor] */
 // TWO 120mm fans, both wired to the same PWM temperature controller
@@ -423,7 +475,7 @@ sensor_dia = 0.4; // NTC thermistor probe, shown as a small marker
 // don't collide even though the fridge now exits through the same
 // tailgate opening the end rail spans. Small vertical panel, not its
 // own floor footprint.
-control_panel_width = 2.8; // the LMioEtool enclosure mounted TALL-ways (its 2.8in dimension across) — the cabinet gap is ~4.3in now that the appliances sit against Panel C's rear corner legs
+control_panel_width = 2.8; // the LMioEtool enclosure mounted TALL-ways (its 2.8in dimension across) — the cabinet gap is ~3.3in now that the fridge's passenger-side slide rail + riser stand in it (side-mount fix; was ~4.3in)
 
 // Fridge zone width: the fridge itself plus a small margin each
 // side for the slide hardware, flush to Panel C's RIGHT edge so its
@@ -483,7 +535,7 @@ assert(kdrawer_z0 + kdrawer_box_h <= leg_height,
 // are stowed UNSTACKED, side by side (their 15.7in dimension running
 // fore-aft), in Panel A's RIGHT (+X) drawer (Section 1's side-door
 // reachability check). Stacked (Pogo-pin) height is ~19in, which does
-// NOT fit a drawer's ~14in clear interior — unstacked is the only
+// NOT fit a drawer's ~13.4in clear interior — unstacked is the only
 // configuration that fits. Charged at camp via shore power/wall
 // outlet or solar — this design does NOT route van power back to
 // this drawer.
@@ -530,9 +582,9 @@ wave3_bay_width = panel_width/2 - frame_rail_sz - drawer_divider_t/2; // raw ope
 //  - the WAVE 3 is 13.2in tall in the 17in left bay -> a thin SHELF
 //    on cleats just above it holds flat soft goods / the WAVE 3's
 //    hoses+remote, and the WAVE 3 still slides out beneath it.
-delta3_tray_h  = 3;                       // shallow tray on top of the DELTA 3 stack
+delta3_tray_h  = 2;                       // shallow tray on top of the DELTA 3 stack (was 3 — the deck recess cut the drawer's clear height to 13.375in over the 11.16in stack)
 wave3_shelf_z  = wave3_height + 0.5;       // 13.7 — cleat-mounted shelf just above the WAVE 3
-wave3_shelf_clear = leg_height - wave3_shelf_z - panel_thickness/2; // ~2.9in usable above the shelf
+wave3_shelf_clear = leg_height_ab - wave3_shelf_z - panel_thickness/2; // ~2.2in usable above the shelf (was ~2.9 before the deck recess)
 wave3_intake_hose_dia  = 6; // in
 wave3_exhaust_hose_dia = 5; // in
 
@@ -591,7 +643,11 @@ platform_length = panels_total_length; // full sleeping-deck length, pantry excl
 // what has to clear the liftgate opening height when carrying a
 // module in its natural upright orientation (legs down, the way
 // it sits once installed).
-panel_module_height = leg_height + frame_rail_sz + panel_thickness; // 19.25
+// A/B carry as bare frames (no top); Panel C's deck is recessed
+// flush, so its carried height is just legs + rail too — Panel C is
+// the tallest module and is what the gate-fit/pantry-roof checks use.
+panel_module_height_ab = leg_height_ab + frame_rail_sz; // 17.75 — Panels A/B
+panel_module_height = leg_height + frame_rail_sz; // 18.5 — Panel C (was 19.25 before the deck recess)
 // The fridge lives inside Panel C's own void (same leg_height,
 // same fixed top as A/B — no hatch needed since access is through
 // the side door, not from above) — so its "module height" for
@@ -600,7 +656,7 @@ panel_module_height = leg_height + frame_rail_sz + panel_thickness; // 19.25
 // tray inside the leg_height void, hidden below deck level, not
 // stacked on top of the frame — that's what let leg_height (17in)
 // absorb the fridge's height without the panel getting any taller.
-fridge_bay_module_height = panel_module_height; // 19.25
+fridge_bay_module_height = panel_module_height; // 18.5
 // The kitchen unit is a standalone manufactured product sitting
 // directly on the van floor (no custom frame) — its own height,
 // not leg_height-driven. Kept as its own name for the gate-fit
@@ -615,12 +671,20 @@ assert(assembly_total_length <= usable_length,
        str("Assembly is ", assembly_total_length,
            "in long but only ", usable_length, "in is usable (", van_interior_length, "in hatch-to-seats minus ",
            hatch_curvature_clearance, "in hatch clearance)"));
-assert(kitchen_box_width + fridge_module_width + 2 * frame_rail_sz <= panel_width,
+assert(kitchen_box_width + fridge_module_width + fridge_rail_stack + 2 * frame_rail_sz <= panel_width,
        str("Kitchen unit (", kitchen_box_width, "in) + fridge module (", fridge_module_width,
+           "in) + its passenger-side rail stack (", fridge_rail_stack,
            "in) + Panel C's 2 rear corner legs is wider than the ", panel_width, "in panel — they'd overlap"));
-assert(x_kitchen - kitchen_box_width/2 - (x_fridge_module + fridge_module_width/2) >= control_panel_width + 0.4,
-       str("Utility-cabinet gap (", x_kitchen - kitchen_box_width/2 - (x_fridge_module + fridge_module_width/2),
-           "in) is too narrow for the control panel (", control_panel_width, "in) plus working clearance"));
+// The passenger-side slide rail + riser (fridge_rail_stack) stand
+// between the fridge module and the utility cabinet — the cabinet gap
+// is what's left AFTER them. TIGHT since the side-mount fix (~3.3in
+// against the control panel's 2.8in + 0.4in working clearance — only
+// ~0.1in of assert margin): re-check with the real VADANIA rail +
+// riser in hand before fixing the kitchen unit's position.
+assert(x_kitchen - kitchen_box_width/2 - (x_fridge_module + fridge_module_width/2 + fridge_rail_stack) >= control_panel_width + 0.4,
+       str("Utility-cabinet gap (", x_kitchen - kitchen_box_width/2 - (x_fridge_module + fridge_module_width/2 + fridge_rail_stack),
+           "in, after the fridge's passenger-side rail+riser) is too narrow for the control panel (",
+           control_panel_width, "in) plus working clearance"));
 assert(panel_width - 2 * leg_inset <= usable_floor_width,
        "Panel legs (deck width minus 2x leg_inset) land inside the vent intrusion zone");
 assert(panel_width <= van_interior_width,

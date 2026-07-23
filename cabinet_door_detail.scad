@@ -18,7 +18,7 @@ include <colors.scad>
 // same formulas as platform.scad's cabinet_door_module() — kept in
 // sync by construction, not by reference, since that module draws in
 // context of the full 3D assembly and this file draws it alone
-door_x0 = x_fridge_module + fridge_ext_length / 2 + fridge_slide_margin;      // flush to the fridge module's right edge
+door_x0 = x_fridge_module + fridge_ext_length / 2 + fridge_slide_margin + fridge_rail_stack; // past the fridge module's right edge + its side-mount rail/riser
 door_w  = x_kitchen - kitchen_box_width / 2 - door_x0;                         // gap to the kitchen unit's left edge
 door_h  = leg_height;                                                          // floor to deck underside
 door_t  = 0.4;
@@ -55,7 +55,7 @@ module drawing() {
     // muted, so the door's actual fit is obvious
     ifill(EDGE_CTX) {
         translate([door_x0 + door_w, 0, 0]) cube([kitchen_box_width, kitchen_box_length, kitchen_box_height]);
-        translate([door_x0 - fridge_slide_margin - fridge_ext_length, 0, 0]) cube([fridge_ext_length, fridge_ext_width, fridge_ext_height]);
+        translate([door_x0 - fridge_rail_stack - fridge_slide_margin - fridge_ext_length, 0, fridge_tray_gap + fridge_tray_t]) cube([fridge_ext_length, fridge_ext_width, fridge_ext_height]);
     }
 
     // door panel, in place

@@ -16,7 +16,8 @@ PT   = panel_thickness;
 W    = panel_width;                       // 46
 y_ab = panel_a_length;                    // 29 — A/B seam
 y_bc = panel_a_length + panel_b_length;   // 58 — B/C seam
-zr   = leg_height + frame_rail_sz;
+zr    = leg_height + frame_rail_sz;      // 18.5 — Panel C rail tops (deck plane)
+zr_ab = leg_height_ab + frame_rail_sz;   // 17.75 — A/B rail tops (deck recess)
 
 module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3); t = q + off;
@@ -26,21 +27,21 @@ module marker3d(n, anchor3, off = [6, 4]) {
 }
 
 // hollow iso wireframe box (edges only), spanning Y = y0..y0+len
-module box_wire(y0, len, ctx = false) {
-    ifill(ctx ? EDGE_CTX : INK) translate([-W/2, y0, 0]) edge_box(W, len, leg_height, ctx ? 0.11 : 0.16);
+module box_wire(y0, len, ctx = false, lh = leg_height_ab) {
+    ifill(ctx ? EDGE_CTX : INK) translate([-W/2, y0, 0]) edge_box(W, len, lh, ctx ? 0.11 : 0.16);
     // a few leg posts so it reads as a frame, not just a box
     for (x = [-W/2 + leg_inset, W/2 - frame_rail_sz - leg_inset])
-        wbox([x, y0 + 0.2, 0], [frame_rail_sz, frame_rail_sz, leg_height], [0, 0], true);
+        wbox([x, y0 + 0.2, 0], [frame_rail_sz, frame_rail_sz, lh], [0, 0], true);
 }
 
 module drawing() {
     // three modules as one beam
     box_wire(0, panel_a_length);
     box_wire(y_ab, panel_b_length);
-    box_wire(y_bc, panel_c_length, true);
+    box_wire(y_bc, panel_c_length, true, leg_height); // Panel C keeps the full 17" legs
     // bed platform ties the A/B tops; Panel C keeps its own deck
-    wbox([-W/2, 0, zr], [W, y_bc, 0.75], [0, 0], true);
-    wbox([-W/2, y_bc, zr], [W, panel_c_length, PT], [0, 0], true);
+    wbox([-W/2, 0, zr_ab], [W, y_bc, 0.75], [0, 0], true);
+    wbox([-W/2 + frame_rail_sz, y_bc + frame_rail_sz, zr - PT], [W - 2 * frame_rail_sz, panel_c_length - 2 * frame_rail_sz, PT], [0, 0], true);
 
     // 4 draw latches — low on the bottom-rail band, both sides of each seam
     n = 1;
@@ -53,8 +54,8 @@ module drawing() {
 
     // dashed seam lines across the deck for clarity
     color(INK) {
-        dash2d(p2([-W/2, y_ab, zr]), p2([W/2, y_ab, zr]), 0.16, 1.4);
-        dash2d(p2([-W/2, y_bc, zr]), p2([W/2, y_bc, zr]), 0.16, 1.4);
+        dash2d(p2([-W/2, y_ab, zr_ab]), p2([W/2, y_ab, zr_ab]), 0.16, 1.4);
+        dash2d(p2([-W/2, y_bc, zr_ab]), p2([W/2, y_bc, zr_ab]), 0.16, 1.4);
     }
 
     cap("SEAM DRAW-LATCHES — clamp the 3 lift-out modules into one rigid beam (Component 5)", 0, -10, 1.9);

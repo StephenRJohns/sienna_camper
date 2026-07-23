@@ -65,21 +65,21 @@ module deployed() {
     color("Gray") {
         translate([-panel_width/2, 0]) rect_outline(frame_rail_sz, leg_height);
         translate([panel_width/2 - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height);
-        translate([-panel_width/2, z_deck]) rect_outline(panel_width, panel_thickness);
+        translate([-panel_width/2, leg_height]) rect_outline(panel_width, frame_rail_sz); // tailgate end rail — deck recessed flush behind it
     }
-    label(str("Panel C deck (", panel_width, "\" wide)"), -panel_width/2 + 9, z_deck - 3.2, 1.1);
+    label(str("Panel C deck plane (", panel_width, "\" wide, recessed flush)"), -panel_width/2 + 13, leg_height + 0.72, 1.0);
 
     // rear pantry on the deck (context outline): 2x2 drawer cluster + pot bin
     px0 = -panel_width/2;
     color("DarkGray") {
-        translate([px0, z_deck + panel_thickness]) rect_outline(pantry_cluster_w, pantry_cluster_h, 0.25);
+        translate([px0, z_deck]) rect_outline(pantry_cluster_w, pantry_cluster_h, 0.25);
         for (c = [0, 1]) for (r = [0, 1])
-            translate([px0 + c*pantry_unit_w + 0.6, z_deck + panel_thickness + r*pantry_unit_h + 0.6])
+            translate([px0 + c*pantry_unit_w + 0.6, z_deck + r*pantry_unit_h + 0.6])
                 rect_outline(pantry_unit_w - 1.2, pantry_unit_h - 1.2, 0.18);
-        translate([px0 + pantry_cluster_w + 1.5, z_deck + panel_thickness])
+        translate([px0 + pantry_cluster_w + 1.5, z_deck])
             rect_outline(pantry_pot_bin, pantry_pot_bin, 0.2);
     }
-    label("Rear pantry: prefab drawer cluster + pot bin (stays put)", 0, z_deck + panel_thickness + pantry_cluster_h + 2.2, 1.3);
+    label("Rear pantry: prefab drawer cluster + pot bin (stays put)", 0, z_deck + pantry_cluster_h + 2.2, 1.3);
 
     // the now-EMPTY under-deck bays the appliances slid out of
     color("LightGray") {

@@ -35,7 +35,7 @@ panel = "B"; // "A" or "B" — only affects step 3
 L  = panel_b_length;   // 29 — panel_a_length is identical; assert below
 W  = panel_width;      // 46
 RS = frame_rail_sz;
-LH = leg_height;
+LH = leg_height_ab; // Panels A/B: legs 0.75in shorter since the deck recess (params.scad)
 PT = panel_thickness;
 DT = drawer_divider_t;
 
@@ -60,7 +60,7 @@ module s2_parts() {
 }
 module s2_assembly() {
     lift = 10;
-    lib_frame_ctx(L, W);
+    lib_frame_ctx(L, W, leg_height_ab);
     divider_geom(lift);
     iarrow([0, L/2, lift - 1], [0, L/2, 2]);
     // divider screwed into the end rails at top and bottom
@@ -92,7 +92,7 @@ module s3_parts() {
 }
 module s3_assembly() {
     pull = 14;
-    lib_frame_ctx(L, W);
+    lib_frame_ctx(L, W, leg_height_ab);
     divider_geom(0, true);
 
     if (is_a) {
@@ -130,11 +130,11 @@ module s3_assembly() {
 
 // ---- dispatch ----------------------------------------------------
 if (view == "parts") {
-    if (step == 1) lib_frame_parts(L, W);
+    if (step == 1) lib_frame_parts(L, W, leg_cut_length_ab, leg_height_ab);
     else if (step == 2) s2_parts();
     else if (step == 3) s3_parts();
 } else {
-    if (step == 1) lib_frame_assembly(L, W, panel == "A" ? "ends" : "all");
+    if (step == 1) lib_frame_assembly(L, W, panel == "A" ? "ends" : "all", leg_height_ab);
     else if (step == 2) s2_assembly();
     else if (step == 3) s3_assembly();
 }

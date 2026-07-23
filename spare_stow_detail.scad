@@ -16,7 +16,7 @@ PT = panel_thickness;
 LB = panel_b_length;     // 29
 W  = panel_width;        // 46
 RS = frame_rail_sz;
-LH = leg_height;
+LH = leg_height_ab; // Panel B: legs 3/4" shorter since the deck recess
 spare_d = 28.5; spare_t = 6.4;
 
 module marker3d(n, anchor3, off = [6, 4]) {

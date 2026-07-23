@@ -2,7 +2,7 @@
 
 *Free to view, share, and build from for personal, non-commercial use only. Commercial use, resale, or redistribution for profit is prohibited without prior written permission. © 2026 JJJJJ Enterprises, LLC — all rights reserved.*
 
-Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat removal/reinstall procedure incl. the SRS airbag emulators: Section 9). Layout, tailgate to front seats: **Kitchen (Panel C's fridge/kitchen void) → Rear pantry (prefab drawers on Panel C's deck) → Bed (Panel B + Panel A) → front seats.** The rear pantry is a **prefab drawer cluster** (owner, July 2026): a 2×2 array of IRIS USA 12"W stackable drawers sitting on the tailgate end of Panel C's deck, held by a cleat pocket + a cam strap, with a pot/pan crate in the ~21.8" of open deck beside it — nothing built, ~27 lb lighter, and each drawer unit lifts straight out (Component 1). Panel A and B have no top of their own (capped by the one-piece bed frame), while Panel C keeps its fixed top — all three on uniform legs, forming one continuous deck with 80" of sleeping length for the HEST Dually Long mattress (78" x 50" x 4") (Panel A now sits flush with the front seatbacks, using up the floor space that used to sit empty in front of it). Panel B is a bare-frame deep-storage bay — the side doors don't reach it, so it has no drawers and loads from above by lifting the platform; Panel A holds a right drawer (EcoFlow DELTA 3) plus a left open-storage bay (EcoFlow WAVE 3, no drawer box); Panel C's under-deck void instead houses a real BougeRV compressor fridge and a real JAGAHAHA slide-out camp kitchen, both on heavy-duty slides pulling straight out the open tailgate — bought products, not built from plywood — plus a shallow slide-out **kitchen drawer** hung under the deck in the dead air above the kitchen unit. The fridge and its cooling fans run off the EcoFlow DELTA 3 stack (Panel A) via their own DC line, so they keep running when people are away from the van regardless of ignition state; the DELTA 3 itself gets AC-charged from the front console outlet while driving, while the induction cooktop and Power strip 1 plug into the van's REAR AC outlet (back passenger area — verified to exist), right beside them: two short cords, no seam crossings.
+Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat removal/reinstall procedure incl. the SRS airbag emulators: Section 9). Layout, tailgate to front seats: **Kitchen (Panel C's fridge/kitchen void) → Rear pantry (prefab drawers on Panel C's deck) → Bed (Panel B + Panel A) → front seats.** The rear pantry is a **prefab drawer cluster** (owner, July 2026): a 2×2 array of IRIS USA 12"W stackable drawers sitting on the tailgate end of Panel C's deck, held by a cleat pocket + a cam strap, with a pot/pan crate in the ~21.8" of open deck beside it — nothing built, ~27 lb lighter, and each drawer unit lifts straight out (Component 1). Panel A and B have no top of their own (capped by the one-piece bed frame), while Panel C keeps its fixed top — **recessed flush into its rail plane** (the deck ply drops between the rails onto cleats; Panels A/B run 16.25" legs vs Panel C's 17", so the platform on their rails lands in the same flush 18.5" plane — ¾" more headroom) — forming one continuous deck with 80" of sleeping length for the HEST Dually Long mattress (78" x 50" x 4") (Panel A now sits flush with the front seatbacks, using up the floor space that used to sit empty in front of it). Panel B is a bare-frame deep-storage bay — the side doors don't reach it, so it has no drawers and loads from above by lifting the platform; Panel A holds a right drawer (EcoFlow DELTA 3) plus a left open-storage bay (EcoFlow WAVE 3, no drawer box); Panel C's under-deck void instead houses a real BougeRV compressor fridge and a real JAGAHAHA slide-out camp kitchen, both on heavy-duty slides pulling straight out the open tailgate — bought products, not built from plywood — plus a shallow slide-out **kitchen drawer** hung under the deck in the dead air above the kitchen unit. The fridge and its cooling fans run off the EcoFlow DELTA 3 stack (Panel A) via their own DC line, so they keep running when people are away from the van regardless of ignition state; the DELTA 3 itself gets AC-charged from the front console outlet while driving, while the induction cooktop and Power strip 1 plug into the van's REAR AC outlet (back passenger area — verified to exist), right beside them: two short cords, no seam crossings.
 
 ## 0. Measurements to Take
 
@@ -20,14 +20,14 @@ Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat 
 | 3 | Vent intrusion width, each side (floor level) | `vent_intrusion_width` | 2.5" — already verified | |
 | 4 | Hatch curvature clearance | `hatch_curvature_clearance` | 2" — already verified | |
 | 5 | Gate opening width — the narrowest point, not the widest | `gate_opening_width` | 48" — UNVERIFIED | |
-| — | Interior wall-to-wall width at ~19" AND ~23" above the floor, along the whole 80" sleeping run | gates `bed_frame_width` (52" platform needs >=53" at platform height — the 48.5" figure is the FLOOR pinch between the wheel wells; the walls are wider up here) | — UNVERIFIED, the platform-width gate | |
+| — | Interior wall-to-wall width at ~18.5" AND ~22.5" above the floor, along the whole 80" sleeping run | gates `bed_frame_width` (52" platform needs >=53" at platform height — the 48.5" figure is the FLOOR pinch between the wheel wells; the walls are wider up here) | — UNVERIFIED, the platform-width gate | |
 | 6 | Gate opening height — where the rounded corners start cutting in | `gate_opening_height` | 36" — UNVERIFIED | |
 | 7 | Side door opening width (fore-aft span) | `side_door_opening_width` | 40" — UNVERIFIED | |
 | 8 | Side door opening height | `side_door_opening_height` | 40" — UNVERIFIED | |
 | — | Rear 12V accessory outlet — exact position | (no longer used by this design — the fridge and fan system now run off the DELTA 3 stack instead, Section 1. Informational only, not a blocker.) | — | |
 | — | Front console AC outlet — wattage rating | (Section 1/7 — drives the DELTA 3's AC charge rate and the cooktop's power check) | **1500W — VERIFIED** | 1500W |
 | ✔ | AC outlets — **VERIFIED: 2 total, both fed by the one 1500W inverter.** Front: center console. Rear: **passenger-side rear quarter trim — ~9.5" above the cargo floor, ~10" forward of the liftgate scuff plate, socket center ~16" laterally in from the right sidewall; directly above the 12V battery access panel, below the rear cup holders.** NEW verify item: confirm the quarter trim (cup holders) doesn't intrude inboard of the 46" deck width at deck height near that corner | (Section 5 — cooktop + Power strip 1 plug into the rear outlet via a 2-way tap; DELTA 3 charging has the front outlet; all share the one 1500W inverter budget) | — | |
-| — | Folded 3rd-row well depth | (confirms `leg_height` — 17", fridge-driven — actually clears it) | — | |
+| — | Folded 3rd-row well depth | (confirms `leg_height` — 17" on Panel C, fridge-driven; A/B legs are 16.25", deck recess — actually clears it) | — | |
 | — | Factory sunroof present? Opening size if so | (only relevant if you pursue a roof vent later) | — | |
 | 9 | Cargo floor level — does it slope front-to-back, or is it flat? | (not currently modeled — every module's 4 legs are the same `leg_height`, which only gives a level deck if the floor itself is level) | assumed flat — UNVERIFIED | |
 | — | Side sliding door — usable clear width AND height at the door's actual stopping point, not just the rough opening | `side_door_opening_width` / `side_door_opening_height` | 40" / 40" — UNVERIFIED (see the reachability note in Section 1 — this number decides whether the DELTA 3 stack stays in Panel A or needs to move) | |
@@ -38,9 +38,9 @@ Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat 
 
 | # | Measure | Goes in `params.scad` as | Listing spec (unverified) | Your measurement |
 |---|---|---|---|---|
-| 1 | Fridge length as installed (left-right, the 450mm side) | `fridge_ext_length` | 17.72" | |
-| 2 | Fridge depth, front to back incl. handles | `fridge_ext_width` | 28.74" (body 28.03") | |
-| 3 | Fridge height | `fridge_ext_height` | 15.79" | |
+| 1 | Fridge length as installed (left-right, the 450mm side) | `fridge_ext_length` | 17.72" | 17¾" (owner, July 2026 — matches) |
+| 2 | Fridge depth, front to back incl. handles | `fridge_ext_width` | 28.74" (body 28.03") | 27¾" (owner, July 2026 — ~1" under; hard to tape a rounded-corner case square, and easy to undercount how far the handle protrudes. Spec used, since the tray is already cut to it.) |
+| 3 | Fridge height | `fridge_ext_height` | 15.79" | 15⅝" (owner, July 2026 — matches within rounded-corner tolerance) |
 | 4 | Which side is the compressor/vent on? | (confirms the intake/exhaust fan placement in Section 2 still makes sense) | — | |
 | 5 | Fridge empty weight | (Section 8 weight table) | 40.6 lb (18.4 kg, manual) | |
 | 5b | Floor vents at Panel C's REAR corners | Panel C's rear legs sit at the TRUE corners now | must be vent-free for ~4" | |
@@ -74,11 +74,11 @@ The rear view above is too small-scale to label the fridge's 2 cooling fans and 
 
 ![Fridge install detail](renders/fridge-install-detail.svg)
 
-And the electrical side — a schematic (not to physical scale) of how the fridge, both fans, and the NTC sensor are powered and wired:
+And the electrical side — a schematic (not to physical scale) of how the fridge, both fans, and the NTC sensor are powered and wired — now down to **every physical wire landing**: connection points P1–P12 are numbered on the diagram, each naming the exact terminal, connector type, and crimp, with the full list repeated in Section 5's connection-point table:
 
 ![Fridge wiring diagram](renders/fridge-wiring.svg)
 
-The fridge's slide mechanism itself, closed vs. fully extended, with the E-track floor anchors it bolts to:
+The fridge's slide mechanism itself, closed vs. fully extended. The VADANIA rails stand vertically BESIDE the tray (side-mount): each fixed rail on a steel riser angle bolted to the E-track floor anchors, each moving rail on the tray's 1x3 side apron — nothing under the hanging tray, so the slide hardware adds zero height and the mounted fridge keeps 0.33" of running clearance under Panel C's end rail:
 
 ![Fridge slide detail](renders/fridge-slide-detail.svg)
 
@@ -114,7 +114,7 @@ Component 2's one-piece slatted bed platform (58" x 52", 8 slats pocket-screwed 
 
 ### Leg Leveling Foot Detail
 
-Leveling lives at the floor: each leg is cut 1" short and gets a 3/8-16 insert in its bottom end grain, taking a leveling glide bolt with a floor pad and a ~2" star-knob hand grip (12 total: 4 per panel x 3). Effective leg height stays 17", but dropping the old between-layers adjusters and platform battens buys 1.25" of extra headroom. To adjust: tip that corner of the box slightly and spin the knob — every leg is exposed at floor level:
+Leveling lives at the floor: each leg is cut 1" short and gets a 3/8-16 insert in its bottom end grain, taking a leveling glide bolt with a floor pad and a ~2" star-knob hand grip (12 total: 4 per panel x 3). Effective leg heights are 17" on Panel C / 16.25" on A/B (cuts: 16" and 15.25" — deck recess); dropping the old between-layers adjusters bought 1.25" of headroom, and recessing the deck ply into the rail plane buys another 3/4". To adjust: tip that corner of the box slightly and spin the knob — every leg is exposed at floor level:
 
 ![Leveling foot detail](renders/leveling-foot-detail.svg)
 
@@ -182,7 +182,8 @@ Every module has to physically pass through the liftgate opening to be lifted in
 
 | Module | Passes through as | Width margin | Height margin |
 |---|---|---|---|
-| Panel A, Panel B, Panel C | 46"W x 19.25"H | **1" per side** | 16.75" to spare |
+| Panel C | 46"W x 18.5"H | **1" per side** | 17.5" to spare |
+| Panel A, Panel B | 46"W x 17.75"H | **1" per side** | 18.25" to spare |
 | Rear pantry drawer units (prefab, Component 1) | ~12.1"W each | easily | a few lb each — lifts out one at a time |
 
 The fridge and kitchen unit never need to pass through the gate opening at all — they live inside Panel C's own void as bought products, installed once and left in place, not lifted in and out. The one tight spot that remains: **1" of clearance per side on width** (a rigid 46" wood frame through a 48" opening — real-world weatherstripping intrusion and an imperfect carrying angle could eat that margin). `params.scad` asserts against this the same as every other hard limit — if you measure the real opening and it's smaller, every render will fail until the design is adjusted. **Measure the actual opening (narrowest width, height, corner rounding) before cutting anything.** The rear pantry's prefab drawer units are separate pieces from Panel C by nature — loosen the cam strap and each ~12.1"-wide unit lifts out and through the gate trivially (Component 1).
@@ -201,11 +202,11 @@ The side doors only matter for **Panel A**: its right drawer (DELTA 3) pulls out
 ### Layout
 
 - **Rear pantry — prefab drawer cluster + pot bay** (owner, July 2026): the custom plywood pantry is **replaced by bought prefab drawers** — nothing built, and ~27 lb lighter. A **2×2 array of IRIS USA 12"W stackable drawers** (Home Depot #500163, two 3-packs) sits on the **tailgate end of Panel C's deck**, in the same last-14" footprint the plywood pantry used (so the 80" sleeping run is unchanged; the units' 14.3" depth sits 0.3" proud of the deck edge, well inside the 2" hatch reserve). The cluster is **24.2" W × 14.3" D × 16.8" H**, leaving **~21.8" of open deck** on the passenger side for a **pot/pan crate** (~13" milk crate — the pots' own 11×11 box drops inside) and the relocated power/wiring. It's held by a **cleat pocket + one cam strap across the drawer fronts** (which also keeps the drawers shut) — no fasteners into the units, so each drawer unit **lifts straight out** and clears the gate. **Gone with the plywood pantry:** the cam-lever clamp set, the 2 steel L-angle sway braces, the fiddle-lip/lash-strap retention kit, and the **enclosed bed cubby** — so **Power strip 1 and the ROLL bubble level move to the deck edge** in the 19" bay (still reached from the bed). See the Rear Pantry render and Section 6, Component 1.
-- **One continuous sleeping deck**, 46" wide x 94" long (Panels A + B + C, on uniform legs, flush with the front seatbacks — no gap), deck surface sitting 19.25" above the van floor (17" legs + 1.5" frame rail + 3/4" ply). `leg_height` is driven by the fridge's 15.79" height (see below), not by the folded 3rd-row well depth — confirm 17" clears your actual well before cutting.
+- **One continuous sleeping deck**, 46" wide x 94" long (Panels A + B + C, flush with the front seatbacks — no gap), deck surface sitting **18.5"** above the van floor: **the horizontal ply is recessed INTO the rail plane** (deck recess, owner July 2026 — Panel C's deck drops between its rails onto 3/4"×3/4" bearer cleats, flush with the rail tops; Panels A/B instead run **16.25" legs**, so the 3/4" bed platform resting ON their rails tops out at the same 18.5" plane). That buys 3/4" of headroom: **21.5" sitting headroom** over the 4" mattress. Panel C's `leg_height` stays 17", driven by the fridge's mounted stack (see below), not by the folded 3rd-row well depth — confirm 17" clears your actual well before cutting.
 - **Panel A and Panel B share the same frame, and neither has a top of its own.** Panel A has a center divider splitting its bay in two, reached through the side doors: the right (passenger) side is the one real drawer (DELTA 3), the left (driver) side is WAVE 3 open storage (the unit is too wide for a boxed drawer — Section 1). **Panel B has NO drawers and no divider** — the sliding-door openings sit over the old 2nd-row footprint (Panel A), not over Panel B, so nothing pulled sideways from Panel B could clear a door. Its whole bay is deep storage instead: lift the platform + mattress and load it from above (long-term/bulky items you don't touch at camp). The one-piece slatted bed platform (Component 2, 8 slats between 2 full-length side rails, 58" x 52" — cantilevered 3" past the boxes each side, 3/4" thick) spans Panel A + B ONLY and ENDS at the B/C seam: Panel C's own fixed deck is at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck (an 80" platform would have to sit ON that deck — 3/4" too high). It rests DIRECTLY on Panel A/B's top rails as one flush 3/4" plane (slats pocket-screwed between the two side rails). Leveling happens at the leg feet down at the floor — each leg is cut 1" short and carries a hand-adjustable leveling foot. Sourcing: cut eight 45" slats from four 1x4 x 8ft pine boards (two per board) plus two 58" side rails from two more — six boards total (weight swap: was ten slats/seven boards), no bought slat kit to fight with (many queen slat sets ride on metal frames or webbing that don't survive cutting down — Section 4 + Component 2). It lifts off (as a whole) for bay access from above — that's Panel B's ONLY access, and the occasional deep-cleaning route for Panel A.
 - **Trade-off: no top means no enclosure — answered with CUBE FRAMES.** Removing the plywood tops loses torsional rigidity and a dust barrier. Two fixes are now specified: diagonal corner braces up top, and **bottom rails closing each frame into a box** (underside 1" up — dropped to the leg bottoms, just clear of the leveling feet, for the tallest box section and the lowest floor-edge curb) on every face that can take one — Panel A's two END faces (its sides must stay open for the drawer/WAVE 3), ALL 4 faces of Panel B (the full cube), and Panel C's FRONT face (its tailgate face stays open for the appliances; its fixed top + new front wall already stiffen it). A closed frame racks far less than rails + brackets alone. The bed frame's slats still have gaps — small items can fall through into the bays below.
 - **Panel C has no drawers.** Its under-deck void instead holds two bought products side by side across the 46" width: a **BougeRV Rocky 40 (41-quart, dual-zone)** — 17.72" side left-right, reversible lid (manual §4.4), optional detachable B240 battery at the tailgate-facing end — on a heavy-duty slide, against the driver-side REAR CORNER leg (1.5" in from the edge); and a **JAGAHAHA slide-out camp kitchen** (26"L x 20"W x 11.8"H closed, with its own 2-burner stove space and built-in slide), against the passenger-side rear corner leg — its shelves swing out on that side. (Panel C's rear leg pair sits at the TRUE corners — inset legs would stand exactly in the appliances' slide paths, a collision the Rocky 40's extra width exposed. Verify the floor vents don't reach those corners — Section 0.) **Both pull straight out the open tailgate** (not a side door). Neither is something this plan builds from plywood — both are bought, standalone units. Unlike everything else in this build, both are **bolted through the van's floor pan** via E-track anchors (Section 8) — too heavy to rely on the same "rests unbolted" approach as the sleeping panels. A utility cabinet with a hinged door fills the gap between them: the exhaust fan blows the fridge bay's warm air INTO it, and a low louver in the door lets that warm air escape low toward the tailgate (rather than only bleeding around the door edges); the control panel (switches + surge protector) mounts INSIDE the cabinet, just behind the door on a backer board hung from the deck underside — open the door to reach everything electrical.
-- A **HEST Dually Long mattress (78" x 50" x 4", solid foam — no air chambers)** rides on the 52" cantilevered platform: **25" of width per person** (vs 23" at the old 46") and ~2" of spare length parked at the head end beside the rear-pantry cluster. The platform overhangs the 46" boxes by 3" per side — the boxes stay at 46" (floor vents + liftgate pass-through), but the mattress lives 19-27" up where the van is wider than its 48.5" floor pinch. **UNVERIFIED: measure wall-to-wall at ~19" and ~23" above the floor along the whole run (need >=53") before cutting the platform** — Section 0. Budget fallback: the DIY 2-layer foam build (Section 4/Component 9), same 50x78 footprint.
+- A **HEST Dually Long mattress (78" x 50" x 4", solid foam — no air chambers)** rides on the 52" cantilevered platform: **25" of width per person** (vs 23" at the old 46") and ~2" of spare length parked at the head end beside the rear-pantry cluster. The platform overhangs the 46" boxes by 3" per side — the boxes stay at 46" (floor vents + liftgate pass-through), but the mattress lives ~18.5–22.5" up where the van is wider than its 48.5" floor pinch. **UNVERIFIED: measure wall-to-wall at ~18.5" and ~22.5" above the floor along the whole run (need >=53") before cutting the platform** — Section 0. Budget fallback: the DIY 2-layer foam build (Section 4/Component 9), same 50x78 footprint.
 - Panel legs sit inset 2.5" from the deck's side edges so they land clear of the floor-level vent intrusion (the deck itself overhangs the vents harmlessly at height).
 - **Power:** the fridge is 12V-native, but now runs off the EcoFlow DELTA 3 stack (Panel A) via its own dedicated DC cord rather than the van's rear accessory outlet — see Section 1 for why. **The cooktop, Power strip 1, and the DELTA 3's own AC charging cord each get their own dedicated run to the front console now** (previously the cooktop and Power strip 1 shared one line) — see Section 5 for all three routes.
 - **Fire safety + CO safety (owner-placed):** the fire extinguisher and the low-level CO monitor are **deliberately not located in this plan** — both are owner-supplied and will be positioned manually once the build is in the van. Two reminders that survive from the earlier analysis: the design has no propane at all (electric induction cooktop), so the only combustion-gas risk is the Sienna's own engine exhaust while idling parked; and a generic 70ppm home-style CO detector is too slow for that job — use a low-level unit (alarms at 9/25ppm within ~60s).
@@ -237,8 +238,8 @@ The WAVE 3 is **stored** in Panel A's left bay either way (see the DELTA 3/WAVE 
 | Rear pantry — prefab drawer cluster + pot bay (on Panel C's deck, tailgate end) | 14.3" (of Panel C's last 14" + 0.3" into the hatch reserve) | 24.2" cluster + ~21.8" bay = 46" | **Bought, not built** — a 2×2 IRIS drawer cluster (24.2" × 14.3" × 16.8") on the driver side + a rigid ~13" pot crate in the ~21.8" open deck; held by a cleat pocket + a cam strap (each unit lifts out). Power strip 1 + the ROLL bubble level relocate to the deck edge here. |
 | Panel A | 29" | 46" | **No top of its own** — capped by the one-piece bed frame (Component 2); right (DELTA 3) drawer through the passenger door, left bay is WAVE 3 open storage through the driver door (no drawer box) |
 | Panel B | 29" | 46" | **No top of its own** — capped by the same bed frame; **no drawers, no divider, no skirts** (the side doors don't reach it): a bare 2x2 frame whose bay is deep storage, loaded from above by lifting the platform + mattress |
-| Panel C | 36" (22" mattress-covered + 14" rear pantry) | 46" | **Keeps its fixed top** (screwed down) — the mattress-covered part only reaches ~22" into it (the rear pantry claims the last 14", Section 1), and the fridge/kitchen void underneath needs the enclosure regardless; no drawers |
-| Fridge (BougeRV Rocky 40, in Panel C's void) | 28.74" deep (incl. handles) | 17.72" wide | 15.79" tall — drives `leg_height` (~0.84" spare under the deck with the 3/8" tray); on a 24" heavy-duty slide, against Panel C's driver-side rear corner leg (1.5" in from the edge) |
+| Panel C | 36" (22" mattress-covered + 14" rear pantry) | 46" | **Keeps its fixed top** (recessed flush between its rails on bearer cleats — deck plane 18.5") — the mattress-covered part only reaches ~22" into it (the rear pantry claims the last 14", Section 1), and the fridge/kitchen void underneath needs the enclosure regardless; no drawers |
+| Fridge (BougeRV Rocky 40, in Panel C's void) | 28.74" deep (incl. handles) | 17.72" wide | 15.79" tall — drives `leg_height` via the mounted stack: 0.5" tray hang + 3/8" tray + fridge = 16.67", leaving 0.33" running clearance under the tailgate end rail; on 24" VADANIA slides mounted on the SIDES (nothing under the tray), against Panel C's driver-side rear corner leg (1.5" in from the edge) |
 | Kitchen unit (JAGAHAHA, in Panel C's void) | 26" deep (closed) | 20" wide | 11.8" tall; against Panel C's passenger-side rear corner leg (1.5" in from the edge) — shelves swing out that side; own built-in tailgate slide |
 
 **Drawer dimensions** (Panel A's single right-side DELTA 3 drawer — its left bay is WAVE 3 open storage, and Panel B and Panel C have no drawers):
@@ -247,9 +248,9 @@ The WAVE 3 is **stored** in Panel A's left bay either way (see the DELTA 3/WAVE 
 |---|---|---|
 | Travel (pull-out direction) | 20" | Matches a standard 20" full-extension slide |
 | Depth (fore-aft) | 25" | Fits between the panel's front and back legs |
-| Height | 14.5" | Inside the 17" leg-height storage bay, under the removable bed platform (Panel A has no fixed deck of its own) |
+| Height | 13.75" | Inside the 16.25" leg-height storage bay (A/B legs, deck recess), under the removable bed platform (Panel A has no fixed deck of its own) |
 
-`leg_height` (17") is driven by the fridge's 15.79" height plus its 3/8" tray, not by the folded 3rd-row well depth. Measure your actual well and confirm 17" clears it before cutting — if your well is shallower, the fridge (and therefore every leg on the platform) still needs the full 17" of standing height regardless, so the platform would simply sit a bit higher off the true floor than the well alone would require.
+`leg_height` (17") is driven by the fridge's mounted stack — 0.5" tray hang + 3/8" tray + 15.79" fridge = 16.67", leaving 0.33" of running clearance under the tailgate end rail (the slides mount on the tray's SIDES; nothing sits under it) — not by the folded 3rd-row well depth. **That 17" is Panel C only: Panels A/B run 16.25" legs since the deck recess, so the platform on their rails lands flush with Panel C's recessed deck at the one 18.5" plane.** Measure your actual well and confirm 17" clears it before cutting — if your well is shallower, the fridge (and therefore every leg on the platform) still needs the full 17" of standing height regardless, so the platform would simply sit a bit higher off the true floor than the well alone would require.
 
 ### Walls & skirts, by panel
 
@@ -269,7 +270,7 @@ With no tops and no skirts, every panel's top rails are exposed — **grip those
 
 Two coordinate conventions, each picked to match how you'd actually stand at the access point in question — full reasoning and diagrams in `fridge_install_detail.scad` / `rear_view.scad`:
 
-- **Panel C** (fridge + kitchen system, AND the rear pantry — it sits on Panel C's deck, sharing this same coordinate frame): origin (0,0) at Panel C's **tailgate-facing DRIVER-side corner**, floor level. X increases toward the passenger side (0-46"), Y increases forward toward the Panel B seam (0-36"). Z increases up from the van floor. The rear pantry occupies Y 0-14 (the tailgate-most 14", above deck level) — the SAME Y range the fridge/kitchen's own tailgate-facing ends sit in, just at a different Z height (Z 19.25+ for the pantry vs. Z 0-16ish for the fridge/kitchen below deck).
+- **Panel C** (fridge + kitchen system, AND the rear pantry — it sits on Panel C's deck, sharing this same coordinate frame): origin (0,0) at Panel C's **tailgate-facing DRIVER-side corner**, floor level. X increases toward the passenger side (0-46"), Y increases forward toward the Panel B seam (0-36"). Z increases up from the van floor. The rear pantry occupies Y 0-14 (the tailgate-most 14", above deck level) — the SAME Y range the fridge/kitchen's own tailgate-facing ends sit in, just at a different Z height (Z 18.5+ for the pantry vs. Z 0-16ish for the fridge/kitchen below deck).
 - **Panel A, Panel B**: origin (0,0) at that panel's **own front-left corner** (front = toward the front seats). X increases right (0-46"), Y increases toward the tailgate (0 = that panel's own length). Z from the van floor.
 
 ![Fridge install detail](renders/fridge-install-detail.svg)
@@ -277,17 +278,17 @@ Two coordinate conventions, each picked to match how you'd actually stand at the
 | Component | Panel | X (in.) | Y (in.) | Z (in.) |
 |---|---|---|---|---|
 | Kitchen unit (JAGAHAHA) | C | 24.5–44.5 | 0–26 | 0–11.8 |
-| Fridge (BougeRV Rocky 40) | C | 2–19.7 | 0–28.74 | 0–16.29 (incl. tray) |
-| Intake fan (120mm) | C | 10.86 (on the front wall) | ~35 (Panel C's front wall) | 8.4 |
-| Exhaust fan (120mm) | C | 19.7 (fridge's kitchen-facing wall) | ~14.4 | 8.4 |
-| NTC temp sensor | C | ~18.2 (just inside the fridge's exhaust wall) | ~12.9 | 8.4 |
+| Fridge (BougeRV Rocky 40) | C | 2–19.7 (slide rails flank at ~0.6–1.5 and ~20.2–21.2) | 0–28.74 | 0.5–16.67 (hanging tray + fridge) |
+| Intake fan (120mm) | C | 10.86 (on the front wall) | ~35 (Panel C's front wall) | 8.8 |
+| Exhaust fan (120mm) | C | 19.7 (fridge's kitchen-facing wall) | ~14.4 | 8.8 |
+| NTC temp sensor | C | ~18.2 (just inside the fridge's exhaust wall) | ~12.9 | 8.8 |
 | Control panel (switches, surge protector) | C | 21.1–25.1 | ~2 (just behind the cabinet door) | 6.5–12.5 — INSIDE the utility cabinet, on a backer board hung from the deck underside |
 | Power strip 2 (cooktop) | C | ~34.5–37.5 | ~26 (kitchen unit's front face) | ~1.5 |
-| Right drawer (the only one) | A | 23.75–43.75 | 2–27 | 0–14.5 |
-| Center divider | A | 22.25–23.75 | 1.5–27.5 | 0–17 |
-| Rear pantry: 2×2 IRIS drawer cluster (bought) | C | driver 0–24.2 | 0–14.3 | 19.25–36.05 |
-| Rear pantry: pot/pan crate + hold-down cleats/strap | C | passenger 24.2–46 | 0–14 | 19.25 (on the deck) |
-| Power strip 1 + ROLL bubble level (relocated to the deck edge) | C | ~33 (passenger bay) | on the deck, back edge | ~20–21 (just above the deck) |
+| Right drawer (the only one) | A | 23.75–43.75 | 2–27 | 0–13.75 |
+| Center divider | A | 22.25–23.75 | 1.5–27.5 | 0–16.25 |
+| Rear pantry: 2×2 IRIS drawer cluster (bought) | C | driver 0–24.2 | 0–14.3 | 18.5–35.3 |
+| Rear pantry: pot/pan crate + hold-down cleats/strap | C | passenger 24.2–46 | 0–14 | 18.5 (on the deck) |
+| Power strip 1 + ROLL bubble level (relocated to the deck edge) | C | ~33 (passenger bay) | on the deck, back edge | ~19.25–20.25 (just above the deck) |
 
 Coordinates for the fixed/structural items (drawers, panels, fridge, kitchen) come directly from `params.scad`/`platform.scad`'s real geometry. Power strip 1/2 positions are schematic markers in the 2D diagrams (approximate, not separately modeled in the 3D assembly) — confirm exact placement against the real frame once built.
 
@@ -331,7 +332,8 @@ Honest trade: this reshuffles the plywood so it now needs a 3/8" half-sheet (~+$
 
 | Piece | Qty | Dimensions |
 |---|---|---|
-| Panel C top (deck) | 1 | 36" x 46" |
+| Panel C top (deck) | 1 | 33" x 43" — drops BETWEEN the rails onto bearer cleats, flush with the rail tops (deck recess: 3/4" more headroom) |
+| Deck bearer cleats | 4 | 3/4" x 3/4" strips: 2 x 33" + 2 x 40" (ripped from the offcut; screwed to Panel C's rails' inner faces, tops 3/4" below the rail tops) |
 | Rear-pantry hold-down cleats | ~4 | ~1" x 1" x 12–14" strips (ripped from the offcut; cab-side + both sides of the drawer cluster) |
 
 **1/2" sheet** — the kitchen drawer box + its 2 hanging cheeks and the battery drawer's bottom (the plywood-pantry carcass is deleted — that frees most of this sheet):
@@ -339,7 +341,7 @@ Honest trade: this reshuffles the plywood so it now needs a 3/8" half-sheet (~+$
 | Piece | Qty | Dimensions |
 |---|---|---|
 | Kitchen drawer box | 5 pieces | bottom 16" x 26"; 2 sides 26" x 4"; front/back 15" x 4" (4.5" exterior height) |
-| Kitchen drawer hanging cheeks | 2 | 26" x 6.2" (1/2" — screwed up into Panel C's deck, flanking the drawer) |
+| Kitchen drawer hanging cheeks | 2 | 26" x 5.45" (1/2" — screwed up into Panel C's recessed deck, flanking the drawer) |
 | Battery drawer bottom (Panel A right) | 1 | 20" x 25" (1/2" — the base under the 48 lb stack) |
 
 **3/8" half-sheet** (weight swap) — the three non-structural pieces. ~18 sq ft, so a half 4x8 covers it:
@@ -348,7 +350,7 @@ Honest trade: this reshuffles the plywood so it now needs a 3/8" half-sheet (~+$
 |---|---|---|
 | Battery drawer side wall | 2 | 25" x 14.5" (3/8" — glue + biscuit the corners) |
 | Battery drawer front/back wall | 2 | 20" x 14.5" (3/8") |
-| Fridge tray | 1 | 17.72" x 28.74" (3/8" + a glued 3/4" x 3/4" edge frame for stiffness) |
+| Fridge tray | 1 | 17.72" x 28.74" (3/8" + two 1x3 side aprons, 28¾" each, glued+screwed to its edges — the slides' moving members screw to them and their top edges are the fridge's anti-shift lip) |
 | Panel C front wall | 1 | 46" x 17" (3/8") — 120mm fan hole + two 1" grommet holes, positions in the Panel C Front Wall render |
 | WAVE 3 glide strips (scrap, not from these sheets) | 2 | 20" x 1", UHMW or laminate offcut |
 
@@ -363,10 +365,11 @@ Panel A, Panel B, and Panel C each get their own independent perimeter frame —
 | Panel C long rails | 2 | 36" | |
 | End rails (all 3 modules) | 6 | 46" | 2 per module |
 | Center divider | 1 | 26" | Panel A only — splits its bay into drawer (right) + WAVE 3 (left) runs, see Step 2 diagram. Panel B and C have none. |
-| Legs (all 3 modules) | 12 | 16" | 4 per module — cut 1" short; the leveling foot makes each leg an effective 17" (Leg Leveling Foot Detail). Panel C's REAR pair sits at the true corners |
+| Legs — Panel C | 4 | 16" | cut 1" short; the leveling foot makes each an effective 17" (Leg Leveling Foot Detail). REAR pair at the true corners |
+| Legs — Panels A/B | 8 | 15.25" | cut 1" short; foot brings each to an effective 16.25" — 3/4" shorter than Panel C (deck recess: the platform on A/B's rails lands flush with C's recessed deck) |
 | Bottom rails (cube frames) | 5x 46" + 2x 26" | see notes | underside at 1" (dropped to the leg bottoms): Panel A both END faces (2x46), Panel B all 4 faces (2x46 + 2x26), Panel C FRONT face only (1x46) — 2x 2" screws + glue into each leg |
 
-**Total linear footage needed: 964"** (4@29 + 2@36 + 6@46 + 1@26 + 12@16, plus the cube-frame bottom rails: 5@46 + 2@26). Eleven 8ft (96") boards hold 1,056" — a ~9% margin for kerf and layout waste. **Buy 12 boards** to allow for a mis-cut.
+**Total linear footage needed: 958"** (4@29 + 2@36 + 6@46 + 1@26 + 4@16 + 8@15.25, plus the cube-frame bottom rails: 5@46 + 2@26). Eleven 8ft (96") boards hold 1,056" — a ~9% margin for kerf and layout waste. **Buy 12 boards** to allow for a mis-cut.
 
 ### Hardware sizing
 
@@ -446,20 +449,29 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | 16 AWG cord (household AC-rated — DELTA 3 AC charging line, front console to Panel A, ~3-4ft) | 1 | $8 | $8 |
 | Per-module surface wire raceway — a CordMate II kit for the 3 AC lines (~$28) + a 123" open-slot raceway kit for the DC line (~$18, screws included), AC and DC in separate channels + screw-mount cord clips | 1 set | $46 | $46 |
 | SAE quick-disconnect connectors (2 for the fridge DC line's 2 seams — DC-rated, matches the fridge's actual 12V circuit) | 2 | $8 | $16 |
+| Fused (15A) male car-plug → SAE adapter — DELTA 3 end of the fridge line (**P1**; its fuse is the line's upstream protection). Any 16AWG fused SAE adapter kit works | 1 | $9 | $9 |
+| SAE → female 12V socket pigtail — fridge end (**P7**; the fridge's own cord plugs into it). Often sold in the same kit as the P1 adapter | 1 | $9 | $9 |
+| 18AWG red/black hookup wire, ~10 ft (in-cabinet branch runs, P6–P12) | 1 | $8 | $8 |
+| Crimp terminal assortment — #10 heat-shrink rings (fuse-block studs) + 0.25" female spades (switch tabs) | 1 kit | $12 | $12 |
+| WAGO 221-413 lever nuts (fan feed + fan return splits — **P12**) | 1 pack | $10 | $10 |
 | 2-way AC outlet tap (REAR outlet — Power strip 1 + the cooktop share it) | 1 | $5 | $5 |
 | **BougeRV Rocky 40 (CR04001), 41QT dual-zone** ([bougerv.com Rocky V3.0](https://www.bougerv.com/products/rocky-12v-camp-fridge) — specs verified against the saved user manual: 28.74" x 17.72" x 15.79", 40.6 lb (18.4 kg), 60W max / 45W ECO, reversible lid, optional B240 battery) — **PURCHASED July 2026 direct from bougerv.com (New Rocky V3.0 41QT, JULY7 coupon; the 30-Qt Amazon unit ordered by mistake is cancelled)** | 1 | $400–500 (verify invoice) | $400–500 |
-| Heavy-duty 24" full-extension drawer slide pair — VADANIA #D76 locking, 379 lb, **PURCHASED July 2026** (locks closed AND extended; supersedes the original 200 lb non-locking spec; loaded fridge can realistically hit 60–90 lb) | 1 pair | $79 | $79 |
+| Heavy-duty 24" full-extension drawer slide pair — VADANIA #D76 locking, 379 lb, **PURCHASED July 2026** (locks closed AND extended; supersedes the original 200 lb non-locking spec; loaded fridge can realistically hit 60–90 lb). Rails mount VERTICALLY on the tray's sides — never under it (see the fridge slide detail) | 1 pair | $79 | $79 |
+| Steel riser angles for the fridge slides, ~2"x2"x3/16" x 24" (1 per fixed rail, drilled to match — through-bolted to the E-track anchors, the rail screws to the vertical face) | 2 | $12 | $24 |
+| 1x3 pine, 6 ft (rip the fridge tray's two 28¾" side aprons from it) | 1 | $6 | $6 |
 | **[JAGAHAHA wooden slide-out camp kitchen](https://www.amazon.com/dp/B0FLDCNYZX)**, right-side variant (kitchen faces out the passenger side), built for a 2-burner stove (confirmed product link — **no listed price found in research; treat as an UNVERIFIED estimate** until you check the live listing) | 1 | $300–350 | $300–350 |
 | [COOKTRON Portable Induction Cooktop 2 Burner w/ Removable Iron Cast Griddle Pan](https://www.amazon.com/dp/B09MCR1SDT) — confirmed exact product, 18.1"x9.1"x4.3" (fits the JAGAHAHA's 23"x15.7"x5.7" stove tray with margin on every axis); see Section 7 for why the Duxtop 9620LS was dropped | 1 | $189.99 | $189.99 |
 | 120mm 12V fan + PWM temperature controller w/ NTC probe (W1209-style, fridge-bay cooling) | 1 | $15–20 | $15–20 |
 | Snap-in louvered RV vents — 1 low intake (front wall, cool-air scoop) + 1 low exhaust (cabinet door) | 2 | $6 | $12 |
 | 12V fused distribution block (control panel) — **PURCHASED July 2026: Nilight 6-way blade fuse block w/ negative bus, waterproof cover, label stickers, fuse assortment included** (no separate ATO fuse pack needed) | 1 | $17.98 | $17.98 |
-| Illuminated toggle switches (fridge, cooktop, fan — 3) | 3 | $5 | $15 |
+| Illuminated toggle switches (SW1 fridge, SW2 fans, SW3 spare — the old "cooktop" label predates the verified-outlet round; the cooktop is AC, switched at Power strip 2) | 3 | $5 | $15 |
 | Small electrical project enclosure (control panel housing) | 1 | $10–15 | $10–15 |
 | **Windmill Smart Fan 2-in-1 air circulator** (personal comfort, Power Strip 1) — **PURCHASED July 2026**, swapped in for the planned Claymore V600+ | 1 | $69 | $69 |
 | Snap-Loc E-Track anchors, 1000lb WLL / 3000lb break strength each, bolt-on (4 for the fridge slide + 4 for the kitchen unit — see "Securing heavy components," Section 8; the Sienna's factory cargo hooks are rated for cargo nets only, not this) | 8 | $6.99 | $56 |
 | 5/16" stainless carriage bolts + nuts + fender washers (2 per E-track anchor, through the floor pan) | 16 | — | $12 |
 | Erickson ratchet straps (01415), 400 lb WLL / 1,200 lb break, 1" x 10' (kitchen unit, criss-crossed over the top to the E-track anchors) | 1 pack of 4 | $32 | $32 |
+| Fridge hold-down — 1 low-profile cam strap + 2 screw-eye D-rings (hooks to the fridge's 2 end handles, down to the tray's side apron — keeps the fridge from lifting off the tray in a hard stop) | 1 set | $10 | $10 |
+| Cable clips for the fridge DC line's slide-travel slack (3, screwed to the slide's fixed outer rail — same VIPMOON-type clip as the cooktop run, buy links below) | 3 | $1 | $3 |
 | Tension rod + blackout curtain fabric | 1 | $40 | $40 |
 | Wood sealant/varnish | 1 | $20 | $20 |
 | Sandpaper, misc finishing supplies | — | $15 | $15 |
@@ -469,8 +481,8 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | DELTA 3 drawer hardware: 1x1 pine locating cleats, 2 screw-eye D-rings + cam strap, 1" cable grommet (Panel A right drawer — see Renders) | 1 set | $15 | $15 |
 | WAVE 3 hose/cord storage hook, inside the utility cabinet (kitchen-side wall — see Renders) | 1 | $4 | $4 |
 | Non-slip mat, WAVE 3's point-of-use surface (Panel C's deck or the front seat — not the Panel A storage bay, see Renders) | 1 | $12 | $12 |
-| FOUND STORAGE — DELTA 3 drawer top tray (reclaims ~3.3" of dead headroom above the DELTA 3 stack: cables, the DELTA 3's own cords, dongles) — shallow lift-out bin | 1 | $8 | $8 |
-| FOUND STORAGE — WAVE 3 bay overhead shelf (reclaims ~2.9" above the WAVE 3: hoses, remote, flat soft goods; the unit still slides out beneath it) — 1/2" ply on 1x1 cleats, from offcut/scrap | 1 | $5 | $5 |
+| FOUND STORAGE — DELTA 3 drawer top tray (reclaims ~2.2" of dead headroom above the DELTA 3 stack — was ~3.3" before the deck recess: cables, the DELTA 3's own cords, dongles) — shallow lift-out bin | 1 | $8 | $8 |
+| FOUND STORAGE — WAVE 3 bay overhead shelf (reclaims ~2.2" above the WAVE 3 — was ~2.9" before the deck recess: hoses, remote, flat soft goods; the unit still slides out beneath it) — 1/2" ply on 1x1 cleats, from offcut/scrap | 1 | $5 | $5 |
 | FOUND STORAGE — utility-cabinet bins (the cabinet's spare volume beside the control panel: dish soap, sponges, utility odds) | 2 | $4 | $8 |
 | [EcoFlow WAVE Series Car Vent Kit](https://us.ecoflow.com/products/wave-car-vent-kit) — official accessory, WAVE 2/3 compatible, velcro window seal + duct pass-throughs, no permanent modification (no-tent sleeping configuration, Section 1) — **PURCHASED July 2026** (order EFUS-426448, $40) | 1 | $40 | $40 |
 | SRS airbag emulators, Sienna 2nd row — **PURCHASED July 2026**: 0651 Round x2 + 5522 "Square" x2 (shipped). Click into the van-side yellow floor plugs when the seats are out so the airbag system reads normally (Section 9). **VERIFY before seat-removal day that the 5522 mates with the Sienna's rectangular floor plug — the original spec called for a 6134 Rectangle** | 1 set | ~$60 | ~$60 |
@@ -491,7 +503,7 @@ Specific products verified against this plan's specs, full URLs shown for copy-p
 <table class="buy-links">
 <tr><th>Item (plan spec)</th><th>Product</th><th>Link</th></tr>
 <tr><td>Panel drawer slides — only 1 pair needed now (Panel A's right/DELTA 3 drawer; Panel B has no drawers — the side doors don't reach it — and Panel A's left bay is WAVE 3 open storage, Section 1), 20" full-extension, 100 lb class — <strong>PURCHASED</strong> (July 2026)</td><td>GlideRite 20" 100 lb ball-bearing slides, 5-pair pack ($46.99; 4 spares now — one could serve as the kitchen drawer's pair if you go 20" instead of 24" there)</td><td><a href="https://www.amazon.com/20-inch-Extension-Ball-Bearing-Drawer-Over-Travel/dp/B07KFLS2C9">https://www.amazon.com/20-inch-Extension-Ball-Bearing-Drawer-Over-Travel/dp/B07KFLS2C9</a></td></tr>
-<tr><td>Fridge slide — 1 pair, 24" — <strong>PURCHASED</strong> (July 2026)</td><td>VADANIA #D76 (VD2576) 24" industrial heavy-duty WITH LOCK — 379 lb, 3" (76mm) rail, 3-fold full extension, locks both closed (transit) and extended (loading), 1 pair ($79.20). The lock is an upgrade over the original non-locking 200 lb spec. INSTALL NOTE: the 76mm rail wants ~3" of flat vertical face — add a 1x3 (or plywood strip) apron along each side of the fridge tray for the inner rail to screw into; the outer rail still bolts to the E-track anchors per the fridge slide detail.</td><td><a href="https://www.amazon.com/VADANIA-Industrial-Extension-Bearing-Widening/dp/B08C56Z6GF">https://www.amazon.com/VADANIA-Industrial-Extension-Bearing-Widening/dp/B08C56Z6GF</a></td></tr>
+<tr><td>Fridge slide — 1 pair, 24" — <strong>PURCHASED</strong> (July 2026)</td><td>VADANIA #D76 (VD2576) 24" industrial heavy-duty WITH LOCK — 379 lb, 3" (76mm) rail, 3-fold full extension, locks both closed (transit) and extended (loading), 1 pair ($79.20). The lock is an upgrade over the original non-locking 200 lb spec. INSTALL NOTE: the 76mm rail wants ~3" of flat vertical face — the rails stand VERTICALLY, one flanking each side of the tray: the moving member screws to a 1x3 apron glued+screwed along each tray edge, and the fixed member screws to a steel riser angle through-bolted to the E-track anchors. NEVER mount them flat under the tray — undermount adds ~1.2" of height the 17" void doesn't have, and the fridge would hit Panel C's end rail (the mounted stack clears it by 0.33").</td><td><a href="https://www.amazon.com/VADANIA-Industrial-Extension-Bearing-Widening/dp/B08C56Z6GF">https://www.amazon.com/VADANIA-Industrial-Extension-Bearing-Widening/dp/B08C56Z6GF</a></td></tr>
 <tr><td>Fridge slide, premium alternate</td><td>Hettich 24" full-extension, 500 lb (~$70+)</td><td><a href="https://www.amazon.com/Drawer-Slide-Extension-Capacity-Hettich/dp/B0016LEBBG">https://www.amazon.com/Drawer-Slide-Extension-Capacity-Hettich/dp/B0016LEBBG</a></td></tr>
 <tr><td>120mm 12V fans — need 2 (intake + exhaust)</td><td>GDSTIME 120mm x 25mm 12V dual-ball-bearing fan, ~$9 — sold singly, ORDER QTY 2. (The UMLIFE 2-pack link originally here started redirecting to a 60mm 5V USB variant — verify 12V / 120x120x25mm on the spec table before buying any fan listing.)</td><td><a href="https://www.amazon.com/GDSTIME-Bearings-Brushless-Cooling-Exhaust/dp/B00N1Y4BMA">https://www.amazon.com/GDSTIME-Bearings-Brushless-Cooling-Exhaust/dp/B00N1Y4BMA</a></td></tr>
 <tr><td>W1209 temp controller + NTC probe (need 1; 2nd is a spare)</td><td>HiLetgo 2pcs W1209 12V with case + waterproof probe (~$10)</td><td><a href="https://www.amazon.com/HiLetgo-Temperature-Controller-Thermostat-One-Channel/dp/B07VDWRZKB">https://www.amazon.com/HiLetgo-Temperature-Controller-Thermostat-One-Channel/dp/B07VDWRZKB</a></td></tr>
@@ -550,6 +562,28 @@ The fridge's DC line runs from the DELTA 3 Plus's DC output (Panel A's right dra
 2. Install a quick-disconnect connector at each of the 2 seams so Panel A and Panel B still lift out independently.
 3. Terminate the cord at the fridge's DC input inside Panel C's void, near the control enclosure (Component 7).
 4. Leave a few inches of slack at the DELTA 3 end so opening/closing that drawer doesn't strain the connection.
+5. **At the fridge end, clip the slide-travel slack loop to the slide's FIXED outer rail — not the tray, and not left loose** — 2-3 screw-mount cable clips (same VIPMOON-type clips as the cooktop line, Section 4 BOM) along the rail's inside face. The outer rail never moves, so the clipped loop stays out of the pinch point between the tray and the rail as the tray slides home; a loose coil left to dangle can get caught under the tray or crushed against the rail on the way in.
+
+#### Every connection point, P1–P12 (matches the numbered markers on the wiring diagram, Renders)
+
+The ONE 16AWG SAE line runs DELTA 3 → fuse block; **both** circuits branch at the Nilight block, and every black (−) return lands on its negative bus:
+
+| # | Where | What lands there — terminal, connector, crimp |
+|---|---|---|
+| P1 | DELTA 3 Plus 12V car-power outlet (Panel A right drawer) | Fused (15A) male car-plug → SAE adapter — hand-plug, no tools. That fuse is the whole line's upstream protection |
+| P2 | Panel A/B seam | SAE quick-disconnect #1 — the OYMSAE cord ends mate; zip-tie a strain-relief loop each side of the seam |
+| P3 | Panel B/C seam | SAE quick-disconnect #2 — same part; both disconnects hang slack, never taut |
+| P4 | Panel C front wall, low driver side | 1" grommet — the cord just passes through into the fridge bay/cabinet, no termination |
+| P5 | Nilight 6-way fuse block, main studs (inside the cabinet) | Red → **+IN** stud, black → **−IN** stud: strip 3/8", crimp #10 heat-shrink ring terminals, M5 nuts snug. F1 = 10A ATO (fridge), F2 = 3A ATO (fans), F3–F6 spare |
+| P6 | SW1 "FRIDGE" — Ampper rocker, 3 spade tabs | F1's 16AWG red → **PWR** tab; **LOAD** tab → pigtail red; **GND** tab → neg bus (powers the glow ring). 0.25" female spade crimps on all 3 |
+| P7 | SAE → female 12V socket pigtail | SAE end mates toward SW1's LOAD side; the socket zip-ties inside the cabinet near the fridge's kitchen-facing wall |
+| P8 | Fridge DC input jack | The fridge's OWN 12V cord: plug → socket, plug → fridge. Slack loop for the 24" slide, clipped to the FIXED rail (step 5 above) |
+| P9 | SW2 "FANS" — Ampper rocker | F2's 18AWG red → **PWR** tab; **LOAD** tab → W1209 "+12V"; **GND** tab → neg bus |
+| P10 | W1209 controller — 4 screw terminals | **+12V** ← SW2 LOAD; **GND** ← neg bus (18AWG black); **K0** ← short jumper from +12V; **K1** → fan feed wire. Strip 1/4", screws snug. Settings: P0 = H mode, fans ON ~95°F / OFF ~85°F |
+| P11 | W1209 2-pin probe header | NTC probe plug clicks on; the probe TIP zip-ties inside the bay at the fridge's kitchen-facing wall, next to the exhaust fan |
+| P12 | WAGO 221-413 lever nuts (×2) | Nut A: K1 feed → both fan REDS. Nut B: both fan BLACKS → one 18AWG black → neg bus. Levers fully closed, tug-test every wire |
+
+**Wire + termination spec:** main run = the OYMSAE cord's own 16AWG; in-cabinet branches = 18AWG red/black hookup wire. Crimps: heat-shrink #10 rings (block studs) and 0.25" female spades (switch tabs) — crimp, tug-test, then shrink. SW3 is a spare on the panel (its old "cooktop" BOM label predates the verified-outlet round — the cooktop is 120V AC, switched at Power strip 2's own outlet switch).
 
 The fan system's own wiring (fuse/switch/PWM controller/fans, Section 1) taps off this same DELTA 3 source rather than a separate line — see the fridge wiring schematic in Renders. The rail-channel routing is illustrated in the [Step 8 diagram](renders/steps/step-08-power-channel.svg) — it now carries only this DC line, since both AC loads plug into the rear outlet instead.
 
@@ -562,7 +596,7 @@ A second, independent cord charges the DELTA 3 stack itself from the front conso
 3. Continue along the van floor track to the front console AC outlet — same routing as the other two forward-running lines.
 4. Leave enough slack at the Panel A end that pulling the DELTA 3 drawer open doesn't strain the connection.
 
-**Outlet facts (VERIFIED): 2 AC outlets total, both fed by the van's single 1500W inverter.** The rear outlet sits on the **passenger-side rear quarter trim: ~9.5" above the cargo floor, ~10" forward of the liftgate scuff plate**, socket center ~16" laterally in from the right sidewall (the trim curves), directly above the 12V battery access panel and below the rear cup holders. That places it **below deck level (19.25"), in the gap between the kitchen unit's outer face and the van wall** — the cooktop's cord reaches it inside the bay, and Power strip 1's cord drops off the deck edge down that gap. Plug access is easy with the kitchen slid out. **Serviceability note: the 12V battery access panel sits under/behind the kitchen's passenger rear corner — keep it clear: no E-track anchor over it, and battery service = unstrap + slide the kitchen out (Component 7).**
+**Outlet facts (VERIFIED): 2 AC outlets total, both fed by the van's single 1500W inverter.** The rear outlet sits on the **passenger-side rear quarter trim: ~9.5" above the cargo floor, ~10" forward of the liftgate scuff plate**, socket center ~16" laterally in from the right sidewall (the trim curves), directly above the 12V battery access panel and below the rear cup holders. That places it **below deck level (18.5"), in the gap between the kitchen unit's outer face and the van wall** — the cooktop's cord reaches it inside the bay, and Power strip 1's cord drops off the deck edge down that gap. Plug access is easy with the kitchen slid out. **Serviceability note: the 12V battery access panel sits under/behind the kitchen's passenger rear corner — keep it clear: no E-track anchor over it, and battery service = unstrap + slide the kitchen out (Component 7).**
 
 **Shared-inverter wattage: every AC load shares one 1500W pool (confirmed — both outlets ride the same inverter).** Plugging the cooktop + Power strip 1 into the rear outlet and the DELTA 3 charger into the front one cleans up the *cords*, but not the *budget*: the DELTA 3's AC input alone (up to 1500W at full X-Stream speed) can consume the entire rated capacity. Running the induction cooktop while fast-charging the DELTA 3 could oversubscribe the inverter. In practice this rarely collides — cooktop use happens at camp with the engine off, DELTA 3 charging while driving — but if you ever want both at once (e.g., cooking at a rest stop with the engine idling), cap the DELTA 3's AC charge rate in its app (EcoFlow lets you limit input wattage) to leave headroom.
 
@@ -631,7 +665,7 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 <div class="lego-num">1</div>
 <div class="lego-parts"><img src="renders/steps/pab-s1a-parts.png" alt="Panel A step 1 parts"></div>
 <div class="lego-main"><img src="renders/steps/pab-s1a-assembly.png" alt="Panel A step 1 assembly">
-<p class="lego-caption">Build the frame: 2 side rails (B) + 2 end rails (A) joined with corner brackets and 2" screws, then the 4 legs (C) — CUT to 16", drilled in the bottom end grain (1/2" dia x 7/8" deep, centered — maker's spec; test-fit in offcut) for the 3/8-16 screw-in threaded insert, so the leveling foot brings each leg back to an effective 17" (Leg Leveling Foot Detail render). Much easier to drill before assembly. Legs inset 2.5" from the deck's side edges to clear the floor-level vent intrusion. Then close the bottom: 2 END-face bottom rails (K, 46", underside 1" up at the leg bottoms — Panel A's SIDE faces stay open so the drawer and WAVE 3 can exit) plus 2 diagonal corner braces up top — the part-cube racks far less than rails + brackets alone. (Panel B's frame differs only at the bottom rails: it closes all 4 faces.)</p></div>
+<p class="lego-caption">Build the frame: 2 side rails (B) + 2 end rails (A) joined with corner brackets and 2" screws, then the 4 legs (C) — CUT to 15.25" (Panels A/B run 3/4" shorter than Panel C: deck recess), drilled in the bottom end grain (1/2" dia x 7/8" deep, centered — maker's spec; test-fit in offcut) for the 3/8-16 screw-in threaded insert, so the leveling foot brings each leg back to an effective 16.25" (Leg Leveling Foot Detail render). Much easier to drill before assembly. Legs inset 2.5" from the deck's side edges to clear the floor-level vent intrusion. Then close the bottom: 2 END-face bottom rails (K, 46", underside 1" up at the leg bottoms — Panel A's SIDE faces stay open so the drawer and WAVE 3 can exit) plus 2 diagonal corner braces up top — the part-cube racks far less than rails + brackets alone. (Panel B's frame differs only at the bottom rails: it closes all 4 faces.)</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
@@ -705,7 +739,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 
 **Parts needed:**
 
-- Panel C top — 1, 36" x 46", 3/4" ply
+- Panel C top — 1, 33" x 43", 3/4" ply (drops BETWEEN the rails) + 4 bearer cleats (3/4" x 3/4": 2 x 33" + 2 x 40", from the offcut)
 - Long rails — 2, 36" cut, 2x2 pine
 - End rails — 2, 46" cut, 2x2 pine
 - Legs — 4, 16" cut, 2x2 pine (leveling feet make up the inch; REAR pair at the true corners)
@@ -726,7 +760,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">2</div>
 <div class="lego-parts"><img src="renders/steps/pc-s2-parts.png" alt="Panel C step 2 parts"></div>
 <div class="lego-main"><img src="renders/steps/pc-s2-assembly.png" alt="Panel C step 2 assembly">
-<p class="lego-caption">Screw the top (D) down fixed directly to the frame rails — NO divider, since the fridge and kitchen unit need the full width of the void underneath.</p></div>
+<p class="lego-caption">Screw the bearer cleats (E) to the rails' inner faces — cleat tops exactly 3/4" below the rail tops — then drop the top (D) BETWEEN the rails onto them, flush with the rail tops (the deck recess: 3/4" more headroom), and screw it down into the cleats + toe-screw into the rails. NO divider, since the fridge and kitchen unit need the full width of the void underneath.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">3</div>
@@ -773,6 +807,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - 16 AWG cord (household AC-rated), ~3-4ft (DELTA 3 AC charging line — front console to Panel A)
 - Cable grommets — 7, 1" diameter (1 cooktop line, 1 Power strip 1 line, 3 fridge DC line, 2 DELTA 3 charging line)
 - SAE quick-disconnect connectors — 2 (DC-rated, for the fridge DC line's 2 seams — the ONLY line that still crosses seams; both AC tailgate loads plug into the rear outlet)
+- Fused (15A) car-plug → SAE adapter (P1, DELTA 3 end) + SAE → female 12V socket pigtail (P7, fridge end)
+- 18AWG red/black hookup wire ~10 ft, crimp assortment (#10 heat-shrink rings + 0.25" female spades), 2× WAGO 221-413 lever nuts
 - Per-module surface wire raceway (AC + DC separated) + screw-mount cord clips — 1 set
 - 2-way AC outlet tap — 1 (REAR outlet: Power strip 1 + the cooktop share it — see Section 5)
 
@@ -791,9 +827,9 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 </div>
 <div class="lego-step">
 <div class="lego-num">3</div>
-<div class="lego-parts"><p class="lego-noparts">fridge DC cord + 3 grommets + 2 SAE disconnects (parts list above)</p></div>
+<div class="lego-parts"><p class="lego-noparts">fridge DC cord + fused car-plug→SAE adapter + SAE→12V-socket pigtail + 3 grommets + 2 SAE disconnects (parts list above)</p></div>
 <div class="lego-main"><img src="renders/electrical-layout.png" alt="Electrical layout — fridge DC line and DELTA 3 charging cord">
-<p class="lego-caption">The fridge now runs off the DELTA 3, not the van's rear outlet (Section 1) — route its DC line from the DELTA 3's output (Panel A's right drawer) back through Panel B into Panel C, with an SAE quick-disconnect at each of the 2 seams it crosses, terminating at the fridge's DC input near the control enclosure (Component 7).</p></div>
+<p class="lego-caption">The fridge now runs off the DELTA 3, not the van's rear outlet (Section 1) — route its DC line from the DELTA 3's output (Panel A's right drawer) back through Panel B into Panel C, with an SAE quick-disconnect at each of the 2 seams it crosses, landing on the Nilight fuse block's main studs inside the cabinet and branching from there to the fridge's DC input — every wire landing is numbered P1–P12 on the wiring diagram and in Section 5's connection-point table.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">4</div>
@@ -816,8 +852,10 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - 12V surge protector/fused distribution block, 3 illuminated toggle switches, small electrical enclosure
 - 8 Snap-Loc E-Track anchors, 16 5/16" carriage bolts/nuts/fender washers
 - 4 Erickson 500lb ratchet straps
+- 1 low-profile cam strap + 2 screw-eye D-rings (fridge hold-down, hooks to its 2 end handles)
+- 3 screw-mount cable clips (fridge DC line slack, clipped to the slide's fixed outer rail)
 - Utility cabinet door hardware — 2 small hinges + 1 magnetic catch + 1 low louvered vent (3" x 4")
-- Kitchen drawer — box (1/2" ply, 16" x 26" x 4.5") + 2 hanging cheeks (1/2" ply, 26" x 6.2" — weight swap: was 3/4") + 24" full-extension slide pair (100lb) + magnetic catch
+- Kitchen drawer — box (1/2" ply, 16" x 26" x 4.5") + 2 hanging cheeks (1/2" ply, 26" x 5.45" — weight swap: was 3/4") + 24" full-extension slide pair (100lb) + magnetic catch
 
 <div class="lego-card">
 <div class="lego-step">
@@ -836,13 +874,13 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">3</div>
 <div class="lego-parts"><p class="lego-noparts">fridge + 3/8" ply tray (edge frame) + 24" 200lb slide pair</p></div>
 <div class="lego-main"><img src="renders/fridge-slide-detail.png" alt="Fridge slide mechanism">
-<p class="lego-caption">Mount the Rocky 40 on its plywood tray on the heavy-duty slide pair; bolt the slide's outer rail to its 4 E-track anchors, against Panel C's driver-side rear corner leg (1.5" in from the edge), pulling straight out the open tailgate between the corner legs. Face the compressor/battery end toward the tailgate (B240 swaps without a full slide-out), re-hinge the reversible lid to open toward the van wall, and let the unit stand 12 hours before first power-up (manual). Connect its DC input to the fridge line routed in from the DELTA 3 (Component 6, step 3) — leave enough slack for the slide's full travel.</p></div>
+<p class="lego-caption">Mount the Rocky 40 on its plywood tray hanging BETWEEN the slide pair — rails vertical against the tray's 1x3 side aprons (side-mount, nothing under the tray); bolt each fixed rail's steel riser angle to its 2 E-track anchors, against Panel C's driver-side rear corner leg (1.5" in from the edge), pulling straight out the open tailgate between the corner legs. Face the compressor/battery end toward the tailgate (B240 swaps without a full slide-out), re-hinge the reversible lid to open toward the van wall, and let the unit stand 12 hours before first power-up (manual). Screw 2 D-rings into the tray's side apron level with the fridge's 2 end handles, and hook a low-profile cam strap over the top from handle to handle — snug enough to stop the fridge lifting off the tray, loose enough that it doesn't bind the lid at full slide extension (test this before loading the fridge). Connect its DC input to the fridge line routed in from the DELTA 3 (Component 6, step 3) — leave enough slack for the slide's full travel, and clip that slack loop to the FIXED outer rail (Component 6, step 5) so it can't get pinched when the tray slides home.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">4</div>
 <div class="lego-parts"><p class="lego-noparts">2 fans + controller/NTC probe + control enclosure</p></div>
 <div class="lego-main"><img src="renders/fridge-wiring.png" alt="Fridge wiring schematic">
-<p class="lego-caption">Bolt the intake fan over the front wall's fan hole (Component 4 step 3 — blowing IN) and snap the passive low intake louver into the wall's vent opening beside it (cool floor-level air in), install the exhaust fan + NTC probe (NTC just INSIDE the bay at the fridge's kitchen-facing wall, in the hot exhaust airflow, feeding the controller — it blows the warm air INTO the utility cabinet), and the control panel enclosure (switches + surge protector) INSIDE the cabinet — just behind the door, screwed to a backer board (the 3/4" sheet's offcut) hung from the deck underside, so opening the door reaches every switch. Wire everything per the schematic. The CO monitor and fire extinguisher are owner-placed — position them yourself once the build is in the van (the CO monitor stays battery-powered and unwired either way).</p></div>
+<p class="lego-caption">Bolt the intake fan over the front wall's fan hole (Component 4 step 3 — blowing IN) and snap the passive low intake louver into the wall's vent opening beside it (cool floor-level air in), install the exhaust fan + NTC probe (NTC just INSIDE the bay at the fridge's kitchen-facing wall, in the hot exhaust airflow, feeding the controller — it blows the warm air INTO the utility cabinet), and the control panel enclosure (switches + surge protector) INSIDE the cabinet — just behind the door, screwed to a backer board (the 3/4" sheet's offcut) hung from the deck underside, so opening the door reaches every switch. Wire everything per the schematic's numbered connection points (P1–P12 — the exact terminal, connector, and crimp for every wire is in Section 5's connection-point table). The CO monitor and fire extinguisher are owner-placed — position them yourself once the build is in the van (the CO monitor stays battery-powered and unwired either way).</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">5</div>
@@ -889,13 +927,13 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">1</div>
 <div class="lego-parts"><p class="lego-noparts">uses Panel A's right-drawer fixtures (Component 2, step 4)</p></div>
 <div class="lego-main"><img src="renders/delta3-wave3-detail.png" alt="DELTA 3 and WAVE 3 stowage detail">
-<p class="lego-caption">Stow the DELTA 3 Plus outboard (pull wall — it's what the WAVE 3 plugs into) and the Smart Extra Battery inboard, side by side over the locating cleats, cam strap over both. Connect the fridge DC line and the AC charging cord (both routed in Component 6) to the DELTA 3 Plus's DC output and AC input ports — it now powers the fridge/fans continuously and gets charged from the front console while driving (Section 1).</p></div>
+<p class="lego-caption">Stow the DELTA 3 Plus outboard (pull wall — it's what the WAVE 3 plugs into) and the Smart Extra Battery inboard, side by side over the locating cleats, cam strap over both. Connect the fridge DC line (via its fused car-plug→SAE adapter — connection point P1) and the AC charging cord (both routed in Component 6) to the DELTA 3 Plus's 12V car-power outlet and AC input port — it now powers the fridge/fans continuously and gets charged from the front console while driving (Section 1).</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
 <div class="lego-parts"><p class="lego-noparts">uses Panel A's left-bay glide strips (Component 2, step 3) + storage hook</p></div>
 <div class="lego-main">
-<p class="lego-caption">Slide the WAVE 3 into Panel A's left bay, resting on the 2 glide strips — no box, no slide hardware, just reach in through the driver's side door. Mount the hose/cord hook inside the utility cabinet (kitchen-side wall) for when the unit is carried off to run at camp. <strong>Found storage</strong> (DELTA 3/WAVE 3 detail render, side sections): the DELTA 3 stack is only 11.16" tall in a 14.5" drawer, so drop a shallow lift-out tray in the ~3.3" of dead air on top for cables/cords; and the WAVE 3 is 13.2" in the 17" bay, so screw a thin shelf onto 1x1 cleats at ~13.7" — flat soft goods and the WAVE 3's own hoses ride up there while the unit still slides out beneath it. Neither touches the frame or the units' function.</p></div>
+<p class="lego-caption">Slide the WAVE 3 into Panel A's left bay, resting on the 2 glide strips — no box, no slide hardware, just reach in through the driver's side door. Mount the hose/cord hook inside the utility cabinet (kitchen-side wall) for when the unit is carried off to run at camp. <strong>Found storage</strong> (DELTA 3/WAVE 3 detail render, side sections): the DELTA 3 stack is only 11.16" tall in a 13.75" drawer, so drop a shallow lift-out tray in the ~2.2" of dead air on top for cables/cords; and the WAVE 3 is 13.2" in the 16.25" bay, so screw a thin shelf onto 1x1 cleats at ~13.7" — flat soft goods and the WAVE 3's own hoses ride up there while the unit still slides out beneath it. Neither touches the frame or the units' function.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">3</div>
@@ -1000,8 +1038,10 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 
 **What this plan uses instead**: [Snap-Loc E-Track anchors](https://www.etrailer.com/E-Track/Toyota/Sienna/Snap-Loc/SLSS.html) — bolt-on, stainless steel, 1000lb safe working load / 3000lb break strength each, $6.99 apiece. Eight of them, through-bolted into the van's actual floor pan (not just resting on the folded 3rd row):
 
-- **4 anchors under the fridge's slide zone** (2 per slide rail) — the slide's outer rail bolts directly to these, independent of Panel C's own lift-out frame. Panel C's frame/legs never touch the fridge or its slide, so this doesn't compromise Panel C's own lift-out design at all — it was never structurally connected to the fridge in the first place.
+- **4 anchors on the fridge's 2 rail lines** (2 per slide rail — BESIDE the tray, on the rail lines flanking it, never under it) — each fixed rail's steel riser angle bolts directly to these, independent of Panel C's own lift-out frame. Panel C's frame/legs never touch the fridge or its slide, so this doesn't compromise Panel C's own lift-out design at all — it was never structurally connected to the fridge in the first place.
 - **4 anchors under the kitchen unit**, one per corner, with 4 [Erickson 500lb-rated ratchet straps](https://www.etrailer.com/Cargo-Tie-Downs/toyota/sienna/Erickson/EM31352.html) criss-crossed over the top.
+
+**The E-track anchors above secure the tray to the van — they don't secure the fridge to the tray.** As built, the fridge just sits on the plywood tray behind its 1x3 side aprons' lip; nothing stops it lifting or shifting off the tray itself in a hard stop, the way the kitchen unit's own top straps stop it lifting off its footprint. The BougeRV Rocky 40 has a carry handle at each end (visible in the manual photos) that doubles as a tie-down point: add **1 low-profile cam strap over the top, hooked to the fridge's 2 end handles and down to 2 small D-rings screwed into the tray's side apron** (same pattern as the DELTA 3 drawer's own hold-down, Component 8). Snug it enough to stop vertical lift, but loose enough that it doesn't bind the reversible lid when the tray's pulled to its fully-open position — check that clearance once installed (Component 7, step 3).
 
 **Why this margin is enough**: DOT commercial cargo securement rules (49 CFR 393, Subpart I) require tie-downs rated for 0.435g forward / 0.5g rearward / 0.25g lateral deceleration, with combined working load at least 50% of the cargo's weight. A single 1000lb-WLL E-track anchor is roughly 11x the fridge's loaded weight (90lb) and 22x the kitchen unit's (45lb) — this plan uses 4 anchors per item, not 1, for a wide margin over that commercial-vehicle baseline, even though a DIY conversion isn't held to DOT's certification process.
 
@@ -1079,7 +1119,7 @@ Appendices B and C consolidate Sections 4 and 3; Appendix A (build order), Appen
 The order to build in — **dependency-first, not the Component numbering.** Work top to bottom; the "needs" is what must be finished before each phase.
 
 **Phase 0 — MEASURE & PREP, before any cutting** (Section 0, 9) — *critical*
-1. Measure the real van and update `params.scad`: interior length (96" est.), liftgate (48×36"), both side-door openings, floor-to-wall width at ~19" and ~23" up (need ≥53" for the 52" platform). *UNVERIFIED — a bad number breaks an assert.*
+1. Measure the real van and update `params.scad`: interior length (96" est.), liftgate (48×36"), both side-door openings, floor-to-wall width at ~18.5" and ~22.5" up (need ≥53" for the 52" platform). *UNVERIFIED — a bad number breaks an assert.*
 2. Confirm the rear-corner floor vents don't reach the last ~4" (Panel C's rear legs sit there). *UNVERIFIED.*
 3. Remove the 2nd-row seats; install the Ling Labs SRS emulators (Section 9).
 4. Buy & verify materials (Appendix B); verify the Rocky 40 + JAGAHAHA dimensions on arrival (both purchased July 2026).
@@ -1096,7 +1136,7 @@ The order to build in — **dependency-first, not the Component numbering.** Wor
 4. Install the 12 leveling feet + star knobs.
 
 **Phase 3 — Panel C build-out (fridge / kitchen / cooling)** (Components 4 + 7)
-1. Screw down the fixed top + front wall (mount the low intake louver).
+1. Set the fixed top between the rails on its bearer cleats (flush with the rail tops — deck recess) and screw it down; add the front wall (mount the low intake louver).
 2. Drill & bolt the 8 E-track floor anchors — **this is IN-VEHICLE work: set Panel C's frame in place in the van first** and **inspect underneath for fuel/brake lines first**, seal each hole. *Verify.* **The hybrid's 12V battery access panel is at the passenger rear corner (under the rear outlet) — do NOT place an anchor over it, and keep it reachable by unstrapping/sliding the kitchen out.**
 3. Fridge on its tray + locking slide (driver corner); kitchen unit strapped down (passenger corner). Let the fridge stand 12h before first power-up.
 4. Hang the kitchen drawer + cabinet door (with its low exhaust louver).
@@ -1145,9 +1185,9 @@ Consolidates Section 4's BOM into a shopping order with links. Prices are estima
 
 **Fridge & kitchen** — [BougeRV Rocky 40](https://www.bougerv.com/products/rocky-12v-camp-fridge) ($400–500 less JULY7 coupon, **PURCHASED**); [JAGAHAHA slide-out kitchen](https://www.amazon.com/dp/B0FLDCNYZX) ($300–350, **PURCHASED**); [COOKTRON induction cooktop](https://www.amazon.com/dp/B09MCR1SDT) ($190); UMETRE 9-piece detachable-handle cookware set (purchased in its place) ($65–90).
 
-**Electrical & cooling** — 120mm 12V fans ×2 ($18–20); W1209 controller + probe ($10); Nilight fuse block (*purchased*, $18); Ampper switches 10-pack (*purchased*, $9); enclosure ($12–15); snap-in louver vents ×2 ($12); grommets (EASYEAH 20-pack, *purchased*, $10); power strips ×2 ($50); AC cords ($24 — two short rear-outlet hops + the DELTA 3 charging line); fridge DC cord + SAE seam disconnects (one OYMSAE 2-pack does both, purchased, $22); 2-way rear-outlet tap ($5); cord clips ($9).
+**Electrical & cooling** — 120mm 12V fans ×2 ($18–20); W1209 controller + probe ($10); Nilight fuse block (*purchased*, $18); Ampper switches 10-pack (*purchased*, $9); enclosure ($12–15); snap-in louver vents ×2 ($12); grommets (EASYEAH 20-pack, *purchased*, $10); power strips ×2 ($50); AC cords ($24 — two short rear-outlet hops + the DELTA 3 charging line); fridge DC cord + SAE seam disconnects (one OYMSAE 2-pack does both, purchased, $22); 2-way rear-outlet tap ($5); cord clips ($9); fused car-plug→SAE adapter + SAE→12V-socket pigtail ($18); 18AWG hookup wire, crimp assortment + WAGO lever nuts ($30).
 
-**Anchoring** — E-track anchors ×8 ($56); 5/16" carriage bolts ×16 ($12); ratchet straps 4-pack ($32).
+**Anchoring** — E-track anchors ×8 ($56); 5/16" carriage bolts ×16 ($12); ratchet straps 4-pack ($32); fridge-slide steel riser angles ×2 ($24) + 1x3 apron stock ($6).
 
 **Comfort & interior** — [HEST Dually Long mattress](https://hest.com/products/dually) ($530–590); Windmill Smart fan ($69, PURCHASED); tension rod + blackout curtain ($40); [PeaceOut Sienna bug nets](https://peaceout.ca/en/products/toyota-sienna-front-sliding-doors-bug-nets) (~$197); [EcoFlow WAVE vent kit](https://us.ecoflow.com/products/wave-car-vent-kit) ($39); non-slip mat ($12); WAVE 3 hose hook ($4); WAVE 3 glide strips ($6); DELTA 3 drawer hardware ($15).
 
@@ -1187,13 +1227,13 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 
 | Component | Category | Weight (lb) | Zone | Notes |
 |---|---|--:|:--:|---|
-| Panel A frame (2×2 pine) | Structure | 12.1 | front | rails+legs+divider+bottom rails |
+| Panel A frame (2×2 pine) | Structure | 12.0 | front | rails+legs+divider+bottom rails (16.25" legs — deck recess) |
 | Panel A drawer box + slides (⅜" birch, ½" bottom) | Structure | 22.2 | front | holds the DELTA 3 stack |
-| Panel B frame (2×2 pine, full cube) | Structure | 13.1 | mid | bare-frame deep-storage box |
+| Panel B frame (2×2 pine, full cube) | Structure | 12.9 | mid | bare-frame deep-storage box (16.25" legs — deck recess) |
 | Panel C frame (2×2 pine) | Structure | 10.0 | rear | rails+legs+front bottom rail |
-| Panel C deck (¾" birch, 36×46) | Structure | 30.5 | rear | fixed top over fridge/kitchen |
+| Panel C deck (¾" birch, 33×43 recessed + cleats) | Structure | 27.2 | rear | drops between the rails onto bearer cleats, flush (deck recess) |
 | Panel C front wall (⅜" birch) | Structure | 7.2 | mid | intake fan + grommets |
-| Fridge tray (⅜" birch + edge frame) | Structure | 4.7 | rear | on the fridge slide |
+| Fridge tray (⅜" birch + 2 1×3 side aprons) | Structure | 6.4 | rear | hangs between the side-mount slide rails |
 | Kitchen drawer + ½" cheeks (birch) | Structure | 13.1 | rear | hung over the kitchen unit |
 | Rear pantry: 4× IRIS 12"W drawer cluster + hold-down | Structure | 15.0 | rear | prefab 2×2 drawers (est.) + cleats/strap — replaces the ~42 lb plywood pantry |
 | Panel B: 2× Sterilite 28-Qt under-bed totes | Hardware/misc | 4.0 | mid | restacked ON the spare (2 of the original 4) |
@@ -1205,6 +1245,7 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | EcoFlow WAVE 3 A/C | Power/climate | 33.7 | front | Panel A driver bay |
 | Mattress (HEST Dually Long) | Bedding | 35.0 *est.* | mid | solid foam + waterproof cover |
 | Fridge + kitchen-drawer slides (heavy) | Hardware/misc | 8.0 | rear | 24" heavy-duty pairs |
+| Fridge-slide steel riser angles (2) | Hardware/misc | 9.8 | rear | 2×2×3/16" × 24" steel, fixed rails → E-track anchors (aluminum angle saves ~6 lb) |
 | 12 leveling feet + star knobs + inserts | Hardware/misc | 5.0 | mid | 4 per panel |
 | E-track anchors (8) + ratchet straps | Hardware/misc | 8.0 | rear | floor tie-downs at Panel C |
 | Corner brackets, braces, screws, glue | Hardware/misc | 6.0 | mid | spread across all modules |
@@ -1212,37 +1253,37 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Electrical (2 fans, controller, fuse, 2 strips, cords) | Hardware/misc | 6.0 | mid | cooling + power runs |
 | Cooktop + cookware (stowed) | Hardware/misc | 12.0 | rear | induction top + pots in the kitchen |
 
-**Subtotals:** Structure **148.1** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **90.5**
-**Build total (added): ≈ 441 lb** — after the lighter-wood swaps and the prefab-drawer pantry swap, plus Panel B's 2 storage totes (~4 lb) and the **RJ-MODINI spare kit stowed at the axle (~40 lb)** — carried inside deliberately instead of on a hitch basket, which would have added its own 30–60 lb of carrier plus a ~1.4× lever on the rear axle.
+**Subtotals:** Structure **146.2** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **100.3**
+**Build total (added): ≈ 449 lb** — after the lighter-wood swaps, the deck recess and the prefab-drawer pantry swap, plus Panel B's 2 storage totes (~4 lb) and the **RJ-MODINI spare kit stowed at the axle (~40 lb)** — carried inside deliberately instead of on a hitch basket, which would have added its own 30–60 lb of carrier plus a ~1.4× lever on the rear axle.
 
 **But the 2nd-row seats come OUT** (Section 9), so the conversion *removes* weight too:
 
 | | Weight |
 |---|--:|
-| Build (added) | +441 lb |
+| Build (added) | +449 lb |
 | **2nd-row seats removed** (2 × ~48–70 lb) *est.* | **−120 lb** |
-| **NET permanent weight added vs. stock** | **≈ 321 lb** |
+| **NET permanent weight added vs. stock** | **≈ 329 lb** |
 
-So the van, converted and empty, weighs only about **321 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
+So the van, converted and empty, weighs only about **329 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
 
 **Loaded scenarios** (payload = everything you add to the van — build + people + cargo):
 
 | Scenario | Weight |
 |---|--:|
-| Net build (added − seats removed) | ≈ 321 lb |
-| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 441 lb |
-| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 781 lb |
+| Net build (added − seats removed) | ≈ 329 lb |
+| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 449 lb |
+| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 789 lb |
 
 #### Weight distribution
 
-- **Fore–aft:** the build's own center of mass sits **≈ 51" back** from the front seatbacks — just aft of the 47" geometric center (the prefab pantry and the axle-stowed spare both pulled it forward). Breaking it into thirds: **front 31%** (136 lb — Panel A + the DELTA 3/WAVE 3 stack + the bed platform), **middle 27%** (118 lb — Panel B now carries the spare + totes at the axle), **rear 42%** (187 lb). That rear share is the **tailgate cluster** — the prefab drawer pantry (~15 lb), the fridge (41 lb), the kitchen unit (45 lb), and Panel C's own structure — most of which has to live at the back for slide-out access.
-- **Lateral:** **≈ 1.1" toward the passenger side** — trivial. This is by design: the DELTA 3 stack (48 lb, passenger) and the WAVE 3 (34 lb, driver) sit in opposite bays of Panel A, and the fridge (driver) and kitchen (passenger) also cross-balance in Panel C. The reviewer's "heavy battery off to one side" concern is effectively cancelled by the WAVE 3 on the other side.
+- **Fore–aft:** the build's own center of mass sits **≈ 51.3" back** from the front seatbacks — just aft of the 47" geometric center (the prefab pantry and the axle-stowed spare both pulled it forward). Breaking it into thirds: **front 30%** (136 lb — Panel A + the DELTA 3/WAVE 3 stack + the bed platform), **middle 26%** (118 lb — Panel B now carries the spare + totes at the axle), **rear 43%** (195 lb). That rear share is the **tailgate cluster** — the prefab drawer pantry (~15 lb), the fridge (41 lb), the kitchen unit (45 lb), and Panel C's own structure — most of which has to live at the back for slide-out access.
+- **Lateral:** **≈ 0.8" toward the passenger side** — trivial (the fridge-slide steel risers on the driver side pulled it in a bit more). This is by design: the DELTA 3 stack (48 lb, passenger) and the WAVE 3 (34 lb, driver) sit in opposite bays of Panel A, and the fridge (driver) and kitchen (passenger) also cross-balance in Panel C. The reviewer's "heavy battery off to one side" concern is effectively cancelled by the WAVE 3 on the other side.
 - **Height:** everything is low (floor-level bays) except the 16.8" pantry cluster at the rear and, when parked, the sleeping load on the ~20–27" platform. Overall CG stays low — no rollover concern beyond a stock minivan.
 
 #### Effects on drivability
 
-- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 781 lb** — and that already includes the spare tire + jack. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~320–520 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
-- **Rear bias:** with 42% of the build mass in the rear third (much of it at/behind the rear axle), the fixed build alone loads the rear axle and slightly lightens the front — which reads as lighter steering, a bit more rear squat, and a raised headlight aim. **But while driving, the two occupants (340 lb) sit up front and more than offset that**, so the *loaded* vehicle is reasonably balanced. The rear bias matters most when driving **solo with a full rear and no front passenger**.
+- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 789 lb** — and that already includes the spare tire + jack. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~310–510 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
+- **Rear bias:** with 43% of the build mass in the rear third (much of it at/behind the rear axle), the fixed build alone loads the rear axle and slightly lightens the front — which reads as lighter steering, a bit more rear squat, and a raised headlight aim. **But while driving, the two occupants (340 lb) sit up front and more than offset that**, so the *loaded* vehicle is reasonably balanced. The rear bias matters most when driving **solo with a full rear and no front passenger**.
 - **Lateral / height:** negligible effect — the ~1.1" lateral offset is unnoticeable, and the low CG keeps handling stock-like.
 
 #### Recommendations

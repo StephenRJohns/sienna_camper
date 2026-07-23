@@ -69,8 +69,8 @@ module drawing() {
 
     // deck (frame rail + ply) spanning the full length
     color("Gray") translate([0, leg_height]) rect_outline(panel_c_length, frame_rail_sz);
-    color("Gray") translate([0, z_deck]) rect_outline(panel_c_length, panel_thickness);
-    label("deck (Panel C top)", panel_c_length/2, z_deck + panel_thickness + 1.5, 1.0);
+    color("Gray") translate([frame_rail_sz, z_deck - panel_thickness]) rect_outline(panel_c_length - 2 * frame_rail_sz, panel_thickness);
+    label("deck (Panel C top — recessed flush with the rail tops)", panel_c_length/2, z_deck + 1.5, 1.0);
 
     // Kitchen unit — closed profile, flush to the tailgate edge (Y=0)
     color("Gainsboro") translate([0, 0]) rect_outline(kitchen_box_length, kitchen_box_height);

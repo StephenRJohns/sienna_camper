@@ -77,7 +77,7 @@ module drawing() {
     marker3d(4, [RS/2, RS/2, pad_h/2], [22, -9]);
 
     cap(str("LEG LEVELING FOOT — shown ", SC, "x actual size (", leveling_foot_count, " total: 4 per panel x 3 panels)"), 24, -12, 2.0);
-    cap(str("Legs are CUT to ", leg_cut_length, "\" — the foot makes up the last ", NH, "\", keeping the effective ", leg_height, "\" leg height."), 24, -15.5, 1.3);
+    cap(str("Legs are CUT to ", leg_cut_length, "\" (Panel C) / ", leg_cut_length_ab, "\" (A/B — deck recess) — the foot makes up the last ", NH, "\"."), 24, -15.5, 1.3);
     cap("To level: kneel at the side door, tip that corner of the box slightly, spin the star knob. Every leg is exposed at", 24, -18.5, 1.3);
     cap("floor level — nothing boxes it in. The platform above rests DIRECTLY on the box rails (no adjusters up top anymore).", 24, -21.5, 1.3);
 

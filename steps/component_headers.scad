@@ -50,8 +50,8 @@ drw_h = drawer_height;
 
 module hero_c2() {
     // assembled Panel A frame + legs + divider + right drawer + bed slats
-    lib_frame_ring(LA, PW);
-    lib_legs(LA, PW);
+    lib_frame_ring(LA, PW, false, leg_height_ab);
+    lib_legs(LA, PW, 0, false, -1, leg_height_ab);
     // bottom rails (end faces) — shown for completeness
     wbox([-PW/2 + leg_inset, 0, bottom_rail_z], [PW - 2*leg_inset, RS, RS]);
     wbox([-PW/2 + leg_inset, LA - RS, bottom_rail_z], [PW - 2*leg_inset, RS, RS]);
@@ -156,7 +156,7 @@ module partlist_c1() {
 // ============================================================
 LB = panel_b_length;   // 29
 module hero_c3() {
-    lib_frame_ring(LB, PW); lib_legs(LB, PW);
+    lib_frame_ring(LB, PW, false, leg_height_ab); lib_legs(LB, PW, 0, false, -1, leg_height_ab);
     // full-cube bottom rails (all 4 faces)
     wbox([-PW/2 + leg_inset, 0, bottom_rail_z], [PW - 2*leg_inset, RS, RS]);
     wbox([-PW/2 + leg_inset, LB - RS, bottom_rail_z], [PW - 2*leg_inset, RS, RS]);
@@ -283,7 +283,7 @@ module partlist_note(w, l1, l2) {
 // COMPONENT 6 — Cord runs (no cut parts)
 // ============================================================
 module hero_c6() {
-    lib_frame_ring(58, PW); lib_legs(58, PW);                        // A+B+C run
+    lib_frame_ring(58, PW, false, leg_height_ab); lib_legs(58, PW, 0, false, -1, leg_height_ab);                        // A+B+C run
     // raceway channel along the near rail (DC line)
     ifill("DimGray") translate([-22, 3, LH - 1]) cube([1.5, 48, 1]);
     // dashed cord line + grommets along the run (page space)
@@ -367,7 +367,7 @@ module partlist_c7() {
 // COMPONENT 8 — EcoFlow stowage (DELTA 3 + WAVE 3)
 // ============================================================
 module hero_c8() {
-    lib_frame_ring(29, PW); lib_legs(29, PW);
+    lib_frame_ring(29, PW, false, leg_height_ab); lib_legs(29, PW, 0, false, -1, leg_height_ab);
     wbox([3, 4, 1], [14, 8, 11]);                                   // DELTA 3 Plus
     wbox([3, 13, 1], [11, 8, 11]);                                  // Extra battery
     wbox([3, 4, 12.5], [14, 8, 3]);                                 // found-storage drawer tray (over DELTA)

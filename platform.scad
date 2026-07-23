@@ -47,10 +47,11 @@ module bx(w, l, h, wireframe = false) {
 }
 
 // A single leg support, standing on the van floor (Z=0) up to the
-// underside of a module's frame (Z=leg_height).
-module leg(x, y) {
+// underside of a module's frame (Z=lh — leg_height for Panel C,
+// leg_height_ab for A/B since the deck recess).
+module leg(x, y, lh = leg_height) {
     translate([x, y, 0])
-        cube([frame_rail_sz, frame_rail_sz, leg_height]);
+        cube([frame_rail_sz, frame_rail_sz, lh]);
 }
 
 // Independent perimeter frame + 4 corner legs for one module.
@@ -70,16 +71,16 @@ module leg(x, y) {
 // sit at the true corners, clear of the appliance slide paths.
 // (Hand-hold holes are gone — bare frames are gripped by these
 // exposed top rails.)
-module module_frame(length, width, frame_leg_inset = 0, bottom_front = false, bottom_rear = false, bottom_sides = false, rear_inset = -1) {
+module module_frame(length, width, frame_leg_inset = 0, bottom_front = false, bottom_rear = false, bottom_sides = false, rear_inset = -1, lh = leg_height) {
     r_inset = rear_inset < 0 ? frame_leg_inset : rear_inset;
     color("SaddleBrown") {
-        translate([-width/2, 0, leg_height])
+        translate([-width/2, 0, lh])
             cube([frame_rail_sz, length, frame_rail_sz]);
-        translate([width/2 - frame_rail_sz, 0, leg_height])
+        translate([width/2 - frame_rail_sz, 0, lh])
             cube([frame_rail_sz, length, frame_rail_sz]);
-        translate([-width/2, 0, leg_height])
+        translate([-width/2, 0, lh])
             cube([width, frame_rail_sz, frame_rail_sz]);
-        translate([-width/2, length - frame_rail_sz, leg_height])
+        translate([-width/2, length - frame_rail_sz, lh])
             cube([width, frame_rail_sz, frame_rail_sz]);
 
         // bottom rails, just above the leveling feet
@@ -97,9 +98,9 @@ module module_frame(length, width, frame_leg_inset = 0, bottom_front = false, bo
 
     color("SaddleBrown") {
         for (x = [-width/2 + frame_leg_inset, width/2 - frame_rail_sz - frame_leg_inset])
-            leg(x, 0);
+            leg(x, 0, lh);
         for (x = [-width/2 + r_inset, width/2 - frame_rail_sz - r_inset])
-            leg(x, length - frame_rail_sz);
+            leg(x, length - frame_rail_sz, lh);
     }
 }
 
@@ -174,17 +175,20 @@ module panel_module(length, width, y_offset, wireframe = false, has_kitchen_frid
     // Panel A: both ENDS only (drawer + WAVE 3 exit the sides).
     translate([0, y_offset, 0]) {
         if (has_kitchen_fridge)
-            module_frame(length, width, leg_inset, true, false, false, 0);
+            module_frame(length, width, leg_inset, true, false, false, 0, leg_height);
         else if (bare_bay)
-            module_frame(length, width, leg_inset, true, true, true);
+            module_frame(length, width, leg_inset, true, true, true, -1, leg_height_ab);
         else
-            module_frame(length, width, leg_inset, true, true, false);
+            module_frame(length, width, leg_inset, true, true, false, -1, leg_height_ab);
     }
 
     if (has_kitchen_fridge) {
+        // DECK RECESS: the fixed deck sits BETWEEN the rails on 3/4x3/4
+        // cleats, top flush with the rail tops (deck_surface_z) — the
+        // 1.5in rail ring around it is part of the same walking plane.
         color("BurlyWood", 0.9)
-            translate([-width/2, y_offset, leg_height + frame_rail_sz])
-                bx(width, length, panel_thickness, wireframe);
+            translate([-width/2 + frame_rail_sz, y_offset + frame_rail_sz, deck_surface_z - panel_thickness])
+                bx(width - 2 * frame_rail_sz, length - 2 * frame_rail_sz, panel_thickness, wireframe);
         // Panel C's ONE wall: the front (B-facing) face, 1/2in ply —
         // the intake fan mounts on it and the fridge DC line passes
         // through it (grommet). No side walls (the van wall is ~1in
@@ -206,7 +210,7 @@ module panel_module(length, width, y_offset, wireframe = false, has_kitchen_frid
         // and right drawer run
         color("SaddleBrown")
             translate([-drawer_divider_t/2, y_offset + frame_rail_sz, 0])
-                bx(drawer_divider_t, length - 2 * frame_rail_sz, leg_height, wireframe);
+                bx(drawer_divider_t, length - 2 * frame_rail_sz, leg_height_ab, wireframe);
 
         if (wave3_bay) {
             wave3_bay_module(length, y_offset, wireframe); // left (-X) bay, WAVE 3 open storage
@@ -282,7 +286,10 @@ module drawer_module(length, width, y_offset, side, wireframe = false, open_frac
 // Fridge zone, living inside Panel C's own void (no separate frame —
 // Panel C's own frame/legs/fixed-top already drawn by the caller).
 // The fridge sits on a plywood tray riding a pair of heavy-duty
-// slides (fridge_slide_length, 200lb rated) and pulls out through
+// slides (fridge_slide_length, VADANIA 379lb w/ lock) whose 3in rails
+// stand VERTICALLY flanking the tray (side-mount — nothing under the
+// tray, which hangs fridge_tray_gap off the floor between them; see
+// the SIDE-MOUNT block in params.scad) and pulls out through
 // the open TAILGATE for top-lid access — same exit as the kitchen
 // unit — flush to Panel C's right edge the rest of the time. Includes: a
 // 120mm intake fan pulling cabin air into the cavity from the front
@@ -305,15 +312,34 @@ module fridge_bay_module(y_offset, wireframe = false, x_offset = 0, panel_length
     x0 = -fridge_ext_length/2; // fixed, flush to Panel C's right edge
     y0 = fridge_y0 + slide_out; // slides out in +Y (toward the open tailgate)
 
-    // fridge tray (plywood sled the fridge is screwed to)
+    // fridge tray (plywood sled the fridge is screwed to) — hanging
+    // fridge_tray_gap off the floor between the two vertical rails
     color("SaddleBrown")
-        translate([x0, y_offset + y0, 0])
+        translate([x0, y_offset + y0, fridge_tray_gap])
             bx(fridge_ext_length, fridge_ext_width, fridge_tray_t, wireframe);
+
+    // 1x3 side aprons on the tray's edges (the slides' moving members
+    // screw to them; top edge doubles as the fridge's anti-shift lip)
+    color("SaddleBrown")
+        for (sx = [x0 - fridge_slide_margin, x0 + fridge_ext_length])
+            translate([sx, y_offset + y0, fridge_tray_gap])
+                bx(fridge_slide_margin, fridge_ext_width, 2.5, wireframe);
+
+    // the 2 slide rails standing vertically outboard of the aprons —
+    // FIXED members (they never move with the tray), each on a steel
+    // riser angle bolted to the E-track anchors below. The driver-side
+    // rail tucks into the corner-leg band, set back from the tailgate
+    // face so it clears the rear corner leg (params.scad).
+    color("DimGray")
+        for (rx = [x0 - fridge_slide_margin - fridge_rail_t,
+                   x0 + fridge_ext_length + fridge_slide_margin])
+            translate([rx, y_offset + panel_length - fridge_slide_length - 2.5, 0.25])
+                bx(fridge_rail_t, fridge_slide_length, 3, wireframe);
 
     // fridge (real BougeRV exterior dimensions, rotated 12.6in side
     // left-right), sitting on its tray, hidden below deck level
     color("DimGray", 0.85)
-        translate([x0, y_offset + y0, fridge_tray_t])
+        translate([x0, y_offset + y0, fridge_tray_gap + fridge_tray_t])
             bx(fridge_ext_length, fridge_ext_width, fridge_ext_height, wireframe);
 
     // 120mm intake fan, mounted ON Panel C's front (B-facing) wall —
@@ -321,7 +347,7 @@ module fridge_bay_module(y_offset, wireframe = false, x_offset = 0, panel_length
     // into the cavity through the wall's fan hole. Wall-mounted, so
     // it never moves with the sliding tray.
     color("SteelBlue")
-        translate([0, y_offset + frame_rail_sz + pcwall_t + 0.3, fridge_ext_height/2 + fridge_tray_t])
+        translate([0, y_offset + frame_rail_sz + pcwall_t + 0.3, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t])
             rotate([90, 0, 0])
                 cylinder(h = 0.3, r = intake_fan_dia/2, $fn = 24);
 
@@ -333,7 +359,7 @@ module fridge_bay_module(y_offset, wireframe = false, x_offset = 0, panel_length
     // out at the open tailgate. Frame-mounted like the intake fan,
     // fixed at the CLOSED position regardless of open_frac.
     color("CornflowerBlue")
-        translate([fridge_ext_length/2 - 0.3, y_offset + fridge_y0 + fridge_ext_width/2, fridge_ext_height/2 + fridge_tray_t])
+        translate([fridge_ext_length/2 - 0.3, y_offset + fridge_y0 + fridge_ext_width/2, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t])
             rotate([0, 90, 0])
                 cylinder(h = 0.3, r = exhaust_fan_dia/2, $fn = 24);
 
@@ -342,7 +368,7 @@ module fridge_bay_module(y_offset, wireframe = false, x_offset = 0, panel_length
     // reacts quickly) — feeds the PWM fan controller in the control
     // compartment (fridge_wiring.scad)
     color("GreenYellow")
-        translate([fridge_ext_length/2 - 1, y_offset + fridge_y0 + fridge_ext_width/2 - 1.5, fridge_ext_height/2 + fridge_tray_t])
+        translate([fridge_ext_length/2 - 1, y_offset + fridge_y0 + fridge_ext_width/2 - 1.5, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t])
             sphere(r = sensor_dia/2, $fn = 12);
 
     // control compartment: switches, surge protector, fan speed
@@ -357,14 +383,16 @@ module fridge_bay_module(y_offset, wireframe = false, x_offset = 0, panel_length
             bx(control_panel_width, 1.5, 6, wireframe); // panel face + switches/surge strip
 
     // Floor anchors for the fridge's heavy-duty slide rails — see
-    // "Securing heavy components" (Section 8): the slide's OUTER
-    // rail bolts to a mounting cleat that is THROUGH-BOLTED to the
-    // van floor via E-track anchors (1000lb WLL each), independent of
-    // Panel C's own lift-out frame (which never touches the fridge or
-    // its slide — Panel C's legs stand clear of this whole zone).
-    // 4 anchors: 2 per slide, front and back of each rail's run.
+    // "Securing heavy components" (Section 8): each FIXED rail's steel
+    // riser angle is THROUGH-BOLTED to the van floor via E-track
+    // anchors (1000lb WLL each) — BESIDE the tray, never under it —
+    // independent of Panel C's own lift-out frame (which never touches
+    // the fridge or its slide — Panel C's legs stand clear of this
+    // whole zone). 4 anchors: 2 per slide, front and back of each
+    // rail's run, on the rail lines flanking the tray.
     color("DimGray")
-        for (ax = [-fridge_ext_length/2 + 1, fridge_ext_length/2 - 1])
+        for (ax = [-fridge_ext_length/2 - fridge_slide_margin - fridge_rail_t/2,
+                   fridge_ext_length/2 + fridge_slide_margin + fridge_rail_t/2])
             for (ay = [y_offset + fridge_y0 + 2, y_offset + fridge_y0 + fridge_ext_width - 2])
                 translate([ax - 0.75, ay - 2.5, 0])
                     bx(1.5, 5, 0.1, wireframe); // E-track anchor footprint, floor-mounted
@@ -410,7 +438,7 @@ module kitchen_box_module(y_offset, wireframe = false, x_offset = 0, panel_lengt
     // face), riding a 24in full-extension slide pair — pulls out the
     // open tailgate just like everything else in Panel C.
     dck1 = panel_width/2 - frame_rail_sz - x_offset; // outer cheek's outer face, module-local
-    ck_h = leg_height + frame_rail_sz - kdrawer_z0;  // deck underside down to the drawer's underside
+    ck_h = deck_surface_z - panel_thickness - kdrawer_z0;  // 5.45 — recessed deck's underside down to the drawer's underside
     color("Peru") {
         translate([dck1 - kdrawer_cheek_t, y_offset + y0, kdrawer_z0])
             bx(kdrawer_cheek_t, kdrawer_box_len, ck_h, wireframe);
@@ -433,7 +461,7 @@ module kitchen_box_module(y_offset, wireframe = false, x_offset = 0, panel_lengt
 // dust-and-draft control — not airtight, so the exhaust fan doesn't
 // need its own separate vent to atmosphere (Section 6).
 module cabinet_door_module(y_offset, wireframe = false, panel_length) {
-    door_x0 = x_fridge_module + fridge_ext_length/2 + fridge_slide_margin; // flush to the fridge module's right edge
+    door_x0 = x_fridge_module + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_stack; // past the fridge module's right edge + its side-mount rail/riser
     door_w  = x_kitchen - kitchen_box_width/2 - door_x0; // gap to the kitchen's left edge
     door_h  = leg_height; // floor to deck underside
 
@@ -495,8 +523,8 @@ seam_ys = [y_panel_b, y_panel_c];
 // y_offset + panel_c_length - pantry_len): local Y=0 is the mattress-
 // facing edge, local Y=pantry_len the tailgate edge.
 module pantry_module(y_offset) {
-    z = leg_height + frame_rail_sz;         // top of Panel C's frame rail
-    z_top = z + panel_thickness;            // Panel C's deck surface
+    z = deck_surface_z;                     // top of Panel C's frame rail
+    z_top = deck_surface_z;                 // Panel C's deck surface — recessed flush with the rail tops
     x0 = -panel_width/2;                    // driver edge — the cluster sits here
 
     // 2x2 like-it drawer cluster (schematic: 4 boxes + drawer faces)
@@ -542,7 +570,7 @@ module full_platform() {
     panel_module(panel_c_length, panel_width, y_panel_c, false, true);
     pantry_module(y_panel_c + panel_c_length - pantry_len); // prefab drawer cluster on Panel C's tailgate end
 
-    z_deck = leg_height + frame_rail_sz;
+    z_deck = leg_height_ab + frame_rail_sz; // 17.75 — A/B rail tops (B/C seam: Panel B's side)
 
     // anti-rattle bumpers + alignment pins at every front-to-back
     // seam between lift-out panels — just 2 now (A/B, B/C): the

@@ -147,20 +147,37 @@ module drawing() {
     flow_arrow(fridge_x0 + 3, 10, fridge_x0 + fridge_ext_length - 2, 10);
     flow_arrow(fridge_x0 + fridge_ext_length - 2, fridge_ext_width/2, fridge_x0 + fridge_ext_length + 3.5, fridge_ext_width/2);
     color("SteelBlue") translate([fridge_x0 + 2, 7.2]) text("airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT into the cabinet + through its low door louver", size = 0.95);
-    fx_anchors = [fridge_x0 + 1, fridge_x0 + fridge_ext_length - 1];
-    fy_anchors = [2.3, 18];
+    // the 2 slide rails stand VERTICALLY flanking the tray (side-mount
+    // — see fridge-slide-detail): drawn as the 2 narrow bands beside
+    // the fridge, set back ~2.5in from the tailgate face so the
+    // driver-side one clears the rear corner leg. The E-track anchors
+    // sit ON these rail lines (under each rail's steel riser), never
+    // under the tray.
+    rail_xs = [fridge_x0 - fridge_slide_margin - fridge_rail_t,
+               fridge_x0 + fridge_ext_length + fridge_slide_margin];
+    for (rx = rail_xs)
+        color("DimGray") translate([rx, 2.5]) rect_outline(fridge_rail_t, fridge_slide_length, 0.12);
+    fx_anchors = [rail_xs[0] + fridge_rail_t/2, rail_xs[1] + fridge_rail_t/2];
+    fy_anchors = [4.5, 24];
     for (ax = fx_anchors) for (ay = fy_anchors) anchor_icon(ax, ay);
-    marker(8, fridge_x0 + fridge_ext_length/2, 18, "DimGray");
+    marker(8, rail_xs[1] + fridge_rail_t/2, 27.5, "DimGray");
+
+    // Fridge hold-down strap D-rings (x2, tray side apron — separate
+    // from the E-track floor anchors above: these secure the FRIDGE to
+    // its TRAY, not the tray to the van floor) — side profile + strap
+    // geometry is in fridge-slide-detail.svg
+    color("Firebrick") translate([fridge_x0 + fridge_ext_length/2 - 0.3, 1.3]) circle(r = 0.3);
+    marker(11, fridge_x0 + fridge_ext_length/2, 3.2, "Firebrick");
 
     // Utility cabinet door — fills the gap between the fridge module
     // (left/driver) and the kitchen unit (right/passenger), right at
     // the tailgate face
-    door_x0 = fridge_x0 + fridge_ext_length + fridge_slide_margin;
+    door_x0 = fridge_x0 + fridge_ext_length + fridge_slide_margin + fridge_rail_stack; // past the passenger-side rail + riser
     door_w  = kitchen_x0 - door_x0;
     color("Gainsboro") translate([door_x0, 0]) rect_outline(door_w, 1.5);
     marker(5, door_x0 + door_w/2, 0.75, "Gainsboro");
-    marker(6, door_x0 + door_w - 0.3, 0.75, "DimGray"); // hinges, kitchen-side (high-X) edge
-    marker(7, door_x0 + 0.3, 0.75, "Black");            // catch, fridge-side (free) edge
+    marker(6, door_x0 + door_w + 2.6, 0.75, "DimGray"); // hinges, kitchen-side (high-X) edge — marker offset onto the kitchen corner for legibility in the narrow gap
+    marker(7, door_x0 - 4.4, 0.75, "Black");            // catch, fridge-side (free) edge — marker offset onto the fridge corner for legibility
 
     // WAVE 3 hose/cord storage hook — inside the cabinet's own void
     // (open under the deck, same depth as the fridge/kitchen bays),
@@ -180,16 +197,17 @@ module drawing() {
     // ---- side list: numbered components with coordinates + fastener spec ----
     list_x = panel_width + 6;
     items = [
-        ["1", "DarkGray", "Intake fan (120mm) — blows IN", str("X=", round((fridge_x0+fridge_ext_length/2)*100)/100, " Y=", panel_c_length, " (Panel C's FRONT wall) Z=8.4"), "4x M4x20 machine screws over the wall's fan hole (Front Wall render)"],
-        ["2", "Silver", "Exhaust fan (120mm) — blows INTO the cabinet", str("X=", round((fridge_x0+fridge_ext_length)*100)/100, " Y=", round((fridge_ext_width/2)*10)/10, " Z=8.4"), "4x M4x20 machine screws, 105mm bolt circle, into a plywood fan ring"],
-        ["3", "GreenYellow", "NTC temp sensor", str("X=", round((fridge_x0+fridge_ext_length-1.5)*100)/100, " Y=", round((fridge_ext_width/2-2.2)*10)/10, " Z=8.4"), "adhesive thermal pad or 1x #4 screw through its bracket tab"],
+        ["1", "DarkGray", "Intake fan (120mm) — blows IN", str("X=", round((fridge_x0+fridge_ext_length/2)*100)/100, " Y=", panel_c_length, " (Panel C's FRONT wall) Z=8.8"), "4x M4x20 machine screws over the wall's fan hole (Front Wall render)"],
+        ["2", "Silver", "Exhaust fan (120mm) — blows INTO the cabinet", str("X=", round((fridge_x0+fridge_ext_length)*100)/100, " Y=", round((fridge_ext_width/2)*10)/10, " Z=8.8"), "4x M4x20 machine screws, 105mm bolt circle, into a plywood fan ring"],
+        ["3", "GreenYellow", "NTC temp sensor", str("X=", round((fridge_x0+fridge_ext_length-1.5)*100)/100, " Y=", round((fridge_ext_width/2-2.2)*10)/10, " Z=8.8"), "adhesive thermal pad or 1x #4 screw through its bracket tab"],
         ["4", "Black", "Control panel enclosure", str("X=", round(ctrl_x0*10)/10, "-", round((ctrl_x0+control_panel_width)*10)/10, " Y=~2 Z=6.5-12.5 — INSIDE the cabinet"), "backer board (3/4\" offcut) hung from the deck; 4x #8x1\" screws"],
         ["5", "Gainsboro", "Cabinet door", str("X=", round(door_x0*10)/10, "-", round((door_x0+door_w)*10)/10, " Y=0-1.5"), "1/2\" ply panel, closes the kitchen/fridge gap (not airtight — by design)"],
         ["6", "DimGray", "Door hinges (x2)", "on the kitchen-side (high-X) edge", "2x small butt hinges, 4x #6x5/8\" screws each"],
         ["7", "Black", "Door catch", "on the fridge-side (free) edge", "1x magnetic or roller catch, 2x #6x5/8\" screws"],
-        ["8", "DimGray", "Fridge slide floor anchors (x4)", "E-track, 2 per slide rail, front+back", "1000lb WLL each — 2x 5/16\" carriage bolts through the floor per anchor"],
+        ["8", "DimGray", "Fridge slide floor anchors (x4)", "E-track, 2 per slide rail, front+back of each rail line BESIDE the tray (side-mount)", "1000lb WLL each — 2x 5/16\" carriage bolts through the floor per anchor"],
         ["9", "DimGray", "Kitchen floor anchors (x4)", "E-track, one per corner", "1000lb WLL each — 2x 5/16\" carriage bolts through the floor per anchor"],
         ["10", "Silver", "WAVE 3 hose/cord hook", "inside the cabinet, kitchen-side wall", "1x heavy-duty wall hook, #8x1.5\" screw — stows hoses+cord when not in use"],
+        ["11", "Firebrick", "Fridge hold-down strap D-rings (x2)", "tray side apron, near the tailgate end — hooks to the fridge's 2 end handles", "cam strap, snug not tight — secures fridge TO its tray (E-track anchors secure the tray to the van); side profile in fridge-slide-detail"],
     ];
     label_left("Component", list_x, panel_c_length - 1, 1.3);
     label_left("Position / fastener", list_x, panel_c_length - 3.2, 1.1);

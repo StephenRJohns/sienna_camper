@@ -74,9 +74,9 @@ module rear_view() {
     color("Gray") {
         translate([-panel_width/2, 0]) rect_outline(frame_rail_sz, leg_height); // left leg
         translate([panel_width/2 - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height); // right leg
-        translate([-panel_width/2, z_deck]) rect_outline(panel_width, panel_thickness); // deck top
+        translate([-panel_width/2, leg_height]) rect_outline(panel_width, frame_rail_sz); // tailgate end rail — the deck is recessed flush BEHIND it
     }
-    label(str("Panel C deck (", panel_width, "\" x ", z_deck + panel_thickness, "\" high)"), -panel_width/2 + 10, z_deck - 1.4, 1.2);
+    label(str("Panel C end rail — deck recessed flush at ", z_deck, "\""), -panel_width/2 + 14, leg_height + 0.72, 1.05);
 
     // ---- rear pantry, ON the deck — from the open tailgate you're
     // looking straight at the 2x2 prefab drawer cluster's drawer
@@ -84,19 +84,19 @@ module rear_view() {
     // The full dimensioned story lives in rear_pantry_detail.scad. ----
     px0 = -panel_width/2;  // cluster sits against the driver edge
     color("DarkGray") {
-        translate([px0, z_deck + panel_thickness])
+        translate([px0, z_deck])
             rect_outline(pantry_cluster_w, pantry_cluster_h, 0.25);
         // the 4 drawer faces
         for (c = [0, 1]) for (r = [0, 1])
-            translate([px0 + c*pantry_unit_w + 0.6, z_deck + panel_thickness + r*pantry_unit_h + 0.6])
+            translate([px0 + c*pantry_unit_w + 0.6, z_deck + r*pantry_unit_h + 0.6])
                 rect_outline(pantry_unit_w - 1.2, pantry_unit_h - 1.2, 0.18);
         // pot bin in the open bay
-        translate([px0 + pantry_cluster_w + 1.5, z_deck + panel_thickness])
+        translate([px0 + pantry_cluster_w + 1.5, z_deck])
             rect_outline(pantry_pot_bin, pantry_pot_bin, 0.2);
     }
     label(str("Rear pantry: 2x2 prefab drawer cluster (", pantry_cluster_w, "\" x ", pantry_cluster_h,
               "\") + pot bin in the open bay — see Rear Pantry render"),
-          -6, z_deck + panel_thickness + pantry_cluster_h + 2.2, 1.1);
+          -6, z_deck + pantry_cluster_h + 2.2, 1.1);
 
     // ---- kitchen unit — RIGHT/passenger side (x_kitchen > 0) ----
     color("Gainsboro")
@@ -125,16 +125,23 @@ module rear_view() {
     // fridge_ext_length/2 to get an edge, consistent with that.
     fridge_x0 = x_fridge_module; // 1.5in inboard now — flush against the rear corner leg
     color("DimGray")
-        translate([fridge_x0 - fridge_ext_length/2, fridge_tray_t]) rect_outline(fridge_ext_length, fridge_ext_height);
+        translate([fridge_x0 - fridge_ext_length/2, fridge_tray_gap + fridge_tray_t]) rect_outline(fridge_ext_length, fridge_ext_height);
     color("Gray")
-        translate([fridge_x0 - fridge_ext_length/2, 0]) rect_outline(fridge_ext_length, fridge_tray_t);
-    label("Fridge", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_t + 1, 1.1);
-    label("slides out back", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_t - 1, 1.0);
+        translate([fridge_x0 - fridge_ext_length/2, fridge_tray_gap]) rect_outline(fridge_ext_length, fridge_tray_t);
+    label("Fridge", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t + 1, 1.1);
+    label("slides out back", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t - 1, 1.0);
 
     // Utility cabinet door, between the kitchen unit and the fridge,
     // at the tailgate face (Section 6/8) — label sits near the TOP of
     // the door, well clear of the exhaust fan/sensor at mid-height
-    door_x0 = fridge_x0 + fridge_ext_length/2;
+    // the fridge's vertical side-mount slide rails, seen end-on from
+    // the tailgate: 2 narrow bands flanking the hanging tray (nothing
+    // under the tray — see fridge-slide-detail)
+    color("DimGray")
+        for (rx = [fridge_x0 - fridge_ext_length/2 - fridge_slide_margin - fridge_rail_t,
+                   fridge_x0 + fridge_ext_length/2 + fridge_slide_margin])
+            translate([rx, 0.25]) rect_outline(fridge_rail_t, 3);
+    door_x0 = fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_stack;
     door_x1 = x_kitchen - kitchen_box_width/2;
     color("Gainsboro") translate([door_x0, 0]) rect_outline(door_x1 - door_x0, leg_height);
     label("Cabinet", (door_x0 + door_x1)/2, leg_height - 2, 0.9);
@@ -155,7 +162,7 @@ module rear_view() {
     // the intake fan below, on a Y-axis face this X-Z view can't place
     // at its true position). Fan explanatory text lives in the caption
     // strip below Y=0, clear of the door label above.
-    fan_z = fridge_ext_height/2 + fridge_tray_t;
+    fan_z = fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t;
     exhaust_x = fridge_x0 + fridge_ext_length/2;
     // fan icons drawn as actual fans (ring + hub + 4 blades), not
     // solid circles — the old filled low-poly circles read as
@@ -196,9 +203,9 @@ module rear_view() {
     // gets one (color-swatch-only pairing stopped working once the
     // part fills went grayscale; number + distinct marker hue works
     // in any palette)
-    marker(1, -18, z_deck + 3.5);                                   // frame/deck
+    marker(1, 18, z_deck - 2.7);                                    // frame/deck (end rail band)
     marker(2, -panel_width/2 + 3, kitchen_box_height - 2.5);        // kitchen unit
-    marker(3, fridge_x0 - fridge_ext_length/2 + 2.5, fridge_tray_t + 2.5); // fridge
+    marker(3, fridge_x0 - fridge_ext_length/2 + 2.5, fridge_tray_gap + fridge_tray_t + 2.5); // fridge
     marker(4, fan_in_x, fan_z + 3.2);                               // intake fan icon
     marker(5, exhaust_x - 4.2, fan_z);                              // exhaust fan
     marker(6, exhaust_x - 1.8, fan_z + 3);                          // NTC sensor — inside the bay at the exhaust wall

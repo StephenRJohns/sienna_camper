@@ -27,7 +27,7 @@ is_a = (panel == "A");
 
 W  = panel_width;
 RS = frame_rail_sz;
-LH = leg_height;
+LH = is_c ? leg_height : leg_height_ab; // A/B legs 0.75in shorter (deck recess, params.scad)
 PT = panel_thickness;
 DT = drawer_divider_t;
 L  = is_c ? panel_c_length : panel_b_length; // panel_a_length == panel_b_length, asserted in params.scad
@@ -219,7 +219,7 @@ module drawing() {
         side_list(56, LH + RS + 9 + PT + 24, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
             ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\""), "insert hole in each bottom — see the Panel B detail's inset"],
-            ["3", "Fixed top", str(W, "\" x ", L, "\", 3/4\" ply"), "screwed down — NOT a lift-off lid, unlike Panel A/B's bed-frame cap"],
+            ["3", "Fixed top", str(W - 2 * RS, "\" x ", L - 2 * RS, "\", 3/4\" ply — RECESSED between the rails, flush with the rail tops"), "on 3/4x3/4 bearer cleats; screwed down — NOT a lift-off lid, unlike Panel A/B's bed-frame cap"],
             ["4", "Fridge zone (reserved)", str(fridge_ext_length, "\" x ", fridge_ext_width, "\", flush LEFT/driver"), "bought product — see fridge-install-detail"],
             ["5", "Kitchen zone (reserved)", str(kitchen_box_width, "\" x ", kitchen_box_length, "\", flush RIGHT/passenger"), "bought product — see fridge-install-detail"],
             ["6", "Front wall (the ONLY wall)", str(W, "\" x ", pcwall_h, "\", 3/8\" ply, on the B-facing face"), "fan hole + 2 grommets — Panel C Front Wall render"],
