@@ -456,6 +456,54 @@ module accessory_c10() {
 // ============================================================
 // dispatch + banner layout
 // ============================================================
+// ============================================================
+// COMPONENT 11 (banner only) — the Section 8 no-drill anchor board
+// ============================================================
+module hero_c11() {
+    // the bench-built board assembly, iso: bridge + 4 strips flat on
+    // the floor plane, tongues emerging forward, hardware on top
+    wbox([-23, 27, 0.1], [46, 6, 0.75]);                          // bridge (fwd edge away)
+    wbox([-23, 0, 0.1], [2.5, 27, 0.75]);                         // driver rail strip
+    wbox([-3.65, 0, 0.1], [4.65, 27, 0.75]);                      // center strip
+    wbox([21.5, 0, 0.1], [1.5, 27, 0.75]);                        // panel-edge strip
+    for (tx = [-9, 6]) wbox([tx, 33, 0.1], [2, 10, 0.19]);        // steel tongues, fwd of the bridge
+    // riser angles on the rail strips (context lines)
+    wbox([-22.75, 2, 0.85], [2, 24, 0.19], [0, 0], true);
+    wbox([-3.4, 2, 0.85], [2, 24, 0.19], [0, 0], true);
+    // L-track on the kitchen-side strips
+    wbox([-0.5, 2.5, 0.85], [1, 22, 0.4], [0, 0], true);
+    wbox([21.75, 2.5, 0.85], [1, 22, 0.4], [0, 0], true);
+    // numbered callouts -> PART LIST
+    part_badge("01", [0, 30, 0.85], [4, 9], 2.7);                 // bridge
+    part_badge("02", [-21.75, 8, 0.85], [-10, -4], 2.7);          // driver strip
+    part_badge("03", [-1.3, 8, 0.85], [-4, -9], 2.7);             // center strip
+    part_badge("04", [22.25, 8, 0.85], [10, -4], 2.7);            // edge strip
+    part_badge("05", [7, 38, 0.3], [9, 5], 2.7);                  // tongue
+}
+module accessory_c11() {
+    cols = 4; cw = 14.5; ch = 17.0; top = HH - 5.5;
+    labels = [["A","L-track cut-dn","x2"],["B","stud D-ring","x7"],["C","ratchet strap","x7"],
+              ["D","bolt + T-nut","x30"],["E","rubber mat","x1"],["F","threadlocker","x1"],
+              ["G","rail-end bolt","x2"]];
+    for (i = [0:len(labels)-1]) translate([gx(i,cols,cw), gy(i,cols,ch,top)])
+        accessory_cell(labels[i][0],labels[i][1],labels[i][2],cw-0.6,ch-0.7) {
+            if (i==0) ic_etrack(); else if (i==1) ic_dring(); else if (i==2) ic_ratchet_strap();
+            else if (i==3) ic_carriage_bolt(); else if (i==4) ic_foam(); else if (i==5) ic_box("242");
+            else ic_box("F8");
+        }
+}
+module partlist_c11() {
+    cols = 4; cw = 17.5; ch = 17.5; top = HH - 5.5;
+    names = [["01","bridge 46x6","1x"],["02","rail strip 2.5x30","1x"],["03","center strip 4.65","1x"],
+             ["04","edge strip 1.5","1x"],["05","steel tongue","2x"]];
+    sc = [0.30, 0.40, 0.40, 0.40, 0.55];
+    for (i = [0:len(names)-1]) translate([gx(i,cols,cw), gy(i,cols,ch,top)])
+        part_cell(names[i][0],names[i][1],names[i][2],sc[i],cw,ch) {
+            if (i==0) piso([46,6,0.75]); else if (i==1) piso([2.5,30,0.75]); else if (i==2) piso([4.65,30,0.75]);
+            else if (i==3) piso([1.5,30,0.75]); else piso([2,16,0.19]);
+        }
+}
+
 titles = [ "", // 1-indexed padding
     "COMPONENT 1 — REAR PANTRY (PREFAB DRAWER CLUSTER + POT BAY)",
     "COMPONENT 2 — PANEL A & BED PLATFORM",
@@ -467,6 +515,7 @@ titles = [ "", // 1-indexed padding
     "COMPONENT 8 — ECOFLOW STOWAGE (DELTA 3 + WAVE 3)",
     "COMPONENT 9 — MATTRESS",
     "COMPONENT 10 — FINAL ASSEMBLY, CURTAIN & TEST FIT",
+    "ANCHOR BOARD — NO-DRILL RAIL PLATFORM (SECTION 8)",
 ];
 
 module banner(hero_w, acc_w, part_w, hero_dx, hero_dy, hero_s) {
@@ -508,4 +557,6 @@ if (comp == 1) {
     banner(58, 60, 56, 28, 22, 0.80) { hero_c9(); accessory_c9(); translate([2, 0]) partlist_c9(); }
 } else if (comp == 10) {
     banner(58, 60, 52, 28, 24, 0.85) { hero_c10(); accessory_c10(); partlist_note(52, "(no cut parts)", "finishing + test-fit only"); }
+} else if (comp == 11) {
+    banner(62, 60, 74, 30, 22, 0.80) { hero_c11(); accessory_c11(); partlist_c11(); }
 }

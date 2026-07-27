@@ -272,10 +272,45 @@ module v4_board_to_van() {
 }
 
 // ============================================================
+// SYMBOLS legend — what every mark on this sheet means
+// ============================================================
+module legend() {
+    label_left("SYMBOLS", 0, 1.5, 1.35);
+    // 1: hatched piece = plywood
+    board_piece(0, -2.4, 6, 2);
+    label_left("3/4\" plywood (cut piece, section-hatched)", 7.5, -1.4, 1.0);
+    // 2: dark band = rubber mat
+    color([0.15, 0.15, 0.15]) translate([0, -4.6]) square([6, 0.6]);
+    label_left("non-slip rubber mat (under every piece)", 7.5, -4.3, 1.0);
+    // 3: gray outline bar = steel tongue
+    color("DimGray") difference() { translate([0, -7.6]) square([6, 1.2]); translate([0.15, -7.45]) square([5.7, 0.9]); }
+    label_left("steel tongue — 2\"x3/16\" flat bar", 7.5, -7, 1.0);
+    // 4: dashed = hidden / overlaid part
+    for (dx = [0 : 1.2 : 5]) color("Gray") translate([dx, -10.2]) square([0.7, 0.15]);
+    for (dx = [0 : 1.2 : 5]) color("Gray") translate([dx, -9]) square([0.7, 0.15]);
+    label_left("dashed = hidden or overlaid part (riser footprint,", 7.5, -9, 1.0);
+    label_left("tongue under the bridge, fridge above the tray)", 7.5, -10.4, 1.0);
+    // 5: donut = stud D-ring
+    dring_icon(3, -12.6);
+    label_left("stud-fitting D-ring (drops into an L-track slot)", 7.5, -12.6, 1.0);
+    // 6: dot = bolt into T-nut
+    bolt_dot(3, -14.8);
+    label_left("1/4-20 bolt into a T-nut (through the ply)", 7.5, -14.8, 1.0);
+    // 7: channel + dots = L-track
+    color("DimGray") difference() { translate([0, -17.6]) square([6, 1]); translate([0.12, -17.48]) square([5.76, 0.76]); }
+    bolt_dot(1.5, -17.1, 0.16); bolt_dot(3, -17.1, 0.16); bolt_dot(4.5, -17.1, 0.16);
+    label_left("L-track, screwed to the strip (slot dots)", 7.5, -17.1, 1.0);
+    // 8: red line = ratchet strap
+    color("Firebrick") hull() { translate([0, -19.5]) circle(r = 0.22, $fn = 16); translate([6, -19.5]) circle(r = 0.22, $fn = 16); }
+    label_left("ratchet strap (400lb WLL)", 7.5, -19.5, 1.0);
+}
+
+// ============================================================
 // sheet layout
 // ============================================================
 v1_top();
 translate([62, 26]) v2_fridge_stack();
 translate([64, -2]) v3_kitchen_straps();
 translate([2, -18]) v4_board_to_van();
+translate([88, -9]) legend();
 label("ANCHOR BOARD — assembly & connections (Section 8; companion to the overhead platform diagram)", 52, 51.5, 1.6);

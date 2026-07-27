@@ -195,7 +195,8 @@ echo "Rendering per-component header banners (hero + accessory list + part list)
 # Wide banner aspect; the iso projection is baked into the geometry so
 # the standard flat camera is correct (same as the lego step diagrams).
 HDR_IMG="--imgsize=3600,1500"
-for n in $(seq 1 10); do
+for n in $(seq 1 11); do
+    # comp 11 = the Section 8 anchor board (banner only, no Section-6 component)
     openscad -o "renders/steps/comp-${n}-header.svg" -D "comp=${n}" steps/component_headers.scad
     openscad -o "renders/steps/comp-${n}-header.png" $HDR_IMG $FLAT_CAM -D "comp=${n}" steps/component_headers.scad
 done

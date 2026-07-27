@@ -95,6 +95,10 @@ The overhead companion to the floorplan: Section 8's securing system in plan vie
 
 ### Anchor Board — Assembly & Connection Details
 
+The IKEA-style header for the platform — the finished piece, its bought hardware (lettered), and its cut parts (numbered), in the same format as the Section 6 component banners:
+
+![Anchor board — parts and accessories banner](renders/steps/comp-11-header.png)
+
 How the platform actually goes together, in four views: **V1** the bare plywood assembly from above (bridge + 4 strips, dimensioned, with the tongue lap joints, L-track, D-rings, and riser bolt patterns); **V2** a 4x-scale side section through a rail-line strip (mat → ply → T-nut → riser angle → rail, with the tray hanging over bare floor beside it); **V3** the kitchen's criss-cross straps into the stud D-rings, rear elevation; **V4** the board-to-van side view — the steel tongue let into the bridge's underside dado, bolted, running forward to the floor rail's rear end, plus the striker strap and the step fallback:
 
 ![Anchor board — assembly and connection details](renders/anchor-board-assembly.svg)
