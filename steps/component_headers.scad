@@ -484,12 +484,12 @@ module accessory_c11() {
     cols = 4; cw = 14.5; ch = 17.0; top = HH - 5.5;
     labels = [["A","L-track cut-dn","x2"],["B","stud D-ring","x7"],["C","ratchet strap","x7"],
               ["D","bolt + T-nut","x30"],["E","rubber mat","x1"],["F","threadlocker","x1"],
-              ["G","rail-end bolt","x2"]];
+              ["G","rail-end bolt","x2"],["H","screw 3/4\" lap","x12"],["I","wood glue","x1"]];
     for (i = [0:len(labels)-1]) translate([gx(i,cols,cw), gy(i,cols,ch,top)])
         accessory_cell(labels[i][0],labels[i][1],labels[i][2],cw-0.6,ch-0.7) {
             if (i==0) ic_etrack(); else if (i==1) ic_dring(); else if (i==2) ic_ratchet_strap();
             else if (i==3) ic_carriage_bolt(); else if (i==4) ic_foam(); else if (i==5) ic_box("242");
-            else ic_box("F8");
+            else if (i==6) ic_box("F8"); else if (i==7) ic_screw(6); else ic_box("GLUE");
         }
 }
 module partlist_c11() {

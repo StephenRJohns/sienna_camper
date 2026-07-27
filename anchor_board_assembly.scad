@@ -272,6 +272,48 @@ module v4_board_to_van() {
 }
 
 // ============================================================
+// V5 — how the ply pieces JOIN (strips -> bridge)
+// ============================================================
+module v5_joints() {
+    label_left("V5 — HOW THE PLY PIECES JOIN (each strip -> the bridge)", 0, 16, 1.3);
+
+    // ---- PREFERRED: one-piece cut, no joints at all ----
+    // mini sheet-layout sketch: the H/comb nested in the 3/4" sheet's
+    // spare (48x53 region left after Panel C's deck), scale 0.28
+    s = 0.28;
+    color("black") rect_outline(48*s, 53*s, 0.12);
+    board_piece(1*s, 9*s, 46*s, 6*s);                       // bridge (in the layout)
+    board_piece(1*s, 15*s, 2.5*s, 30*s);
+    board_piece(20.35*s, 15*s, 4.65*s, 30*s);
+    board_piece(45.5*s, 15*s, 1.5*s, 30*s);
+    label_left("PREFERRED: cut the whole H as ONE PIECE from the 3/4\"", 16, 12.6, 1.0);
+    label_left("sheet's spare (46\"x36\" envelope, most falls away as", 16, 11.2, 1.0);
+    label_left("offcut) — bridge + strips continuous, ZERO joints", 16, 9.8, 1.0);
+    label_left("(3/4\" sheet spare, after Panel C's deck)", 0.5, -1.6, 0.85);
+
+    // ---- FALLBACK: 6" half-lap, glued + screwed ----
+    // side section, 2x vertical scale: strip's top rabbet under the
+    // bridge's bottom rabbet, screws down through the lap
+    fx = 30; fy = -0.5;
+    translate([fx, fy]) {
+        color("Peru") polygon([[0,0],[6,0],[6,0.75],[12,0.75],[12,1.5],[0,1.5]]);             // bridge end: rabbet in its UNDERSIDE (keeps its top half; drawn 2x tall)
+        color("SaddleBrown") polygon([[6,0],[20,0],[20,1.5],[12,1.5],[12,0.75],[6,0.75]]);    // strip end: rabbet in its TOP (keeps its bottom half)
+        color("Black") { translate([7.5, 0]) square([0.25, 1.5]); translate([10.5, 0]) square([0.25, 1.5]); } // screws through the lap
+        color("Firebrick") translate([6, 0.72]) square([6, 0.12]);                            // glue line, full lap face
+        label_left("FALLBACK (smaller stock): 6\" HALF-LAP — 3/8\" rabbet in the", 0, 7.2, 1.0);
+        label_left("bridge's UNDERSIDE + matching rabbet in the strip's TOP,", 0, 5.8, 1.0);
+        label_left("GLUED full-face (Titebond II+) + 4x #8 x 3/4\" screws per", 0, 4.4, 1.0);
+        label_left("joint, driven from above, clear of the riser/L-track bolts", 0, 3.0, 1.0);
+        label_left("bridge ^", 2, -1.6, 0.9);
+        label_left("glue line ^   screws x4 (2 shown)", 6.5, -3, 0.9);
+        label_left("^ strip (runs to the tailgate)", 13, -1.6, 0.9);
+    }
+    label_left("Why the joint matters: the striker straps hold the BRIDGE — the strips (and everything bolted to them)", 0, -5.4, 1.0);
+    label_left("hang off it in a rearward pull, so each lap is in TENSION: glue the whole face, not dabs.", 0, -6.8, 1.0);
+    label_left("(The steel tongues are NOT wood joints — they bolt through the bridge with the 1/4-20 T-nuts, V1.)", 0, -8.4, 1.0);
+}
+
+// ============================================================
 // SYMBOLS legend — what every mark on this sheet means
 // ============================================================
 module legend() {
@@ -313,4 +355,5 @@ translate([62, 26]) v2_fridge_stack();
 translate([64, -2]) v3_kitchen_straps();
 translate([2, -18]) v4_board_to_van();
 translate([88, -9]) legend();
+translate([2, -44]) v5_joints();
 label("ANCHOR BOARD — assembly & connections (Section 8; companion to the overhead platform diagram)", 52, 51.5, 1.6);
