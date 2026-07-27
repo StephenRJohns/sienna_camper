@@ -87,6 +87,12 @@ Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat 
 
 Parametric 3D model: [`platform.scad`](platform.scad) (dimensions in [`params.scad`](params.scad) — edit one file to regenerate every view via `./render.sh`).
 
+### No-Drill Anchor Platform — Overhead Detail
+
+The overhead companion to the floorplan: Section 8's securing system in plan view — the mat + ply anchor board under Panel C, its 2 steel tongues running forward to bolt to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Rail-end and striker positions are drawn at the plan's ASSUMPTIONS until the Section 0 F1–F8 survey pins them:
+
+![No-drill anchor platform — overhead](renders/anchor-platform-overhead.svg)
+
 | Top-down | Side profile |
 |---|---|
 | ![Top-down view](renders/top-down.svg) | ![Side profile](renders/side-profile.svg) |

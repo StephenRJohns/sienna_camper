@@ -103,6 +103,15 @@ module rear_section() {
     color("DimGray") translate([kx0, 0]) rect_outline(kitchen_box_width, kitchen_box_height);
     label("kitchen unit", kx0 + kitchen_box_width/2, kitchen_box_height/2, 1.2);
 
+    // the no-drill anchor board's strips flanking the kitchen, end-on
+    // (mat + 3/4" ply, Section 8) — the unit's criss-cross tie-down
+    // straps land in L-track on these
+    for (bx = [[kx0 - 2.4, 2], [kx0 + kitchen_box_width, panel_width/2 - (kx0 + kitchen_box_width)]]) {
+        color("black") translate([bx[0], 0]) square([bx[1], 0.1]);
+        color("black") translate([bx[0], 0.1]) rect_outline(bx[1], 0.75, 0.12);
+    }
+    label("anchor-board strips (mat + 3/4\" ply) flank the kitchen — its tie-down straps land here (no-drill, Sec. 8)", kx0 + kitchen_box_width/2, -1.8, 0.95);
+
     // hanging cheeks, deck underside down to the drawer's underside
     color("black") {
         translate([ck_in_x0, z_d0]) rect_outline(kdrawer_cheek_t, z_rail1 - panel_thickness - z_d0);

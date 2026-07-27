@@ -52,6 +52,10 @@ echo "Rendering fridge install detail (top-down)..."
 openscad -o renders/fridge-install-detail.svg fridge_install_detail.scad
 openscad -o renders/fridge-install-detail.png $IMG $FLAT_CAM fridge_install_detail.scad
 
+echo "Rendering no-drill anchor platform overhead detail..."
+openscad -o renders/anchor-platform-overhead.svg anchor_platform_overhead.scad
+openscad -o renders/anchor-platform-overhead.png $IMG $FLAT_CAM anchor_platform_overhead.scad
+
 echo "Rendering fridge wiring diagram..."
 openscad -o renders/fridge-wiring.svg fridge_wiring.scad
 openscad -o renders/fridge-wiring.png $IMG $FLAT_CAM fridge_wiring.scad

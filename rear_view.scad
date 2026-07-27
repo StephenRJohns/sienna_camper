@@ -143,6 +143,17 @@ module rear_view() {
         for (rx = [fridge_x0 - fridge_ext_length/2 - fridge_slide_margin - fridge_rail_t,
                    fridge_x0 + fridge_ext_length/2 + fridge_slide_margin])
             translate([rx, aboard_top + fridge_riser_t]) rect_outline(fridge_rail_t, 3);
+    // the no-drill anchor board's strips, end-on (mat + 3/4" ply,
+    // Section 8): one under each fridge rail line, one in the
+    // utility-bay gap (kitchen's strap L-track), one in the 1.5"
+    // band at the panel's passenger edge
+    for (bx = [[-panel_width/2, aboard_strip_w],
+               [fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_t/2 - 1.25, 4.65],
+               [x_kitchen + kitchen_box_width/2, panel_width/2 - (x_kitchen + kitchen_box_width/2)]]) {
+        color([0.15, 0.15, 0.15]) translate([bx[0], 0]) square([bx[1], aboard_mat_t]);
+        color("Peru") translate([bx[0], aboard_mat_t]) rect_outline(bx[1], aboard_t, 0.12);
+    }
+    marker(11, fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_t/2 + 1.1, -1.3);
     door_x0 = fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_stack;
     door_x1 = x_kitchen - kitchen_box_width/2;
     // dashed outline = an opening, not a panel
@@ -229,6 +240,7 @@ module rear_view() {
         "Power strip 2 (cooktop)",
         "Floor vent intrusion (both sides)",
         "Open utility bay (no door)",
+        "Anchor-board strips, end-on (mat + 3/4\" ply — no-drill rail platform, Sec. 8)",
     ];
     label_left("Legend", leg_x, van_interior_height - 2, 1.7);
     for (i = [0 : len(leg_items) - 1]) {

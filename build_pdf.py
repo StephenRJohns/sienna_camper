@@ -160,10 +160,22 @@ def main():
 
 ### Overhead Floorplan
 
+![No-drill anchor platform — overhead detail](renders/anchor-platform-overhead.png)
+
+*The no-drill rail platform (Section 8) in plan view, before the whole-van floorplan below: the mat + ply anchor board under Panel C, its 2 steel tongues bolted to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Tailgate at the bottom, forward at the top. Rail-end and striker positions are ASSUMED until the Section 0 F1–F8 survey.*
+
 ![Overhead floorplan](renders/top-down.png)
 
 *Top-down view: Panel A/B/C plus the fridge and kitchen unit living inside Panel C's footprint, drawn to scale inside the interior envelope. Front of the vehicle is at the top, tailgate at the bottom. Seam bumpers, alignment pins, and grab-handle positions are all marked.*
 """
+    # The md carries its own copy of the anchor-platform overhead
+    # figure (for GitHub readers); the PDF shows it inside the
+    # Overhead Floorplan section above instead — strip the md copy
+    # so the figure doesn't appear twice.
+    md_text = re.sub(
+        r'### No-Drill Anchor Platform — Overhead Detail.*?renders/anchor-platform-overhead\.svg\)\n*',
+        '', md_text, flags=re.DOTALL)
+
     md_text = md_text.replace(
         "Parametric 3D model: [`platform.scad`](platform.scad) (dimensions in [`params.scad`](params.scad) — edit one file to regenerate every view via `./render.sh`).",
         "Parametric 3D model: `platform.scad` (dimensions in `params.scad` — edit one file to regenerate every view via `./render.sh`)."

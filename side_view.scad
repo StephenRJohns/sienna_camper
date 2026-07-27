@@ -89,6 +89,17 @@ module side_view() {
     dashed_line(y_panel_c, y_panel_c + panel_c_length, leg_height * 0.4);
     label("fridge + kitchen below deck (see rear view)", y_panel_c + panel_c_length/2, leg_height * 0.4 - 2, 1.2);
 
+    // no-drill anchor board (Section 8), side profile at the floor:
+    // mat + 3/4" ply strips under Panel C's appliance zone, the
+    // steel rail tongue running forward under Panel B to bolt to
+    // the 2nd-row floor rail's rear end (ASSUMED position — F8)
+    translate([y_panel_c + 4, 0.1]) rect_outline(30, 0.75, 0.15);              // board strips + bridge band
+    translate([y_panel_c - 8, 0.1]) rect_outline(11.5, 0.35, 0.1);             // steel rail tongue, fwd under Panel B
+    translate([y_panel_c - 10.2, 0]) rect_outline(2.2, 1.1, 0.15);             // floor rail's rear end
+    dashed_line(y_panel_b + 2, y_panel_c - 10.2, 0.45);                        // rail continues fwd (carriages parked at the front)
+    translate([y_panel_c - 9.1, 0.55]) circle(r = 0.35);                       // tongue-to-rail bolt/clamp
+    label("no-drill anchor board (mat + ply, Sec. 8) — its steel tongue bolts to the 2nd-row floor rail's rear end (F8)", van_interior_length/2, -11.3, 1.3);
+
     // ---- spare tire + tool case ghost inside Panel B (flat on its skid) ----
     color("DimGray") {
         for (xx = [0 : 2.0 : spare_dia - 1.4])   // dashed top + bottom of the spare
