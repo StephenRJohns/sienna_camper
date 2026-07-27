@@ -3,10 +3,12 @@
 // ============================================================
 // Explicitly shows the fridge's heavy-duty slide, SIDE-MOUNTED (the
 // VADANIA's 3in rail stands vertically beside the tray — fixed member
-// on a steel riser angle bolted to the E-track floor anchors, moving
-// member on the tray's 1x3 side apron; NOTHING under the hanging
-// tray), the tray + fridge in their CLOSED (solid) and fully OPEN
-// (dashed) positions, and the 24in of travel between them. Pairs with fridge_install_detail.scad
+// on a steel riser angle bolted to the NO-DRILL ANCHOR BOARD's mat +
+// 3/4in ply rail-line strip (Section 8 — T-nuts from below, nothing
+// bolted to the van), moving member on the tray's 1x3 side apron;
+// NOTHING under the hanging tray), the tray + fridge in their CLOSED
+// (solid) and fully OPEN (dashed) positions, and the 24in of travel
+// between them. Pairs with fridge_install_detail.scad
 // (top-down, real X/Y position of everything) and rear_view.scad
 // (X-Z, looking in from the tailgate).
 //
@@ -98,29 +100,40 @@ module drawing() {
 
     // ---- SIDE-MOUNT slide (fixes the old undermount drawing): the
     // VADANIA's 3in rail stands VERTICALLY beside the tray — fixed
-    // member screwed to a steel riser angle through-bolted to the
-    // E-track anchors, moving member screwed to the tray's 1x3 side
-    // apron. NOTHING under the tray: it hangs between the rails,
-    // fridge_tray_gap off the floor. The fixed rail is set back ~2.5in
-    // from the tailgate face (the driver-side one clears Panel C's
-    // rear corner leg that way). ----
+    // member screwed to a steel riser angle bolted to the NO-DRILL
+    // anchor board's rail-line strip (mat + 3/4in ply, T-nuts from
+    // below — Section 8), moving member screwed to the tray's 1x3
+    // side apron. NOTHING under the tray: it hangs between the rails,
+    // fridge_tray_gap off the floor (the board is BESIDE it, only
+    // under the rail line). The board raises the RAIL by aboard_top;
+    // the moving member just screws lower on the apron, so the tray
+    // keeps its height. The fixed rail is set back ~2.5in from the
+    // tailgate face (the driver-side one clears Panel C's rear
+    // corner leg that way). ----
     rail_y0 = 2.5;                       // set-back from the tailgate face
-    rail_zb = fridge_riser_t;            // rail bottom, on the riser's bolt flange
+    rail_zb = aboard_top + fridge_riser_t; // rail bottom: mat + board + the riser's bolt flange
     color("DimGray") translate([rail_y0, rail_zb]) rect_outline(fridge_slide_length, 3);
     label_left("FIXED rail (VADANIA VD2576, 3\" tall, stands VERTICALLY beside the tray —", fridge_ext_width + 1.5, 5.0, 1.0);
-    label_left("screwed to a steel riser angle bolted to the E-track anchors; it adds", fridge_ext_width + 1.5, 3.7, 1.0);
+    label_left("screwed to a steel riser angle bolted to the ANCHOR BOARD strip; it adds", fridge_ext_width + 1.5, 3.7, 1.0);
     label_left("WIDTH beside the tray, ZERO height under it — never mount it undermount:", fridge_ext_width + 1.5, 2.4, 1.0);
     label_left("flat under the tray it would add ~1.2\" and hit the end rail above.", fridge_ext_width + 1.5, 1.1, 1.0);
     label_left("DC line slack clips to THIS fixed rail (3 screw-mount", fridge_ext_width + 1.5, 9.2, 0.9);
     label_left("clips, Sec. 5/6) — never to the moving tray, so it can't", fridge_ext_width + 1.5, 7.9, 0.9);
     label_left("get pinched between apron and rail when the slide comes home.", fridge_ext_width + 1.5, 6.6, 0.9);
 
-    // E-track anchors on the floor along this rail line, front and back
+    // NO-DRILL anchor board along this rail line (Section 8): rubber
+    // mat on the van floor, 3/4in ply strip on it, riser flange on
+    // top (T-nut bolt dots drawn) — it runs forward past the drawing
+    // toward the full-width bridge + striker straps/tongues
+    // (fridge_install_detail has the plan view of all of it)
+    color([0.15, 0.15, 0.15]) translate([1, 0]) rect_outline(fridge_slide_length + 6, aboard_mat_t, 0.05);
+    color("Peru") translate([1, aboard_mat_t]) rect_outline(fridge_slide_length + 6, aboard_t, 0.1);
     color("Black")
         for (ay = [rail_y0 + 2, rail_y0 + fridge_slide_length - 2])
-            translate([ay - 0.75, 0]) square([1.5, 0.4]);
-    label_left("E-track anchor (x2 this rail line, x4 total both slides — Sec. 8),", fridge_ext_width + 1.5, -0.5, 0.95);
-    label_left("BESIDE the tray on the rail lines, never under it", fridge_ext_width + 1.5, -1.8, 0.95);
+            translate([ay, aboard_mat_t + aboard_t/2]) circle(r = 0.22); // 1/4-20 T-nut bolts, riser -> board
+    label_left("ANCHOR BOARD strip under this rail line (Sec. 8, no-drill): non-slip mat +", fridge_ext_width + 1.5, -0.5, 0.95);
+    label_left("3/4\" ply, riser bolted with 1/4-20 T-nuts — NO holes in the van. The board", fridge_ext_width + 1.5, -1.8, 0.95);
+    label_left("runs fwd (+Y) to the bridge, 2 steel step-tongues + 3 striker straps.", fridge_ext_width + 1.5, -3.1, 0.95);
 
     // ---- CLOSED position: hanging tray + apron + fridge, flush to
     // Y=0 (tailgate) ----
@@ -155,7 +168,7 @@ module drawing() {
     }
     label_left("Hold-down strap (x1, cam-buckle): fridge's end handle ->", fridge_ext_width + 1.5, 20.6, 1.0);
     label_left("2 D-rings on the tray's side apron — stops the fridge lifting", fridge_ext_width + 1.5, 19.3, 1.0);
-    label_left("off the TRAY (the riser/E-track bolting only pins the TRAY", fridge_ext_width + 1.5, 18.0, 1.0);
+    label_left("off the TRAY (the riser/board bolting only pins the TRAY", fridge_ext_width + 1.5, 18.0, 1.0);
     label_left("to the van). Snug, not tight — must clear the lid at OPEN.", fridge_ext_width + 1.5, 16.7, 1.0);
 
     // ---- OPEN position: shifted -fridge_slide_length in Y, dashed ----

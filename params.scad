@@ -418,23 +418,41 @@ fridge_side_clearance = 2;  // with forced airflow; manual's passive figures are
 // MOUNTING (fixes an undermount-vs-side-mount inconsistency an earlier
 // draft had): the VADANIA's 3in (76mm) rails stand VERTICALLY, one
 // flanking each side of the tray — NOTHING is stacked under the tray.
-// Per side, outboard-to-inboard: a steel riser angle through-bolted to
-// the E-track floor anchors (the rail's fixed member screws to its
-// vertical face), the rail itself, then a 1x3 side apron glued+screwed
-// to the tray's edge (the moving member screws to it; its top edge
-// doubles as the fridge's anti-shift lip, and the hold-down D-rings go
-// into it). The tray hangs BETWEEN the rails with a small floor gap,
-// so the slide hardware adds ZERO height to the fridge stack — an
-// undermount arrangement (rail flat under the tray) would add ~1.2in
-// and the fridge would no longer clear Panel C's tailgate end rail.
-// The cost lands on WIDTH instead: see fridge_rail_stack below and the
-// cabinet-gap assert — the utility cabinet narrows to ~3.3in.
+// Per side, outboard-to-inboard: a steel riser angle bolted to the
+// NO-DRILL ANCHOR BOARD's rail-line strip (Section 8 — mat + 3/4in ply
+// on the van floor, T-nuts from below; the rail's fixed member screws
+// to the riser's vertical face), the rail itself, then a 1x3 side
+// apron glued+screwed to the tray's edge (the moving member screws to
+// it; its top edge doubles as the fridge's anti-shift lip, and the
+// hold-down D-rings go into it). The tray hangs BETWEEN the rails with
+// a small floor gap, so the slide hardware adds ZERO height to the
+// fridge stack — an undermount arrangement (rail flat under the tray)
+// would add ~1.2in and the fridge would no longer clear Panel C's
+// tailgate end rail. The board raises only the RAILS (aboard_top
+// below); the moving member simply screws to the apron ~0.85in lower
+// in their shared overlap, so the TRAY keeps its 0.5in floor hang and
+// the stack height is untouched. The cost lands on WIDTH instead: see
+// fridge_rail_stack below and the cabinet-gap assert — the utility
+// cabinet narrows to ~3.3in.
 fridge_slide_length = 24;   // VADANIA VD2576 24in pair, 379lb, locks closed + extended
 fridge_tray_t       = 0.375; // WEIGHT SWAP: 1/2in -> 3/8in ply (-~1.5lb); stiffened by the 2 glued 1x3 side aprons
 fridge_tray_gap     = 0.5;  // clear air under the hanging tray panel (nothing beneath it)
 fridge_rail_t       = 0.75; // VADANIA rail thickness (19mm), standing vertically beside the tray
-fridge_riser_t      = 0.25; // steel riser angle between the fixed rail and its E-track anchors (2x2x3/16in angle + fit allowance)
+fridge_riser_t      = 0.25; // steel riser angle between the fixed rail and the anchor board (2x2x3/16in angle + fit allowance)
 fridge_rail_stack   = fridge_rail_t + fridge_riser_t; // 1.0 per side, OUTBOARD of the tray apron (the apron itself lives in fridge_slide_margin)
+
+/* [No-drill anchor board — Section 8] */
+// The securing chassis: a rubber mat + 3/4in ply board (bridge + rail-
+// line strips) on the van floor, strapped to the 3rd-row striker loops.
+// Nothing bolts to the vehicle. Strip outlines are cut only after the
+// Section 0 F1-F7 floor survey (striker position ~46-50in from the
+// hatch is UNVERIFIED) — these drive the renders, not a cut list.
+aboard_mat_t = 0.1;   // non-slip rubber mat under every strip
+aboard_t     = 0.75;  // anchor board ply thickness
+aboard_top   = aboard_mat_t + aboard_t; // 0.85 — the riser/rail base plane
+aboard_strip_w = 2.5; // rail-line strip width (covers riser flange + rail line)
+aboard_bridge_d = 6;  // full-width bridge depth (fore-aft), at the appliance zone's front
+aboard_tongue_w = 2;  // steel flat-bar tongue width (2 x 3/16in), bridge -> striker-row step
 fridge_stack_top    = fridge_tray_gap + fridge_tray_t + fridge_ext_height; // 16.67 — top of the mounted fridge
 fridge_exit_clearance_min = 0.25; // required running clearance under Panel C's tailgate end rail (van bounce)
 // The DRIVER-side rail+riser tucks into the corner-leg band (the 1.5in
@@ -450,6 +468,12 @@ assert(fridge_stack_top + fridge_exit_clearance_min <= leg_height,
        str("Mounted fridge stack tops out at ", fridge_stack_top,
            "in (tray gap + tray + fridge) but must pass under Panel C's tailgate end rail at ",
            leg_height, "in with ", fridge_exit_clearance_min, "in running clearance"));
+// the anchor board raises the rails but NOT the tray: the moving
+// member must still overlap the 1x3 apron enough to screw to it
+assert((fridge_tray_gap + 2.5) - (aboard_mat_t + aboard_t + fridge_riser_t) >= 1.5,
+       str("Rail bottom on the anchor board (", aboard_mat_t + aboard_t + fridge_riser_t,
+           "in) leaves under 1.5in of moving-member overlap on the apron (top ",
+           fridge_tray_gap + 2.5, "in) — not enough screw band"));
 
 /* [Fridge cooling — intake fan + exhaust fan + temp sensor] */
 // TWO 120mm fans, both wired to the same PWM temperature controller

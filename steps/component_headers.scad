@@ -337,7 +337,7 @@ module hero_c7() {
 }
 module accessory_c7() {
     cols = 4; cw = 14.5; ch = 17.0; top = HH - 5.5;
-    labels = [["A","E-track anchor","x8"],["B","carriage bolt","x16"],["C","ratchet strap","x4"],
+    labels = [["A","L-track + stud","x7"],["B","bolt + T-nut","x30"],["C","ratchet strap","x7"],
               ["D","120mm fan","x2"],["E","PWM controller","x1"],["F","toggle switch","x3"],
               ["G","fuse block","x1"],["H","hinge","x2"],["I","magnetic catch","x2"],
               ["J","louver vent","x1"],["K","slide 24\" pr","x2"],["L","wood screw","x16"]];
