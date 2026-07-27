@@ -93,6 +93,12 @@ The overhead companion to the floorplan: Section 8's securing system in plan vie
 
 ![No-drill anchor platform — overhead](renders/anchor-platform-overhead.svg)
 
+### Anchor Board — Assembly & Connection Details
+
+How the platform actually goes together, in four views: **V1** the bare plywood assembly from above (bridge + 4 strips, dimensioned, with the tongue lap joints, L-track, D-rings, and riser bolt patterns); **V2** a 4x-scale side section through a rail-line strip (mat → ply → T-nut → riser angle → rail, with the tray hanging over bare floor beside it); **V3** the kitchen's criss-cross straps into the stud D-rings, rear elevation; **V4** the board-to-van side view — the steel tongue let into the bridge's underside dado, bolted, running forward to the floor rail's rear end, plus the striker strap and the step fallback:
+
+![Anchor board — assembly and connection details](renders/anchor-board-assembly.svg)
+
 | Top-down | Side profile |
 |---|---|
 | ![Top-down view](renders/top-down.svg) | ![Side profile](renders/side-profile.svg) |
@@ -1079,7 +1085,7 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 - **The 3rd-row strikers.** At the front edge of the folded-3rd-row area sit **3 crash-rated latch loops**: the strikers the 3rd-row seat legs lock into when the seats are deployed (photographed and confirmed present, July 2026). They're engineered to hold an occupied bench seat in a collision — FMVSS 207-class loads — which makes them the strongest exposed steel in that zone, and with the 3rd row folded they sit empty. The fridge and kitchen live at the tailgate end, directly over the 3rd-row stowage well, so these loops are the **nearest** rated hardpoints to the mass they restrain.
 - **The 2nd-row long-slide floor rails.** The Sienna's 2nd-row seats ride on long seat tracks bolted through the floor — and the owner's camper-mode plan parks the seat carriages fully forward behind the front seats, which leaves the **rear ends of both floor rails exposed and unused**. Those rails are the vehicle's own seat anchorage (the strongest bolted-to-floor steel in the cabin), and their rear ends are assumed to reach the striker-row area under Panel B's rear edge — close enough for the anchor board's forward members to grab (position UNVERIFIED — F8). The seat *mount points* themselves sit further forward under Panels A/B and stay in reserve for the panel train, but the **rails' rear ends are the anchor board's forward connection.**
 
-**The anchor board.** Three striker loops have to restrain two appliances plus a slide, so everything first unifies onto one chassis: an H/comb-shaped **3/4" ply anchor board** lying on the floor under Panel C, cut so nothing changes height where height matters:
+**The anchor board.** Three striker loops have to restrain two appliances plus a slide, so everything first unifies onto one chassis: an H/comb-shaped **3/4" ply anchor board** lying on the floor under Panel C, cut so nothing changes height where height matters (drawings: the *Anchor Board — Assembly & Connection Details* sheet in Renders — top view, the riser stack section, the kitchen strap elevation, and the tongue/strap side view):
 
 - **A full-width bridge** (~46" x 6") across the front of the appliance zone (Y ≈ 29–35 in Panel C coordinates — forward of the closed fridge tray and the kitchen unit, still under Panel C).
 - **Four strips running rearward from the bridge**: one under each fridge fixed-rail riser line (the driver edge, and the center/utility-bay gap), and one along each side of the kitchen unit. The strips stop ~2" short of the tailgate edge so Panel C's rear corner legs keep standing on the bare van floor — **Panel C's lift-out design is untouched, and it still never structurally touches the fridge or its slide.**

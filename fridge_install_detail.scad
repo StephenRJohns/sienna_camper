@@ -106,12 +106,12 @@ module ltrack(x0, y0, l) {
         translate([x0, y0]) square([1, l]);
         translate([x0 + 0.12, y0 + 0.12]) square([0.76, l - 0.24]);
     }
-    color("Black") for (dy = [1.5 : 2.5 : l - 1]) translate([x0 + 0.5, y0 + dy]) circle(r = 0.18);
+    color("Black") for (dy = [1.5 : 2.5 : l - 1]) translate([x0 + 0.5, y0 + dy]) circle(r = 0.18, $fn = 20);
 }
 
 // stud-fitting D-ring anchor point
 module dring_icon(x, y) {
-    color("Black") translate([x, y]) difference() { circle(r = 0.55); circle(r = 0.3); }
+    color("Black") translate([x, y]) difference() { circle(r = 0.55, $fn = 28); circle(r = 0.3, $fn = 20); }
 }
 
 module drawing() {
@@ -140,7 +140,7 @@ module drawing() {
     for (sx = [8, 23, 38]) {
         dring_icon(sx, 32);
         color("Firebrick") {
-            hull() { translate([sx, 32.6]) circle(r = 0.22); translate([sx, 40]) circle(r = 0.22); }
+            hull() { translate([sx, 32.6]) circle(r = 0.22, $fn = 16); translate([sx, 40]) circle(r = 0.22, $fn = 16); }
             translate([sx, 40]) polygon([[0, 1.6], [-0.9, 0], [0.9, 0]]);
         }
     }
@@ -160,7 +160,7 @@ module drawing() {
         translate([tx + 0.88, 41]) square([0.22, 5]);
         translate([tx - 1.1, 45.8]) square([2.2, 0.22]);
     }
-    color("Black") for (tx = [15, 30]) translate([tx, 42]) circle(r = 0.35); // tongue-to-rail bolt/clamp
+    color("Black") for (tx = [15, 30]) translate([tx, 42]) circle(r = 0.35, $fn = 20); // tongue-to-rail bolt/clamp
     label_left("2 steel rail tongues (2\"x3/16\") BOLT to the rear ends of the 2nd-row FLOOR RAILS (seat anchorage — no new holes; F8;", 2, 50.7, 1.0);
     label_left("fallback: butt the striker-row step, F7) — forward restraint is steel-to-steel to the van's own rails (Sec. 8)", 2, 49.1, 1.0);
     marker(9, 15, 34.8, "DimGray");
@@ -237,7 +237,7 @@ module drawing() {
     // from the E-track floor anchors above: these secure the FRIDGE to
     // its TRAY, not the tray to the van floor) — side profile + strap
     // geometry is in fridge-slide-detail.svg
-    color("Firebrick") translate([fridge_x0 + fridge_ext_length/2 - 0.3, 1.3]) circle(r = 0.3);
+    color("Firebrick") translate([fridge_x0 + fridge_ext_length/2 - 0.3, 1.3]) circle(r = 0.3, $fn = 20);
     marker(8, fridge_x0 + fridge_ext_length/2, 3.2, "Firebrick");
 
     // OPEN utility bay — the gap between the fridge module (left/

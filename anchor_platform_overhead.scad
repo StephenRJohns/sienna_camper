@@ -66,14 +66,14 @@ module board_piece(x0, y0, w, l) {
 }
 
 module dring_icon(x, y) {
-    color("Black") translate([x, y]) difference() { circle(r = 0.55); circle(r = 0.3); }
+    color("Black") translate([x, y]) difference() { circle(r = 0.55, $fn = 28); circle(r = 0.3, $fn = 20); }
 }
 
 // a 3rd-row striker: the crash-rated wire latch loop, drawn as a
 // stubby U seen from above
 module striker_icon(x, y) {
     color("Black") translate([x, y]) {
-        difference() { circle(r = 0.9); circle(r = 0.55); }
+        difference() { circle(r = 0.9, $fn = 32); circle(r = 0.55, $fn = 28); }
         translate([-1.45, -0.35]) square([0.55, 0.7]);
         translate([0.9, -0.35]) square([0.55, 0.7]);
     }
@@ -145,7 +145,7 @@ module drawing() {
         }
         dash_y(tx - 1.2, railend_y + 8, 60, 0.25);
         dash_y(tx + 0.95, railend_y + 8, 60, 0.25);
-        color("Black") translate([tx, railend_y + 1.2]) circle(r = 0.4);  // tongue-to-rail bolt/clamp point
+        color("Black") translate([tx, railend_y + 1.2]) circle(r = 0.4, $fn = 20);  // tongue-to-rail bolt/clamp point
         color("black") translate([tx + 1.9, 34.2]) rotate(90) text("STEEL TONGUE", size = 0.9, halign = "left", valign = "center");
     }
     // name the strips right on them (rotated to fit)
@@ -182,7 +182,7 @@ module drawing() {
         striker_icon(sx, striker_y);
         dring_icon(sx, 32);
         color("Firebrick") {
-            hull() { translate([sx, 32.6]) circle(r = 0.22); translate([sx, striker_y - 1.1]) circle(r = 0.22); }
+            hull() { translate([sx, 32.6]) circle(r = 0.22, $fn = 16); translate([sx, striker_y - 1.1]) circle(r = 0.22, $fn = 16); }
             translate([sx, striker_y - 2.6]) polygon([[0, 1.4], [-0.8, 0], [0.8, 0]]);
         }
     }
