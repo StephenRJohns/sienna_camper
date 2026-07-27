@@ -102,7 +102,8 @@ module drawing() {
     label("PANEL C footprint (fridge + kitchen live under its deck)", panel_width/2, 2.2, 1.15);
     dash_x(0, panel_width, panel_c_length + panel_b_length > 62 ? 60 : panel_c_length + panel_b_length); // Panel B far edge (clipped)
     dash_y(0, panel_c_length, 60); dash_y(panel_width - 0.2, panel_c_length, 60);
-    label("PANEL B above (bare cube frame) — tongues + straps pass UNDER its rear bottom rail through shallow relief notches", panel_width/2, 37.6, 1.0);
+    label("PANEL B sits above everything up here (bare cube frame) —", panel_width/2, 38.6, 1.0);
+    label("tongues + straps pass UNDER its rear bottom rail (shallow notches)", panel_width/2, 37.1, 1.0);
     label("TAILGATE (open) — Y = 0", panel_width/2, -2, 1.3);
     label("DRIVER side (X=0)", 6.5, -4, 1.0);
     label("PASSENGER side", panel_width - 7, -4, 1.0);
@@ -111,10 +112,14 @@ module drawing() {
     color("Gainsboro") translate([fridge_x0, 4.5]) rect_outline(fridge_ext_length, fridge_ext_width - 4.5, 0.12);
     label("Fridge", fridge_x0 + fridge_ext_length/2, 14, 1.1);
     label("(on its slide)", fridge_x0 + fridge_ext_length/2, 12.4, 0.9);
+    label("(bare van floor under", fridge_x0 + fridge_ext_length/2, 8.6, 0.85);
+    label("its tray — no board)", fridge_x0 + fridge_ext_length/2, 7.4, 0.85);
     color("Gainsboro") translate([kitchen_x0, 4.5]) rect_outline(kitchen_box_width, kitchen_box_length - 4.5, 0.12);
     label("Kitchen unit", kitchen_x0 + kitchen_box_width/2, 14, 1.1);
     label("(straps criss-cross", kitchen_x0 + kitchen_box_width/2, 12.4, 0.9);
     label("into the L-track)", kitchen_x0 + kitchen_box_width/2, 11.1, 0.9);
+    label("(bare van floor under", kitchen_x0 + kitchen_box_width/2, 8.6, 0.85);
+    label("it — no board)", kitchen_x0 + kitchen_box_width/2, 7.4, 0.85);
 
     // ---- the anchor board: 4 strips + full-width bridge ----
     board_piece(0, 2, 2.5, 30);                                                  // driver rail-line strip
@@ -141,11 +146,34 @@ module drawing() {
         dash_y(tx - 1.2, railend_y + 8, 60, 0.25);
         dash_y(tx + 0.95, railend_y + 8, 60, 0.25);
         color("Black") translate([tx, railend_y + 1.2]) circle(r = 0.4);  // tongue-to-rail bolt/clamp point
+        color("black") translate([tx + 1.9, 34.2]) rotate(90) text("STEEL TONGUE", size = 0.9, halign = "left", valign = "center");
     }
-    label_left("2nd-row FLOOR RAILS (dashed fwd) —", -26, railend_y + 10.5, 1.05);
-    label_left("seat anchorage, carriages parked fwd;", -26, railend_y + 9, 1.05);
-    label_left("each TONGUE bolts to a rail's rear", -26, railend_y + 7.5, 1.05);
-    label_left("end hardware — NO new holes (F8)", -26, railend_y + 6, 1.05);
+    // name the strips right on them (rotated to fit)
+    color("black") translate([1.25, 9]) rotate(90) text("ply strip — fridge rail riser bolts here", size = 0.78, halign = "left", valign = "center");
+    color("black") translate([21.6, 5]) rotate(90) text("ply strip — rail riser + kitchen L-track", size = 0.78, halign = "left", valign = "center");
+    // right-margin component callouts (the "what is what" labels) —
+    // short wrapped lines so the drawing stays the dominant element
+    cx = panel_width + 2;
+    label_left("<- 2nd-row FLOOR RAIL (x2) — the van's", cx, 53.4, 1.05);
+    label_left("   own seat track, bolted through the", cx, 52, 1.05);
+    label_left("   floor; dashed = continues forward", cx, 50.6, 1.05);
+    label_left("   (seat carriages parked up front)", cx, 49.2, 1.05);
+    label_left("<- STRIKER LOOP (x3), crash-rated —", cx, 47.3, 1.05);
+    label_left("   row + step ASSUMED ~46-50\" fwd of", cx, 45.9, 1.05);
+    label_left("   the hatch (F4/F7)", cx, 44.5, 1.05);
+    label_left("<- rail REAR END — the steel tongue", cx, 42.6, 1.05);
+    label_left("   bolts/clamps to the rail's existing", cx, 41.2, 1.05);
+    label_left("   end hardware: NO new holes (F8)", cx, 39.8, 1.05);
+    color("Firebrick") {
+        translate([cx, 37.2]) text("<- RATCHET STRAP (x3, 400lb WLL):", size = 1.05);
+        translate([cx, 35.8]) text("   bridge D-ring -> striker loop", size = 1.05);
+        translate([cx, 34.4]) text("   (rearward + lift restraint)", size = 1.05);
+    }
+    label_left("<- stud D-RING (x3) in the bridge", cx, 32, 1.05);
+    label_left("<- 3/4\" PLY BRIDGE, full width — the", cx, 30.3, 1.05);
+    label_left("   2 steel tongues bolt UNDER it", cx, 28.9, 1.05);
+    label_left("<- ply STRIP at the panel edge —", cx, 20, 1.05);
+    label_left("   L-track for the kitchen's straps", cx, 18.6, 1.05);
 
     // ---- forward hardpoint 2: the 3rd-row strikers ----
     // striker row / floor step, dashed across
@@ -158,47 +186,35 @@ module drawing() {
             translate([sx, striker_y - 2.6]) polygon([[0, 1.4], [-0.8, 0], [0.8, 0]]);
         }
     }
-    color("Firebrick") {
-        translate([-26, 42.5]) text("3 ratchet straps (400lb WLL each):", size = 1.05);
-        translate([-26, 41]) text("bridge D-rings -> the 3 crash-rated", size = 1.05);
-        translate([-26, 39.5]) text("3rd-row STRIKER LOOPS (rear + lift)", size = 1.05);
-    }
-    label_left("striker row + floor step — ASSUMED", -26, striker_y - 1, 0.95);
-    label_left("~46-50\" fwd of hatch (F4/F7); the", -26, striker_y - 2.4, 0.95);
-    label_left("step = the tongues' bearing FALLBACK", -26, striker_y - 3.8, 0.95);
+    // (strap + striker explanations live in the right-margin
+    // callout stack above and the READ ME block below)
 
-    // ---- notes column ----
-    nx = panel_width + 6;
-    label_left("NO-DRILL ANCHOR PLATFORM — Section 8", nx, 58, 1.5);
-    notes = [
-        "Mat + 3/4\" ply board (hatched): a full-width bridge +",
-        "4 strips under the fridge slide risers and along the",
-        "kitchen's sides. Riser angles + L-track bolt to the",
-        "BOARD (1/4-20 T-nuts) — never to the vehicle.",
-        "",
-        "FORWARD load path: the 2 steel tongues, bolted to the",
-        "2nd-row floor rails' rear ends — steel to the van's own",
-        "seat-rail anchorage (fallback: butt the striker-row step).",
-        "",
-        "REARWARD + LIFT: the 3 striker straps, tensioned.",
-        "LATERAL: strap splay + the well/van walls + the mat.",
-        "",
-        "Kitchen unit: 4 straps criss-crossed over the top into",
-        "stud-fitting D-rings (WLL 1,333lb) in the strips' L-track.",
-        "Fridge: risers hold its slide; a cam strap over its end",
-        "handles pins it to its tray (fridge-slide-detail).",
-        "",
-        "Margin: 3 straps = 1,200lb WLL vs ~80lb required by the",
-        "49 CFR 393 yardstick (~155lb cargo + board) — before",
-        "counting the bolted rail link.",
-        "",
-        "Board outline, tongue length & bracket detail are cut",
-        "only AFTER the Section 0 F1-F8 floor survey.",
+    // ---- READ ME block, below the drawing: the whole system in
+    // plain words, wrapped short ----
+    readme = [
+        ["READ ME — what this platform is (Section 8):", 1.25, "black"],
+        ["A skeleton of 3/4\" plywood on a non-slip rubber mat, laid on the van floor:", 1.1, "black"],
+        ["one full-width BRIDGE + 4 narrow STRIPS (the hatched shapes above).", 1.1, "black"],
+        ["It is NOT a full plywood floor — nothing sits under the fridge tray or the", 1.1, "black"],
+        ["kitchen unit; the van floor there stays bare.", 1.1, "black"],
+        ["", 1.1, "black"],
+        ["The APPLIANCES anchor to the BOARD: the fridge slide's steel riser angles", 1.1, "black"],
+        ["bolt to the two rail-line strips (1/4-20 T-nuts), and the kitchen's 4 ratchet", 1.1, "black"],
+        ["straps criss-cross into L-track D-rings on its two flanking strips.", 1.1, "black"],
+        ["", 1.1, "black"],
+        ["The BOARD anchors to the VAN at two factory hardpoints — zero new holes:", 1.1, "black"],
+        ["-> RAILS: 2 steel tongues (2\"x3/16\" flat bar) bolt under the bridge and", 1.1, "black"],
+        ["   bolt/clamp to the 2nd-row floor rails' rear ends -> FORWARD crash load.", 1.1, "black"],
+        ["-> STRIKERS: 3 ratchet straps run from bridge D-rings into the 3rd-row", 1.1, "Firebrick"],
+        ["   striker loops -> REARWARD + LIFT loads (and they pin the board down).", 1.1, "Firebrick"],
+        ["", 1.1, "black"],
+        ["Rail-end + striker positions are ASSUMED until the Section 0 F1-F8 survey.", 1.0, "black"],
     ];
-    for (i = [0 : len(notes) - 1])
-        label_left(notes[i], nx, 55 - i * 2.1, 1.05);
+    for (i = [0 : len(readme) - 1])
+        color(readme[i][2])
+            translate([-10, -7 - i * 1.75]) text(readme[i][0], size = readme[i][1], halign = "left", valign = "center");
 
-    label("NO-DRILL ANCHOR PLATFORM — overhead: Panel C + the factory hardpoints forward of it (Section 8)", panel_width/2 + 14, 63, 1.6);
+    label("NO-DRILL ANCHOR PLATFORM — overhead: Panel C + the factory hardpoints forward of it (Section 8)", 22, 63, 1.6);
 }
 
 // no outer color() wrapper — helpers self-color (see
