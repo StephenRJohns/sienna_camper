@@ -91,15 +91,13 @@ module deployed() {
     label("empty kitchen bay", x_kitchen, leg_height/2 + 0.9, 1.0);
     label("(slid out)", x_kitchen, leg_height/2 - 0.9, 0.9);
 
-    // utility cabinet: door swung OPEN, control panel behind it
+    // OPEN utility bay (no door — it was cut), control panel at its back
     door_x0 = x_fridge_module + fridge_ext_length/2;
     door_x1 = x_kitchen - kitchen_box_width/2;
     cab_cx = (door_x0 + door_x1)/2;
-    color("Gainsboro") translate([door_x1, 2]) rect_outline(0.4, leg_height - 4);      // open leaf edge
-    color("DarkOrange") translate([door_x1 + 0.5, 3]) rotate(-24) square([4.2, 0.4]);  // door swung out
     color("Black") translate([cab_cx - control_panel_width/2, 4.5]) rect_outline(control_panel_width, 6);
-    label("cabinet", cab_cx, 12.6, 0.85);
-    label("door open", cab_cx, 11.5, 0.85);
+    label("open utility", cab_cx, 12.6, 0.85);
+    label("bay (no door)", cab_cx, 11.5, 0.85);
 
     // floor line + the two band captions (this band stays otherwise empty)
     color("black") translate([-van_interior_width/2 - 6, 0]) square([van_interior_width + 12, stroke * 1.2]);
@@ -150,7 +148,7 @@ module deployed() {
     leg_x = van_interior_width/2 + 6;
     items = ["Fridge — deployed, both lids open",
              "Kitchen unit — deployed, cooktop up, drawer out",
-             "Utility cabinet (door open): control panel + fans",
+             "Open utility bay (no door): control panel + fans",
              "2-burner induction cooktop on the worktop",
              "Empty bays left behind in Panel C"];
     label_left("Legend", leg_x, van_interior_height - 2, 1.7);

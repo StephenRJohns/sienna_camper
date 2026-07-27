@@ -133,7 +133,8 @@ module drawing() {
             translate([ay, aboard_mat_t + aboard_t/2]) circle(r = 0.22); // 1/4-20 T-nut bolts, riser -> board
     label_left("ANCHOR BOARD strip under this rail line (Sec. 8, no-drill): non-slip mat +", fridge_ext_width + 1.5, -0.5, 0.95);
     label_left("3/4\" ply, riser bolted with 1/4-20 T-nuts — NO holes in the van. The board", fridge_ext_width + 1.5, -1.8, 0.95);
-    label_left("runs fwd (+Y) to the bridge, 2 steel step-tongues + 3 striker straps.", fridge_ext_width + 1.5, -3.1, 0.95);
+    label_left("runs fwd (+Y) to the bridge: 2 steel tongues bolt to the 2nd-row floor", fridge_ext_width + 1.5, -3.1, 0.95);
+    label_left("rails' rear ends (F8) + 3 straps drop into the 3rd-row striker loops.", fridge_ext_width + 1.5, -4.4, 0.95);
 
     // ---- CLOSED position: hanging tray + apron + fridge, flush to
     // Y=0 (tailgate) ----

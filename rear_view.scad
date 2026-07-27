@@ -131,27 +131,28 @@ module rear_view() {
     label("Fridge", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t + 1, 1.1);
     label("slides out back", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t - 1, 1.0);
 
-    // Utility cabinet door, between the kitchen unit and the fridge,
-    // at the tailgate face (Section 6/8) — label sits near the TOP of
-    // the door, well clear of the exhaust fan/sensor at mid-height
-    // the fridge's vertical side-mount slide rails, seen end-on from
+    // OPEN utility bay between the kitchen unit and the fridge, at
+    // the tailgate face (Section 6/8) — NO door (the old hinged,
+    // louvered door was cut: the louver only existed because the
+    // door trapped the exhaust air). Drawn as a dashed opening.
+    // The fridge's vertical side-mount slide rails, seen end-on from
     // the tailgate: 2 narrow bands flanking the hanging tray (nothing
-    // under the tray — see fridge-slide-detail)
+    // under the tray — see fridge-slide-detail); rails sit on the
+    // anchor board's mat + ply strip (aboard_top).
     color("DimGray")
         for (rx = [fridge_x0 - fridge_ext_length/2 - fridge_slide_margin - fridge_rail_t,
                    fridge_x0 + fridge_ext_length/2 + fridge_slide_margin])
-            translate([rx, 0.25]) rect_outline(fridge_rail_t, 3);
+            translate([rx, aboard_top + fridge_riser_t]) rect_outline(fridge_rail_t, 3);
     door_x0 = fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_stack;
     door_x1 = x_kitchen - kitchen_box_width/2;
-    color("Gainsboro") translate([door_x0, 0]) rect_outline(door_x1 - door_x0, leg_height);
-    label("Cabinet", (door_x0 + door_x1)/2, leg_height - 2, 0.9);
-    label("door", (door_x0 + door_x1)/2, leg_height - 3.6, 0.9);
-    // low exhaust louver in the door
-    color("DimGray") translate([(door_x0 + door_x1)/2 - cabinet_vent_w/2, cabinet_vent_z - cabinet_vent_h/2])
-        rect_outline(cabinet_vent_w, cabinet_vent_h, 0.15);
-    for (i = [1:3]) color("DimGray")
-        translate([(door_x0 + door_x1)/2 - cabinet_vent_w/2 + 0.3, cabinet_vent_z - cabinet_vent_h/2 + i*cabinet_vent_h/4])
-            square([cabinet_vent_w - 0.6, 0.1]);
+    // dashed outline = an opening, not a panel
+    module dash_h(x0, x1, z) { for (dx = [0 : 1.6 : x1 - x0 - 0.8]) color("Silver") translate([x0 + dx, z]) square([0.8, 0.18]); }
+    module dash_v(x, z0, z1) { for (dz = [0 : 1.6 : z1 - z0 - 0.8]) color("Silver") translate([x, z0 + dz]) square([0.18, 0.8]); }
+    dash_h(door_x0, door_x1, leg_height - 0.2);
+    dash_v(door_x0, 0, leg_height); dash_v(door_x1 - 0.18, 0, leg_height);
+    label("OPEN", (door_x0 + door_x1)/2, leg_height - 2, 0.9);
+    label("utility bay", (door_x0 + door_x1)/2, leg_height - 3.6, 0.9);
+    label("(no door)", (door_x0 + door_x1)/2, leg_height - 5.2, 0.8);
 
     // Exhaust fan mounts on the fridge's RIGHT (kitchen-facing) wall,
     // blowing INTO the utility cabinet. The NTC sensor sits just
@@ -187,17 +188,17 @@ module rear_view() {
     fan_in_x = fridge_x0 - 3;
     fan_icon(fan_in_x, fan_z, 1.1);
 
-    label("Exhaust fan: fridge's right wall, blows INTO the cabinet | NTC probe: just inside the bay at that wall (in the hot exhaust, NOT the cabinet)", exhaust_x - 2, -3.4, 0.85);
-    label("Intake fan + a passive LOW cool-air louver: both on Panel C's FRONT wall (see its render) | cabinet door has a LOW exhaust louver", fan_in_x + 6, -4.8, 0.85);
+    label("Exhaust fan: fridge's right wall, blows INTO the open utility bay | NTC probe: just inside the bay at that wall (in the hot exhaust, NOT the bay)", exhaust_x - 2, -3.4, 0.85);
+    label("Intake fan + a passive LOW cool-air louver: both on Panel C's FRONT wall (see its render) | exhaust exits the OPEN bay toward the tailgate", fan_in_x + 6, -4.8, 0.85);
 
     // control panel: switches, surge protector, fan speed
-    // controller — INSIDE the utility cabinet, behind its door
-    // (mounted on the backer board hung from the deck underside),
-    // so everything electrical hides behind one latched face.
+    // controller — at the back of the OPEN utility bay (mounted on
+    // the backer board hung from the deck underside); everything
+    // electrical is reached by just reaching into the bay.
     cab_cx = (door_x0 + door_x1)/2;
     color("Black")
         translate([cab_cx - control_panel_width/2, 6.5]) rect_outline(control_panel_width, 6);
-    label("Control panel: switches + surge protector — INSIDE the cabinet, behind the door", cab_cx - 2, -6.2, 0.85);
+    label("Control panel: switches + surge protector — at the back of the open bay, reach in", cab_cx - 2, -6.2, 0.85);
 
     // numbered markers on the drawing itself — every legend item
     // gets one (color-swatch-only pairing stopped working once the
@@ -212,7 +213,7 @@ module rear_view() {
     marker(7, cab_cx - 3.2, 9.5);                                   // control panel (inside the cabinet)
     marker(8, kx + 5, 2.5);                                         // power strip 2
     marker(9, -van_interior_width/2 + 1.25, 8.5);                  // vent intrusion (left zone shown)
-    marker(10, (door_x0 + door_x1)/2 + 2.4, leg_height - 2);        // cabinet door
+    marker(10, (door_x0 + door_x1)/2 + 2.4, leg_height - 2);        // open utility bay
 
     // legend — numbered markers (matching the drawing), LEFT-aligned
     // text after each
@@ -227,7 +228,7 @@ module rear_view() {
         "Control panel",
         "Power strip 2 (cooktop)",
         "Floor vent intrusion (both sides)",
-        "Utility cabinet door",
+        "Open utility bay (no door)",
     ];
     label_left("Legend", leg_x, van_interior_height - 2, 1.7);
     for (i = [0 : len(leg_items) - 1]) {

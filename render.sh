@@ -79,9 +79,8 @@ for p in A B C; do
     openscad -o renders/panel-$lp-detail.png --imgsize=3250,2500 $FLAT_CAM -D "panel=\"$p\"" panel_detail.scad
 done
 
-echo "Rendering cabinet door detail..."
-openscad -o renders/cabinet-door-detail.svg cabinet_door_detail.scad
-openscad -o renders/cabinet-door-detail.png --imgsize=3250,2150 $FLAT_CAM cabinet_door_detail.scad
+# cabinet door: CUT from the design (the utility bay is open now) —
+# cabinet_door_detail.scad stays on disk, unrendered (like step-06)
 
 echo "Rendering leveling foot detail..."
 openscad -o renders/leveling-foot-detail.svg leveling_foot_detail.scad

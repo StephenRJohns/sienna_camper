@@ -19,7 +19,7 @@
 // ignition state at all.
 //
 // ONE 16AWG SAE line runs from the DELTA 3 (Panel A's drawer)
-// through both seams into Panel C's cabinet and lands on the Nilight
+// through both seams into Panel C's open utility bay and lands on the Nilight
 // 6-way fuse block's main studs; BOTH circuits branch from there:
 //   F1 (10A) -> SW1 -> 12V socket pigtail -> the fridge's own cord.
 //   F2 (3A)  -> SW2 -> W1209 controller -> both 120mm fans in
@@ -141,16 +141,16 @@ module drawing() {
     pmark(4, -33.5, 20);
     box(-14, 20, 36, 3.6, [
         ["1\" grommet — Panel C front wall, LOW driver side", 1.0],
-        ["cord passes into the fridge bay -> utility cabinet", 0.8],
+        ["cord passes into the fridge bay -> open utility bay", 0.8],
     ]);
 
     wire(-14, 18.2, -14, 16.6);
     pmark(5, -34.5, 12.5);
     box(-14, 12.5, 38, 7.5, [
-        ["Nilight 6-way fuse block + NEG bus — inside the cabinet", 1.1],
+        ["Nilight 6-way fuse block + NEG bus — in the open utility bay", 1.1],
         ["+IN / -IN main studs: strip 3/8\", crimp #10 RING terminals, M5 nuts", 0.82],
         ["F1 = 10A ATO -> fridge branch · F2 = 3A ATO -> fan branch · F3-F6 spare", 0.82],
-        ["EVERY black (-) return in the cabinet lands on this NEG bus (ring, screw)", 0.82],
+        ["EVERY black (-) return in the bay lands on this NEG bus (ring, screw)", 0.82],
     ]);
 
     // ---- fridge branch: F1 -> SW1 -> socket pigtail -> fridge ----
@@ -168,7 +168,7 @@ module drawing() {
     pmark(7, 43, 7.5);
     box(26, 7.5, 30, 3.6, [
         ["SAE -> female 12V socket pigtail", 1.0],
-        ["zip-tied in the cabinet, near the fridge's kitchen wall", 0.78],
+        ["zip-tied in the open bay, near the fridge's kitchen wall", 0.78],
     ]);
 
     wire(26, 5.7, 26, 4.4);
@@ -263,7 +263,7 @@ module drawing() {
         pmark(i + 1, tx + 1.2, 51 - i * 4);
         label_left(rows[i][1], tx + 3.4, 51 - i * 4, 0.88);
     }
-    label_left("Wire spec: main run 16AWG (the OYMSAE SAE cord itself); in-cabinet branches 18AWG red/black;", tx, 51 - 12*4 + 0.5, 0.9);
+    label_left("Wire spec: main run 16AWG (the OYMSAE SAE cord itself); in-bay branches 18AWG red/black;", tx, 51 - 12*4 + 0.5, 0.9);
     label_left("crimps: heat-shrink ring #10 (block studs) + 0.25\" female spades (switch tabs). Crimp, tug-test, then shrink.", tx, 51 - 12*4 - 1, 0.9);
 }
 

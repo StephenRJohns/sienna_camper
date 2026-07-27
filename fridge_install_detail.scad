@@ -18,16 +18,17 @@
 // end, and the exhaust fan on the fridge bay's RIGHT (kitchen-
 // facing) side blows it INTO the utility cabinet — the door isn't
 // airtight, so it leaks back out around the edges. Arrows drawn.
-// The control panel lives INSIDE that cabinet, just behind the
-// door, on a backer board hung from the deck underside (the 3/4"
-// sheet's offcut) — reach it by opening the door. Also here: the
-// cabinet door (hinges + catch) and the NO-DRILL ANCHOR BOARD for
-// both the fridge's slide and the kitchen unit — mat + 3/4in ply
-// strips + a full-width bridge, strapped to the 3rd-row striker
-// loops with steel tongues butting the striker-row step — see
-// "Securing heavy components" (Section 8) for why the factory
-// cargo hooks aren't used for either, and why nothing bolts to
-// the van (owner: no holes).
+// The control panel lives in the OPEN utility bay between the
+// fridge and kitchen (no door — the old hinged, louvered door was
+// cut as pointless), on a backer board hung from the deck underside
+// (the 3/4" sheet's offcut) — reach it by hand. Also here: the
+// NO-DRILL ANCHOR BOARD for both the fridge's slide and the kitchen
+// unit — mat + 3/4in ply strips + a full-width bridge, its steel
+// tongues bolted to the rear ends of the 2nd-row long-slide floor
+// rails (fallback: butting the striker-row step) and strapped to
+// the 3 3rd-row striker loops — see "Securing heavy components"
+// (Section 8) for why the factory cargo hooks aren't used for
+// either, and why nothing bolts to the van (owner: no holes).
 //
 // COORDINATE SYSTEM (also used in the build-plan coordinate table):
 // origin (0,0) is Panel C's TAILGATE-FACING, LEFT corner, at floor
@@ -143,21 +144,32 @@ module drawing() {
             translate([sx, 40]) polygon([[0, 1.6], [-0.9, 0], [0.9, 0]]);
         }
     }
-    color("Firebrick") translate([2, 42.4]) text("3 ratchet straps -> 3rd-row STRIKER LOOPS (crash-rated, ~10-14\" fwd of Panel C — position UNVERIFIED, F4)", size = 1.0);
-    // 2 steel bearing tongues, bridge -> striker-row step (forward
-    // compression path; they cross under Panel B's rear bottom rail)
-    color("DimGray") for (tx = [15, 30]) difference() {
-        translate([tx - aboard_tongue_w/2, 33]) square([aboard_tongue_w, 7.5]);
-        translate([tx - aboard_tongue_w/2 + 0.15, 33.15]) square([aboard_tongue_w - 0.3, 7.2]);
+    color("Firebrick") translate([2, 47.4]) text("3 ratchet straps -> 3rd-row STRIKER LOOPS (crash-rated, ~10-14\" fwd of Panel C — position UNVERIFIED, F4)", size = 1.0);
+    // 2 steel rail tongues, bridge -> the rear ends of the 2nd-row
+    // long-slide floor rails (bolted/clamped there — the PRIMARY
+    // forward connection, F8; fallback: butt the striker-row step).
+    // They cross under Panel B's rear bottom rail.
+    color("DimGray") for (tx = [15, 30]) {
+        difference() {
+            translate([tx - aboard_tongue_w/2, 33]) square([aboard_tongue_w, 8.5]);
+            translate([tx - aboard_tongue_w/2 + 0.15, 33.15]) square([aboard_tongue_w - 0.3, 8.2]);
+        }
+        // the floor rail's rear end (channel section, drawn dashed-ish
+        // as two side lines + end cap) + the tongue's bolt/clamp point
+        translate([tx - 1.1, 41]) square([0.22, 5]);
+        translate([tx + 0.88, 41]) square([0.22, 5]);
+        translate([tx - 1.1, 45.8]) square([2.2, 0.22]);
     }
-    label_left("2 steel tongues (2\"x3/16\") butt the striker-row STEP — forward load = compression into structure (Sec. 8)", 2, 44.2, 1.0);
-    marker(12, 15, 34.8, "DimGray");
-    marker(13, 8, 33.8, "Firebrick");
+    color("Black") for (tx = [15, 30]) translate([tx, 42]) circle(r = 0.35); // tongue-to-rail bolt/clamp
+    label_left("2 steel rail tongues (2\"x3/16\") BOLT to the rear ends of the 2nd-row FLOOR RAILS (seat anchorage — no new holes; F8;", 2, 50.7, 1.0);
+    label_left("fallback: butt the striker-row step, F7) — forward restraint is steel-to-steel to the van's own rails (Sec. 8)", 2, 49.1, 1.0);
+    marker(9, 15, 34.8, "DimGray");
+    marker(10, 8, 33.8, "Firebrick");
 
     // Panel C outline (the full 46in x 36in deck footprint)
     rect_outline(panel_width, panel_c_length);
     label(str("PANEL C — ", panel_width, "\" wide x ", panel_c_length, "\" deep, looking down from above"),
-          panel_width/2, panel_c_length + 11.5, 1.6);
+          panel_width/2, panel_c_length + 17, 1.6);
     label("TAILGATE (open) — Y = 0 here", panel_width/2, -2, 1.4);
     label("DRIVER side (X=0)", 8, -5.4, 1.1);
     label("PASSENGER side", panel_width - 8, -5.4, 1.1);
@@ -173,7 +185,7 @@ module drawing() {
         label(str(kitchen_box_width, "\" x ", kitchen_box_length, "\""), kitchen_box_width/2, kitchen_box_length - 7, 1.1);
         label("slides out tailgate (-Y)", kitchen_box_width/2, 2.5, 1.0);
     }
-    marker(9, kitchen_x0 - 1, 14.5, "DimGray"); // kitchen tie-down: L-track + stud D-rings on the board strips
+    marker(6, kitchen_x0 - 1, 14.5, "DimGray"); // kitchen tie-down: L-track + stud D-rings on the board strips
 
     // Fridge footprint — name/description text kept in the UPPER
     // third of the box (Y=15-22), well clear of the intake fan
@@ -208,7 +220,7 @@ module drawing() {
     flow_arrow(fridge_x0 + fridge_ext_length/2, panel_c_length + 1.5, fridge_x0 + fridge_ext_length/2, panel_c_length - 3.5);
     flow_arrow(fridge_x0 + 3, 10, fridge_x0 + fridge_ext_length - 2, 10);
     flow_arrow(fridge_x0 + fridge_ext_length - 2, fridge_ext_width/2, fridge_x0 + fridge_ext_length + 3.5, fridge_ext_width/2);
-    color("SteelBlue") translate([fridge_x0 + 2, 7.2]) text("airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT into the cabinet + through its low door louver", size = 0.95);
+    color("SteelBlue") translate([fridge_x0 + 2, 7.2]) text("airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT through the OPEN utility bay toward the tailgate (no door)", size = 0.95);
     // the 2 slide rails stand VERTICALLY flanking the tray (side-mount
     // — see fridge-slide-detail): drawn as the 2 narrow bands beside
     // the fridge, set back ~2.5in from the tailgate face so the
@@ -219,56 +231,52 @@ module drawing() {
                fridge_x0 + fridge_ext_length + fridge_slide_margin];
     for (rx = rail_xs)
         color("DimGray") translate([rx, 2.5]) rect_outline(fridge_rail_t, fridge_slide_length, 0.12);
-    marker(8, rail_xs[1] + fridge_rail_t/2, 27.5, "DimGray");
+    marker(5, rail_xs[1] + fridge_rail_t/2, 27.5, "DimGray");
 
     // Fridge hold-down strap D-rings (x2, tray side apron — separate
     // from the E-track floor anchors above: these secure the FRIDGE to
     // its TRAY, not the tray to the van floor) — side profile + strap
     // geometry is in fridge-slide-detail.svg
     color("Firebrick") translate([fridge_x0 + fridge_ext_length/2 - 0.3, 1.3]) circle(r = 0.3);
-    marker(11, fridge_x0 + fridge_ext_length/2, 3.2, "Firebrick");
+    marker(8, fridge_x0 + fridge_ext_length/2, 3.2, "Firebrick");
 
-    // Utility cabinet door — fills the gap between the fridge module
-    // (left/driver) and the kitchen unit (right/passenger), right at
-    // the tailgate face
-    door_x0 = fridge_x0 + fridge_ext_length + fridge_slide_margin + fridge_rail_stack; // past the passenger-side rail + riser
-    door_w  = kitchen_x0 - door_x0;
-    color("Gainsboro") translate([door_x0, 0]) rect_outline(door_w, 1.5);
-    marker(5, door_x0 + door_w/2, 0.75, "Gainsboro");
-    marker(6, door_x0 + door_w + 2.6, 0.75, "DimGray"); // hinges, kitchen-side (high-X) edge — marker offset onto the kitchen corner for legibility in the narrow gap
-    marker(7, door_x0 - 4.4, 0.75, "Black");            // catch, fridge-side (free) edge — marker offset onto the fridge corner for legibility
+    // OPEN utility bay — the gap between the fridge module (left/
+    // driver) and the kitchen unit (right/passenger). NO door: the
+    // old hinged, louvered door was cut as pointless — the open bay
+    // vents the exhaust air straight out the tailgate face and the
+    // switches are reached by hand.
+    bay_x0 = fridge_x0 + fridge_ext_length + fridge_slide_margin + fridge_rail_stack; // past the passenger-side rail + riser
+    bay_w  = kitchen_x0 - bay_x0;
+    color("black") translate([bay_x0 + 0.7, 6.8]) rotate(90) text("OPEN BAY (no door)", size = 0.75, halign = "left", valign = "center");
+    flow_arrow(bay_x0 + bay_w/2 + 0.6, 6.2, bay_x0 + bay_w/2 + 0.6, -0.9); // exhaust air exits the open bay toward the tailgate
 
-    // WAVE 3 hose/cord storage hook — inside the cabinet's own void
-    // (open under the deck, same depth as the fridge/kitchen bays),
-    // well clear of the door hardware at Y=0.75 above and the fridge/
-    // kitchen footprints to either side
-    marker(10, door_x0 + door_w/2, 10, "Silver");
+    // WAVE 3 hose/cord storage hook — in the open bay's void (under
+    // the deck, same depth as the fridge/kitchen bays), screwed up
+    // into the deck underside at the bay's kitchen side
+    marker(7, bay_x0 + bay_w/2, 10, "Silver");
 
-    // Control panel — INSIDE the utility cabinet, just behind its
-    // door, on a backer board hung from the deck underside (Z in the
+    // Control panel — at the tailgate end of the OPEN utility bay,
+    // on a backer board hung from the deck underside (Z in the
     // side list; a top-down view only shows its footprint).
-    ctrl_x0 = door_x0 + door_w/2 - control_panel_width/2;
+    ctrl_x0 = bay_x0 + bay_w/2 - control_panel_width/2;
     color("Black") translate([ctrl_x0, 1.8]) rect_outline(control_panel_width, 1.5);
     marker(4, ctrl_x0 + control_panel_width/2, 5.5, "Black");
-    label("(4 is INSIDE the cabinet behind the door — Z in the list.", panel_width/2, -7.6, 1.05);
+    label("(4 sits in the OPEN utility bay — Z in the list.", panel_width/2, -7.6, 1.05);
     label("CO monitor + fire extinguisher: owner-placed, not located here)", panel_width/2, -9.3, 1.05);
 
     // ---- side list: numbered components with coordinates + fastener spec ----
     list_x = panel_width + 6;
     items = [
         ["1", "DarkGray", "Intake fan (120mm) — blows IN", str("X=", round((fridge_x0+fridge_ext_length/2)*100)/100, " Y=", panel_c_length, " (Panel C's FRONT wall) Z=8.8"), "4x M4x20 machine screws over the wall's fan hole (Front Wall render)"],
-        ["2", "Silver", "Exhaust fan (120mm) — blows INTO the cabinet", str("X=", round((fridge_x0+fridge_ext_length)*100)/100, " Y=", round((fridge_ext_width/2)*10)/10, " Z=8.8"), "4x M4x20 machine screws, 105mm bolt circle, into a plywood fan ring"],
+        ["2", "Silver", "Exhaust fan (120mm) — blows INTO the open utility bay", str("X=", round((fridge_x0+fridge_ext_length)*100)/100, " Y=", round((fridge_ext_width/2)*10)/10, " Z=8.8"), "4x M4x20 machine screws, 105mm bolt circle, into a plywood fan ring"],
         ["3", "GreenYellow", "NTC temp sensor", str("X=", round((fridge_x0+fridge_ext_length-1.5)*100)/100, " Y=", round((fridge_ext_width/2-2.2)*10)/10, " Z=8.8"), "adhesive thermal pad or 1x #4 screw through its bracket tab"],
-        ["4", "Black", "Control panel enclosure", str("X=", round(ctrl_x0*10)/10, "-", round((ctrl_x0+control_panel_width)*10)/10, " Y=~2 Z=6.5-12.5 — INSIDE the cabinet"), "backer board (3/4\" offcut) hung from the deck; 4x #8x1\" screws"],
-        ["5", "Gainsboro", "Cabinet door", str("X=", round(door_x0*10)/10, "-", round((door_x0+door_w)*10)/10, " Y=0-1.5"), "1/2\" ply panel, closes the kitchen/fridge gap (not airtight — by design)"],
-        ["6", "DimGray", "Door hinges (x2)", "on the kitchen-side (high-X) edge", "2x small butt hinges, 4x #6x5/8\" screws each"],
-        ["7", "Black", "Door catch", "on the fridge-side (free) edge", "1x magnetic or roller catch, 2x #6x5/8\" screws"],
-        ["8", "DimGray", "Anchor-board rail strips (x2, under the slide rails)", "mat + 3/4\" ply band on each rail line BESIDE the tray (side-mount) — the fixed rails' risers bolt to them", "1/4-20 machine screws into T-nuts from below — NO holes in the van (Section 8)"],
-        ["9", "DimGray", "Kitchen tie-down: L-track + 4 stud D-rings", "on the board's kitchen-side strips (cabinet gap + the 1.5\" band at the panel edge)", "4 ratchet straps (400lb WLL) criss-crossed over the top into the D-rings"],
-        ["10", "Silver", "WAVE 3 hose/cord hook", "inside the cabinet, kitchen-side wall", "1x heavy-duty wall hook, #8x1.5\" screw — stows hoses+cord when not in use"],
-        ["11", "Firebrick", "Fridge hold-down strap D-rings (x2)", "tray side apron, near the tailgate end — hooks to the fridge's 2 end handles", "cam strap, snug not tight — secures fridge TO its tray (the anchor board secures the tray to the van); side profile in fridge-slide-detail"],
-        ["12", "DimGray", "Board bridge + 2 steel bearing tongues", "full-width 3/4\" ply bridge at Y=29-35; 2\"x3/16\" flat bars run fwd to BUTT the striker-row step", "forward crash load = compression into vehicle structure; tongue length after the F4 survey (~10-14\")"],
-        ["13", "Firebrick", "Striker straps (x3)", "bridge D-rings -> the 3rd-row seat striker loops, fwd of Panel C (crash-rated; position UNVERIFIED, F4)", "400lb WLL ratchet straps — rearward + lift restraint; re-tension after the first drive"],
+        ["4", "Black", "Control panel enclosure", str("X=", round(ctrl_x0*10)/10, "-", round((ctrl_x0+control_panel_width)*10)/10, " Y=~2 Z=6.5-12.5 — in the OPEN utility bay (no door: reach in)"), "backer board (3/4\" offcut) hung from the deck; 4x #8x1\" screws"],
+        ["5", "DimGray", "Anchor-board rail strips (x2, under the slide rails)", "mat + 3/4\" ply band on each rail line BESIDE the tray (side-mount) — the fixed rails' risers bolt to them", "1/4-20 machine screws into T-nuts from below — NO holes in the van (Section 8)"],
+        ["6", "DimGray", "Kitchen tie-down: L-track + 4 stud D-rings", "on the board's kitchen-side strips (utility-bay gap + the 1.5\" band at the panel edge)", "4 ratchet straps (400lb WLL) criss-crossed over the top into the D-rings"],
+        ["7", "Silver", "WAVE 3 hose/cord hook", "in the open bay — screwed up into the deck underside, kitchen side; bundle the hoses so nothing swings out", "1x heavy-duty hook, #8x1.5\" screw — stows hoses+cord when not in use"],
+        ["8", "Firebrick", "Fridge hold-down strap D-rings (x2)", "tray side apron, near the tailgate end — hooks to the fridge's 2 end handles", "cam strap, snug not tight — secures fridge TO its tray (the anchor board secures the tray to the van); side profile in fridge-slide-detail"],
+        ["9", "DimGray", "Board bridge + 2 steel rail tongues", "full-width 3/4\" ply bridge at Y=29-35; 2\"x3/16\" flat bars run fwd and BOLT to the 2nd-row floor rails' rear ends (F8)", "forward restraint = steel-to-steel to the van's own seat rails, no new holes (fallback: butt the striker-row step, F7)"],
+        ["10", "Firebrick", "Striker straps (x3)", "bridge D-rings -> the 3rd-row seat striker loops, fwd of Panel C (crash-rated; position UNVERIFIED, F4)", "400lb WLL ratchet straps — rearward + lift restraint; re-tension after the first drive"],
     ];
     label_left("Component", list_x, panel_c_length - 1, 1.3);
     label_left("Position / fastener", list_x, panel_c_length - 3.2, 1.1);
@@ -284,9 +292,9 @@ module drawing() {
     fn_y = panel_c_length - 11 - len(items) * 8.5 - 2; // below the LAST row, same pitch the rows use
     label_left("All coordinates measured from Panel C's tailgate-facing left corner, floor level (see file header).",
                list_x, fn_y, 0.95);
-    label_left("NO-DRILL (Section 8): nothing bolts to the van. The board straps to the 3rd-row striker loops; the",
+    label_left("NO-DRILL (Section 8): no new holes in the van. The board straps to the 3rd-row striker loops and its tongues",
                list_x, fn_y - 2, 0.95);
-    label_left("tongues take forward load in compression. Cut the board's outline only AFTER the Section 0 F1-F7 survey.",
+    label_left("bolt to the 2nd-row floor rails' rear ends. Cut the board's outline only AFTER the Section 0 F1-F8 survey.",
                list_x, fn_y - 3.5, 0.95);
 }
 

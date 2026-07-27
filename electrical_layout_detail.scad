@@ -7,7 +7,7 @@
 // drawn as a recognizable icon at its REAL position:
 //
 //   SECTION 1: whole-platform top-down — where everything lives
-//   SECTION 2: utility cabinet back wall elevation (X-Z) — how
+//   SECTION 2: open utility bay back elevation (X-Z) — how
 //              the control cluster mounts
 //   SECTION 3: fan mounting detail — screw pattern + airflow
 //              direction for both fans
@@ -175,7 +175,7 @@ module section1_content() {
     fr_x0 = 1.9;                                   // fridge against the driver-side rear corner leg (1.5in leg + margin)
     color("Silver") translate([fr_x0, y_bc + 0.4]) square([fridge_ext_length - 0.4, fridge_ext_width]);
     mlabel("FRIDGE", fr_x0 + fridge_ext_length/2, y_bc + fridge_ext_width/2, 1.1);
-    mlabel("cabinet", 19.5, y_tg - 6.5, 0.9);
+    mlabel("utility bay", 19.5, y_tg - 6.5, 0.9);
 
     // Rear-pantry footprint: the prefab drawer cluster ON Panel C's
     // deck, at the tailgate end (last pantry_len of Panel C's own length) —
@@ -231,7 +231,7 @@ module section1_content() {
     translate([34.5, y_tg - 3.8]) strip_icon(4);
     mmarker(7, 28, y_tg - 4.5);
 
-    // 8: control enclosure — inside the utility cabinet, behind its door (footprint; see Section 2)
+    // 8: control enclosure — in the open utility bay (footprint; see Section 2)
     translate([33, y_tg - 1.9]) enclosure_icon(5, 2.6);
     mmarker(8, 28, y_tg - 4.5);
 
@@ -239,7 +239,7 @@ module section1_content() {
     translate([fr_x0 + fridge_ext_length/2, y_bc - 2.6]) fan_icon(1.7);
     mmarker(9, fr_x0 + fridge_ext_length/2 - 6, y_bc - 2.6);
 
-    // 10: exhaust fan (blows into cabinet) + NTC probe (just inside the bay at that wall) — fridge's kitchen-facing side
+    // 10: exhaust fan (blows into the open bay) + NTC probe (just inside the bay at that wall) — fridge's kitchen-facing side
     translate([fr_x0 - 2.4, y_bc + fridge_ext_width/2 + 4]) fan_icon(1.7);
     color("SeaGreen") translate([fr_x0 - 1.2, y_bc + fridge_ext_width/2 + 8]) circle(r = 0.45);
     mmarker(10, fr_x0 - 7, y_bc + fridge_ext_width/2 + 4);
@@ -271,13 +271,13 @@ module section1_content() {
 }
 
 // ============================================================
-// SECTION 2 — control cluster elevation (inside the cabinet, on the backer board behind the door)
+// SECTION 2 — control cluster elevation (in the open utility bay, on the backer board)
 // ============================================================
 module section2() {
     z_deck = leg_height + frame_rail_sz; // 18.5
-    label("CONTROL CLUSTER — inside the cabinet on its backer board, elevation (looking forward from tailgate)", 23, 36, 1.4);
+    label("CONTROL CLUSTER — in the open utility bay on its backer board, elevation (looking forward from tailgate)", 23, 36, 1.4);
     rect_outline(30, 33);                              // wall section, x 0-30, z 0-33
-    label("backer board inside the cabinet, behind its door", 15, -2.2, 1.0);
+    label("backer board at the back of the open bay (no door — reach in)", 15, -2.2, 1.0);
     color("Silver") translate([0, z_deck - 0.1]) square([30, 0.2]);
     label_left("deck level", -8.5, z_deck + 0.8, 0.9);
     label_left("18.5\"", -8.5, z_deck - 0.8, 0.9);
@@ -319,7 +319,7 @@ module section3() {
         color("Black") translate([-5.6, 0]) rotate(-90) polygon([[-1, 0], [1, 0], [0, 1.6]]);
         label("cabin air IN", -8, 2.2, 0.9);
     }
-    // exhaust fan, blowing OUT into the cabinet
+    // exhaust fan, blowing OUT into the open bay
     translate([38, 4]) {
         fan_icon(4);
         color(marker_col(10)) translate([0, 7]) text("EXHAUST", size = 1.3, halign = "center");
@@ -346,9 +346,9 @@ module legend() {
         "2-way outlet tap at the rear outlet — Power strip 1 + the cooktop share it",
         "1\" grommets — deck-edge exits for the two short AC cords",
         "Power strip 2 — ON the slide-out kitchen unit (cooktop); cord slack for the slide, feeds from the rear outlet",
-        "Control enclosure — inside the cabinet, behind its door (Section 2 below)",
+        "Control enclosure — in the open utility bay (Section 2 below)",
         "Intake fan 120mm — on Panel C's FRONT wall, over the fridge's B-facing end",
-        "Exhaust fan 120mm (into cabinet) + NTC probe (inside the bay at that wall, in the hot exhaust)",
+        "Exhaust fan 120mm (into the open bay) + NTC probe (inside the bay at that wall, in the hot exhaust)",
         "Fridge DC line — DELTA 3 (Panel A) forward to the fridge (Panel C), own dedicated run",
         "SAE quick-disconnects — fridge DC line, one at each seam it crosses",
         "DELTA 3 AC charging cord — the front console's ONE outlet (1500W, verified) to Panel A's drawer",

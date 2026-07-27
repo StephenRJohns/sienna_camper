@@ -10,7 +10,7 @@
 // cool-air louver below it), and passes the fridge DC line and
 // Power strip 1's line through two grommets. Panel C's sides stay
 // open (van wall ~1in away) and its tailgate face needs no wall —
-// fridge + cabinet door + kitchen unit + kitchen drawer face fill
+// fridge + open utility bay + kitchen unit + kitchen drawer face fill
 // it completely.
 //
 // Render with: openscad -o renders/panel-c-wall-detail.svg panel_c_wall_detail.scad
@@ -118,7 +118,7 @@ module drawing() {
     // ---- title + notes ----
     label("PANEL C FRONT WALL — 3/8\" ply, flat pattern (the ONLY wall on any panel)", WW/2, WH + 6.4, 1.8);
     label("Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.", WW/2, WH + 4.4, 1.15);
-    label("Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + cabinet door + kitchen + kitchen drawer fill it.", WW/2, WH + 3.1, 1.05);
+    label("Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + open utility bay + kitchen + kitchen drawer fill it.", WW/2, WH + 3.1, 1.05);
     label("DRIVER side at left (the fridge bay's side) — PASSENGER at right. All positions computed from params.scad.", WW/2, -13, 1.05);
 }
 

@@ -132,7 +132,7 @@ module drawing() {
 
     label("KITCHEN DRAWER — hung under Panel C's deck, above the kitchen unit (Component 7)", panel_c_length + 12, z_deck + 12, 1.9);
     label("Box: 1/2\" ply, glue + 1-1/4\" screws, ~3.5\" clear inside — utensils / cutting board / flat dry goods / griddle plate.", panel_c_length + 12, z_deck + 9.8, 1.15);
-    label("Face matches the utility-cabinet door look, with the same magnetic catch so nothing rattles in transit.", panel_c_length + 12, z_deck + 8.4, 1.15);
+    label("Face gets a magnetic catch so nothing rattles in transit (the old cabinet door it matched was cut — open bay now).", panel_c_length + 12, z_deck + 8.4, 1.15);
 }
 
 color("black") drawing();

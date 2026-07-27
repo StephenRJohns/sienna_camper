@@ -322,44 +322,44 @@ module hero_c7() {
     wbox([-21, -8, 0], [26, 18, 1]);                                // fridge tray under it
     wbox([2, -8, 0], [18, 18, 20]);                                 // kitchen unit pulled out
     wbox([4, -6, 20], [14, 12, 3]);                                 // cooktop on the kitchen
-    wbox([-4, -9, 1], [1, 12, 14]);                                 // utility cabinet door (in the gap)
+    // (the utility bay between fridge and kitchen is OPEN — the old
+    // hinged cabinet door was cut from the design)
     wbox([3, 12, LH - 3.5], [16, 6, 4.5]);                          // kitchen drawer, hung under deck
     wbox([-3, 12, LH - 4], [10, 6, 0.75]);                          // control backer board
     // numbered callouts -> PART LIST
     part_badge("01", [-8, -8, 0.5], [-4, -8], 2.7);                 // fridge tray
     part_badge("02", [11, 15, LH - 1.5], [9, 4], 2.7);            // kitchen drawer box
     part_badge("03", [3, 15, LH - 1.5], [-10, 3], 2.7);          // drawer cheek
-    part_badge("04", [-3.5, -9, 9], [-10, 6], 2.7);              // cabinet door
-    part_badge("05", [2, 15, LH - 4], [3, -8], 2.7);            // control backer
-    part_badge("06", [-8, -8, 12], [-11, 5], 2.7);              // Rocky 40 fridge
-    part_badge("07", [11, 0, 16], [11, 5], 2.7);               // kitchen unit
-    part_badge("08", [11, 0, 23], [4, 9], 2.7);               // cooktop
+    part_badge("04", [2, 15, LH - 4], [3, -8], 2.7);            // control backer
+    part_badge("05", [-8, -8, 12], [-11, 5], 2.7);              // Rocky 40 fridge
+    part_badge("06", [11, 0, 16], [11, 5], 2.7);               // kitchen unit
+    part_badge("07", [11, 0, 23], [4, 9], 2.7);               // cooktop
 }
 module accessory_c7() {
     cols = 4; cw = 14.5; ch = 17.0; top = HH - 5.5;
     labels = [["A","L-track + stud","x7"],["B","bolt + T-nut","x30"],["C","ratchet strap","x7"],
               ["D","120mm fan","x2"],["E","PWM controller","x1"],["F","toggle switch","x3"],
-              ["G","fuse block","x1"],["H","hinge","x2"],["I","magnetic catch","x2"],
-              ["J","louver vent","x1"],["K","slide 24\" pr","x2"],["L","wood screw","x16"]];
+              ["G","fuse block","x1"],["H","magnetic catch","x1"],
+              ["I","louver vent","x1"],["J","slide 24\" pr","x2"],["K","wood screw","x16"]];
     for (i = [0:len(labels)-1]) translate([gx(i,cols,cw), gy(i,cols,ch,top)])
         accessory_cell(labels[i][0],labels[i][1],labels[i][2],cw-0.6,ch-0.7) {
             if (i==0) ic_etrack(); else if (i==1) ic_carriage_bolt(); else if (i==2) ic_ratchet_strap();
             else if (i==3) ic_fan(); else if (i==4) ic_controller(); else if (i==5) ic_toggle();
-            else if (i==6) ic_fuseblock(); else if (i==7) ic_hinge(); else if (i==8) ic_mag_catch();
-            else if (i==9) ic_louver(); else if (i==10) ic_slide(); else ic_screw();
+            else if (i==6) ic_fuseblock(); else if (i==7) ic_mag_catch();
+            else if (i==8) ic_louver(); else if (i==9) ic_slide(); else ic_screw();
         }
 }
 module partlist_c7() {
     cols = 4; cw = 17.5; ch = 17.5; top = HH - 5.5;
     names = [["01","fridge tray","1x"],["02","kitchen drawer","1x"],["03","drawer cheek","2x"],
-             ["04","cabinet door","1x"],["05","control backer","1x"],["06","Rocky 40 fridge","1x"],
-             ["07","kitchen unit","1x"],["08","cooktop","1x"]];
-    sc = [0.32,0.34,0.34,0.5,0.55,0.32,0.34,0.5];
+             ["04","control backer","1x"],["05","Rocky 40 fridge","1x"],
+             ["06","kitchen unit","1x"],["07","cooktop","1x"]];
+    sc = [0.32,0.34,0.34,0.55,0.32,0.34,0.5];
     for (i = [0:len(names)-1]) translate([gx(i,cols,cw), gy(i,cols,ch,top)])
         part_cell(names[i][0],names[i][1],names[i][2],sc[i],cw,ch) {
             if (i==0) piso([28,18,1]); else if (i==1) piso([26,16,4.5]); else if (i==2) piso([26,6,0.5]);
-            else if (i==3) piso([12,17,0.5]); else if (i==4) piso([14,10,0.75]); else if (i==5) piso([28,18,16]);
-            else if (i==6) piso([20,18,20]); else piso([14,12,3]);
+            else if (i==3) piso([14,10,0.75]); else if (i==4) piso([28,18,16]);
+            else if (i==5) piso([20,18,20]); else piso([14,12,3]);
         }
 }
 

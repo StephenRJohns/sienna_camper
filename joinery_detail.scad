@@ -97,7 +97,7 @@ translate([2, -1]) {
         ["Panel C front wall <-> frame", "ply-to-frame", "8x #8 x 1-1/4\" screws (exact positions in the Front Wall render)"],
         ["ALL 2x2 frames (rails/legs/bottom rails/dividers)", "2x2 corners", "2x 2\" screws + glue + a steel corner bracket (NO biscuit)"],
         ["Bed platform slats <-> 1x4 side rails", "end-to-edge", "2x 1-1/4\" pocket screws/end (OR 1x R2 biscuit + glue, cleaner)"],
-        ["DELTA 3 tray / cabinet bins / adjustable shelf", "none", "drop in / rest on pins — no fasteners"],
+        ["DELTA 3 tray / utility-bay bins / adjustable shelf", "none", "drop in / rest on pins — no fasteners"],
     ];
     for (i = [0 : len(rows) - 1]) {
         y = -i * 1.6; b = (i == 0);
