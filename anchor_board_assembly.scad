@@ -5,9 +5,10 @@
 // (which shows WHERE the platform sits in the van). This sheet
 // shows HOW it goes together (Section 8):
 //
-//   V1  TOP — the bare plywood assembly, dimensioned: bridge +
-//       4 strips, tongue lap joints, L-track, D-rings, riser
-//       bolt patterns. This is the piece you cut and bench-build.
+//   V1  TOP — the bare plywood board, dimensioned: ONE 46"x33"
+//       comb (bridge + 3 strips, continuous — no wood joints),
+//       steel tongue runs, L-track, D-rings, riser bolt
+//       patterns. This is the piece you cut and bench-build.
 //   V2  SIDE — appliances -> board, fridge side: section through
 //       a rail-line strip (mat / ply / T-nut / riser / rail /
 //       apron / hanging tray), drawn at 4x scale.
@@ -17,6 +18,10 @@
 //       bridge's underside dado, bolted, running forward to the
 //       floor rail's rear end; the striker strap; the step
 //       fallback; Panel B's notched bottom rail.
+//   V5  CUT PLAN — the comb nested in the 3/4" sheet's spare:
+//       grain direction, the two offcut rectangles that fall
+//       out, cut order and the fillet at each inside corner.
+//       (There is no joinery view: the board has no joints.)
 //
 // Rail-end/striker geometry is ASSUMED until the Section 0 F1-F8
 // survey (tongue length is cut to what F8 measures).
@@ -48,12 +53,21 @@ module label_left(txt, x, y, size = 1.05) {
 }
 
 module board_piece(x0, y0, w, l) {
+    board_poly([[x0, y0], [x0 + w, y0], [x0 + w, y0 + l], [x0, y0 + l]]);
+}
+
+// the same hatched-ply treatment for an arbitrary outline — the anchor
+// board is ONE comb-shaped piece, not a set of rectangles, so its
+// outline has to be drawn as a single polygon (no internal butt lines)
+module board_poly(pts) {
+    xs = [for (p = pts) p[0]];  ys = [for (p = pts) p[1]];
+    x0 = min(xs); y0 = min(ys); w = max(xs) - x0; l = max(ys) - y0;
     color("Peru") difference() {
-        translate([x0, y0]) square([w, l]);
-        translate([x0 + 0.15, y0 + 0.15]) square([w - 0.3, l - 0.3]);
+        polygon(pts);
+        offset(delta = -0.15) polygon(pts);
     }
     color("Tan") intersection() {
-        translate([x0 + 0.3, y0 + 0.3]) square([w - 0.6, l - 0.6]);
+        offset(delta = -0.3) polygon(pts);
         union() {
             for (d = [2 : 4 : w + l])
                 translate([x0, y0 + d]) rotate(-45) square([(w + l) * 1.5, 0.08]);
@@ -98,12 +112,15 @@ module dash_v(x, y0, y1, w = 0.15) {
 module v1_top() {
     // board geometry (same numbers as the overhead diagram)
     ds_w = 2.5;   cs_x0 = 19.35; cs_w = 4.65; rs_x0 = 44.5; rs_w = 1.5;
-    strip_l = 30; strip_y0 = 2;  br_y0 = 29;  br_d = aboard_bridge_d;
+    strip_y0 = 2;  br_y0 = 29;  br_d = aboard_bridge_d;
+    strip_l = br_y0 - strip_y0;  // 27 — the teeth run from the bridge to the tailgate
 
-    board_piece(0, strip_y0, ds_w, strip_l);
-    board_piece(cs_x0, strip_y0, cs_w, strip_l);
-    board_piece(rs_x0, strip_y0, rs_w, strip_l);
-    board_piece(0, br_y0, panel_width, br_d);
+    // ONE piece: the bridge and its three teeth are continuous ply.
+    // Traced as a single comb outline — there are no joints to draw.
+    board_poly([[0, strip_y0], [ds_w, strip_y0], [ds_w, br_y0],
+                [cs_x0, br_y0], [cs_x0, strip_y0], [cs_x0 + cs_w, strip_y0],
+                [cs_x0 + cs_w, br_y0], [rs_x0, br_y0], [rs_x0, strip_y0],
+                [rs_x0 + rs_w, strip_y0], [panel_width, br_y0 + br_d], [0, br_y0 + br_d]]);
 
     // riser-angle footprints on the rail-line strips (dashed) + T-nut bolts
     for (rx = [0.15, 19.85]) {
@@ -125,7 +142,7 @@ module v1_top() {
     label_left("L-track (screwed to the strip)", 25.2, 26.8, 0.95);
     label_left("+ stud D-rings, kitchen straps", 25.2, 25.4, 0.95);
 
-    // bridge D-rings + tongue lap joints (tongues shown dashed under
+    // bridge D-rings + steel tongue runs (tongues shown dashed under
     // the bridge, solid where they emerge forward)
     for (sx = [8, 23, 38]) dring_icon(sx, 32);
     for (tx = [15, 30]) {
@@ -145,13 +162,17 @@ module v1_top() {
     // dimensions
     dim_h(0, panel_width, 38.2, str(panel_width, "\""));
     dim_v(-2.5, br_y0, br_y0 + br_d, str(br_d, "\""));
-    dim_v(-2.5, strip_y0, strip_y0 + strip_l, str(strip_l, "\""));
+    dim_v(-2.5, strip_y0, br_y0, str(strip_l, "\""));
+    dim_v(-7.5, strip_y0, br_y0 + br_d, str(br_y0 + br_d - strip_y0, "\" overall"));
     dim_h(0, ds_w, 0, "2.5\"");
     dim_h(cs_x0, cs_x0 + cs_w, 0, "4.65\"");
     dim_h(rs_x0, rs_x0 + rs_w, 0, "1.5\"");
-    label("cut everything from one 3/4\" ply sheet's spare + a rubber mat under every piece", panel_width/2, -3.4, 1.0);
-    label("(gaps between strips = bare van floor: the fridge tray hangs there, the kitchen sits there)", panel_width/2, -5, 1.0);
-    label("V1 — TOP: the plywood assembly (bench-built, then laid in as ONE piece)", panel_width/2, 47.5, 1.3);
+    // kept short: V3's title runs along the same lines further right
+    label("ONE PIECE — cut the whole comb from the 3/4\" sheet's spare (V5):", panel_width/2, -3.4, 1.0);
+    label("NO ply-to-ply joints, no glue, no lap screws. Rubber mat under it.", panel_width/2, -5, 1.0);
+    label("Every fastener on this board holds HARDWARE, never wood to wood.", panel_width/2, -6.6, 1.0);
+    label("(gaps = bare van floor: the tray hangs there, the kitchen sits there)", panel_width/2, -8.2, 1.0);
+    label("V1 — TOP: the one-piece plywood board, 46\"x33\" (bench-built, then laid in as ONE piece)", panel_width/2, 47.5, 1.3);
     label("fwd ->", -4.5, 34, 1.0);
     label("tailgate ->", -4.5, 6, 1.0);
 }
@@ -272,45 +293,77 @@ module v4_board_to_van() {
 }
 
 // ============================================================
-// V5 — how the ply pieces JOIN (strips -> bridge)
+// V5 — ONE-PIECE CUT: nesting the comb in the 3/4" sheet's spare
 // ============================================================
+// There is no joinery view on this sheet because there are no wood
+// joints: the bridge and all three strips are one continuous piece.
+// This view is the CUT plan instead — where the comb sits in the
+// leftover sheet, which way the face grain runs, and what falls out.
 module v5_joints() {
-    label_left("V5 — HOW THE PLY PIECES JOIN (each strip -> the bridge)", 0, 16, 1.3);
+    label_left("V5 — ONE-PIECE CUT: how the comb nests in the 3/4\" sheet's spare", 0, 19, 1.3);
 
-    // ---- PREFERRED: one-piece cut, no joints at all ----
-    // mini sheet-layout sketch: the H/comb nested in the 3/4" sheet's
-    // spare (48x53 region left after Panel C's deck), scale 0.28
+    // ---- sheet-layout sketch: the comb in the 48"x60" spare region
+    // left after Panel C's deck (36"x46"), scale 0.28 ----
     s = 0.28;
-    color("black") rect_outline(48*s, 53*s, 0.12);
-    board_piece(1*s, 9*s, 46*s, 6*s);                       // bridge (in the layout)
-    board_piece(1*s, 15*s, 2.5*s, 30*s);
-    board_piece(20.35*s, 15*s, 4.65*s, 30*s);
-    board_piece(45.5*s, 15*s, 1.5*s, 30*s);
-    label_left("PREFERRED: cut the whole H as ONE PIECE from the 3/4\"", 16, 12.6, 1.0);
-    label_left("sheet's spare (46\"x36\" envelope, most falls away as", 16, 11.2, 1.0);
-    label_left("offcut) — bridge + strips continuous, ZERO joints", 16, 9.8, 1.0);
-    label_left("(3/4\" sheet spare, after Panel C's deck)", 0.5, -1.6, 0.85);
-
-    // ---- FALLBACK: 6" half-lap, glued + screwed ----
-    // side section, 2x vertical scale: strip's top rabbet under the
-    // bridge's bottom rabbet, screws down through the lap
-    fx = 30; fy = -0.5;
-    translate([fx, fy]) {
-        color("Peru") polygon([[0,0],[6,0],[6,0.75],[12,0.75],[12,1.5],[0,1.5]]);             // bridge end: rabbet in its UNDERSIDE (keeps its top half; drawn 2x tall)
-        color("SaddleBrown") polygon([[6,0],[20,0],[20,1.5],[12,1.5],[12,0.75],[6,0.75]]);    // strip end: rabbet in its TOP (keeps its bottom half)
-        color("Black") { translate([7.5, 0]) square([0.25, 1.5]); translate([10.5, 0]) square([0.25, 1.5]); } // screws through the lap
-        color("Firebrick") translate([6, 0.72]) square([6, 0.12]);                            // glue line, full lap face
-        label_left("FALLBACK (smaller stock): 6\" HALF-LAP — 3/8\" rabbet in the", 0, 7.2, 1.0);
-        label_left("bridge's UNDERSIDE + matching rabbet in the strip's TOP,", 0, 5.8, 1.0);
-        label_left("GLUED full-face (Titebond II+) + 4x #8 x 3/4\" screws per", 0, 4.4, 1.0);
-        label_left("joint, driven from above, clear of the riser/L-track bolts", 0, 3.0, 1.0);
-        label_left("bridge ^", 2, -1.6, 0.9);
-        label_left("glue line ^   screws x4 (2 shown)", 6.5, -3, 0.9);
-        label_left("^ strip (runs to the tailgate)", 13, -1.6, 0.9);
+    color("black") rect_outline(48*s, 60*s, 0.12);
+    translate([1*s, 1*s]) {
+        // the comb, drawn in board coords (0..46 x 0..33), teeth toward
+        // the tailgate (down the page) — same orientation as V1
+        board_poly([for (p = [[0,0],[2.5,0],[2.5,27],[19.35,27],[19.35,0],[24,0],
+                              [24,27],[44.5,27],[44.5,0],[46,0],[46,33],[0,33]])
+                    [p[0]*s, p[1]*s]]);
+        // the two gaps fall out as clean rectangles — usable offcut, not waste
+        for (g = [[2.5, 16.85, "16.85x27"], [24, 20.5, "20.5x27"]]) {
+            color("Gray") translate([g[0]*s, 0]) rect_outline(g[1]*s, 27*s, 0.08);
+            color("black") translate([(g[0] + g[1]/2)*s, 15*s]) {
+                text("OFFCUT", size = 0.6, halign = "center");
+                translate([0, -1.1]) text(g[2], size = 0.6, halign = "center");
+            }
+        }
     }
-    label_left("Why the joint matters: the striker straps hold the BRIDGE — the strips (and everything bolted to them)", 0, -5.4, 1.0);
-    label_left("hang off it in a rearward pull, so each lap is in TENSION: glue the whole face, not dabs.", 0, -6.8, 1.0);
-    label_left("(The steel tongues are NOT wood joints — they bolt through the bridge with the 1/4-20 T-nuts, V1.)", 0, -8.4, 1.0);
+    label_left("3/4\" SHEET SPARE — 48\"x60\"", 0, 60*s + 1.1, 0.85);
+    label_left("still spare: ~48\"x26\"", 1*s, 47*s, 0.75);
+    label_left("(backer, cleats, battens)", 1*s, 45.4*s, 0.75);
+    // face-grain direction: along the sheet's 96" length = along the strips
+    color("Firebrick") {
+        translate([-1.6, 2]) square([0.14, 60*s - 4]);
+        translate([-1.53, 2]) rotate(-90) polygon([[0,0],[0.7,1.1],[-0.7,1.1]]);
+        translate([-1.53, 60*s - 2]) rotate(90) polygon([[0,0],[0.7,1.1],[-0.7,1.1]]);
+        translate([-2.2, 60*s/2]) rotate(90) text("FACE GRAIN", size = 0.85, halign = "center");
+    }
+
+    lines = [
+        "ONE PIECE, NO WOOD JOINTS. The bridge and all three strips are a single",
+        "continuous 46\"x33\" comb. Nothing on this board is glued or screwed to another",
+        "piece of ply — the 12 lap screws and the wood glue are GONE from the BOM.",
+        "",
+        "IT FITS THE STOCK YOU ALREADY BUY. The 3/4\" sheet carries only Panel C's deck",
+        "plus some ripped cleats, leaving a contiguous spare of at least 48\"x60\": the",
+        "comb drops in with ~26\" of sheet length still left over for the control-panel",
+        "backer, the rear-pantry hold-down cleats and the spare-tire skid battens.",
+        "",
+        "FACE GRAIN RUNS ALONG THE STRIPS (the 33\" direction = the sheet's 96\" length).",
+        "That is the axis a rearward pull loads in tension, and the strips are the narrow",
+        "members — the panel-edge one is only 1.5\" wide, so it wants its face plies",
+        "running lengthwise. The bridge takes its load in-plane over a 6\" depth, where",
+        "cross-grain costs nothing that matters.",
+        "",
+        "THE FALLOFF IS NOT WASTE. The two gaps come out as clean rectangles",
+        "(16.85\"x27\" and 20.5\"x27\") — keep both as 3/4\" offcut stock.",
+        "",
+        "CUT ORDER: rip the two gaps out with a track saw or a circular saw on a",
+        "straightedge (both cuts run the full 27\" and STOP at the bridge line), then",
+        "crosscut the teeth free. FILLET every inside corner ~1/2\" radius — drill a 1/2\"",
+        "hole centered ON the corner first, then saw into it. A square re-entrant corner",
+        "is exactly where a comb starts a tear, and it is the only place this one-piece",
+        "board is weaker than three separate strips would be.",
+    ];
+    for (i = [0 : len(lines) - 1]) label_left(lines[i], 16, 16 - i*1.4, 1.0);
+
+    label_left("Why one piece matters: the striker straps hold the BRIDGE — the strips (and everything bolted to", 0, -18.4, 1.0);
+    label_left("them) hang off it in a rearward pull. As one piece that load path is continuous ply, instead of three", 0, -19.8, 1.0);
+    label_left("glue lines working in tension. (The steel tongues are NOT wood joints — they bolt through the", 0, -21.2, 1.0);
+    label_left("bridge with the 1/4-20 T-nuts, V1.)", 0, -22.6, 1.0);
 }
 
 // ============================================================
@@ -353,7 +406,7 @@ module legend() {
 v1_top();
 translate([62, 26]) v2_fridge_stack();
 translate([64, -2]) v3_kitchen_straps();
-translate([2, -18]) v4_board_to_van();
+translate([2, -21]) v4_board_to_van();
 translate([88, -9]) legend();
-translate([2, -44]) v5_joints();
+translate([2, -52]) v5_joints();
 label("ANCHOR BOARD — assembly & connections (Section 8; companion to the overhead platform diagram)", 52, 51.5, 1.6);

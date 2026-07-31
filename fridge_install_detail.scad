@@ -23,7 +23,8 @@
 // cut as pointless), on a backer board hung from the deck underside
 // (the 3/4" sheet's offcut) — reach it by hand. Also here: the
 // NO-DRILL ANCHOR BOARD for both the fridge's slide and the kitchen
-// unit — mat + 3/4in ply strips + a full-width bridge, its steel
+// unit — a rubber mat + ONE comb-shaped 3/4in ply board (full-width
+// bridge + 3 strips, continuous, no wood joints), its steel
 // tongues bolted to the rear ends of the 2nd-row long-slide floor
 // rails (fallback: butting the striker-row step) and strapped to
 // the 3 3rd-row striker loops — see "Securing heavy components"
@@ -87,12 +88,20 @@ module marker(n, x, y, col) {
 // union into solid blobs in OpenSCAD's monochrome SVG export) —
 // the no-drill securing chassis, Section 8
 module board_strip(x0, y0, w, l) {
+    board_poly([[x0, y0], [x0 + w, y0], [x0 + w, y0 + l], [x0, y0 + l]]);
+}
+
+// the anchor board is ONE comb-shaped piece, so it draws as a single
+// outline — no butt lines between the bridge and the strips
+module board_poly(pts) {
+    xs = [for (p = pts) p[0]];  ys = [for (p = pts) p[1]];
+    x0 = min(xs); y0 = min(ys); w = max(xs) - x0; l = max(ys) - y0;
     color("Peru") difference() {
-        translate([x0, y0]) square([w, l]);
-        translate([x0 + 0.15, y0 + 0.15]) square([w - 0.3, l - 0.3]);
+        polygon(pts);
+        offset(delta = -0.15) polygon(pts);
     }
     color("Tan") intersection() {
-        translate([x0 + 0.3, y0 + 0.3]) square([w - 0.6, l - 0.6]);
+        offset(delta = -0.3) polygon(pts);
         union() {
             for (d = [2 : 4 : w + l])
                 translate([x0, y0 + d]) rotate(-45) square([(w + l) * 1.5, 0.1]);
@@ -126,10 +135,17 @@ module drawing() {
     // the Section 0 F1-F7 floor survey. ----
     rail_cx = [fridge_x0 - fridge_slide_margin - fridge_rail_t/2,
                fridge_x0 + fridge_ext_length + fridge_slide_margin + fridge_rail_t/2];
-    board_strip(0, 2, 2.5, 30);                                   // driver rail-line strip
-    board_strip(rail_cx[1] - 1.25, 2, kitchen_x0 - 0.5 - (rail_cx[1] - 1.25), 30); // center strip: passenger rail + kitchen-left L-track
-    board_strip(kitchen_x0 + kitchen_box_width, 2, panel_width - (kitchen_x0 + kitchen_box_width), 30); // kitchen-right strip (1.5in band at the panel edge)
-    board_strip(0, 29, panel_width, aboard_bridge_d);             // full-width bridge, Y 29-35
+    // ONE comb-shaped piece: full-width bridge (Y 29-35) with three
+    // strips running back to Y 2 — driver rail line, a center strip
+    // (passenger rail + kitchen-left L-track) and the 1.5" band at
+    // the panel's passenger edge. All continuous, no wood joints.
+    t2_x0 = rail_cx[1] - 1.25;
+    t2_x1 = kitchen_x0 - 0.5;
+    t3_x0 = kitchen_x0 + kitchen_box_width;
+    board_poly([[0, 2], [2.5, 2], [2.5, 29],
+                [t2_x0, 29], [t2_x0, 2], [t2_x1, 2], [t2_x1, 29],
+                [t3_x0, 29], [t3_x0, 2], [panel_width, 2],
+                [panel_width, 29 + aboard_bridge_d], [0, 29 + aboard_bridge_d]]);
     ltrack(kitchen_x0 - 1.5, 3, 24);                              // L-track, kitchen-left (cabinet-gap) side
     ltrack(kitchen_x0 + kitchen_box_width + 0.25, 3, 24);         // L-track, kitchen-right side
     // kitchen tie-down D-rings (4, stud fittings in the L-track)
@@ -271,11 +287,11 @@ module drawing() {
         ["2", "Silver", "Exhaust fan (120mm) — blows INTO the open utility bay", str("X=", round((fridge_x0+fridge_ext_length)*100)/100, " Y=", round((fridge_ext_width/2)*10)/10, " Z=8.8"), "4x M4x20 machine screws, 105mm bolt circle, into a plywood fan ring"],
         ["3", "GreenYellow", "NTC temp sensor", str("X=", round((fridge_x0+fridge_ext_length-1.5)*100)/100, " Y=", round((fridge_ext_width/2-2.2)*10)/10, " Z=8.8"), "adhesive thermal pad or 1x #4 screw through its bracket tab"],
         ["4", "Black", "Control panel enclosure", str("X=", round(ctrl_x0*10)/10, "-", round((ctrl_x0+control_panel_width)*10)/10, " Y=~2 Z=6.5-12.5 — in the OPEN utility bay (no door: reach in)"), "backer board (3/4\" offcut) hung from the deck; 4x #8x1\" screws"],
-        ["5", "DimGray", "Anchor-board rail strips (x2, under the slide rails)", "mat + 3/4\" ply band on each rail line BESIDE the tray (side-mount) — the fixed rails' risers bolt to them", "1/4-20 machine screws into T-nuts from below — NO holes in the van (Section 8)"],
+        ["5", "DimGray", "Anchor-board rail strips (2 of the board's 3, under the slide rails)", "mat + 3/4\" ply band on each rail line BESIDE the tray (side-mount) — part of the ONE-piece board, not separate strips; the fixed rails' risers bolt to them", "1/4-20 machine screws into T-nuts from below — NO holes in the van (Section 8)"],
         ["6", "DimGray", "Kitchen tie-down: L-track + 4 stud D-rings", "on the board's kitchen-side strips (utility-bay gap + the 1.5\" band at the panel edge)", "4 ratchet straps (400lb WLL) criss-crossed over the top into the D-rings"],
         ["7", "Silver", "WAVE 3 hose/cord hook", "in the open bay — screwed up into the deck underside, kitchen side; bundle the hoses so nothing swings out", "1x heavy-duty hook, #8x1.5\" screw — stows hoses+cord when not in use"],
         ["8", "Firebrick", "Fridge hold-down strap D-rings (x2)", "tray side apron, near the tailgate end — hooks to the fridge's 2 end handles", "cam strap, snug not tight — secures fridge TO its tray (the anchor board secures the tray to the van); side profile in fridge-slide-detail"],
-        ["9", "DimGray", "Board bridge + 2 steel rail tongues", "full-width 3/4\" ply bridge at Y=29-35; 2\"x3/16\" flat bars run fwd and BOLT to the 2nd-row floor rails' rear ends (F8)", "forward restraint = steel-to-steel to the van's own seat rails, no new holes (fallback: butt the striker-row step, F7)"],
+        ["9", "DimGray", "Board bridge (same piece) + 2 steel rail tongues", "the board's full-width front edge at Y=29-35 — one continuous 46\"x33\" comb with the strips, NO joints; 2\"x3/16\" flat bars run fwd and BOLT to the 2nd-row floor rails' rear ends (F8)", "forward restraint = steel-to-steel to the van's own seat rails, no new holes (fallback: butt the striker-row step, F7)"],
         ["10", "Firebrick", "Striker straps (x3)", "bridge D-rings -> the 3rd-row seat striker loops, fwd of Panel C (crash-rated; position UNVERIFIED, F4)", "400lb WLL ratchet straps — rearward + lift restraint; re-tension after the first drive"],
     ];
     label_left("Component", list_x, panel_c_length - 1, 1.3);

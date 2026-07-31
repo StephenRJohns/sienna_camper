@@ -444,9 +444,12 @@ fridge_rail_stack   = fridge_rail_t + fridge_riser_t; // 1.0 per side, OUTBOARD 
 /* [No-drill anchor board — Section 8] */
 // The securing chassis: a rubber mat + 3/4in ply board (bridge + rail-
 // line strips) on the van floor, strapped to the 3rd-row striker loops.
-// Nothing bolts to the vehicle. Strip outlines are cut only after the
-// Section 0 F1-F7 floor survey (striker position ~46-50in from the
-// hatch is UNVERIFIED) — these drive the renders, not a cut list.
+// Nothing bolts to the vehicle. The board is ONE comb-shaped piece,
+// 46 x 33 overall — bridge and strips continuous, so there is no
+// ply-to-ply joinery (no glue, no lap screws; assembly sheet V1/V5).
+// Strip outlines are cut only after the Section 0 F1-F7 floor survey
+// (striker position ~46-50in from the hatch is UNVERIFIED) — these
+// drive the renders, not a cut list.
 aboard_mat_t = 0.1;   // non-slip rubber mat under every strip
 aboard_t     = 0.75;  // anchor board ply thickness
 aboard_top   = aboard_mat_t + aboard_t; // 0.85 — the riser/rail base plane

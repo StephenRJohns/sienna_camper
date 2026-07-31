@@ -63,6 +63,14 @@ figure {
     text-align: center;
     page-break-inside: avoid;
 }
+/* NOTE: do NOT add a blanket `img { max-width: 100% }` here as a
+   safety net for un-wrapped images. It interacts badly with the
+   percentage-width figure rules below and inflates the document by
+   ~38 pages (measured). Every render is 1200-1800px wide, i.e. 13-18in
+   at 96dpi, so an image that lands in neither a <figure> nor the
+   Component-banner rule WILL run off the right edge of the page —
+   the fix is to wrap it, not to cap it globally. */
+
 /* IMPORTANT: these are OpenSCAD-exported SVGs with tiny intrinsic
    physical sizes (OpenSCAD maps 1 model unit = 1mm, so a drawing
    spanning ~70 units is declared as width="70mm" ~= 2.76in). A
@@ -222,7 +230,9 @@ def main():
     # <figure> inside it (invalid HTML that Chrome silently mangles)
     for alt in ["Side profile", "Rear view",
                 "Fridge install detail", "Fridge wiring diagram", "Fridge slide detail",
-                "Kitchen drawer detail", "Seam draw-latch positioning"]:
+                "Kitchen drawer detail", "Seam draw-latch positioning",
+                "Anchor board — assembly and connection details",
+                "Anchor board — accessory install map and build order"]:
         html_body = re.sub(
             rf'<p><img alt="{re.escape(alt)}" src="([^"]+)"[^>]*/?></p>',
             rf'<figure><img src="\1"><figcaption>{alt}</figcaption></figure>',
@@ -249,7 +259,8 @@ def main():
     # larger, unbordered figures — find the paragraph containing each
     # image + the italic caption that follows and wrap them together
     html_body = re.sub(
-        r'<p>(<img alt="(?:Overhead floorplan|Whole vehicle overview)" src="[^"]+"[^>]*/?>)</p>\s*'
+        r'<p>(<img alt="(?:Overhead floorplan|Whole vehicle overview'
+        r'|No-drill anchor platform — overhead detail)" src="[^"]+"[^>]*/?>)</p>\s*'
         r'<p><em>(.*?)</em></p>',
         r'<figure class="floorplan-figure">\1<figcaption>\2</figcaption></figure>',
         html_body,

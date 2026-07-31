@@ -52,12 +52,20 @@ module label_left(txt, x, y, size = 1.1) {
 // anchor-board piece: outline + diagonal section hatch (line art —
 // same technique as fridge_install_detail.scad)
 module board_piece(x0, y0, w, l) {
+    board_poly([[x0, y0], [x0 + w, y0], [x0 + w, y0 + l], [x0, y0 + l]]);
+}
+
+// the board is ONE comb-shaped piece, so its outline is a single
+// polygon — no internal butt lines between the bridge and the strips
+module board_poly(pts) {
+    xs = [for (p = pts) p[0]];  ys = [for (p = pts) p[1]];
+    x0 = min(xs); y0 = min(ys); w = max(xs) - x0; l = max(ys) - y0;
     color("Peru") difference() {
-        translate([x0, y0]) square([w, l]);
-        translate([x0 + 0.15, y0 + 0.15]) square([w - 0.3, l - 0.3]);
+        polygon(pts);
+        offset(delta = -0.15) polygon(pts);
     }
     color("Tan") intersection() {
-        translate([x0 + 0.3, y0 + 0.3]) square([w - 0.6, l - 0.6]);
+        offset(delta = -0.3) polygon(pts);
         union() {
             for (d = [2 : 4 : w + l])
                 translate([x0, y0 + d]) rotate(-45) square([(w + l) * 1.5, 0.1]);
@@ -121,11 +129,17 @@ module drawing() {
     label("(bare van floor under", kitchen_x0 + kitchen_box_width/2, 8.6, 0.85);
     label("it — no board)", kitchen_x0 + kitchen_box_width/2, 7.4, 0.85);
 
-    // ---- the anchor board: 4 strips + full-width bridge ----
-    board_piece(0, 2, 2.5, 30);                                                  // driver rail-line strip
-    board_piece(rail_cx[1] - 1.25, 2, kitchen_x0 - 0.5 - (rail_cx[1] - 1.25), 30); // center strip (rail + utility-bay gap)
-    board_piece(kitchen_x0 + kitchen_box_width, 2, panel_width - (kitchen_x0 + kitchen_box_width), 30); // kitchen-right strip
-    board_piece(0, 29, panel_width, aboard_bridge_d);                            // full-width bridge, Y 29-35
+    // ---- the anchor board: ONE comb-shaped piece of 3/4" ply ----
+    // full-width bridge (Y 29-35) with three strips running back to
+    // Y 2 — all continuous, cut from a single 46"x33" blank (no wood
+    // joints; assembly sheet V1/V5)
+    t2_x0 = rail_cx[1] - 1.25;                                     // 19.35 — center strip (rail + utility-bay gap)
+    t2_x1 = kitchen_x0 - 0.5;                                      // 24.0
+    t3_x0 = kitchen_x0 + kitchen_box_width;                        // 44.5 — kitchen-right strip
+    board_poly([[0, 2], [2.5, 2], [2.5, 29],                       // driver rail-line strip
+                [t2_x0, 29], [t2_x0, 2], [t2_x1, 2], [t2_x1, 29],
+                [t3_x0, 29], [t3_x0, 2], [panel_width, 2],
+                [panel_width, 29 + aboard_bridge_d], [0, 29 + aboard_bridge_d]]);
     // kitchen tie-down D-rings (stud fittings in the strips' L-track)
     for (kx = [kitchen_x0 - 1, kitchen_x0 + kitchen_box_width + 0.75])
         for (ky = [4, 25]) dring_icon(kx, ky);
@@ -194,7 +208,9 @@ module drawing() {
     readme = [
         ["READ ME — what this platform is (Section 8):", 1.25, "black"],
         ["A skeleton of 3/4\" plywood on a non-slip rubber mat, laid on the van floor:", 1.1, "black"],
-        ["one full-width BRIDGE + 4 narrow STRIPS (the hatched shapes above).", 1.1, "black"],
+        ["ONE comb-shaped piece — a full-width BRIDGE with 3 narrow STRIPS running back", 1.1, "black"],
+        ["from it (the hatched shape above), cut from a single 46\"x33\" blank. There are", 1.1, "black"],
+        ["NO joints in it: nothing is glued or screwed to another piece of ply.", 1.1, "black"],
         ["It is NOT a full plywood floor — nothing sits under the fridge tray or the", 1.1, "black"],
         ["kitchen unit; the van floor there stays bare.", 1.1, "black"],
         ["", 1.1, "black"],

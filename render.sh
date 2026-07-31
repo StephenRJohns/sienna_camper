@@ -60,6 +60,10 @@ echo "Rendering anchor board assembly & connection details..."
 openscad -o renders/anchor-board-assembly.svg anchor_board_assembly.scad
 openscad -o renders/anchor-board-assembly.png $IMG $FLAT_CAM anchor_board_assembly.scad
 
+echo "Rendering anchor board accessory install map (A-G) + build order..."
+openscad -o renders/anchor-board-install.svg anchor_board_install.scad
+openscad -o renders/anchor-board-install.png $IMG $FLAT_CAM anchor_board_install.scad
+
 echo "Rendering fridge wiring diagram..."
 openscad -o renders/fridge-wiring.svg fridge_wiring.scad
 openscad -o renders/fridge-wiring.png $IMG $FLAT_CAM fridge_wiring.scad

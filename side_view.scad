@@ -93,7 +93,7 @@ module side_view() {
     // mat + 3/4" ply strips under Panel C's appliance zone, the
     // steel rail tongue running forward under Panel B to bolt to
     // the 2nd-row floor rail's rear end (ASSUMED position — F8)
-    translate([y_panel_c + 4, 0.1]) rect_outline(30, 0.75, 0.15);              // board strips + bridge band
+    translate([y_panel_c + 1, 0.1]) rect_outline(33, 0.75, 0.15);              // the one-piece board, full 33" fore-aft run (strips + bridge, continuous)
     translate([y_panel_c - 8, 0.1]) rect_outline(11.5, 0.35, 0.1);             // steel rail tongue, fwd under Panel B
     translate([y_panel_c - 10.2, 0]) rect_outline(2.2, 1.1, 0.15);             // floor rail's rear end
     dashed_line(y_panel_b + 2, y_panel_c - 10.2, 0.45);                        // rail continues fwd (carriages parked at the front)

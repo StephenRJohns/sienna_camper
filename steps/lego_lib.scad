@@ -64,6 +64,23 @@ module wbox(pos, size, off2d = [0, 0], ctx = false) {
     }
 }
 
+// opaque white part with edges, for a part whose footprint ISN'T a
+// rectangle (the anchor board is one comb-shaped piece of ply, so it
+// has to draw as a single outline with no internal butt lines)
+module wprism(pts, z0, h, off2d = [0, 0], ctx = false) {
+    n = len(pts);
+    translate(off2d) {
+        ifill("White") translate([0, 0, z0]) linear_extrude(h) polygon(pts);
+        ifill(ctx ? EDGE_CTX : INK) translate([0, 0, z0]) {
+            r = ctx ? 0.11 : 0.16;
+            for (z = [0, h]) for (i = [0 : n - 1])
+                rod3([pts[i][0], pts[i][1], z],
+                     [pts[(i + 1) % n][0], pts[(i + 1) % n][1], z], r);
+            for (p = pts) rod3([p[0], p[1], 0], [p[0], p[1], h], r);
+        }
+    }
+}
+
 module orient(v) { // align +Z with v
     lv = norm(v);
     rotate([0, acos(v[2] / lv), atan2(v[1], v[0])]) children();
