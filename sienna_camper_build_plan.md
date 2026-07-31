@@ -10,27 +10,113 @@ Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat 
 
 ### The van (once the 2nd row is physically out)
 
-![Measurement guide: the van](renders/measurement-van.svg)
+**Reading these drawings.** Same format as the rear-floor survey below: each measurement gets its own plan of the whole Sienna — **front at the left, tailgate at the right**, driver side along the bottom — with **only that measurement drawn in red** and tagged (V6a, V6b, ...). Those tags match the blank lines under each drawing one-for-one. Several of these are not plan dimensions at all — interior height, the gate opening, wall-to-wall width up at platform height, floor slope — so those sections carry an **elevation or section inset**, and the plan just shows where it is taken. Fore-aft distances all work from the **closed hatch**, the same datum the survey uses.
 
-| # | Measure | Goes in `params.scad` as | Current estimate | Your measurement |
-|---|---|---|---|---|
-| 1 | Interior length, closed hatch to front seatbacks | `van_interior_length` | 96" — UNVERIFIED | |
-| 2 | Interior width, between wheel wells | `van_interior_width` | 48.5" — already verified | |
-| — | Interior height, floor to headliner | `van_interior_height` | 44" — already verified | |
-| 3 | Vent intrusion width, each side (floor level) | `vent_intrusion_width` | 2.5" — already verified | |
-| 4 | Hatch curvature clearance | `hatch_curvature_clearance` | 2" — already verified | |
-| 5 | Gate opening width — the narrowest point, not the widest | `gate_opening_width` | 48" — UNVERIFIED | |
-| — | Interior wall-to-wall width at ~18.5" AND ~22.5" above the floor, along the whole 80" sleeping run | gates `bed_frame_width` (52" platform needs >=53" at platform height — the 48.5" figure is the FLOOR pinch between the wheel wells; the walls are wider up here) | — UNVERIFIED, the platform-width gate | |
-| 6 | Gate opening height — where the rounded corners start cutting in | `gate_opening_height` | 36" — UNVERIFIED | |
-| 7 | Side door opening width (fore-aft span) | `side_door_opening_width` | 40" — UNVERIFIED | |
-| 8 | Side door opening height | `side_door_opening_height` | 40" — UNVERIFIED | |
-| — | Rear 12V accessory outlet — exact position | (no longer used by this design — the fridge and fan system now run off the DELTA 3 stack instead, Section 1. Informational only, not a blocker.) | — | |
-| — | Front console AC outlet — wattage rating | (Section 1/7 — drives the DELTA 3's AC charge rate and the cooktop's power check) | **1500W — VERIFIED** | 1500W |
-| ✔ | AC outlets — **VERIFIED: 2 total, both fed by the one 1500W inverter.** Front: center console. Rear: **passenger-side rear quarter trim — ~9.5" above the cargo floor, ~10" forward of the liftgate scuff plate, socket center ~16" laterally in from the right sidewall; directly above the 12V battery access panel, below the rear cup holders.** NEW verify item: confirm the quarter trim (cup holders) doesn't intrude inboard of the 46" deck width at deck height near that corner | (Section 5 — cooktop + Power strip 1 plug into the rear outlet via a 2-way tap; DELTA 3 charging has the front outlet; all share the one 1500W inverter budget) | — | |
-| — | Folded 3rd-row well depth | (confirms `leg_height` — 17" on Panel C, fridge-driven; A/B legs are 16.25", deck recess — actually clears it) | — | |
-| — | Factory sunroof present? Opening size if so | (only relevant if you pursue a roof vent later) | — | |
-| 9 | Cargo floor level — does it slope front-to-back, or is it flat? | (not currently modeled — every module's 4 legs are the same `leg_height`, which only gives a level deck if the floor itself is level) | assumed flat — UNVERIFIED | |
-| — | Side sliding door — usable clear width AND height at the door's actual stopping point, not just the rough opening | `side_door_opening_width` / `side_door_opening_height` | 40" / 40" — UNVERIFIED (see the reachability note in Section 1 — this number decides whether the DELTA 3 stack stays in Panel A or needs to move) | |
+#### V1 — Interior length — closed hatch to front seatbacks *(was row #1)*
+
+![Van measurement V1 — interior length](renders/vanmeas-v1.svg)
+
+- **Measure:** The interior length along the floor, from the closed hatch to the front seatbacks.
+- **Feeds:** `van_interior_length` — the number the whole panel train is sized against: Panel A + B + C fill it exactly, so if it comes back short, every panel shrinks.
+- **Current estimate:** 96" — UNVERIFIED
+- **Your measurement**, **V1** — hatch to seatbacks: ______________________
+
+#### V2 — Interior width — between the wheel wells *(was row #2)*
+
+![Van measurement V2 — interior width](renders/vanmeas-v2.svg)
+
+- **Measure:** The width at the floor, at its narrowest point between the two wheel wells — not at a wider spot fore or aft of them.
+- **Feeds:** `van_interior_width` — every 46"-wide panel and the 48.5" envelope come off this.
+- **Current estimate:** 48.5" — already verified (reconfirm)
+- **Your measurement**, **V2** — floor pinch, wheel well to wheel well: ______________________
+
+#### V3 — Interior height — floor to headliner *(was row #3)*
+
+![Van measurement V3 — interior height](renders/vanmeas-v3.svg)
+
+- **Measure:** Cargo floor up to the headliner, taken at the sleeping run rather than at the tailgate where the roof drops away.
+- **Feeds:** `van_interior_height` — caps the whole stack: deck + mattress + sitting headroom.
+- **Current estimate:** 44" — already verified (reconfirm)
+- **Your measurement**, **V3** — floor to headliner: ______________________
+
+#### V4 — Vent intrusion width, each side, at floor level *(was row #4)*
+
+![Van measurement V4 — vent intrusion](renders/vanmeas-v4.svg)
+
+- **Measure:** How far the floor vent / trim kick eats into the usable width down at floor level. One measurement per side. The deck may overhang it, but a **leg may not stand on it**.
+- **Feeds:** `vent_intrusion_width` — drives `leg_inset`.
+- **Current estimate:** 2.5" per side — already verified
+- **Your measurement**, **V4a** — driver side: ______________________
+- **Your measurement**, **V4b** — passenger side: ______________________
+
+#### V5 — Hatch curvature clearance *(was row #5)*
+
+![Van measurement V5 — hatch curvature](renders/vanmeas-v5.svg)
+
+- **Measure:** How far forward of the closed hatch you have to stop building, because the glass and trim curve inward above the floor.
+- **Feeds:** `hatch_curvature_clearance` — it is why the panels total 94", not 96".
+- **Current estimate:** 2" — already verified
+- **Your measurement**, **V5** — hatch to the usable boundary: ______________________
+
+#### V6 — The gate (tailgate) opening — width and height *(was row #6)*
+
+![Van measurement V6 — gate opening](renders/vanmeas-v6.svg)
+
+- **Measure:** Standing at the open hatch: the opening's width at its **narrowest** point, and its height **where the rounded corners start cutting in** — not the widest or tallest point of either.
+- **Feeds:** `gate_opening_width` / `gate_opening_height` — these gate what can physically pass into the van at all.
+- **Current estimate:** 48" / 36" — both UNVERIFIED
+- **Your measurement**, **V6a** — narrowest width: ______________________
+- **Your measurement**, **V6b** — height where the corner radius starts: ______________________
+
+#### V7 — Wall-to-wall width up at platform height
+
+![Van measurement V7 — wall-to-wall at platform height](renders/vanmeas-v7.svg)
+
+- **Measure:** Interior wall-to-wall width at **~18.5"** and **~22.5"** above the floor, taken at several points along the whole 80" sleeping run. The 48.5" figure is the *floor* pinch between the wheel wells; the walls flare wider up here, which is what lets a 52" platform fit at all.
+- **Feeds:** Gates `bed_frame_width` — the 52" platform needs **≥53"** at platform height.
+- **Current estimate:** — UNVERIFIED, and the platform-width gate
+- **Your measurement**, **V7a** — at ~18.5" above the floor: ______________________
+- **Your measurement**, **V7b** — at ~22.5" above the floor: ______________________
+
+#### V8 — The side sliding door opening *(was row #7)*
+
+![Van measurement V8 — side door opening](renders/vanmeas-v8.svg)
+
+- **Measure:** The door opening's fore-aft width and its height — and the one that actually matters, the **usable clear** width and height at the door's real stopping point, not the rough opening.
+- **Feeds:** `side_door_opening_width` / `side_door_opening_height` — decides whether the DELTA 3 stack stays in Panel A or has to move (see the reachability note in Section 1).
+- **Current estimate:** 40" / 40" — both UNVERIFIED
+- **Your measurement**, **V8a** — fore-aft width: ______________________
+- **Your measurement**, **V8b** — height: ______________________
+- **Your measurement**, **V8c** — usable clear at the door's actual stop: ______________________
+
+#### V9 — The two AC outlets
+
+![Van measurement V9 — AC outlets](renders/vanmeas-v9.svg)
+
+- **Measure:** **VERIFIED: 2 outlets total, both fed by the one 1500W inverter**, so they share a single power budget. Front: centre console. Rear: passenger-side rear quarter trim — ~9.5" above the cargo floor, ~10" forward of the liftgate scuff plate, socket centre ~16" laterally in from the right sidewall, directly above the 12V battery access panel and below the rear cup holders.
+- **Feeds:** Section 5/7 — the cooktop and Power strip 1 tap the rear outlet; DELTA 3 charging has the front one. Section 1/7 uses the 1500W rating for the DELTA 3's charge rate and the cooktop check.
+- **Current estimate:** front 1500W — VERIFIED; rear position — VERIFIED
+- **Your measurement**, **V9a** — front console outlet — wattage rating: ______________________
+- **Your measurement**, **V9b** — rear outlet position (confirmed above): ______________________
+- **Your measurement**, **NEW check:** does the quarter trim / cup holder intrude inboard of the 46" deck width at deck height near that corner?: ______________________
+
+#### V10 — Cargo floor level — flat, or sloped front-to-back? *(was row #9)*
+
+![Van measurement V10 — cargo floor level](renders/vanmeas-v10.svg)
+
+- **Measure:** Lay a long level along the run and check at several stations. Nothing in the model accounts for a slope: every module's four legs are one length, which only gives a level deck if the floor itself is level.
+- **Feeds:** Not currently a param — a slope means per-leg shimming rather than one `leg_height`.
+- **Current estimate:** assumed flat — UNVERIFIED
+- **Your measurement**, **V10** — level, or slope over what run?: ______________________
+
+#### Also worth noting while you are in there — no drawing needed
+
+- **Folded 3rd-row well depth.** Already covered by **F3b** in the rear-floor survey below, which
+  measures the same well. It confirms `leg_height` (17" on Panel C, fridge-driven; Panel A/B legs
+  are 16.25" with the deck recess — that clears it).
+- **Rear 12V accessory outlet — exact position.** Informational only, **not a blocker**: this
+  design no longer uses it. The fridge and fan system run off the DELTA 3 stack instead (Section 1).
+- **Factory sunroof — present? opening size?** Only relevant if you later pursue a roof vent.
 
 ### The fridge (BougeRV) and kitchen unit (JAGAHAHA), once purchased
 
@@ -73,7 +159,7 @@ Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat 
 
 ![Survey F2 — well edges, fore-aft](renders/survey-f2.svg)
 
-- **Measure / check:** Where the stowage well's rear and forward edges sit, both measured from the closed hatch (the same Y datum as measurement #1).
+- **Measure / check:** Where the stowage well's rear and forward edges sit, both measured from the closed hatch (the same fore-aft datum as V1).
 - **Feeds:** The board's strip lengths, and where filler blocking starts and stops.
 - **Current assumption:** —
 - **Your finding**, **F2a** — hatch -> well's REAR edge: ______________________

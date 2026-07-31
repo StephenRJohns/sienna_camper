@@ -43,9 +43,9 @@ def normalize(path: Path) -> None:
 
 def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else "renders")
-    paths = sorted(root.glob("survey-f*.png"))
+    paths = sorted(list(root.glob("survey-f*.png")) + list(root.glob("vanmeas-v*.png")))
     if not paths:
-        print(f"no survey-f*.png under {root}", file=sys.stderr)
+        print(f"no survey-f*.png / vanmeas-v*.png under {root}", file=sys.stderr)
         return 1
     print(f"normalizing {len(paths)} survey key maps to {SIZE[0]}x{SIZE[1]}:")
     for p in paths:

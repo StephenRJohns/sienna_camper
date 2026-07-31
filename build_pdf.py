@@ -244,7 +244,7 @@ def main():
     # matched by pattern rather than listed, so adding a survey section
     # doesn't need a change here. Full page width: they're ~1.45:1.
     html_body = re.sub(
-        r'<p><img alt="(Survey F\d[^"]*)" src="([^"]+)"[^>]*/?></p>',
+        r'<p><img alt="((?:Survey F|Van measurement V)\d[^"]*)" src="([^"]+)"[^>]*/?></p>',
         r'<figure><img src="\2"><figcaption>\1</figcaption></figure>',
         html_body,
     )

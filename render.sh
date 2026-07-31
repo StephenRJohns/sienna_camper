@@ -68,6 +68,12 @@ for n in $(seq 1 8); do
     openscad -o "renders/survey-f${n}.png" --imgsize=2000,1400 $FLAT_CAM -D "key=${n}" floor_survey_keys.scad
 done
 
+echo "Rendering van-measurement plans (V1-V10, one per measurement section)..."
+for n in $(seq 1 10); do
+    openscad -o "renders/vanmeas-v${n}.svg" -D "key=${n}" van_measure_keys.scad
+    openscad -o "renders/vanmeas-v${n}.png" --imgsize=2000,1400 $FLAT_CAM -D "key=${n}" van_measure_keys.scad
+done
+
 echo "Rendering anchor board accessory install map (A-G) + build order..."
 openscad -o renders/anchor-board-install.svg anchor_board_install.scad
 openscad -o renders/anchor-board-install.png $IMG $FLAT_CAM anchor_board_install.scad
@@ -142,8 +148,8 @@ echo "Rendering measurement guides..."
 # would still capture everything at the standard $IMG size, just at
 # lower detail for content this narrow-and-tall.
 TALL_IMG="--imgsize=2500,4700"
-openscad -o renders/measurement-van.svg measurement_van.scad
-openscad -o renders/measurement-van.png $TALL_IMG $FLAT_CAM measurement_van.scad
+# measurement_van.scad's combined TOP/REAR/SIDE guide is superseded by the
+# per-section V1-V10 plans above; the source stays on disk, unrendered.
 openscad -o renders/measurement-fridge-kitchen.svg measurement_fridge_kitchen.scad
 openscad -o renders/measurement-fridge-kitchen.png $TALL_IMG $FLAT_CAM measurement_fridge_kitchen.scad
 
