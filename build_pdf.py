@@ -56,6 +56,10 @@ th, td {
     text-align: left;
     vertical-align: top;
 }
+/* per-row key maps in the F1-F8 rear-floor survey table's Diagram
+   column. Scoped to the class on purpose: a blanket img width rule
+   here wrecks the pagination (see the note in the figure section). */
+.survey-key { display: block; width: 0.95in; height: auto; }
 th { background: #eaf0f6; font-weight: 600; }
 tr:nth-child(even) td { background: #f7f9fb; }
 figure {
