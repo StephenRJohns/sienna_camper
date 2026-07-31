@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Normalize the F1-F8 survey key-map PNGs to one common scale.
+"""Normalize the F1-F8 rear-floor survey plan PNGs to one common scale.
 
 Why this exists: OpenSCAD's `--viewall` zooms 2D geometry inconsistently
 between runs even when the model extents are identical (the SVG exports
-all declare the same 46x52 viewBox, but the PNG previews come out at
-scales differing by up to 1.4x). The thumbnails sit side by side down a
-table column, so an inconsistent scale is immediately visible.
+all declare the same sheet viewBox, but the PNG previews came out at
+scales differing by up to 1.4x). The eight drawings are the same vehicle seen
+in consecutive sections, so an inconsistent scale is immediately visible.
 
 The SVG exports can't be used instead: OpenSCAD's SVG backend discards
 color(), and these maps depend on red to mark the measurement.
 
-Every key draws the same full-zone outline as its outermost ink, so each
+Every key draws the same sheet border as its outermost ink, so each
 PNG's content bounding box IS that outline. Cropping to it and resizing
 every image to identical pixel dimensions therefore makes the drawing
 scale identical too.
@@ -23,8 +23,8 @@ from pathlib import Path
 
 from PIL import Image
 
-SIZE = (460, 520)   # 46 x 52 model units at 10 px/unit
-MARGIN = 8          # uniform transparent margin, in output pixels
+SIZE = (1840, 1264)  # the 230 x 158 sheet at 8 px/unit
+MARGIN = 6           # uniform transparent margin, in output pixels
 
 
 def normalize(path: Path) -> None:

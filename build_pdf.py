@@ -56,10 +56,7 @@ th, td {
     text-align: left;
     vertical-align: top;
 }
-/* per-row key maps in the F1-F8 rear-floor survey table's Diagram
-   column. Scoped to the class on purpose: a blanket img width rule
-   here wrecks the pagination (see the note in the figure section). */
-.survey-key { display: block; width: 0.95in; height: auto; }
+h4 { font-size: 11pt; color: #26496b; margin: 14pt 0 4pt 0; }
 th { background: #eaf0f6; font-weight: 600; }
 tr:nth-child(even) td { background: #f7f9fb; }
 figure {
@@ -242,6 +239,15 @@ def main():
             rf'<figure><img src="\1"><figcaption>{alt}</figcaption></figure>',
             html_body,
         )
+
+    # the 8 rear-floor survey plans (Section 0, one per F1-F8 section) —
+    # matched by pattern rather than listed, so adding a survey section
+    # doesn't need a change here. Full page width: they're ~1.45:1.
+    html_body = re.sub(
+        r'<p><img alt="(Survey F\d[^"]*)" src="([^"]+)"[^>]*/?></p>',
+        r'<figure><img src="\2"><figcaption>\1</figcaption></figure>',
+        html_body,
+    )
 
     # measurement guides are much taller than wide (3 stacked
     # sub-views each) — full page WIDTH would make them many pages

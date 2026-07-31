@@ -60,12 +60,12 @@ echo "Rendering anchor board assembly & connection details..."
 openscad -o renders/anchor-board-assembly.svg anchor_board_assembly.scad
 openscad -o renders/anchor-board-assembly.png $IMG $FLAT_CAM anchor_board_assembly.scad
 
-echo "Rendering rear-floor survey key maps (F1-F8, one per table row)..."
-# Small overhead thumbnails for the Section 0 survey table's Diagram
-# column: same base floorplan each time, measurement picked out in red.
+echo "Rendering rear-floor survey plans (F1-F8, one per survey section)..."
+# Whole-vehicle plan per Section 0 survey section: same base floorplan
+# each time, that section's measurement picked out in red.
 for n in $(seq 1 8); do
     openscad -o "renders/survey-f${n}.svg" -D "key=${n}" floor_survey_keys.scad
-    openscad -o "renders/survey-f${n}.png" --imgsize=520,640 $FLAT_CAM -D "key=${n}" floor_survey_keys.scad
+    openscad -o "renders/survey-f${n}.png" --imgsize=2000,1400 $FLAT_CAM -D "key=${n}" floor_survey_keys.scad
 done
 
 echo "Rendering anchor board accessory install map (A-G) + build order..."
@@ -216,7 +216,7 @@ done
 echo "Stripping default PNG background to transparent..."
 python3 make_bg_transparent.py renders >/dev/null
 
-echo "Normalizing the F1-F8 survey key maps to one common scale..."
+echo "Normalizing the F1-F8 survey plans to one common scale..."
 # OpenSCAD's --viewall zooms these 8 inconsistently; they sit in a table
 # column together, so the scale has to be forced. See the script's docstring.
 python3 normalize_survey_keys.py renders

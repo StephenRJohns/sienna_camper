@@ -58,18 +58,80 @@ Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat 
 
 **The problem (owner, July 2026, from a photo of the actual cargo area):** the rearmost stretch of the Sienna — exactly where Panel C, the fridge slide, and the kitchen unit live — is not plain sheet-metal floor. It's the 3rd-row stowage area: a **deep cargo well** the folded seatbacks drop into, so much of the "floor" back there is actually **folded seatback over a void**, plus the seats' own latch/hinge hardware and (passenger rear corner) the hybrid's 12V battery access panel. Section 8's no-drill securing design — an anchor board bearing on this surface, steel tongues bolted to the rear ends of the 2nd-row floor rails (fallback: butting the striker-row step), straps into the 3 striker loops — needs the same geography mapped before its outline can be cut: where the surface is solid, where the well and its edges are, exactly where the strikers and the rail ends sit, and what Panel C's legs land on. Do the whole survey with the 3rd row folded exactly as it will sit in camper mode and the 2nd-row carriages parked fully forward. (The old version of this checklist gated 16 drilled floor-pan holes; the drilling is gone, and with it the under-van fuel/brake-line clearance crawl.)
 
-**Reading the Diagram column:** every thumbnail is the same overhead of this zone — **tailgate at the bottom** (the heavy black bar is the closed hatch, the Y = 0 datum), forward at the top. In thin gray: Panel C's footprint (dashed box, Y 0–36), the stowage well, the 3rd-row striker row with its 3 loops, and the 2nd-row floor rails running forward from their rear ends. **Everything that row asks you to measure is picked out in red** — a double-headed red arrow is a dimension to take, and a pair of red section marks (▲▲) means that dimension is a *depth or height*, so it comes off a cut, not off the plan view. The gray features are drawn at their ASSUMED positions; confirming them is what this table is for.
+**Reading these drawings.** Each measurement below gets its own drawing of the whole vehicle in plan, so you can see where in the van you are working. All eight are the same base plan — **front at the left, tailgate at the right**, driver side along the bottom — showing the body outline, the front seats, the empty 2nd-row bay with its long-slide floor rails, the folded 3rd row over its stowage well, and Panel C's footprint. **Only that section's measurement is drawn in red**, tagged to match its lettered dimensions (F4a, F4b and so on). F3 and F7 add a small section inset, because a depth and a step height cannot be shown in plan; F8 adds three detail bubbles for the rail-end cases you have to tell apart. The body outline is illustrative, and every dashed interior feature is drawn at its ASSUMED position — confirming those is the entire point of this survey.
 
-| # | Diagram | Measure / check | Feeds | Current assumption | Your finding |
-|---|---|---|---|---|---|
-| F1 | <img class="survey-key" src="renders/survey-f1.svg" alt="F1 key map: what to measure, overhead"> | With the 3rd row folded flat, map the load surface: press/knock along the whole Panel C footprint and mark (masking tape) where it's **folded SEATBACK**, where it's the **well/tub** (hollow underneath), and where it's **carpet over solid pan** | Where the anchor board's strips can bear solidly, and where they'd need filler blocking | assumed usable as-is — UNVERIFIED | |
-| F2 | <img class="survey-key" src="renders/survey-f2.svg" alt="F2 key map: what to measure, overhead"> | Fore-aft position of the stowage well: where its front and rear edges sit, measured from the closed hatch (same Y datum as measurement #1) | The board's strip lengths, and where filler blocking starts/stops | — | |
-| F3 | <img class="survey-key" src="renders/survey-f3.svg" alt="F3 key map: what to measure, overhead"> | Well depth below the surrounding load floor, and its width | Sizing the filler blocking that carries a board strip across the well down to its structural bottom | — | |
-| F4 | <img class="survey-key" src="renders/survey-f4.svg" alt="F4 key map: what to measure, overhead"> | The 3rd-row striker row: each loop's fore-aft distance from the hatch and lateral position, loop inside clearance (strap hook must seat), and whether the FOLDED seatbacks leave all 3 loops exposed and hookable | Section 8's striker straps + the steel tongues' length (assumed striker row ~46–50" from the hatch → ~10–14" tongues) — the strikers are confirmed PRESENT (photo, July 2026) but not yet measured | ~46–50" from hatch — UNVERIFIED | |
-| F5 | <img class="survey-key" src="renders/survey-f5.svg" alt="F5 key map: what to measure, overhead"> | Where Panel C's 4 legs and the kitchen unit's footprint actually bear: solid floor, or folded seatback (springy — a deck leg on seat cushion won't sit level or solid)? | `leg_height`, deck levelness, kitchen strap-down | — | |
-| F6 | <img class="survey-key" src="renders/survey-f6.svg" alt="F6 key map: what to measure, overhead"> | Does a solid bearing surface require REMOVING the 3rd row rather than folding it? If so: does the 3rd row carry its own SRS/seatbelt-pretensioner wiring? | Section 9 covers 2nd-row removal only — a 3rd-row removal procedure (and possibly more emulators) would be NEW scope. Removal would also expose the 3rd row's own seat-mount bolts as bolt-in anchor-plate hardpoints (no new holes) — the strongest points in the zone if the striker plan needs help | assumed fold-only — UNVERIFIED | |
-| F7 | <img class="survey-key" src="renders/survey-f7.svg" alt="F7 key map: what to measure, overhead"> | The step/riser at the striker row: is there a square, hard vertical face (metal under the trim?) for Section 8's two steel tongues to butt against, and how tall is it? | The FALLBACK forward load path (compression bearing) if F8 rules the rail ends out | assumed hard step at the striker row — UNVERIFIED | |
-| F8 | <img class="survey-key" src="renders/survey-f8.svg" alt="F8 key map: what to measure, overhead"> | The 2nd-row long-slide floor rails, with the seat carriages parked fully forward: where do the rails' REAR ends sit (distance from the hatch, lateral spacing), and what's at each end — an end cap that unclips, exposed track bolt heads, an open track slot, a lip a clamp plate could grab? Photograph the end hardware close-up | Section 8's PRIMARY forward connection: the anchor board's 2 steel tongues bolt/clamp to these rail ends (no new holes) — this measurement decides the bracket detail and tongue length | assumed the rail ends reach the striker-row zone — UNVERIFIED | |
+#### F1 — Map the load surface into its three zones
+
+![Survey F1 — load-surface map](renders/survey-f1.svg)
+
+- **Measure / check:** With the 3rd row folded flat, map the load surface: press and knock along the whole Panel C footprint and mark with masking tape where it is **folded SEATBACK**, where it is the **well/tub** (hollow underneath), and where it is **carpet over solid pan**.
+- **Feeds:** Where the anchor board's strips can bear solidly, and where they would need filler blocking.
+- **Current assumption:** assumed usable as-is — UNVERIFIED
+- **Your finding:** ______________________
+
+#### F2 — Fore-aft position of the stowage well
+
+![Survey F2 — well edges, fore-aft](renders/survey-f2.svg)
+
+- **Measure / check:** Where the stowage well's rear and forward edges sit, both measured from the closed hatch (the same Y datum as measurement #1).
+- **Feeds:** The board's strip lengths, and where filler blocking starts and stops.
+- **Current assumption:** —
+- **Your finding:** ______________________
+
+#### F3 — The well's width, and its depth
+
+![Survey F3 — well width and depth](renders/survey-f3.svg)
+
+- **Measure / check:** The well's width across the van, and its depth below the surrounding load floor.
+- **Feeds:** Sizing the filler blocking that carries a board strip across the well, down to its structural bottom.
+- **Current assumption:** —
+- **Your finding:** ______________________
+
+#### F4 — The 3rd-row striker loops
+
+![Survey F4 — striker loops](renders/survey-f4.svg)
+
+- **Measure / check:** For each of the 3 loops: its fore-aft distance from the hatch, its lateral position, and its inside clearance (a strap hook has to seat in it). Also whether the FOLDED seatbacks leave all 3 loops exposed and hookable.
+- **Feeds:** Section 8's striker straps plus the steel tongues' length (assumed striker row ~46–50" from the hatch → ~10–14" tongues).
+- **Current assumption:** ~46–50" from hatch — UNVERIFIED. The strikers are confirmed PRESENT (photo, July 2026) but not yet measured.
+- **Your finding:** ______________________
+
+#### F5 — What Panel C's legs and the kitchen bear on
+
+![Survey F5 — leg and kitchen bearing points](renders/survey-f5.svg)
+
+- **Measure / check:** Where Panel C's 4 legs and the kitchen unit's footprint actually bear: solid floor, or folded seatback? A deck leg standing on a seat cushion is springy — it will not sit level or solid.
+- **Feeds:** `leg_height`, deck levelness, and the kitchen unit's strap-down.
+- **Current assumption:** —
+- **Your finding:** ______________________
+
+#### F6 — Fold the 3rd row, or remove it?
+
+![Survey F6 — fold vs remove the 3rd row](renders/survey-f6.svg)
+
+- **Measure / check:** Does a solid bearing surface require REMOVING the 3rd row rather than folding it? If so, does the 3rd row carry its own SRS / seatbelt-pretensioner wiring?
+- **Feeds:** Section 9 covers 2nd-row removal only — a 3rd-row removal procedure (and possibly more emulators) would be NEW scope. Removal would also expose the 3rd row's own seat-mount bolts as bolt-in anchor-plate hardpoints (no new holes) — the strongest points in the zone if the striker plan needs help.
+- **Current assumption:** assumed fold-only — UNVERIFIED
+- **Your finding:** ______________________
+
+#### F7 — The step/riser at the striker row
+
+![Survey F7 — step/riser at the striker row](renders/survey-f7.svg)
+
+- **Measure / check:** Is there a square, hard vertical face at the step by the striker row (metal under the trim?) for Section 8's two steel tongues to butt against — and how tall is it?
+- **Feeds:** The FALLBACK forward load path, in compression, if F8 rules the rail ends out.
+- **Current assumption:** assumed hard step at the striker row — UNVERIFIED
+- **Your finding:** ______________________
+
+#### F8 — The 2nd-row rails' rear ends
+
+![Survey F8 — 2nd-row rail rear ends](renders/survey-f8.svg)
+
+- **Measure / check:** With the seat carriages parked fully forward: where do the rails' REAR ends sit (distance from the hatch, lateral spacing), and what is at each end — an end cap that unclips, exposed track bolt heads, an open track slot, a lip a clamp plate could grab? Photograph the end hardware close-up.
+- **Feeds:** Section 8's PRIMARY forward connection: the anchor board's 2 steel tongues bolt or clamp to these rail ends (no new holes). This measurement decides the bracket detail and the tongue length.
+- **Current assumption:** assumed the rail ends reach the striker-row zone — UNVERIFIED
+- **Your finding:** ______________________
+
 
 **Photos to take while you're in there** (each one answers a specific question later, at the workbench, without crawling back in):
 
