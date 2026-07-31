@@ -289,6 +289,7 @@ module f4() {
     color(RED) dash_y(sx(STRIKER_Y), FLOOR_Y0, FLOOR_Y1, MED);
     dim_x(HATCH_X, sx(STRIKER_Y), DIM1_Y, "F4a", 2.9, RED, DIM1_Y - FLOOR_Y1 - 2);
     dim_y(sy(STRIKER_X[0]), sy(STRIKER_X[2]), sx(STRIKER_Y) - 9, "F4b");
+    txt("F4c", sx(STRIKER_Y - 5), sy(STRIKER_X[2]), 2.9, "left", RED);   // each loop's inside clearance
     callout("F4", [
         "All 3 STRIKER LOOPS: each loop's fore-aft distance from the hatch, its",
         "lateral position, and its inside clearance — a strap hook has to SEAT in",
@@ -305,6 +306,8 @@ module f5() {
             translate([sx(ly + 3), sy(lx)]) square([3, 3]);
         rect_ol(sx(26), sy(kx0), 26, 20, HEAVY);
     }
+    txt("F5a", sx(panel_c_length + 4), sy(1.5), 2.9, "right", RED);
+    txt("F5b", sx(12), sy(kx0 + 10), 2.9, "center", RED);
     callout("F5", [
         "What Panel C's 4 LEG PADS (red squares) and the KITCHEN UNIT's footprint",
         "actually bear on: solid floor, or folded seatback? A deck leg standing on",
@@ -323,6 +326,8 @@ module f6() {
         }
         for (s = STRIKER_X) translate([sx(ROW3_Y0 - 2.5), sy(s) - 1.4]) square([2.8, 2.8]);
     }
+    txt("F6a", sx(ROW3_Y1 + 4), CL, 2.9, "right", RED);
+    txt("F6b", sx(ROW3_Y0 - 6), sy(WELL_X1 - 2), 2.9, "left", RED);
     callout("F6", [
         "Does a solid bearing surface require REMOVING the 3rd row rather than",
         "folding it? If so, does the 3rd row carry its own SRS / seatbelt-",
@@ -335,6 +340,7 @@ module f6() {
 
 module f7() {
     color(RED) translate([sx(STEP_Y) - 0.8, FLOOR_Y0]) square([1.6 + HEAVY, van_interior_width]);
+    txt("F7a", sx(STEP_Y + 4), sy(WELL_X1 - 2), 2.9, "right", RED);
     callout("F7", [
         "Is there a SQUARE, HARD vertical face at the step/riser",
         "by the striker row — metal under the trim? — for the two",
@@ -342,7 +348,7 @@ module f7() {
         "-> The FALLBACK forward load path, in compression, if",
         "   F8 rules the rail ends out. Section at right.",
     ]);
-    inset(INSET_X, 6, 74, 30, "F7  STEP / RISER — section") {
+    inset(INSET_X, 6, 74, 30, "F7b  STEP HEIGHT — section") {
         color("Black") {
             translate([INSET_X + 8, 13]) square([30, 0.7]);
             translate([INSET_X + 41.3, 13]) square([0.7, 11]);
