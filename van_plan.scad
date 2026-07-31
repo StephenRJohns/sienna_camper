@@ -6,6 +6,9 @@
 // every plan view in the plan reads as the same vehicle instead of
 // each one inventing its own body outline.
 //
+// Pulls in sheet2d.scad for the shared 2D primitives, so anything that
+// includes THIS file gets those too and must not include it again.
+//
 // GEOMETRY ONLY — no text. That is deliberate: callers draw in
 // different orientations (the Section 0 survey plans run front-at-left,
 // the platform floorplan runs front-at-top), and rotating a module that
@@ -23,6 +26,8 @@
 // live in params.scad.
 // ============================================================
 
+include <sheet2d.scad>
+
 VP_L  = 200;    // bumper to bumper
 VP_W  = 78;     // body width
 VP_HW = VP_W / 2;
@@ -38,24 +43,9 @@ VP_SEAT_X0 = VP_HATCH + 96; VP_SEAT_X1 = VP_SEAT_X0 + 22;
 // sliding-door opening, as distance from the rear bumper
 VP_DOOR_X0 = 56;  VP_DOOR_X1 = 96;
 
-module vp_ol(pts, t = VP_THIN) {
-    difference() { polygon(pts); offset(delta = -t) polygon(pts); }
-}
 
-module vp_rect_ol(x0, y0, w, h, t = VP_THIN) {
-    vp_ol([[x0, y0], [x0 + w, y0], [x0 + w, y0 + h], [x0, y0 + h]], t);
-}
 
-module vp_round_ol(x0, y0, w, h, r, t = VP_THIN) {
-    difference() {
-        offset(r = r) translate([x0 + r, y0 + r]) square([w - 2*r, h - 2*r]);
-        offset(r = r - t) translate([x0 + r, y0 + r]) square([w - 2*r, h - 2*r]);
-    }
-}
 
-module vp_dash_x(y, x0, x1, t = VP_THIN, seg = 3) {
-    for (x = [x0 : seg * 1.9 : x1 - 0.4]) translate([x, y]) square([min(seg, x1 - x), t]);
-}
 
 // ---- the body ---------------------------------------------------
 // +X is FORWARD, so the tapered nose belongs at HIGH X and the squarer
@@ -66,29 +56,29 @@ function vp_body_pts() = [
     [8, VP_HW], [0, VP_HW - 7], [0, -VP_HW + 7],
 ];
 
-module vp_body(col = "Black") { color(col) vp_ol(vp_body_pts(), VP_STROKE); }
+module vp_body(col = "Black") { color(col) ol(vp_body_pts(), VP_STROKE); }
 
 // hood + windshield at the nose, glass band down each side
 module vp_glass(col = "DimGray") {
     color(col) {
-        vp_ol([[VP_L - 4, -12], [VP_L - 30, -VP_HW + 8], [VP_L - 44, -VP_HW + 9],
+        ol([[VP_L - 4, -12], [VP_L - 30, -VP_HW + 8], [VP_L - 44, -VP_HW + 9],
                [VP_L - 44, VP_HW - 9], [VP_L - 30, VP_HW - 8], [VP_L - 4, 12]], VP_THIN);
-        vp_rect_ol(VP_L - 58, -VP_HW + 9, 14, VP_W - 18, VP_THIN);
-        vp_dash_x(-VP_HW + 9, 10, VP_L - 58, VP_THIN);
-        vp_dash_x(VP_HW - 9, 10, VP_L - 58, VP_THIN);
+        rect_ol(VP_L - 58, -VP_HW + 9, 14, VP_W - 18, VP_THIN);
+        dash_x(-VP_HW + 9, 10, VP_L - 58, VP_THIN);
+        dash_x(VP_HW - 9, 10, VP_L - 58, VP_THIN);
     }
 }
 
 // rear axle then front axle, as distance from the rear bumper
 module vp_wheels(col = "DimGray") {
     color(col) for (wx = [13, 125]) for (wy = [-VP_HW - 1, VP_HW - 8])
-        vp_rect_ol(wx, wy, 27, 9, VP_THIN);
+        rect_ol(wx, wy, 27, 9, VP_THIN);
 }
 
 // two front seats + the steering wheel, forward of the driver's seat
 module vp_front_seats(col = "DimGray") {
     color(col) {
-        for (fy = [-22, 3]) vp_round_ol(VP_SEAT_X0, fy, VP_SEAT_X1 - VP_SEAT_X0, 19, 4, VP_THIN);
+        for (fy = [-22, 3]) round_ol(VP_SEAT_X0, fy, VP_SEAT_X1 - VP_SEAT_X0, 19, 4, VP_THIN);
         translate([VP_SEAT_X0 + 16, -12.5]) difference() {
             circle(r = 5, $fn = 28); circle(r = 4.3, $fn = 28);
         }

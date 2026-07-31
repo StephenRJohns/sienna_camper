@@ -40,15 +40,13 @@
 // ============================================================
 
 include <params.scad>
-include <van_plan.scad>
+include <van_plan.scad>   // also pulls in sheet2d.scad — the shared 2D
+                          // primitives and house style. Don't re-include it.
 
 key = 1;
 
 // ---- sheet + bands ------------------------------------------
 SW = 230; SH = 158;
-THIN = 0.34; MED = 0.6; HEAVY = 1.5;
-RED = "Firebrick";
-GRY = "DimGray";
 
 BODY_X0 = 12; BODY_L = 200; BODY_X1 = BODY_X0 + BODY_L;
 BODY_Y0 = 44; BODY_W = 78;  BODY_Y1 = BODY_Y0 + BODY_W;
@@ -80,58 +78,14 @@ SEAT_MID_Y = (VP_SEAT_X0 + VP_SEAT_X1)/2 - VP_HATCH;
 DOOR_MID_Y = (VP_DOOR_X0 + VP_DOOR_X1)/2 - VP_HATCH;
 
 // ---- primitives ---------------------------------------------
-module ol(pts, t = THIN) { difference() { polygon(pts); offset(delta = -t) polygon(pts); } }
 
-module rect_ol(x0, y0, w, h, t = THIN) {
-    ol([[x0, y0], [x0 + w, y0], [x0 + w, y0 + h], [x0, y0 + h]], t);
-}
 
-module round_ol(x0, y0, w, h, r, t = THIN) {
-    difference() {
-        offset(r = r) translate([x0 + r, y0 + r]) square([w - 2*r, h - 2*r]);
-        offset(r = r - t) translate([x0 + r, y0 + r]) square([w - 2*r, h - 2*r]);
-    }
-}
 
-module dash_x(y, x0, x1, t = THIN, seg = 3) {
-    for (x = [x0 : seg * 1.9 : x1 - 0.4]) translate([x, y]) square([min(seg, x1 - x), t]);
-}
-module dash_y(x, y0, y1, t = THIN, seg = 3) {
-    for (y = [y0 : seg * 1.9 : y1 - 0.4]) translate([x, y]) square([t, min(seg, y1 - y)]);
-}
-module dash_rect(x0, y0, w, h, t = THIN) {
-    dash_x(y0, x0, x0 + w, t); dash_x(y0 + h - t, x0, x0 + w, t);
-    dash_y(x0, y0, y0 + h, t); dash_y(x0 + w - t, y0, y0 + h, t);
-}
 
-module txt(s, x, y, size = 3.0, halign = "left", col = "Black") {
-    color(col) translate([x, y]) text(s, size = size, halign = halign, valign = "center");
-}
 
 // fore-aft dimension: extension lines down to the feature, ticks, label
-module dim_x(x0, x1, y, s, size = 2.9, col = RED, drop = 0) {
-    color(col) {
-        translate([min(x0,x1), y - 0.3]) square([abs(x1-x0), 0.6]);
-        for (x = [x0, x1]) {
-            translate([x - 0.3, y - 2.4]) square([0.6, 4.8]);
-            if (drop > 0) dash_y(x - 0.17, y - drop, y - 2.4, 0.34, 2.2);
-        }
-    }
-    txt(s, (x0+x1)/2, y + 3.9, size, "center", col);
-}
 
-module dim_y(y0, y1, x, s, size = 2.9, col = RED) {
-    color(col) {
-        translate([x - 0.3, min(y0,y1)]) square([0.6, abs(y1-y0)]);
-        for (y = [y0, y1]) translate([x - 2.4, y - 0.3]) square([4.8, 0.6]);
-    }
-    txt(s, x - 3.4, (y0+y1)/2, size, "right", col);
-}
 
-module badge(n, x, y, r = 3.6) {
-    color(RED) translate([x, y]) circle(r = r, $fn = 32);
-    txt(n, x, y - 0.2, r * 1.0, "center", "White");
-}
 
 module loop_icon(x, y, r = 2.0, t = 0.7, col = GRY) {
     color(col) difference() {
@@ -146,11 +100,6 @@ module callout(n, lines) {
     for (i = [0 : len(lines) - 1]) txt(lines[i], CO_X, CO_Y - i * 4.7, 3.0);
 }
 
-module inset(x, y, w, h, title) {
-    color("Black") rect_ol(x, y, w, h, 0.45);
-    txt(title, x + 2.5, y + h - 3.6, 2.7, "left", "Black");
-    children();
-}
 
 // ---- the shared base plan -----------------------------------
 module van_base() {
