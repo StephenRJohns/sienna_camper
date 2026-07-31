@@ -40,6 +40,7 @@
 // ============================================================
 
 include <params.scad>
+include <van_plan.scad>
 
 key = 1;
 
@@ -73,8 +74,10 @@ STRIKER_Y = 48;  STRIKER_X = [8, 23, 38];
 RAILEND_Y = 44;  RAIL_X = [15, 30];  RAIL_FWD_Y = 118;
 STEP_Y = 46;
 ROW3_Y0 = 36; ROW3_Y1 = 52;
-DOOR_Y0 = 56; DOOR_Y1 = 96;
-SEAT1_Y0 = 128; SEAT1_Y1 = 150;
+// seat/door label anchors, derived from the shared geometry (survey Y =
+// distance forward of the hatch = canonical X - VP_HATCH)
+SEAT_MID_Y = (VP_SEAT_X0 + VP_SEAT_X1)/2 - VP_HATCH;
+DOOR_MID_Y = (VP_DOOR_X0 + VP_DOOR_X1)/2 - VP_HATCH;
 
 // ---- primitives ---------------------------------------------
 module ol(pts, t = THIN) { difference() { polygon(pts); offset(delta = -t) polygon(pts); } }
@@ -153,28 +156,14 @@ module inset(x, y, w, h, title) {
 module van_base() {
     color("Black") rect_ol(0, 0, SW, SH, 0.5);
 
-    // body: tapered nose, square-ish tail
-    body = [[BODY_X0 + 26, BODY_Y0 + 3], [BODY_X1 - 8, BODY_Y0], [BODY_X1, BODY_Y0 + 7],
-            [BODY_X1, BODY_Y1 - 7], [BODY_X1 - 8, BODY_Y1], [BODY_X0 + 26, BODY_Y1 - 3],
-            [BODY_X0 + 6, BODY_Y1 - 13], [BODY_X0, CL + 7], [BODY_X0, CL - 7],
-            [BODY_X0 + 6, BODY_Y0 + 13]];
-    color("Black") ol(body, MED);
-
-    color(GRY) {
-        ol([[BODY_X0 + 4, CL - 12], [BODY_X0 + 30, BODY_Y0 + 8], [BODY_X0 + 44, BODY_Y0 + 9],
-            [BODY_X0 + 44, BODY_Y1 - 9], [BODY_X0 + 30, BODY_Y1 - 8], [BODY_X0 + 4, CL + 12]], THIN);
-        rect_ol(BODY_X0 + 44, BODY_Y0 + 9, 14, BODY_W - 18, THIN);
-        dash_x(BODY_Y0 + 9, BODY_X0 + 58, BODY_X1 - 10, THIN);
-        dash_x(BODY_Y1 - 9, BODY_X0 + 58, BODY_X1 - 10, THIN);
-        for (wx = [BODY_X0 + 30, BODY_X0 + 149]) for (wy = [BODY_Y0 - 1, BODY_Y1 - 8])
-            rect_ol(wx, wy, 27, 9, THIN);
-        for (fy = [CL - 22, CL + 3]) round_ol(sx(SEAT1_Y1), fy, SEAT1_Y1 - SEAT1_Y0, 19, 4, THIN);
-        translate([sx(SEAT1_Y0) + 7, CL + 12.5]) difference() { circle(r = 5, $fn = 28); circle(r = 4.3, $fn = 28); }
-    }
-
-    // sliding-door openings
-    color("Black") for (dy = [BODY_Y0, BODY_Y1 - 1.4])
-        translate([sx(DOOR_Y1), dy]) square([DOOR_Y1 - DOOR_Y0, 1.4]);
+    // Body, glass, wheels, front seats, sliding doors and the hatch all
+    // come from the SHARED plan geometry, so this and the platform
+    // floorplan are literally the same vehicle. van_plan.scad's frame is
+    // X = fore-aft from the REAR bumper, Y = lateral from the centreline;
+    // this sheet runs fore-aft the other way (+Y survey = forward = -X
+    // sheet), hence the mirror. Mirroring keeps the driver side on low y,
+    // where this sheet labels it, and the steering wheel with it.
+    translate([HATCH_X + VP_HATCH, CL]) mirror([1, 0]) vp_van_context();
 
     // usable floor between the wheel wells
     color(GRY) dash_rect(sx(van_interior_length), FLOOR_Y0, van_interior_length, van_interior_width, THIN);
@@ -195,15 +184,12 @@ module van_base() {
     }
     for (s = STRIKER_X) loop_icon(sx(STRIKER_Y), sy(s));
 
-    // the hatch = the survey datum
-    color("Black") translate([HATCH_X - 0.8, BODY_Y0 + 5]) square([1.6, BODY_W - 10]);
-
     // ---- base labels. The cargo zone is tight, so these are placed on
     // two rows OUTSIDE the floor (passenger side) plus a row below it,
     // chosen so nothing lands on the striker column or a wheel well. ----
-    txt("FRONT SEATS", sx((SEAT1_Y0 + SEAT1_Y1)/2), CL - 26, 2.7, "center", GRY);
-    txt("SLIDING DOOR", sx((DOOR_Y0 + DOOR_Y1)/2), BODY_Y0 - 4.5, 2.7, "center", GRY);
-    txt("SLIDING DOOR", sx((DOOR_Y0 + DOOR_Y1)/2), BODY_Y1 + 4.5, 2.7, "center", GRY);
+    txt("FRONT SEATS", sx(SEAT_MID_Y), CL - 26, 2.7, "center", GRY);
+    txt("SLIDING DOOR", sx(DOOR_MID_Y), BODY_Y0 - 4.5, 2.7, "center", GRY);
+    txt("SLIDING DOOR", sx(DOOR_MID_Y), BODY_Y1 + 4.5, 2.7, "center", GRY);
     txt("2nd ROW REMOVED", sx(88), CL + 14, 3.0, "center", GRY);
     txt("(carriages parked fwd)", sx(88), CL + 9.6, 2.5, "center", GRY);
     txt("PANEL C", sx(16), FLOOR_Y1 + 4, 2.7, "center", GRY);

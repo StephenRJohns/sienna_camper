@@ -25,67 +25,25 @@
 // ============================================================
 
 include <params.scad>
+include <van_plan.scad>
 
 stroke = 0.3; // outline thickness, inches
 
 // ------------------------------------------------------------
-// Van body silhouette (illustrative, top-down) — same overall
-// proportions as vehicle_overview.scad's side profile (front bumper
-// to rear bumper = 203in, wheels at the same longitudinal positions)
-// so the two views read as the same vehicle. Drawn as background
-// context BEHIND the real dimensioned interior/platform diagram
-// below; the body outline itself is not to any verified spec, just
-// close enough to read as a minivan (long hood, mirrors, sliding
-// doors, wheels tucked under the fenders) rather than a plain box.
+// Van body context — the SHARED plan geometry from van_plan.scad, so
+// this floorplan and the Section 0 survey plans read as the same
+// vehicle (they used to each draw their own silhouette).
+//
+// van_plan.scad's canonical frame is X = fore-aft from the REAR
+// bumper, Y = lateral from the centreline. This drawing is the
+// transpose of that: X lateral, Y = fore-aft from the CLOSED HATCH.
+// So the geometry is rotated 90 and mirrored (a transpose, not a
+// rotation), then shifted by the bumper-to-hatch offset. Mirroring
+// keeps the driver side on -X, where this drawing labels it, and puts
+// the steering wheel on the correct side.
 // ------------------------------------------------------------
-body_length    = 203;
-body_rear_oh   = 10;  // rear bumper face to tailgate inner face
-body_front_oh  = body_length - body_rear_oh - van_interior_length;
-front_ref      = van_interior_length + body_front_oh; // front bumper's Y here
-body_wheel_r   = 13.5;
-body_front_wheel_d = 48;  // distance from FRONT bumper, matches vehicle_overview.scad
-body_rear_wheel_d  = 160; // distance from FRONT bumper, matches vehicle_overview.scad
-
-// (distance-from-front-bumper, halfwidth) key points — mirrors the
-// side view's longitudinal hood/greenhouse/liftgate proportions. The
-// mirrors themselves are drawn as separate small bumps (below), not
-// baked into this outline — a sharp spike here turns into an ugly
-// notch once run through the offset()-based outline-stroke technique.
-body_profile = [
-    [0, 22], [3, 30], [8, 35], [18, 39],
-    [66, 39.5],
-    [176, 39], [188, 34], [196, 28], [203, 18],
-];
-body_mirror_d = 67; // distance from the front bumper
-
-module van_top_outline() {
-    right_pts = [for (p = body_profile) [p[1], front_ref - p[0]]];
-    left_pts  = [for (i = [len(body_profile) - 1 : -1 : 0]) [-body_profile[i][1], front_ref - body_profile[i][0]]];
-    color("Silver")
-    difference() {
-        offset(r = stroke) polygon(concat(right_pts, left_pts));
-        polygon(concat(right_pts, left_pts));
-    }
-}
-
-module van_top_mirrors() {
-    for (side = [-1, 1])
-        color("Silver") translate([side * 41.5, front_ref - body_mirror_d])
-            scale([1.4, 1]) circle(r = 1.8);
-}
-
-module van_top_wheel(d) {
-    for (side = [-1, 1])
-        color("Silver") translate([side * 30, front_ref - d])
-            square([body_wheel_r * 0.9, body_wheel_r * 2], center = true);
-}
-
-module van_top_seams() {
-    // sliding door seams (front + rear edge of the door opening) as
-    // short tick marks crossing the body edge, one pair per side
-    color("Silver") for (d = [88, 148]) for (side = [-1, 1])
-        translate([side * (39.5 - 1), front_ref - d])
-            square([2, stroke], center = true);
+module van_context() {
+    translate([0, -VP_HATCH]) mirror([1, 0]) rotate(90) vp_van_context();
 }
 
 // Every helper below self-colors black: OpenSCAD's camera-preview
@@ -146,19 +104,18 @@ module module_block(length, width, name, y_offset, handle_count = 2, name_size =
 module top_view() {
     // illustrative van body — background context so this reads as a
     // Sienna, not a generic box (see header note above)
-    van_top_outline();
-    van_top_mirrors();
-    van_top_wheel(body_front_wheel_d);
-    van_top_wheel(body_rear_wheel_d);
-    van_top_seams();
+    van_context();
 
     // van interior envelope (hard max — see params.scad)
     translate([-van_interior_width/2, 0])
         rect_outline(van_interior_width, van_interior_length);
-    label("Sienna interior envelope — hard max", 0, van_interior_length + 6.5, 2.0);
-    label("FRONT", 0, van_interior_length + 3.5, 1.6);
-    label("DRIVER side", -van_interior_width/2 + 6, van_interior_length + 3.5, 1.5);
-    label("PASSENGER side", van_interior_width/2 - 6, van_interior_length + 3.5, 1.5);
+    // Orientation labels go OUTSIDE the body: the front seats now sit
+    // flush against the envelope's forward edge (van_interior_length is
+    // measured to the seatbacks), so this row used to land on top of them.
+    label("FRONT", 0, 196, 2.2);
+    color("black") translate([-43, 60]) rotate(90) text("DRIVER side", size = 2.0, valign = "center");
+    color("black") translate([43, 60]) rotate(-90) text("PASSENGER side", size = 2.0, valign = "center");
+    color("black") translate([-43, 118]) rotate(90) text("interior envelope — hard max", size = 1.9, valign = "center");
 
     // floor-level vent intrusion zones (legs must stay clear of these,
     // deck itself can overhang — see leg_inset in params.scad)
