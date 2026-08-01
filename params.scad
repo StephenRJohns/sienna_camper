@@ -412,9 +412,9 @@ bed_platform_stack = bed_frame_thickness; // 0.75in
 // drawers nearest the door are easy reach, the far ones need a
 // lean/reach, and if the door doesn't overlap a panel AT ALL, that
 // panel's drawers are unreachable from the side entirely (blocked by
-// the van's own body structure, not just an awkward reach). Confirm
-// your door's actual fore-aft position once measured (side_door_y0
-// below), and see the reachability check further down.
+// the van's own body structure, not just an awkward reach). Both the
+// gap and the door's position are now measured — see side_door_y0
+// below and the reachability check further down.
 //
 // V8 (Aug 2026) resolved in two passes. The 50"/58" first written on
 // the survey sheet turned out to be the DOOR PANEL's own external
@@ -431,15 +431,21 @@ side_door_opening_width  = 35; // MEASURED (Aug 2026) — the aperture's fore-af
 side_door_opening_height = 45; // MEASURED (Aug 2026) — the aperture's height
 side_door_clear_width    = 29; // MEASURED V8c (Aug 2026) — usable CLEAR fore-aft gap at the door's actual stop; THIS is what gates reach
 // Fore-aft position of the door opening's FRONT edge, measured from
-// the same Y=0 reference as van_interior_length (closed hatch to the
-// front seatbacks). This is a genuinely unmeasured placeholder, not
-// even a researched estimate like the numbers above — sliding doors
-// on this generation of minivan typically start close to the front
-// seatbacks (roughly where the old 2nd row began), so Y=0 is used
-// here as a rough starting guess. MEASURE THIS: stand outside the
-// open side door and measure from the front seatback to the door
-// opening's front edge (Section 0).
-side_door_y0 = 0; // UNVERIFIED PLACEHOLDER — not yet even roughly researched
+// the same Y=0 reference as van_interior_length (the front seatbacks).
+// MEASURED (owner, Aug 2026): the front seatback is essentially even
+// with the door opening at build height — if anything the seatback
+// intrudes about 1/4in INTO the opening. So the opening's front edge is
+// at Y=0 for every practical purpose, and anything forward of that is
+// behind the seatback anyway. The long-standing placeholder guess turns
+// out to have been right; it is now a measurement.
+//
+// This matters more than it looks: it is what confirms the DELTA 3
+// stack belongs in Panel A. The 29in clear gap (V8c) starting at Y=0
+// spans Panel A's 29in EXACTLY, so Panel A is reachable end to end,
+// and Panel B (29..58) gets nothing — which is why its bed top is two
+// lift-out halves instead of drawers. Both decisions now rest on a
+// measured number rather than a guess.
+side_door_y0 = 0; // MEASURED (Aug 2026) — seatback is even with the opening (~1/4in into it)
 
 /* [Side-access sliding drawers — one pair (left + right) per panel] */
 // Each panel module gets 2 drawers (left + right), riding on
@@ -1032,7 +1038,7 @@ panel_a_reach_note = panel_a_door_overlap <= 0 ? "BLOCKED (0in or negative overl
 panel_b_reach_note = panel_b_door_overlap <= 0 ? "BLOCKED (0in or negative overlap — behind body structure, no opening at all)"
     : panel_b_door_overlap < 12 ? str("SEVERELY LIMITED (only ", panel_b_door_overlap, "in overlap — likely impractical)")
     : str(panel_b_door_overlap, "in overlap — reachable");
-echo(str("Side door reach check (side_door_y0 is an UNVERIFIED PLACEHOLDER — measure it, Section 0): ",
+echo(str("Side door reach check (all inputs MEASURED Aug 2026): ",
          "Panel A = ", panel_a_reach_note, ". Panel B = ", panel_b_reach_note, "."));
 
 // Gate-fit guards — every module must pass through the liftgate
