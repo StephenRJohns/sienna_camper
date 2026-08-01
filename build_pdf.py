@@ -69,6 +69,12 @@ th, td {
     vertical-align: top;
 }
 h4 { font-size: 11pt; color: #26496b; margin: 14pt 0 4pt 0; }
+/* h5 exists only inside Appendix A (the measurement survey): its own
+   V1-V10 / F1-F8 items sit one level deeper than the other appendices
+   need, because the whole survey was demoted when it moved out of
+   Section 0. Without this it would inherit the browser default and
+   render SMALLER than body text. */
+h5 { font-size: 10.5pt; color: #1a3a5c; margin: 12pt 0 3pt 0; }
 th { background: #eaf0f6; font-weight: 600; }
 tr:nth-child(even) td { background: #f7f9fb; }
 figure {

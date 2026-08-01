@@ -84,7 +84,7 @@ module van_base() {
     color(GRY) translate([BODY_X0 - 4, BODY_Y0 + 2]) rotate(90) text("DRIVER side", size = 2.7, valign = "center");
     color(GRY) translate([BODY_X0 - 4, BODY_Y1 - 2]) rotate(-90) text("PASSENGER side", size = 2.7, valign = "center");
     txt("CLOSED HATCH (the right-hand edge) = the fore-aft datum", 4, 134, 2.6, "left", "Black");
-    txt("Body outline illustrative. Interior features are drawn at their CURRENT estimate — that is what you are checking.",
+    txt("Body outline illustrative. Interior features are drawn at the MEASURED dimensions (owner, Aug 1 2026) — this is a record, not a checklist.",
         4, 1.6, 2.6, "left", GRY);
 }
 
@@ -264,9 +264,9 @@ module v8() {
         "The SIDE SLIDING DOOR: fore-aft WIDTH (V8a), HEIGHT",
         "(V8b), and the one that actually matters — the USABLE",
         "CLEAR width/height at the door's real STOPPING POINT (V8c).",
-        "-> MEASURED Aug 2026: the usable CLEAR gap at the door's",
-        "   real stop is 29\", 11\" tighter than the 40\" assumed.",
-        "   The aperture HEIGHT is still unmeasured.",
+        "-> MEASURED Aug 2026: aperture 35 x 45\", but the door parks",
+        "   6\" short of its forward edge, so the usable CLEAR gap is",
+        "   only 29\" — 11\" tighter than the 40\" assumed.",
     ]);
     inset(INSET_X, 6, 98, 30, "V8  SIDE ELEVATION — the door opening") {
         color("Black") translate([INSET_X + 24, 8]) difference() {

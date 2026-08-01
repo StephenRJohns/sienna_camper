@@ -155,7 +155,7 @@ module van_base() {
     // live at the tailgate end, so nothing crosses it there
     txt("CLOSED HATCH (the right-hand edge) = the Y datum for all Section 0 measurements",
         4, 134, 2.6, "left", "Black");
-    txt("Body outline illustrative. Dashed interior features are ASSUMED — confirming them is what this survey is for.",
+    txt("Body outline illustrative. Dashed interior features were ASSUMED; the survey (Aug 1 2026) confirmed or corrected each one — see the findings below.",
         4, 4, 2.6, "left", GRY);
 }
 

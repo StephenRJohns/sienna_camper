@@ -10,7 +10,8 @@ Panel C frame (2x2 pine),Structure,10.0,76,0,rails+legs+front bottom rail
 "Rear pantry: 4x IRIS 12""W drawer units + hold-down",Structure,15.0,87,-10,2x2 prefab cluster (est ~3.2lb/unit) + cleats/strap — replaces the ~42lb plywood pantry
 Panel B: 2x Sterilite 28-Qt under-bed totes (empty),Hardware/misc,4.0,43.5,5,restacked ON the spare (2 of the original 4)
 "RJ-MODINI spare kit + jack (Panel B bay, flat at the axle)",Hardware/misc,40.0,43.5,-4,T155/85R18 steel wheel + 2-ton jack/tools — VERIFY kit weight on arrival
-"Bed platform (1x4 pine, 2 rails + 8 slats)",Structure,20.2,29,0,flush slat deck over A+B
+"Bed platform (1x4 pine, 6 rails + 15 slats, 3 lift-out pieces)",Structure,23.8,29,0,Panel A section + Panel B's 2 centreline halves (Aug 2026)
+"Panel B centre bearer (2x 2x2 pine, 26in)",Structure,1.9,43.5,0,"halves the deck's unsupported span over Panel B, 46in -> ~22in (Aug 2026)"
 "Fridge (BougeRV Rocky 40, empty)",Appliances,40.6,80,-12,manual spec; +20-40 lb loaded
 Kitchen unit (JAGAHAHA),Appliances,45.0,80,13,listing spec
 EcoFlow DELTA 3 Plus + Extra Battery,Power/climate,48.0,14.5,11,Panel A passenger drawer
@@ -25,11 +26,11 @@ Seam draw-latches (4) + alignment pins + bumpers,Hardware/misc,1.5,47,0,at the A
 "Electrical (2 fans, controller, fuse, 2 strips, cords)",Hardware/misc,6.0,55,0,cooling + power runs
 Cooktop + cookware (stowed),Hardware/misc,12.0,80,13,induction top + pots in the kitchen
 
-Structure subtotal,,146.2,,,
+Structure subtotal,,151.7,,,
 Hardware/misc subtotal,,115.1,,,
 Appliances subtotal,,85.6,,,
 Power/climate subtotal,,81.7,,,
 Bedding subtotal,,35.0,,,
-BUILD TOTAL (added),,463.6,,,
+BUILD TOTAL (added),,469.1,,,
 Removed: 2nd-row seats x2 (est.),credit,-120,,,WEIGH to confirm; ~48-70 lb each
-NET added vs stock (build - seats),,343.6,,,
+NET added vs stock (build - seats),,349.1,,,

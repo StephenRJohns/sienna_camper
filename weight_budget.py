@@ -27,7 +27,20 @@ add("Kitchen drawer + cheeks (1/2\" birch)", "Structure", ply(744,0.5)+ply(322,0
 add("Rear pantry: 4x IRIS 12\"W drawer units + hold-down", "Structure", 13.0+2.0, 87, -10, "2x2 prefab cluster (est ~3.2lb/unit) + cleats/strap — replaces the ~42lb plywood pantry")
 add("Panel B: 2x Sterilite 28-Qt under-bed totes (empty)", "Hardware/misc", 4.0, 43.5, 5, "restacked ON the spare (2 of the original 4)")
 add("RJ-MODINI spare kit + jack (Panel B bay, flat at the axle)", "Hardware/misc", 40.0, 43.5, -4, "T155/85R18 steel wheel + 2-ton jack/tools — VERIFY kit weight on arrival")
-add("Bed platform (1x4 pine, 2 rails + 8 slats)", "Structure", pine_1x4(2*58+8*45), 29, 0, "flush slat deck over A+B")
+# Bed platform, Aug 2026: THREE lift-out pieces — Panel A's 29x49
+# section plus Panel B's two 29x24.5 centreline halves (24.5in is what
+# fits back out through the measured 35in side door). 6 side rails at
+# 29in, 5 slats at 42in for Panel A, 10 at 17.5in for the halves.
+# (V7 had already cut the slats from 45in to 42in; this row was still
+# carrying 45in and 8 slats until Aug 2026.) No hinge hardware — every
+# piece just lifts.
+add("Bed platform (1x4 pine, 6 rails + 15 slats, 3 lift-out pieces)", "Structure",
+    pine_1x4(6*29 + 5*42 + 10*17.5), 29, 0,
+    "Panel A section + Panel B's 2 centreline halves (Aug 2026)")
+# NEW with the split: Panel B gains the centre bearer its halves' inner
+# rails land on (Panel A always had a centre divider; Panel B did not).
+add("Panel B centre bearer (2x 2x2 pine, 26in)", "Structure", pine_len(2*26), 43.5, 0,
+    "halves the deck's unsupported span over Panel B, 46in -> ~22in (Aug 2026)")
 
 # ---- APPLIANCES ----
 add("Fridge (BougeRV Rocky 40, empty)", "Appliances", 40.6, 80, -12, "manual spec; +20-40 lb loaded")

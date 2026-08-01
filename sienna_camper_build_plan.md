@@ -2,248 +2,9 @@
 
 *Free to view, share, and build from for personal, non-commercial use only. Commercial use, resale, or redistribution for profit is prohibited without prior written permission. © 2026 JJJJJ Enterprises, LLC — all rights reserved.*
 
-Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat removal/reinstall procedure incl. the SRS airbag emulators: Section 9). Layout, tailgate to front seats: **Kitchen (Panel C's fridge/kitchen void) → Rear pantry (prefab drawers on Panel C's deck) → Bed (Panel B + Panel A) → front seats.** The rear pantry is a **prefab drawer cluster** (owner, July 2026): a 2×2 array of IRIS USA 12"W stackable drawers sitting on the tailgate end of Panel C's deck, held by a cleat pocket + a cam strap, with a pot/pan crate in the ~21.8" of open deck beside it — nothing built, ~27 lb lighter, and each drawer unit lifts straight out (Component 1). Panel A and B have no top of their own (capped by the one-piece bed frame), while Panel C keeps its fixed top — **recessed flush into its rail plane** (the deck ply drops between the rails onto cleats; Panels A/B run 16.25" legs vs Panel C's 17", so the platform on their rails lands in the same flush 18.5" plane — ¾" more headroom) — forming one continuous deck with 79¼" of sleeping length for the HEST Dually Long mattress (78" x 50" x 4") (Panel A now sits flush with the front seatbacks, using up the floor space that used to sit empty in front of it). Panel B is a bare-frame deep-storage bay — the side doors don't reach it, so it has no drawers and loads from above by lifting the platform; Panel A holds a right drawer (EcoFlow DELTA 3) plus a left open-storage bay (EcoFlow WAVE 3, no drawer box); Panel C's under-deck void instead houses a real BougeRV compressor fridge and a real JAGAHAHA slide-out camp kitchen, both on heavy-duty slides pulling straight out the open tailgate — bought products, not built from plywood — plus a shallow slide-out **kitchen drawer** hung under the deck in the dead air above the kitchen unit. The fridge and its cooling fans run off the EcoFlow DELTA 3 stack (Panel A) via their own DC line, so they keep running when people are away from the van regardless of ignition state; the DELTA 3 itself gets AC-charged from the front console outlet while driving, while the induction cooktop and Power strip 1 plug into the van's REAR AC outlet (back passenger area — verified to exist), right beside them: two short cords, no seam crossings.
+Two-person setup, 2nd row seats **removed entirely** (3rd row folded flat; seat removal/reinstall procedure incl. the SRS airbag emulators: Section 9). Layout, tailgate to front seats: **Kitchen (Panel C's fridge/kitchen void) → Rear pantry (prefab drawers on Panel C's deck) → Bed (Panel B + Panel A) → front seats.** The rear pantry is a **prefab drawer cluster** (owner, July 2026): a 2×2 array of IRIS USA 12"W stackable drawers sitting on the tailgate end of Panel C's deck, held by a cleat pocket + a cam strap, with a pot/pan crate in the ~21.8" of open deck beside it — nothing built, ~27 lb lighter, and each drawer unit lifts straight out (Component 1). Panel A and B have no top of their own (capped by the three-piece bed frame — Panel A's section lifts off, and Panel B's top is two centreline halves that lift out individually), while Panel C keeps its fixed top — **recessed flush into its rail plane** (the deck ply drops between the rails onto cleats; Panels A/B run 16.25" legs vs Panel C's 17", so the platform on their rails lands in the same flush 18.5" plane — ¾" more headroom) — forming one continuous deck with 79¼" of sleeping length for the HEST Dually Long mattress (78" x 50" x 4") (Panel A now sits flush with the front seatbacks, using up the floor space that used to sit empty in front of it). Panel B is a bare-frame deep-storage bay — the side doors don't reach it, so it has no drawers and loads from above by lifting out either half of its **two-piece bed top** (owner, Aug 2026); Panel A holds a right drawer (EcoFlow DELTA 3) plus a left open-storage bay (EcoFlow WAVE 3, no drawer box); Panel C's under-deck void instead houses a real BougeRV compressor fridge and a real JAGAHAHA slide-out camp kitchen, both on heavy-duty slides pulling straight out the open tailgate — bought products, not built from plywood — plus a shallow slide-out **kitchen drawer** hung under the deck in the dead air above the kitchen unit. The fridge and its cooling fans run off the EcoFlow DELTA 3 stack (Panel A) via their own DC line, so they keep running when people are away from the van regardless of ignition state; the DELTA 3 itself gets AC-charged from the front console outlet while driving, while the induction cooktop and Power strip 1 plug into the van's REAR AC outlet (back passenger area — verified to exist), right beside them: two short cords, no seam crossings.
 
-## 0. Measurements to Take
-
-**DONE for the van — surveyed Aug 1 2026 (owner), 2nd row out and 3rd row folded as it sits in camper mode.** Every V and F line below now carries a measured finding, and `params.scad` has been updated to match. The fridge/kitchen table further down is still open (those are bought products, measured on arrival). **Read the four findings that moved the design before building anything: V1 (interior 2¼" shorter), V3 (2" lower), V4 (vents 1" deeper per side) and V7 — the walls do NOT flare out at the sleeping plane, which cut the bed platform from 52" to 49".** Every number below either said UNVERIFIED somewhere in this plan (an estimate that drives real cut dimensions) or came from an online listing/photo rather than a hands-on measurement. All of them feed directly into [`params.scad`](params.scad) — update the value there, re-run `./render.sh`, and every diagram, cut list, and BOM total in this plan updates to match. If a measurement comes in smaller than the estimate, the `assert()` guards in `params.scad` will fail loudly (not silently overflow the van) until the design is adjusted.
-
-### The van (once the 2nd row is physically out)
-
-**Reading these drawings.** Same format as the rear-floor survey below: each measurement gets its own plan of the whole Sienna — **front at the left, tailgate at the right**, driver side along the bottom — with **only that measurement drawn in red** and tagged (V6a, V6b, ...). Those tags match the blank lines under each drawing one-for-one. Several of these are not plan dimensions at all — interior height, the gate opening, wall-to-wall width up at platform height, floor slope — so those sections carry an **elevation or section inset**, and the plan just shows where it is taken. Fore-aft distances all work from the **closed hatch**, the same datum the survey uses.
-
-#### V1 — Interior length — closed hatch to front seatbacks *(was row #1)*
-
-![Van measurement V1 — interior length](renders/vanmeas-v1.svg)
-
-- **Measure:** The interior length along the floor, from the closed hatch to the front seatbacks.
-- **Feeds:** `van_interior_length` — the number the whole panel train is sized against: Panel A + B + C fill it exactly, so if it comes back short, every panel shrinks.
-- **Previous estimate:** 96" — UNVERIFIED
-- **V1** — hatch to seatbacks: **93¾"** (MEASURED — owner, Aug 1 2026) — **2¼" shorter than the estimate.** `van_interior_length` = 93.75. Because V5 also freed the 2" that was reserved for hatch curvature, the panel train only had to give up ¼" net: **Panel C went 36" → 35¾"**. It has to be Panel C — Panels A and B are asserted to stay the *same* length (they share one set of step diagrams and one cut-list entry), and their combined length *is* the bed platform's 58" side rails, so shaving either one would ripple through the lumber list for nothing. Panel C has ~7" of fore-aft slack around the 28.74" fridge.
-
-#### V2 — Interior width — between the wheel wells *(was row #2)*
-
-![Van measurement V2 — interior width](renders/vanmeas-v2.svg)
-
-- **Measure:** The width at the floor, at its narrowest point between the two wheel wells — not at a wider spot fore or aft of them.
-- **Feeds:** `van_interior_width` — every 46"-wide panel and the floor envelope come off this.
-- **Previous estimate:** 48.5" — already verified (reconfirm)
-- **V2** — floor pinch, wheel well to wheel well: **49"** (MEASURED — owner, Aug 1 2026) — ½" *better* than the figure this was designed against, so nothing downstream changes. The floor opens out to **54" forward of the wheel wells**, but the pinch is what gates the 46" boxes. `van_interior_width` = 49.
-
-#### V3 — Interior height — floor to headliner *(was row #3)*
-
-![Van measurement V3 — interior height](renders/vanmeas-v3.svg)
-
-- **Measure:** Cargo floor up to the headliner, taken at the sleeping run rather than at the tailgate where the roof drops away.
-- **Feeds:** `van_interior_height` — caps the whole stack: deck + mattress + sitting headroom.
-- **Previous estimate:** 44" — already verified (reconfirm)
-- **V3** — floor to headliner: **42"** mid-van (MEASURED — owner, Aug 1 2026) — **2" lower than assumed**, and only **37" at the gate** where the roof drops (that is the V6 gate height). `van_interior_height` = 42. Knock-on: sitting headroom over the mattress drops 21.5" → **19.5"**, and the rear-pantry cluster's roof clearance drops to ~6.7" — a third drawer tier would now foul the headliner by 1.7", so the 2×2 cluster is the ceiling.
-
-#### V4 — Vent intrusion width, each side, at floor level *(was row #4)*
-
-![Van measurement V4 — vent intrusion](renders/vanmeas-v4.svg)
-
-- **Measure:** How far the floor vent / trim kick eats into the usable width down at floor level. One measurement per side. The deck may overhang it, but a **leg may not stand on it**.
-- **Feeds:** `vent_intrusion_width` — drives `leg_inset`.
-- **Previous estimate:** 2.5" per side — already verified
-- **V4a** — driver side: **3.5"** (MEASURED — owner, Aug 1 2026)
-- **V4b** — passenger side: **3.5"** (MEASURED — owner, Aug 1 2026)
-- **1" per side deeper than assumed.** `vent_intrusion_width` = 3.5, so `leg_inset` grows to 3.5" — the legs step further in from the deck edge. Sketched on the sheet as ~3¼" over a ~15" fore-aft run; **3.5" is the number to build to.** Floor-level usable width is now 42" (49 − 2×3.5), and the leg line at 39" still sits inside it.
-
-#### V5 — Hatch curvature clearance *(was row #5)*
-
-![Van measurement V5 — hatch curvature](renders/vanmeas-v5.svg)
-
-- **Measure:** How far forward of the closed hatch you have to stop building, because the glass and trim curve inward above the floor.
-- **Feeds:** `hatch_curvature_clearance` — it is why the panels total 94", not 96".
-- **Previous estimate:** 2" — already verified
-- **V5** — hatch to the usable boundary: **0"** (MEASURED — owner, Aug 1 2026) — *"the build isn't high enough to hit curvature."* Nothing has to be reserved at the tailgate end: `hatch_curvature_clearance` = 0, which is what gave back most of what V1 took away. **One thing did break:** the rear-pantry drawer units (14.3" deep) used to be allowed to sit 0.3" proud of the deck edge *into* that 2" reserve. There is no reserve to hang into now, so **`pantry_len` went 14" → 14.5"** and the deck carries the whole drawer (costs ½" of sleeping run).
-
-#### V6 — The gate (tailgate) opening — width and height *(was row #6)*
-
-![Van measurement V6 — gate opening](renders/vanmeas-v6.svg)
-
-- **Measure:** Standing at the open hatch: the opening's width at its **narrowest** point, and its height **where the rounded corners start cutting in** — not the widest or tallest point of either.
-- **Feeds:** `gate_opening_width` / `gate_opening_height` — these gate what can physically pass into the van at all.
-- **Previous estimate:** 48" / 36" — both UNVERIFIED
-- **V6a** — narrowest width: **50"** (MEASURED — owner, Aug 1 2026) — 2" better than the estimate; the 46" boxes now have **2" of clearance per side** instead of 1".
-- **V6b** — clear height: **37"** at the centre of the opening (MEASURED — owner, Aug 1 2026), but only **20.5" out where the corner radius starts cutting in**. `gate_opening_width` = 50, `gate_opening_height` = 37. **Carry the 18.5"-tall boxes through the middle of the gate** — a module walked in flat against one side will foul the rounded corner well before it runs out of height in the centre.
-
-#### V7 — Wall-to-wall width up at platform height
-
-![Van measurement V7 — wall-to-wall at platform height](renders/vanmeas-v7.svg)
-
-- **Measure:** Interior wall-to-wall width at **~18.5"** and **~22.5"** above the floor, taken at several points along the sleeping run. The floor pinch between the wheel wells is one number; the assumption was that the walls flare wider up here, which is what would let a 52" platform fit at all.
-- **Feeds:** Gates `bed_frame_width` — the 52" platform needed **≥53"** at platform height.
-- **Previous estimate:** — UNVERIFIED, and the platform-width gate
-- **V7a** — at ~18.5" above the floor: **50"** (MEASURED — owner, Aug 1 2026)
-- **V7b** — at ~22.5" above the floor: **49.5"** (MEASURED — owner, Aug 1 2026)
-- ⚠️ **THIS ONE FAILED ITS GATE — the biggest finding of the survey.** The walls barely flare over the wheel wells: **50" is the usable width** at the sleeping plane (owner), against the ≥53" the design assumed. So the cantilevered platform came down from **52" → 49"** (`bed_frame_width`), i.e. **1½" of overhang per side instead of 3"**, keeping ~½" of insertion clearance per side. The slats shorten with it: **42" instead of 45"**. New param `van_platform_width` = 50 records the limit and asserts against it.
-- ⚠️ **Open issue — the mattress is now the widest thing in the van.** The HEST Dually Long is **50" wide**, the usable width is **also 50"**, and the frame under it is 49": the foam goes in with **zero side clearance** and overhangs its own frame by ~½" per side. Note the walls **narrow** with height here (50" at 18.5", 49.5" at 22.5"), so the pinch lands on the mattress's top outer edges, not its base. Solid foam tolerates that (no coils to distort) — but it is a squeeze, not a fit, and the mattress is already bought, so it is **flagged rather than designed around**. Verify by dry-fitting the foam before the platform is cut to final width.
-
-#### V8 — The side sliding door opening *(was row #7)*
-
-![Van measurement V8 — side door opening](renders/vanmeas-v8.svg)
-
-- **Measure:** The door opening's fore-aft width and its height — and the one that actually matters, the **usable clear** width and height at the door's real stopping point, not the rough opening.
-- **Feeds:** `side_door_opening_width` / `side_door_opening_height` — decides whether the DELTA 3 stack stays in Panel A or has to move (see the reachability note in Section 1).
-- **Previous estimate:** 40" / 40" — both UNVERIFIED
-- **V8a** — fore-aft width: **50"** — but this is the **door panel's own external width**, not the aperture (owner, Aug 2026).
-- **V8b** — height: **58"** — likewise the **door panel's external height**, measured off the vehicle rather than the opening (it cannot be a cabin dimension; the cabin is 42" tall). **The rough aperture's height is still unmeasured.**
-- **V8c** — usable clear at the door's actual stop: **29"** (MEASURED — owner, Aug 1 2026) — **this is the number that matters, and it is 11" tighter than the 40" assumed.** `side_door_opening_width` = 29. Knock-on: with the door's fore-aft position still a placeholder, the reachability check now reports Panel A reachable and **Panel B essentially unreachable from the side** — which is fine, because Panel B was already designed as a top-loaded bay with no drawers. Re-run the check once `side_door_y0` is measured.
-
-#### V9 — The two AC outlets
-
-![Van measurement V9 — AC outlets](renders/vanmeas-v9.svg)
-
-- **Measure:** **VERIFIED: 2 outlets total, both fed by the one 1500W inverter**, so they share a single power budget. Front: centre console. Rear: passenger-side rear quarter trim — **22.5" above the cargo floor, ~10" forward of the liftgate scuff plate, socket centre 10" laterally in from the right sidewall** (MEASURED — owner, Aug 1 2026), directly above the 12V battery access panel and below the rear cup holders. *(This corrects the ~9.5" / ~16" figures carried in earlier drafts.)*
-- **Feeds:** Section 5/7 — the cooktop and Power strip 1 tap the rear outlet; DELTA 3 charging has the front one. Section 1/7 uses the 1500W rating for the DELTA 3's charge rate and the cooktop check.
-- **Previous estimate:** front 1500W — VERIFIED; rear position — VERIFIED
-- **V9a** — front console outlet — wattage rating: **1500W, unchanged** (the line was struck through on the sheet as already verified).
-- **V9b** — rear outlet position: **22.5" up, 10" inboard of the right sidewall** (MEASURED — owner, Aug 1 2026). **This is better news than the plan assumed:** at 22.5" the socket sits **4" ABOVE the 18.5" deck plane**, not buried below it — the cooktop and Power strip 1 cords reach it from deck level instead of having to drop down the gap between the kitchen unit and the van wall. Section 5's routing is easier, not harder; see the corrected note there.
-- **NEW check** — does the quarter trim / cup holder intrude inboard of the 46" deck width at deck height near that corner?: **the trim sits ~10" in from the sidewall at outlet height**, so the corner is where the deck and the trim come closest — keep the anchor board's kitchen-side strip clear of it as Section 8 already requires.
-
-#### V10 — Cargo floor level — flat, or sloped front-to-back? *(was row #9)*
-
-![Van measurement V10 — cargo floor level](renders/vanmeas-v10.svg)
-
-- **Measure:** Lay a long level along the run and check at several stations. Nothing in the model accounts for a slope: every module's four legs are one length, which only gives a level deck if the floor itself is level.
-- **Feeds:** Not currently a param — a slope means per-leg shimming rather than one `leg_height`.
-- **Previous estimate:** assumed flat — UNVERIFIED
-- **V10** — level, or slope over what run?: **mixed — mostly level; level at the ends, with minor change in between** (MEASURED — owner, Aug 1 2026). No slope big enough to force per-leg shimming, so the one-length-legs assumption holds. The leveling feet already on every leg absorb the "minor change" — set them once on a flat surface and adjust only if the deck rocks.
-
-#### Also worth noting while you are in there — no drawing needed
-
-- **Folded 3rd-row well depth.** Already covered by **F3b** in the rear-floor survey below, which
-  measures the same well. It confirms `leg_height` (17" on Panel C, fridge-driven; Panel A/B legs
-  are 16.25" with the deck recess — that clears it).
-- **Rear 12V accessory outlet — exact position.** Informational only, **not a blocker**: this
-  design no longer uses it. The fridge and fan system run off the DELTA 3 stack instead (Section 1).
-- **Factory sunroof — PRESENT** (MEASURED — owner, Aug 1 2026), opening size not measured. Only relevant if you later pursue a roof vent — measure it then.
-
-### The fridge (BougeRV) and kitchen unit (JAGAHAHA), once purchased
-
-![Measurement guide: fridge and kitchen](renders/measurement-fridge-kitchen.svg)
-
-| # | Measure | Goes in `params.scad` as | Listing spec (unverified) | Your measurement |
-|---|---|---|---|---|
-| 1 | Fridge length as installed (left-right, the 450mm side) | `fridge_ext_length` | 17.72" | 17¾" (owner, July 2026 — matches) |
-| 2 | Fridge depth, front to back incl. handles | `fridge_ext_width` | 28.74" (body 28.03") | 27¾" (owner, July 2026 — ~1" under; hard to tape a rounded-corner case square, and easy to undercount how far the handle protrudes. Spec used, since the tray is already cut to it.) |
-| 3 | Fridge height | `fridge_ext_height` | 15.79" | 15⅝" (owner, July 2026 — matches within rounded-corner tolerance) |
-| 4 | Which side is the compressor/vent on? | (confirms the intake/exhaust fan placement in Section 2 still makes sense) | Manual (CR04001): compressor, louvers, control panel & power port ALL at one end; free-air clearances 200mm that end / 100mm sides | Manual answers the "which end" question — that end faces the tailgate (Component 7). Still confirm on the physical unit, and see Section 2's clearance note for how the fan system substitutes for the manual's free-air numbers |
-| 5 | Fridge empty weight | (Section 8 weight table) | 40.6 lb (18.4 kg, manual) | |
-| 5b | Floor vents at Panel C's REAR corners | Panel C's rear legs sit at the TRUE corners now | must be vent-free for ~4" | |
-| — | Fridge cord length | (confirms it reaches the new DC line's connection point inside Panel C's void — Section 5) | — | |
-| — | Fridge slide clearance — how far it must come out before the lid opens fully | `fridge_slide_length` (confirms 24" is enough) | 24" slide | |
-| 6 | Kitchen unit width, closed | `kitchen_box_width` | 20" | |
-| 7 | Kitchen unit length, closed | `kitchen_box_length` | 26" | |
-| 8 | Kitchen unit height, closed | `kitchen_box_height` | 11.8" | |
-| 9 | Stove tray length x width x clearance height | (Section 7 — the COOKTRON cooktop's fit depends on this; the current numbers came from listing photos, not a spec sheet) | 23" x 15.7" x 5.7" | |
-| 10 | Kitchen unit empty weight | (Section 8 weight table) | ~45 lb | |
-| — | Cord pass-through location for the cooktop's power cord | (Section 5/6 cord routing) | — | |
-| — | Confirm it still extends to ~70" open | (sanity check — this happens outside the vehicle, doesn't affect interior length) | ~70" | |
-
-### The rear floor under Panel C — what does the anchor board actually sit on and strap to? (SURVEYED Aug 1 2026 — findings below)
-
-**HEADLINE FINDING (owner, Aug 1 2026):** the feared geography mostly is not there. **The stowage well is full of folded seats, not open**, and the folded seatbacks make a load surface solid enough to bear on across the whole Panel C footprint (F1/F2/F3) — so no filler blocking, and the well's edges stop being a constraint. Two fallbacks died with it, though: **there is no hard step face at the striker row** for the steel tongues to butt against (F7 — it is carpet over a soft ~1" step), and **the 3rd row's seat-mount bolts are occupied by the seats** and unavailable as hardpoints (F6). That leaves Section 8's load path as designed: **the 2nd-row rail rear ends in tension/compression, plus the 3 striker straps.** The rail ends measure **42" from the hatch** and the striker row **44.5"** — both nearer than the 46–50" assumed, so the steel tongues come out at or just under the short end of the 10–14" range. Fabricate them to the measured 42".
-
-**The original problem statement (owner, July 2026, from a photo of the actual cargo area):** the rearmost stretch of the Sienna — exactly where Panel C, the fridge slide, and the kitchen unit live — is not plain sheet-metal floor. It's the 3rd-row stowage area: a **deep cargo well** the folded seatbacks drop into, so much of the "floor" back there is actually **folded seatback over a void**, plus the seats' own latch/hinge hardware and (passenger rear corner) the hybrid's 12V battery access panel. Section 8's no-drill securing design — an anchor board bearing on this surface, steel tongues bolted to the rear ends of the 2nd-row floor rails (fallback: butting the striker-row step), straps into the 3 striker loops — needs the same geography mapped before its outline can be cut: where the surface is solid, where the well and its edges are, exactly where the strikers and the rail ends sit, and what Panel C's legs land on. Do the whole survey with the 3rd row folded exactly as it will sit in camper mode and the 2nd-row carriages parked fully forward. (The old version of this checklist gated 16 drilled floor-pan holes; the drilling is gone, and with it the under-van fuel/brake-line clearance crawl.)
-
-**Reading these drawings.** Each measurement below gets its own drawing of the whole vehicle in plan, so you can see where in the van you are working. All eight are the same base plan — **front at the left, tailgate at the right**, driver side along the bottom — showing the body outline, the front seats, the empty 2nd-row bay with its long-slide floor rails, the folded 3rd row over its stowage well, and Panel C's footprint. **Only that section's measurement is drawn in red**, tagged with lettered items (F4a, F4b, ...) that match the blank finding lines under each drawing one-for-one — so there is a line to write on for every thing you are asked to measure. F3 and F7 add a small section inset, because a depth and a step height cannot be shown in plan; F8 adds three detail bubbles for the rail-end cases you have to tell apart. The body outline is illustrative, and every dashed interior feature is drawn at its ASSUMED position — confirming those is the entire point of this survey.
-
-#### F1 — Map the load surface into its three zones
-
-![Survey F1 — load-surface map](renders/survey-f1.svg)
-
-- **Measure / check:** With the 3rd row folded flat, map the load surface: press and knock along the whole Panel C footprint and mark with masking tape where it is **folded SEATBACK**, where it is the **well/tub** (hollow underneath), and where it is **carpet over solid pan**.
-- **Feeds:** Where the anchor board's strips can bear solidly, and where they would need filler blocking.
-- **Previous assumption:** assumed usable as-is — UNVERIFIED
-- **Finding** (MEASURED — owner, Aug 1 2026): **"Seats in all areas. Can handle load."** There is no three-zone map to draw — the folded seatbacks cover the whole Panel C footprint and bear the load. **No filler blocking needed.** The trade-off is that the bearing surface is upholstered rather than steel, so the anchor board's rubber mat is doing real work; keep the straps tight.
-
-#### F2 — Fore-aft position of the stowage well
-
-![Survey F2 — well edges, fore-aft](renders/survey-f2.svg)
-
-- **Measure / check:** Where the stowage well's rear and forward edges sit, both measured from the closed hatch (the same fore-aft datum as V1).
-- **Feeds:** The board's strip lengths, and where filler blocking starts and stops.
-- **Previous assumption:** —
-- **F2a / F2b** (MEASURED — owner, Aug 1 2026): **not applicable — "doesn't matter, seats fill it in."** With the 3rd row folded into it, the well is not an open cavity with edges to work around, so there is nothing for the strip lengths or filler blocking to be positioned against.
-
-#### F3 — The well's width, and its depth
-
-![Survey F3 — well width and depth](renders/survey-f3.svg)
-
-- **Measure / check:** The well's width across the van, and its depth below the surrounding load floor.
-- **Feeds:** Sizing the filler blocking that carries a board strip across the well, down to its structural bottom.
-- **Previous assumption:** —
-- **F3a / F3b** (MEASURED — owner, Aug 1 2026): **not applicable — "well is filled with seats, doesn't matter."** No depth to blocking-out, and nothing here challenges `leg_height` (17" on Panel C, 16.25" on A/B).
-
-#### F4 — The 3rd-row striker loops
-
-![Survey F4 — striker loops](renders/survey-f4.svg)
-
-- **Measure / check:** For each of the 3 loops: its fore-aft distance from the hatch, its lateral position, and its inside clearance (a strap hook has to seat in it). Also whether the FOLDED seatbacks leave all 3 loops exposed and hookable.
-- **Feeds:** Section 8's striker straps plus the steel tongues' length (assumed striker row ~46–50" from the hatch → ~10–14" tongues).
-- **Previous assumption:** ~46–50" from hatch — UNVERIFIED. The strikers are confirmed PRESENT (photo, July 2026) but not yet measured.
-- **F4a** — hatch → striker row: **44.5"** (MEASURED — owner, Aug 1 2026) — 1.5" nearer than the near end of the assumed range.
-- **F4b** — loop-to-loop spacing: **~12.5–13"**, with the outer two loops **~11" in from each sidewall** (scaled off the tape in the Aug 2026 striker-row photos; the finding line itself says "see pictures"). Three loops across the row, roughly 11" / 24" / 37" on a tape zeroed at the driver sidewall.
-- **F4c** — inside clearance / exposure: **loops are 1.5" tall, and all 3 are exposed and hookable with the seats folded — "yes"** (MEASURED — owner, Aug 1 2026). 1.5" of clear height is enough for a cam-strap S-hook or a small carabiner; check the hook you buy against it.
-
-#### F5 — What Panel C's legs and the kitchen bear on
-
-![Survey F5 — leg and kitchen bearing points](renders/survey-f5.svg)
-
-- **Measure / check:** Where Panel C's 4 legs and the kitchen unit's footprint actually bear: solid floor, or folded seatback? A deck leg standing on a seat cushion is springy — it will not sit level or solid.
-- **Feeds:** `leg_height`, deck levelness, and the kitchen unit's strap-down.
-- **Previous assumption:** —
-- **F5a** — what each of the 4 leg pads bears on (MEASURED — owner, Aug 1 2026): **the REAR legs land on folded seats; the FRONT legs land on the floor, but beside the vent intrusions** (see the Aug 2026 photos). So two legs bear on upholstery — springy, exactly the case this section warned about. **Set the leveling feet with the deck loaded**, not empty, so the foam-and-fabric compression is already taken up, and re-check after the first night out.
-- **F5b** — what the kitchen unit's footprint bears on: same mixed surface as the rear legs (folded seat). It is strapped down rather than standing on levellers, so compression matters less — but keep the strap tight enough that settling doesn't loosen it.
-
-#### F6 — Fold the 3rd row, or remove it?
-
-![Survey F6 — fold vs remove the 3rd row](renders/survey-f6.svg)
-
-- **Measure / check:** Does a solid bearing surface require REMOVING the 3rd row rather than folding it? If so, does the 3rd row carry its own SRS / seatbelt-pretensioner wiring?
-- **Feeds:** Section 9 covers 2nd-row removal only — a 3rd-row removal procedure (and possibly more emulators) would be NEW scope. Removal would also expose the 3rd row's own seat-mount bolts as bolt-in anchor-plate hardpoints (no new holes) — the strongest points in the zone if the striker plan needs help.
-- **Previous assumption:** assumed fold-only — UNVERIFIED
-- **F6a** — does the row have to come OUT? **No — "folded is good."** (MEASURED — owner, Aug 1 2026) **Section 9 stays as written: 2nd-row removal only.** No 3rd-row removal procedure, no extra SRS emulators, no new scope.
-- **F6b** (MEASURED — owner, Aug 1 2026): **no SRS / pretensioner wiring on the 3rd row** — but **the seat-mount bolts are in use by the seats and are NOT available** as anchor-plate hardpoints. The "bolt to the 3rd row's own seat mounts" fallback is therefore off the table; the rail ends + striker straps carry the load.
-
-#### F7 — The step/riser at the striker row
-
-![Survey F7 — step/riser at the striker row](renders/survey-f7.svg)
-
-- **Measure / check:** Is there a square, hard vertical face at the step by the striker row (metal under the trim?) for Section 8's two steel tongues to butt against — and how tall is it?
-- **Feeds:** The FALLBACK forward load path, in compression, if F8 rules the rail ends out.
-- **Previous assumption:** assumed hard step at the striker row — UNVERIFIED
-- **F7a** — is the step face square and hard? **No — "covered in carpet"** (MEASURED — owner, Aug 1 2026). Not a square metal face, so **the compression fallback is out**: do not size the steel tongues expecting to butt them against this step.
-- **F7b** — step HEIGHT: **1"** (MEASURED — owner, Aug 1 2026) — low and soft. It will stop a board from creeping rearward under gentle load, but it is not a crash-path member.
-
-#### F8 — The 2nd-row rails' rear ends
-
-![Survey F8 — 2nd-row rail rear ends](renders/survey-f8.svg)
-
-- **Measure / check:** With the seat carriages parked fully forward: where do the rails' REAR ends sit (distance from the hatch, lateral spacing), and what is at each end — an end cap that unclips, exposed track bolt heads, an open track slot, a lip a clamp plate could grab? Photograph the end hardware close-up.
-- **Feeds:** Section 8's PRIMARY forward connection: the anchor board's 2 steel tongues bolt or clamp to these rail ends (no new holes). This measurement decides the bracket detail and the tongue length.
-- **Previous assumption:** assumed the rail ends reach the striker-row zone — UNVERIFIED
-- **F8a** — hatch → rail REAR ends: **42"** (MEASURED — owner, Aug 1 2026). **The rail ends reach — with room to spare.** They sit 2.5" NEARER the hatch than the striker row (44.5", F4a), so the tongues are shorter than the assumed 10–14": **fabricate to the measured 42".** This is the PRIMARY forward connection and it survives the survey intact, which matters because F6 and F7 both eliminated fallbacks.
-- **F8b** — rail lateral spacing: **see the Aug 2026 photos** — not separately taped. Take this off the rails themselves at the bench before the tongue bracket is drilled; the photos show both rail ends and their hardware clearly enough to lay out against, but a bolt pattern deserves a tape.
-- **What is AT each end** (end cap / track bolt / open slot / lip): **see the Aug 2026 close-up photos.** Confirm the exact hardware case from the photos before ordering bracket stock.
-
-
-**Photos to take while you're in there** (each one answers a specific question later, at the workbench, without crawling back in):
-
-1. **Wide shot from the open tailgate**, 3rd row folded as it will sit in camper mode, with a tape measure laid fore-aft along the floor from the hatch — establishes the Y datum every other photo hangs off.
-2. **Carpet/liner pulled back at the tailgate end** — what's actually under it: painted steel, a plastic tub, or the seat mechanism.
-3. **Straight-down shot into the stowage well** (seats up if needed) with the tape showing its depth and its front edge's distance from the hatch.
-4. **Close-ups of the seat latch/hinge hardware** anywhere it falls inside Panel C's 35.75" footprint — this is what a board strip or a deck leg would be fighting for space with.
-5. **The passenger rear corner** showing the 12V battery access panel — the one spot the anchor board must stop clear of (Section 8).
-6. **The striker row straight-on**, tape held across it — all 3 loops in frame, with the step's face visible below them. This pairs with F4 and F7.
-7. **Each 2nd-row floor rail's rear end, close up** (carriages parked forward) — the end cap/bolts/slot the tongue bracket has to mate with. This pairs with F8 and is what the bracket gets fabricated against, at the workbench.
-
-**If the survey comes back ugly** — rail ends short of the tongues' reach or with nothing to grab (F8), loops buried under the folded seatbacks, no hard face at the step, nothing solid for the strips to bear on — the Section 8 design flexes rather than dies: the striker-row step as the tongues' compression stop (F7), filler blocking down to the well's structural bottom (F3), the well's forward wall as a bearing target (F2/F3), or the 3rd row's own seat-mount bolts with anchor plates (F6 — likely means removing the 3rd row, which is new Section 9-style scope). Every one of those changes geometry that `params.scad` currently takes on faith, so settle this survey before cutting Panel C or the anchor board.
-
----
+**Vehicle measurements** — the van was surveyed on Aug 1 2026 and every dimension in this plan comes from that survey. The full record (V1–V10 interior/opening measurements, F1–F8 rear-floor survey, what each finding changed, and the few items still open) is **Appendix A**.
 
 ## Renders
 
@@ -251,7 +12,7 @@ Parametric 3D model: [`platform.scad`](platform.scad) (dimensions in [`params.sc
 
 ### No-Drill Anchor Platform — Overhead Detail
 
-The overhead companion to the floorplan: Section 8's securing system in plan view — the mat + ply anchor board under Panel C, its 2 steel tongues running forward to bolt to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Rail-end and striker positions are drawn at the plan's ASSUMPTIONS until the Section 0 F1–F8 survey pins them:
+The overhead companion to the floorplan: Section 8's securing system in plan view — the mat + ply anchor board under Panel C, its 2 steel tongues running forward to bolt to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Rail-end and striker positions are drawn at the plan's ASSUMPTIONS until the Appendix A F1–F8 survey pins them:
 
 ![No-drill anchor platform — overhead](renders/anchor-platform-overhead.svg)
 
@@ -313,7 +74,7 @@ Each floor panel, exploded (Panel A: frame + legs + center divider + one right d
 
 ### Bed Platform Detail
 
-Component 2's one-piece slatted bed platform (58" x 49", 8 slats pocket-screwed between two full-length 1x4 side rails — one flush 3/4" plane, cantilevered 1.5" past the boxes on each side; **width cut back from 52" by measurement V7, Aug 2026**), exploded. Per-site leveling is done at the WHEELS with blocks (Block Calculator, Appendix D); the interior leg feet are a one-time set. It rests DIRECTLY on Panel A/B's top rails and ENDS at the B/C seam — Panel C's own fixed deck sits at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck. It lifts straight off; leveling happens at the leg feet, down at the floor, and an RV bar bubble level screwed to the driver-side rail's outer edge reads fore-aft pitch while you turn the knobs (its twin on the rear-pantry deck edge reads roll):
+Component 2's slatted bed platform (58" x 49" overall, 15 slats pocket-screwed between 1x4 side rails — one flush 3/4" plane, cantilevered 1.5" past the boxes on each side; **width cut back from 52" by measurement V7, Aug 2026**), exploded. **It is THREE lift-out pieces (owner, Aug 2026): Panel A's 29" × 49" section, plus Panel B's top as two 29" × 24.5" centreline halves that each lift out on their own.** Per-site leveling is done at the WHEELS with blocks (Block Calculator, Appendix E); the interior leg feet are a one-time set. Both sections rest DIRECTLY on Panel A/B's top rails and the platform ENDS at the B/C seam — Panel C's own fixed deck sits at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck. Leveling happens at the leg feet, down at the floor, and an RV bar bubble level screwed to the driver-side rail's outer edge reads fore-aft pitch while you turn the knobs (its twin on the rear-pantry deck edge reads roll):
 
 ![Bed frame detail](renders/bed-frame-detail.svg)
 
@@ -360,7 +121,7 @@ The one wall any panel gets, as a flat pattern with **every hole dimensioned**: 
 
 ### Vehicle constraints (hard limits — everything below is designed inside them)
 
-The 2nd row seats are being **removed entirely** (not just pushed forward), with the 3rd row folded flat as before. **Every figure in this table was measured on the actual vehicle on Aug 1 2026** (owner), with the 2nd row out and the 3rd row folded as it sits in camper mode — see Section 0 for the survey sheet those numbers came off, including what each one changed.
+The 2nd row seats are being **removed entirely** (not just pushed forward), with the 3rd row folded flat as before. **Every figure in this table was measured on the actual vehicle on Aug 1 2026** (owner), with the 2nd row out and the 3rd row folded as it sits in camper mode — see Appendix A for the survey sheet those numbers came off, including what each one changed.
 
 | Constraint | Value | Notes |
 |---|---|---|
@@ -396,14 +157,14 @@ Every module has to physically pass through the liftgate opening to be lifted in
 
 The fridge and kitchen unit never need to pass through the gate opening at all — they live inside Panel C's own void as bought products, installed once and left in place, not lifted in and out. The tight spot is no longer width — the measured 50" opening gives the 46" boxes **2" per side**. It is the **corner radius**: only 20.5" of height survives out at the rounded corner, so an 18.5"-tall box walked in flat against one side will foul long before it runs out of the 37" available in the centre. `params.scad` asserts against the measured numbers the same as every other hard limit. The rear pantry's prefab drawer units are separate pieces from Panel C by nature — loosen the cam strap and each ~12.1"-wide unit lifts out and through the gate trivially (Component 1).
 
-### Side door openings (PARTLY MEASURED Aug 1 2026 — the clear width is known, the aperture height and position are not)
+### Side door openings (MEASURED Aug 2026 — aperture 35" × 45", only 29" ever clear; fore-aft position still unmeasured)
 
-The side doors only matter for **Panel A**: its right drawer (DELTA 3) pulls out the passenger door and its left bay (WAVE 3) is reached through the driver door — the door openings sit over the old 2nd-row footprint, which is exactly where Panel A lives. **Panel B is beyond the door openings entirely** (owner-confirmed), which is why it has no drawers: nothing pulled sideways from it could clear a door, so its bay is top-loaded deep storage instead. Panel C's void houses the fridge and kitchen unit, both pulling out through the open tailgate. Partly measured Aug 1 2026 (V8) — and the news is worse than the estimate.
+The side doors only matter for **Panel A**: its right drawer (DELTA 3) pulls out the passenger door and its left bay (WAVE 3) is reached through the driver door — the door openings sit over the old 2nd-row footprint, which is exactly where Panel A lives. **Panel B is beyond the door openings entirely** (owner-confirmed), which is why it has no drawers: nothing pulled sideways from it could clear a door, so its bay is top-loaded deep storage instead. Panel C's void houses the fridge and kitchen unit, both pulling out through the open tailgate. Measured Aug 2026 (V8) — and the news is worse than the estimate.
 
 | Constraint | Value | Notes |
 |---|---|---|
 | **Usable clear width at the door's real stop** | **29"** | MEASURED V8c — **11" tighter than the 40" assumed.** This is the number that governs; `side_door_opening_width` = 29 |
-| Side door opening height | 40" | **STILL UNVERIFIED** — the 58" on the survey sheet is the door panel's external height, not the aperture's |
+| Side door aperture | **35" × 45"** | MEASURED (Aug 2026) — the opening itself. The door parks 6" short of its forward edge, which is why only 29" is ever clear |
 | Door panel (not the opening) | 50" × 58" | Measured, but these are the door's own outside dimensions — recorded so they aren't mistaken for aperture figures |
 | Door opening's fore-aft position | — | **STILL UNMEASURED** (`side_door_y0` is a placeholder) |
 
@@ -413,15 +174,27 @@ The side doors only matter for **Panel A**: its right drawer (DELTA 3) pulls out
 
 - **Rear pantry — prefab drawer cluster + pot bay** (owner, July 2026): the custom plywood pantry is **replaced by bought prefab drawers** — nothing built, and ~27 lb lighter. A **2×2 array of IRIS USA 12"W stackable drawers** (Home Depot #500163, two 3-packs) sits on the **tailgate end of Panel C's deck**, in the same tailgate-end footprint the plywood pantry used, now 14.5" deep (the units' 14.3" depth is carried entirely by the deck — V5 measured the hatch reserve at zero, so there is nothing left to hang 0.3" proud into; the sleeping run is 79.25"). The cluster is **24.2" W × 14.3" D × 16.8" H**, leaving **~21.8" of open deck** on the passenger side for a **pot/pan crate** (~13" milk crate — the pots' own 11×11 box drops inside) and the relocated power/wiring. It's held by a **cleat pocket + one cam strap across the drawer fronts** (which also keeps the drawers shut) — no fasteners into the units, so each drawer unit **lifts straight out** and clears the gate. **Gone with the plywood pantry:** the cam-lever clamp set, the 2 steel L-angle sway braces, the fiddle-lip/lash-strap retention kit, and the **enclosed bed cubby** — so **Power strip 1 and the ROLL bubble level move to the deck edge** in the 19" bay (still reached from the bed). See the Rear Pantry render and Section 6, Component 1.
 - **One continuous sleeping deck**, 46" wide x 93.75" long (Panels A + B + C, flush with the front seatbacks — no gap), deck surface sitting **18.5"** above the van floor: **the horizontal ply is recessed INTO the rail plane** (deck recess, owner July 2026 — Panel C's deck drops between its rails onto 3/4"×3/4" bearer cleats, flush with the rail tops; Panels A/B instead run **16.25" legs**, so the 3/4" bed platform resting ON their rails tops out at the same 18.5" plane). That buys 3/4" of headroom: **19.5" sitting headroom** over the 4" mattress (V3 measured the cabin at 42", not 44" — so the deck recess is now carrying more of the load than it was designed to). Panel C's `leg_height` stays 17", driven by the fridge's mounted stack (see below), not by the folded 3rd-row well depth — confirm 17" clears your actual well before cutting.
-- **Panel A and Panel B share the same frame, and neither has a top of its own.** Panel A has a center divider splitting its bay in two, reached through the side doors: the right (passenger) side is the one real drawer (DELTA 3), the left (driver) side is WAVE 3 open storage (the unit is too wide for a boxed drawer — Section 1). **Panel B has NO drawers and no divider** — the sliding-door openings sit over the old 2nd-row footprint (Panel A), not over Panel B, so nothing pulled sideways from Panel B could clear a door. Its whole bay is deep storage instead: lift the platform + mattress and load it from above (long-term/bulky items you don't touch at camp). The one-piece slatted bed platform (Component 2, 8 slats between 2 full-length side rails, 58" x 49" — cantilevered 1.5" past the boxes each side, 3/4" thick; **cut back from 52" by V7**) spans Panel A + B ONLY and ENDS at the B/C seam: Panel C's own fixed deck is at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck (an 80" platform would have to sit ON that deck — 3/4" too high). It rests DIRECTLY on Panel A/B's top rails as one flush 3/4" plane (slats pocket-screwed between the two side rails). Leveling happens at the leg feet down at the floor — each leg is cut 1" short and carries a hand-adjustable leveling foot. Sourcing: cut eight 42" slats from four 1x4 x 8ft pine boards (two per board) plus two 58" side rails from two more — six boards total (weight swap: was ten slats/seven boards), no bought slat kit to fight with (many queen slat sets ride on metal frames or webbing that don't survive cutting down — Section 4 + Component 2). It lifts off (as a whole) for bay access from above — that's Panel B's ONLY access, and the occasional deep-cleaning route for Panel A.
+- **Panel A and Panel B share the same frame, and neither has a top of its own.** Panel A has a center divider splitting its bay in two, reached through the side doors: the right (passenger) side is the one real drawer (DELTA 3), the left (driver) side is WAVE 3 open storage (the unit is too wide for a boxed drawer — Section 1). **Panel B has NO drawers and no divider** — the sliding-door openings sit over the old 2nd-row footprint (Panel A), not over Panel B, so nothing pulled sideways from Panel B could clear a door. Its whole bay is deep storage instead, loaded from above by lifting out **either half of its two-piece bed top** (long-term/bulky items you don't touch at camp). The slatted bed platform (Component 2, 15 slats between 1x4 side rails, 58" x 49" overall — cantilevered 1.5" past the boxes each side, 3/4" thick; **cut back from 52" by V7**) spans Panel A + B ONLY and ENDS at the B/C seam: Panel C's own fixed deck is at exactly the same surface height, so the two meet flush and the mattress's last ~20" rides that deck (an 80" platform would have to sit ON that deck — 3/4" too high). It rests DIRECTLY on Panel A/B's top rails as one flush 3/4" plane (slats pocket-screwed between the side rails). Leveling happens at the leg feet down at the floor — each leg is cut 1" short and carries a hand-adjustable leveling foot.
+
+  **SPLIT INTO THREE LIFT-OUT PIECES (owner, Aug 2026).** It used to be one 58" piece that lifted off whole — which meant that reaching Panel B, the only bay with no side access at all, involved wrestling a 49"×58" frame out and finding somewhere in a packed van to put it. It is now three pieces:
+
+  - **Panel A's section** — 29" × 49", one piece, ~11 lb. Lifts off, but rarely needs to: Panel A has real side-door access to both its bays.
+  - **Panel B's TWO HALVES** — 29" × 24.5" each, **split on the centreline**, each lifting out on its own at ~6 lb. Lift the mattress clear and take out only the half on the side you're standing at.
+  - **A centre bearer in Panel B's frame** — 26" of 3"-wide 2×2 (two 2×2s side by side, or one 2×4 laid flat) running fore-aft at the centreline, its top flush with Panel B's long rails. The halves' inner rails land on it, 1½" of bearing each — the same as their outer rails get from the long rails.
+
+  **Why halves rather than one hinged leaf** (which is what this replaces): **24.5" fits back out through the 35" side door, and 49" never could** — a full-width piece could only ever leave via the tailgate, which defeats the point of working from a side door. Halves also mean the mattress only has to be lifted clear of half the width, there's no hinge, lid stay or opening-angle limit (a hinged 29" leaf could only reach ~67° before hitting the headliner — there's just 23.5" above the deck), and **the centre bearer halves the deck's unsupported span over Panel B, 46" → ~22"**. Panel B never had a centre divider where Panel A always did, so the sleeping surface is stiffer than it has ever been. The costs: two loose parts to set down instead of one captive lid, and ~1.7 lb over the hinged version.
+
+  ⚠️ **Neither scheme gets you around the mattress.** It's one 78" piece and Panel B is the *middle* third of the bed — fold the head end back and it lands on Panel B; fold the tail end forward and it lands there too. The mattress comes off, or gets folded clear, first. Halving the width is what makes that manageable rather than a two-person job.
+
+  Sourcing: five 42" slats (Panel A) and ten 17.5" slats (the halves, five per 8ft board) plus six 29" side rails — **seven 1×4 × 8ft boards, crosscuts only** (a 1x4 is already ¾"×3½", the slat spec, so nothing gets ripped), plus 52" of 2×2 for the centre bearer. No bought slat kit: they come stapled to webbing or riveted to metal side frames, neither of which survives being cut down (Section 4 + Component 2).
 - **Trade-off: no top means no enclosure — answered with CUBE FRAMES.** Removing the plywood tops loses torsional rigidity and a dust barrier. Two fixes are now specified: diagonal corner braces up top, and **bottom rails closing each frame into a box** (underside 1" up — dropped to the leg bottoms, just clear of the leveling feet, for the tallest box section and the lowest floor-edge curb) on every face that can take one — Panel A's two END faces (its sides must stay open for the drawer/WAVE 3), ALL 4 faces of Panel B (the full cube), and Panel C's FRONT face (its tailgate face stays open for the appliances; its fixed top + new front wall already stiffen it). A closed frame racks far less than rails + brackets alone. The bed frame's slats still have gaps — small items can fall through into the bays below.
-- **Panel C has no drawers.** Its under-deck void instead holds two bought products side by side across the 46" width: a **BougeRV Rocky 40 (41-quart, dual-zone)** — 17.72" side left-right, reversible lid (manual §4.4), optional detachable B240 battery at the tailgate-facing end — on a heavy-duty slide, against the driver-side REAR CORNER leg (1.5" in from the edge); and a **JAGAHAHA slide-out camp kitchen** (26"L x 20"W x 11.8"H closed, with its own 2-burner stove space and built-in slide), against the passenger-side rear corner leg — its shelves swing out on that side. (Panel C's rear leg pair sits at the TRUE corners — inset legs would stand exactly in the appliances' slide paths, a collision the Rocky 40's extra width exposed. Verify the floor vents don't reach those corners — Section 0.) **Both pull straight out the open tailgate** (not a side door). Neither is something this plan builds from plywood — both are bought, standalone units. Unlike everything else in this build, both are **strapped to the van's crash-rated 3rd-row striker loops** via a shared no-drill anchor board (Section 8 — the owner ruled out drilling the vehicle) — too heavy to rely on the same "rests unbolted" approach as the sleeping panels. The gap between them is an **open utility bay — no door** (an earlier revision hung a hinged door with a louver there; the owner cut it as pointless: the louver only existed because the door trapped the exhaust air, and the door itself just slowed down reaching the switches). The exhaust fan blows the fridge bay's warm air INTO the bay and straight out toward the tailgate, and the control panel (switches + surge protector) mounts at the back of the bay on a backer board hung from the deck underside — everything electrical is reachable by just reaching in. The 2 utility bins that live in the bay's spare volume get hook-and-loop tape under them, since there's no longer a door holding loose items in.
-- A **HEST Dually Long mattress (78" x 50" x 4", solid foam — no air chambers)** rides on the **49"** cantilevered platform: **25" of width per person** (vs 23" at the old 46") and ~1.25" of spare length parked at the head end beside the rear-pantry cluster. The platform overhangs the 46" boxes by 1.5" per side — the boxes stay at 46" (floor vents + liftgate pass-through), and the mattress lives ~18.5–22.5" up. ⚠️ **V7 (Aug 2026) measured wall-to-wall up there at 50" / 49.5", not the ≥53" this assumed — the platform came down from 52" to 49", and the 50"-wide mattress is now a ZERO-CLEARANCE fit between the walls that also overhangs its own frame by ~½" per side.** Solid foam tolerates both, but **dry-fit the foam in the van before cutting the platform to final width** — Section 0, V7. Budget fallback: the DIY 2-layer foam build (Section 4/Component 9), same 50x78 footprint.
+- **Panel C has no drawers.** Its under-deck void instead holds two bought products side by side across the 46" width: a **BougeRV Rocky 40 (41-quart, dual-zone)** — 17.72" side left-right, reversible lid (manual §4.4), optional detachable B240 battery at the tailgate-facing end — on a heavy-duty slide, against the driver-side REAR CORNER leg (1.5" in from the edge); and a **JAGAHAHA slide-out camp kitchen** (26"L x 20"W x 11.8"H closed, with its own 2-burner stove space and built-in slide), against the passenger-side rear corner leg — its shelves swing out on that side. (Panel C's rear leg pair sits at the TRUE corners — inset legs would stand exactly in the appliances' slide paths, a collision the Rocky 40's extra width exposed. Verify the floor vents don't reach those corners — Appendix A.) **Both pull straight out the open tailgate** (not a side door). Neither is something this plan builds from plywood — both are bought, standalone units. Unlike everything else in this build, both are **strapped to the van's crash-rated 3rd-row striker loops** via a shared no-drill anchor board (Section 8 — the owner ruled out drilling the vehicle) — too heavy to rely on the same "rests unbolted" approach as the sleeping panels. The gap between them is an **open utility bay — no door** (an earlier revision hung a hinged door with a louver there; the owner cut it as pointless: the louver only existed because the door trapped the exhaust air, and the door itself just slowed down reaching the switches). The exhaust fan blows the fridge bay's warm air INTO the bay and straight out toward the tailgate, and the control panel (switches + surge protector) mounts at the back of the bay on a backer board hung from the deck underside — everything electrical is reachable by just reaching in. The 2 utility bins that live in the bay's spare volume get hook-and-loop tape under them, since there's no longer a door holding loose items in.
+- A **HEST Dually Long mattress (78" x 50" x 4", solid foam — no air chambers)** rides on the **49"** cantilevered platform: **25" of width per person** (vs 23" at the old 46") and ~1.25" of spare length parked at the head end beside the rear-pantry cluster. The platform overhangs the 46" boxes by 1.5" per side — the boxes stay at 46" (floor vents + liftgate pass-through), and the mattress lives ~18.5–22.5" up. ⚠️ **V7 (Aug 2026) measured wall-to-wall up there at 50" / 49.5", not the ≥53" this assumed — the platform came down from 52" to 49", and the 50"-wide mattress is now a ZERO-CLEARANCE fit between the walls that also overhangs its own frame by ~½" per side.** Solid foam tolerates both, but **dry-fit the foam in the van before cutting the platform to final width** — Appendix A, V7. Budget fallback: the DIY 2-layer foam build (Section 4/Component 9), same 50x78 footprint.
 - Panel legs sit inset **3.5"** from the deck's side edges so they land clear of the floor-level vent intrusion (**MEASURED V4, Aug 2026 — was 2.5"**; the vents eat 1" per side more than assumed). The deck itself still overhangs the vents harmlessly at height.
 - **Power:** the fridge is 12V-native, but now runs off the EcoFlow DELTA 3 stack (Panel A) via its own dedicated DC cord rather than the van's rear accessory outlet — see Section 1 for why. **The cooktop, Power strip 1, and the DELTA 3's own AC charging cord each get their own dedicated run to the front console now** (previously the cooktop and Power strip 1 shared one line) — see Section 5 for all three routes.
 - **Fire safety + CO safety (owner-placed):** the fire extinguisher and the low-level CO monitor are **deliberately not located in this plan** — both are owner-supplied and will be positioned manually once the build is in the van. Two reminders that survive from the earlier analysis: the design has no propane at all (electric induction cooktop), so the only combustion-gas risk is the Sienna's own engine exhaust while idling parked; and a generic 70ppm home-style CO detector is too slow for that job — use a low-level unit (alarms at 9/25ppm within ~60s).
 - **Camp power/cooling (EcoFlow):** an EcoFlow DELTA 3 Plus + Smart Extra Battery (~48 lb combined) stows unstacked, side by side, in Panel A's **right (passenger-side)** drawer — a normal drawer, not strapped down like Panel C's appliances, since 48 lb is well within what the drawer slides already handle and this gear is never used while driving. Within the drawer, the **DELTA 3 Plus sits outboard** (nearest the pull wall — it's what the WAVE 3 actually plugs into, used whether or not the extra battery is along) and the **Smart Extra Battery sits inboard** (grabbed less often, for extra runtime only). The **WAVE 3 portable AC/heater stores in Panel A's LEFT (driver-side) bay as open storage, not a drawer** — it's 20.4" wide, too wide for a boxed drawer's 19" clear interior, but the raw bay (20.75", no box walls to eat into it) fits it with ~0.35" to spare. It rests directly on the bay floor on 2 UHMW glide strips, reached by hand through the driver's side door — Panel A ends up with only one actual drawer (right/DELTA 3), since the left side gave up its drawer to make room for the WAVE 3. For camp use, the unit gets carried to wherever it actually runs (Panel C's tailgate deck or the front seat — see the sleeping-configurations note below); it's storage-only in Panel A, not used in place there.
-  - **Side-door access got tighter, not looser (V8, Aug 2026).** The usable clear opening at the door's real stopping point measures **29"** — not the ~40" estimated — against Panel A + Panel B's combined 58" drawer run, so barely half that run can land within reach from any one door position. Which panel it favors still depends on the door's actual fore-aft position, which is **still unmeasured** (`side_door_y0` is a placeholder — see Section 0). Against that placeholder, Panel A checks out as reachable across its full 29" while Panel B comes back **BLOCKED outright — zero overlap**, behind the van's own body structure (the 29" opening and Panel A's 29" length coincide exactly, so the door runs out precisely at the A/B seam). This design therefore keeps the DELTA 3 stack in **Panel A**, and the narrower measured opening reinforces that choice rather than threatening it. **Panel B no longer has its own hinged 2nd access path** (removed along with its top — Section 1/6), so there is no fallback if Panel A turns out wrong once the real door position is measured: measure `side_door_y0` and re-run the check before committing the DELTA 3 stack, because moving it to Panel B afterward would mean living with essentially no side reach for it, and for the WAVE 3's open-storage bay along with it. Both units are charged at camp via shore power or solar — this design does not route van power to either (see Section 5).
+  - **Side-door access got tighter, not looser (V8, Aug 2026).** The usable clear opening at the door's real stopping point measures **29"** — not the ~40" estimated — against Panel A + Panel B's combined 58" drawer run, so barely half that run can land within reach from any one door position. Which panel it favors still depends on the door's actual fore-aft position, which is **still unmeasured** (`side_door_y0` is a placeholder — see Appendix A). Against that placeholder, Panel A checks out as reachable across its full 29" while Panel B comes back **BLOCKED outright — zero overlap**, behind the van's own body structure (the 29" opening and Panel A's 29" length coincide exactly, so the door runs out precisely at the A/B seam). This design therefore keeps the DELTA 3 stack in **Panel A**, and the narrower measured opening reinforces that choice rather than threatening it. **Panel B no longer has its own hinged 2nd access path** (removed along with its top — Section 1/6), so there is no fallback if Panel A turns out wrong once the real door position is measured: measure `side_door_y0` and re-run the check before committing the DELTA 3 stack, because moving it to Panel B afterward would mean living with essentially no side reach for it, and for the WAVE 3's open-storage bay along with it. Both units are charged at camp via shore power or solar — this design does not route van power to either (see Section 5).
   - **Why the fridge (and its fan system) now run off the DELTA 3 stack, not the van's rear outlet.** The earlier design kept the fridge on the Sienna's rear 12V accessory outlet specifically to avoid two costs: a long cord run across all 3 module seams, and competing with the WAVE 3 for the DELTA 3's battery budget. This design accepts both costs deliberately, for a concrete reliability win: **the fridge keeps running when people are away from the vehicle, regardless of the van's ignition state** — the original design's whole fridge-on-the-van's-outlet approach had exactly one open risk (many factory 12V outlets cut off with the key out, which would mean the fridge stops cooling every time the van is parked and locked), and putting the fridge on the DELTA 3 instead makes that risk moot rather than just hoping the outlet turns out to be always-hot. **The real numbers make this hold up:** the DELTA 3 Plus + Smart Extra Battery combined is 2048Wh; the Rocky 40 is rated 60W max / 45W ECO (dual-zone, compressor duty-cycled) — realistically ~450–1050Wh/day depending on mode, partition use, and ambient temp, so a full charge runs the fridge alone for roughly **2 to 4.5 days** unattended, worst case to best case. And recharging is fast: the DELTA 3 Plus's AC input maxes out at 1500W, an almost exact match for the Sienna's front console outlet (**confirmed 1500W**) — a full 0-100% charge takes about 56 minutes, so even a short errand run tops it back off. EcoFlow's DELTA 3 line supports charging and discharging at the same time (running the fridge while AC-charging is normal, it just slows the charge rate somewhat), so there's no need to choose one or the other. **The fan system moves to the DELTA 3 too, not just the fridge** — the fans exist to vent the compressor's heat, so they need to stay available under the exact same conditions the fridge does (parked, people away, ignition off); leaving them on the van's outlet while moving only the fridge would defeat the point. The old rear 12V accessory outlet is simply unused by this design now — free for anything else you'd like to plug in there later. **One real trade-off to plan around:** the front console circuit now has 3 things wanting it (the cooktop, Power strip 1, and the DELTA 3's AC charging, which alone can draw up to the circuit's full 1500W) — see the shared-circuit note in Section 5.
 - **Modular lift-out design**: Panel A, Panel B, and Panel C are each built as an independent, self-supporting module — own frame, own 4 legs (the fridge and kitchen unit are bought products with no frame of their own, and aren't lifted out as part of this; the rear pantry isn't its own module either — see below). All three now lift straight out and drop straight back in without touching the others (for deep cleaning or reconfiguring — day-to-day storage access is through the drawers/shelves, not by removing a module). With no tops or skirts, each panel is gripped by its exposed 2x2 top rails (no routed hand-holds needed — those were dropped along with the router jig), and anti-rattle bumpers + alignment pins + hand-released seam draw-latches at the A/B and B/C seams keep things fast to install/remove, quiet in transit, and clamped into one rigid beam (Component 5) — see Section 8. The rear pantry's prefab drawer units just sit on Panel C's deck behind a cleat pocket and one cam-buckle strap (Component 1) — loosen the strap and any unit lifts straight out, contents and all.
 
@@ -446,7 +219,7 @@ The WAVE 3 is **stored** in Panel A's left bay either way (see the DELTA 3/WAVE 
 | Section | Length | Width | Notes |
 |---|---|---|---|
 | Rear pantry — prefab drawer cluster + pot bay (on Panel C's deck, tailgate end) | 14.3" (of Panel C's last 14" + 0.3" into the hatch reserve) | 24.2" cluster + ~21.8" bay = 46" | **Bought, not built** — a 2×2 IRIS drawer cluster (24.2" × 14.3" × 16.8") on the driver side + a rigid ~13" pot crate in the ~21.8" open deck; held by a cleat pocket + a cam strap (each unit lifts out). Power strip 1 + the ROLL bubble level relocate to the deck edge here. |
-| Panel A | 29" | 46" | **No top of its own** — capped by the one-piece bed frame (Component 2); right (DELTA 3) drawer through the passenger door, left bay is WAVE 3 open storage through the driver door (no drawer box) |
+| Panel A | 29" | 46" | **No top of its own** — capped by the bed frame's fixed lift-off section (Component 2); right (DELTA 3) drawer through the passenger door, left bay is WAVE 3 open storage through the driver door (no drawer box) |
 | Panel B | 29" | 46" | **No top of its own** — capped by the same bed frame; **no drawers, no divider, no skirts** (the side doors don't reach it): a bare 2x2 frame whose bay is deep storage, loaded from above by lifting the platform + mattress |
 | Panel C | 35.75" (21.25" mattress-covered + 14.5" rear pantry) | 46" | **Keeps its fixed top** (recessed flush between its rails on bearer cleats — deck plane 18.5") — the mattress-covered part only reaches ~21.25" into it (the rear pantry claims the last 14.5", Section 1), and the fridge/kitchen void underneath needs the enclosure regardless; no drawers |
 | Fridge (BougeRV Rocky 40, in Panel C's void) | 28.74" deep (incl. handles) | 17.72" wide | 15.79" tall — drives `leg_height` via the mounted stack: 0.5" tray hang + 3/8" tray + fridge = 16.67", leaving 0.33" running clearance under the tailgate end rail; on 24" VADANIA slides mounted on the SIDES (nothing under the tray), against Panel C's driver-side rear corner leg (1.5" in from the edge) |
@@ -525,16 +298,16 @@ The base build is **Baltic birch plywood + pine framing**, chosen for cost and a
 - **Poplar (or ash/maple) for the top rails.** Pine dents, and the *one* place that matters is the exposed **2×2 top rails you grip to lift each module** — those get handled constantly. Swapping just those rails to poplar (a hardwood) resists denting and holds biscuits/screws noticeably better than pine, which suits the biscuit joinery. Cost: poplar is ~20% denser (a few lb of added lift weight across the rails) and pricier per board — so upgrade the **grip rails only**, and leave the hidden framing and the under-mattress 1×4 slats as pine (weight and cost win there, and they never show or get bumped). Budget ~$25–40 extra.
 - **Aluminum angle for the diagonal corner braces.** The Panel A/B corner braces can be aluminum L-angle instead of steel/wood — lighter (these modules are carried) and rust-proof. Budget ~$10–15 for the aluminum swap.
 
-Neither upgrade changes any dimension in the cut list below — same sizes, different stock. The weight deltas are folded into the note in **Appendix E (Weight Budget)**.
+Neither upgrade changes any dimension in the cut list below — same sizes, different stock. The weight deltas are folded into the note in **Appendix F (Weight Budget)**.
 
-**Weight-reduction swaps (APPLIED, July 2026).** Separately, and pulling the *other* way, the owner asked to lighten the build wherever safe — so the plywood was thinned wherever it isn't carrying real load, and the bed dropped from 10 to 8 slats. This is already reflected in the cut list above and in Appendix E (~21 lb off the structure, build ~449 → ~424 lb):
+**Weight-reduction swaps (APPLIED, July 2026).** Separately, and pulling the *other* way, the owner asked to lighten the build wherever safe — so the plywood was thinned wherever it isn't carrying real load, and the bed dropped from 10 to 8 slats. This is already reflected in the cut list above and in Appendix F (~21 lb off the structure, build ~449 → ~424 lb):
 
 - **Battery-drawer walls, fridge tray, Panel C front wall → 3/8"** (was 1/2") — non-structural; the drawer corners get glued + biscuited, the tray gets a glued edge frame.
-- **Kitchen-drawer cheeks → 1/2"** (was 3/4"); **bed platform → 8 slats** (fine under the solid-foam mattress).
+- **Kitchen-drawer cheeks → 1/2"** (was 3/4"); **bed platform → 8 slats** (fine under the solid-foam mattress). *Partly given back in Aug 2026: splitting the platform into three lift-out pieces put it at 15 (shorter) slats over 6 rails, plus Panel B's new centre bearer — ~+5.5 lb all in. See Component 2.*
 - **The rear pantry went further than thinning — it's not plywood at all anymore:** the prefab IRIS drawer cluster (~15 lb) replaced ~42 lb of built shelving outright (Component 1).
 - **Kept 3/4":** Panel C's deck — it carries sitting load. **Note the tension with the poplar upgrade above:** poplar *adds* ~20% weight, so if you're chasing weight, keep poplar to the grip rails only or skip it.
 
-Honest trade: this reshuffles the plywood so it now needs a 3/8" half-sheet (~+$25) even though it's lighter — a poor cost-per-pound, chosen for easier module lifts, not payload (which already has margin, Appendix E).
+Honest trade: this reshuffles the plywood so it now needs a 3/8" half-sheet (~+$25) even though it's lighter — a poor cost-per-pound, chosen for easier module lifts, not payload (which already has margin, Appendix F).
 
 ### Plywood — 1 sheet 3/4" + 1 sheet 1/2" + a 3/8" half-sheet, Baltic birch (4x8), (or shop-grade)
 
@@ -605,7 +378,9 @@ Panel A, Panel B, and Panel C each get their own independent perimeter frame —
 | Spare tire stowage | RJ-MODINI kit (T155/85R18 on an 18x4 steel wheel, 28.5" dia x ~6.4" stored, ~40 lb w/ 2-ton jack) FLAT in Panel B's bay at the axle: a cradle skid (3x ~3" cleats screwed to 2 battens, from the offcut) over a non-slip liner offcut + 1" cam strap to 2 footman loops on the bottom rails + tool case nested in the wheel — install/access diagrams on the Spare Tire Stowage render |
 | Panel A/B diagonal corner braces | 4 used (2 per panel, Panels A + B) from the purchased Sumnacon 4" 8-pack (4 spares), steel flat-strap — recovers some of the racking rigidity lost by removing each panel's own top |
 | Leg leveling feet | 12 total (4 per panel x 3 panels), 3/8-16 screw-in threaded insert (7/16" OD coarse outer thread — the Anwenk kit's "T-nut") + leveling stud with a 1-3/8" pad, fixed hex collar, and ~2" star-knob hand grip. Legs are CUT to 16" and drilled in the bottom end grain (1/2" dia x 7/8" deep — the maker's spec; test-fit the insert in offcut first) — the foot brings each back to an effective 17" (Leg Leveling Foot Detail render). Tip a corner slightly and spin the knob to level |
-| Bed platform side rails | 2, 58" x 3.5" x 3/4" (1x4 pine), set **49" apart outside-to-outside** — the **42"** slats pocket-screw between them into one flush 3/4" plane cantilevered 1.5" past the boxes per side (Bed Platform Detail render); the platform rests directly on Panel A/B's top rails and ends at the B/C seam. **Width set by measurement V7 (Aug 2026) — was 52"/45"** |
+| Bed platform side rails | 6, all **29" x 3.5" x 3/4"** (1x4 pine) — one pair per lift-out piece: Panel A's section (set 49" apart outside-to-outside, 42" slats between them) and Panel B's two halves (each set 24.5" apart, 17.5" slats between them). One flush 3/4" plane cantilevered 1.5" past the boxes per side (Bed Platform Detail render). **Width set by measurement V7 (Aug 2026) — was 52"/45"; split into three lift-out pieces Aug 2026 — was one pair of 58" rails** |
+| Bed platform slats | 15: **5 × 42"** (Panel A section, ~2.9" gaps) + **10 × 17.5"** (five per Panel B half, ~2.9" gaps), all 3.5" x 3/4" 1x4 pine — two 42" or five 17.5" per 8ft board |
+| Panel B centre bearer | 1, **26" x 3" x 1.5"** — two 2x2s side by side (or one 2x4 laid flat), fore-aft at Panel B's centreline between its end rails, top flush with its long rails. Carries the inner edge of both bed halves (1.5" bearing each) and halves the deck's unsupported span, 46" → ~22" (**NEW, Aug 2026**) |
 | Ryobi R-series biscuits | R1 (thin stock / 1/2" ply), R2, R3 (3/4" ply) — buy an R1/R2/R3 assortment for the DBJ50. Wood glue (already in the BOM) goes in every biscuit slot + mating face |
 
 ### Joinery & Fasteners (Ryobi DBJ50 biscuit guide)
@@ -648,11 +423,11 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | Panel A/B diagonal corner braces (2 per panel, A + B = 4 used — Sumnacon 4" 8-pack, 4 spares, **PURCHASED**) | 1 pack | $9 | $9 |
 | Leg leveling feet — [Heavy Duty 3/8-16 furniture levelers w/ T-nut kit, 4-pack](https://www.amazon.com/Furniture-Levelers-Adjustable-Leveling-Cabinets-Sofa/dp/B081ZT4Q4G) (330 lb per foot; buy 3 packs = 12) | 3 packs | $12 | $36 |
 | Foot hand-grip knobs — [Peachtree 3/8-16 thru-hole star knobs, ~2" dia, 4-pack](https://www.amazon.com/Star-Thru-Hole-Knob-Woodworking/dp/B000UH7Y84) (1 per foot, jam-locked on the bolt; buy 3 packs = 12) + 12x 3/8-16 jam nuts | 3 packs | $12 | $36 |
-| Bed platform lumber — 1x4 x 8ft pine boards (two 58" side rails + eight 42" slats, two per board) | 6 | $5 | $30 |
+| Bed platform lumber — 1x4 x 8ft pine boards (five 42" slats + ten 17.5" slats + six 29" side rails; crosscuts only) | 7 | $5 | $35 |
 | Kitchen drawer slide pair — 24" full-extension side-mount, 100lb class | 1 | $16 | $16 |
 | Kitchen drawer magnetic catch (box + cheeks come from the plywood sheets' spare area) | 1 | $3 | $3 |
 | RV bubble levels — Larbeti stick-on 2+2 pack, bar + T-shape (PITCH on the platform's driver-side rail edge, ROLL on the rear-pantry deck edge) — **PURCHASED July 2026** | 1 | $10 | $10 |
-| RV leveling blocks, Lynx-style 10-pack + 1 wheel chock (per-site leveling at the WHEELS — see the Block Calculator note, Appendix D) | 1 | $40 | $40 |
+| RV leveling blocks, Lynx-style 10-pack + 1 wheel chock (per-site leveling at the WHEELS — see the Block Calculator note, Appendix E) | 1 | $40 | $40 |
 | **HEST Dually Long mattress** ([hest.com/products/dually](https://hest.com/products/dually) — 78" x 50" x 4" solid foam, memory-foam top, washable waterproof cover INCLUDED; no air chambers) | 1 | $530–590 | $530–590 |
 | — Budget fallback: DIY 2-layer foam (queen 4" HD base + 1.5" memory topper, both cut to 50" x 78" with a serrated/electric knife + spray adhesive + a separate waterproof cover) — swaps in for the HEST at ~$185–255 total | (alt) | ($185–255) | ($0 in total below) |
 | Cable grommets (1 cooktop line, 1 Power strip 1's line — both short hops to the rear outlet now, 3 fridge DC line, 2 DELTA 3 AC charging line) — EASYEAH 20-pack covers all 7, **PURCHASED** | 1 pack | $10 | $10 |
@@ -740,7 +515,7 @@ Specific products verified against this plan's specs, full URLs shown for copy-p
 
 Slides + electrical together run **~$290-305**. These links satisfy the corresponding BOM rows above — don't double-count.
 
-**Estimated total (summing the BOM table above): ~$3,520–3,890 with the fridge + kitchen included, or ~$2,820–3,040 if you already own equivalents** — the owner-supplied CO monitor and fire extinguisher aren't priced here. The itemized BOM table is the authoritative figure; the breakdown below traces where the money goes and how the design's cost evolved. It includes ~$111 for the bed platform and its leveling — six 1x4 boards (~$30, weight swap dropped it from seven), 12 leg leveling feet w/ T-nuts (3 four-packs, ~$36), 12 star-knob grips + jam nuts (~$36), and the Larbeti stick-on bubble-level 2+2 pack (~$10, purchased: pitch on the rail edge, roll on the rear-pantry deck edge); ~$19 for the kitchen drawer hung above the kitchen unit (slide pair + catch — its box and cheeks come out of the plywood sheets' spare area); ~$24 for Panel A/B's diagonal corner braces, added to recover some of the racking rigidity lost when their tops came off, ~$60 (purchased) for the SRS airbag emulators (Section 9), ~$43 that Power strip 1's old full-length cord run used to add (8ft cord + 2 grommets + 2 inline connector pairs — since deleted by the verified-outlet round below), and ~$52 that the old plywood pantry's retention system used to add (fiddle lips, lash straps, bins, liner, pins, net) — since removed with the prefab-drawer swap below. The July-18 round adds ~$191: a Lynx-style leveling-block 10-pack + chock (+$40 — per-site leveling moves to the wheels, driven by the Block Calculator), Kipp cam levers replacing the old plywood pantry's hex bolts and wing nuts (+$60 — later removed entirely by the prefab-drawer swap), three extra 2x2 boards for the cube-frame bottom rails (+$24 mid-range), cable grommets (a $10 20-pack covers all 7 pass-throughs), a passive louvered cool-air intake scoop in the front wall (+$6 — a matching exhaust louver in the old cabinet door was cut along with the door itself; the utility bay is open now), a pantry upgrade — an adjustable bottom-bay shelf plus the fiddle-lip/lash-strap/bins/liner retention system replacing the old nets-everywhere approach (a single soft-goods net stays) (+$33 net over the old $12 net), and 4 over-center seam draw-latches that clamp the three modules into one rigid beam (+$16); Panel B losing its drawers entirely (owner-confirmed: the side doors don't reach it — its bay is top-loaded deep storage now) saves ~$86: two slide pairs, two catches, and a whole 1/2" plywood sheet, less ~$8 for Panel C's new front wall hardware coming out of that freed sheet. Panel A's left bay going to WAVE 3 open storage instead of a 4th drawer nets out close to a wash: -$19 (one less drawer slide pair, one less catch, no more plywood tray) offset by the glide strips and a non-slip mat. Moving the fridge and fan system onto the DELTA 3 stack (instead of the van's rear outlet) adds ~$79: a 2nd cord (fridge DC line, Panel A to Panel C) and its own charging cord (front console to Panel A), the grommets and disconnects both need, and a 3-way splitter when 3 lines wanted the console's power (later downsized to a 2-way rear-outlet tap). Relocating the old plywood pantry onto Panel C's deck instead of its own module saved ~$20-34: one fewer module's worth of frame lumber (2 fewer 2x2 boards) and corner brackets, since it no longer needs a frame of its own. This is above the old built-from-plywood design's ~$1,245–1,452 mainly because of three swaps that trade DIY labor (or an inadequate factory feature) for bought reliability: a real BougeRV Rocky 40 + JAGAHAHA kitchen (~$700–850 combined, Rocky price UNVERIFIED) instead of building fridge/kitchen boxes from the same plywood as the panels, the fridge cooling/control electronics (2 fans, controller, sensor, surge protector — new this redesign, ~$85–120 combined), and the no-drill securing hardware — L-track + stud fittings + rated straps + the anchor board's steel and mat (~$270, up ~$150 from the drilled E-track plan it replaced when the owner ruled out holes in the vehicle, Section 8) — standing in for the factory cargo hooks once those turned out to be rated for cargo nets only, not securing a 45-90lb item. The mattress is now a bought HEST Dually Long (~$530–590, cover included) — the DIY 2-layer fallback (~$185–255) stays in the BOM as the budget swap. The plywood was ~$115 across 2 sheets (one 3/4", one 1/2") after Panel A/B lost their tops, Panel B its drawers, and the pantry moved onto Panel C's deck — down from 4 sheets earlier. The July-2026 **weight swap** then thinned the non-critical panels to 1/2"/3/8" (~21 lb off the structure, Appendix E) and the bed to 8 slats: it shaves ~$5 on the 1x4s but adds a 3/8" half-sheet (~$25), so plywood is now ~$140 across a 3/4" sheet (lightly used), a 1/2" sheet (full), and a 3/8" half-sheet — a poor cost-per-pound, but the owner prioritized easier module lifts. A later review round also adds the per-module surface wire raceway — a CordMate II kit for the AC lines + an open-slot kit for the DC line, AC/DC separated (~$46, Section 5) — replacing the loose cord clips for cleaner, serviceable runs. Two optional material upgrades are documented but NOT in the total above — poplar top-rails (~$25–40) and aluminum corner braces (~$10–15), see Section 3's "Material options & upgrades." A verified-outlet round (the van has exactly **2 AC outlets: 1 front console + 1 back passenger area**) moves the cooktop and Power strip 1 onto the REAR outlet — deleting all 4 inline AC seam connectors (−$32), shortening both AC cords (−$14), downsizing the splitter to a 2-way tap (−$3), and dropping 3 grommets (−$18): **~−$65 and two fewer failure points per lift-out**. A later round then **swaps the plywood pantry for a prefab drawer cluster** (Component 1): out go ~$137 of pantry mounting + retention hardware (cam levers, 2 steel braces, fiddle-lips/straps/net, half-round edging) and ~42 lb of plywood/hardware; in come 4 IRIS 12"W stackable drawers + a cleat/strap hold-down + a pot crate (~$115, ~15 lb) — roughly cost-neutral and ~27 lb lighter, with nothing to build. A companion change containerizes Panel B with Sterilite 28-Qt lidded under-bed totes so its top-loaded bay unloads as whole labeled boxes. Finally, an **RJ-MODINI spare kit** (+$350, +~40 lb — 28.5" diameter, the closest OE match of the kits compared) stows flat in Panel B at the axle — chosen over a hitch basket (which would cost ~$180-400, add its own 30-60 lb, and lever ~130+ lb onto the rear axle) — displacing 2 of the 4 totes (−$24, −4 lb) (Appendix E).
+**Estimated total (summing the BOM table above): ~$3,520–3,890 with the fridge + kitchen included, or ~$2,820–3,040 if you already own equivalents** — the owner-supplied CO monitor and fire extinguisher aren't priced here. The itemized BOM table is the authoritative figure; the breakdown below traces where the money goes and how the design's cost evolved. It includes ~$111 for the bed platform and its leveling — six 1x4 boards (~$30, weight swap dropped it from seven), 12 leg leveling feet w/ T-nuts (3 four-packs, ~$36), 12 star-knob grips + jam nuts (~$36), and the Larbeti stick-on bubble-level 2+2 pack (~$10, purchased: pitch on the rail edge, roll on the rear-pantry deck edge); ~$19 for the kitchen drawer hung above the kitchen unit (slide pair + catch — its box and cheeks come out of the plywood sheets' spare area); ~$24 for Panel A/B's diagonal corner braces, added to recover some of the racking rigidity lost when their tops came off, ~$60 (purchased) for the SRS airbag emulators (Section 9), ~$43 that Power strip 1's old full-length cord run used to add (8ft cord + 2 grommets + 2 inline connector pairs — since deleted by the verified-outlet round below), and ~$52 that the old plywood pantry's retention system used to add (fiddle lips, lash straps, bins, liner, pins, net) — since removed with the prefab-drawer swap below. The July-18 round adds ~$191: a Lynx-style leveling-block 10-pack + chock (+$40 — per-site leveling moves to the wheels, driven by the Block Calculator), Kipp cam levers replacing the old plywood pantry's hex bolts and wing nuts (+$60 — later removed entirely by the prefab-drawer swap), three extra 2x2 boards for the cube-frame bottom rails (+$24 mid-range), cable grommets (a $10 20-pack covers all 7 pass-throughs), a passive louvered cool-air intake scoop in the front wall (+$6 — a matching exhaust louver in the old cabinet door was cut along with the door itself; the utility bay is open now), a pantry upgrade — an adjustable bottom-bay shelf plus the fiddle-lip/lash-strap/bins/liner retention system replacing the old nets-everywhere approach (a single soft-goods net stays) (+$33 net over the old $12 net), and 4 over-center seam draw-latches that clamp the three modules into one rigid beam (+$16); Panel B losing its drawers entirely (owner-confirmed: the side doors don't reach it — its bay is top-loaded deep storage now) saves ~$86: two slide pairs, two catches, and a whole 1/2" plywood sheet, less ~$8 for Panel C's new front wall hardware coming out of that freed sheet. Panel A's left bay going to WAVE 3 open storage instead of a 4th drawer nets out close to a wash: -$19 (one less drawer slide pair, one less catch, no more plywood tray) offset by the glide strips and a non-slip mat. Moving the fridge and fan system onto the DELTA 3 stack (instead of the van's rear outlet) adds ~$79: a 2nd cord (fridge DC line, Panel A to Panel C) and its own charging cord (front console to Panel A), the grommets and disconnects both need, and a 3-way splitter when 3 lines wanted the console's power (later downsized to a 2-way rear-outlet tap). Relocating the old plywood pantry onto Panel C's deck instead of its own module saved ~$20-34: one fewer module's worth of frame lumber (2 fewer 2x2 boards) and corner brackets, since it no longer needs a frame of its own. This is above the old built-from-plywood design's ~$1,245–1,452 mainly because of three swaps that trade DIY labor (or an inadequate factory feature) for bought reliability: a real BougeRV Rocky 40 + JAGAHAHA kitchen (~$700–850 combined, Rocky price UNVERIFIED) instead of building fridge/kitchen boxes from the same plywood as the panels, the fridge cooling/control electronics (2 fans, controller, sensor, surge protector — new this redesign, ~$85–120 combined), and the no-drill securing hardware — L-track + stud fittings + rated straps + the anchor board's steel and mat (~$270, up ~$150 from the drilled E-track plan it replaced when the owner ruled out holes in the vehicle, Section 8) — standing in for the factory cargo hooks once those turned out to be rated for cargo nets only, not securing a 45-90lb item. The mattress is now a bought HEST Dually Long (~$530–590, cover included) — the DIY 2-layer fallback (~$185–255) stays in the BOM as the budget swap. The plywood was ~$115 across 2 sheets (one 3/4", one 1/2") after Panel A/B lost their tops, Panel B its drawers, and the pantry moved onto Panel C's deck — down from 4 sheets earlier. The July-2026 **weight swap** then thinned the non-critical panels to 1/2"/3/8" (~21 lb off the structure, Appendix F) and the bed to 8 slats: it shaves ~$5 on the 1x4s but adds a 3/8" half-sheet (~$25), so plywood is now ~$140 across a 3/4" sheet (lightly used), a 1/2" sheet (full), and a 3/8" half-sheet — a poor cost-per-pound, but the owner prioritized easier module lifts. A later review round also adds the per-module surface wire raceway — a CordMate II kit for the AC lines + an open-slot kit for the DC line, AC/DC separated (~$46, Section 5) — replacing the loose cord clips for cleaner, serviceable runs. Two optional material upgrades are documented but NOT in the total above — poplar top-rails (~$25–40) and aluminum corner braces (~$10–15), see Section 3's "Material options & upgrades." A verified-outlet round (the van has exactly **2 AC outlets: 1 front console + 1 back passenger area**) moves the cooktop and Power strip 1 onto the REAR outlet — deleting all 4 inline AC seam connectors (−$32), shortening both AC cords (−$14), downsizing the splitter to a 2-way tap (−$3), and dropping 3 grommets (−$18): **~−$65 and two fewer failure points per lift-out**. A later round then **swaps the plywood pantry for a prefab drawer cluster** (Component 1): out go ~$137 of pantry mounting + retention hardware (cam levers, 2 steel braces, fiddle-lips/straps/net, half-round edging) and ~42 lb of plywood/hardware; in come 4 IRIS 12"W stackable drawers + a cleat/strap hold-down + a pot crate (~$115, ~15 lb) — roughly cost-neutral and ~27 lb lighter, with nothing to build. A companion change containerizes Panel B with Sterilite 28-Qt lidded under-bed totes so its top-loaded bay unloads as whole labeled boxes. Finally, an **RJ-MODINI spare kit** (+$350, +~40 lb — 28.5" diameter, the closest OE match of the kits compared) stows flat in Panel B at the axle — chosen over a hitch basket (which would cost ~$180-400, add its own 30-60 lb, and lever ~130+ lb onto the rear axle) — displacing 2 of the 4 totes (−$24, −4 lb) (Appendix F).
 
 ---
 
@@ -857,7 +632,7 @@ Cut every piece for every component up front, per Section 3's cut list, before s
 
 ![Component 2 — finished component, accessory list & part list](renders/steps/comp-2-header.png)
 
-Panel A and Panel B share the same frame construction — neither has a top of its own anymore; the one-piece slatted bed frame caps both at once (see Steps 6-7 below, and the Bed Frame Detail render). They diverge at the drawers: **Panel A's left (driver-side) bay is WAVE 3 open storage, not a drawer** — the WAVE 3 (20.4" wide) is too wide for a boxed drawer's 19" clear interior, so it rests directly on the bay floor instead, reached by hand through the driver's side door. Panel A ends up with only ONE actual drawer (right side, DELTA 3).
+Panel A and Panel B share the same frame construction — neither has a top of its own anymore; the three-piece slatted bed frame caps both (see Steps 6-7 below, and the Bed Frame Detail render): Panel A's section lifts off, and Panel B's top is two centreline halves that lift out individually. **Panel B also gains a centre bearer** (Aug 2026) for those halves' inner edges — the one frame difference from Panel A's divider, which splits its bay instead. They diverge at the drawers: **Panel A's left (driver-side) bay is WAVE 3 open storage, not a drawer** — the WAVE 3 (20.4" wide) is too wide for a boxed drawer's 19" clear interior, so it rests directly on the bay floor instead, reached by hand through the driver's side door. Panel A ends up with only ONE actual drawer (right side, DELTA 3).
 
 **Parts needed:**
 
@@ -874,7 +649,8 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 - Drawer catch — 1, friction catch or small turn latch
 - DELTA 3 drawer hardware (right drawer) — 1x1 pine locating cleats, 2 screw-eye D-rings + cam strap, 1" cable grommet
 - WAVE 3 glide strips (left bay floor) — 2, UHMW or laminate scrap, cuts friction sliding the unit in/out by hand
-- Bed platform lumber — six 1x4 x 8ft pine boards: two 58" side rails + eight 42" slats, two per board (Bed Platform Detail render)
+- Bed platform lumber — seven 1x4 x 8ft pine boards: five 42" slats + ten 17.5" slats + six 29" side rails — crosscuts only, no hardware (Bed Platform Detail render)
+- Panel B centre bearer — 52" of 2x2 (two 26" pieces side by side), out of the 2x2 frame stock
 - RV bubble levels — Larbeti stick-on 2+2 pack (PURCHASED): PITCH bar mounts here, ROLL one goes to the rear-pantry deck edge (Component 1)
 
 <div class="lego-card">
@@ -904,9 +680,9 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 </div>
 <div class="lego-step">
 <div class="lego-num">5</div>
-<div class="lego-parts"><p class="lego-noparts">six 1x4 boards: 2 rails + 8 slats + pocket screws (parts list above)</p></div>
+<div class="lego-parts"><p class="lego-noparts">seven 1x4 boards: 6 rails + 15 slats + pocket screws, plus 52" of 2x2 for Panel B's centre bearer (parts list above)</p></div>
 <div class="lego-main"><img src="renders/bed-frame-detail.png" alt="Bed platform exploded detail">
-<p class="lego-caption">Cut two 58" side rails and eight 42" slats from six 1x4 x 8ft pine boards (slats two per board; rails one per board). Lay the rails on edge-guides 49" apart outside-to-outside (was 52" — cut back by measurement V7, Aug 2026), space the slats evenly between them (~4.3" gaps — fine under the solid-foam HEST mattress), and pocket-screw each slat end into the rails' inner edges (2x 1-1/4" pocket screws per end; 2" corner braces work if you don't have a pocket-hole jig). Everything sits in one flush 3/4" plane that ENDS at the B/C seam — Panel C's own deck is at the same height, so the sleeping surface stays flush and the mattress's last ~20" rides that deck. The platform adds only 3/4" to the stack. Last, stick one Larbeti bar level (self-adhesive — degrease the surface first) on the driver-side rail's outer edge at mid-span (the 3/4" face fits it exactly) — it reads fore-aft PITCH from the slider door while you turn the leg-foot knobs; its twin reads ROLL from the rear-pantry deck edge (Component 1).</p></div>
+<p class="lego-caption">Crosscut everything from seven 1x4 x 8ft pine boards — nothing gets ripped, a 1x4 is already 3/4" x 3-1/2": six 29" side rails, five 42" slats, and ten 17.5" slats (two 42" or five 17.5" per board). <b>Build it as THREE lift-out pieces</b> (Aug 2026): Panel A's section is one pair of rails on edge-guides 49" apart outside-to-outside (was 52" — cut back by measurement V7) with its five 42" slats between them; each of Panel B's two halves is a pair of rails 24.5" apart with five 17.5" slats. Every gap lands at ~2.9". Pocket-screw each slat end into the rails' inner edges (2x 1-1/4" pocket screws per end; 2" corner braces work if you don't have a pocket-hole jig). Then add Panel B's centre bearer — two 26" 2x2s side by side, fore-aft at its centreline between the end rails, top flush with its long rails: it carries the inner rail of both halves (1-1/2" of bearing each) and halves the deck's unsupported span over Panel B. No hinge, no lid stay, no hardware of any kind — each piece just lifts out, and at 24.5" wide a half will pass back out through the 35" side door. Everything sits in one flush 3/4" plane that ENDS at the B/C seam — Panel C's own deck is at the same height, so the sleeping surface stays flush and the mattress's last ~20" rides that deck. The platform adds only 3/4" to the stack. Last, stick one Larbeti bar level (self-adhesive — degrease the surface first) on the driver-side rail's outer edge at mid-span (the 3/4" face fits it exactly) — it reads fore-aft PITCH from the slider door while you turn the leg-foot knobs; its twin reads ROLL from the rear-pantry deck edge (Component 1).</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">6</div>
@@ -971,7 +747,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">1</div>
 <div class="lego-parts"><img src="renders/steps/pc-s1-parts.png" alt="Panel C step 1 parts"></div>
 <div class="lego-main"><img src="renders/steps/pc-s1-assembly.png" alt="Panel C step 1 assembly">
-<p class="lego-caption">Build the frame — same construction as Panels A/B, with 35.75" side rails (B): end rails (A), corner brackets, 4 legs (C) — FRONT pair inset 3.5", REAR pair at the TRUE corners (the fridge/kitchen slide paths pass exactly where inset rear legs would stand; verify the vents don't reach those corners, Section 0). Add the FRONT-face bottom rail (46", underside 1" up at the leg bottoms) — the tailgate face stays open for the appliances.</p></div>
+<p class="lego-caption">Build the frame — same construction as Panels A/B, with 35.75" side rails (B): end rails (A), corner brackets, 4 legs (C) — FRONT pair inset 3.5", REAR pair at the TRUE corners (the fridge/kitchen slide paths pass exactly where inset rear legs would stand; verify the vents don't reach those corners, Appendix A). Add the FRONT-face bottom rail (46", underside 1" up at the leg bottoms) — the tailgate face stays open for the appliances.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
@@ -1080,13 +856,13 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">1</div>
 <div class="lego-parts"><p class="lego-noparts">no parts — inspection only</p></div>
 <div class="lego-main">
-<p class="lego-caption"><strong>Before cutting the anchor board</strong>, finish the Section 0 floor survey (F1–F8): confirm all 3 striker loops are exposed and hookable with the 3rd row folded, find where the 2nd-row floor rails' rear ends sit and what the tongue brackets can bolt/clamp to there (F8 — the striker-row step is the bearing fallback, F7), and confirm the board's strips land on solid surface (filler blocking where they don't). ALSO: the hybrid's 12V battery access panel sits at the passenger rear corner (under the rear AC outlet) — the kitchen-side strip stops short of it so the panel stays serviceable. Nothing gets drilled into the van at any point in this component.</p></div>
+<p class="lego-caption"><strong>The Appendix A floor survey (F1–F8) is DONE (Aug 1 2026)</strong> and it changed this component: all 3 striker loops ARE exposed and hookable with the 3rd row folded (~11" in from each sidewall, ~13" apart, 1.5" of clear height), the 2nd-row rail rear ends sit <strong>42" from the hatch</strong> so cut the tongues to that, and the load surface is folded seatback across the whole footprint — solid enough to bear on, so <strong>no filler blocking</strong> is needed. Two fallbacks are gone: there is no hard step face at the striker row (F7 — carpet over a soft ~1" step) and the 3rd row's seat-mount bolts are occupied (F6), so the rail ends plus the 3 straps carry the load. ALSO: the hybrid's 12V battery access panel sits at the passenger rear corner (under the rear AC outlet) — the kitchen-side strip stops short of it so the panel stays serviceable. Nothing gets drilled into the van at any point in this component.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
 <div class="lego-parts"><p class="lego-noparts">anchor board + 2 steel tongues + L-track + 7 stud fittings + mat + 3 ratchet straps</p></div>
 <div class="lego-main"><img src="renders/fridge-install-detail.png" alt="Fridge install detail — anchor board strips, bridge, tongues and striker straps">
-<p class="lego-caption">Bench-build the anchor board (Section 8): cut the comb as ONE piece — bridge and all three strips continuous, so there is no glue and no lap screws anywhere in it (grain along the strips, ~1/2" fillet at each inside corner) — then counterbore and seat the T-nuts flush from below, bolt on the riser angles, L-track lengths, bridge D-ring fittings, and the 2 steel tongues (blue threadlocker on every screw; cure ~24h). Set it in the van on its non-slip mat, bolt/clamp the 2 tongues to the rear ends of the 2nd-row floor rails (fallback: butt them against the striker-row step, F7/F8), notch Panel B's rear bottom rail where the tongues/straps cross under it, then hook and tension the 3 ratchet straps from the bridge D-rings into the 3rd-row striker loops. No holes in the van — the render above draws the board at the ASSUMED striker geometry; cut the final outline only after the Section 0 survey.</p></div>
+<p class="lego-caption">Bench-build the anchor board (Section 8): cut the comb as ONE piece — bridge and all three strips continuous, so there is no glue and no lap screws anywhere in it (grain along the strips, ~1/2" fillet at each inside corner) — then counterbore and seat the T-nuts flush from below, bolt on the riser angles, L-track lengths, bridge D-ring fittings, and the 2 steel tongues (blue threadlocker on every screw; cure ~24h). Set it in the van on its non-slip mat, bolt/clamp the 2 tongues to the rear ends of the 2nd-row floor rails (fallback: butt them against the striker-row step, F7/F8), notch Panel B's rear bottom rail where the tongues/straps cross under it, then hook and tension the 3 ratchet straps from the bridge D-rings into the 3rd-row striker loops. No holes in the van — the render above draws the board at the ASSUMED striker geometry; cut the final outline only after the Appendix A survey.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">3</div>
@@ -1138,7 +914,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - EcoFlow WAVE Series Car Vent Kit (no-tent sleeping configuration only)
 - FOUND STORAGE: DELTA 3 drawer top tray (shallow lift-out bin) + WAVE 3 overhead shelf (1/2" ply + 1x1 cleats, from offcut) + 2 utility-bay bins (velcroed — Component 7 step 5)
 
-**Battery placement — low and counterbalanced (owner review, July 2026).** Heavy batteries want to sit **low and centered**, and this design already gets both most of the way there: the DELTA 3 stack (~48 lb) rides in Panel A's floor-level under-deck drawer — about as **low** as it can go. On the **lateral** axis it looks off to one side (passenger), but the ~34 lb WAVE 3 sits in the **opposite** (driver) bay of the same Panel A, so the two heaviest movable items counterbalance each other — the whole build's lateral center of mass ends up only **~1.1" off centerline** (Appendix E), which is trivial on a ~4,500 lb van. So the "get it centered" concern is effectively already answered. A longer drawer sliding the DELTA to the true centerline was considered and **not adopted**: a 48 lb load cantilevered at the end of a long slide is tippy when open and hard on the hardware, it fouls the bed-platform cantilever near Panel B, and it wouldn't free clean storage (the drawer sweeps its own travel path). If you still want to nudge it inboard for free, shift Panel A's center divider a couple inches toward the driver side to re-center the DELTA bay. See **Appendix E** for the full weight-distribution analysis.
+**Battery placement — low and counterbalanced (owner review, July 2026).** Heavy batteries want to sit **low and centered**, and this design already gets both most of the way there: the DELTA 3 stack (~48 lb) rides in Panel A's floor-level under-deck drawer — about as **low** as it can go. On the **lateral** axis it looks off to one side (passenger), but the ~34 lb WAVE 3 sits in the **opposite** (driver) bay of the same Panel A, so the two heaviest movable items counterbalance each other — the whole build's lateral center of mass ends up only **~1.1" off centerline** (Appendix F), which is trivial on a ~4,500 lb van. So the "get it centered" concern is effectively already answered. A longer drawer sliding the DELTA to the true centerline was considered and **not adopted**: a 48 lb load cantilevered at the end of a long slide is tippy when open and hard on the hardware, it fouls the bed-platform cantilever near Panel B, and it wouldn't free clean storage (the drawer sweeps its own travel path). If you still want to nudge it inboard for free, shift Panel A's center divider a couple inches toward the driver side to re-center the DELTA bay. See **Appendix F** for the full weight-distribution analysis.
 
 <div class="lego-card">
 <div class="lego-step">
@@ -1221,7 +997,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - **Price: $189.99** (confirmed current listing price).
 - Requires magnetic (induction-compatible) cookware — test with a magnet before buying pots/pans if you don't already own compatible ones (the included griddle pan is already induction-ready). See the cookware recommendation below.
 
-**Power check — confirmed:** the front console AC outlet is rated at **1500W (verified against the real van, Section 0)**, and a second AC outlet exists in the **back passenger area** (the cooktop + Power strip 1 plug in there — Section 5). Both outlets are CONFIRMED to share the van's single 1500W inverter — treat 1500W as the TOTAL AC budget across everything at once.
+**Power check — confirmed:** the front console AC outlet is rated at **1500W (verified against the real van, Appendix A)**, and a second AC outlet exists in the **back passenger area** (the cooktop + Power strip 1 plug in there — Section 5). Both outlets are CONFIRMED to share the van's single 1500W inverter — treat 1500W as the TOTAL AC budget across everything at once.
 
 ### Cookware: UMETRE 9-Piece Detachable-Handle Induction Set (PURCHASED July 2026)
 
@@ -1288,7 +1064,7 @@ The straps and tongues cross under **Panel B's rear bottom rail** at the B/C sea
 
 **Why this margin is enough** — same DOT yardstick the old plan used: commercial cargo securement rules (49 CFR 393, Subpart I) size tie-downs for 0.435g forward / 0.5g rearward / 0.25g lateral deceleration, with aggregate working load at least 50% of the cargo's weight. Cargo here is ~135 lb loaded (fridge ~90 lb + kitchen 45 lb) plus ~20 lb of board — the 50% rule asks for ~80 lb of aggregate WLL. The 3 striker straps alone provide **1,200 lb, 15x that**, before counting the rail-tongue link, which isn't strap-limited at all. Every link in the chain is rated: straps 400 lb WLL each, stud fittings 1,333 lb, L-track ≥2,000 lb/ft, and the striker loops and seat rails themselves are seat-anchorage hardware rated far beyond any of it — the straps govern, exactly where overbuilding is cheapest. (A DIY conversion isn't held to DOT's certification process; the baseline is used as an engineering floor, not a legal one.)
 
-**Gate: the Section 0 floor survey (F1–F8) still comes first — it just answers different questions now.** Nothing gets drilled anymore, but the board's outline can't be cut until the survey pins down: where the load surface is solid vs folded seatback vs well void (F1, F4 — a board strip bearing on springy seatback needs filler blocking down to the well's structural bottom, per F3's depth), the strikers' actual fore-aft position and whether the folded seatbacks leave all 3 loops exposed and hookable (F4), where the 2nd-row floor rails actually end and what their end hardware offers the tongues to bolt or clamp to (F8 — this decides the bracket detail), and whether the step at the striker row gives the fallback a square face to bear on (F7). The strikers are confirmed to EXIST (photo, July 2026); their position — assumed ~46–50" forward of the hatch, which puts the tongue run at ~10–14" — is not yet measured, and the rail ends are assumed to reach the same zone. The install renders draw the board, straps, rails, and tongues at this ASSUMED geometry — re-run `./render.sh` once the survey pins the real numbers. **And keep the passenger rear corner clear: the hybrid's 12V battery access panel lives there (directly under the rear AC outlet) — the board's kitchen-side strip stops short of it, and battery service stays "unstrap + slide the kitchen out."**
+**Gate: the Appendix A floor survey (F1–F8) is COMPLETE (Aug 1 2026) — its findings are folded into this section below.** Nothing gets drilled, and the board's outline is now cuttable. For reference, what the survey settled: where the load surface is solid vs folded seatback vs well void (F1, F4 — a board strip bearing on springy seatback needs filler blocking down to the well's structural bottom, per F3's depth), the strikers' actual fore-aft position and whether the folded seatbacks leave all 3 loops exposed and hookable (F4), where the 2nd-row floor rails actually end and what their end hardware offers the tongues to bolt or clamp to (F8 — this decides the bracket detail), and whether the step at the striker row gives the fallback a square face to bear on (F7). The strikers are confirmed to EXIST (photo, July 2026); their position — assumed ~46–50" forward of the hatch, which puts the tongue run at ~10–14" — is not yet measured, and the rail ends are assumed to reach the same zone. The install renders draw the board, straps, rails, and tongues at this ASSUMED geometry — re-run `./render.sh` once the survey pins the real numbers. **And keep the passenger rear corner clear: the hybrid's 12V battery access panel lives there (directly under the rear AC outlet) — the board's kitchen-side strip stops short of it, and battery service stays "unstrap + slide the kitchen out."**
 
 **Install and upkeep** — this one block replaces the old plan's entire drill-spec / rustproofing / warranty / under-the-van sequence. Total install is about an hour with a drill, driver, and wrench, all of it inside the van, all of it reversible:
 
@@ -1363,19 +1139,261 @@ These references consolidate the plan into sheets you actually work from. Four a
 - **Leveling Block Calculator** — https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9
 - **Weight Budget** — spreadsheet in the repo as `weight_budget.csv`
 
-Appendices B and C consolidate Sections 4 and 3; Appendix A (build order), Appendix D (leveling calculator), and Appendix E (weight budget) are new here.
+Appendices B and C consolidate Sections 4 and 3; Appendix B (build order), Appendix E (leveling calculator), and Appendix F (weight budget) are new here.
 
-### Appendix A — Build Sequence & Assembly Order
+### Appendix A — Vehicle Measurements & Rear-Floor Survey (COMPLETE — measured Aug 1 2026)
+
+
+**DONE for the van — surveyed Aug 1 2026 (owner), 2nd row out and 3rd row folded as it sits in camper mode.** Every V and F line below now carries a measured finding, and `params.scad` has been updated to match. The fridge/kitchen table further down is still open (those are bought products, measured on arrival). **Read the four findings that moved the design before building anything: V1 (interior 2¼" shorter), V3 (2" lower), V4 (vents 1" deeper per side) and V7 — the walls do NOT flare out at the sleeping plane, which cut the bed platform from 52" to 49".** Every number below either said UNVERIFIED somewhere in this plan (an estimate that drives real cut dimensions) or came from an online listing/photo rather than a hands-on measurement. All of them feed directly into [`params.scad`](params.scad), and all of them have already been applied there — every diagram, cut list, and BOM total in this plan is drawn from the measured numbers, not the old estimates. This appendix is kept as **the record of what was measured, what it changed, and what is still open**, so any figure in the plan can be traced back to a tape reading. Where a measurement came in smaller than the estimate, the `assert()` guards in `params.scad` are what forced the design to adjust rather than silently overflow the van.
+
+#### The van (once the 2nd row is physically out)
+
+**Reading these drawings.** Same format as the rear-floor survey below: each measurement gets its own plan of the whole Sienna — **front at the left, tailgate at the right**, driver side along the bottom — with **only that measurement drawn in red** and tagged (V6a, V6b, ...). Those tags match the blank lines under each drawing one-for-one. Several of these are not plan dimensions at all — interior height, the gate opening, wall-to-wall width up at platform height, floor slope — so those sections carry an **elevation or section inset**, and the plan just shows where it is taken. Fore-aft distances all work from the **closed hatch**, the same datum the survey uses.
+
+##### V1 — Interior length — closed hatch to front seatbacks *(was row #1)*
+
+![Van measurement V1 — interior length](renders/vanmeas-v1.svg)
+
+- **Measure:** The interior length along the floor, from the closed hatch to the front seatbacks.
+- **Feeds:** `van_interior_length` — the number the whole panel train is sized against: Panel A + B + C fill it exactly, so if it comes back short, every panel shrinks.
+- **Previous estimate:** 96" — UNVERIFIED
+- **V1** — hatch to seatbacks: **93¾"** (MEASURED — owner, Aug 1 2026) — **2¼" shorter than the estimate.** `van_interior_length` = 93.75. Because V5 also freed the 2" that was reserved for hatch curvature, the panel train only had to give up ¼" net: **Panel C went 36" → 35¾"**. It has to be Panel C — Panels A and B are asserted to stay the *same* length (they share one set of step diagrams and one cut-list entry), and their combined length *is* the bed platform's 58" side rails, so shaving either one would ripple through the lumber list for nothing. Panel C has ~7" of fore-aft slack around the 28.74" fridge.
+
+##### V2 — Interior width — between the wheel wells *(was row #2)*
+
+![Van measurement V2 — interior width](renders/vanmeas-v2.svg)
+
+- **Measure:** The width at the floor, at its narrowest point between the two wheel wells — not at a wider spot fore or aft of them.
+- **Feeds:** `van_interior_width` — every 46"-wide panel and the floor envelope come off this.
+- **Previous estimate:** 48.5" — already verified (reconfirm)
+- **V2** — floor pinch, wheel well to wheel well: **49"** (MEASURED — owner, Aug 1 2026) — ½" *better* than the figure this was designed against, so nothing downstream changes. The floor opens out to **54" forward of the wheel wells**, but the pinch is what gates the 46" boxes. `van_interior_width` = 49.
+
+##### V3 — Interior height — floor to headliner *(was row #3)*
+
+![Van measurement V3 — interior height](renders/vanmeas-v3.svg)
+
+- **Measure:** Cargo floor up to the headliner, taken at the sleeping run rather than at the tailgate where the roof drops away.
+- **Feeds:** `van_interior_height` — caps the whole stack: deck + mattress + sitting headroom.
+- **Previous estimate:** 44" — already verified (reconfirm)
+- **V3** — floor to headliner: **42"** mid-van (MEASURED — owner, Aug 1 2026) — **2" lower than assumed**, and only **37" at the gate** where the roof drops (that is the V6 gate height). `van_interior_height` = 42. Knock-on: sitting headroom over the mattress drops 21.5" → **19.5"**, and the rear-pantry cluster's roof clearance drops to ~6.7" — a third drawer tier would now foul the headliner by 1.7", so the 2×2 cluster is the ceiling.
+
+##### V4 — Vent intrusion width, each side, at floor level *(was row #4)*
+
+![Van measurement V4 — vent intrusion](renders/vanmeas-v4.svg)
+
+- **Measure:** How far the floor vent / trim kick eats into the usable width down at floor level. One measurement per side. The deck may overhang it, but a **leg may not stand on it**.
+- **Feeds:** `vent_intrusion_width` — drives `leg_inset`.
+- **Previous estimate:** 2.5" per side — already verified
+- **V4a** — driver side: **3.5"** (MEASURED — owner, Aug 1 2026)
+- **V4b** — passenger side: **3.5"** (MEASURED — owner, Aug 1 2026)
+- **1" per side deeper than assumed.** `vent_intrusion_width` = 3.5, so `leg_inset` grows to 3.5" — the legs step further in from the deck edge. Sketched on the sheet as ~3¼" over a ~15" fore-aft run; **3.5" is the number to build to.** Floor-level usable width is now 42" (49 − 2×3.5), and the leg line at 39" still sits inside it.
+
+##### V5 — Hatch curvature clearance *(was row #5)*
+
+![Van measurement V5 — hatch curvature](renders/vanmeas-v5.svg)
+
+- **Measure:** How far forward of the closed hatch you have to stop building, because the glass and trim curve inward above the floor.
+- **Feeds:** `hatch_curvature_clearance` — it is why the panels total 94", not 96".
+- **Previous estimate:** 2" — already verified
+- **V5** — hatch to the usable boundary: **0"** (MEASURED — owner, Aug 1 2026) — *"the build isn't high enough to hit curvature."* Nothing has to be reserved at the tailgate end: `hatch_curvature_clearance` = 0, which is what gave back most of what V1 took away. **One thing did break:** the rear-pantry drawer units (14.3" deep) used to be allowed to sit 0.3" proud of the deck edge *into* that 2" reserve. There is no reserve to hang into now, so **`pantry_len` went 14" → 14.5"** and the deck carries the whole drawer (costs ½" of sleeping run).
+
+##### V6 — The gate (tailgate) opening — width and height *(was row #6)*
+
+![Van measurement V6 — gate opening](renders/vanmeas-v6.svg)
+
+- **Measure:** Standing at the open hatch: the opening's width at its **narrowest** point, and its height **where the rounded corners start cutting in** — not the widest or tallest point of either.
+- **Feeds:** `gate_opening_width` / `gate_opening_height` — these gate what can physically pass into the van at all.
+- **Previous estimate:** 48" / 36" — both UNVERIFIED
+- **V6a** — narrowest width: **50"** (MEASURED — owner, Aug 1 2026) — 2" better than the estimate; the 46" boxes now have **2" of clearance per side** instead of 1".
+- **V6b** — clear height: **37"** at the centre of the opening (MEASURED — owner, Aug 1 2026), but only **20.5" out where the corner radius starts cutting in**. `gate_opening_width` = 50, `gate_opening_height` = 37. **Carry the 18.5"-tall boxes through the middle of the gate** — a module walked in flat against one side will foul the rounded corner well before it runs out of height in the centre.
+
+##### V7 — Wall-to-wall width up at platform height
+
+![Van measurement V7 — wall-to-wall at platform height](renders/vanmeas-v7.svg)
+
+- **Measure:** Interior wall-to-wall width at **~18.5"** and **~22.5"** above the floor, taken at several points along the sleeping run. The floor pinch between the wheel wells is one number; the assumption was that the walls flare wider up here, which is what would let a 52" platform fit at all.
+- **Feeds:** Gates `bed_frame_width` — the 52" platform needed **≥53"** at platform height.
+- **Previous estimate:** — UNVERIFIED, and the platform-width gate
+- **V7a** — at ~18.5" above the floor: **50"** (MEASURED — owner, Aug 1 2026)
+- **V7b** — at ~22.5" above the floor: **49.5"** (MEASURED — owner, Aug 1 2026)
+- ⚠️ **THIS ONE FAILED ITS GATE — the biggest finding of the survey.** The walls barely flare over the wheel wells: **50" is the usable width** at the sleeping plane (owner), against the ≥53" the design assumed. So the cantilevered platform came down from **52" → 49"** (`bed_frame_width`), i.e. **1½" of overhang per side instead of 3"**, keeping ~½" of insertion clearance per side. The slats shorten with it: **42" instead of 45"**. New param `van_platform_width` = 50 records the limit and asserts against it.
+- ✅ **Resolved by dry fit (owner, Aug 2026): the 50" HEST goes in, with a little play to spare.** It is still the widest thing in the van — the usable width is also 50", and the frame under it is 49", so the foam overhangs its own frame by ~½" per side. The walls **narrow** with height here (50" at 18.5", 49.5" at 22.5"), so what little pinch there is lands on the mattress's top outer edges rather than its base, and solid foam absorbs it (no coils to distort). No trimming, chamfering or replacement needed — build the platform at 49" as specified.
+
+##### V8 — The side sliding door opening *(was row #7)*
+
+![Van measurement V8 — side door opening](renders/vanmeas-v8.svg)
+
+- **Measure:** The door opening's fore-aft width and its height — and the one that actually matters, the **usable clear** width and height at the door's real stopping point, not the rough opening.
+- **Feeds:** `side_door_opening_width` / `side_door_opening_height` — decides whether the DELTA 3 stack stays in Panel A or has to move (see the reachability note in Section 1).
+- **Previous estimate:** 40" / 40" — both UNVERIFIED
+- **V8a** — fore-aft width: **35"** (MEASURED — owner, Aug 2026). The **50"** first written on the sheet turned out to be the **door panel's own external width**, not the aperture.
+- **V8b** — height: **45"** (MEASURED — owner, Aug 2026). The **58"** first written on the sheet was likewise the **door panel's external height** (it could not be a cabin dimension — the cabin is 42" tall).
+- **V8c** — usable clear at the door's actual stop: **29"** (MEASURED — owner, Aug 1 2026) — **this is the number that governs, and it is 11" tighter than the 40" assumed.** The sliding door parks 6" short of the aperture's forward edge, so 6" of the 35" is never open. `side_door_opening_width` = 35 / `_height` = 45 record the aperture; `side_door_clear_width` = 29 is what the reach check runs off. Knock-on: with the door's fore-aft position still a placeholder, the check reports Panel A reachable and **Panel B blocked outright** — fine, because Panel B was already a top-loaded bay with no drawers, and it is why its bed top is now two lift-out halves (Component 2). Re-run the check once `side_door_y0` is measured.
+
+##### V9 — The two AC outlets
+
+![Van measurement V9 — AC outlets](renders/vanmeas-v9.svg)
+
+- **Measure:** **VERIFIED: 2 outlets total, both fed by the one 1500W inverter**, so they share a single power budget. Front: centre console. Rear: passenger-side rear quarter trim — **22.5" above the cargo floor, ~10" forward of the liftgate scuff plate, socket centre 10" laterally in from the right sidewall** (MEASURED — owner, Aug 1 2026), directly above the 12V battery access panel and below the rear cup holders. *(This corrects the ~9.5" / ~16" figures carried in earlier drafts.)*
+- **Feeds:** Section 5/7 — the cooktop and Power strip 1 tap the rear outlet; DELTA 3 charging has the front one. Section 1/7 uses the 1500W rating for the DELTA 3's charge rate and the cooktop check.
+- **Previous estimate:** front 1500W — VERIFIED; rear position — VERIFIED
+- **V9a** — front console outlet — wattage rating: **1500W, unchanged** (the line was struck through on the sheet as already verified).
+- **V9b** — rear outlet position: **22.5" up, 10" inboard of the right sidewall** (MEASURED — owner, Aug 1 2026). **This is better news than the plan assumed:** at 22.5" the socket sits **4" ABOVE the 18.5" deck plane**, not buried below it — the cooktop and Power strip 1 cords reach it from deck level instead of having to drop down the gap between the kitchen unit and the van wall. Section 5's routing is easier, not harder; see the corrected note there.
+- **NEW check** — does the quarter trim / cup holder intrude inboard of the 46" deck width at deck height near that corner?: **the trim sits ~10" in from the sidewall at outlet height**, so the corner is where the deck and the trim come closest — keep the anchor board's kitchen-side strip clear of it as Section 8 already requires.
+
+##### V10 — Cargo floor level — flat, or sloped front-to-back? *(was row #9)*
+
+![Van measurement V10 — cargo floor level](renders/vanmeas-v10.svg)
+
+- **Measure:** Lay a long level along the run and check at several stations. Nothing in the model accounts for a slope: every module's four legs are one length, which only gives a level deck if the floor itself is level.
+- **Feeds:** Not currently a param — a slope means per-leg shimming rather than one `leg_height`.
+- **Previous estimate:** assumed flat — UNVERIFIED
+- **V10** — level, or slope over what run?: **mixed — mostly level; level at the ends, with minor change in between** (MEASURED — owner, Aug 1 2026). No slope big enough to force per-leg shimming, so the one-length-legs assumption holds. The leveling feet already on every leg absorb the "minor change" — set them once on a flat surface and adjust only if the deck rocks.
+
+##### Also worth noting while you are in there — no drawing needed
+
+- **Folded 3rd-row well depth.** Already covered by **F3b** in the rear-floor survey below, which
+  measures the same well. It confirms `leg_height` (17" on Panel C, fridge-driven; Panel A/B legs
+  are 16.25" with the deck recess — that clears it).
+- **Rear 12V accessory outlet — exact position.** Informational only, **not a blocker**: this
+  design no longer uses it. The fridge and fan system run off the DELTA 3 stack instead (Section 1).
+- **Factory sunroof — PRESENT** (MEASURED — owner, Aug 1 2026), opening size not measured. Only relevant if you later pursue a roof vent — measure it then.
+
+#### The fridge (BougeRV) and kitchen unit (JAGAHAHA), once purchased
+
+![Measurement guide: fridge and kitchen](renders/measurement-fridge-kitchen.svg)
+
+| # | Measure | Goes in `params.scad` as | Listing spec (unverified) | Your measurement |
+|---|---|---|---|---|
+| 1 | Fridge length as installed (left-right, the 450mm side) | `fridge_ext_length` | 17.72" | 17¾" (owner, July 2026 — matches) |
+| 2 | Fridge depth, front to back incl. handles | `fridge_ext_width` | 28.74" (body 28.03") | 27¾" (owner, July 2026 — ~1" under; hard to tape a rounded-corner case square, and easy to undercount how far the handle protrudes. Spec used, since the tray is already cut to it.) |
+| 3 | Fridge height | `fridge_ext_height` | 15.79" | 15⅝" (owner, July 2026 — matches within rounded-corner tolerance) |
+| 4 | Which side is the compressor/vent on? | (confirms the intake/exhaust fan placement in Section 2 still makes sense) | Manual (CR04001): compressor, louvers, control panel & power port ALL at one end; free-air clearances 200mm that end / 100mm sides | Manual answers the "which end" question — that end faces the tailgate (Component 7). Still confirm on the physical unit, and see Section 2's clearance note for how the fan system substitutes for the manual's free-air numbers |
+| 5 | Fridge empty weight | (Section 8 weight table) | 40.6 lb (18.4 kg, manual) | |
+| 5b | Floor vents at Panel C's REAR corners | Panel C's rear legs sit at the TRUE corners now | must be vent-free for ~4" | |
+| — | Fridge cord length | (confirms it reaches the new DC line's connection point inside Panel C's void — Section 5) | — | |
+| — | Fridge slide clearance — how far it must come out before the lid opens fully | `fridge_slide_length` (confirms 24" is enough) | 24" slide | |
+| 6 | Kitchen unit width, closed | `kitchen_box_width` | 20" | |
+| 7 | Kitchen unit length, closed | `kitchen_box_length` | 26" | |
+| 8 | Kitchen unit height, closed | `kitchen_box_height` | 11.8" | |
+| 9 | Stove tray length x width x clearance height | (Section 7 — the COOKTRON cooktop's fit depends on this; the current numbers came from listing photos, not a spec sheet) | 23" x 15.7" x 5.7" | |
+| 10 | Kitchen unit empty weight | (Section 8 weight table) | ~45 lb | |
+| — | Cord pass-through location for the cooktop's power cord | (Section 5/6 cord routing) | — | |
+| — | Confirm it still extends to ~70" open | (sanity check — this happens outside the vehicle, doesn't affect interior length) | ~70" | |
+
+#### The rear floor under Panel C — what does the anchor board actually sit on and strap to? (SURVEYED Aug 1 2026 — findings below)
+
+**HEADLINE FINDING (owner, Aug 1 2026):** the feared geography mostly is not there. **The stowage well is full of folded seats, not open**, and the folded seatbacks make a load surface solid enough to bear on across the whole Panel C footprint (F1/F2/F3) — so no filler blocking, and the well's edges stop being a constraint. Two fallbacks died with it, though: **there is no hard step face at the striker row** for the steel tongues to butt against (F7 — it is carpet over a soft ~1" step), and **the 3rd row's seat-mount bolts are occupied by the seats** and unavailable as hardpoints (F6). That leaves Section 8's load path as designed: **the 2nd-row rail rear ends in tension/compression, plus the 3 striker straps.** The rail ends measure **42" from the hatch** and the striker row **44.5"** — both nearer than the 46–50" assumed, so the steel tongues come out at or just under the short end of the 10–14" range. Fabricate them to the measured 42".
+
+**The original problem statement (owner, July 2026, from a photo of the actual cargo area):** the rearmost stretch of the Sienna — exactly where Panel C, the fridge slide, and the kitchen unit live — is not plain sheet-metal floor. It's the 3rd-row stowage area: a **deep cargo well** the folded seatbacks drop into, so much of the "floor" back there is actually **folded seatback over a void**, plus the seats' own latch/hinge hardware and (passenger rear corner) the hybrid's 12V battery access panel. Section 8's no-drill securing design — an anchor board bearing on this surface, steel tongues bolted to the rear ends of the 2nd-row floor rails (fallback: butting the striker-row step), straps into the 3 striker loops — needs the same geography mapped before its outline can be cut: where the surface is solid, where the well and its edges are, exactly where the strikers and the rail ends sit, and what Panel C's legs land on. Do the whole survey with the 3rd row folded exactly as it will sit in camper mode and the 2nd-row carriages parked fully forward. (The old version of this checklist gated 16 drilled floor-pan holes; the drilling is gone, and with it the under-van fuel/brake-line clearance crawl.)
+
+**Reading these drawings.** Each measurement below gets its own drawing of the whole vehicle in plan, so you can see where in the van you are working. All eight are the same base plan — **front at the left, tailgate at the right**, driver side along the bottom — showing the body outline, the front seats, the empty 2nd-row bay with its long-slide floor rails, the folded 3rd row over its stowage well, and Panel C's footprint. **Only that section's measurement is drawn in red**, tagged with lettered items (F4a, F4b, ...) that match the blank finding lines under each drawing one-for-one — so there is a line to write on for every thing you are asked to measure. F3 and F7 add a small section inset, because a depth and a step height cannot be shown in plan; F8 adds three detail bubbles for the rail-end cases you have to tell apart. The body outline is illustrative, and every dashed interior feature is drawn at its ASSUMED position — confirming those is the entire point of this survey.
+
+##### F1 — Map the load surface into its three zones
+
+![Survey F1 — load-surface map](renders/survey-f1.svg)
+
+- **Measure / check:** With the 3rd row folded flat, map the load surface: press and knock along the whole Panel C footprint and mark with masking tape where it is **folded SEATBACK**, where it is the **well/tub** (hollow underneath), and where it is **carpet over solid pan**.
+- **Feeds:** Where the anchor board's strips can bear solidly, and where they would need filler blocking.
+- **Previous assumption:** assumed usable as-is — UNVERIFIED
+- **Finding** (MEASURED — owner, Aug 1 2026): **"Seats in all areas. Can handle load."** There is no three-zone map to draw — the folded seatbacks cover the whole Panel C footprint and bear the load. **No filler blocking needed.** The trade-off is that the bearing surface is upholstered rather than steel, so the anchor board's rubber mat is doing real work; keep the straps tight.
+
+##### F2 — Fore-aft position of the stowage well
+
+![Survey F2 — well edges, fore-aft](renders/survey-f2.svg)
+
+- **Measure / check:** Where the stowage well's rear and forward edges sit, both measured from the closed hatch (the same fore-aft datum as V1).
+- **Feeds:** The board's strip lengths, and where filler blocking starts and stops.
+- **Previous assumption:** —
+- **F2a / F2b** (MEASURED — owner, Aug 1 2026): **not applicable — "doesn't matter, seats fill it in."** With the 3rd row folded into it, the well is not an open cavity with edges to work around, so there is nothing for the strip lengths or filler blocking to be positioned against.
+
+##### F3 — The well's width, and its depth
+
+![Survey F3 — well width and depth](renders/survey-f3.svg)
+
+- **Measure / check:** The well's width across the van, and its depth below the surrounding load floor.
+- **Feeds:** Sizing the filler blocking that carries a board strip across the well, down to its structural bottom.
+- **Previous assumption:** —
+- **F3a / F3b** (MEASURED — owner, Aug 1 2026): **not applicable — "well is filled with seats, doesn't matter."** No depth to blocking-out, and nothing here challenges `leg_height` (17" on Panel C, 16.25" on A/B).
+
+##### F4 — The 3rd-row striker loops
+
+![Survey F4 — striker loops](renders/survey-f4.svg)
+
+- **Measure / check:** For each of the 3 loops: its fore-aft distance from the hatch, its lateral position, and its inside clearance (a strap hook has to seat in it). Also whether the FOLDED seatbacks leave all 3 loops exposed and hookable.
+- **Feeds:** Section 8's striker straps plus the steel tongues' length (assumed striker row ~46–50" from the hatch → ~10–14" tongues).
+- **Previous assumption:** ~46–50" from hatch — UNVERIFIED. The strikers are confirmed PRESENT (photo, July 2026) but not yet measured.
+- **F4a** — hatch → striker row: **44.5"** (MEASURED — owner, Aug 1 2026) — 1.5" nearer than the near end of the assumed range.
+- **F4b** — loop-to-loop spacing: **~12.5–13"**, with the outer two loops **~11" in from each sidewall** (scaled off the tape in the Aug 2026 striker-row photos; the finding line itself says "see pictures"). Three loops across the row, roughly 11" / 24" / 37" on a tape zeroed at the driver sidewall.
+- **F4c** — inside clearance / exposure: **loops are 1.5" tall, and all 3 are exposed and hookable with the seats folded — "yes"** (MEASURED — owner, Aug 1 2026). 1.5" of clear height is enough for a cam-strap S-hook or a small carabiner; check the hook you buy against it.
+
+##### F5 — What Panel C's legs and the kitchen bear on
+
+![Survey F5 — leg and kitchen bearing points](renders/survey-f5.svg)
+
+- **Measure / check:** Where Panel C's 4 legs and the kitchen unit's footprint actually bear: solid floor, or folded seatback? A deck leg standing on a seat cushion is springy — it will not sit level or solid.
+- **Feeds:** `leg_height`, deck levelness, and the kitchen unit's strap-down.
+- **Previous assumption:** —
+- **F5a** — what each of the 4 leg pads bears on (MEASURED — owner, Aug 1 2026): **the REAR legs land on folded seats; the FRONT legs land on the floor, but beside the vent intrusions** (see the Aug 2026 photos). So two legs bear on upholstery — springy, exactly the case this section warned about. **Set the leveling feet with the deck loaded**, not empty, so the foam-and-fabric compression is already taken up, and re-check after the first night out.
+- **F5b** — what the kitchen unit's footprint bears on: same mixed surface as the rear legs (folded seat). It is strapped down rather than standing on levellers, so compression matters less — but keep the strap tight enough that settling doesn't loosen it.
+
+##### F6 — Fold the 3rd row, or remove it?
+
+![Survey F6 — fold vs remove the 3rd row](renders/survey-f6.svg)
+
+- **Measure / check:** Does a solid bearing surface require REMOVING the 3rd row rather than folding it? If so, does the 3rd row carry its own SRS / seatbelt-pretensioner wiring?
+- **Feeds:** Section 9 covers 2nd-row removal only — a 3rd-row removal procedure (and possibly more emulators) would be NEW scope. Removal would also expose the 3rd row's own seat-mount bolts as bolt-in anchor-plate hardpoints (no new holes) — the strongest points in the zone if the striker plan needs help.
+- **Previous assumption:** assumed fold-only — UNVERIFIED
+- **F6a** — does the row have to come OUT? **No — "folded is good."** (MEASURED — owner, Aug 1 2026) **Section 9 stays as written: 2nd-row removal only.** No 3rd-row removal procedure, no extra SRS emulators, no new scope.
+- **F6b** (MEASURED — owner, Aug 1 2026): **no SRS / pretensioner wiring on the 3rd row** — but **the seat-mount bolts are in use by the seats and are NOT available** as anchor-plate hardpoints. The "bolt to the 3rd row's own seat mounts" fallback is therefore off the table; the rail ends + striker straps carry the load.
+
+##### F7 — The step/riser at the striker row
+
+![Survey F7 — step/riser at the striker row](renders/survey-f7.svg)
+
+- **Measure / check:** Is there a square, hard vertical face at the step by the striker row (metal under the trim?) for Section 8's two steel tongues to butt against — and how tall is it?
+- **Feeds:** The FALLBACK forward load path, in compression, if F8 rules the rail ends out.
+- **Previous assumption:** assumed hard step at the striker row — UNVERIFIED
+- **F7a** — is the step face square and hard? **No — "covered in carpet"** (MEASURED — owner, Aug 1 2026). Not a square metal face, so **the compression fallback is out**: do not size the steel tongues expecting to butt them against this step.
+- **F7b** — step HEIGHT: **1"** (MEASURED — owner, Aug 1 2026) — low and soft. It will stop a board from creeping rearward under gentle load, but it is not a crash-path member.
+
+##### F8 — The 2nd-row rails' rear ends
+
+![Survey F8 — 2nd-row rail rear ends](renders/survey-f8.svg)
+
+- **Measure / check:** With the seat carriages parked fully forward: where do the rails' REAR ends sit (distance from the hatch, lateral spacing), and what is at each end — an end cap that unclips, exposed track bolt heads, an open track slot, a lip a clamp plate could grab? Photograph the end hardware close-up.
+- **Feeds:** Section 8's PRIMARY forward connection: the anchor board's 2 steel tongues bolt or clamp to these rail ends (no new holes). This measurement decides the bracket detail and the tongue length.
+- **Previous assumption:** assumed the rail ends reach the striker-row zone — UNVERIFIED
+- **F8a** — hatch → rail REAR ends: **42"** (MEASURED — owner, Aug 1 2026). **The rail ends reach — with room to spare.** They sit 2.5" NEARER the hatch than the striker row (44.5", F4a), so the tongues are shorter than the assumed 10–14": **fabricate to the measured 42".** This is the PRIMARY forward connection and it survives the survey intact, which matters because F6 and F7 both eliminated fallbacks.
+- **F8b** — rail lateral spacing: **see the Aug 2026 photos** — not separately taped. Take this off the rails themselves at the bench before the tongue bracket is drilled; the photos show both rail ends and their hardware clearly enough to lay out against, but a bolt pattern deserves a tape.
+- **What is AT each end** (end cap / track bolt / open slot / lip): **see the Aug 2026 close-up photos.** Confirm the exact hardware case from the photos before ordering bracket stock.
+
+
+**Photos to take while you're in there** (each one answers a specific question later, at the workbench, without crawling back in):
+
+1. **Wide shot from the open tailgate**, 3rd row folded as it will sit in camper mode, with a tape measure laid fore-aft along the floor from the hatch — establishes the Y datum every other photo hangs off.
+2. **Carpet/liner pulled back at the tailgate end** — what's actually under it: painted steel, a plastic tub, or the seat mechanism.
+3. **Straight-down shot into the stowage well** (seats up if needed) with the tape showing its depth and its front edge's distance from the hatch.
+4. **Close-ups of the seat latch/hinge hardware** anywhere it falls inside Panel C's 35.75" footprint — this is what a board strip or a deck leg would be fighting for space with.
+5. **The passenger rear corner** showing the 12V battery access panel — the one spot the anchor board must stop clear of (Section 8).
+6. **The striker row straight-on**, tape held across it — all 3 loops in frame, with the step's face visible below them. This pairs with F4 and F7.
+7. **Each 2nd-row floor rail's rear end, close up** (carriages parked forward) — the end cap/bolts/slot the tongue bracket has to mate with. This pairs with F8 and is what the bracket gets fabricated against, at the workbench.
+
+**If the survey comes back ugly** — rail ends short of the tongues' reach or with nothing to grab (F8), loops buried under the folded seatbacks, no hard face at the step, nothing solid for the strips to bear on — the Section 8 design flexes rather than dies: the striker-row step as the tongues' compression stop (F7), filler blocking down to the well's structural bottom (F3), the well's forward wall as a bearing target (F2/F3), or the 3rd row's own seat-mount bolts with anchor plates (F6 — likely means removing the 3rd row, which is new Section 9-style scope). Every one of those changes geometry that `params.scad` currently takes on faith, so settle this survey before cutting Panel C or the anchor board.
+
+---
+
+### Appendix B — Build Sequence & Assembly Order
 
 The order to build in — **dependency-first, not the Component numbering.** Work top to bottom; the "needs" is what must be finished before each phase.
 
-**Phase 0 — MEASURE & PREP, before any cutting** (Section 0, 9) — *critical*
-1. ~~Measure the real van and update `params.scad`~~ — **DONE Aug 1 2026** (Section 0): interior 93.75", liftgate 50×37", side-door usable clear 29", wall-to-wall at platform height **50"** — which failed the ≥53" gate and cut the platform to 49". *Still open: the side-door aperture height and its fore-aft position (`side_door_y0`).*
+**Phase 0 — MEASURE & PREP, before any cutting** (Appendix A, 9) — *critical*
+1. ~~Measure the real van and update `params.scad`~~ — **DONE Aug 1 2026** (Appendix A): interior 93.75", liftgate 50×37", side-door usable clear 29", wall-to-wall at platform height **50"** — which failed the ≥53" gate and cut the platform to 49". *Still open: the side-door aperture height and its fore-aft position (`side_door_y0`).*
 2. Confirm the rear-corner floor vents don't reach the last ~4" (Panel C's rear legs sit there). *UNVERIFIED.*
 3. Remove the 2nd-row seats; install the Ling Labs SRS emulators (Section 9).
-4. Buy & verify materials (Appendix B); verify the Rocky 40 + JAGAHAHA dimensions on arrival (both purchased July 2026).
+4. Buy & verify materials (Appendix C); verify the Rocky 40 + JAGAHAHA dimensions on arrival (both purchased July 2026).
 
-**Phase 1 — Cut all plywood & lumber** (Section 3 / Appendix C)
+**Phase 1 — Cut all plywood & lumber** (Section 3 / Appendix D)
 1. Cut both sheets + all boards. The ½" sheet nests to ~95% — lay it out before cutting.
 2. Drill the leg leveling-insert holes now (far easier before assembly).
 3. Pre-cut the Panel C front-wall openings (fan hole, 2 grommets, louver — Front Wall render).
@@ -1388,7 +1406,7 @@ The order to build in — **dependency-first, not the Component numbering.** Wor
 
 **Phase 3 — Panel C build-out (fridge / kitchen / cooling)** (Components 4 + 7)
 1. Set the fixed top between the rails on its bearer cleats (flush with the rail tops — deck recess) and screw it down; add the front wall (mount the low intake louver).
-2. Bench-build the no-drill anchor board (bridge + strips + risers + L-track + rail tongues, Section 8), then set it in the van on its mat, bolt/clamp the tongues to the 2nd-row floor rails' rear ends, and tension the 3 striker straps — **the board's final outline needs the Section 0 floor survey (F1–F8) done first**; nothing is drilled into the van. *Verify strap tension after the first drive.* **The hybrid's 12V battery access panel is at the passenger rear corner (under the rear outlet) — the kitchen-side strip stops short of it, and it stays reachable by unstrapping/sliding the kitchen out.**
+2. Bench-build the no-drill anchor board (bridge + strips + risers + L-track + rail tongues, Section 8), then set it in the van on its mat, bolt/clamp the tongues to the 2nd-row floor rails' rear ends, and tension the 3 striker straps — **the board's final outline needs the Appendix A floor survey (F1–F8) done first**; nothing is drilled into the van. *Verify strap tension after the first drive.* **The hybrid's 12V battery access panel is at the passenger rear corner (under the rear outlet) — the kitchen-side strip stops short of it, and it stays reachable by unstrapping/sliding the kitchen out.**
 3. Fridge on its tray + locking slide (driver corner); kitchen unit strapped down (passenger corner). Let the fridge stand 12h before first power-up.
 4. Hang the kitchen drawer; velcro the 2 utility bins into the open bay (no door — it was cut).
 5. Cooling + control cluster: intake fan (blows IN), exhaust fan + NTC on the fridge's kitchen-facing wall, W1209 + fuse block + switches on the backer board in the open utility bay.
@@ -1404,7 +1422,7 @@ The order to build in — **dependency-first, not the Component numbering.** Wor
 2. Left bay: 2 glide strips + an overhead shelf on 1×1 cleats at ~13.7" (WAVE 3 slides out beneath it).
 
 **Phase 6 — Bed platform** (Component 2 — *needs Panel A & B built*)
-1. Assemble 2× 58" rails + 8× 42" slats (pocket screws or R2 biscuits), ends flush at the B/C seam.
+1. Assemble the three pieces — Panel A: 2× 29" rails 49" apart + 5× 42" slats; each Panel B half: 2× 29" rails 24.5" apart + 5× 17.5" slats (pocket screws or R2 biscuits). Fit Panel B's 26" centre bearer first, so both halves have something to land on.
 2. Screw the PITCH bubble level to the driver-side rail edge.
 
 **Phase 7 — Seam hardware** (Component 5): bumper strips + 2 alignment pins at the A/B and B/C seams.
@@ -1418,11 +1436,11 @@ The order to build in — **dependency-first, not the Component numbering.** Wor
 
 **Phase 10 — Commission & test** (Component 10) — *critical*
 1. Lift-out / reinstall dry run (each panel by its top rails; pantry drawer units by loosening the cam strap).
-2. Level the van at the WHEELS (Appendix D) + set the interior feet once.
+2. Level the van at the WHEELS (Appendix E) + set the interior feet once.
 3. Power-up + cooling test (fridge stood 12h; fans ramp off the NTC); pull every drawer/slide.
 4. Owner-place the low-level CO monitor + fire extinguisher.
 
-### Appendix B — Materials Shopping List
+### Appendix C — Materials Shopping List
 
 Consolidates Section 4's BOM into a shopping order with links. Prices are estimates; items marked **UNVERIFIED** need a live-listing check. **Purchased** = already bought (July 2026); **owned** = existing gear, not priced.
 
@@ -1450,7 +1468,7 @@ Consolidates Section 4's BOM into a shopping order with links. Prices are estima
 
 **Total: ~$3,370–3,740 with the fridge + kitchen, or ~$2,670–2,890 if you already own equivalents** (see Section 4 for the full itemized BOM and every purchase link).
 
-### Appendix C — Cut List (consolidated)
+### Appendix D — Cut List (consolidated)
 
 Finished sizes; add saw kerf. Full context in Section 3.
 
@@ -1458,13 +1476,13 @@ Finished sizes; add saw kerf. Full context in Section 3.
 
 **1/2" Baltic birch plywood — 1 sheet (4×8):** kitchen-drawer box (bottom 1× 16×26"; sides 2× 26×4"; front/back 2× 15×4") + hanging cheeks 2× 26×6.2"; battery-drawer bottom 1× 20×25". **3/8" half-sheet:** battery-drawer walls (2× 25×14.5", 2× 20×14.5"); fridge tray 1× 17.72×28.74"; Panel C front wall 1× 46×17".
 
-**2×2 pine — 12 boards (8ft), 963.5" total:** Panel A long rails 2× 29"; Panel B long rails 2× 29"; Panel C long rails 2× 35.75"; end rails 6× 46"; center divider (Panel A) 1× 26"; legs 12× 16" (cut 1" short); bottom rails 5× 46" + 2× 26".
+**2×2 pine — 12 boards (8ft), 1015.5" total:** Panel A long rails 2× 29"; Panel B long rails 2× 29"; Panel C long rails 2× 35.75"; end rails 6× 46"; center divider (Panel A) 1× 26"; legs 12× 16" (cut 1" short); bottom rails 5× 46" + 2× 26"; Panel B centre bearer 2× 26".
 
-**1×4 pine — 6 boards (8ft), bed platform:** side rails 2× 58"; slats 8× 42".
+**1×4 pine — 7 boards (8ft), bed platform:** side rails 6× 29"; slats 5× 42" + 10× 17.5".
 
 **Trim / cleats / scrap:** WAVE 3 overhead shelf 1× ~20.75×14" (½" ply offcut); WAVE 3 glide strips 2× 20×1" (UHMW/laminate); DELTA 3 locating cleats 4× 1×1 blocks.
 
-### Appendix D — Leveling: Block Calculator
+### Appendix E — Leveling: Block Calculator
 
 Per-site leveling is done at the **wheels** with the [Lynx blocks](https://www.amazon.com/Lynx-Levelers-00015-Leveling-Blocks/dp/B000BUV1RK), driven by the phone **[Sienna Block Calculator](https://claude.ai/code/artifact/149333c6-8f02-47a2-915f-52d26d9059d9)** (open it in Chrome and *Add to Home screen*, or use the offline copy `sienna_block_calculator.html`). The interior leg feet are then a **one-time** set against the van's own floor.
 
@@ -1472,7 +1490,7 @@ Per-site leveling is done at the **wheels** with the [Lynx blocks](https://www.a
 
 **The math** (so it's not a black box): a low END needs `tan(pitch°) × wheelbase` of lift; a low SIDE needs `tan(roll°) × track`. Blocks per tire = `round(that deficit ÷ block height)`. One 10-pack (1.5"/block over the 120.5" wheelbase) covers about 2.9° of pitch correction.
 
-### Appendix E — Weight Budget & Weight-Distribution Analysis
+### Appendix F — Weight Budget & Weight-Distribution Analysis
 
 Every component's weight, computed from the real material dimensions (Baltic birch at 42.5 lb/ft³, pine at 28 lb/ft³) plus manufacturer specs for the appliances/power gear. The live spreadsheet is in the repo as **`weight_budget.csv`** (open it in any spreadsheet app; regenerate with `weight_budget.py` if you change materials). Figures marked *est.* are estimates to confirm.
 
@@ -1489,7 +1507,8 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Rear pantry: 4× IRIS 12"W drawer cluster + hold-down | Structure | 15.0 | rear | prefab 2×2 drawers (est.) + cleats/strap — replaces the ~42 lb plywood pantry |
 | Panel B: 2× Sterilite 28-Qt under-bed totes | Hardware/misc | 4.0 | mid | restacked ON the spare (2 of the original 4) |
 | RJ-MODINI spare kit + jack (Panel B, flat at the axle) | Hardware/misc | 40.0 | mid | T155/85R18 steel-wheel kit + cleats/strap — VERIFY kit weight |
-| Bed platform (1×4 pine, 2 rails + 8 slats) | Structure | 20.2 | front | flush slat deck over A+B |
+| Bed platform (1×4 pine, 6 rails + 15 slats, 3 lift-out pieces) | Structure | 23.8 | front | Panel A section + Panel B's 2 centreline halves (Aug 2026) |
+| Panel B centre bearer (2× 2x2 pine, 26") | Structure | 1.9 | mid | halves the deck's unsupported span over Panel B, 46" → ~22" (Aug 2026) |
 | Fridge (BougeRV Rocky 40, empty) | Appliances | 40.6 | rear | manual spec; +20–40 lb loaded |
 | Kitchen unit (JAGAHAHA) | Appliances | 45.0 | rear | listing spec |
 | EcoFlow DELTA 3 Plus + Extra Battery | Power/climate | 48.0 | front | Panel A passenger drawer |
@@ -1504,36 +1523,36 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Electrical (2 fans, controller, fuse, 2 strips, cords) | Hardware/misc | 6.0 | mid | cooling + power runs |
 | Cooktop + cookware (stowed) | Hardware/misc | 12.0 | rear | induction top + pots in the kitchen |
 
-**Subtotals:** Structure **146.2** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **115.1**
-**Build total (added): ≈ 464 lb** — after the lighter-wood swaps, the deck recess and the prefab-drawer pantry swap, plus Panel B's 2 storage totes (~4 lb), the **RJ-MODINI spare kit stowed at the axle (~40 lb)** — carried inside deliberately instead of on a hitch basket, which would have added its own 30–60 lb of carrier plus a ~1.4× lever on the rear axle — and the no-drill anchor board (~23 lb, +15 over the drilled E-track hardware it replaced).
+**Subtotals:** Structure **151.7** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **115.1**
+**Build total (added): ≈ 469 lb** — after the lighter-wood swaps, the deck recess and the prefab-drawer pantry swap, plus Panel B's 2 storage totes (~4 lb), the **RJ-MODINI spare kit stowed at the axle (~40 lb)** — carried inside deliberately instead of on a hitch basket, which would have added its own 30–60 lb of carrier plus a ~1.4× lever on the rear axle — and the no-drill anchor board (~23 lb, +15 over the drilled E-track hardware it replaced).
 
 **But the 2nd-row seats come OUT** (Section 9), so the conversion *removes* weight too:
 
 | | Weight |
 |---|--:|
-| Build (added) | +464 lb |
+| Build (added) | +469 lb |
 | **2nd-row seats removed** (2 × ~48–70 lb) *est.* | **−120 lb** |
-| **NET permanent weight added vs. stock** | **≈ 344 lb** |
+| **NET permanent weight added vs. stock** | **≈ 349 lb** |
 
-So the van, converted and empty, weighs only about **344 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
+So the van, converted and empty, weighs only about **349 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
 
 **Loaded scenarios** (payload = everything you add to the van — build + people + cargo):
 
 | Scenario | Weight |
 |---|--:|
-| Net build (added − seats removed) | ≈ 344 lb |
-| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 464 lb |
-| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 804 lb |
+| Net build (added − seats removed) | ≈ 349 lb |
+| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 469 lb |
+| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 809 lb |
 
 #### Weight distribution
 
-- **Fore–aft:** the build's own center of mass sits **≈ 52.1" back** from the front seatbacks — aft of the 47" geometric center (the prefab pantry and the axle-stowed spare pull it forward; the anchor board pulls it back). Breaking it into thirds: **front 29%** (136 lb — Panel A + the DELTA 3/WAVE 3 stack + the bed platform), **middle 25%** (118 lb — Panel B now carries the spare + totes at the axle), **rear 45%** (210 lb). That rear share is the **tailgate cluster** — the prefab drawer pantry (~15 lb), the fridge (41 lb), the kitchen unit (45 lb), the anchor board (~23 lb), and Panel C's own structure — most of which has to live at the back for slide-out access.
+- **Fore–aft:** the build's own center of mass sits **≈ 51.9" back** from the front seatbacks — aft of the 47" geometric center (the prefab pantry and the axle-stowed spare pull it forward; the anchor board pulls it back). Breaking it into thirds: **front 30%** (140 lb — Panel A + the DELTA 3/WAVE 3 stack + the bed platform), **middle 25%** (118 lb — Panel B now carries the spare + totes at the axle), **rear 45%** (210 lb). That rear share is the **tailgate cluster** — the prefab drawer pantry (~15 lb), the fridge (41 lb), the kitchen unit (45 lb), the anchor board (~23 lb), and Panel C's own structure — most of which has to live at the back for slide-out access.
 - **Lateral:** **≈ 0.7" toward the passenger side** — trivial (the fridge-slide steel risers on the driver side pulled it in a bit more). This is by design: the DELTA 3 stack (48 lb, passenger) and the WAVE 3 (34 lb, driver) sit in opposite bays of Panel A, and the fridge (driver) and kitchen (passenger) also cross-balance in Panel C. The reviewer's "heavy battery off to one side" concern is effectively cancelled by the WAVE 3 on the other side.
 - **Height:** everything is low (floor-level bays) except the 16.8" pantry cluster at the rear and, when parked, the sleeping load on the ~20–27" platform. Overall CG stays low — no rollover concern beyond a stock minivan.
 
 #### Effects on drivability
 
-- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 804 lb** — and that already includes the spare tire + jack. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~296–496 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
+- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 809 lb** — and that already includes the spare tire + jack. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~291–491 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
 - **Rear bias:** with 45% of the build mass in the rear third (much of it at/behind the rear axle), the fixed build alone loads the rear axle and slightly lightens the front — which reads as lighter steering, a bit more rear squat, and a raised headlight aim. **But while driving, the two occupants (340 lb) sit up front and more than offset that**, so the *loaded* vehicle is reasonably balanced. The rear bias matters most when driving **solo with a full rear and no front passenger**.
 - **Lateral / height:** negligible effect — the ~0.7" lateral offset is unnoticeable, and the low CG keeps handling stock-like.
 
@@ -1547,7 +1566,7 @@ So the van, converted and empty, weighs only about **344 lb more than a stock se
 6. **Leg-foot load is not a concern:** ~441 lb + occupants + cargo (~1,000 lb worst case) over 12 feet is well under the feet's 330 lb-each rating (~85 lb/foot worst case, a quarter of capacity).
 7. **If you add heavy items later** (second battery, water tank, awning), re-run `weight_budget.py` and re-check the rear axle before a trip.
 
-### Appendix F — Nighttime Van + Tent Cooling Setup
+### Appendix G — Nighttime Van + Tent Cooling Setup
 
 A **night-only** cooling arrangement for hot-weather campsites (worked out for a Texas-summer trip, but applies anywhere overnight lows still run warm): condition the van and an attached tailgate tent as one shared air volume with the WAVE 3 alone, and skip the factory AC overnight entirely. This builds directly on the WAVE 3 "with a tent" configuration already described in Section 1 — this appendix just adds the setup diagram and the night-specific hints.
 

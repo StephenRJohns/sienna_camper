@@ -158,15 +158,14 @@ panel_thickness  = 0.75; // 3/4" Baltic birch (Section 3)
 // foam (memory-foam top over polyfoam, NO air chambers), washable
 // waterproof cover included. 25in of width per person; the ~1.75in of
 // spare length sits at the head end at the rear-pantry cluster.
-// (V7 Aug 2026) OPEN ISSUE — the mattress is now the widest thing in
-// the van. It is 50in wide, the measured usable width at the sleeping
-// plane is also 50in, and the platform under it is only 49in: the foam
-// goes in with zero side clearance and overhangs its frame by ~0.5in
-// per side. Solid foam tolerates both (it is not a sprung mattress,
-// and the pinch is only at the very top of its thickness), but it is
-// a squeeze
-// rather than a fit, and it is a BOUGHT item — flagged, not designed
-// around. BUDGET FALLBACK (Section 4/6): the
+// (V7 Aug 2026) The mattress is the widest thing in the van: 50in
+// wide, against a measured 50in of usable width at the sleeping plane
+// and a 49in platform under it, so the foam overhangs its own frame by
+// ~0.5in per side. DRY-FIT CONFIRMED (owner, Aug 2026): it goes in
+// with a little play. Solid foam is what makes that work — it is not
+// sprung, and the wall pinch lands only on the top of its 4in
+// thickness. Do NOT narrow the mattress; build the platform at 49in.
+// BUDGET FALLBACK (Section 4/6): the
 // old DIY foam build — queen 60x80 blanks cut to 50x78, using the
 // foam_* layer params below (they only drive the fallback's step
 // diagrams now, steps/mattress_lego.scad).
@@ -178,11 +177,15 @@ foam_mid_t     = 0;    // DIY FALLBACK: egg-crate layer DROPPED (thickness parit
 foam_topper_t  = 1.5;  // DIY FALLBACK: memory-foam topper
 mattress_total_thickness = 4; // HEST Dually Long thickness (DIY fallback: 4in base + 1.5in topper = 5.5, ~1.5in less headroom)
 
-// Component 2: the one-piece slatted bed platform. Stack order,
-// bottom to top: the panel boxes sit on the van floor on their
-// leveling feet -> the flush platform rests DIRECTLY on Panel A and
-// B's top rails -> mattress on top. Leveling happens down at the leg
-// feet (see the leveling section below), not between layers.
+// Component 2: the slatted bed platform — THREE lift-out pieces since
+// Aug 2026: Panel A's full-width section, plus Panel B's two
+// centreline halves (see the split block below). Stack order, bottom to top: the panel boxes sit on the
+// van floor on their leveling feet -> the flush platform rests DIRECTLY
+// on Panel A and B's top rails -> mattress on top. Leveling happens
+// down at the leg feet (see the leveling section below), not between
+// layers. Every piece bears on the boxes' own rails (plus, for Panel
+// B's two halves, a new centre bearer) exactly as the old one-piece
+// platform did — nothing is carried by hardware.
 //
 // The platform spans Panel A + B ONLY and ENDS at the B/C seam:
 // Panel C keeps its own fixed 3/4in deck at exactly the same
@@ -192,11 +195,15 @@ mattress_total_thickness = 4; // HEST Dually Long thickness (DIY fallback: 4in b
 // platform would have to sit ON that deck — 3/4in too high — so
 // don't build one.
 //
-// SOURCING (Section 6, Component 2): ten 45in slats cut from five
-// 1x4 x 8ft pine boards (two per board) + two 58in side rails from
-// two more — 7 boards total. Bought queen slat sets usually ride on
-// metal frames or stapled webbing that don't survive cutting down,
-// so plain boards are cheaper AND simpler.
+// SOURCING (Section 6, Component 2): everything is 1x4 x 8ft pine,
+// CROSSCUT ONLY — a 1x4 is already 3/4 x 3-1/2, which is the slat spec,
+// so there is no ripping anywhere in this component. Five 42in slats
+// (Panel A) + ten 17.5in slats (Panel B's halves) + six 29in side rails
+// = 7 boards, plus 52in of 2x2 for the centre bearer. Bought queen slat
+// sets are deliberately NOT used: they come stapled to fabric webbing
+// or riveted to metal side frames, and neither survives being cut down
+// — you destroy the kit to salvage boards you could have bought
+// straight.
 bed_frame_length = panel_a_length + panel_b_length; // 58 — Panel A + B only; ends flush at the B/C seam (Panel C's own deck carries the rest of the mattress)
 // The platform CANTILEVERS past the 46in boxes: the boxes are stuck
 // at 46 (legs must land between the floor vents; boxes pass the 50in
@@ -218,16 +225,83 @@ platform_overhang  = (bed_frame_width - panel_width) / 2; // 1.5 — reference
 assert(bed_frame_width <= van_platform_width,
        str("Bed platform is ", bed_frame_width, "in wide but only ", van_platform_width,
            "in of usable wall-to-wall width exists at the sleeping plane (V7)"));
-bed_slat_t       = 0.75;  // 3/4in solid-wood slat (typical bought queen slat, ~1x4 pine/poplar)
+bed_slat_t       = 0.75;  // 3/4in solid-wood slat (1x4 pine, crosscut only — no ripping, no bought slat kit)
 bed_slat_width   = 3.5;   // in, each slat's own width (1x4 actual)
-bed_slat_count   = 8;     // WEIGHT SWAP (owner, July 2026): dropped 10 -> 8 (-~4lb). 7 gaps across the 58in span, ~4.3in each — fine under the SOLID-FOAM HEST mattress (foam bridges the gaps; a sprung/coil mattress would want the closer spacing)
-// FLUSH LADDER platform: two 1x4 side rails run the full 58in, and
-// the slats (cut to 45in) sit BETWEEN them, pocket-screwed into the
-// rails' inner edges — everything in one 3/4in plane, top and bottom
-// flush. No battens underneath anymore.
+// FLUSH LADDER platform: 1x4 side rails with the slats sitting BETWEEN
+// them, pocket-screwed into the rails' inner edges — everything in one
+// 3/4in plane, top and bottom flush. No battens underneath.
 bed_rail_width   = 3.5;   // 1x4 side rails, actual width
-bed_slat_length  = bed_frame_width - 2 * bed_rail_width; // 45 — slats span between the rails
+bed_slat_length  = bed_frame_width - 2 * bed_rail_width; // 42 — slats span between the rails
 bed_frame_thickness = bed_slat_t; // 0.75 — one flush plane, rests directly on the box rails
+
+// ---- SPLIT INTO 3 LIFT-OUT PIECES (owner, Aug 2026) ------------
+// The platform is no longer one 58in piece. Panel B's bay is
+// top-load-ONLY: the side door aperture measures 35 x 45in with only
+// 29in of CLEAR gap at the door's stop (V8), and it sits over Panel A's
+// footprint, not Panel B's — so nothing can be reached or pulled
+// sideways out of Panel B at all. The ONLY way in is from the top, and
+// that used to mean lifting the whole 49x58 platform off and finding
+// somewhere in a packed van to put it.
+//
+// It is now THREE pieces:
+//
+//   * Panel A's section — 29 x 49in, one piece, lifts off (only ever
+//     needed for deep cleaning; Panel A has real side-door drawers).
+//   * Panel B's TWO HALVES — 29 x 24.5in each, split on the
+//     CENTRELINE, each lifting out on its own. Owner's call, Aug 2026.
+//
+// Why halves rather than one hinged hatch (the design this replaces):
+//   1. 24.5in wide PASSES THROUGH the 35in side door. A 49in-wide leaf
+//      does not — it could only ever come out the tailgate. Since the
+//      whole point is working from a side door with the mattress lifted
+//      clear, that difference decides it.
+//   2. You remove only the half on the side you are standing at, so the
+//      mattress only has to be lifted off half the width.
+//   3. No hinge, no lid stay, and no opening-angle limit. A hinged
+//      29in leaf could only reach ~67deg before hitting the headliner
+//      (there is just 23.5in above the deck), so it needed a prop.
+//   4. The centre bearer the halves land on (below) also HALVES the
+//      bed's unsupported span over Panel B, from 46in to ~22in. Panel B
+//      had no centre divider — Panel A always did — so this is the
+//      stiffest the sleeping surface has been.
+// Cost of the swap: two loose parts to set down instead of one captive
+// lid, and ~+1.7lb over the hinged version.
+//
+// STILL TRUE: the mattress comes off (or gets folded clear) first. It
+// is one 78in piece and Panel B is the MIDDLE third of the bed, so no
+// fold uncovers it. Halving the width is what makes that manageable.
+bed_split_y      = panel_a_length;        // 29 — the A/B seam, where the Panel A section ends
+bed_sect_a_len   = panel_a_length;        // 29 — Panel A's one-piece section
+bed_bhalf_len    = panel_b_length;        // 29 — each Panel B half, fore-aft
+bed_bhalf_width  = bed_frame_width / 2;   // 24.5 — each half, across the van; fits the 35in side door
+bed_bhalf_slat_l = bed_bhalf_width - 2 * bed_rail_width; // 17.5 — short slats, between each half's own rails
+// Centre bearer: the halves' inner rails land on this, so it has to be
+// wider than a single 2x2 or each rail only gets 3/4in of bearing. Two
+// 2x2s side by side (or one 2x4 laid flat) gives 3in — 1.5in each,
+// matching what the outer rails get from Panel B's long rails. Its top
+// sits flush with those long rails at 17.75in, NOT at the deck plane.
+// NOTE the literals: frame_rail_sz (1.5) is assigned further DOWN this
+// file, and OpenSCAD evaluates assignments in order — referring to it
+// here silently yields undef. Spelled out, with a cross-check assert
+// alongside frame_rail_sz itself so the two can never drift apart.
+bed_bearer_w   = 3;                  // two 2x2s side by side (= 2 x frame_rail_sz)
+bed_bearer_len = panel_b_length - 3; // 26 — fits between Panel B's 1.5in end rails
+// 5 slats per piece: 4 would leave 5.0in gaps, the widest unsupported
+// span in the build and right where a side-sleeper's shoulder and hip
+// load the foam. 5 holds every gap to 2.9in.
+bed_slat_n_a     = 5;   // 42in slats, Panel A section
+bed_slat_n_bhalf = 5;   // 17.5in slats, per Panel B half
+bed_slat_count   = bed_slat_n_a + 2 * bed_slat_n_bhalf; // 15 pieces (5 long + 10 short)
+bed_gap_a     = (bed_sect_a_len - bed_slat_n_a * bed_slat_width) / (bed_slat_n_a - 1);     // 2.875
+bed_gap_bhalf = (bed_bhalf_len  - bed_slat_n_bhalf * bed_slat_width) / (bed_slat_n_bhalf - 1); // 2.875
+assert(max(bed_gap_a, bed_gap_bhalf) <= 4.4,
+       str("Slat gaps (", bed_gap_a, "in / ", bed_gap_bhalf,
+           "in) exceed what solid foam bridges without a soft spot — add a slat"));
+assert(2 * bed_bhalf_width == bed_frame_width,
+       "Panel B's two halves must add up to the platform width");
+assert(bed_bhalf_width <= side_door_opening_width,
+       str("A Panel B half is ", bed_bhalf_width, "in wide but the side door aperture is only ",
+           side_door_opening_width, "in — it could not be carried out that way"));
 
 
 /* [Frame / legs] */
@@ -241,6 +315,10 @@ bed_frame_thickness = bed_slat_t; // 0.75 — one flush plane, rests directly on
 // and adjust if 17in doesn't clear it (Section 1/2).
 leg_height     = 17;    // fridge_stack_top (16.67 = 0.5in tray gap + 3/8in tray + 15.79in fridge) + 0.33in running clearance under the tailgate end rail — see the fridge-slide SIDE-MOUNT stack + assert below
 frame_rail_sz  = 1.5;   // 2x2 pine actual dimension (Section 3)
+// the bed's centre bearer is spelled out as literals up in the bed
+// section (it is assigned before this line) — keep the two in step
+assert(bed_bearer_w == 2 * frame_rail_sz && bed_bearer_len == panel_b_length - 2 * frame_rail_sz,
+       "Bed centre-bearer literals have drifted from frame_rail_sz — fix the bed section");
 leg_inset      = vent_intrusion_width; // legs sit inset this much from the deck's outer edge so they land clear of the floor-level vent intrusion
 
 // DECK RECESS (owner, July 2026 — the one real headroom lever left):
@@ -323,17 +401,20 @@ bed_platform_stack = bed_frame_thickness; // 0.75in
 // your door's actual fore-aft position once measured (side_door_y0
 // below), and see the reachability check further down.
 //
-// V8 (Aug 2026) came back in two halves. The number that MATTERS is
-// V8c: the USABLE CLEAR fore-aft gap at the door's real stopping
-// point is 29" — well under the 40" this was designed against, so
-// the reachability echo below now runs off 29". The other two
-// figures on the survey sheet (50" wide, 58" tall) are the DOOR
-// PANEL's own external dimensions, not the aperture (owner, Aug
-// 2026), so the rough opening's height is still unmeasured — leave
-// it flagged rather than pretend 58" is a cabin dimension (the cabin
-// is only 42" tall).
-side_door_opening_width  = 29; // MEASURED V8c (Aug 2026) — usable CLEAR fore-aft gap at the door's actual stop (rough aperture not separately measured; the 50" on the sheet is the door panel)
-side_door_opening_height = 40; // STILL UNVERIFIED — V8b (58") turned out to be the door panel's external height, not the opening's
+// V8 (Aug 2026) resolved in two passes. The 50"/58" first written on
+// the survey sheet turned out to be the DOOR PANEL's own external
+// dimensions, not the aperture. The owner then measured the opening
+// itself: 35" wide x 45" tall. Separately, V8c is the USABLE CLEAR
+// fore-aft gap once the door is parked at its real stopping point —
+// 29", i.e. the door's leading edge does not retract all the way to
+// the aperture's forward edge, so 6" of the 35" is never open.
+//
+// The reach check below runs off the CLEAR figure, not the aperture:
+// what matters is the gap you can actually put an arm and a drawer
+// through, and it is 11" under the 40" this was designed against.
+side_door_opening_width  = 35; // MEASURED (Aug 2026) — the aperture's fore-aft width
+side_door_opening_height = 45; // MEASURED (Aug 2026) — the aperture's height
+side_door_clear_width    = 29; // MEASURED V8c (Aug 2026) — usable CLEAR fore-aft gap at the door's actual stop; THIS is what gates reach
 // Fore-aft position of the door opening's FRONT edge, measured from
 // the same Y=0 reference as van_interior_length (closed hatch to the
 // front seatbacks). This is a genuinely unmeasured placeholder, not
@@ -836,7 +917,10 @@ assert(wave3_height <= drawer_height,
 // entirely by the van's own body structure between door openings.
 // ------------------------------------------------------------
 door_y0 = side_door_y0;
-door_y1 = side_door_y0 + side_door_opening_width;
+// CLEAR gap, not the aperture — the door parks 6" short of the
+// aperture's forward edge (V8c), and you can only reach through what
+// is actually open.
+door_y1 = side_door_y0 + side_door_clear_width;
 // Panel A sits flush with the front seatbacks (Y=0) — the rear pantry
 // doesn't need its own slot here anymore (it's on Panel C now), and
 // rather than leave that 8in as unused open floor, Panel A moved up
