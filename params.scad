@@ -628,199 +628,94 @@ aboard_tongue_w = 2;  // steel flat-bar tongue width (2 x 3/16in), bridge -> the
 aboard_depth      = 33; // board overall fore-aft, hatch (y=0) forward
 aboard_strip_len  = 27; // the three comb strips; the bridge is the last aboard_bridge_d
 
-// ---- TONGUE -> RAIL CONNECTION (Aug 2026) ----------------------
-// F8 measured the 2nd-row rails' rear ends at 42in from the closed
-// hatch and the photos answer what is AT them: each rail terminates in
-// a MOULDED PLASTIC END CAP retained by a single exposed fastener, and
-// under/behind that cap the rail is an open-topped track channel — the
-// same channel the seat carriages ride. That is the best of the three
-// cases F8 was written to tell apart: it means the tongue can engage
-// the vehicle's own seat-anchorage steel with a channel/T-bolt instead
-// of clamping plastic. Read from photos, so CONFIRM the cap fastener
-// type and the channel's slot width by hand before ordering hardware.
-rail_end_y      = 42;   // MEASURED F8a (Aug 2026) — hatch -> rail rear ends
-rail_spacing    = 17.5; // MEASURED F8b (Aug 2026) — rail centre to rail centre
-rail_slot_w     = 0.75; // MEASURED (Aug 2026) — the track slot at the surface
-rail_chan_d     = 1.0;  // MEASURED (Aug 2026) — internal channel depth
-rail_chan_d_min = 0.75; // MEASURED (Aug 2026) — ...but bosses rise ~0.25in off the
-                        // bottom in places, so only the top 0.75in is clear the
-                        // whole way along. Anything slid in from the end has to
-                        // pass through THAT, not the full inch.
-rail_top_z      = 0.5;  // MEASURED (Aug 2026) — the METAL track top above the floor pan
-rail_housing_z  = 1.0;  // MEASURED (Aug 2026) — top of the PLASTIC housing over the rail
-// ---- THE FORWARD LOAD PATH IS A BUTT JOINT, NOT A FASTENER -------
-// (owner decision, Aug 2026, after working out what the slot actually
-// does.) The rail's slot runs FORE-AFT — the same direction as the
-// load, because a seat track exists for a carriage to slide along it.
-// So anything sitting IN the slot (T-bolt, channel nut, slid-in bar)
-// resists forward load only by FRICTION. Order of magnitude: a 1/4-20
-// torqued sensibly gives ~1,200lb of clamp, steel-on-steel mu ~0.18,
-// so ~215lb of fore-aft grip per bolt. Two tongues with one bolt each
-// is ~430lb against ~155lb of loaded board — fine for real braking
-// (~1g), nowhere near a crash. Nothing here is crash-rated.
+// ---- TONGUE -> RAIL CONNECTION (Aug 2026, fully measured) -------
+// The anchor board's forward load path. Everything here is measured on
+// the vehicle; the reasoning below is compressed on purpose, because this
+// joint went through five revisions and the dead ends are worth keeping
+// short but not losing.
 //
-// A BUTT JOINT removes friction from the equation. The board sits
-// BEHIND the rail ends (board front edge at aboard_depth = 33in, rail
-// ends at 42in), so forward load pushes the tongue INTO the rail's rear
-// end face. Give the tongue's forward end a downturned lug — bent, or a
-// bolted/welded-on steel angle — and forward force transfers as pure
-// BEARING into the rail's own steel, and from there into the rail's
-// floor bolts, which are the vehicle's seat anchorage.
-//   bearing area per tongue = aboard_tongue_w x rail_top_z = 1.0 sq in
-//   at 20g on a ~155lb board that is ~1,550lb over 2 tongues -> ~775psi
-// Trivial for steel. The fastener in the slot then stops being
-// structural: it is a HOLD-DOWN that keeps the tongue from riding up.
+// THE GEOMETRY, as photographed and taped Aug 1 2026:
+//   The rail's rear end is closed by a STEEL SADDLE CAP straddling it: a
+//   flat TOP face at 1.0in above the floor carrying a single 1/4in round
+//   hole (with two closed oblong stiffening dimples either side), two
+//   vertical SIDE SKIRTS hanging down, and an OPEN REAR between them.
+//   Over the whole thing sits a plastic end cap held by one flush slotted
+//   fastener — try a 90deg turn first, that shape is often a quarter-turn
+//   catch. Keep both plastic caps for passenger mode.
 //
-// NOTE this is NOT the compression fallback F7 killed. F7's target was
-// the striker-row step — carpet over soft trim. This is the rail's own
-// squared-off end face in hard steel. F7 ruled out the wrong target.
-tongue_butt_area = aboard_tongue_w * rail_top_z; // 1.0 sq in per tongue, bearing
-tongue_lug_h     = aboard_top;   // 0.85 — lug reaches from the tongue's underside to the floor,
-                                 // so its rear face covers the rail end's full 0.5in height
+// THE DESIGN: the tongue runs forward off the bridge, steps UP 0.15in,
+// rides ON the cap's top face, and a VERTICAL 1/4in PIN drops through the
+// tongue into the cap's 1/4in hole. Forward load is carried entirely by
+// that pin in SHEAR. Nothing is drilled into the vehicle, and the joint
+// comes apart by lifting the tongue.
 //
-// >>> WHAT THE MEASUREMENTS STILL DO NOT SETTLE <<<
-// The board's top plane is aboard_top = 0.85in (0.1 mat + 0.75 ply). The
-// metal track is at 0.5in — 0.35in BELOW that — but the plastic housing
-// over the rail reaches 1.0in, which is 0.15in ABOVE it. So the tongue
-// cannot simply run flat off the board onto the rail: the plastic stands
-// proud of the tongue's own plane, and the tongue must bear on METAL, not
-// on plastic (clamped plastic crushes and the joint goes loose).
-// Two ways out for the HOLD-DOWN, both drawn on the detail sheet:
-// (Aug 2026, photo) THE RAIL END IS CAPPED IN METAL, AND PINNED.
-// Under the plastic end cap there is a STEEL end cap/bracket over the
-// channel, and a PIN behind it that blocks anything being slid in from
-// the rear. Consequences:
-//   * H2 (nut bar slid in from the open end) is RULED OUT. Kept in the
-//     documentation as a ruled-out option so it is not re-proposed.
-//   * H1 (T-bolt through the slot) is unaffected in principle — it goes
-//     in through the slot, not the end — but still depends on the slot
-//     having undercut lips, which is still unconfirmed.
-//   * H3 (saddle clamp around the outside of the rail) is unaffected by
-//     any of this, so it becomes the DEFAULT hold-down.
-//   * The BUTT JOINT is CONFIRMED GOOD, and better than it was: the
-//     steel end cap IS STRUCTURAL (owner, Aug 2026), so the lug bears
-//     directly on it rather than having to reach past a stamped cover
-//     to the rail's body. This is now a steel-to-steel bearing joint
-//     into a structural member of the vehicle's seat anchorage.
-//     tongue_butt_area below is figured on the 0.5in metal-track height,
-//     which is CONSERVATIVE if the cap stands taller than the track.
-//     One thing to eyeball while fitting: that the cap is captive to the
-//     rail (integral / welded / riveted) rather than merely clipped —
-//     the entire forward load passes through its attachment.
-//   * (Aug 2026, photo + tape) The cap has a ROUND HOLE, MEASURED ~0.25in,
-//     between two oblong stampings. Owner's note: a bolt through it would
-//     be possible but "tricky to hold a bolt under it" — there is no
-//     access behind the cap to start a nut.
+// WHY NOT THE OBVIOUS ALTERNATIVES — all four were tried and dropped:
+//   * A FASTENER IN THE TRACK SLOT (T-bolt, channel nut). The slot runs
+//     FORE-AFT, the same direction as the load, so it resists forward
+//     motion by FRICTION only: ~1,200lb clamp x mu 0.18 = ~215lb per
+//     bolt, ~430lb for the pair. That was the original plan's forward
+//     path and it was its weakest link.
+//   * A NUT BAR SLID IN FROM THE END. Impossible: the steel cap closes
+//     the channel and a pin behind it blocks entry from the rear.
+//   * BUTTING THE TONGUE ON THE RAIL'S END FACE. There is no such face —
+//     the cap's rear is open and its rear edge is a rolled hem.
+//   * A BOLT THROUGH THE CAP'S HOLE. Possible but awkward; there is no
+//     access behind the top face to start a nut. A pin needs no nut,
+//     because the load is shear, not clamp.
+//   * (And F7 had already killed butting the striker-row step: carpet
+//     over soft trim, not a hard face.)
 //
-//     >>> SO DO NOT BOLT IT. USE IT AS A PIN SOCKET. <<<
-//     Forward load needs SHEAR, not clamp, and a pin gives shear without
-//     anything on the far side. Put a 1/4in pin on the tongue's lug — a
-//     1/4in bolt nutted on the TONGUE side (accessible) with its plain
-//     end protruding is the easy version, or a pressed dowel — and let it
-//     enter this hole. Nothing has to be held behind the cap at all, and
-//     lifting the tongue takes it straight back out, so it stays fully
-//     reversible.
-//       1/4in mild-steel pin, single shear ~ 0.049 sq in x ~36ksi
-//         ~= 1,760lb per pin, ~3,500lb over two tongues
-//       vs ~155lb of loaded board -> ~22g, an order of magnitude past the
-//       ~430lb the friction-only version managed. The real limit becomes
-//       the cap, its attachment, and hole-edge tear-out, not the pin.
-//     The lug's bearing face and the pin COMPLEMENT each other: the face
-//     spreads load, the pin stops any relative sliding. Keep both.
-rail_cap_hole_d  = 0.25;  // MEASURED (Aug 2026) — round hole in the structural steel end cap
-rail_cap_hole_z  = 1.0;   // MEASURED (Aug 2026) — its centre above the floor pan
-rail_cap_hole_x  = 0;     // MEASURED (Aug 2026) — centred on the rail, laterally
-tongue_pin_d     = 0.25;  // matching pin; run it slightly under size so it enters easily
+// CAPACITY, and where the limit actually sits:
+//   1/4in mild-steel pin, single shear: ~0.049 sq in x ~36ksi
+//     ~= 1,760lb per pin, ~3,500lb for the pair.
+//   But the GOVERNING limit is HOLE-EDGE BEARING / TEAR-OUT in the cap's
+//   stamped top face, not the pin. At an assumed 0.08in thickness the
+//   bearing area is 0.25 x 0.08 = 0.02 sq in -> roughly 1,400lb per
+//   tongue, ~2,800lb for the pair. Still ~18g on a ~155lb loaded board,
+//   and ~6x the friction-only option — but it is the number that matters.
+//   MEASURE THE CAP'S THICKNESS to replace that assumption.
+//   Nothing in this design is crash-rated; the plan says so throughout.
 //
-// >>> THAT HEIGHT DELETES THE LUG. <<<
-// The tongue's underside sits at aboard_top = 0.85in and its top at
-// 1.04in, so its own mid-thickness is at 0.94in — and the hole's centre
-// is at 1.0in. They are 0.06in apart. The pin therefore goes straight
-// THROUGH THE TONGUE'S FORWARD END, horizontally, in line with the bar.
-// No downturned lug, no bend, no welded-on angle: drill one hole in the
-// end of the flat bar and fit a 1/4in bolt as the pin, nutted on the
-// tongue's own (accessible) face with its plain end protruding.
-// Take up the 0.06in with a slightly undersize pin and a lead chamfer.
-//
-// AND IT SIMPLIFIES THE REST. If the tongue now stops AT the cap's face
-// instead of running on over the rail, then it never passes over the
-// plastic housing — so the housing clash and the crush tube that solved
-// it both disappear, and so does the in-slot hold-down (there is no slot
-// under the tongue any more). What is left needing a decision is how the
-// tongue's forward end is kept from riding up out of the pin:
-//   (i)  TONGUE STOPS AT THE CAP (simplest, and the default). Its end
-//        face bears on the cap, the pin takes forward load in shear.
-//        Bearing area is the bar's own section, aboard_tongue_w x
-//        tongue_t = 0.375 sq in -> ~2,070psi at 20g. Fine. Needs a
-//        separate retainer against lift: the H3 saddle clamp on the rail
-//        just forward of the cap is the tidy answer.
-//   (ii) TONGUE CONTINUES OVER THE RAIL, keeping the in-slot hold-down
-//        (H1) and therefore the crush tube and the housing clash. More
-//        parts, but the hold-down is integral.
-//
-// >>> UNRESOLVED, AND IT GATES THE PIN'S ORIENTATION <<<
-// (raised by the owner, Aug 2026 — do not build this joint until it is
-// settled.) Everything above ASSUMES the hole is in a REARWARD-FACING
-// vertical face on the cap, so that a pin projecting forward out of the
-// tongue's end slides in horizontally and the tongue's end face bears
-// flat on the cap.
-//
-// The owner's later note does not match that: the hole is "past the end
-// of the rail, so vertically it is above it, but not directly over it",
-// which reads as a FLAT TAB lying rearward of the rail's end. If that is
-// right, then:
-//   * the pin is VERTICAL, dropping down through the tongue into the tab,
-//     not horizontal;
-//   * the tongue RESTS ON the tab (top at ~1.0in) rather than butting
-//     anything, so tongue_pin_z / the 0.06in alignment argument above is
-//     the wrong calculation;
-//   * there may be NO rearward-facing face to bear on at all, in which
-//     case drop the bearing-joint language entirely and let the pin carry
-//     the forward load alone in shear (~1,760lb/pin — still ~8x the
-//     friction-only option, so little is actually lost).
-// The other open item is minor and only sets the pin's LENGTH: how deep
-// the hole is / whether it breaks through into the channel.
-// WHAT TO GET: one photo from the SIDE, tape alongside, tailgate to the
-// left. That settles orientation and bearing face at once.
-//
-//   (a) CRUSH TUBE — leave the housing alone. A steel spacer sleeve
-//       carries the clamp load from the tongue down to the metal track,
-//       so the plastic is never squeezed. The tongue rides just over the
-//       housing. Nothing on the vehicle is cut.
-//   (b) LOCAL WINDOW — cut a ~3in window in the plastic housing where the
-//       tongue crosses, so the tongue seats directly on metal at 0.5in
-//       and gets a 0.35in shim up to the board plane. Stiffer and lower,
-//       but it means cutting a trim part (or pulling the whole housing
-//       for camper mode, if it unclips).
-// (a) is the default here because it keeps the no-modification promise.
+// THE HOLD-DOWN IS ESSENTIAL, NOT OPTIONAL. A vertical pin lifts straight
+// out, so something must keep the tongue seated. The cap's open rear makes
+// that easy: a clip hooked over the side skirts, or the saddle clamp on
+// the rail just forward of the cap. This is the one part of the joint
+// still to be chosen by whoever builds it.
+rail_end_y      = 42;    // MEASURED F8a (Aug 2026) — hatch -> rail rear ends
+rail_spacing    = 17.5;  // MEASURED F8b (Aug 2026) — rail centre to rail centre
+rail_slot_w     = 0.75;  // MEASURED — the track slot at the surface (unused by the
+                         // final design; kept because it rules the T-bolt option in/out)
+rail_chan_d     = 1.0;   // MEASURED — internal channel depth
+rail_chan_d_min = 0.75;  // MEASURED — bosses rise ~0.25in off the bottom in places
+rail_top_z      = 0.5;   // MEASURED — the METAL track top above the floor pan
+rail_housing_z  = 1.0;   // MEASURED — top of the plastic housing over the rail
+rail_cap_hole_d = 0.25;  // MEASURED — the round hole in the steel saddle cap
+rail_cap_hole_z = 1.0;   // MEASURED — its centre above the floor pan, and the cap's top face
+rail_cap_hole_x = 0;     // MEASURED — centred on the rail, laterally
+rail_cap_t_est  = 0.08;  // ASSUMED, not measured — the cap's sheet thickness. This is the
+                         // one number the joint's capacity now hinges on; go measure it.
 tongue_t        = 0.1875; // 3/16in flat bar
-// These two need tongue_t, and OpenSCAD evaluates assignments in order,
-// so they live here rather than up in the rail-connection block.
-tongue_pin_z         = aboard_top + tongue_t / 2;    // 0.94 — pin axis, vs the measured hole centre at 1.0
-tongue_butt_area_bar = aboard_tongue_w * tongue_t;   // 0.375 sq in — the bar's own end face, variant (i)
-// Hold-down bolt length: from the tongue's top face down to whatever
-// holds it in the channel. (Assigned HERE, not up with the butt-joint
-// block, because it needs tongue_t and OpenSCAD evaluates in order.)
-tongue_bolt_len_slot = aboard_top + tongue_t + 0.6;             // ~1.6 -> a 1-3/4in bolt for a T-bolt/channel nut up near the lips
-tongue_bolt_len_bar  = aboard_top + tongue_t + rail_chan_d_min;  // ~1.8 -> a 2in bolt for a bar riding the clear top 0.75in
-tongue_lap      = 4;    // how far the tongue lies ON the bridge, bolted through
-tongue_engage   = 3;    // how far it overlaps the rail past its end
-tongue_span     = rail_end_y - aboard_depth;                   // 9 — open gap it bridges
-tongue_len      = tongue_lap + tongue_span + tongue_engage;     // 16
-tongue_step     = rail_top_z - aboard_top;      // -0.35 — the metal track sits this far BELOW the board's top plane
-tongue_housing_clash = rail_housing_z - aboard_top; // +0.15 — ...and the plastic housing this far ABOVE it. See the open issue above.
-tongue_bolt_d   = 0.25; // 1/4"-20 through the bridge and into the rail channel
+tongue_pin_d    = 0.25;  // vertical pin; slightly undersize + a lead chamfer so it drops in
+tongue_lap      = 4;     // how far the tongue lies ON the bridge, bolted through
+tongue_span     = rail_end_y - aboard_depth;  // 9 — open floor it crosses
+tongue_len      = tongue_lap + tongue_span + 3; // 16 — 3in of overlap on the cap
+tongue_step_up  = rail_cap_hole_z - aboard_top; // 0.15 — shim this under the lap on the bridge
+tongue_bolt_d   = 0.25;  // the 2 bolts through the bridge
+// pin bearing capacity in the cap's top face, on the ASSUMED thickness
+tongue_pin_bearing_area = tongue_pin_d * rail_cap_t_est; // 0.02 sq in
+
 assert(tongue_lap <= aboard_bridge_d,
        str("Tongue lap (", tongue_lap, "in) must sit within the bridge's ",
            aboard_bridge_d, "in depth so both its bolts land in plywood"));
 assert(rail_spacing + aboard_tongue_w <= panel_width,
        "Tongue pair at the measured rail spacing must land inside the board's width");
-// Not an assert: this is an open design choice, not a broken dimension, and
-// failing every render over it would stop work on everything else.
-if (tongue_housing_clash > 0)
-    echo(str("NOTE (Section 8): the rail's plastic housing stands ", tongue_housing_clash,
-             "in proud of the tongue's plane, and the metal track is ", -tongue_step,
-             "in below it. Use a crush tube (default) or window the housing — see params."));
+// The plastic-housing clash the earlier revisions fought is GONE: the
+// tongue now stops on the steel cap and never passes over the housing, so
+// there is no crush tube and no windowing. What is left open is the
+// hold-down choice, and the cap's sheet thickness.
+echo(str("NOTE (Section 8): tongue pin is VERTICAL into the cap's ", rail_cap_hole_d,
+         "in hole. Capacity is governed by hole-edge bearing in the cap's top face, on an ASSUMED ",
+         rail_cap_t_est, "in thickness (~1,400lb/tongue) — measure it. Hold-down still to be chosen."));
 fridge_stack_top    = fridge_tray_gap + fridge_tray_t + fridge_ext_height; // 16.67 — top of the mounted fridge
 fridge_exit_clearance_min = 0.25; // required running clearance under Panel C's tailgate end rail (van bounce)
 // The DRIVER-side rail+riser tucks into the corner-leg band (the 1.5in

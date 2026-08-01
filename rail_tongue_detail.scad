@@ -82,8 +82,8 @@ module plan_band() {
     // Both of these used to sit inside the plan and got crossed by the
     // tongues / the comb strips — they live in the note column now.
     txt(str("anchor board bridge — 46\" x ", aboard_bridge_d, "\", 3/4\" ply on its mat"),
-        p1x(46) + 6, p1y(31), 2.2, "left", GRY);
-    txt("its comb strips continue on to the tailgate", p1x(46) + 6, p1y(29.2), 2.1, "left", GRY);
+        p1x(46) + 6, p1y(27), 2.2, "left", GRY);
+    txt("its comb strips continue on to the tailgate", p1x(46) + 6, p1y(25.4), 2.1, "left", GRY);
 
     // ---- the two rails, from their rear ends forward off the crop
     for (s = [-1, 1]) {
@@ -102,7 +102,7 @@ module plan_band() {
         // 2 bolts down through the bridge, 1 up into the rail channel
         translate([p1x(cx), p1y(aboard_depth - tongue_lap + 1)]) bolt_plan(0, 0, 1.1);
         translate([p1x(cx), p1y(aboard_depth - 1)]) bolt_plan(0, 0, 1.1);
-        translate([p1x(cx), p1y(rail_end_y + tongue_engage / 2)]) bolt_plan(0, 0, 1.4);
+        translate([p1x(cx), p1y(rail_end_y + 1.5)]) bolt_plan(0, 0, 1.4);   // the vertical pin, seen end-on
     }
 
     // ---- notes off to the right
@@ -110,17 +110,17 @@ module plan_band() {
     txt("rail rear end — the moulded plastic END CAP", nx, p1y(rail_end_y - 0.5), 2.3, "left", "Black");
     txt("comes off first (one fastener). Keep it: it goes", nx, p1y(rail_end_y - 2.4), 2.1, "left", "Black");
     txt("back on when the seats do.", nx, p1y(rail_end_y - 4.3), 2.1, "left", "Black");
-    txt("Under it the rail is an OPEN-TOP CHANNEL —", nx, p1y(rail_end_y + 4), 2.1, "left", RED);
-    txt("that slot takes the HOLD-DOWN bolt (H1/H2) — not the load.", nx, p1y(rail_end_y + 2.1), 2.1, "left", RED);
+    txt("Under it: a STEEL SADDLE CAP, flat top face, open rear —", nx, p1y(rail_end_y + 4), 2.1, "left", RED);
+    txt("its 1/4\" hole takes the VERTICAL PIN, which carries the load.", nx, p1y(rail_end_y + 2.1), 2.1, "left", RED);
     txt(str("tongue: ", aboard_tongue_w, "\" x 3/16\" steel flat bar, ", tongue_len, "\" long"),
         nx, p1y(aboard_depth + 1), 2.3, "left", RED);
-    txt(str(tongue_lap, "\" lapped on the bridge (2 bolts) + ", tongue_span, "\" span + ",
-            tongue_engage, "\" on the rail"), nx, p1y(aboard_depth - 1), 2.1, "left", RED);
+    txt(str(tongue_lap, "\" lapped on the bridge (2 bolts) + ", tongue_span, "\" span + 3\" on the cap"),
+        nx, p1y(aboard_depth - 1), 2.1, "left", RED);
 
     // ---- dimensions
     dim_y(p1y(aboard_depth), p1y(rail_end_y), p1x(0) - 5, str(tongue_span, "\" open span"), 2.3, RED, "left");
     dim_x(p1x(23 - rail_spacing / 2), p1x(23 + rail_spacing / 2), 158,
-          str(rail_spacing, "\" rail spacing — ESTIMATED off the photo, TAPE IT"), 2.3, RED, 4);
+          str(rail_spacing, "\" rail spacing — MEASURED (F8b)"), 2.3, RED, 4);
     // NOT drawn as a dimension line: 42" from the hatch would be a
     // 67-unit leader straight down through the section band below, so it
     // lives in the note column instead.
@@ -140,17 +140,16 @@ function s2z(mz) = 72 + mz * SZ;
 module side_band() {
     txt("2  SIDE SECTION through one tongue — vertical scale exaggerated",
         6, 100, 3.0, "left", "Black");
-    txt("Forward load path: board -> tongue -> its END FACE + PIN -> the rail's structural steel END CAP -> the rail's floor bolts.",
+    txt("Forward load path: board -> tongue -> VERTICAL PIN -> the steel end cap's top face -> the rail -> the rail's floor bolts.",
         6, 96, 2.2, "left", GRY);
-    txt("Bearing plus shear, not friction. Nothing is drilled into the van, and every part of this comes back apart.",
+    txt("Pure shear on the pin. Nothing is drilled into the van, and every part of this comes back apart.",
         6, 93, 2.2, "left", GRY);
 
     // van floor pan
     color(GRY) translate([s2x(-8), s2z(0) - 1.1]) square([s2x(20) - s2x(-8), 1.1]);
-    txt("van floor pan", s2x(-8), s2z(0) - 17.2, 2.0, "left", GRY);
     // carpet over the open span
-    color(GRY) rect_ol(s2x(0), s2z(0), s2x(9) - s2x(0), 0.3 * SZ, THIN);
-    txt("carpet", s2x(3.5), s2z(0.15), 2.0, "left", GRY);
+    color(GRY) rect_ol(s2x(0), s2z(0), s2x(7) - s2x(0), 0.3 * SZ, THIN);
+    txt("carpet", s2x(2.6), s2z(0.15), 2.0, "left", GRY);
 
     // anchor board: mat + ply bridge
     color(GRY) {
@@ -161,61 +160,61 @@ module side_band() {
 
     // the rail: METAL track to rail_top_z, PLASTIC housing above it
     color(GRY) {
-        rect_ol(s2x(9), s2z(0), s2x(20) - s2x(9), rail_top_z * SZ, MED);           // metal
-        rect_ol(s2x(9), s2z(rail_top_z), s2x(11.6) - s2x(9),
-                (rail_housing_z - rail_top_z) * SZ, THIN);                          // plastic, near side
-        rect_ol(s2x(14.4), s2z(rail_top_z), s2x(20) - s2x(14.4),
-                (rail_housing_z - rail_top_z) * SZ, THIN);                          // plastic, far side
+        rect_ol(s2x(11.5), s2z(0), s2x(20) - s2x(11.5), rail_top_z * SZ, MED);
+        rect_ol(s2x(13), s2z(rail_top_z), s2x(20) - s2x(13),
+                (rail_housing_z - rail_top_z) * SZ, THIN);
     }
-    txt("2nd-row rail — METAL track", s2x(15.8), s2z(0) - 4, 2.0, "left", "Black");
-    txt(str("top at ", rail_top_z, "\", ", rail_slot_w, "\" slot"), s2x(15.8), s2z(0) - 6.4, 1.9, "left", "Black");
-    // No in-place label on the housing: it would land under the T-bolt
-    // callout. It is named in the crush-tube note below instead.
+    txt("2nd-row rail — METAL track,", s2x(15.4), s2z(0) - 4, 2.0, "left", "Black");
+    txt(str("top at ", rail_top_z, "\""), s2x(15.4), s2z(0) - 6.4, 1.9, "left", "Black");
 
-    // CRUSH TUBE: carries the clamp load tongue -> metal, so the plastic
-    // is never squeezed. This is what makes the housing survivable.
+    // THE STEEL END CAP: a saddle straddling the rail's end. Flat TOP face
+    // carrying the hole, two vertical SIDE SKIRTS, and an OPEN REAR — that
+    // is what the Aug 2026 photos show, and it is why there is no
+    // rearward-facing face to bear on.
+    color(GRY) {
+        rect_ol(s2x(7), s2z(rail_cap_hole_z - 0.09), s2x(12.5) - s2x(7), 0.09 * SZ, MED);  // top face
+        rect_ol(s2x(7), s2z(0.25), 0.9, (rail_cap_hole_z - 0.34) * SZ, THIN);              // rear skirt
+    }
+    txt("STEEL END CAP — a saddle over the rail's end:", s2x(6.4), s2z(rail_cap_hole_z) + 10.5, 2.0, "left", "Black");
+    txt(str("flat TOP face at ", rail_cap_hole_z, "\", two side skirts, OPEN REAR."),
+        s2x(6.4), s2z(rail_cap_hole_z) + 8, 2.0, "left", "Black");
 
-    txt(str("Variant (ii) instead runs the tongue ON over the rail for an in-slot hold-down; that one needs a crush tube so the ",
-            rail_housing_z, "\" housing is not squeezed."), s2x(-8), s2z(0) - 14.6, 2.0, "left", GRY);
-
-    // THE TONGUE, and the LUG that carries the forward load
+    // THE TONGUE — steps up onto the cap's top face and stops there
     tz = s2z(aboard_top);
-    color(RED) rect_ol(s2x(-5), tz, s2x(8.9) - s2x(-5), tongue_t * SZ, HEAVY);
-    txt("steel tongue", s2x(1.5), tz + 3.8, 2.3, "left", RED);
-    // NO LUG. The cap's hole is at 1.0in and the tongue's own mid-thickness
-    // is at 0.94in, so the pin goes through the bar itself and the bar's
-    // end face does the bearing. The tongue simply STOPS at the cap.
-    // a plain 2D arrow: iarrow() lives in steps/lego_lib.scad, which this
-    // sheet does not include (it is a sheet2d drawing, not a lego one).
+    tzc = s2z(rail_cap_hole_z);
     color(RED) {
-        translate([s2x(5.6), s2z(0.22)]) square([s2x(8.2) - s2x(5.6), 0.55]);
-        translate([s2x(8.2), s2z(0.22) - 0.9]) polygon([[0, 0], [0, 2.35], [2.4, 1.175]]);
+        rect_ol(s2x(-5), tz, s2x(6.2) - s2x(-5), tongue_t * SZ, HEAVY);                    // on the board
+        rect_ol(s2x(6.2), tz, 0.9, (rail_cap_hole_z - aboard_top) * SZ + tongue_t * SZ, HEAVY); // the 0.15" step
+        rect_ol(s2x(6.2), tzc, s2x(12) - s2x(6.2), tongue_t * SZ, HEAVY);                  // on the cap
     }
-    // the PIN through the lug into the cap's measured 1/4" hole: this is
-    // what makes the joint positive in shear without needing a nut
-    // anywhere behind the cap.
-    color(RED) rect_ol(s2x(8.9), s2z(0.22), s2x(9.9) - s2x(8.9), tongue_pin_d * SZ, MED);
-    txt(str(tongue_pin_d, "\" PIN into the cap's hole"), s2x(10.2), s2z(0.34), 2.0, "left", RED);
-    txt("The tongue STOPS at the cap: its own end face bears on the structural steel END CAP,", s2x(-8), s2z(0) - 4.2, 2.1, "left", RED);
-    txt(str("and a ", tongue_pin_d, "\" PIN through the bar enters the cap's ", rail_cap_hole_d,
-            "\" hole — measured ", rail_cap_hole_z, "\" up, centred."),
-        s2x(-8), s2z(0) - 6.8, 2.1, "left", RED);
-    txt("The hole is at the bar's own mid-thickness (0.94\"), so there is NO lug and no bend: drill the bar's end.",
-        s2x(-8), s2z(0) - 9.4, 2.1, "left", RED);
-    txt("Shear, so NO nut is needed behind the cap. Retain against lift with the H3 saddle.",
-        s2x(-8), s2z(0) - 12, 2.1, "left", RED);
+    txt("steel tongue", s2x(0.5), tz + 3.6, 2.3, "left", RED);
 
-    // bolts: 2 down through the bridge (nylock under), 1 into the channel
+    // THE PIN — vertical, down through the tongue into the cap's top face
+    color(RED) rect_ol(s2x(9.3), s2z(rail_cap_hole_z - 0.12), tongue_pin_d * SX, 0.34 * SZ, MED);
+    txt(str(tongue_pin_d, "\" PIN, VERTICAL"), s2x(9.9), tzc + 5.4, 2.1, "left", RED);
+    txt("down into the cap's hole", s2x(9.9), tzc + 3, 2.0, "left", RED);
+
+    // bolts: 2 down through the bridge
     for (bx = [-5.5, -1.5])
         bolt_side(s2x(bx) + 6, tz + tongue_t * SZ, aboard_top * SZ + 3.2);
     txt("2x 1/4\"-20 through the bridge,", s2x(-8), tz + 9, 2.2, "left", RED);
     txt("washer + NYLOCK under the board", s2x(-8), tz + 6, 2.2, "left", RED);
 
+    dim_y(tz, tzc, s2x(5.2), str(rail_cap_hole_z - aboard_top, "\" step up"), 2.0, RED, "left");
 
-
-
-
-    dim_y(s2z(rail_top_z), tz, s2x(19), str(-tongue_step, "\" step"), 2.1, RED, "right");
+    txt(str("The tongue RIDES ON the cap's top face (", rail_cap_hole_z, "\") and a VERTICAL ", tongue_pin_d,
+            "\" pin drops into its ", rail_cap_hole_d, "\" hole."),
+        s2x(-8), s2z(0) - 4.2, 2.1, "left", RED);
+    txt(str("The cap's REAR IS OPEN, so there is NO face to butt against: forward load is carried ENTIRELY by the pin in shear."),
+        s2x(-8), s2z(0) - 6.8, 2.1, "left", RED);
+    txt("GOVERNING LIMIT is hole-edge bearing / tear-out in that stamped top face, NOT the pin — measure the cap's",
+        s2x(-8), s2z(0) - 9.4, 2.1, "left", RED);
+    txt("thickness for a real number (~1,400lb/tongue at 0.08\"). A vertical pin lifts straight out, so the",
+        s2x(-8), s2z(0) - 11.8, 2.1, "left", RED);
+    txt("HOLD-DOWN IS ESSENTIAL, not optional. The open rear makes a clip hooked over the skirts easy.",
+        s2x(-8), s2z(0) - 14.2, 2.1, "left", RED);
+    txt(str("shim the ", rail_cap_hole_z - aboard_top, "\" step under the tongue's lap on the bridge — washers are enough. van floor pan below."),
+        s2x(-8), s2z(0) - 16.6, 2.0, "left", GRY);
 }
 
 // ============================================================
@@ -294,9 +293,9 @@ module sheet() {
             "\" (standard 3/4\" T-track, so stock 1/4\"-20 T-bolts fit), metal track ",
             rail_top_z, "\" up, plastic housing ", rail_housing_z, "\" up."),
         6, SH - 17, 2.4, "left", "Black");
-    txt("UNRESOLVED — DO NOT BUILD YET: this sheet assumes the cap's 1/4\" hole faces REARWARD so the pin enters horizontally. If it is",
-        6, SH - 21, 2.4, "left", RED);
-    txt("really a flat tab past the rail's end, the pin is VERTICAL, the tongue rests ON the tab, and there may be no bearing face. See Section 8.",
+    txt("RESOLVED Aug 2026 (photos): the cap is a SADDLE over the rail's end — flat top face with the 1/4\" hole, two side skirts, OPEN REAR.",
+        6, SH - 21, 2.4, "left", "Black");
+    txt("So the pin is VERTICAL, the tongue rides ON the top face, and there is no face to butt: the pin carries forward load alone, in shear.",
         6, SH - 24.5, 2.4, "left", RED);
     plan_band();
     side_band();
