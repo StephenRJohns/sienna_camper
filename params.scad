@@ -243,10 +243,25 @@ bed_frame_thickness = bed_slat_t; // 0.75 — one flush plane, rests directly on
 // that used to mean lifting the whole 49x58 platform off and finding
 // somewhere in a packed van to put it.
 //
-// It is now THREE pieces:
+// It is now THREE pieces, and only two of them are loose:
 //
-//   * Panel A's section — 29 x 49in, one piece, lifts off (only ever
-//     needed for deep cleaning; Panel A has real side-door drawers).
+//   * Panel A's section — 29 x 49in, one piece, SCREWED DOWN and
+//     permanent (owner, Aug 2026: it never needed to lift out, because
+//     Panel A's two bays are both reached through the side doors —
+//     the DELTA 3 drawer pulls out the passenger side, the WAVE 3 bay
+//     is reached by hand from the driver side). Fixing it is a real
+//     simplification, not just one less loose part:
+//       - it becomes a screwed-down DIAPHRAGM across Panel A's rails,
+//         putting back some of the torsional stiffness the design lost
+//         when Panels A and B gave up their plywood tops (the diagonal
+//         corner braces were added to cover that; they now have help
+//         rather than carrying it alone),
+//       - it is the fore-aft DATUM the two loose halves locate against,
+//       - and it needs no anti-rattle pads, because it cannot rattle.
+//     Trade: Panel A's bay loses its from-above deep-cleaning route and
+//     is side-door-only. Acceptable — the 29in clear side gap exactly
+//     spans Panel A's 29in length, and the DELTA drawer (25in fore-aft)
+//     comes out through it.
 //   * Panel B's TWO HALVES — 29 x 24.5in each, split on the
 //     CENTRELINE, each lifting out on its own. Owner's call, Aug 2026.
 //
@@ -603,7 +618,35 @@ aboard_t     = 0.75;  // anchor board ply thickness
 aboard_top   = aboard_mat_t + aboard_t; // 0.85 — the riser/rail base plane
 aboard_strip_w = 2.5; // rail-line strip width (covers riser flange + rail line)
 aboard_bridge_d = 6;  // full-width bridge depth (fore-aft), at the appliance zone's front
-aboard_tongue_w = 2;  // steel flat-bar tongue width (2 x 3/16in), bridge -> striker-row step
+aboard_tongue_w = 2;  // steel flat-bar tongue width (2 x 3/16in), bridge -> the rail ends
+aboard_depth      = 33; // board overall fore-aft, hatch (y=0) forward
+aboard_strip_len  = 27; // the three comb strips; the bridge is the last aboard_bridge_d
+
+// ---- TONGUE -> RAIL CONNECTION (Aug 2026) ----------------------
+// F8 measured the 2nd-row rails' rear ends at 42in from the closed
+// hatch and the photos answer what is AT them: each rail terminates in
+// a MOULDED PLASTIC END CAP retained by a single exposed fastener, and
+// under/behind that cap the rail is an open-topped track channel — the
+// same channel the seat carriages ride. That is the best of the three
+// cases F8 was written to tell apart: it means the tongue can engage
+// the vehicle's own seat-anchorage steel with a channel/T-bolt instead
+// of clamping plastic. Read from photos, so CONFIRM the cap fastener
+// type and the channel's slot width by hand before ordering hardware.
+rail_end_y      = 42;   // MEASURED F8a (Aug 2026) — hatch -> rail rear ends
+rail_spacing    = 17;   // ESTIMATED off the Aug 2026 overhead photo (~16.8in scaled) — F8b was NOT taped. TAPE THIS before drilling the bridge.
+rail_top_z      = 0.75; // UNVERIFIED — rail top above the van floor pan; sets the tongue's step/shim (measure it)
+tongue_t        = 0.1875; // 3/16in flat bar
+tongue_lap      = 4;    // how far the tongue lies ON the bridge, bolted through
+tongue_engage   = 3;    // how far it overlaps the rail past its end
+tongue_span     = rail_end_y - aboard_depth;                   // 9 — open gap it bridges
+tongue_len      = tongue_lap + tongue_span + tongue_engage;     // 16
+tongue_step     = rail_top_z - aboard_top;                      // -0.1 — near flat; shim whatever the real measurement gives
+tongue_bolt_d   = 0.25; // 1/4"-20 through the bridge and into the rail channel
+assert(tongue_lap <= aboard_bridge_d,
+       str("Tongue lap (", tongue_lap, "in) must sit within the bridge's ",
+           aboard_bridge_d, "in depth so both its bolts land in plywood"));
+assert(rail_spacing + aboard_tongue_w <= panel_width,
+       "Tongue pair at the measured rail spacing must land inside the board's width");
 fridge_stack_top    = fridge_tray_gap + fridge_tray_t + fridge_ext_height; // 16.67 — top of the mounted fridge
 fridge_exit_clearance_min = 0.25; // required running clearance under Panel C's tailgate end rail (van bounce)
 // The DRIVER-side rail+riser tucks into the corner-leg band (the 1.5in

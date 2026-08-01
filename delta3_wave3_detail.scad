@@ -70,19 +70,39 @@ module drawing() {
     // found-storage shelf on cleats above the WAVE 3 (unit still slides out beneath)
     wbox([wv_x0, wv_y0, wave3_shelf_z], [wave3_width, wave3_depth, PT]);
 
-    // markers
-    marker3d(1, [dx0 + pull + drw_w - delta3_plus_width/2, RS + delta3_length/2, 1 + delta3_plus_height], [6, 8]);
-    marker3d(2, [dx0 + pull + delta3_batt_width/2, RS + delta3_length/2, 1 + delta3_batt_height], [-10, 6]);
-    marker3d(3, [dx0 + pull + drw_w/2, RS + delta3_length/2, 1 + delta3_plus_height + delta3_tray_h/2], [8, 4]);
-    marker3d(4, [dx0 + pull + drw_w, RS + delta3_length*0.5, drw_h + 1], [8, -3]);
-    marker3d(5, [wv_x0 + wave3_width/2, wv_y0 + wave3_depth/2, wave3_height], [-12, 6]);
-    marker3d(6, [wv_x0 + wave3_width/2, wv_y0 + wave3_depth/2, wave3_shelf_z + PT], [-12, 10]);
+    // ---- markers ---------------------------------------------------
+    // Anchors 5 and 6 share an x,y (the WAVE 3 bay) and differ only in
+    // z, so their leaders MUST be thrown apart in page space or the two
+    // badges land on top of each other. Same for 1 and 3, which are the
+    // DELTA stack and the tray directly above it.
+    marker3d(1, [dx0 + pull + drw_w - delta3_plus_width/2, RS + delta3_length/2, 1 + delta3_plus_height], [12, 5]);
+    marker3d(2, [dx0 + pull + delta3_batt_width/2, RS + delta3_length/2, 1 + delta3_batt_height], [-11, 5]);
+    marker3d(3, [dx0 + pull + drw_w/2, RS + delta3_length/2, 1 + delta3_plus_height + delta3_tray_h/2], [2, 13]);
+    marker3d(4, [dx0 + pull + drw_w, RS + delta3_length*0.5, drw_h + 1], [12, -5]);
+    marker3d(5, [wv_x0 + wave3_width/2, wv_y0 + wave3_depth/2, wave3_height], [-14, -3]);
+    marker3d(6, [wv_x0 + wave3_width/2, wv_y0 + wave3_depth/2, wave3_shelf_z + PT], [-13, 10]);
 
-    cap("DELTA 3 STACK (right drawer) + WAVE 3 (left bay) — Panel A, exploded (Components 2 & 8)", 0, -12, 1.9);
-    cap("DELTA 3 Plus outboard (WAVE 3 plugs into it), Extra Battery inboard; ~48 lb in a normal drawer (no E-track). WAVE 3 rests in the raw bay on 2 glide strips.", 0, -14.5, 1.25);
-    cap(str("Found storage: a ~", round((drawer_height - delta3_plus_height)*10)/10, "\" lift-out tray tops the DELTA stack; a shelf @ ", round(wave3_shelf_z*10)/10, "\" tops the WAVE 3 (it still slides out beneath)."), 0, -16.7, 1.25);
+    // ---- title block + parts list, STACKED BELOW the drawing -------
+    // This sheet renders at 2500x4700 (portrait). The title lines used
+    // to be centred on page x=0 and the parts list sat out at page
+    // x=45, which made the content ~150 units wide and ~50 tall — a 3:1
+    // landscape block in a 1:1.9 portrait frame. OpenSCAD's --viewall
+    // could not frame that, and both the captions and the list got
+    // clipped at the image edges. Everything is now left-aligned to one
+    // margin and stacked vertically, so the content block is portrait
+    // like the sheet, and every line is kept under ~60 units wide.
+    TX = -17;   // one left margin for all page text
+    cap("DELTA 3 STACK (right drawer) + WAVE 3 (left bay)", TX, -21, 1.9, "left");
+    cap("Panel A, exploded — Components 2 & 8", TX, -24.2, 1.35, "left");
+    cap("DELTA 3 Plus outboard (the WAVE 3 plugs into it), Extra Battery", TX, -27.4, 1.2, "left");
+    cap("inboard; ~48 lb in a normal drawer — no E-track. The WAVE 3", TX, -29.6, 1.2, "left");
+    cap("rests in the raw bay on 2 glide strips.", TX, -31.8, 1.2, "left");
+    cap(str("Found storage: a ~", round((drawer_height - delta3_plus_height)*10)/10,
+            "\" lift-out tray tops the DELTA stack,"), TX, -35, 1.2, "left");
+    cap(str("and a shelf @ ", round(wave3_shelf_z*10)/10,
+            "\" tops the WAVE 3 — it still slides out beneath."), TX, -37.2, 1.2, "left");
 
-    side_list(W/2 + 22, LH + 4, [
+    side_list(TX, -42, [
         [str("DELTA 3 Plus — ", delta3_plus_width, "\"x", delta3_length, "\"x", delta3_plus_height, "\", ~28 lb"), "outboard (pull wall); cam-strapped over locating cleats"],
         [str("Smart Extra Battery — ", delta3_batt_width, "\"x", delta3_length, "\", ~20 lb"), "inboard — extra runtime only, grabbed less often"],
         [str("Lift-out tray — reclaims ~", round((drawer_height - delta3_plus_height)*10)/10, "\" dead air"), "cables, the DELTA's own cords, dongles"],

@@ -86,6 +86,16 @@ echo "Rendering fridge slide mechanism detail..."
 openscad -o renders/fridge-slide-detail.svg fridge_slide_detail.scad
 openscad -o renders/fridge-slide-detail.png $IMG $FLAT_CAM fridge_slide_detail.scad
 
+echo "Rendering plywood cutting layout (store cuts)..."
+openscad -o renders/sheet-cut-layout.svg sheet_cut_layout.scad
+openscad -o renders/sheet-cut-layout.png --imgsize=3200,2300 $FLAT_CAM sheet_cut_layout.scad
+
+echo "Rendering tongue -> 2nd-row rail connection detail..."
+# 2900x2700: this sheet is 200x195 in its own units, so it wants a
+# near-square frame. Giving it the landscape $IMG clipped the bands.
+openscad -o renders/rail-tongue-detail.svg rail_tongue_detail.scad
+openscad -o renders/rail-tongue-detail.png --imgsize=2900,2700 $FLAT_CAM rail_tongue_detail.scad
+
 echo "Rendering DELTA 3 / WAVE 3 stowage detail..."
 openscad -o renders/delta3-wave3-detail.svg delta3_wave3_detail.scad
 openscad -o renders/delta3-wave3-detail.png --imgsize=2500,4700 $FLAT_CAM delta3_wave3_detail.scad
