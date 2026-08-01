@@ -294,8 +294,10 @@ module sheet() {
             "\" (standard 3/4\" T-track, so stock 1/4\"-20 T-bolts fit), metal track ",
             rail_top_z, "\" up, plastic housing ", rail_housing_z, "\" up."),
         6, SH - 17, 2.4, "left", "Black");
-    txt("STILL OPEN: does the slot have UNDERCUT LIPS for a T-head to bear under? If it is a plain open channel, a T-bolt has nothing to grab — use case B.",
+    txt("UNRESOLVED — DO NOT BUILD YET: this sheet assumes the cap's 1/4\" hole faces REARWARD so the pin enters horizontally. If it is",
         6, SH - 21, 2.4, "left", RED);
+    txt("really a flat tab past the rail's end, the pin is VERTICAL, the tongue rests ON the tab, and there may be no bearing face. See Section 8.",
+        6, SH - 24.5, 2.4, "left", RED);
     plan_band();
     side_band();
     cases_band();

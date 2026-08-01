@@ -758,9 +758,30 @@ tongue_pin_d     = 0.25;  // matching pin; run it slightly under size so it ente
 //        (H1) and therefore the crush tube and the housing clash. More
 //        parts, but the hold-down is integral.
 //
-// ONE UNKNOWN LEFT, and it only sets the pin's length: how DEEP the
-// cap's hole is / whether it is a through-hole into the channel. Fit the
-// pin to whatever engagement is actually available.
+// >>> UNRESOLVED, AND IT GATES THE PIN'S ORIENTATION <<<
+// (raised by the owner, Aug 2026 — do not build this joint until it is
+// settled.) Everything above ASSUMES the hole is in a REARWARD-FACING
+// vertical face on the cap, so that a pin projecting forward out of the
+// tongue's end slides in horizontally and the tongue's end face bears
+// flat on the cap.
+//
+// The owner's later note does not match that: the hole is "past the end
+// of the rail, so vertically it is above it, but not directly over it",
+// which reads as a FLAT TAB lying rearward of the rail's end. If that is
+// right, then:
+//   * the pin is VERTICAL, dropping down through the tongue into the tab,
+//     not horizontal;
+//   * the tongue RESTS ON the tab (top at ~1.0in) rather than butting
+//     anything, so tongue_pin_z / the 0.06in alignment argument above is
+//     the wrong calculation;
+//   * there may be NO rearward-facing face to bear on at all, in which
+//     case drop the bearing-joint language entirely and let the pin carry
+//     the forward load alone in shear (~1,760lb/pin — still ~8x the
+//     friction-only option, so little is actually lost).
+// The other open item is minor and only sets the pin's LENGTH: how deep
+// the hole is / whether it breaks through into the channel.
+// WHAT TO GET: one photo from the SIDE, tape alongside, tailgate to the
+// left. That settles orientation and bearing face at once.
 //
 //   (a) CRUSH TUBE — leave the housing alone. A steel spacer sleeve
 //       carries the clamp load from the tongue down to the metal track,

@@ -1171,7 +1171,17 @@ With the load on the lug, **the fastener in the slot stops being structural** �
 | **(i)** ✅ | **Tongue stops at the cap.** Its end face bears on the cap (bar section, 0.375 sq in → ~2,070 psi at 20 g — fine), pin takes forward load in shear | Simplest by far. Needs a **separate retainer against lift** — the H3 saddle clamp on the rail just forward of the cap is the tidy answer |
 | **(ii)** | **Tongue continues over the rail**, keeping the in-slot hold-down (H1), the crush tube and the housing clash | More parts, but the hold-down is integral |
 
-📏 **One unknown left, and it only sets the pin's length:** how **deep** the cap's hole is — and whether it's a through-hole into the channel. Fit the pin to whatever engagement is actually there.
+⛔ **DO NOT BUILD THIS JOINT YET — the pin's orientation is unresolved** (raised Aug 2026).
+
+Everything above **assumes** the hole sits in a **rearward-facing vertical face** on the cap, so a pin projecting forward out of the tongue slides in horizontally and the tongue's end face bears flat on the cap. A later owner note doesn't match that: the hole is *"past the end of the rail, so vertically it is above it, but not directly over it"* — which reads as a **flat tab lying rearward of the rail's end.** If that's the real geometry then:
+
+- the pin is **vertical**, dropping down through the tongue into the tab, not horizontal;
+- the tongue **rests on** that tab (top ~1.0") rather than butting anything, so the 0.06"-alignment argument above is the wrong calculation;
+- there may be **no rearward-facing face to bear on at all** — in which case drop the bearing-joint language and let the pin carry forward load alone in shear (~1,760 lb per pin, still ~8× the friction-only option, so little is actually lost).
+
+📷 **What settles it:** one photo from the **side**, tape alongside, tailgate to the left. That answers both the orientation and whether a bearing face exists.
+
+📏 The remaining item is minor and only sets the pin's **length**: how deep the hole is, and whether it breaks through into the channel.
 
 **Also still open, and it only affects H1:** does the slot have undercut lips? Buy **one** T-bolt and try it before buying four. With the load on the lug this is a convenience question, not a structural one.
 2. **Rearward + lift — 3 ratchet straps** (400 lb WLL each) from stud-fitting D-rings on the bridge, forward and down into the 3 striker loops, tensioned. These also pin the board against the slide's cantilever moment when the loaded fridge is pulled to full extension.
