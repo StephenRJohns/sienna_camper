@@ -76,7 +76,10 @@ done
 
 echo "Rendering anchor board accessory install map (A-G) + build order..."
 openscad -o renders/anchor-board-install.svg anchor_board_install.scad
-openscad -o renders/anchor-board-install.png $IMG $FLAT_CAM anchor_board_install.scad
+# 2600x2300: the sheet is the MAP ONLY now (its prose moved into the
+# markdown), so it is near-square rather than the wide 2-column block
+# $IMG was sized for. A square frame stops the page scaling it down.
+openscad -o renders/anchor-board-install.png --imgsize=2600,2300 $FLAT_CAM anchor_board_install.scad
 
 echo "Rendering fridge wiring diagram..."
 openscad -o renders/fridge-wiring.svg fridge_wiring.scad

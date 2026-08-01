@@ -22,9 +22,35 @@ The IKEA-style header for the platform — the finished piece, its bought hardwa
 
 ![Component — anchor board: finished component, accessory list & part list](renders/steps/comp-11-header.png)
 
-The banner above only *names* accessories A–G. **Where each one goes, and in what order, is the install map below** — the board in plan with every accessory ballooned to its actual position, a what/where/how row per letter, and the 7-step build order (bench work vs. in-van work):
+The banner above only *names* accessories A–G. **Where each one goes is the install map below** — the board in plan with every accessory ballooned to its actual position. The what/where/how for each letter, and the build order, follow it as tables.
 
 ![Anchor board — accessory install map and build order](renders/anchor-board-install.svg)
+
+*The map is the drawing; the descriptions are the table below. They used to be two more columns on the same sheet, which doubled its width and drove every label down to about 4pt on paper — a figure is only ever as legible as page-width ÷ sheet-width allows.*
+
+#### Accessory list A–G
+
+| | Accessory | Where it goes, and how it fastens |
+|---|---|---|
+| **A** | **L-track, cut down** (×2) | Bolted flat onto the two KITCHEN-SIDE strips: the centre strip's kitchen face (X=23) and the 1.5" panel-edge strip (X=44.75), ~23" each. 7 bolts per length, ~3" apart, down into T-nuts. Cut the 48" stock down first; deburr the slots |
+| **B** | **Stud fitting w/ D-ring** (×7) | No fasteners — each one **drops into** an L-track slot and twist-locks. 4 go in the kitchen L-track (2 per side, at Y=6 and Y=24) as the kitchen strap corners; 3 go on the BRIDGE (X=8, 23, 38) as the striker-strap points |
+| **C** | **Ratchet strap, 400 lb WLL** (×7) | Never fastened to the board — they hook to B's D-rings. 4 criss-cross **over** the kitchen unit into its 4 L-track D-rings; 3 run forward from the bridge D-rings into the van's 3rd-row striker loops, **measured 44.5" from the hatch** (F4a). Tension last; re-tension after one drive |
+| **D** | **¼"-20 bolt + T-nut** (~30 pairs, incl. spares) | The T-nut goes in the board's **underside**, counterbored flush so the board still lies flat on its mat; the bolt comes down from **above** through whatever it holds: riser flanges (4 each = 8), L-track (7 each = 14), steel tongues (2 each = 4). **Seat every T-nut before any hardware goes on** — you cannot reach them afterward |
+| **E** | **Non-slip rubber mat** (×1) | Cut to the board's outline and laid **under** it — friction, trim protection and rattle control. Not fastened to anything. It goes in only when the finished board is set into the van (step 7), not on the bench |
+| **F** | **Threadlocker, blue 242** (×1) | One drop on every machine screw as you fit it — that is the A, D and G fasteners (B needs none, it twist-locks). They all end up hidden under the appliances, so they must never need re-checking. Cure ~24 h before loading |
+| **G** | **Rail-end engagement** (×2) | **In-van only.** The forward end of each steel tongue engages the 2nd-row floor rail's own track — **measured 42" from the hatch** (F8a), rails **17.5" apart** (F8b), so cut both tongues **16" long**. **No new holes in the vehicle.** The full detail — how the cap comes off, which of three engagements to use, and why a crush tube is needed — is **"How the tongues connect to the rails"** later in this section, with both a top-down and a side-section view |
+
+#### Build order — steps 1–6 on the bench, step 7 in the van
+
+1. **Cut** the comb as ONE piece from the ¾" sheet (grain along the strips, ~½" fillet at every inside corner — assembly sheet V5). Have the store break the sheet down first (Section 3).
+2. **D** — Mark and drill every bolt hole, then counterbore the **underside** and seat all ~30 **T-nuts** flush. Do this before anything is in the way.
+3. **D** — Bolt the 2 **steel riser angles** onto the rail-line strips (4 bolts each) — the fridge's fixed slide rails land on these.
+4. **A + D** — Bolt the two cut-down **L-track** lengths onto the kitchen-side strips (8 bolts each).
+5. **D** — Bolt the 2 **steel tongues** into the dado in the bridge's underside (2 bolts each). Leave their forward ends unfixed until step 7.
+6. **B + F** — Drop the 7 **stud D-rings** into their slots. Threadlocker on every machine screw as it goes in; let it cure ~24 h before loading.
+7. **E + G + C** — **In the van:** lay the **mat**, set the board on it, engage the tongue ends to the floor rails (**G** — see the connection detail), notch Panel B's rear bottom rail 3/16" where the tongues and straps pass under it, then hook and **tension** the straps (**C**) — 3 to the striker loops, 4 over the kitchen unit.
+
+Nothing in this sequence joins plywood to plywood — the board arrives at step 2 already whole.
 
 How the platform actually goes together, in five views: **V1** the bare plywood board from above — ONE 46"x33" comb (full-width bridge + 3 strips, continuous ply, no wood joints), dimensioned, with the steel tongue runs, L-track, D-rings, and riser bolt patterns; **V2** a 4x-scale side section through a rail-line strip (mat → ply → T-nut → riser angle → rail, with the tray hanging over bare floor beside it); **V3** the kitchen's criss-cross straps into the stud D-rings, rear elevation; **V4** the board-to-van side view — the steel tongue let into the bridge's underside dado, bolted, running forward to the floor rail's rear end, plus the striker strap and the step fallback; **V5** the cut plan — how the comb nests in the 3/4" sheet's spare, which way the face grain runs, the two offcut rectangles that fall out of it, the cut order and the fillet at each inside corner (there is no joinery view, because the board has no joints) — with a SYMBOLS legend decoding every mark:
 
