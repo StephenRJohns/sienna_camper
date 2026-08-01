@@ -23,7 +23,9 @@ add("Panel C frame (2x2 pine)", "Structure", pine_len(274), 76, 0, "rails+legs+f
 add("Panel C deck (3/4\" birch, 33x43 recessed + cleats)", "Structure", ply(33*43,0.75)+1.0, 76, 0, "drops between the rails onto bearer cleats, flush (deck recess)")
 add("Panel C front wall (3/8\" birch)", "Structure", ply(46*17,0.375), 60, 0, "intake fan + grommets")
 add("Fridge tray (3/8\" birch + 2 1x3 side aprons)", "Structure", ply(17.72*28.74,0.375)+pine_len(2*28.74, 2.5, 0.75), 80, -12, "hangs between the side-mount slide rails")
-add("Kitchen drawer + cheeks (1/2\" birch)", "Structure", ply(744,0.5)+ply(322,0.5), 80, 13, "hung over the kitchen unit")
+# box grew with the Aug 2026 width change: bottom 18x26 + 2 sides 26x4
+# + front/back 17x4 = 812 sq in (was 744 at the 16in box)
+add("Kitchen drawer + cheeks (1/2\" birch)", "Structure", ply(812,0.5)+ply(322,0.5), 80, 13, "hung over the kitchen unit; 18in box (Aug 2026)")
 add("Rear pantry: 4x IRIS 12\"W drawer units + hold-down", "Structure", 13.0+2.0, 87, -10, "2x2 prefab cluster (est ~3.2lb/unit) + cleats/strap — replaces the ~42lb plywood pantry")
 add("Panel B: 2x Sterilite 28-Qt under-bed totes (empty)", "Hardware/misc", 4.0, 43.5, 5, "restacked ON the spare (2 of the original 4)")
 add("RJ-MODINI spare kit + jack (Panel B bay, flat at the axle)", "Hardware/misc", 40.0, 43.5, -4, "T155/85R18 steel wheel + 2-ton jack/tools — VERIFY kit weight on arrival")

@@ -97,22 +97,22 @@ module sheets() {
 
     // ---------------- 1/2" full sheet ------------------------
     sheet_block(1, "1/2\" — one 4x8", "kitchen drawer + battery bottom", 47, 95);
-    part(1, 0, 69, 16, 26, "K-DRAWER BOTTOM", "16 x 26");
-    part(1, 16, 69, 5.45, 26, "C1", "");
-    part(1, 21.45, 69, 5.45, 26, "C2", "");
-    part(1, 26.9, 69, 4, 26, "S1", "");
-    part(1, 30.9, 69, 4, 26, "S2", "");
-    part(1, 34.9, 80, 4, 15, "F", "");
-    part(1, 38.9, 80, 4, 15, "B", "");
+    part(1, 0, 69, 18, 26, "K-DRAWER BOTTOM", "18 x 26");
+    part(1, 18, 69, 5.45, 26, "", "");
+    part(1, 23.45, 69, 5.45, 26, "", "");
+    part(1, 28.9, 69, 4, 26, "", "");
+    part(1, 32.9, 69, 4, 26, "", "");
+    part(1, 36.9, 78, 4, 17, "", "");
+    part(1, 40.9, 78, 4, 17, "", "");
     part(1, 0, 44, 20, 25, "BATTERY DRAWER BOTTOM", "20 x 25");
     spare(1, 0, 0, 47, 44, "spare (most of the sheet)");
     scut(1, "S1", "y", 69, 0, 47);
     scut(1, "S2", "y", 44, 0, 47);
-    scut(1, "S3", "x", 16, 69, 95);
+    scut(1, "S3", "x", 18, 69, 95);
     scut(1, "S4", "x", 20, 44, 69);
     // key for this column's narrow strips
     txt("left to right after S3: 2 cheeks 5.45 x 26, 2 sides 4 x 26,", COLX[1], cy(-0.5) - 3.0, 1.8, "left", GRY);
-    txt("then front + back 4 x 15 (upper strip)", COLX[1], cy(-0.5) - 5.4, 1.8, "left", GRY);
+    txt("then front + back 4 x 17 (upper strip)", COLX[1], cy(-0.5) - 5.4, 1.8, "left", GRY);
 
     // ---------------- 3/8" handy panel 1 ---------------------
     sheet_block(2, "3/8\" — panel 1 of 2", "front wall + drawer sides", 47, 47);

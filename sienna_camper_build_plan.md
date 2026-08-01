@@ -346,7 +346,7 @@ Honest trade: this reshuffles the plywood so it now needs 3/8" material (~+$50 f
 
 | Piece | Qty | Dimensions |
 |---|---|---|
-| Kitchen drawer box | 5 pieces | bottom 16" x 26"; 2 sides 26" x 4"; front/back 15" x 4" (4.5" exterior height) |
+| Kitchen drawer box | 5 pieces | bottom **18" x 26"**; 2 sides 26" x 4"; front/back **17" x 4"** (4.5" exterior height). **Widened Aug 2026 — was a 16" box; the assembly was sitting 2" shy of the kitchen's inboard edge for no reason** |
 | Kitchen drawer hanging cheeks | 2 | 26" x 5.45" (1/2" — screwed up into Panel C's recessed deck, flanking the drawer) |
 | Battery drawer bottom (Panel A right) | 1 | 20" x 25" (1/2" — the base under the 48 lb stack) |
 
@@ -869,7 +869,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - 1 low-profile cam strap + 2 screw-eye D-rings (fridge hold-down, hooks to its 2 end handles)
 - 3 screw-mount cable clips (fridge DC line slack, clipped to the slide's fixed outer rail)
 - Utility bay fit-out — 2 low-profile bins + hook-and-loop tape (no door: the bay between the fridge and kitchen stays open)
-- Kitchen drawer — box (1/2" ply, 16" x 26" x 4.5") + 2 hanging cheeks (1/2" ply, 26" x 5.45" — weight swap: was 3/4") + 24" full-extension slide pair (100lb) + magnetic catch
+- Kitchen drawer — box (1/2" ply, 18" x 26" x 4.5") + 2 hanging cheeks (1/2" ply, 26" x 5.45" — weight swap: was 3/4") + 24" full-extension slide pair (100lb) + magnetic catch
 
 <div class="lego-card">
 <div class="lego-step">
@@ -1551,7 +1551,7 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Panel C deck (¾" birch, 33×43 recessed + cleats) | Structure | 27.2 | rear | drops between the rails onto bearer cleats, flush (deck recess) |
 | Panel C front wall (⅜" birch) | Structure | 7.2 | mid | intake fan + grommets |
 | Fridge tray (⅜" birch + 2 1×3 side aprons) | Structure | 6.4 | rear | hangs between the side-mount slide rails |
-| Kitchen drawer + ½" cheeks (birch) | Structure | 13.1 | rear | hung over the kitchen unit |
+| Kitchen drawer + ½" cheeks (birch) | Structure | 13.9 | rear | hung over the kitchen unit; 18" box (Aug 2026) |
 | Rear pantry: 4× IRIS 12"W drawer cluster + hold-down | Structure | 15.0 | rear | prefab 2×2 drawers (est.) + cleats/strap — replaces the ~42 lb plywood pantry |
 | Panel B: 2× Sterilite 28-Qt under-bed totes | Hardware/misc | 4.0 | mid | restacked ON the spare (2 of the original 4) |
 | RJ-MODINI spare kit + jack (Panel B, flat at the axle) | Hardware/misc | 40.0 | mid | T155/85R18 steel-wheel kit + cleats/strap — VERIFY kit weight |
@@ -1571,26 +1571,26 @@ Every component's weight, computed from the real material dimensions (Baltic bir
 | Electrical (2 fans, controller, fuse, 2 strips, cords) | Hardware/misc | 6.0 | mid | cooling + power runs |
 | Cooktop + cookware (stowed) | Hardware/misc | 12.0 | rear | induction top + pots in the kitchen |
 
-**Subtotals:** Structure **151.7** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **115.1**
-**Build total (added): ≈ 469 lb** — after the lighter-wood swaps, the deck recess and the prefab-drawer pantry swap, plus Panel B's 2 storage totes (~4 lb), the **RJ-MODINI spare kit stowed at the axle (~40 lb)** — carried inside deliberately instead of on a hitch basket, which would have added its own 30–60 lb of carrier plus a ~1.4× lever on the rear axle — and the no-drill anchor board (~23 lb, +15 over the drilled E-track hardware it replaced).
+**Subtotals:** Structure **152.5** · Appliances **85.6** · Power/climate **81.7** · Bedding **35.0** · Hardware/misc **115.1**
+**Build total (added): ≈ 470 lb** — after the lighter-wood swaps, the deck recess and the prefab-drawer pantry swap, plus Panel B's 2 storage totes (~4 lb), the **RJ-MODINI spare kit stowed at the axle (~40 lb)** — carried inside deliberately instead of on a hitch basket, which would have added its own 30–60 lb of carrier plus a ~1.4× lever on the rear axle — and the no-drill anchor board (~23 lb, +15 over the drilled E-track hardware it replaced).
 
 **But the 2nd-row seats come OUT** (Section 9), so the conversion *removes* weight too:
 
 | | Weight |
 |---|--:|
-| Build (added) | +469 lb |
+| Build (added) | +470 lb |
 | **2nd-row seats removed** (2 × ~48–70 lb) *est.* | **−120 lb** |
-| **NET permanent weight added vs. stock** | **≈ 349 lb** |
+| **NET permanent weight added vs. stock** | **≈ 350 lb** |
 
-So the van, converted and empty, weighs only about **349 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
+So the van, converted and empty, weighs only about **350 lb more than a stock seatless curb** — and because the seats were part of the factory curb weight, pulling them **frees ~120 lb of payload** for your gear. **Weigh your actual seats to confirm** — captain's chairs vary; 120 lb is an estimate.
 
 **Loaded scenarios** (payload = everything you add to the van — build + people + cargo):
 
 | Scenario | Weight |
 |---|--:|
-| Net build (added − seats removed) | ≈ 349 lb |
-| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 469 lb |
-| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 809 lb |
+| Net build (added − seats removed) | ≈ 350 lb |
+| + provisions (food, water, cookware, bedding ~120 lb) | ≈ 470 lb |
+| + 2 occupants (~340 lb, in the front seats while driving) | ≈ 810 lb |
 
 #### Weight distribution
 
@@ -1600,7 +1600,7 @@ So the van, converted and empty, weighs only about **349 lb more than a stock se
 
 #### Effects on drivability
 
-- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 809 lb** — and that already includes the spare tire + jack. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~291–491 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
+- **Payload headroom:** loaded for travel (net build + provisions + 2 people, with the seats out) is **≈ 810 lb** — and that already includes the spare tire + jack. A 4th-gen Sienna's payload is roughly **1,100–1,300 lb** (the AWD Woodland is at the lower end), so there's a **~290–490 lb margin** — the removed seats buy back ~120 lb of that. Comfortable, but not unlimited once you add lots of water and gear. **VERIFY the exact figure on the driver door-jamb sticker** — that number, and the **rear GAWR**, are the hard limits.
 - **Rear bias:** with 45% of the build mass in the rear third (much of it at/behind the rear axle), the fixed build alone loads the rear axle and slightly lightens the front — which reads as lighter steering, a bit more rear squat, and a raised headlight aim. **But while driving, the two occupants (340 lb) sit up front and more than offset that**, so the *loaded* vehicle is reasonably balanced. The rear bias matters most when driving **solo with a full rear and no front passenger**.
 - **Lateral / height:** negligible effect — the ~0.7" lateral offset is unnoticeable, and the low CG keeps handling stock-like.
 

@@ -735,12 +735,26 @@ kitchen_box_height = 11.8; // Z, closed
 // tailgate-face rail (17in) — see the assert below.
 kdrawer_gap_below = 0.5;   // clearance above the kitchen unit's lid
 kdrawer_box_h     = 4.5;   // exterior height (~3.5in clear inside)
-kdrawer_span      = 17;    // cheek inner face to cheek inner face
-kdrawer_box_w     = kdrawer_span - 1; // 16 — 1/2in slide clearance per side
+// (owner, Aug 2026) span 17 -> 19. The assembly used to sit 2in shy of
+// the kitchen's inboard edge for no reason: cheeks + span came to 18in
+// inside a 20in kitchen footprint. Moving the INNER cheek flush with
+// that edge is free — +2in of box, +2in of clear interior, same sheet,
+// same slides (slide length is fore-aft). 19in is the hard ceiling:
+// inboard of the kitchen is the utility bay, which measures 3.28in
+// against a control-panel enclosure needing 3.2in.
+kdrawer_span      = 19;    // cheek inner face to cheek inner face
+kdrawer_box_w     = kdrawer_span - 1; // 18 — 1/2in slide clearance per side
 kdrawer_box_len   = 26;    // Y — matches the kitchen unit's footprint
 kdrawer_slide_len = 24;    // side-mount full-extension pair, 100lb class
 kdrawer_cheek_t   = 0.5;   // WEIGHT SWAP: 3/4in -> 1/2in ply hanging cheeks (-~2lb) — they only hang a shallow utensil drawer
 kdrawer_z0        = kitchen_box_height + kdrawer_gap_below; // 12.3 — drawer underside
+// There was no width guard here at all — only the height one below — so
+// the drawer could have been widened until its inner cheek overhung the
+// utility bay and fouled the control panel. It cannot now.
+assert(kdrawer_span + 2 * kdrawer_cheek_t <= kitchen_box_width,
+       str("Kitchen drawer assembly (", kdrawer_span + 2 * kdrawer_cheek_t,
+           "in incl. cheeks) must stay inside the kitchen unit's ",
+           kitchen_box_width, "in footprint — any wider and it overhangs the utility bay"));
 assert(kdrawer_z0 + kdrawer_box_h <= leg_height,
        str("Kitchen drawer top (", kdrawer_z0 + kdrawer_box_h,
            "in) must clear under Panel C's tailgate-face rail (", leg_height, "in)"));
