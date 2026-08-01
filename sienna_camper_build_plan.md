@@ -1104,7 +1104,7 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 
 **Three load paths, each matched to its direction:**
 
-1. **Forward (the panic-stop direction, and the big one) — a bolted link to the floor rails**: two **2" x 3/16" steel flat-bar rail tongues** bolt onto the bridge and run forward along the floor to the **rear ends of the 2nd-row long-slide floor rails**, where each one engages the track's own steel — **no new holes in the vehicle**. That makes the forward restraint a positive steel-to-steel connection to the van's own seat anchorage, and it backstops rearward and lift too. (A tension strap to a *forward* anchor goes slack the moment the load moves forward — that's why this path is a hard link, not webbing.) **The old compression fallback is gone:** F7 found no square hard face at the striker row to butt the bars against, just carpet over a soft ~1" step, so this connection is now load-bearing rather than one of two options. The full detail is below.
+1. **Forward (the panic-stop direction, and the big one) — a bolted link to the floor rails**: two **2" x 3/16" steel flat-bar rail tongues** bolt onto the bridge and run forward along the floor to the **rear ends of the 2nd-row long-slide floor rails**, where a **vertical ¼" pin** drops into the ¼" hole in each rail's steel end cap — **no new holes in the vehicle**. That makes the forward restraint a positive steel-to-steel connection to the van's own seat anchorage, and it backstops rearward and lift too. (A tension strap to a *forward* anchor goes slack the moment the load moves forward — that's why this path is a hard link, not webbing.) **The old compression fallback is gone:** F7 found no square hard face at the striker row to butt the bars against, just carpet over a soft ~1" step, so this connection is now load-bearing rather than one of two options. The full detail is below.
 
 #### How the tongues connect to the rails
 
@@ -1114,39 +1114,12 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 
 **What the survey settled.** F8a measured the rail rear ends at **42" from the closed hatch**. The board is 46" × 33", so its bridge ends at 33" and each tongue has only **9" of open floor to span** — much shorter than the 10–14" originally assumed. **Cut both tongues 16" long**: 4" lapped onto the bridge, 9" of span, 3" overlapping the rail.
 
-**What is at the rail end** (MEASURED Aug 2026): each rail terminates in a **moulded plastic end cap held by a single flush, slotted (flat-blade) fastener** in a round recess — try turning it 90° first, since a fastener that shape is often a quarter-turn catch rather than a screw. Under the cap the rail is an **open-topped track channel with a 0.75" slot**. That slot width is a gift: **¾" is the standard woodworking T-track size, so off-the-shelf ¼"-20 T-bolts fit it.** Rail centres measure **17.5" apart** (F8b).
+**What is at the rail end** (MEASURED Aug 2026): each rail terminates in a **moulded plastic end cap** held by a single flush, slotted (flat-blade) fastener in a round recess — try turning it 90° first, since a fastener that shape is often a quarter-turn catch rather than a screw. **Keep both caps** for passenger mode. Under that plastic cap is a **steel saddle cap** closing the rail's end, described below. Rail centres measure **17.5" apart** (F8b), and the track's own slot is ¾" wide over a 1"-deep channel — recorded because it rules the in-slot options in or out, but the final design doesn't use it.
 
-⚠️ **One thing the measurements created rather than closed: the plastic housing is in the way.** The metal track tops out **0.5"** above the floor pan, but the plastic housing over the rail reaches **1.0"** — and the anchor board's own top plane is at **0.85"** (0.1" mat + ¾" ply). So the metal is 0.35" *below* the tongue's plane while the plastic is 0.15" *above* it. The tongue cannot simply run flat onto the rail, and it must bear on **metal, not plastic** — clamped plastic crushes and the joint goes loose. Two ways out:
+**The forward load is carried by a VERTICAL PIN in shear** (owner decision, Aug 2026). Getting to that took five revisions, so the reasoning is worth stating once and the dead ends are listed at the end of this section rather than re-argued.
 
-- *(Superseded: earlier revisions ran the tongue on OVER the rail and needed a crush tube so the clamp load reached metal rather than squeezing the plastic housing. The tongue now stops on the steel cap and never passes over the housing, so neither the clash nor the crush tube exists.)*
-- **Local window.** Cut a ~3" window in the plastic housing where the tongue crosses, seat the tongue directly on metal, and shim 0.35" up to the board plane. Stiffer and lower, but it means cutting a trim part — or pulling the whole housing for camper mode, if it unclips.
+The rail's slot **runs fore-aft — the same direction as the load**, because a seat track exists for a carriage to slide along it. So anything sitting *in* the slot resists forward load only by **friction**: a ¼"-20 torqued sensibly gives ~1,200 lb of clamp, steel-on-steel μ ≈ 0.18, so **~215 lb per bolt** — ~430 lb across two tongues against a ~155 lb loaded board. That was the original plan's forward path and its weakest link.
 
-**The forward load is carried by a BUTT JOINT, not by a fastener** (owner decision, Aug 2026). This is the most important thing on this page, and it came out of working through what the slot actually does.
-
-The rail's slot **runs fore-aft — the same direction as the load**, because a seat track exists for a carriage to slide along it. So anything sitting *in* the slot — T-bolt, channel nut, slid-in bar — resists forward load only by **friction**. Order of magnitude: a ¼"-20 torqued sensibly gives ~1,200 lb of clamp; steel-on-steel μ ≈ 0.18, so **~215 lb of fore-aft grip per bolt.** Two tongues with one bolt each is ~430 lb against a ~155 lb loaded board — fine for real braking (~1 g), nowhere near a crash.
-
-A butt joint takes friction out of the equation. The board sits **behind** the rail ends (board front edge at 33", rail ends at 42"), so forward load pushes the tongue *into* the rail's rear end face. Give the tongue's forward end a **downturned lug** — bent, or a bolted/welded-on steel angle, ~0.85" deep so its rear face covers the rail end's full 0.5" height — and forward force transfers as pure **bearing** into the rail's own steel, then into the rail's floor bolts, which are the vehicle's seat anchorage.
-
-- Bearing area: **1.0 sq in per tongue** (2" wide × 0.5" rail height)
-- At 20 g on a ~155 lb board that's ~1,550 lb across two tongues → **~775 psi**. Trivial for steel.
-
-**This is not the compression fallback F7 killed.** F7's target was the *striker-row step* — carpet over soft trim. This is the **rail's own squared-off end face in hard steel.** F7 ruled out the wrong target.
-
-With the load on the lug, **the fastener in the slot stops being structural** — it is a **hold-down** whose only job is to stop the tongue riding up.
-
-**Assembly, per side:**
-
-1. **Take the end cap off** — one flush slotted fastener; try turning it 90° first, that shape is often a quarter-turn catch. **Keep both caps** for passenger mode.
-2. **Lap the tongue onto the bridge** and drill for **2 × ¼"-20**, ~1" in from each end of the 4" lap. Bolt down through the ply, washer and **nylock** underneath. Two bolts, not one — a single bolt lets the bar pivot.
-3. **Fit the lug** at the tongue's forward end so its rear face sits flat against the rail's end. Check the contact by eye — a lug that touches at one corner only is a stress riser, not a bearing joint.
-4. **Add a hold-down** to keep the pin seated — a clip hooked over the cap's side skirts, or a saddle clamp on the rail just forward of it.
-5. **Notch Panel B's rear bottom rail** 3/16" deep where the tongues cross it (build lumber, not the van).
-
-**Hold-down options.** The channel measures **1" deep, with bosses rising ~0.25" off the bottom in places — so only the top 0.75" is clear the whole way along.** That sets the bolt lengths.
-
-✅ **The steel end cap is STRUCTURAL** (owner, Aug 2026) — so the butt joint is confirmed sound, and better than a bare extrusion cut would have been. The lug bears directly on the cap: a steel-to-steel bearing joint into a structural member of the vehicle's own seat anchorage. The 1.0 sq in figure above is taken on the 0.5" metal-track height and is **conservative** if the cap stands taller than the track.
-
-- **One thing to eyeball while fitting:** that the cap is **captive to the rail** — integral, welded or riveted — rather than merely clipped on. The entire forward load passes through its attachment to the rail.
 
 **The cap is a SADDLE, and its rear is open** (photos, Aug 2026). It's a U-shaped steel stamping straddling the rail's end: a **flat top face at 1.0"** carrying a single **¼" round hole** (with two *closed* oblong stiffening dimples either side — not usable), **two vertical side skirts** hanging down, and an **open rear** between them. That geometry decides everything:
 

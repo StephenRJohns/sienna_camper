@@ -97,7 +97,17 @@ echo "Rendering tongue -> 2nd-row rail connection detail..."
 # 2900x2700: this sheet is 200x195 in its own units, so it wants a
 # near-square frame. Giving it the landscape $IMG clipped the bands.
 openscad -o renders/rail-tongue-detail.svg rail_tongue_detail.scad
-openscad -o renders/rail-tongue-detail.png --imgsize=2900,2700 $FLAT_CAM rail_tongue_detail.scad
+# 2400x2920 matches the sheet's own 140x170 aspect — the old landscape
+# frame left the content small on the page. Legibility here is
+# text_size x (page_width / sheet_width), so the sheet is kept narrow.
+openscad -o renders/rail-tongue-detail.png --imgsize=2400,2920 $FLAT_CAM rail_tongue_detail.scad
+
+# Trim the dead --viewall padding off the BORDERED sheets. Their frames
+# make the crop unambiguous, and the padding was costing ~25% of the
+# drawing size (and so of the text size) on the printed page.
+echo "Trimming bordered sheets..."
+python3 trim_render.py renders/rail-tongue-detail.png renders/sheet-cut-layout.png \
+    renders/vanmeas-v*.png renders/survey-f*.png
 
 echo "Rendering DELTA 3 / WAVE 3 stowage detail..."
 openscad -o renders/delta3-wave3-detail.svg delta3_wave3_detail.scad

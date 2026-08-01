@@ -401,6 +401,7 @@ def main():
     # match the whole enclosing <p> so we don't nest a block-level
     # <figure> inside it (invalid HTML that Chrome silently mangles)
     for alt in ["Side profile", "Rear view", "Plywood cutting layout",
+                "Tongue to 2nd-row rail connection detail",
                 "Fridge install detail", "Fridge wiring diagram", "Fridge slide detail",
                 "Kitchen drawer detail", "Seam draw-latch positioning",
                 "Anchor board — assembly and connection details",
@@ -426,7 +427,6 @@ def main():
     # overview/floorplan.
     for alt in ["Measurement guide: the van", "Measurement guide: fridge and kitchen",
                 "DELTA 3 and WAVE 3 stowage detail", "Electrical layout",
-                "Tongue to 2nd-row rail connection detail",
                 "Rear pantry layout", "Spare tire stowage", "Panel A detail", "Panel B detail",
                 "Panel C detail", "Cabinet door detail", "Bed frame detail",
                 "Leveling foot detail", "Panel C front wall detail",
