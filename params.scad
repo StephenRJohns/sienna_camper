@@ -177,9 +177,10 @@ foam_mid_t     = 0;    // DIY FALLBACK: egg-crate layer DROPPED (thickness parit
 foam_topper_t  = 1.5;  // DIY FALLBACK: memory-foam topper
 mattress_total_thickness = 4; // HEST Dually Long thickness (DIY fallback: 4in base + 1.5in topper = 5.5, ~1.5in less headroom)
 
-// Component 2: the slatted bed platform — THREE lift-out pieces since
-// Aug 2026: Panel A's full-width section, plus Panel B's two
-// centreline halves (see the split block below). Stack order, bottom to top: the panel boxes sit on the
+// Component 2: the slatted bed platform — THREE pieces since Aug 2026,
+// but only TWO of them loose: Panel A's full-width section is screwed
+// down, and Panel B's two centreline halves lift out (see the split
+// block below). Stack order, bottom to top: the panel boxes sit on the
 // van floor on their leveling feet -> the flush platform rests DIRECTLY
 // on Panel A and B's top rails -> mattress on top. Leveling happens
 // down at the leg feet (see the leveling section below), not between

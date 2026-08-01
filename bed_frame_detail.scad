@@ -2,12 +2,17 @@
 // Bed platform detail — exploded isometric reference, woodworking-
 // plan style (see steps/lego_lib.scad).
 // ============================================================
-// Component 2: a FLUSH LADDER platform in THREE LIFT-OUT PIECES, all in
+// Component 2: a FLUSH LADDER platform in THREE PIECES — but only TWO of
+// them loose (Panel A's is screwed down) — all in
 // one 3/4in plane, all cut from 1x4 x 8ft pine (crosscuts only — a 1x4
 // is already 3/4 x 3-1/2, the slat spec, so nothing gets ripped):
 //
-//   * Panel A section (29 x 49in) — 2 side rails + 5 slats. Lifts off;
-//     rarely needed, since Panel A has real side-door drawers.
+//   * Panel A section (29 x 49in) — 2 side rails + 5 slats, SCREWED DOWN
+//     and permanent (owner, Aug 2026). It never needed to lift: both of
+//     Panel A's bays are reached through the side doors. Fixing it makes
+//     it a diaphragm across Panel A's rails, puts back some of the
+//     torsional stiffness lost when A and B gave up their plywood tops,
+//     and makes it the datum the two loose halves locate against.
 //   * Panel B halves (29 x 24.5in each) — 2 side rails + 5 short slats
 //     each, split on the CENTRELINE, each lifting out on its own.
 //     Owner's call, Aug 2026: Panel B is top-load-ONLY (the 35x45in
@@ -81,7 +86,7 @@ module ladder(x0, y0, wid, len, n, z_rail, z_slat) {
 }
 
 module drawing() {
-    // ---- Panel A section: 29 x 49, one piece, lifts off ------------
+    // ---- Panel A section: 29 x 49, one piece, SCREWED DOWN ---------
     ladder(-W/2, 0, W, LA, bed_slat_n_a, 0, lift);
     for (x = [-W/2 + RW + SL * 0.25, -W/2 + RW + SL * 0.75])
         iarrow([x, LA * 0.5, lift - 0.8], [x, LA * 0.5, bed_slat_t + 0.3]);
@@ -115,8 +120,8 @@ module drawing() {
     marker3d(5, [0, LA + bed_bearer_len * 0.7, -frame_rail_sz/2], [-17, -9]);
     marker3d(6, [-W/2 - 0.1, LA * 0.5, 0.4], [-13, 9]);
 
-    cap(str("BED PLATFORM — 3 lift-out pieces, exploded (Component 2, ", L, "\" x ", W, "\" overall, ", bed_slat_count, " slats, ", bed_frame_thickness, "\" thick)"), 13, -14, 1.9);
-    cap(str("SPLIT Aug 2026: Panel A keeps one ", LA, " x ", W, "\" section. Panel B's top is TWO ", LB, " x ", HW, "\" halves, split on the centreline, each lifting out on its own."), 13, -17, 1.3);
+    cap(str("BED PLATFORM — exploded (Component 2, ", L, "\" x ", W, "\" overall, ", bed_slat_count, " slats, ", bed_frame_thickness, "\" thick)"), 13, -14, 1.9);
+    cap(str("SPLIT Aug 2026: Panel A keeps one ", LA, " x ", W, "\" section, SCREWED DOWN. Panel B's top is TWO ", LB, " x ", HW, "\" halves, split on the centreline, each lifting out on its own."), 13, -17, 1.3);
     cap(str("Panel B is top-load-ONLY — the ", side_door_opening_width, " x ", side_door_opening_height, "\" side door sits over Panel A and only ", side_door_clear_width, "\" of it is ever clear. At ", HW, "\" wide a half fits back out through that door; a ", W, "\" piece never would."), 13, -19.5, 1.3);
     cap("Lift the mattress clear, take out only the half on the side you are standing at. The centre bearer also halves the deck's unsupported span over Panel B (46\" -> ~22\").", 13, -22, 1.3);
 

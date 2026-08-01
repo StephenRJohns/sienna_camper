@@ -102,13 +102,6 @@ openscad -o renders/rail-tongue-detail.svg rail_tongue_detail.scad
 # text_size x (page_width / sheet_width), so the sheet is kept narrow.
 openscad -o renders/rail-tongue-detail.png --imgsize=2400,2920 $FLAT_CAM rail_tongue_detail.scad
 
-# Trim the dead --viewall padding off the BORDERED sheets. Their frames
-# make the crop unambiguous, and the padding was costing ~25% of the
-# drawing size (and so of the text size) on the printed page.
-echo "Trimming bordered sheets..."
-python3 trim_render.py renders/rail-tongue-detail.png renders/sheet-cut-layout.png \
-    renders/vanmeas-v*.png renders/survey-f*.png
-
 echo "Rendering DELTA 3 / WAVE 3 stowage detail..."
 openscad -o renders/delta3-wave3-detail.svg delta3_wave3_detail.scad
 openscad -o renders/delta3-wave3-detail.png --imgsize=2500,4700 $FLAT_CAM delta3_wave3_detail.scad
@@ -249,5 +242,14 @@ echo "Normalizing the F1-F8 survey plans to one common scale..."
 # OpenSCAD's --viewall zooms these 8 inconsistently; they sit in a table
 # column together, so the scale has to be forced. See the script's docstring.
 python3 normalize_survey_keys.py renders
+
+# Trim the dead --viewall padding off the BORDERED sheets. Their frames
+# make the crop unambiguous, and the padding was costing ~20-40% of the
+# drawing size (and so of the text size) on the printed page.
+# LAST, deliberately: the survey sheets render further down this script,
+# so an earlier trim step silently missed them.
+echo "Trimming bordered sheets..."
+python3 trim_render.py renders/rail-tongue-detail.png renders/sheet-cut-layout.png \
+    renders/vanmeas-v*.png renders/survey-f*.png
 
 echo "Done. Renders in ./renders/"
