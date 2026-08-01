@@ -140,9 +140,9 @@ function s2z(mz) = 72 + mz * SZ;
 module side_band() {
     txt("2  SIDE SECTION through one tongue — vertical scale exaggerated",
         6, 100, 3.0, "left", "Black");
-    txt("Forward load path: board -> tongue -> LUG -> the rail's rear end face -> the rail's floor bolts.",
+    txt("Forward load path: board -> tongue -> LUG + PIN -> the rail's structural steel END CAP -> the rail's floor bolts.",
         6, 96, 2.2, "left", GRY);
-    txt("Bearing, not friction. Nothing is drilled into the van; every fastener here is reversible.",
+    txt("Bearing plus shear, not friction. Nothing is drilled into the van, and every part of this comes back apart.",
         6, 93, 2.2, "left", GRY);
 
     // van floor pan
@@ -192,10 +192,16 @@ module side_band() {
         translate([s2x(5.6), s2z(0.22)]) square([s2x(8.2) - s2x(5.6), 0.55]);
         translate([s2x(8.2), s2z(0.22) - 0.9]) polygon([[0, 0], [0, 2.35], [2.4, 1.175]]);
     }
-    txt("DOWNTURNED LUG — bears flat on the rail's rear END FACE.", s2x(-8), s2z(0) - 4.2, 2.1, "left", RED);
-    txt(str("This is the FORWARD load path: ", tongue_butt_area,
-            " sq in of bearing per tongue, straight into"), s2x(-8), s2z(0) - 6.8, 2.1, "left", RED);
-    txt("the rail's steel and then its floor bolts. The slot fastener is only a hold-down.",
+    // the PIN through the lug into the cap's measured 1/4" hole: this is
+    // what makes the joint positive in shear without needing a nut
+    // anywhere behind the cap.
+    color(RED) rect_ol(s2x(8.9), s2z(0.22), s2x(9.9) - s2x(8.9), tongue_pin_d * SZ, MED);
+    txt(str(tongue_pin_d, "\" PIN into the cap's hole"), s2x(10.2), s2z(0.34), 2.0, "left", RED);
+    txt("DOWNTURNED LUG — bears flat on the rail's structural steel END CAP,", s2x(-8), s2z(0) - 4.2, 2.1, "left", RED);
+    txt(str("and a ", tongue_pin_d, "\" PIN enters the cap's measured ", rail_cap_hole_d,
+            "\" hole. Bearing (", tongue_butt_area, " sq in/tongue) spreads"),
+        s2x(-8), s2z(0) - 6.8, 2.1, "left", RED);
+    txt("the load; the pin stops any sliding. Shear, so NO nut is needed behind the cap.",
         s2x(-8), s2z(0) - 9.4, 2.1, "left", RED);
 
     // bolts: 2 down through the bridge (nylock under), 1 into the channel

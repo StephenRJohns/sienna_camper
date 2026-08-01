@@ -505,7 +505,8 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | [L-track single-stud fittings with D-ring, WLL 1,333 lb, 10-pack](https://www.amazon.com/US-Cargo-Control-Black-Fitting/dp/B07W5T13JS) — 4 kitchen strap corners + 3 bridge striker-strap points, 3 spares | 1 pack | $45 | $45 |
 | Anchor board — 3/4" ply comb, **ONE piece** 46" x 33" (bridge + 3 strips continuous, no wood joints — cut from the 3/4" sheet's spare, so no plywood to buy; Section 8, assembly sheet V1/V5) + 1/4-20 machine screws & T-nuts ~30 ea | 1 | $20 | $20 |
 | Steel flat bar 2" x 3/16" — the 2 forward rail tongues, **cut 16" each** (F8a: rail ends at 42" from the hatch) | 1x 36" bar | $15–25 | $15–25 |
-| Steel angle or bar for the 2 tongue **LUGS** — ~2" x 0.85", bears on the rail's end face (the forward load path) | 2 | $4 ea | $8 |
+| Steel angle or bar for the 2 tongue **LUGS** — ~2" x 0.85", bears on the rail's structural end cap | 2 | $4 ea | $8 |
+| **¼" pin per lug** — a ¼" bolt nutted on the tongue side with its plain end protruding, or a pressed dowel; enters the cap's measured ¼" hole in shear | 2 | $1 ea | $2 |
 | ¼"-20 **T-bolts for ¾" T-track**, 1¾" — the tongue HOLD-DOWN (H1; slot MEASURED ¾", channel 1" deep) | 2 (buy 4) | $2 ea | $8 |
 | Steel **crush tubes**, 0.35" long x ¼" ID — one per tongue, so the rail's plastic housing is never clamped | 2 | $2 ea | $4 |
 | ¼"-20 bolts + washers + nylocks — 2 per tongue through the bridge | 4 | $1 ea | $4 |
@@ -1152,10 +1153,18 @@ With the load on the lug, **the fastener in the slot stops being structural** �
 
 **Why H2 is dead (owner photo, Aug 2026).** Under the plastic end cap there is a **steel cap over the channel**, and a **pin behind it that blocks anything being slid in from the rear.** A slid-in bar cannot get in. It's recorded here as ruled out rather than deleted, so it doesn't get re-proposed.
 
-⚠️ **Two things that photo raises, both of which should be settled before fabricating the lug:**
+✅ **The steel end cap is STRUCTURAL** (owner, Aug 2026) — so the butt joint is confirmed sound, and better than a bare extrusion cut would have been. The lug bears directly on the cap: a steel-to-steel bearing joint into a structural member of the vehicle's own seat anchorage. The 1.0 sq in figure above is taken on the 0.5" metal-track height and is **conservative** if the cap stands taller than the track.
 
-1. **Is that steel end cap structural, or a light stamped cover?** The butt joint bears on it. A structural bracket is ideal — better than a bare extrusion cut. A thin stamped cover will **deform rather than bear**, and the lug would need to reach past it to the rail's own body.
-2. **There appear to be existing holes in that steel bracket** — a round hole with an elongated slot above and below. **If those are usable, bolting to them beats every option on this page:** positive engagement, straight into the rail's own steel, no new holes, and no reliance on friction *or* on a bearing face. Worth identifying what that bracket is before committing to the lug.
+- **One thing to eyeball while fitting:** that the cap is **captive to the rail** — integral, welded or riveted — rather than merely clipped on. The entire forward load passes through its attachment to the rail.
+
+**And the cap has a ¼" hole in it — use it as a PIN SOCKET, not a bolt hole.** (Measured Aug 2026: a round hole ~¼" between two oblong stampings.) A bolt through it is possible but awkward, because there's no access behind the cap to start a nut. **You don't need one.** Forward load needs **shear, not clamp** — so put a **¼" pin on the lug** and let it enter the hole:
+
+- Easiest version: a **¼" bolt nutted on the *tongue* side** (where you can reach it) with its plain end protruding as the pin. Or a pressed-in dowel.
+- **Nothing has to be held behind the cap at all**, and lifting the tongue pulls the pin straight back out — so it stays fully reversible.
+- Capacity: a ¼" mild-steel pin in single shear is ~0.049 sq in × ~36 ksi ≈ **1,760 lb per pin, ~3,500 lb over two tongues.** Against a ~155 lb board that's ~22 g — an order of magnitude past the ~430 lb the friction-only version managed. The governing limit becomes the cap, its attachment and hole-edge tear-out, not the pin.
+- **The pin and the bearing face complement each other:** the lug's face spreads load, the pin stops any relative sliding. **Keep both.**
+
+📏 **The one dimension still to take, and it's what positions the pin:** the hole's **centre height above the floor pan**, and its **lateral offset from the rail centreline**. Everything else about this joint is measured.
 
 **Also still open, and it only affects H1:** does the slot have undercut lips? Buy **one** T-bolt and try it before buying four. With the load on the lug this is a convenience question, not a structural one.
 2. **Rearward + lift — 3 ratchet straps** (400 lb WLL each) from stud-fitting D-rings on the bridge, forward and down into the 3 striker loops, tensioned. These also pin the board against the slide's cantilever moment when the loaded fridge is pulled to full extension.

@@ -697,16 +697,41 @@ tongue_lug_h     = aboard_top;   // 0.85 — lug reaches from the tongue's under
 //     having undercut lips, which is still unconfirmed.
 //   * H3 (saddle clamp around the outside of the rail) is unaffected by
 //     any of this, so it becomes the DEFAULT hold-down.
-//   * The BUTT JOINT is unaffected as a concept and arguably better —
-//     there is steel at the rail end to bear on rather than a bare
-//     extrusion cut. BUT: it now matters whether that steel cap is
-//     structural or a light stamped cover, because a stamped cover will
-//     deform rather than bear. CONFIRM before fabricating the lug.
-//   * The photo also shows what look like EXISTING HOLES in that steel
-//     bracket (a round hole with a slot above and below). If those are
-//     usable, bolting to them would beat every option here: positive
-//     engagement, into the rail's own steel, with no new holes. Worth
-//     identifying before committing to the lug.
+//   * The BUTT JOINT is CONFIRMED GOOD, and better than it was: the
+//     steel end cap IS STRUCTURAL (owner, Aug 2026), so the lug bears
+//     directly on it rather than having to reach past a stamped cover
+//     to the rail's body. This is now a steel-to-steel bearing joint
+//     into a structural member of the vehicle's seat anchorage.
+//     tongue_butt_area below is figured on the 0.5in metal-track height,
+//     which is CONSERVATIVE if the cap stands taller than the track.
+//     One thing to eyeball while fitting: that the cap is captive to the
+//     rail (integral / welded / riveted) rather than merely clipped —
+//     the entire forward load passes through its attachment.
+//   * (Aug 2026, photo + tape) The cap has a ROUND HOLE, MEASURED ~0.25in,
+//     between two oblong stampings. Owner's note: a bolt through it would
+//     be possible but "tricky to hold a bolt under it" — there is no
+//     access behind the cap to start a nut.
+//
+//     >>> SO DO NOT BOLT IT. USE IT AS A PIN SOCKET. <<<
+//     Forward load needs SHEAR, not clamp, and a pin gives shear without
+//     anything on the far side. Put a 1/4in pin on the tongue's lug — a
+//     1/4in bolt nutted on the TONGUE side (accessible) with its plain
+//     end protruding is the easy version, or a pressed dowel — and let it
+//     enter this hole. Nothing has to be held behind the cap at all, and
+//     lifting the tongue takes it straight back out, so it stays fully
+//     reversible.
+//       1/4in mild-steel pin, single shear ~ 0.049 sq in x ~36ksi
+//         ~= 1,760lb per pin, ~3,500lb over two tongues
+//       vs ~155lb of loaded board -> ~22g, an order of magnitude past the
+//       ~430lb the friction-only version managed. The real limit becomes
+//       the cap, its attachment, and hole-edge tear-out, not the pin.
+//     The lug's bearing face and the pin COMPLEMENT each other: the face
+//     spreads load, the pin stops any relative sliding. Keep both.
+rail_cap_hole_d  = 0.25;  // MEASURED (Aug 2026) — round hole in the structural steel end cap
+tongue_pin_d     = 0.25;  // matching pin on the lug; run it slightly under size so it enters easily
+// STILL TO TAKE, and it is what positions the pin: the hole's centre
+// HEIGHT above the floor pan, and its LATERAL offset from the rail
+// centreline. Everything else about this joint is now measured.
 //
 //   (a) CRUSH TUBE — leave the housing alone. A steel spacer sleeve
 //       carries the clamp load from the tongue down to the metal track,
