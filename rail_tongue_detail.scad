@@ -156,13 +156,27 @@ module side_band() {
     }
     txt("mat + 3/4\" ply bridge", s2x(-7.5), s2z(aboard_mat_t + aboard_t / 2) - 1, 2.1, "left", GRY);
 
-    // the rail, forward
+    // the rail: METAL track to rail_top_z, PLASTIC housing above it
     color(GRY) {
-        rect_ol(s2x(9), s2z(0), s2x(20) - s2x(9), rail_top_z * SZ, MED);
-        rect_ol(s2x(11), s2z(rail_top_z - 0.3), s2x(17) - s2x(11), 0.3 * SZ, THIN);  // the channel
+        rect_ol(s2x(9), s2z(0), s2x(20) - s2x(9), rail_top_z * SZ, MED);           // metal
+        rect_ol(s2x(9), s2z(rail_top_z), s2x(11.6) - s2x(9),
+                (rail_housing_z - rail_top_z) * SZ, THIN);                          // plastic, near side
+        rect_ol(s2x(14.4), s2z(rail_top_z), s2x(20) - s2x(14.4),
+                (rail_housing_z - rail_top_z) * SZ, THIN);                          // plastic, far side
     }
-    txt("2nd-row rail", s2x(15.5), s2z(0) - 4, 2.1, "left", "Black");
-    txt("(open-top channel)", s2x(15.5), s2z(0) - 6.6, 1.9, "left", "Black");
+    txt("2nd-row rail — METAL track", s2x(15.8), s2z(0) - 4, 2.0, "left", "Black");
+    txt(str("top at ", rail_top_z, "\", ", rail_slot_w, "\" slot"), s2x(15.8), s2z(0) - 6.4, 1.9, "left", "Black");
+    // No in-place label on the housing: it would land under the T-bolt
+    // callout. It is named in the crush-tube note below instead.
+
+    // CRUSH TUBE: carries the clamp load tongue -> metal, so the plastic
+    // is never squeezed. This is what makes the housing survivable.
+    color(RED) rect_ol(s2x(12.4), s2z(rail_top_z), s2x(13.6) - s2x(12.4),
+                       (aboard_top - rail_top_z) * SZ, MED);
+    txt(str("steel CRUSH TUBE (", -tongue_step, "\" tall) carries the clamp load from the tongue"),
+        s2x(-6), s2z(0) - 9.4, 2.0, "left", RED);
+    txt(str("straight down to the METAL track, so the plastic housing (up to ", rail_housing_z,
+            "\") is never squeezed."), s2x(-6), s2z(0) - 11.8, 2.0, "left", RED);
 
     // THE TONGUE
     tz = s2z(aboard_top);
@@ -179,12 +193,7 @@ module side_band() {
     txt("1/4\"-20 T-BOLT or channel nut,", s2x(8), tz + 9, 2.2, "left", RED);
     txt("dropped into the rail's own slot", s2x(8), tz + 6, 2.2, "left", RED);
 
-    // the step / shim
-    dim_y(s2z(rail_top_z), tz, s2x(19), "shim to suit", 2.1, RED, "right");
-    txt(str("the board's top plane sits ", abs(tongue_step), "\" off the rail top on the CURRENT"),
-        s2x(-8), s2z(0) - 9, 2.1, "left", RED);
-    txt("(unverified) rail height — measure it and shim the difference.",
-        s2x(-8), s2z(0) - 11.6, 2.1, "left", RED);
+    dim_y(s2z(rail_top_z), tz, s2x(19), str(-tongue_step, "\" step"), 2.1, RED, "right");
 }
 
 // ============================================================
@@ -231,11 +240,11 @@ module cases_band() {
     txt("3  THREE WAYS TO ENGAGE THE RAIL — pick by what you actually find under the end cap",
         6, 47, 3.0, "left", "Black");
     case_box(0, "CASE A — T-bolt in the channel", [
-        "Cap off; 1/4\"-20 T-bolt or channel nut",
-        "dropped in and turned 90 deg so it locks",
-        "under the slot lips. Load goes into SHEAR",
-        "against seat-track steel. CONFIRM the slot",
-        "width takes a 1/4\" bolt before ordering."]);
+        "Slot MEASURED at 3/4\" — the standard",
+        "woodworking T-track size, so stock",
+        "1/4\"-20 T-bolts fit. Load goes into SHEAR",
+        "against seat-track steel. Needs a crush",
+        "tube so the plastic housing is not clamped."]);
     case_box(1, "CASE B — saddle clamp (fallback)", [
         "Zero modification to the vehicle: a 2\"",
         "steel saddle wraps under the rail's",
@@ -259,9 +268,11 @@ module sheet() {
             "\" from the closed hatch. The board is 46\" x ", aboard_depth,
             "\", so each tongue spans ", tongue_span, "\" of open floor — cut both ",
             tongue_len, "\" long."), 6, SH - 13, 2.4, "left", GRY);
-    txt("CONFIRM BY HAND BEFORE ORDERING HARDWARE: the rail spacing (F8b was never taped), the end-cap",
-        6, SH - 17, 2.4, "left", RED);
-    txt("fastener type, the channel's slot width, and the rail's height above the floor.",
+    txt(str("ALL MEASURED Aug 2026: spacing ", rail_spacing, "\", slot ", rail_slot_w,
+            "\" (standard 3/4\" T-track, so stock 1/4\"-20 T-bolts fit), metal track ",
+            rail_top_z, "\" up, plastic housing ", rail_housing_z, "\" up."),
+        6, SH - 17, 2.4, "left", "Black");
+    txt("STILL OPEN: does the slot have UNDERCUT LIPS for a T-head to bear under? If it is a plain open channel, a T-bolt has nothing to grab — use case B.",
         6, SH - 21, 2.4, "left", RED);
     plan_band();
     side_band();

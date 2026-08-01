@@ -478,7 +478,10 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | [US Cargo Control aluminum L-track, 48" 4-pack](https://www.amazon.com/US-Cargo-Control-Strength-Aluminum/dp/B07W923TC6), ≥2,000 lb/ft — cut down and screwed to the anchor board's kitchen-side strips + bridge (Section 8, no-drill; the Sienna's factory cargo hooks are rated for cargo nets only, not this). 2 of the 4 lengths are spares | 1 pack | $95 | $95 |
 | [L-track single-stud fittings with D-ring, WLL 1,333 lb, 10-pack](https://www.amazon.com/US-Cargo-Control-Black-Fitting/dp/B07W5T13JS) — 4 kitchen strap corners + 3 bridge striker-strap points, 3 spares | 1 pack | $45 | $45 |
 | Anchor board — 3/4" ply comb, **ONE piece** 46" x 33" (bridge + 3 strips continuous, no wood joints — cut from the 3/4" sheet's spare, so no plywood to buy; Section 8, assembly sheet V1/V5) + 1/4-20 machine screws & T-nuts ~30 ea | 1 | $20 | $20 |
-| Steel flat bar 2" x 3/16" (the 2 forward rail tongues, cut to the F8-measured length; ends drilled/bent to bolt or clamp to the 2nd-row floor rails' rear ends — bracket hardware speced after the F8 photos) | 1x 36" bar | $15–25 | $15–25 |
+| Steel flat bar 2" x 3/16" — the 2 forward rail tongues, **cut 16" each** (F8a: rail ends at 42" from the hatch) | 1x 36" bar | $15–25 | $15–25 |
+| ¼"-20 **T-bolts for ¾" T-track** + flange nuts — the tongue-to-rail engagement (case A; slot MEASURED at ¾") | 2 (buy 4) | $2 ea | $8 |
+| Steel **crush tubes**, 0.35" long x ¼" ID — one per tongue, so the rail's plastic housing is never clamped | 2 | $2 ea | $4 |
+| ¼"-20 bolts + washers + nylocks — 2 per tongue through the bridge | 4 | $1 ea | $4 |
 | Non-slip rubber utility mat, under the anchor board's strips | 1 | $25 | $25 |
 | Blue medium-strength threadlocker (Loctite 242 or equivalent — on the anchor board's machine screws) | 1 bottle | $8 | $8 |
 | Erickson ratchet straps (01415), 400 lb WLL / 1,200 lb break, 1" x 10' (4: kitchen unit, criss-crossed over the top to the board's L-track; 3: bridge D-rings to the 3rd-row striker loops; 1 spare) | 2 packs of 4 | $32 | $64 |
@@ -1084,7 +1087,12 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 
 **What the survey settled.** F8a measured the rail rear ends at **42" from the closed hatch**. The board is 46" × 33", so its bridge ends at 33" and each tongue has only **9" of open floor to span** — much shorter than the 10–14" originally assumed. **Cut both tongues 16" long**: 4" lapped onto the bridge, 9" of span, 3" overlapping the rail.
 
-**What is actually at the rail end** (read off the Aug 2026 close-up photos, not taped): each rail terminates in a **moulded plastic end cap held by a single exposed fastener**, and under that cap the rail is an **open-topped track channel** — the same slot the seat carriages ride in. That is the best of the three cases F8 was written to tell apart, because it means the tongue can bolt into the vehicle's own seat-track steel rather than clamping plastic.
+**What is at the rail end** (MEASURED Aug 2026): each rail terminates in a **moulded plastic end cap held by a single flush, slotted (flat-blade) fastener** in a round recess — try turning it 90° first, since a fastener that shape is often a quarter-turn catch rather than a screw. Under the cap the rail is an **open-topped track channel with a 0.75" slot**. That slot width is a gift: **¾" is the standard woodworking T-track size, so off-the-shelf ¼"-20 T-bolts fit it.** Rail centres measure **17.5" apart** (F8b).
+
+⚠️ **One thing the measurements created rather than closed: the plastic housing is in the way.** The metal track tops out **0.5"** above the floor pan, but the plastic housing over the rail reaches **1.0"** — and the anchor board's own top plane is at **0.85"** (0.1" mat + ¾" ply). So the metal is 0.35" *below* the tongue's plane while the plastic is 0.15" *above* it. The tongue cannot simply run flat onto the rail, and it must bear on **metal, not plastic** — clamped plastic crushes and the joint goes loose. Two ways out:
+
+- **Crush tube (the default here).** A 0.35"-tall steel spacer sleeve carries the clamp load from the tongue straight down to the metal track, so the housing is never squeezed and the tongue simply rides over it. **Nothing on the vehicle is cut** — which is why this is the default.
+- **Local window.** Cut a ~3" window in the plastic housing where the tongue crosses, seat the tongue directly on metal, and shim 0.35" up to the board plane. Stiffer and lower, but it means cutting a trim part — or pulling the whole housing for camper mode, if it unclips.
 
 **Assembly, per side:**
 
@@ -1096,11 +1104,13 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 
 | | Engagement | When | Notes |
 |---|---|---|---|
-| **A** | **¼"-20 T-bolt or channel nut** dropped into the rail's open slot and turned 90° so it locks under the lips | The intended case | Load goes into **shear** against seat-track steel. **Confirm the slot takes a ¼" bolt before ordering** |
+| **A** | **¼"-20 T-bolt or channel nut** dropped into the rail's open slot and turned 90° so it locks under the lips | The intended case | Slot **measured at ¾"** — standard T-track size, stock ¼"-20 T-bolts fit. Load goes into **shear** against seat-track steel. Needs the crush tube |
 | **B** | **2"-wide steel saddle** wrapping under the rail's flanges, 2 bolts pinching it up to the tongue | Slot too narrow, obstructed, or you'd rather not use it | **Zero modification** to the vehicle — the reversible fallback |
 | **C** | Reuse the **end cap's own threaded boss** | Only if A and B both fail | **Weakest** — that boss holds a plastic cap and was never a rated anchorage. If you land here, add a rear strap |
 
-⚠️ **Still to confirm by hand before ordering hardware:** the **rail lateral spacing** (F8b was never taped — the drawing's 17" is scaled off the overhead photo, and it sets where the bridge gets drilled), the **end-cap fastener type**, the **channel's slot width**, and the **rail's height above the floor**. All four are cheap to measure and expensive to guess.
+✅ **All four of the hardware-gating measurements are now taken** (owner, Aug 2026): spacing 17.5", slot 0.75", metal track 0.5" up, plastic housing 1.0" up, cap held by one slotted fastener.
+
+⚠️ **One question left, and it decides case A vs case B:** does the slot have **undercut lips** for a T-head to bear under, or is it a plain open channel? A ¾" T-track profile normally does — but if this one does not, a T-bolt has nothing to grab and you go to the saddle clamp. Check it with a bent wire or a T-bolt from the hardware store before buying more than one.
 2. **Rearward + lift — 3 ratchet straps** (400 lb WLL each) from stud-fitting D-rings on the bridge, forward and down into the 3 striker loops, tensioned. These also pin the board against the slide's cantilever moment when the loaded fridge is pulled to full extension.
 3. **Lateral** — the kitchen's criss-crossed straps, the striker straps' splay, the well and van walls ~1" away, and the mat's friction.
 
@@ -1411,8 +1421,8 @@ Appendices B and C consolidate Sections 4 and 3; Appendix B (build order), Appen
 - **Feeds:** Section 8's PRIMARY forward connection: the anchor board's 2 steel tongues bolt or clamp to these rail ends (no new holes). This measurement decides the bracket detail and the tongue length.
 - **Previous assumption:** assumed the rail ends reach the striker-row zone — UNVERIFIED
 - **F8a** — hatch → rail REAR ends: **42"** (MEASURED — owner, Aug 1 2026). **The rail ends reach — with room to spare.** They sit 2.5" NEARER the hatch than the striker row (44.5", F4a), so the tongues are shorter than the assumed 10–14": **fabricate to the measured 42".** This is the PRIMARY forward connection and it survives the survey intact, which matters because F6 and F7 both eliminated fallbacks.
-- **F8b** — rail lateral spacing: **see the Aug 2026 photos** — not separately taped. Take this off the rails themselves at the bench before the tongue bracket is drilled; the photos show both rail ends and their hardware clearly enough to lay out against, but a bolt pattern deserves a tape.
-- **What is AT each end** (end cap / track bolt / open slot / lip): **see the Aug 2026 close-up photos.** Confirm the exact hardware case from the photos before ordering bracket stock.
+- **F8b** — rail lateral spacing: **17.5"** centre to centre (MEASURED — owner, Aug 2026). This is what the anchor board's bridge gets drilled to.
+- **What is AT each end** (MEASURED Aug 2026): a **moulded plastic end cap** held by **one flush slotted fastener**, over an **open-top track channel with a 0.75" slot**. The metal track sits **0.5"** above the floor pan and the plastic housing over it reaches **1.0"**. See Section 8's connection detail for what that means for the tongue (short version: a crush tube, so the plastic is never clamped).
 
 
 **Photos to take while you're in there** (each one answers a specific question later, at the workbench, without crawling back in):

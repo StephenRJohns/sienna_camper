@@ -633,20 +633,52 @@ aboard_strip_len  = 27; // the three comb strips; the bridge is the last aboard_
 // of clamping plastic. Read from photos, so CONFIRM the cap fastener
 // type and the channel's slot width by hand before ordering hardware.
 rail_end_y      = 42;   // MEASURED F8a (Aug 2026) — hatch -> rail rear ends
-rail_spacing    = 17;   // ESTIMATED off the Aug 2026 overhead photo (~16.8in scaled) — F8b was NOT taped. TAPE THIS before drilling the bridge.
-rail_top_z      = 0.75; // UNVERIFIED — rail top above the van floor pan; sets the tongue's step/shim (measure it)
+rail_spacing    = 17.5; // MEASURED F8b (Aug 2026) — rail centre to rail centre
+rail_slot_w     = 0.75; // MEASURED (Aug 2026) — the track slot. 3/4in is the
+                        // STANDARD woodworking T-track size, so off-the-shelf
+                        // 1/4"-20 T-bolts fit it. Still to confirm: that the
+                        // slot has UNDERCUT LIPS for a T-head to bear under,
+                        // rather than being a plain open channel (if plain, a
+                        // T-bolt has nothing to grab -> fall back to case B).
+rail_top_z      = 0.5;  // MEASURED (Aug 2026) — the METAL track top above the floor pan
+rail_housing_z  = 1.0;  // MEASURED (Aug 2026) — top of the PLASTIC housing over the rail
+// >>> OPEN ISSUE the measurements just created <<<
+// The board's top plane is aboard_top = 0.85in (0.1 mat + 0.75 ply). The
+// metal track is at 0.5in — 0.35in BELOW that — but the plastic housing
+// over the rail reaches 1.0in, which is 0.15in ABOVE it. So the tongue
+// cannot simply run flat off the board onto the rail: the plastic stands
+// proud of the tongue's own plane, and the tongue must bear on METAL, not
+// on plastic (clamped plastic crushes and the joint goes loose).
+// Two ways out, both drawn on the detail sheet:
+//   (a) CRUSH TUBE — leave the housing alone. A steel spacer sleeve
+//       carries the clamp load from the tongue down to the metal track,
+//       so the plastic is never squeezed. The tongue rides just over the
+//       housing. Nothing on the vehicle is cut.
+//   (b) LOCAL WINDOW — cut a ~3in window in the plastic housing where the
+//       tongue crosses, so the tongue seats directly on metal at 0.5in
+//       and gets a 0.35in shim up to the board plane. Stiffer and lower,
+//       but it means cutting a trim part (or pulling the whole housing
+//       for camper mode, if it unclips).
+// (a) is the default here because it keeps the no-modification promise.
 tongue_t        = 0.1875; // 3/16in flat bar
 tongue_lap      = 4;    // how far the tongue lies ON the bridge, bolted through
 tongue_engage   = 3;    // how far it overlaps the rail past its end
 tongue_span     = rail_end_y - aboard_depth;                   // 9 — open gap it bridges
 tongue_len      = tongue_lap + tongue_span + tongue_engage;     // 16
-tongue_step     = rail_top_z - aboard_top;                      // -0.1 — near flat; shim whatever the real measurement gives
+tongue_step     = rail_top_z - aboard_top;      // -0.35 — the metal track sits this far BELOW the board's top plane
+tongue_housing_clash = rail_housing_z - aboard_top; // +0.15 — ...and the plastic housing this far ABOVE it. See the open issue above.
 tongue_bolt_d   = 0.25; // 1/4"-20 through the bridge and into the rail channel
 assert(tongue_lap <= aboard_bridge_d,
        str("Tongue lap (", tongue_lap, "in) must sit within the bridge's ",
            aboard_bridge_d, "in depth so both its bolts land in plywood"));
 assert(rail_spacing + aboard_tongue_w <= panel_width,
        "Tongue pair at the measured rail spacing must land inside the board's width");
+// Not an assert: this is an open design choice, not a broken dimension, and
+// failing every render over it would stop work on everything else.
+if (tongue_housing_clash > 0)
+    echo(str("NOTE (Section 8): the rail's plastic housing stands ", tongue_housing_clash,
+             "in proud of the tongue's plane, and the metal track is ", -tongue_step,
+             "in below it. Use a crush tube (default) or window the housing — see params."));
 fridge_stack_top    = fridge_tray_gap + fridge_tray_t + fridge_ext_height; // 16.67 — top of the mounted fridge
 fridge_exit_clearance_min = 0.25; // required running clearance under Panel C's tailgate end rail (van bounce)
 // The DRIVER-side rail+riser tucks into the corner-leg band (the 1.5in
