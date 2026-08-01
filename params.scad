@@ -163,7 +163,8 @@ panel_thickness  = 0.75; // 3/4" Baltic birch (Section 3)
 // plane is also 50in, and the platform under it is only 49in: the foam
 // goes in with zero side clearance and overhangs its frame by ~0.5in
 // per side. Solid foam tolerates both (it is not a sprung mattress,
-// and the walls flare outward above the deck), but it is a squeeze
+// and the pinch is only at the very top of its thickness), but it is
+// a squeeze
 // rather than a fit, and it is a BOUGHT item — flagged, not designed
 // around. BUDGET FALLBACK (Section 4/6): the
 // old DIY foam build — queen 60x80 blanks cut to 50x78, using the
