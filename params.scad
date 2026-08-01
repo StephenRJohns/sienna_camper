@@ -728,10 +728,39 @@ tongue_lug_h     = aboard_top;   // 0.85 — lug reaches from the tongue's under
 //     The lug's bearing face and the pin COMPLEMENT each other: the face
 //     spreads load, the pin stops any relative sliding. Keep both.
 rail_cap_hole_d  = 0.25;  // MEASURED (Aug 2026) — round hole in the structural steel end cap
-tongue_pin_d     = 0.25;  // matching pin on the lug; run it slightly under size so it enters easily
-// STILL TO TAKE, and it is what positions the pin: the hole's centre
-// HEIGHT above the floor pan, and its LATERAL offset from the rail
-// centreline. Everything else about this joint is now measured.
+rail_cap_hole_z  = 1.0;   // MEASURED (Aug 2026) — its centre above the floor pan
+rail_cap_hole_x  = 0;     // MEASURED (Aug 2026) — centred on the rail, laterally
+tongue_pin_d     = 0.25;  // matching pin; run it slightly under size so it enters easily
+//
+// >>> THAT HEIGHT DELETES THE LUG. <<<
+// The tongue's underside sits at aboard_top = 0.85in and its top at
+// 1.04in, so its own mid-thickness is at 0.94in — and the hole's centre
+// is at 1.0in. They are 0.06in apart. The pin therefore goes straight
+// THROUGH THE TONGUE'S FORWARD END, horizontally, in line with the bar.
+// No downturned lug, no bend, no welded-on angle: drill one hole in the
+// end of the flat bar and fit a 1/4in bolt as the pin, nutted on the
+// tongue's own (accessible) face with its plain end protruding.
+// Take up the 0.06in with a slightly undersize pin and a lead chamfer.
+//
+// AND IT SIMPLIFIES THE REST. If the tongue now stops AT the cap's face
+// instead of running on over the rail, then it never passes over the
+// plastic housing — so the housing clash and the crush tube that solved
+// it both disappear, and so does the in-slot hold-down (there is no slot
+// under the tongue any more). What is left needing a decision is how the
+// tongue's forward end is kept from riding up out of the pin:
+//   (i)  TONGUE STOPS AT THE CAP (simplest, and the default). Its end
+//        face bears on the cap, the pin takes forward load in shear.
+//        Bearing area is the bar's own section, aboard_tongue_w x
+//        tongue_t = 0.375 sq in -> ~2,070psi at 20g. Fine. Needs a
+//        separate retainer against lift: the H3 saddle clamp on the rail
+//        just forward of the cap is the tidy answer.
+//   (ii) TONGUE CONTINUES OVER THE RAIL, keeping the in-slot hold-down
+//        (H1) and therefore the crush tube and the housing clash. More
+//        parts, but the hold-down is integral.
+//
+// ONE UNKNOWN LEFT, and it only sets the pin's length: how DEEP the
+// cap's hole is / whether it is a through-hole into the channel. Fit the
+// pin to whatever engagement is actually available.
 //
 //   (a) CRUSH TUBE — leave the housing alone. A steel spacer sleeve
 //       carries the clamp load from the tongue down to the metal track,
@@ -744,6 +773,10 @@ tongue_pin_d     = 0.25;  // matching pin on the lug; run it slightly under size
 //       for camper mode, if it unclips).
 // (a) is the default here because it keeps the no-modification promise.
 tongue_t        = 0.1875; // 3/16in flat bar
+// These two need tongue_t, and OpenSCAD evaluates assignments in order,
+// so they live here rather than up in the rail-connection block.
+tongue_pin_z         = aboard_top + tongue_t / 2;    // 0.94 — pin axis, vs the measured hole centre at 1.0
+tongue_butt_area_bar = aboard_tongue_w * tongue_t;   // 0.375 sq in — the bar's own end face, variant (i)
 // Hold-down bolt length: from the tongue's top face down to whatever
 // holds it in the channel. (Assigned HERE, not up with the butt-joint
 // block, because it needs tongue_t and OpenSCAD evaluates in order.)

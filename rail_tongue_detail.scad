@@ -140,14 +140,14 @@ function s2z(mz) = 72 + mz * SZ;
 module side_band() {
     txt("2  SIDE SECTION through one tongue — vertical scale exaggerated",
         6, 100, 3.0, "left", "Black");
-    txt("Forward load path: board -> tongue -> LUG + PIN -> the rail's structural steel END CAP -> the rail's floor bolts.",
+    txt("Forward load path: board -> tongue -> its END FACE + PIN -> the rail's structural steel END CAP -> the rail's floor bolts.",
         6, 96, 2.2, "left", GRY);
     txt("Bearing plus shear, not friction. Nothing is drilled into the van, and every part of this comes back apart.",
         6, 93, 2.2, "left", GRY);
 
     // van floor pan
     color(GRY) translate([s2x(-8), s2z(0) - 1.1]) square([s2x(20) - s2x(-8), 1.1]);
-    txt("van floor pan", s2x(-8), s2z(0) - 14.6, 2.0, "left", GRY);  // below the notes; it collided with the lug callout
+    txt("van floor pan", s2x(-8), s2z(0) - 17.2, 2.0, "left", GRY);
     // carpet over the open span
     color(GRY) rect_ol(s2x(0), s2z(0), s2x(9) - s2x(0), 0.3 * SZ, THIN);
     txt("carpet", s2x(3.5), s2z(0.15), 2.0, "left", GRY);
@@ -174,18 +174,17 @@ module side_band() {
 
     // CRUSH TUBE: carries the clamp load tongue -> metal, so the plastic
     // is never squeezed. This is what makes the housing survivable.
-    color(RED) rect_ol(s2x(12.4), s2z(rail_top_z), s2x(13.6) - s2x(12.4),
-                       (aboard_top - rail_top_z) * SZ, MED);
-    txt(str("Crush tube (", -tongue_step, "\" tall) under the hold-down bolt so the plastic housing (to ",
-            rail_housing_z, "\") is never squeezed."), s2x(-8), s2z(0) - 12, 2.0, "left", GRY);
+
+    txt(str("Variant (ii) instead runs the tongue ON over the rail for an in-slot hold-down; that one needs a crush tube so the ",
+            rail_housing_z, "\" housing is not squeezed."), s2x(-8), s2z(0) - 14.6, 2.0, "left", GRY);
 
     // THE TONGUE, and the LUG that carries the forward load
     tz = s2z(aboard_top);
-    color(RED) rect_ol(s2x(-5), tz, s2x(14) - s2x(-5), tongue_t * SZ, HEAVY);
+    color(RED) rect_ol(s2x(-5), tz, s2x(8.9) - s2x(-5), tongue_t * SZ, HEAVY);
     txt("steel tongue", s2x(1.5), tz + 3.8, 2.3, "left", RED);
-    // the lug: down off the tongue's underside, its rear face flat against
-    // the rail's rear end. THIS is the forward load path.
-    color(RED) rect_ol(s2x(8.6), s2z(0), s2x(9) - s2x(8.6), aboard_top * SZ, HEAVY);
+    // NO LUG. The cap's hole is at 1.0in and the tongue's own mid-thickness
+    // is at 0.94in, so the pin goes through the bar itself and the bar's
+    // end face does the bearing. The tongue simply STOPS at the cap.
     // a plain 2D arrow: iarrow() lives in steps/lego_lib.scad, which this
     // sheet does not include (it is a sheet2d drawing, not a lego one).
     color(RED) {
@@ -197,12 +196,14 @@ module side_band() {
     // anywhere behind the cap.
     color(RED) rect_ol(s2x(8.9), s2z(0.22), s2x(9.9) - s2x(8.9), tongue_pin_d * SZ, MED);
     txt(str(tongue_pin_d, "\" PIN into the cap's hole"), s2x(10.2), s2z(0.34), 2.0, "left", RED);
-    txt("DOWNTURNED LUG — bears flat on the rail's structural steel END CAP,", s2x(-8), s2z(0) - 4.2, 2.1, "left", RED);
-    txt(str("and a ", tongue_pin_d, "\" PIN enters the cap's measured ", rail_cap_hole_d,
-            "\" hole. Bearing (", tongue_butt_area, " sq in/tongue) spreads"),
+    txt("The tongue STOPS at the cap: its own end face bears on the structural steel END CAP,", s2x(-8), s2z(0) - 4.2, 2.1, "left", RED);
+    txt(str("and a ", tongue_pin_d, "\" PIN through the bar enters the cap's ", rail_cap_hole_d,
+            "\" hole — measured ", rail_cap_hole_z, "\" up, centred."),
         s2x(-8), s2z(0) - 6.8, 2.1, "left", RED);
-    txt("the load; the pin stops any sliding. Shear, so NO nut is needed behind the cap.",
+    txt("The hole is at the bar's own mid-thickness (0.94\"), so there is NO lug and no bend: drill the bar's end.",
         s2x(-8), s2z(0) - 9.4, 2.1, "left", RED);
+    txt("Shear, so NO nut is needed behind the cap. Retain against lift with the H3 saddle.",
+        s2x(-8), s2z(0) - 12, 2.1, "left", RED);
 
     // bolts: 2 down through the bridge (nylock under), 1 into the channel
     for (bx = [-5.5, -1.5])
@@ -210,9 +211,9 @@ module side_band() {
     txt("2x 1/4\"-20 through the bridge,", s2x(-8), tz + 9, 2.2, "left", RED);
     txt("washer + NYLOCK under the board", s2x(-8), tz + 6, 2.2, "left", RED);
 
-    bolt_side(s2x(12.5), tz + tongue_t * SZ, tz + tongue_t * SZ - s2z(rail_top_z - 0.3));
-    txt("HOLD-DOWN only — not structural:", s2x(8), tz + 9, 2.2, "left", RED);
-    txt("1/4\"-20 into the rail's slot", s2x(8), tz + 6, 2.2, "left", RED);
+
+
+
 
     dim_y(s2z(rail_top_z), tz, s2x(19), str(-tongue_step, "\" step"), 2.1, RED, "right");
 }

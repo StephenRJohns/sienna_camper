@@ -505,8 +505,7 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | [L-track single-stud fittings with D-ring, WLL 1,333 lb, 10-pack](https://www.amazon.com/US-Cargo-Control-Black-Fitting/dp/B07W5T13JS) — 4 kitchen strap corners + 3 bridge striker-strap points, 3 spares | 1 pack | $45 | $45 |
 | Anchor board — 3/4" ply comb, **ONE piece** 46" x 33" (bridge + 3 strips continuous, no wood joints — cut from the 3/4" sheet's spare, so no plywood to buy; Section 8, assembly sheet V1/V5) + 1/4-20 machine screws & T-nuts ~30 ea | 1 | $20 | $20 |
 | Steel flat bar 2" x 3/16" — the 2 forward rail tongues, **cut 16" each** (F8a: rail ends at 42" from the hatch) | 1x 36" bar | $15–25 | $15–25 |
-| Steel angle or bar for the 2 tongue **LUGS** — ~2" x 0.85", bears on the rail's structural end cap | 2 | $4 ea | $8 |
-| **¼" pin per lug** — a ¼" bolt nutted on the tongue side with its plain end protruding, or a pressed dowel; enters the cap's measured ¼" hole in shear | 2 | $1 ea | $2 |
+| **¼" pin per tongue** — a ¼" bolt through the bar's forward end, nutted on the tongue's own face, plain end protruding into the cap's ¼" hole (measured 1" up, centred). **No lug needed — the hole is at the tongue's own height** | 2 | $1 ea | $2 |
 | ¼"-20 **T-bolts for ¾" T-track**, 1¾" — the tongue HOLD-DOWN (H1; slot MEASURED ¾", channel 1" deep) | 2 (buy 4) | $2 ea | $8 |
 | Steel **crush tubes**, 0.35" long x ¼" ID — one per tongue, so the rail's plastic housing is never clamped | 2 | $2 ea | $4 |
 | ¼"-20 bolts + washers + nylocks — 2 per tongue through the bridge | 4 | $1 ea | $4 |
@@ -1157,14 +1156,22 @@ With the load on the lug, **the fastener in the slot stops being structural** �
 
 - **One thing to eyeball while fitting:** that the cap is **captive to the rail** — integral, welded or riveted — rather than merely clipped on. The entire forward load passes through its attachment to the rail.
 
-**And the cap has a ¼" hole in it — use it as a PIN SOCKET, not a bolt hole.** (Measured Aug 2026: a round hole ~¼" between two oblong stampings.) A bolt through it is possible but awkward, because there's no access behind the cap to start a nut. **You don't need one.** Forward load needs **shear, not clamp** — so put a **¼" pin on the lug** and let it enter the hole:
+**And the cap has a ¼" hole in it — use it as a PIN SOCKET, not a bolt hole.** (Measured Aug 2026: ~¼" round, **centre 1" above the floor pan, centred on the rail.**) A bolt through it is possible but awkward — there's no access behind the cap to start a nut. **You don't need one.** Forward load needs **shear, not clamp**, and a pin gives shear with nothing on the far side.
 
-- Easiest version: a **¼" bolt nutted on the *tongue* side** (where you can reach it) with its plain end protruding as the pin. Or a pressed-in dowel.
-- **Nothing has to be held behind the cap at all**, and lifting the tongue pulls the pin straight back out — so it stays fully reversible.
-- Capacity: a ¼" mild-steel pin in single shear is ~0.049 sq in × ~36 ksi ≈ **1,760 lb per pin, ~3,500 lb over two tongues.** Against a ~155 lb board that's ~22 g — an order of magnitude past the ~430 lb the friction-only version managed. The governing limit becomes the cap, its attachment and hole-edge tear-out, not the pin.
-- **The pin and the bearing face complement each other:** the lug's face spreads load, the pin stops any relative sliding. **Keep both.**
+**That 1" height deletes the lug.** The tongue's underside sits at 0.85" and its top at 1.04", so its own **mid-thickness is 0.94"** — and the hole's centre is at 1.0". They're **0.06" apart.** So the pin goes **straight through the tongue's forward end**, horizontally, in line with the bar:
 
-📏 **The one dimension still to take, and it's what positions the pin:** the hole's **centre height above the floor pan**, and its **lateral offset from the rail centreline**. Everything else about this joint is measured.
+- **Drill one hole in the end of the flat bar and fit a ¼" bolt as the pin**, nutted on the tongue's own (accessible) face with its plain end protruding. No downturned lug, no bend, no welded-on angle — **the fabricated part is gone.**
+- Take up the 0.06" with a slightly **undersize pin and a lead chamfer**.
+- Capacity: a ¼" mild-steel pin in single shear is ~0.049 sq in × ~36 ksi ≈ **1,760 lb per pin, ~3,500 lb over two tongues.** Against a ~155 lb board that's ~22 g — versus the ~430 lb the friction-only version managed. The governing limit becomes the cap, its attachment and hole-edge tear-out, not the pin.
+
+**It simplifies the rest, too.** If the tongue now **stops at the cap** rather than running on over the rail, it never passes over the plastic housing — so **the housing clash and the crush tube both disappear**, and so does the in-slot hold-down (there's no slot under the tongue any more). Two variants, and the first is the default:
+
+| | Arrangement | Trade |
+|---|---|---|
+| **(i)** ✅ | **Tongue stops at the cap.** Its end face bears on the cap (bar section, 0.375 sq in → ~2,070 psi at 20 g — fine), pin takes forward load in shear | Simplest by far. Needs a **separate retainer against lift** — the H3 saddle clamp on the rail just forward of the cap is the tidy answer |
+| **(ii)** | **Tongue continues over the rail**, keeping the in-slot hold-down (H1), the crush tube and the housing clash | More parts, but the hold-down is integral |
+
+📏 **One unknown left, and it only sets the pin's length:** how **deep** the cap's hole is — and whether it's a through-hole into the channel. Fit the pin to whatever engagement is actually there.
 
 **Also still open, and it only affects H1:** does the slot have undercut lips? Buy **one** T-bolt and try it before buying four. With the load on the lug this is a convenience question, not a structural one.
 2. **Rearward + lift — 3 ratchet straps** (400 lb WLL each) from stud-fitting D-rings on the bridge, forward and down into the 3 striker loops, tensioned. These also pin the board against the slide's cantilever moment when the loaded fridge is pulled to full extension.
