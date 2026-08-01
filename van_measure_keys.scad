@@ -101,7 +101,8 @@ module v1() {
         "INTERIOR LENGTH — closed hatch to the front seatbacks, along the floor.",
         "This is the number the whole panel train is sized against: Panel A + B + C",
         "fill it exactly, so if it comes back short every panel shrinks.",
-        "-> params.scad: van_interior_length. Currently 96\", UNVERIFIED.",
+        "-> params.scad: van_interior_length. MEASURED 93.75\" (Aug 2026)",
+        "   — 2.25\" under the old 96\" estimate; Panel C absorbed it.",
     ]);
 }
 
@@ -118,8 +119,9 @@ module v2() {
     callout("V2", [
         "INTERIOR WIDTH at the FLOOR — the pinch between the two wheel wells,",
         "measured at its narrowest, not at a wider spot fore or aft of them.",
-        "Every 46\"-wide panel and the 48.5\" envelope come off this.",
-        "-> params.scad: van_interior_width. 48.5\", already verified — reconfirm.",
+        "Every 46\"-wide panel and the floor envelope come off this.",
+        "-> params.scad: van_interior_width. MEASURED 49\" at the pinch",
+        "   (54\" forward of the wheel wells) — Aug 2026.",
     ]);
 }
 
@@ -132,9 +134,9 @@ module v3() {
     callout("V3", [
         "INTERIOR HEIGHT — cargo floor up to the headliner, at the",
         "sleeping run (not at the tailgate, where the roof drops).",
-        "-> params.scad: van_interior_height. 44\", already",
-        "   verified — reconfirm. It caps the whole stack:",
-        "   deck + mattress + sitting headroom.",
+        "-> params.scad: van_interior_height. MEASURED 42\" mid-van",
+        "   (37\" back at the gate) — Aug 2026. It caps the whole",
+        "   stack: deck + mattress + sitting headroom (now 19.5\").",
     ]);
     inset(INSET_X, 6, 98, 30, "V3  REAR SECTION — floor to headliner") {
         color("Black") {
@@ -167,7 +169,8 @@ module v4() {
         "VENT INTRUSION at FLOOR LEVEL, one measurement per side: how far the",
         "floor vent / trim kick eats into the usable width down at the floor.",
         "The deck may overhang it, but a LEG may not stand on it.",
-        "-> params.scad: vent_intrusion_width. 2.5\" per side, already verified.",
+        "-> params.scad: vent_intrusion_width. MEASURED 3.5\" per side",
+        "   (Aug 2026) — 1\" deeper each side than assumed; leg_inset grew.",
     ]);
 }
 
@@ -183,8 +186,9 @@ module v5() {
     callout("V5", [
         "HATCH CURVATURE CLEARANCE — how far forward of the closed hatch you have",
         "to stop building, because the glass and trim curve inward above the floor.",
-        "Nothing is built in this strip; it is why the panels total 94\", not 96\".",
-        "-> params.scad: hatch_curvature_clearance. 2\", already verified.",
+        "-> params.scad: hatch_curvature_clearance. MEASURED 0\" (Aug 2026):",
+        "   the build never rises high enough to reach the curvature, so",
+        "   nothing is reserved and the panels total the full 93.75\".",
     ]);
 }
 
@@ -195,12 +199,12 @@ module v6() {
     color(RED) translate([HATCH_X - 0.8, FLOOR_Y0 - 4]) square([1.6 + HEAVY, van_interior_width + 8]);
     txt("elevation taken at the open tailgate ->", sx(14), FLOOR_Y1 + 4.5, 2.6, "right", RED);
     callout("V6", [
-        "The TAILGATE (gate) opening, both from outside at",
-        "the open hatch: its WIDTH at the NARROWEST point",
-        "(V6a) and its HEIGHT where the rounded corners",
-        "start cutting in (V6b) — not the widest/tallest.",
-        "-> gate_opening_width 48\", gate_opening_height 36\",",
-        "   both UNVERIFIED — they gate what fits through at all.",
+        "The TAILGATE (gate) opening, from outside at the open",
+        "hatch: WIDTH at its NARROWEST point (V6a), and HEIGHT",
+        "where the rounded corners start cutting in (V6b).",
+        "-> MEASURED Aug 2026: gate_opening_width 50\",",
+        "   gate_opening_height 37\" at the centre — but only",
+        "   20.5\" at the corner radius. Carry modules up the MIDDLE.",
     ]);
     inset(INSET_X, 6, 98, 30, "V6  REAR ELEVATION — the gate opening") {
         // opening with radiused corners, drawn small-scale
@@ -224,14 +228,14 @@ module v7() {
         dash_x(FLOOR_Y1 + 2.5, sx(80), HATCH_X, HEAVY);
         translate([sx(80) - 0.8, FLOOR_Y0 - 2.5]) square([1.6, van_interior_width + 5]);
     }
-    dim_x(HATCH_X, sx(80), DIM1_Y, "along the whole 80\" run", 2.9, RED, DIM1_Y - FLOOR_Y1 - 4);
+    dim_x(HATCH_X, sx(80), DIM1_Y, "along the whole sleeping run", 2.9, RED, DIM1_Y - FLOOR_Y1 - 4);
     callout("V7", [
         "WALL-TO-WALL WIDTH at PLATFORM HEIGHT — at ~18.5\"",
-        "(V7a) and ~22.5\" (V7b) above the floor, taken at",
-        "several points along the whole 80\" sleeping run.",
-        "48.5\" is the FLOOR pinch; the walls flare wider up",
-        "here, which is what lets a 52\" platform fit.",
-        "-> gates bed_frame_width: needs >= 53\". UNVERIFIED.",
+        "(V7a) and ~22.5\" (V7b) above the floor. 49\" is the",
+        "FLOOR pinch; the walls were ASSUMED to flare wider up.",
+        "-> MEASURED Aug 2026: they do NOT — 50\" and 49.5\",",
+        "   against the >= 53\" needed. So bed_frame_width was",
+        "   cut 52\" -> 49\", and the slats 45\" -> 42\".",
     ]);
     inset(INSET_X, 6, 98, 30, "V7  REAR SECTION — width vs. height") {
         color("Black") {
@@ -245,7 +249,7 @@ module v7() {
         }
         txt("V7a ~18.5\"", INSET_X + 79, 15.3, 2.4, "left", RED);
         txt("V7b ~22.5\"", INSET_X + 79, 22.3, 2.4, "left", RED);
-        txt("floor pinch 48.5\"", INSET_X + 24, 9.2, 2.3, "left", GRY);
+        txt("floor pinch 49\"", INSET_X + 24, 9.2, 2.3, "left", GRY);
     }
 }
 
@@ -259,10 +263,10 @@ module v8() {
     callout("V8", [
         "The SIDE SLIDING DOOR: fore-aft WIDTH (V8a), HEIGHT",
         "(V8b), and the one that actually matters — the USABLE",
-        "CLEAR width/height at the door's real STOPPING POINT,",
-        "not the rough opening (V8c).",
-        "-> side_door_opening_width / _height, 40\"/40\", both",
-        "   UNVERIFIED. Decides if the DELTA 3 stays in Panel A.",
+        "CLEAR width/height at the door's real STOPPING POINT (V8c).",
+        "-> MEASURED Aug 2026: the usable CLEAR gap at the door's",
+        "   real stop is 29\", 11\" tighter than the 40\" assumed.",
+        "   The aperture HEIGHT is still unmeasured.",
     ]);
     inset(INSET_X, 6, 98, 30, "V8  SIDE ELEVATION — the door opening") {
         color("Black") translate([INSET_X + 24, 8]) difference() {
@@ -314,11 +318,10 @@ module v10() {
     callout("V10", [
         "Is the CARGO FLOOR LEVEL front-to-back, or sloped?",
         "Lay a long level along the run, check several points.",
-        "Nothing in the model accounts for slope: every module's",
-        "4 legs are one length, which only gives a level deck if",
-        "the floor itself is level.",
-        "-> Not a param. Assumed flat, UNVERIFIED — a slope means",
-        "   per-leg shimming.",
+        "Every module's 4 legs are one length, which only gives",
+        "a level deck if the floor itself is level.",
+        "-> MEASURED Aug 2026: mostly level — level at the ends,",
+        "   minor change between. The leg feet absorb it.",
     ]);
     inset(INSET_X, 6, 98, 30, "V10  SIDE SECTION — level check") {
         color("Black") translate([INSET_X + 12, 12]) polygon([[0,0],[74,3],[74,4],[0,1]]);

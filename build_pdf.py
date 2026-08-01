@@ -3,14 +3,26 @@
 
 Converts the markdown build plan to styled HTML (with a dedicated
 overhead-floorplan section pulled out for visibility), then shells
-out to headless Chrome to print it to PDF.
+out to headless Chrome to print it to PDF, and finally stamps a
+footer with page numbers onto every page after the cover.
+
+The page-number stamp is a post-process rather than CSS because
+Chrome's print-to-PDF does not implement CSS paged-media margin
+boxes — `@bottom-center { content: counter(page) }` silently does
+nothing there. Chrome's own --print-to-pdf header/footer is the
+other option, but the CLI only exposes it as all-or-nothing (it
+drags in the URL and the date), so the footer is drawn with
+reportlab and merged in with pypdf instead.
 """
+import io
 import re
 import subprocess
 import sys
 from pathlib import Path
 
 import markdown
+from pypdf import PdfReader, PdfWriter
+from reportlab.pdfgen import canvas
 
 ROOT = Path(__file__).parent
 MD_PATH = ROOT / "sienna_camper_build_plan.md"
@@ -127,12 +139,123 @@ img[alt^="Component "] { display: block; width: 100%; height: auto;
 .buy-links td { word-break: break-all; }
 .buy-links td:first-child, .buy-links td:nth-child(2) { word-break: normal; }
 .buy-links a { font-size: 8pt; font-family: monospace; }
+
+/* COVER SHEET — its own page, ahead of the document title page. The
+   whole point of it is the liability disclaimer, so the warning box
+   gets the visual weight, not the title. `page-break-after` on the
+   wrapper is what keeps the build plan's own h1 off this page. */
+/* NOTE: don't try to bottom-anchor the footer with flex + min-height
+   here — Chrome's print layout doesn't stretch the box to the page, so
+   the rule is dead weight. The cover simply flows from the top. */
+.cover { page-break-after: always; }
+.cover-head { border-bottom: 3px solid #2c3e50; padding-bottom: 12pt; }
+.cover-head h1 { font-size: 30pt; margin: 0 0 4pt; letter-spacing: -0.5pt; }
+.cover-head .cover-sub { color: #555; font-size: 13pt; margin: 0; }
+.cover-head .cover-meta { color: #777; font-size: 9.5pt; margin: 10pt 0 0; }
+.cover-warn { border: 2.5px solid #8a1c1c; border-radius: 3pt;
+    background: #fdf6f5; padding: 14pt 18pt; margin: 26pt 0 0; }
+.cover-warn h2 { border: none; color: #8a1c1c; font-size: 14pt;
+    margin: 0 0 8pt; padding: 0; page-break-before: avoid;
+    text-transform: uppercase; letter-spacing: 0.4pt; }
+.cover-warn p { font-size: 9.7pt; margin: 7pt 0; }
+.cover-warn ul { font-size: 9.7pt; margin: 7pt 0 7pt 0; padding-left: 16pt; }
+.cover-warn li { margin: 4pt 0; }
+.cover-warn .accept { margin-top: 12pt; padding-top: 10pt;
+    border-top: 1px solid #d8bcbc; font-weight: 600; color: #111; }
+.cover-foot { margin-top: 22pt; padding-top: 12pt; color: #666;
+    font-size: 8.5pt; border-top: 1px solid #d7dfe6; }
+"""
+
+# The cover sheet. Deliberately plain HTML rather than markdown in the
+# source document: it is a legal/safety page, not build content, and it
+# must not land in the TOC or be reflowed by the markdown pipeline.
+COVER = """
+<div class="cover">
+  <div class="cover-head">
+    <h1>Project Smores</h1>
+    <p class="cover-sub">Toyota Sienna Modular Camper Conversion — Full Build Plan</p>
+    <p class="cover-meta">Vehicle measurements surveyed and verified Aug 1, 2026.
+       Dimensions in this document drive real cuts — re-measure your own vehicle before building.</p>
+  </div>
+
+  <div class="cover-warn">
+    <h2>Read this first — disclaimer of liability</h2>
+
+    <p><strong>This document is provided for general informational purposes only.
+    It is not professional engineering, automotive, electrical, or safety advice,
+    and it has not been reviewed or certified by any engineer, manufacturer, or
+    regulatory body.</strong> No part of it has been crash-tested or validated
+    against any vehicle safety standard.</p>
+
+    <p><strong>If you build from this plan, you do so entirely at your own risk,
+    and you accept full and sole responsibility for the outcome.</strong> The
+    author and JJJJJ Enterprises, LLC make no warranty of any kind — express or
+    implied — as to the accuracy, completeness, safety, legality, or fitness for
+    any purpose of anything described here, and <strong>disclaim all liability
+    for any personal injury, death, illness, property damage, damage to your
+    vehicle, financial loss, or legal consequence</strong> arising directly or
+    indirectly from its use, whether or not such harm was foreseeable.</p>
+
+    <p>Work of this kind carries real and serious risks, including but not
+    limited to:</p>
+    <ul>
+      <li><strong>Damage to the vehicle</strong> — trim, wiring, floor pan,
+          upholstery, seat mechanisms and finish. Modifications may void some or
+          all of your manufacturer warranty, and may affect insurance coverage,
+          roadworthiness, inspection status, or resale value.</li>
+      <li><strong>Airbag, seatbelt and restraint systems.</strong> Seat removal
+          and any work near SRS components, pretensioners, or their wiring can
+          disable, damage, or unexpectedly deploy safety systems. Airbags can
+          cause severe injury or death if triggered during service. Anything
+          touching these systems is work for a qualified technician.</li>
+      <li><strong>Cargo becoming a projectile.</strong> Furniture, appliances,
+          batteries and gear that are not restrained to a genuine crash-rated
+          standard can move, break loose, or kill occupants in a collision or
+          rollover. Nothing in this plan is crash-rated, and no statement about
+          straps, anchors, or load paths here should be read as a safety rating.</li>
+      <li><strong>Electrical hazard.</strong> Battery, inverter, and DC wiring
+          work risks short circuit, arc flash, burns, lithium battery fire, and
+          electrocution. Sizing, fusing, and installation should be checked by a
+          qualified person.</li>
+      <li><strong>Cooking, heat, and carbon monoxide.</strong> Cooking or running
+          any fuel-burning appliance in or near an enclosed vehicle risks fire,
+          burns, and carbon monoxide poisoning, which can be fatal while you
+          sleep. Ventilate, and fit working CO and smoke alarms.</li>
+      <li><strong>Weight, handling and load limits.</strong> Added weight affects
+          braking, handling, tire load, and your vehicle's GVWR and axle ratings.
+          Verify all figures against your own vehicle's door-jamb placard.</li>
+      <li><strong>Tools and materials.</strong> Power tools, sharp edges, dust,
+          adhesives, and finishes cause injury. Follow every manufacturer's
+          instructions and use appropriate protective equipment.</li>
+      <li><strong>Law and regulation.</strong> Vehicle modification, occupancy,
+          and where you may sleep in a vehicle are governed by local law. Confirm
+          what applies to you; compliance is your responsibility alone.</li>
+    </ul>
+
+    <p><strong>Verify every dimension on your own vehicle before cutting
+    anything.</strong> The measurements here were taken on one specific van and
+    may not match yours, and errors — in measurement, in transcription, or in the
+    drawings — are possible throughout.</p>
+
+    <p class="accept">By reading further, building from, or relying on this
+    document, you acknowledge and accept these risks and this disclaimer. If you
+    are not willing to accept them, do not use this document. When in doubt,
+    stop and hire a qualified professional.</p>
+  </div>
+
+  <div class="cover-foot">
+    Free to view, share, and build from for personal, non-commercial use only.
+    Commercial use, resale, or redistribution for profit is prohibited without
+    prior written permission. &copy; 2026 JJJJJ Enterprises, LLC — all rights reserved.
+  </div>
+</div>
 """
 
 TEMPLATE = """<!doctype html>
 <html><head><meta charset="utf-8"><title>Project Smores Build Plan</title>
 <style>{css}</style></head>
 <body>
+{cover}
 <h1 class="doctitle">Project Smores</h1>
 <p class="subtitle">Full Build Plan — Modular Lift-Out Design</p>
 {toc}
@@ -140,9 +263,51 @@ TEMPLATE = """<!doctype html>
 </body></html>
 """
 
+FOOTER_TITLE = "Project Smores — Sienna Camper Build Plan"
+FOOTER_NOTE = "Build at your own risk — see the disclaimer on the cover"
+
+
 def build_toc(headings):
     items = "".join(f'<li>{h}</li>' for h in headings)
     return f'<div class="toc"><strong>Contents</strong><ul>{items}</ul></div>'
+
+
+def stamp_footers(pdf_path, skip_first=True):
+    """Draw a footer (title / page N of M / risk note) on each page.
+
+    The cover sheet is left unnumbered — page 1 is the document's own
+    title page — so the numbering a reader sees matches "page 1 of N"
+    of the actual build plan rather than counting the legal page.
+    """
+    reader = PdfReader(pdf_path)
+    first_body = 1 if skip_first else 0
+    total = len(reader.pages) - first_body
+    writer = PdfWriter()
+
+    for index, page in enumerate(reader.pages):
+        if index >= first_body:
+            width = float(page.mediabox.width)
+            height = float(page.mediabox.height)
+            buf = io.BytesIO()
+            pen = canvas.Canvas(buf, pagesize=(width, height))
+            pen.setFont("Helvetica", 7.5)
+            pen.setFillGray(0.45)
+            # 0.65in page margin; sit the footer inside the bottom of it
+            baseline = 30
+            pen.drawString(47, baseline, FOOTER_TITLE)
+            pen.drawCentredString(width / 2, baseline,
+                                  f"Page {index - first_body + 1} of {total}")
+            pen.drawRightString(width - 47, baseline, FOOTER_NOTE)
+            pen.setStrokeGray(0.8)
+            pen.setLineWidth(0.4)
+            pen.line(47, baseline + 9, width - 47, baseline + 9)
+            pen.save()
+            page.merge_page(PdfReader(buf).pages[0])
+        writer.add_page(page)
+
+    with open(pdf_path, "wb") as handle:
+        writer.write(handle)
+    return total
 
 
 def main():
@@ -278,7 +443,7 @@ def main():
     )
 
     toc_html = build_toc(headings)
-    full_html = TEMPLATE.format(css=CSS, toc=toc_html, body=html_body)
+    full_html = TEMPLATE.format(css=CSS, cover=COVER, toc=toc_html, body=html_body)
     HTML_PATH.write_text(full_html)
     print(f"wrote {HTML_PATH}")
 
@@ -298,7 +463,9 @@ def main():
         print(result.stdout, file=sys.stderr)
         print(result.stderr, file=sys.stderr)
         sys.exit(1)
-    print(f"wrote {PDF_PATH} ({PDF_PATH.stat().st_size} bytes)")
+    numbered = stamp_footers(PDF_PATH)
+    print(f"wrote {PDF_PATH} ({PDF_PATH.stat().st_size} bytes) "
+          f"— cover sheet + {numbered} numbered pages")
 
 
 if __name__ == "__main__":

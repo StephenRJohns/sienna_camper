@@ -17,49 +17,59 @@
 // ============================================================
 
 /* [Vehicle constraints — 2nd row seats REMOVED entirely] */
-// van_interior_length below is an UNVERIFIED ESTIMATE, not a
-// measurement — same status as the gate opening numbers further
-// down. The 72" figure from the earlier design was measured with
-// the 2nd row seats still installed (pushed fully forward on their
-// tracks); now that those seats are being removed completely, the
-// van gains roughly the depth the seats themselves occupied at
-// that forward position (~24-26" for a typical minivan 2nd-row
-// bench/captain's chair, plus a little track). 96" here is that
-// estimate, rounded — MEASURE THE ACTUAL EMPTY INTERIOR (closed
-// hatch to the front seatbacks) once the seats are physically out
-// and correct this value before cutting anything.
-// Width/height/vent/hatch numbers are unaffected by seat removal
-// (they're structural, not seat-related) and remain the originally
-// verified figures.
-van_interior_length     = 96;   // UNVERIFIED ESTIMATE — closed hatch to front seatbacks, 2nd row removed
-van_interior_width      = 48.5; // floor clearance between wheel wells — HARD MAX, verified
-van_interior_height     = 44;   // HARD MAX, verified
-vent_intrusion_width    = 2.5;  // rear lower heat vent intrusion, per side, at floor level only
-hatch_curvature_clearance = 2;  // reserved at the tailgate end for the curved hatch — not to be built into
+// ALL MEASURED (owner, Aug 1 2026 — Section 0 survey V1-V10, taken
+// with the 2nd row physically out and the 3rd row folded as it sits
+// in camper mode). These are no longer estimates. Three of them came
+// back tighter than the numbers this design was built on, and the
+// knock-on edits are marked "(V1 Aug 2026)" etc. wherever they land:
+//   V1 length  96   -> 93.75  (-2.25) — the whole panel train shrank
+//   V3 height  44   -> 42     (-2)    — mid-van; at the gate it is 37
+//   V4 vent    2.5  -> 3.5    (+1)    — per side, so leg_inset grew
+//   V5 hatch   2    -> 0             — the build never gets high
+//                                      enough to reach the glass
+//                                      curvature, so nothing is
+//                                      reserved at the tailgate end
+// V2 came back 49" at the wheel-well pinch (54" further forward, but
+// the pinch is what gates the 46"-wide boxes) — 0.5" better than the
+// 48.5" this was designed against, so nothing downstream changes.
+van_interior_length     = 93.75; // MEASURED V1 (Aug 2026) — closed hatch to front seatbacks, 2nd row out
+van_interior_width      = 49;    // MEASURED V2 (Aug 2026) — floor pinch between wheel wells (54" forward of them); HARD MAX for the boxes
+van_interior_height     = 42;    // MEASURED V3 (Aug 2026) — cargo floor to headliner, mid-van; HARD MAX
+vent_intrusion_width    = 3.5;   // MEASURED V4 (Aug 2026) — rear lower heat vent intrusion, per side, at floor level only (sketched ~3.25" over a ~15" run; 3.5" is the value to build to)
+hatch_curvature_clearance = 0;   // MEASURED V5 (Aug 2026) — nothing reserved: the deck never rises far enough to meet the hatch glass/trim curvature
+// Wall-to-wall width UP at the sleeping plane, which is what the
+// cantilevered bed platform actually has to fit between — NOT the
+// floor pinch above. MEASURED V7 (Aug 2026): 50" at ~18.5" above the
+// floor, 49.5" at ~22.5". The walls barely flare over the wheel
+// wells, so 50" is the usable width (owner, Aug 2026) — the plan had
+// assumed >=53" here, which is what forced bed_frame_width down from
+// 52" to 49". See bed_frame_width below.
+van_platform_width      = 50;    // MEASURED V7 (Aug 2026) — usable wall-to-wall at platform height
 
 // usable design envelope after reserving hatch curvature clearance
-usable_length = van_interior_length - hatch_curvature_clearance; // 94
-usable_floor_width = van_interior_width - 2 * vent_intrusion_width; // 43.5 — floor-level width, legs must stay inside this
+usable_length = van_interior_length - hatch_curvature_clearance; // 93.75 (V5 reserves nothing)
+usable_floor_width = van_interior_width - 2 * vent_intrusion_width; // 42 — floor-level width, legs must stay inside this
 
-/* [Rear liftgate opening — UNVERIFIED, confirm by physical measurement] */
+/* [Rear liftgate opening — MEASURED (owner, Aug 1 2026, V6)] */
 // Every module must physically pass through this opening to be
 // lifted in/out — that's the entire point of the modular design.
-// These numbers came from an AI-summarized web search (Reddit/
-// YouTube sourced), NOT a direct measurement like the vehicle
-// interior constraints above. Some of the resulting margins are
-// tight (see the asserts below) — measure the actual opening
-// (narrowest width, height, and how far the upper corners round
-// off) with a tape measure before cutting anything.
-gate_opening_width  = 48; // UNVERIFIED — widest point of the liftgate opening
-gate_opening_height = 36; // UNVERIFIED — upper corners are heavily rounded, reducing
-                          // effective clearance near the edges; treat this as optimistic
+// Both numbers are now tape measurements, and both came back BETTER
+// than the web-sourced estimates they replace (48 x 36): the
+// narrowest width is 50" and the clear height is 37".
+// The corners still round off hard, though — the opening is down to
+// 20.5" of height by the time you are out at the rounded corner
+// (V6b), so a module that only just clears 37" in the middle of the
+// gate will foul if it is carried in flat against one side. Carry
+// the 18.5"-tall boxes through the centre of the opening.
+gate_opening_width  = 50; // MEASURED V6a (Aug 2026) — narrowest point of the liftgate opening
+gate_opening_height = 37; // MEASURED V6b (Aug 2026) — clear height at the centre; only 20.5" out where the corner radius starts
 
 /* [Rear pantry — PREFAB drawer cluster (owner, July 2026). The old
    plywood pantry is GONE, replaced by BOUGHT storage: a 2-wide x
    2-high array of IRIS USA 12in-W stackable storage drawers (Home
    Depot model 500163, sold as 3-packs — buy 2, use 4) sitting on the
    tailgate end of Panel C's deck, in the same last-pantry_len
-   footprint (the 80in sleeping run is unchanged), plus a rigid pot/
+   footprint (79.25in of sleeping run remains), plus a rigid pot/
    pan crate in the leftover open deck bay beside it. NOTHING is
    built or clamped: a cleat pocket (cab side + both sides, tailgate
    side open) plus ONE cam-buckle strap across the drawer fronts hold
@@ -69,12 +79,20 @@ gate_opening_height = 36; // UNVERIFIED — upper corners are heavily rounded, r
    deck edge in the open bay. Layout, tailgate to front seats:
    Kitchen (Panel C's void, below deck) -> this cluster (on the deck)
    -> Bed -> front seats. */
-pantry_len       = 14;    // Y footprint reserved on Panel C's deck
+// (V5 Aug 2026) pantry_len went 14 -> 14.5. The drawer units are
+// 14.3in deep and used to be allowed to sit 0.3in PROUD of the deck
+// edge, on the grounds that 2in was reserved at the tailgate end for
+// the hatch glass curvature anyway. V5 measured that reserve at ZERO
+// (the build never rises far enough to meet the curve), so there is
+// no reserve left to hang over into — Panel C's deck now has to carry
+// the whole drawer. Costs 0.5in of sleeping run (79.75 -> 79.25in,
+// still 1.25in clear of the 78in mattress).
+pantry_len       = 14.5;  // Y footprint reserved on Panel C's deck
 pantry_unit_w    = 12.1;  // one IRIS drawer unit — X (width)
-pantry_unit_d    = 14.3;  // Y (depth) — 0.3in proud of the deck edge, well inside the 2in hatch reserve
+pantry_unit_d    = 14.3;  // Y (depth) — now fully carried by the deck, 0.2in to spare
 pantry_unit_h    = 8.4;   // Z (height)
 pantry_cluster_w = 2 * pantry_unit_w; // 24.2 — 2 units wide, against the driver edge
-pantry_cluster_h = 2 * pantry_unit_h; // 16.8 — 2 units high (top at deck 18.5 + 16.8 = 35.3, ~8.7in of roof clearance — a 3rd 8.4in tier now technically clears, by 0.3in)
+pantry_cluster_h = 2 * pantry_unit_h; // 16.8 — 2 units high (top at deck 18.5 + 16.8 = 35.3, ~6.7in of roof clearance against the MEASURED 42in height (V3 Aug 2026) — a 3rd 8.4in tier no longer fits, it would foul the headliner by 1.7in)
 pantry_bay_w     = 46 - pantry_cluster_w; // 21.8 — open deck bay, passenger side (pot crate + relocated power)
 pantry_pot_bin   = 13;    // rigid pot/pan crate footprint in the bay (~13x13 milk crate; the pots' 11x11 box drops inside)
 
@@ -112,24 +130,42 @@ assert(spare_dia <= panel_b_length && spare_cleat + spare_w + panelb_tote_h <= l
 // kitchen unit (its own tailgate slide) INSTEAD OF the side drawers
 // A and B get — see fridge_bay_module()/kitchen_box_module() in
 // platform.scad.
-// panels_total_length is 94" — Panel A now sits flush with the front
+// panels_total_length is 93.75" — Panel A now sits flush with the front
 // seatbacks (panel_a_y0 = 0, below) instead of leaving 8" of open
 // floor in front of it, so the 3 panels fill the entire usable_length
 // with nothing left over. The rear pantry (prefab drawer cluster)
-// doesn't add its own separate length; it rides on the LAST pantry_len (14")
-// of Panel C's own 36", so the sleeping run available for the
-// mattress is panels_total_length - pantry_len = 80" — a full,
-// 80in sleeping run — the HEST Dually Long mattress (78in) leaves ~2in of spare.
+// doesn't add its own separate length; it rides on the LAST pantry_len (14.5")
+// of Panel C's own 35.75", so the sleeping run available for the
+// mattress is panels_total_length - pantry_len = 79.25" — the HEST
+// Dually Long mattress (78in) still leaves ~1.25in of spare.
+// (V1 Aug 2026) The measured interior came in 2.25" shorter than the
+// 96" estimate AND V5 freed up the 2" that used to be reserved for
+// the hatch curvature, so the train only had to give up 0.25" net.
+// PANEL C absorbs all of it (36 -> 35.75), for two reasons that both
+// rule out taking it off Panel A or B: (1) Panels A and B must stay
+// the SAME length — steps/panel_ab_lego.scad asserts it, because they
+// share one set of step diagrams and one cut list entry; (2) their
+// combined length IS bed_frame_length, so shaving either one would
+// change the bed platform's side rails from 58" and ripple through
+// the lumber list for no reason. Panel C has ~7in of fore-aft slack
+// around the 28.74in fridge, which is where the 1/4in comes from.
 panel_a_length   = 29;
 panel_b_length   = 29;
-panel_c_length   = 36; // holds the fridge + kitchen unit underneath, AND the rear-pantry drawer cluster (last 14in) on top
+panel_c_length   = 35.75; // (V1 Aug 2026) was 36 — absorbs the 0.25" the measured interior lost; holds the fridge + kitchen unit underneath, AND the rear-pantry drawer cluster (last 14.5in) on top
 panel_width      = 46;  // deck width — see leg_inset for floor-level clearance
 panel_thickness  = 0.75; // 3/4" Baltic birch (Section 3)
 // Mattress: bought HEST Dually Long (hest.com) — 78 x 50 x 4in solid
 // foam (memory-foam top over polyfoam, NO air chambers), washable
-// waterproof cover included. 25in of width per person on the 52in
-// cantilevered platform; the 2in of spare length sits at the head
-// end at the rear-pantry cluster. BUDGET FALLBACK (Section 4/6): the
+// waterproof cover included. 25in of width per person; the ~1.75in of
+// spare length sits at the head end at the rear-pantry cluster.
+// (V7 Aug 2026) OPEN ISSUE — the mattress is now the widest thing in
+// the van. It is 50in wide, the measured usable width at the sleeping
+// plane is also 50in, and the platform under it is only 49in: the foam
+// goes in with zero side clearance and overhangs its frame by ~0.5in
+// per side. Solid foam tolerates both (it is not a sprung mattress,
+// and the walls flare outward above the deck), but it is a squeeze
+// rather than a fit, and it is a BOUGHT item — flagged, not designed
+// around. BUDGET FALLBACK (Section 4/6): the
 // old DIY foam build — queen 60x80 blanks cut to 50x78, using the
 // foam_* layer params below (they only drive the fallback's step
 // diagrams now, steps/mattress_lego.scad).
@@ -162,14 +198,25 @@ mattress_total_thickness = 4; // HEST Dually Long thickness (DIY fallback: 4in b
 // so plain boards are cheaper AND simpler.
 bed_frame_length = panel_a_length + panel_b_length; // 58 — Panel A + B only; ends flush at the B/C seam (Panel C's own deck carries the rest of the mattress)
 // The platform CANTILEVERS past the 46in boxes: the boxes are stuck
-// at 46 (legs must land between the floor vents; boxes pass the 48in
-// gate), but the mattress rides 19-27in up where the Sienna is wider
-// than the 48.5in floor pinch. UNVERIFIED: measure wall-to-wall at
-// ~18.5in and ~22.5in above the floor along the whole run — need >=53in
-// for this width (Section 0). The 52x58 platform enters the van
-// tilted diagonally through the gate (gate diagonal ~60in).
-bed_frame_width    = 52;  // 3in overhang past the boxes on each side
-platform_overhang  = (bed_frame_width - panel_width) / 2; // 3 — reference
+// at 46 (legs must land between the floor vents; boxes pass the 50in
+// gate), but the mattress rides 19-27in up, off the 49in floor pinch.
+//
+// (V7 Aug 2026) THE CANTILEVER GOT CUT BACK. This design assumed the
+// walls flare to >=53in up at the sleeping plane. They do not: the
+// measured wall-to-wall is 50in at ~18.5in up and 49.5in at ~22.5in
+// up, and 50in is the usable width (owner). So the 52in platform was
+// 2in too wide and is now 49in — 1.5in of overhang per side instead
+// of 3in, keeping ~0.5in of insertion clearance per side at the
+// sleeping plane. Knock-on: the mattress is 50in wide (a BOUGHT HEST
+// Dually Long), so it now overhangs the frame by ~0.5in per side and
+// is a zero-clearance fit between the walls — see mattress_width.
+// The 49x58 platform still enters the van tilted diagonally through
+// the gate (50 x 37 gate, diagonal ~62in).
+bed_frame_width    = 49;  // (V7 Aug 2026) was 52 — 1.5in overhang past the boxes on each side, inside the measured 50in usable width
+platform_overhang  = (bed_frame_width - panel_width) / 2; // 1.5 — reference
+assert(bed_frame_width <= van_platform_width,
+       str("Bed platform is ", bed_frame_width, "in wide but only ", van_platform_width,
+           "in of usable wall-to-wall width exists at the sleeping plane (V7)"));
 bed_slat_t       = 0.75;  // 3/4in solid-wood slat (typical bought queen slat, ~1x4 pine/poplar)
 bed_slat_width   = 3.5;   // in, each slat's own width (1x4 actual)
 bed_slat_count   = 8;     // WEIGHT SWAP (owner, July 2026): dropped 10 -> 8 (-~4lb). 7 gaps across the 58in span, ~4.3in each — fine under the SOLID-FOAM HEST mattress (foam bridges the gaps; a sprung/coil mattress would want the closer spacing)
@@ -274,8 +321,18 @@ bed_platform_stack = bed_frame_thickness; // 0.75in
 // the van's own body structure, not just an awkward reach). Confirm
 // your door's actual fore-aft position once measured (side_door_y0
 // below), and see the reachability check further down.
-side_door_opening_width  = 40; // UNVERIFIED — fore-aft span of the opening
-side_door_opening_height = 40; // UNVERIFIED
+//
+// V8 (Aug 2026) came back in two halves. The number that MATTERS is
+// V8c: the USABLE CLEAR fore-aft gap at the door's real stopping
+// point is 29" — well under the 40" this was designed against, so
+// the reachability echo below now runs off 29". The other two
+// figures on the survey sheet (50" wide, 58" tall) are the DOOR
+// PANEL's own external dimensions, not the aperture (owner, Aug
+// 2026), so the rough opening's height is still unmeasured — leave
+// it flagged rather than pretend 58" is a cabin dimension (the cabin
+// is only 42" tall).
+side_door_opening_width  = 29; // MEASURED V8c (Aug 2026) — usable CLEAR fore-aft gap at the door's actual stop (rough aperture not separately measured; the 50" on the sheet is the door panel)
+side_door_opening_height = 40; // STILL UNVERIFIED — V8b (58") turned out to be the door panel's external height, not the opening's
 // Fore-aft position of the door opening's FRONT edge, measured from
 // the same Y=0 reference as van_interior_length (closed hatch to the
 // front seatbacks). This is a genuinely unmeasured placeholder, not
@@ -447,9 +504,18 @@ fridge_rail_stack   = fridge_rail_t + fridge_riser_t; // 1.0 per side, OUTBOARD 
 // Nothing bolts to the vehicle. The board is ONE comb-shaped piece,
 // 46 x 33 overall — bridge and strips continuous, so there is no
 // ply-to-ply joinery (no glue, no lap screws; assembly sheet V1/V5).
-// Strip outlines are cut only after the Section 0 F1-F7 floor survey
-// (striker position ~46-50in from the hatch is UNVERIFIED) — these
-// drive the renders, not a cut list.
+// Strip outlines are cut only after the Section 0 F1-F7 floor survey.
+// (F4 Aug 2026) That survey is now DONE: the striker row measures
+// 44.5in from the closed hatch — 1.5in nearer than the 46-50in that
+// was assumed, so the steel tongues come in at the SHORT end of the
+// 10-14in range. All 3 loops are exposed and hookable with the seats
+// folded, ~1.5in of inside clearance each, spaced ~12.5-13in apart
+// with the outer two ~11in in from each sidewall (photos, Aug 2026).
+// The survey also killed two of the fallbacks: there is no hard step
+// face at the striker row for the tongues to butt against (F7 — it is
+// carpet over a ~1in soft step), and the stowage well is filled by
+// the folded seats rather than open (F1/F2/F3), so the load path is
+// the rail ends plus the straps. These drive the renders, not a cut list.
 aboard_mat_t = 0.1;   // non-slip rubber mat under every strip
 aboard_t     = 0.75;  // anchor board ply thickness
 aboard_top   = aboard_mat_t + aboard_t; // 0.85 — the riser/rail base plane
@@ -631,17 +697,17 @@ tent_example_width  = 96;  // X, ~8ft
 // ------------------------------------------------------------
 // Derived values
 // ------------------------------------------------------------
-panels_total_length   = panel_a_length + panel_b_length + panel_c_length; // 94
+panels_total_length   = panel_a_length + panel_b_length + panel_c_length; // 93.75
 // The rear pantry no longer occupies its own separate slot — it
 // rides on Panel C's own deck — so the assembly's real length is just
 // the 3 panels. With Panel A flush to the front seatbacks (panel_a_y0
 // = 0, below), this now fills usable_length(94) exactly — no leftover
 // open floor anywhere.
-assembly_total_length = panels_total_length; // 94 — must be <= usable_length (94)
+assembly_total_length = panels_total_length; // 93.75 — must be <= usable_length (93.75)
 // bed_length is what's actually available for the mattress: Panel C's
 // own length minus the rear pantry's 14in bite out of its
 // tailgate end, plus all of Panel B and Panel A.
-bed_length = panels_total_length - pantry_len; // 80
+bed_length = panels_total_length - pantry_len; // 79.25
 rear_row_width = fridge_module_width + kitchen_box_width; // just for reference/BOM text — the two don't need to touch, see the gap check below
 
 // Kitchen unit on Panel C's RIGHT (passenger) side — its shelves

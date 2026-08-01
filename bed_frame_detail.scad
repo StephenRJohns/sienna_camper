@@ -4,7 +4,7 @@
 // ============================================================
 // Component 2: a FLUSH LADDER platform — two 1x4 side rails running
 // the full 58in (Panel A + B — it ENDS at the B/C seam, flush with
-// Panel C's own deck), with the slats (cut to 45in) pocket-screwed BETWEEN
+// Panel C's own deck), with the slats (cut to 42in — was 45in before the// V7 width measurement of Aug 2026) pocket-screwed BETWEEN
 // them, everything in one 3/4in plane. It rests DIRECTLY on the
 // boxes' top rails (leveling happens at the leg feet, floor level —
 // leveling_foot_detail.scad) and lifts straight off as one piece for
@@ -17,9 +17,9 @@ include <steps/lego_lib.scad>
 include <colors.scad>
 
 L = bed_frame_length; // 58
-W = bed_frame_width;  // 52
+W = bed_frame_width;  // 49 (was 52 — cut back by measurement V7, Aug 2026)
 RW = bed_rail_width;  // 3.5
-SL = bed_slat_length; // 39
+SL = bed_slat_length; // 42
 lift = 6;
 
 module marker3d(n, anchor3, off = [6, 4]) {
