@@ -38,7 +38,7 @@ The banner above only *names* accessories A–G. **Where each one goes is the in
 | **D** | **¼"-20 bolt + T-nut** (~30 pairs, incl. spares) | The T-nut goes in the board's **underside**, counterbored flush so the board still lies flat on its mat; the bolt comes down from **above** through whatever it holds: riser flanges (4 each = 8), L-track (7 each = 14), steel tongues (2 each = 4). **Seat every T-nut before any hardware goes on** — you cannot reach them afterward |
 | **E** | **Non-slip rubber mat** (×1) | Cut to the board's outline and laid **under** it — friction, trim protection and rattle control. Not fastened to anything. It goes in only when the finished board is set into the van (step 7), not on the bench |
 | **F** | **Threadlocker, blue 242** (×1) | One drop on every machine screw as you fit it — that is the A, D and G fasteners (B needs none, it twist-locks). They all end up hidden under the appliances, so they must never need re-checking. Cure ~24 h before loading |
-| **G** | **Rail-end engagement** (×2) | **In-van only.** The forward end of each steel tongue engages the 2nd-row floor rail's own track — **measured 42" from the hatch** (F8a), rails **17.5" apart** (F8b), so cut both tongues **16" long**. **No new holes in the vehicle.** The full detail — how the cap comes off, which of three engagements to use, and why a crush tube is needed — is **"How the tongues connect to the rails"** later in this section, with both a top-down and a side-section view |
+| **G** | **Rail-end engagement** (×2) | **In-van only.** The forward end of each steel tongue engages the 2nd-row floor rail's own track — **measured 42" from the hatch** (F8a), rails **17.5" apart** (F8b), so cut both tongues **16" long**. **No new holes in the vehicle.** The forward load is carried by a **butt joint** — a downturned lug bearing on the rail's rear end face — with the slot fastener acting only as a hold-down. Full detail in **"How the tongues connect to the rails"** later in this section, with a top-down plan and a side section |
 
 #### Build order — steps 1–6 on the bench, step 7 in the van
 
@@ -505,7 +505,8 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | [L-track single-stud fittings with D-ring, WLL 1,333 lb, 10-pack](https://www.amazon.com/US-Cargo-Control-Black-Fitting/dp/B07W5T13JS) — 4 kitchen strap corners + 3 bridge striker-strap points, 3 spares | 1 pack | $45 | $45 |
 | Anchor board — 3/4" ply comb, **ONE piece** 46" x 33" (bridge + 3 strips continuous, no wood joints — cut from the 3/4" sheet's spare, so no plywood to buy; Section 8, assembly sheet V1/V5) + 1/4-20 machine screws & T-nuts ~30 ea | 1 | $20 | $20 |
 | Steel flat bar 2" x 3/16" — the 2 forward rail tongues, **cut 16" each** (F8a: rail ends at 42" from the hatch) | 1x 36" bar | $15–25 | $15–25 |
-| ¼"-20 **T-bolts for ¾" T-track** + flange nuts — the tongue-to-rail engagement (case A; slot MEASURED at ¾") | 2 (buy 4) | $2 ea | $8 |
+| Steel angle or bar for the 2 tongue **LUGS** — ~2" x 0.85", bears on the rail's end face (the forward load path) | 2 | $4 ea | $8 |
+| ¼"-20 **T-bolts for ¾" T-track**, 1¾" — the tongue HOLD-DOWN (H1; slot MEASURED ¾", channel 1" deep) | 2 (buy 4) | $2 ea | $8 |
 | Steel **crush tubes**, 0.35" long x ¼" ID — one per tongue, so the rail's plastic housing is never clamped | 2 | $2 ea | $4 |
 | ¼"-20 bolts + washers + nylocks — 2 per tongue through the bridge | 4 | $1 ea | $4 |
 | Non-slip rubber utility mat, under the anchor board's strips | 1 | $25 | $25 |
@@ -1120,23 +1121,43 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
 - **Crush tube (the default here).** A 0.35"-tall steel spacer sleeve carries the clamp load from the tongue straight down to the metal track, so the housing is never squeezed and the tongue simply rides over it. **Nothing on the vehicle is cut** — which is why this is the default.
 - **Local window.** Cut a ~3" window in the plastic housing where the tongue crosses, seat the tongue directly on metal, and shim 0.35" up to the board plane. Stiffer and lower, but it means cutting a trim part — or pulling the whole housing for camper mode, if it unclips.
 
+**The forward load is carried by a BUTT JOINT, not by a fastener** (owner decision, Aug 2026). This is the most important thing on this page, and it came out of working through what the slot actually does.
+
+The rail's slot **runs fore-aft — the same direction as the load**, because a seat track exists for a carriage to slide along it. So anything sitting *in* the slot — T-bolt, channel nut, slid-in bar — resists forward load only by **friction**. Order of magnitude: a ¼"-20 torqued sensibly gives ~1,200 lb of clamp; steel-on-steel μ ≈ 0.18, so **~215 lb of fore-aft grip per bolt.** Two tongues with one bolt each is ~430 lb against a ~155 lb loaded board — fine for real braking (~1 g), nowhere near a crash.
+
+A butt joint takes friction out of the equation. The board sits **behind** the rail ends (board front edge at 33", rail ends at 42"), so forward load pushes the tongue *into* the rail's rear end face. Give the tongue's forward end a **downturned lug** — bent, or a bolted/welded-on steel angle, ~0.85" deep so its rear face covers the rail end's full 0.5" height — and forward force transfers as pure **bearing** into the rail's own steel, then into the rail's floor bolts, which are the vehicle's seat anchorage.
+
+- Bearing area: **1.0 sq in per tongue** (2" wide × 0.5" rail height)
+- At 20 g on a ~155 lb board that's ~1,550 lb across two tongues → **~775 psi**. Trivial for steel.
+
+**This is not the compression fallback F7 killed.** F7's target was the *striker-row step* — carpet over soft trim. This is the **rail's own squared-off end face in hard steel.** F7 ruled out the wrong target.
+
+With the load on the lug, **the fastener in the slot stops being structural** — it is a **hold-down** whose only job is to stop the tongue riding up.
+
 **Assembly, per side:**
 
-1. **Take the end cap off** — one fastener. **Keep both caps** in the passenger-mode kit; they go back on when the seats do.
-2. **Lap the tongue onto the bridge** and drill it for **2 × ¼"-20** bolts, ~1" in from each end of the 4" lap. Bolt down through the ply with a washer and a **nylock** underneath. Two bolts, not one — a single bolt lets the bar pivot.
-3. **Engage the rail** with whichever case below your rail actually presents.
-4. **Shim the step.** The board's top plane sits at 0.85" (0.1" mat + ¾" ply) and the rail top sits at roughly ¾" above the floor pan, so the tongue lands within ~⅛" of flat — but that rail height is **unverified**. Measure it, and shim whatever the difference turns out to be so the bar is not sprung when you tighten it.
-5. **Notch Panel B's rear bottom rail** 3/16" deep where the tongues cross it (already in the build lumber, not the van).
+1. **Take the end cap off** — one flush slotted fastener; try turning it 90° first, that shape is often a quarter-turn catch. **Keep both caps** for passenger mode.
+2. **Lap the tongue onto the bridge** and drill for **2 × ¼"-20**, ~1" in from each end of the 4" lap. Bolt down through the ply, washer and **nylock** underneath. Two bolts, not one — a single bolt lets the bar pivot.
+3. **Fit the lug** at the tongue's forward end so its rear face sits flat against the rail's end. Check the contact by eye — a lug that touches at one corner only is a stress riser, not a bearing joint.
+4. **Add a hold-down** — any of H1/H2/H3 below. It needs a **crush tube** (0.35" tall) so the clamp load reaches the metal track rather than squeezing the plastic housing.
+5. **Notch Panel B's rear bottom rail** 3/16" deep where the tongues cross it (build lumber, not the van).
 
-| | Engagement | When | Notes |
+**Hold-down options.** The channel measures **1" deep, with bosses rising ~0.25" off the bottom in places — so only the top 0.75" is clear the whole way along.** That sets the bolt lengths.
+
+| | Hold-down | Bolt | Status |
 |---|---|---|---|
-| **A** | **¼"-20 T-bolt or channel nut** dropped into the rail's open slot and turned 90° so it locks under the lips | The intended case | Slot **measured at ¾"** — standard T-track size, stock ¼"-20 T-bolts fit. Load goes into **shear** against seat-track steel. Needs the crush tube |
-| **B** | **2"-wide steel saddle** wrapping under the rail's flanges, 2 bolts pinching it up to the tongue | Slot too narrow, obstructed, or you'd rather not use it | **Zero modification** to the vehicle — the reversible fallback |
-| **C** | Reuse the **end cap's own threaded boss** | Only if A and B both fail | **Weakest** — that boss holds a plastic cap and was never a rated anchorage. If you land here, add a rear strap |
+| **H3** | **2" steel saddle** wrapping under the rail's flanges, 2 bolts pinching it to the tongue | — | ✅ **DEFAULT.** Touches the slot not at all, so it works regardless of the slot profile *and* regardless of the pinned metal end cap below |
+| **H1** | **¼"-20 T-bolt in the slot**, turned 90° under the lips | ~1¾" | ⚠️ **Conditional.** Cheapest, off the shelf, **testable today** — but it needs the slot to have **undercut lips**, still unconfirmed. Goes in through the slot, so the end cap doesn't block it |
+| **H2** | Nut bar slid in from the open end | — | ❌ **RULED OUT (Aug 2026).** See below |
 
-✅ **All four of the hardware-gating measurements are now taken** (owner, Aug 2026): spacing 17.5", slot 0.75", metal track 0.5" up, plastic housing 1.0" up, cap held by one slotted fastener.
+**Why H2 is dead (owner photo, Aug 2026).** Under the plastic end cap there is a **steel cap over the channel**, and a **pin behind it that blocks anything being slid in from the rear.** A slid-in bar cannot get in. It's recorded here as ruled out rather than deleted, so it doesn't get re-proposed.
 
-⚠️ **One question left, and it decides case A vs case B:** does the slot have **undercut lips** for a T-head to bear under, or is it a plain open channel? A ¾" T-track profile normally does — but if this one does not, a T-bolt has nothing to grab and you go to the saddle clamp. Check it with a bent wire or a T-bolt from the hardware store before buying more than one.
+⚠️ **Two things that photo raises, both of which should be settled before fabricating the lug:**
+
+1. **Is that steel end cap structural, or a light stamped cover?** The butt joint bears on it. A structural bracket is ideal — better than a bare extrusion cut. A thin stamped cover will **deform rather than bear**, and the lug would need to reach past it to the rail's own body.
+2. **There appear to be existing holes in that steel bracket** — a round hole with an elongated slot above and below. **If those are usable, bolting to them beats every option on this page:** positive engagement, straight into the rail's own steel, no new holes, and no reliance on friction *or* on a bearing face. Worth identifying what that bracket is before committing to the lug.
+
+**Also still open, and it only affects H1:** does the slot have undercut lips? Buy **one** T-bolt and try it before buying four. With the load on the lug this is a convenience question, not a structural one.
 2. **Rearward + lift — 3 ratchet straps** (400 lb WLL each) from stud-fitting D-rings on the bridge, forward and down into the 3 striker loops, tensioned. These also pin the board against the slide's cantilever moment when the loaded fridge is pulled to full extension.
 3. **Lateral** — the kitchen's criss-crossed straps, the striker straps' splay, the well and van walls ~1" away, and the mat's friction.
 

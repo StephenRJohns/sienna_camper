@@ -18,9 +18,12 @@
 //         the striker row to butt the tongues against (carpet over a
 //         soft ~1" step), so this connection is not optional any more.
 //
-// Three engagement cases are drawn because the cap fastener type and the
-// channel's slot width were read off photographs, not measured: A is the
-// intended one, B is the no-modification fallback, C is last resort.
+// The FORWARD LOAD goes through a butt joint — a downturned lug on the
+// tongue bearing on the rail's rear end face — not through a fastener.
+// The rail's slot runs fore-aft, the same way as the load, so anything
+// sitting in it resists forward motion by friction alone (~215lb per
+// bolt). Bearing beats that by orders of magnitude. Three HOLD-DOWN
+// options are drawn because only their convenience differs now.
 //
 // DRAWING CONVENTION: line-art, in the same house style as the survey
 // sheets — RED is the thing this drawing is about (the tongue and its
@@ -108,7 +111,7 @@ module plan_band() {
     txt("comes off first (one fastener). Keep it: it goes", nx, p1y(rail_end_y - 2.4), 2.1, "left", "Black");
     txt("back on when the seats do.", nx, p1y(rail_end_y - 4.3), 2.1, "left", "Black");
     txt("Under it the rail is an OPEN-TOP CHANNEL —", nx, p1y(rail_end_y + 4), 2.1, "left", RED);
-    txt("that slot is what the tongue bolts into (case A).", nx, p1y(rail_end_y + 2.1), 2.1, "left", RED);
+    txt("that slot takes the HOLD-DOWN bolt (H1/H2) — not the load.", nx, p1y(rail_end_y + 2.1), 2.1, "left", RED);
     txt(str("tongue: ", aboard_tongue_w, "\" x 3/16\" steel flat bar, ", tongue_len, "\" long"),
         nx, p1y(aboard_depth + 1), 2.3, "left", RED);
     txt(str(tongue_lap, "\" lapped on the bridge (2 bolts) + ", tongue_span, "\" span + ",
@@ -137,14 +140,14 @@ function s2z(mz) = 72 + mz * SZ;
 module side_band() {
     txt("2  SIDE SECTION through one tongue — vertical scale exaggerated",
         6, 100, 3.0, "left", "Black");
-    txt("Load path: strap tension -> board -> tongue -> the vehicle's own seat track.",
+    txt("Forward load path: board -> tongue -> LUG -> the rail's rear end face -> the rail's floor bolts.",
         6, 96, 2.2, "left", GRY);
-    txt("Nothing is drilled into the van; every fastener here is reversible.",
+    txt("Bearing, not friction. Nothing is drilled into the van; every fastener here is reversible.",
         6, 93, 2.2, "left", GRY);
 
     // van floor pan
     color(GRY) translate([s2x(-8), s2z(0) - 1.1]) square([s2x(20) - s2x(-8), 1.1]);
-    txt("van floor pan", s2x(-7.5), s2z(0) - 4, 2.1, "left", GRY);
+    txt("van floor pan", s2x(-8), s2z(0) - 14.6, 2.0, "left", GRY);  // below the notes; it collided with the lug callout
     // carpet over the open span
     color(GRY) rect_ol(s2x(0), s2z(0), s2x(9) - s2x(0), 0.3 * SZ, THIN);
     txt("carpet", s2x(3.5), s2z(0.15), 2.0, "left", GRY);
@@ -173,15 +176,27 @@ module side_band() {
     // is never squeezed. This is what makes the housing survivable.
     color(RED) rect_ol(s2x(12.4), s2z(rail_top_z), s2x(13.6) - s2x(12.4),
                        (aboard_top - rail_top_z) * SZ, MED);
-    txt(str("steel CRUSH TUBE (", -tongue_step, "\" tall) carries the clamp load from the tongue"),
-        s2x(-6), s2z(0) - 9.4, 2.0, "left", RED);
-    txt(str("straight down to the METAL track, so the plastic housing (up to ", rail_housing_z,
-            "\") is never squeezed."), s2x(-6), s2z(0) - 11.8, 2.0, "left", RED);
+    txt(str("Crush tube (", -tongue_step, "\" tall) under the hold-down bolt so the plastic housing (to ",
+            rail_housing_z, "\") is never squeezed."), s2x(-8), s2z(0) - 12, 2.0, "left", GRY);
 
-    // THE TONGUE
+    // THE TONGUE, and the LUG that carries the forward load
     tz = s2z(aboard_top);
     color(RED) rect_ol(s2x(-5), tz, s2x(14) - s2x(-5), tongue_t * SZ, HEAVY);
     txt("steel tongue", s2x(1.5), tz + 3.8, 2.3, "left", RED);
+    // the lug: down off the tongue's underside, its rear face flat against
+    // the rail's rear end. THIS is the forward load path.
+    color(RED) rect_ol(s2x(8.6), s2z(0), s2x(9) - s2x(8.6), aboard_top * SZ, HEAVY);
+    // a plain 2D arrow: iarrow() lives in steps/lego_lib.scad, which this
+    // sheet does not include (it is a sheet2d drawing, not a lego one).
+    color(RED) {
+        translate([s2x(5.6), s2z(0.22)]) square([s2x(8.2) - s2x(5.6), 0.55]);
+        translate([s2x(8.2), s2z(0.22) - 0.9]) polygon([[0, 0], [0, 2.35], [2.4, 1.175]]);
+    }
+    txt("DOWNTURNED LUG — bears flat on the rail's rear END FACE.", s2x(-8), s2z(0) - 4.2, 2.1, "left", RED);
+    txt(str("This is the FORWARD load path: ", tongue_butt_area,
+            " sq in of bearing per tongue, straight into"), s2x(-8), s2z(0) - 6.8, 2.1, "left", RED);
+    txt("the rail's steel and then its floor bolts. The slot fastener is only a hold-down.",
+        s2x(-8), s2z(0) - 9.4, 2.1, "left", RED);
 
     // bolts: 2 down through the bridge (nylock under), 1 into the channel
     for (bx = [-5.5, -1.5])
@@ -190,14 +205,14 @@ module side_band() {
     txt("washer + NYLOCK under the board", s2x(-8), tz + 6, 2.2, "left", RED);
 
     bolt_side(s2x(12.5), tz + tongue_t * SZ, tz + tongue_t * SZ - s2z(rail_top_z - 0.3));
-    txt("1/4\"-20 T-BOLT or channel nut,", s2x(8), tz + 9, 2.2, "left", RED);
-    txt("dropped into the rail's own slot", s2x(8), tz + 6, 2.2, "left", RED);
+    txt("HOLD-DOWN only — not structural:", s2x(8), tz + 9, 2.2, "left", RED);
+    txt("1/4\"-20 into the rail's slot", s2x(8), tz + 6, 2.2, "left", RED);
 
     dim_y(s2z(rail_top_z), tz, s2x(19), str(-tongue_step, "\" step"), 2.1, RED, "right");
 }
 
 // ============================================================
-// BAND 3 — the three engagement cases
+// BAND 3 — the three HOLD-DOWN options
 // ============================================================
 module case_box(i, title, lines) {
     x0 = 6 + i * 63.5;
@@ -237,26 +252,26 @@ module case_box(i, title, lines) {
 }
 
 module cases_band() {
-    txt("3  THREE WAYS TO ENGAGE THE RAIL — pick by what you actually find under the end cap",
+    txt("3  HOLD-DOWN OPTIONS — the lug carries the load; these only stop the tongue lifting",
         6, 47, 3.0, "left", "Black");
-    case_box(0, "CASE A — T-bolt in the channel", [
-        "Slot MEASURED at 3/4\" — the standard",
-        "woodworking T-track size, so stock",
-        "1/4\"-20 T-bolts fit. Load goes into SHEAR",
-        "against seat-track steel. Needs a crush",
-        "tube so the plastic housing is not clamped."]);
-    case_box(1, "CASE B — saddle clamp (fallback)", [
-        "Zero modification to the vehicle: a 2\"",
-        "steel saddle wraps under the rail's",
-        "flanges and 2 bolts pinch it up to the",
-        "tongue. Use this if the slot is too narrow,",
-        "obstructed, or you would rather not use it."]);
-    case_box(2, "CASE C — cap boss (last resort)", [
-        "Only if A and B both fail: reuse the end",
-        "cap's own threaded boss. WEAKEST of the",
-        "three — that boss holds a plastic cap, it",
-        "was never a rated anchorage. If you end up",
-        "here, add a rear strap and re-check F7."]);
+    case_box(0, "H1 — T-bolt in the slot", [
+        "Slot MEASURED 3/4\" wide, channel 1\" deep.",
+        "Stock 1/4\"-20 T-track bolt, ~1-3/4\" long,",
+        "turned 90 deg under the lips. Cheapest and",
+        "testable today. NEEDS the slot to have",
+        "undercut lips — the one thing unconfirmed."]);
+    case_box(1, "H2 — RULED OUT (Aug 2026)", [
+        "Slide a tapped bar in from the open end:",
+        "IMPOSSIBLE. Under the plastic cap there is a",
+        "STEEL cap over the channel and a PIN behind",
+        "it blocking entry from the rear (photo).",
+        "Recorded so it is not proposed again."]);
+    case_box(2, "H3 — saddle clamp (DEFAULT)", [
+        "A 2\" steel saddle wrapping under the rail's",
+        "flanges, 2 bolts pinching it to the tongue.",
+        "Touches the slot not at all, so it works",
+        "even if there are no undercut lips, and it is",
+        "unaffected by the pinned metal end cap."]);
 }
 
 // ============================================================

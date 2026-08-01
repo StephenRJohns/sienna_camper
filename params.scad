@@ -640,22 +640,74 @@ aboard_strip_len  = 27; // the three comb strips; the bridge is the last aboard_
 // type and the channel's slot width by hand before ordering hardware.
 rail_end_y      = 42;   // MEASURED F8a (Aug 2026) — hatch -> rail rear ends
 rail_spacing    = 17.5; // MEASURED F8b (Aug 2026) — rail centre to rail centre
-rail_slot_w     = 0.75; // MEASURED (Aug 2026) — the track slot. 3/4in is the
-                        // STANDARD woodworking T-track size, so off-the-shelf
-                        // 1/4"-20 T-bolts fit it. Still to confirm: that the
-                        // slot has UNDERCUT LIPS for a T-head to bear under,
-                        // rather than being a plain open channel (if plain, a
-                        // T-bolt has nothing to grab -> fall back to case B).
+rail_slot_w     = 0.75; // MEASURED (Aug 2026) — the track slot at the surface
+rail_chan_d     = 1.0;  // MEASURED (Aug 2026) — internal channel depth
+rail_chan_d_min = 0.75; // MEASURED (Aug 2026) — ...but bosses rise ~0.25in off the
+                        // bottom in places, so only the top 0.75in is clear the
+                        // whole way along. Anything slid in from the end has to
+                        // pass through THAT, not the full inch.
 rail_top_z      = 0.5;  // MEASURED (Aug 2026) — the METAL track top above the floor pan
 rail_housing_z  = 1.0;  // MEASURED (Aug 2026) — top of the PLASTIC housing over the rail
-// >>> OPEN ISSUE the measurements just created <<<
+// ---- THE FORWARD LOAD PATH IS A BUTT JOINT, NOT A FASTENER -------
+// (owner decision, Aug 2026, after working out what the slot actually
+// does.) The rail's slot runs FORE-AFT — the same direction as the
+// load, because a seat track exists for a carriage to slide along it.
+// So anything sitting IN the slot (T-bolt, channel nut, slid-in bar)
+// resists forward load only by FRICTION. Order of magnitude: a 1/4-20
+// torqued sensibly gives ~1,200lb of clamp, steel-on-steel mu ~0.18,
+// so ~215lb of fore-aft grip per bolt. Two tongues with one bolt each
+// is ~430lb against ~155lb of loaded board — fine for real braking
+// (~1g), nowhere near a crash. Nothing here is crash-rated.
+//
+// A BUTT JOINT removes friction from the equation. The board sits
+// BEHIND the rail ends (board front edge at aboard_depth = 33in, rail
+// ends at 42in), so forward load pushes the tongue INTO the rail's rear
+// end face. Give the tongue's forward end a downturned lug — bent, or a
+// bolted/welded-on steel angle — and forward force transfers as pure
+// BEARING into the rail's own steel, and from there into the rail's
+// floor bolts, which are the vehicle's seat anchorage.
+//   bearing area per tongue = aboard_tongue_w x rail_top_z = 1.0 sq in
+//   at 20g on a ~155lb board that is ~1,550lb over 2 tongues -> ~775psi
+// Trivial for steel. The fastener in the slot then stops being
+// structural: it is a HOLD-DOWN that keeps the tongue from riding up.
+//
+// NOTE this is NOT the compression fallback F7 killed. F7's target was
+// the striker-row step — carpet over soft trim. This is the rail's own
+// squared-off end face in hard steel. F7 ruled out the wrong target.
+tongue_butt_area = aboard_tongue_w * rail_top_z; // 1.0 sq in per tongue, bearing
+tongue_lug_h     = aboard_top;   // 0.85 — lug reaches from the tongue's underside to the floor,
+                                 // so its rear face covers the rail end's full 0.5in height
+//
+// >>> WHAT THE MEASUREMENTS STILL DO NOT SETTLE <<<
 // The board's top plane is aboard_top = 0.85in (0.1 mat + 0.75 ply). The
 // metal track is at 0.5in — 0.35in BELOW that — but the plastic housing
 // over the rail reaches 1.0in, which is 0.15in ABOVE it. So the tongue
 // cannot simply run flat off the board onto the rail: the plastic stands
 // proud of the tongue's own plane, and the tongue must bear on METAL, not
 // on plastic (clamped plastic crushes and the joint goes loose).
-// Two ways out, both drawn on the detail sheet:
+// Two ways out for the HOLD-DOWN, both drawn on the detail sheet:
+// (Aug 2026, photo) THE RAIL END IS CAPPED IN METAL, AND PINNED.
+// Under the plastic end cap there is a STEEL end cap/bracket over the
+// channel, and a PIN behind it that blocks anything being slid in from
+// the rear. Consequences:
+//   * H2 (nut bar slid in from the open end) is RULED OUT. Kept in the
+//     documentation as a ruled-out option so it is not re-proposed.
+//   * H1 (T-bolt through the slot) is unaffected in principle — it goes
+//     in through the slot, not the end — but still depends on the slot
+//     having undercut lips, which is still unconfirmed.
+//   * H3 (saddle clamp around the outside of the rail) is unaffected by
+//     any of this, so it becomes the DEFAULT hold-down.
+//   * The BUTT JOINT is unaffected as a concept and arguably better —
+//     there is steel at the rail end to bear on rather than a bare
+//     extrusion cut. BUT: it now matters whether that steel cap is
+//     structural or a light stamped cover, because a stamped cover will
+//     deform rather than bear. CONFIRM before fabricating the lug.
+//   * The photo also shows what look like EXISTING HOLES in that steel
+//     bracket (a round hole with a slot above and below). If those are
+//     usable, bolting to them would beat every option here: positive
+//     engagement, into the rail's own steel, with no new holes. Worth
+//     identifying before committing to the lug.
+//
 //   (a) CRUSH TUBE — leave the housing alone. A steel spacer sleeve
 //       carries the clamp load from the tongue down to the metal track,
 //       so the plastic is never squeezed. The tongue rides just over the
@@ -667,6 +719,11 @@ rail_housing_z  = 1.0;  // MEASURED (Aug 2026) — top of the PLASTIC housing ov
 //       for camper mode, if it unclips).
 // (a) is the default here because it keeps the no-modification promise.
 tongue_t        = 0.1875; // 3/16in flat bar
+// Hold-down bolt length: from the tongue's top face down to whatever
+// holds it in the channel. (Assigned HERE, not up with the butt-joint
+// block, because it needs tongue_t and OpenSCAD evaluates in order.)
+tongue_bolt_len_slot = aboard_top + tongue_t + 0.6;             // ~1.6 -> a 1-3/4in bolt for a T-bolt/channel nut up near the lips
+tongue_bolt_len_bar  = aboard_top + tongue_t + rail_chan_d_min;  // ~1.8 -> a 2in bolt for a bar riding the clear top 0.75in
 tongue_lap      = 4;    // how far the tongue lies ON the bridge, bolted through
 tongue_engage   = 3;    // how far it overlaps the rail past its end
 tongue_span     = rail_end_y - aboard_depth;                   // 9 — open gap it bridges
