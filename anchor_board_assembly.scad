@@ -28,6 +28,13 @@
 //
 // Render with: openscad -o renders/anchor-board-assembly.svg anchor_board_assembly.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 32 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.4. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -42,12 +49,12 @@ module rect_outline(w, l, s = stroke) {
     }
 }
 
-module label(txt, x, y, size = 1.2) {
+module label(txt, x, y, size = 2.88) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.05) {
+module label_left(txt, x, y, size = 2.52) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -127,8 +134,8 @@ module v1_top() {
         dash_v(rx, 3, 27); dash_v(rx + 2, 3, 27);
         for (by = [5, 12, 19, 26]) bolt_dot(rx + 1, by);
     }
-    label_left("riser-angle footprint (2\"x24\") — 4x 1/4-20 bolts into T-nuts", 3.6, 22, 0.95);
-    label_left("(riser shown dashed; same on the center strip)", 3.6, 20.6, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("riser-angle footprint (2\"x24\") — 4x 1/4-20 bolts into T-nuts", 3.6, 22, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("(riser shown dashed; same on the center strip)", 3.6, 20.6, 0.95);
 
     // L-track on the kitchen-side strips
     for (lx = [23, 44.75]) {
@@ -152,11 +159,11 @@ module v1_top() {
             translate([tx - 0.85, br_y0 + br_d]) square([1.7, 5.85]);
         }
         bolt_dot(tx, br_y0 + 1.5); bolt_dot(tx, br_y0 + 4.5);
-        color("black") translate([tx, br_y0 + br_d + 7.2]) text("...", size = 1.2, halign = "center");
+        color("black") translate([tx, br_y0 + br_d + 7.2]) text("...", size = 2.88, halign = "center");
     }
-    label_left("steel tongue (2\"x3/16\"), let into a 3/16\" dado in the", 2, 44.2, 0.95);
-    label_left("bridge's UNDERSIDE, 2x 1/4-20 T-nut bolts each — runs fwd,", 2, 42.8, 0.95);
-    label_left("cut to the F8-measured length (~10-14\" past the bridge)", 2, 41.4, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("steel tongue (2\"x3/16\"), let into a 3/16\" dado in the", 2, 44.2, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("bridge's UNDERSIDE, 2x 1/4-20 T-nut bolts each — runs fwd,", 2, 42.8, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("cut to the F8-measured length (~10-14\" past the bridge)", 2, 41.4, 0.95);
     label_left("striker-strap D-rings (x3)", 39.6, 32, 0.95);
 
     // dimensions
@@ -168,11 +175,11 @@ module v1_top() {
     dim_h(cs_x0, cs_x0 + cs_w, 0, "4.65\"");
     dim_h(rs_x0, rs_x0 + rs_w, 0, "1.5\"");
     // kept short: V3's title runs along the same lines further right
-    label("ONE PIECE — cut the whole comb from the 3/4\" sheet's spare (V5):", panel_width/2, -3.4, 1.0);
-    label("NO ply-to-ply joints, no glue, no lap screws. Rubber mat under it.", panel_width/2, -5, 1.0);
-    label("Every fastener on this board holds HARDWARE, never wood to wood.", panel_width/2, -6.6, 1.0);
-    label("(gaps = bare van floor: the tray hangs there, the kitchen sits there)", panel_width/2, -8.2, 1.0);
-    label("V1 — TOP: the one-piece plywood board, 46\"x33\" (bench-built, then laid in as ONE piece)", panel_width/2, 47.5, 1.3);
+    // MOVED TO THE DOCUMENT: label("ONE PIECE — cut the whole comb from the 3/4\" sheet's spare (V5):", panel_width/2, -3.4, 1.0);
+    // MOVED TO THE DOCUMENT: label("NO ply-to-ply joints, no glue, no lap screws. Rubber mat under it.", panel_width/2, -5, 1.0);
+    // MOVED TO THE DOCUMENT: label("Every fastener on this board holds HARDWARE, never wood to wood.", panel_width/2, -6.6, 1.0);
+    // MOVED TO THE DOCUMENT: label("(gaps = bare van floor: the tray hangs there, the kitchen sits there)", panel_width/2, -8.2, 1.0);
+    // MOVED TO THE DOCUMENT: label("V1 — TOP: the one-piece plywood board, 46\"x33\" (bench-built, then laid in as ONE piece)", panel_width/2, 47.5, 1.3);
     label("fwd ->", -4.5, 34, 1.0);
     label("tailgate ->", -4.5, 6, 1.0);
 }
@@ -207,16 +214,16 @@ module v2_fridge_stack() {
     dash_v(6.2*SC, (0.5 + fridge_tray_t)*SC, (0.5 + fridge_tray_t)*SC + 2.2*SC, 0.2);
 
     // labels
-    label_left("<- fridge sits on the tray (dashed, continues up)", 6.8*SC, 2.55*SC, 1.0);
-    label_left("<- 3/8\" ply TRAY — hangs 0.5\" over BARE van floor (no board here)", 6.8*SC, 0.7*SC, 1.0);
-    label_left("<- 1x3 apron (the slide's moving member screws to it)", 4.0*SC, 2.4*SC + 4.2, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("<- fridge sits on the tray (dashed, continues up)", 6.8*SC, 2.55*SC, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("<- 3/8\" ply TRAY — hangs 0.5\" over BARE van floor (no board here)", 6.8*SC, 0.7*SC, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("<- 1x3 apron (the slide's moving member screws to it)", 4.0*SC, 2.4*SC + 4.2, 1.0);
     label_left("<- VADANIA fixed rail (3\") — bottom at 1.1\"", 3.15*SC, 4.0*SC, 1.0);
     label_left("<- steel riser angle 2\"x2\"x3/16\"", 2.4*SC, 2.75*SC, 1.0);
-    label_left("<- 1/4-20 bolt -> T-nut (flange counterbored into the ply bottom)", 1.5*SC, 1.35*SC, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("<- 1/4-20 bolt -> T-nut (flange counterbored into the ply bottom)", 1.5*SC, 1.35*SC, 1.0);
     label_left("<- 3/4\" ply strip", 2.65*SC, 0.55*SC, 1.0);
     label_left("<- non-slip rubber mat (0.1\")", 2.65*SC, 0.1*SC, 1.0);
     label("V2 — SIDE section, fridge side (4x scale): riser + rail bolt to the BOARD, never the van", 4.7*SC, -1.6, 1.2);
-    label("(the whole stack repeats at the other rail line, on the center strip)", 4.7*SC, -3.2, 1.0);
+    // MOVED TO THE DOCUMENT: label("(the whole stack repeats at the other rail line, on the center strip)", 4.7*SC, -3.2, 1.0);
 }
 
 // ============================================================
@@ -242,7 +249,7 @@ module v3_kitchen_straps() {
         hull() { translate([21.25, 2.4]) circle(r = 0.22, $fn = 16); translate([14, kitchen_box_height + 0.3]) circle(r = 0.22, $fn = 16); }
         hull() { translate([14, kitchen_box_height + 0.3]) circle(r = 0.22, $fn = 16); translate([-1.4, 2.4]) circle(r = 0.22, $fn = 16); }
     }
-    label_left("<- stud D-ring (WLL 1,333lb) dropped into the L-track", 22.6, 1.9, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("<- stud D-ring (WLL 1,333lb) dropped into the L-track", 22.6, 1.9, 1.0);
     label_left("ratchet straps (4x, 400lb WLL) criss-cross", 22.6, kitchen_box_height - 1, 1.0);
     label_left("over the top — this is the 2-of-4 view;", 22.6, kitchen_box_height - 2.4, 1.0);
     label_left("the other pair crosses fore-aft", 22.6, kitchen_box_height - 3.8, 1.0);
@@ -257,7 +264,7 @@ module v4_board_to_van() {
     color("black") translate([-2, -0.15]) square([58, 0.25]);   // van floor
     // step at the striker row (dashed vertical, fallback bearing face)
     dash_v(0, 0, 4.5, 0.25);
-    label_left("^ floor STEP at the striker row = the tongue's bearing FALLBACK (F7)", -1, 6.2, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("^ floor STEP at the striker row = the tongue's bearing FALLBACK (F7)", -1, 6.2, 0.95);
     // striker loop (side view: a low arch at the floor)
     color("Black") translate([3.5, 0]) difference() { circle(r = 1.1, $fn = 28); circle(r = 0.65, $fn = 24); translate([-1.6, -1.6]) square([3.2, 1.6]); }
     // floor rail rear end (low channel profile) + tongue bolted to it
@@ -275,20 +282,20 @@ module v4_board_to_van() {
         translate([17, 0]) rect_outline(2.25, 2.25, 0.2);
         translate([16.8, 0.9]) square([2.65, 1.1]);
     }
-    label_left("Panel B rear bottom rail sits over the run — its shallow notch lets the tongue + strap pass", 2, 7.9, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("Panel B rear bottom rail sits over the run — its shallow notch lets the tongue + strap pass", 2, 7.9, 0.95);
     // bridge: mat + ply, tongue let into its underside dado
     color([0.15, 0.15, 0.15]) translate([26, 0]) square([24, aboard_mat_t * 4]);
     color("Peru") translate([26, aboard_mat_t * 4]) rect_outline(24, aboard_t * 4, 0.2);
     bolt_dot(30, 1.5); bolt_dot(34, 1.5);               // tongue-to-bridge T-nut bolts
     dring_icon(31, aboard_mat_t * 4 + aboard_t * 4 + 0.8);
-    label_left("<- 3/4\" PLY BRIDGE on its mat — strips continue right", 50.8, 2, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("<- 3/4\" PLY BRIDGE on its mat — strips continue right", 50.8, 2, 0.95);
     // strap: bridge D-ring -> striker loop
     color("Firebrick") {
         hull() { translate([31, aboard_mat_t * 4 + aboard_t * 4 + 1.4]) circle(r = 0.25, $fn = 16); translate([3.6, 1.3]) circle(r = 0.25, $fn = 16); }
-        translate([2, 9.6]) text("RATCHET STRAP (x3): bridge D-ring -> striker loop, tensioned (rearward + lift restraint)", size = 1.0);
+        // MOVED TO THE DOCUMENT: translate([2, 9.6]) text("RATCHET STRAP (x3): bridge D-ring -> striker loop, tensioned (rearward + lift restraint)", size = 2.4);
     }
     label_left("striker loop ^", 0.6, -1.5, 0.9);
-    label_left("STEEL TONGUE (x2) at floor level: bolt/clamp to the rail's rear end (F8) ... 2x T-nut bolts up into the bridge's underside dado", 6, -2.9, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("STEEL TONGUE (x2) at floor level: bolt/clamp to the rail's rear end (F8) ... 2x T-nut bolts up into the bridge's underside dado", 6, -2.9, 1.0);
     label("V4 — SIDE: how the board grabs the VAN — forward at left, tailgate at right (vertical scale exaggerated)", 26, -5.2, 1.2);
 }
 
@@ -300,7 +307,7 @@ module v4_board_to_van() {
 // This view is the CUT plan instead — where the comb sits in the
 // leftover sheet, which way the face grain runs, and what falls out.
 module v5_joints() {
-    label_left("V5 — ONE-PIECE CUT: how the comb nests in the 3/4\" sheet's spare", 0, 19, 1.3);
+    // MOVED TO THE DOCUMENT: label_left("V5 — ONE-PIECE CUT: how the comb nests in the 3/4\" sheet's spare", 0, 19, 1.3);
 
     // ---- sheet-layout sketch: the comb in the 48"x60" spare region
     // left after Panel C's deck (36"x46"), scale 0.28 ----
@@ -316,8 +323,8 @@ module v5_joints() {
         for (g = [[2.5, 16.85, "16.85x27"], [24, 20.5, "20.5x27"]]) {
             color("Gray") translate([g[0]*s, 0]) rect_outline(g[1]*s, 27*s, 0.08);
             color("black") translate([(g[0] + g[1]/2)*s, 15*s]) {
-                text("OFFCUT", size = 0.6, halign = "center");
-                translate([0, -1.1]) text(g[2], size = 0.6, halign = "center");
+                text("OFFCUT", size = 1.44, halign = "center");
+                translate([0, -1.1]) text(g[2], size = 1.44, halign = "center");
             }
         }
     }
@@ -329,7 +336,7 @@ module v5_joints() {
         translate([-1.6, 2]) square([0.14, 60*s - 4]);
         translate([-1.53, 2]) rotate(-90) polygon([[0,0],[0.7,1.1],[-0.7,1.1]]);
         translate([-1.53, 60*s - 2]) rotate(90) polygon([[0,0],[0.7,1.1],[-0.7,1.1]]);
-        translate([-2.2, 60*s/2]) rotate(90) text("FACE GRAIN", size = 0.85, halign = "center");
+        translate([-2.2, 60*s/2]) rotate(90) text("FACE GRAIN", size = 2.04, halign = "center");
     }
 
     lines = [
@@ -360,9 +367,9 @@ module v5_joints() {
     ];
     for (i = [0 : len(lines) - 1]) label_left(lines[i], 16, 16 - i*1.4, 1.0);
 
-    label_left("Why one piece matters: the striker straps hold the BRIDGE — the strips (and everything bolted to", 0, -18.4, 1.0);
-    label_left("them) hang off it in a rearward pull. As one piece that load path is continuous ply, instead of three", 0, -19.8, 1.0);
-    label_left("glue lines working in tension. (The steel tongues are NOT wood joints — they bolt through the", 0, -21.2, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("Why one piece matters: the striker straps hold the BRIDGE — the strips (and everything bolted to", 0, -18.4, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("them) hang off it in a rearward pull. As one piece that load path is continuous ply, instead of three", 0, -19.8, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("glue lines working in tension. (The steel tongues are NOT wood joints — they bolt through the", 0, -21.2, 1.0);
     label_left("bridge with the 1/4-20 T-nuts, V1.)", 0, -22.6, 1.0);
 }
 
@@ -383,11 +390,11 @@ module legend() {
     // 4: dashed = hidden / overlaid part
     for (dx = [0 : 1.2 : 5]) color("Gray") translate([dx, -10.2]) square([0.7, 0.15]);
     for (dx = [0 : 1.2 : 5]) color("Gray") translate([dx, -9]) square([0.7, 0.15]);
-    label_left("dashed = hidden or overlaid part (riser footprint,", 7.5, -9, 1.0);
-    label_left("tongue under the bridge, fridge above the tray)", 7.5, -10.4, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("dashed = hidden or overlaid part (riser footprint,", 7.5, -9, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("tongue under the bridge, fridge above the tray)", 7.5, -10.4, 1.0);
     // 5: donut = stud D-ring
     dring_icon(3, -12.6);
-    label_left("stud-fitting D-ring (drops into an L-track slot)", 7.5, -12.6, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("stud-fitting D-ring (drops into an L-track slot)", 7.5, -12.6, 1.0);
     // 6: dot = bolt into T-nut
     bolt_dot(3, -14.8);
     label_left("1/4-20 bolt into a T-nut (through the ply)", 7.5, -14.8, 1.0);
@@ -409,4 +416,4 @@ translate([64, -2]) v3_kitchen_straps();
 translate([2, -21]) v4_board_to_van();
 translate([88, -9]) legend();
 translate([2, -52]) v5_joints();
-label("ANCHOR BOARD — assembly & connections (Section 8; companion to the overhead platform diagram)", 52, 51.5, 1.6);
+// MOVED TO THE DOCUMENT: label("ANCHOR BOARD — assembly & connections (Section 8; companion to the overhead platform diagram)", 52, 51.5, 1.6);

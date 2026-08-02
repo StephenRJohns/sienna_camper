@@ -23,6 +23,13 @@
 //
 // Render with: openscad -o renders/electrical-layout.svg electrical_layout_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 15 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.0. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -37,16 +44,16 @@ module rect_outline(w, l, s = stroke) {
     }
 }
 
-module label(txt, x, y, size = 1.4) {
+module label(txt, x, y, size = 2.8) {
     color("black") translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
-module label_left(txt, x, y, size = 1.2) {
+module label_left(txt, x, y, size = 2.4) {
     color("black") translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
 module marker(n, x, y) {
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.5);
-        color("white") text(str(n), size = 1.6, halign = "center", valign = "center");
+        color("white") text(str(n), size = 3.2, halign = "center", valign = "center");
     }
 }
 // Counter-mirrored text emitters for the MIRRORED top-down section:
@@ -54,13 +61,13 @@ module marker(n, x, y) {
 // bird's-eye puts the PASSENGER side on the page LEFT (a real
 // overhead view, not a mirror image). These re-mirror just the
 // glyphs so the text stays readable; centered text stays centered.
-module mlabel(txt, x, y, size = 1.4) {
+module mlabel(txt, x, y, size = 2.8) {
     color("black") translate([x, y]) mirror([1, 0, 0]) text(txt, size = size, halign = "center", valign = "center");
 }
 module mmarker(n, x, y) {
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.5);
-        color("white") mirror([1, 0, 0]) text(str(n), size = 1.6, halign = "center", valign = "center");
+        color("white") mirror([1, 0, 0]) text(str(n), size = 3.2, halign = "center", valign = "center");
     }
 }
 module wire(pts, w = 0.28, col = "Black") { // solid polyline
@@ -97,7 +104,7 @@ module fusebox_icon() { // Nilight 6-way: 2 cols x 3 fuses
 module w1209_icon() { // PCB + red 3-digit display + relay
     color("SeaGreen") square([4.4, 2.8], center = true);
     color("Black") translate([-0.7, 0]) square([2.2, 1.3], center = true);
-    color("Crimson") translate([-0.7, 0]) text("26.0", size = 0.9, halign = "center", valign = "center");
+    color("Crimson") translate([-0.7, 0]) text("26.0", size = 1.8, halign = "center", valign = "center");
     color("RoyalBlue") translate([1.6, 0]) square([0.9, 1.8], center = true);
 }
 module switch_icon() { // round illuminated rocker
@@ -277,7 +284,7 @@ module section2() {
     z_deck = leg_height + frame_rail_sz; // 18.5
     label("CONTROL CLUSTER — in the open utility bay on its backer board, elevation (looking forward from tailgate)", 23, 36, 1.4);
     rect_outline(30, 33);                              // wall section, x 0-30, z 0-33
-    label("backer board at the back of the open bay (no door — reach in)", 15, -2.2, 1.0);
+    // MOVED TO THE DOCUMENT: label("backer board at the back of the open bay (no door — reach in)", 15, -2.2, 1.0);
     color("Silver") translate([0, z_deck - 0.1]) square([30, 0.2]);
     label_left("deck level", -8.5, z_deck + 0.8, 0.9);
     label_left("18.5\"", -8.5, z_deck - 0.8, 0.9);
@@ -296,25 +303,25 @@ module section2() {
     label_left("D", 4.2, z_deck + 0.6, 1.4);
     label_left("E", 26.5, 29.5, 1.4);
 
-    label_left("A  LMioEtool enclosure — 4x #8 x 1\" screws through its mounting ears into the wall", 34, 31.5, 1.0);
-    label_left("B  W1209 controller (in its case) — NTC probe wire exits the bottom grommet,", 34, 28.5, 1.0);
-    label_left("    runs to the fridge's kitchen-facing wall (Section 3)", 34, 26.8, 1.0);
-    label_left("C  Nilight 6-way fuse block — feed from the DELTA 3's DC output (Panel A); fans + W1209 each", 34, 24.0, 1.0);
-    label_left("    get their own fused circuit (5A is plenty)", 34, 22.3, 1.0);
-    label_left("D  3x Ampper switches (fridge / cooktop strip / fans) — 20mm holes in the", 34, 19.5, 1.0);
-    label_left("    enclosure face, switches snap in from the front", 34, 17.8, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("A  LMioEtool enclosure — 4x #8 x 1\" screws through its mounting ears into the wall", 34, 31.5, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("B  W1209 controller (in its case) — NTC probe wire exits the bottom grommet,", 34, 28.5, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("    runs to the fridge's kitchen-facing wall (Section 3)", 34, 26.8, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("C  Nilight 6-way fuse block — feed from the DELTA 3's DC output (Panel A); fans + W1209 each", 34, 24.0, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("    get their own fused circuit (5A is plenty)", 34, 22.3, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("D  3x Ampper switches (fridge / cooktop strip / fans) — 20mm holes in the", 34, 19.5, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("    enclosure face, switches snap in from the front", 34, 17.8, 1.0);
 }
 
 // ============================================================
 // SECTION 3 — fan mounting detail (both fans)
 // ============================================================
 module section3() {
-    label("FAN MOUNTING — face-on, both fans identical hardware", 23, 16, 1.4);
+    // MOVED TO THE DOCUMENT: label("FAN MOUNTING — face-on, both fans identical hardware", 23, 16, 1.4);
 
     // intake fan, blowing INTO the bay
     translate([8, 4]) {
         fan_icon(4);
-        color(marker_col(9)) translate([0, 7]) text("INTAKE", size = 1.3, halign = "center");
+        color(marker_col(9)) translate([0, 7]) text("INTAKE", size = 2.6, halign = "center");
         wire([[-8, 0], [-5.6, 0]], 0.35, "Black");
         color("Black") translate([-5.6, 0]) rotate(-90) polygon([[-1, 0], [1, 0], [0, 1.6]]);
         label("cabin air IN", -8, 2.2, 0.9);
@@ -322,18 +329,18 @@ module section3() {
     // exhaust fan, blowing OUT into the open bay
     translate([38, 4]) {
         fan_icon(4);
-        color(marker_col(10)) translate([0, 7]) text("EXHAUST", size = 1.3, halign = "center");
+        color(marker_col(10)) translate([0, 7]) text("EXHAUST", size = 2.6, halign = "center");
         wire([[5.6, 0], [8, 0]], 0.35, "Black");
         color("Black") translate([8, 0]) rotate(90) polygon([[-1, 0], [1, 0], [0, 1.6]]);
         label("warm air OUT", 11.5, 2.2, 0.9);
         color("SeaGreen") translate([6.5, -3.5]) circle(r = 0.5);
-        label("NTC probe: zip-tie 1-2\" from the exhaust cutout", 8, -6.2, 0.9);
+        // MOVED TO THE DOCUMENT: label("NTC probe: zip-tie 1-2\" from the exhaust cutout", 8, -6.2, 0.9);
     }
 
-    label_left("Cut a 4.5\" round hole (or 4.5\" square) in the wall; fan mounts over it with", 0, -10.5, 1.0);
-    label_left("4x #8 x 1-1/4\" screws through the corner holes. Grill goes on the AIR-ENTRY side.", 0, -12.4, 1.0);
-    label_left("Arrow on the fan's side frame shows its blow direction — point it per the labels above.", 0, -14.3, 1.0);
-    label_left("Wiring: both fans in parallel off the W1209 relay (Section 5 wiring schematic).", 0, -16.2, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("Cut a 4.5\" round hole (or 4.5\" square) in the wall; fan mounts over it with", 0, -10.5, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("4x #8 x 1-1/4\" screws through the corner holes. Grill goes on the AIR-ENTRY side.", 0, -12.4, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("Arrow on the fan's side frame shows its blow direction — point it per the labels above.", 0, -14.3, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("Wiring: both fans in parallel off the W1209 relay (Section 5 wiring schematic).", 0, -16.2, 1.0);
 }
 
 // ---- legend (Section 1's numbered markers) ----------------------

@@ -22,6 +22,13 @@
 //
 // Render with: openscad -o renders/panel-c-left-side.svg panel_c_left_side_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 4 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.8. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 
@@ -35,12 +42,12 @@ module rect_outline(w, h, s = stroke) {
     }
 }
 
-module label(txt, x, y, size = 1.3) {
+module label(txt, x, y, size = 2.34) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.2) {
+module label_left(txt, x, y, size = 2.16) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -49,7 +56,7 @@ module drawing() {
     z_deck = leg_height + frame_rail_sz;
 
     label("PANEL C — LEFT side elevation (Y-Z), looking from the driver's side", panel_c_length/2, z_deck + 22, 1.6);
-    label("(kitchen-unit side of the platform — see fridge_slide_detail.scad for the right/fridge side)", panel_c_length/2, z_deck + 20, 1.05);
+    // MOVED TO THE DOCUMENT: label("(kitchen-unit side of the platform — see fridge_slide_detail.scad for the right/fridge side)", panel_c_length/2, z_deck + 20, 1.05);
 
     // van floor
     color("black") translate([-2, -0.1]) square([panel_c_length + 4, 0.2]);
@@ -70,13 +77,13 @@ module drawing() {
     // deck (frame rail + ply) spanning the full length
     color("Gray") translate([0, leg_height]) rect_outline(panel_c_length, frame_rail_sz);
     color("Gray") translate([frame_rail_sz, z_deck - panel_thickness]) rect_outline(panel_c_length - 2 * frame_rail_sz, panel_thickness);
-    label("deck (Panel C top — recessed flush with the rail tops)", panel_c_length/2, z_deck + 1.5, 1.0);
+    // MOVED TO THE DOCUMENT: label("deck (Panel C top — recessed flush with the rail tops)", panel_c_length/2, z_deck + 1.5, 1.0);
 
     // Kitchen unit — closed profile, flush to the tailgate edge (Y=0)
     color("Gainsboro") translate([0, 0]) rect_outline(kitchen_box_length, kitchen_box_height);
     label("Kitchen unit (JAGAHAHA)", kitchen_box_length/2, kitchen_box_height + 2.3, 1.05);
     label(str(kitchen_box_length, "\" (closed) x ", kitchen_box_height, "\" tall"), kitchen_box_length/2, kitchen_box_height + 0.9, 0.95);
-    label("extends to 70\" open, OUTSIDE the vehicle — not shown", kitchen_box_length/2, -5, 0.9);
+    // MOVED TO THE DOCUMENT: label("extends to 70\" open, OUTSIDE the vehicle — not shown", kitchen_box_length/2, -5, 0.9);
 
     // Fire extinguisher — real elevation on the left frame rail, near
     // the Panel B seam (front-left corner). Shown at its real width

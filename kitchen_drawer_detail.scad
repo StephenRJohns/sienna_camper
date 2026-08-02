@@ -12,6 +12,13 @@
 //
 // Render with: openscad -o renders/kitchen-drawer-detail.svg kitchen_drawer_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 9 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.0. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 
@@ -29,10 +36,10 @@ module rect_outline(w, h, s = stroke) {
         translate([s, s]) square([w - 2*s, h - 2*s]);
     }
 }
-module label(txt, x, y, size = 1.2, halign = "center") {
+module label(txt, x, y, size = 2.4, halign = "center") {
     color("black") translate([x, y]) text(txt, size = size, halign = halign, valign = "center");
 }
-module dim_v(x, z0, z1, txt, size = 1.1) {
+module dim_v(x, z0, z1, txt, size = 2.2) {
     color("black") {
         translate([x, z0]) square([stroke, z1 - z0]);
         translate([x - 0.8, z0]) square([1.6, stroke]);
@@ -40,7 +47,7 @@ module dim_v(x, z0, z1, txt, size = 1.1) {
         label(txt, x + 1.6, (z0 + z1)/2, size, "left");
     }
 }
-module dim_h(x0, x1, y, txt, size = 1.1) {
+module dim_h(x0, x1, y, txt, size = 2.2) {
     color("black") {
         translate([x0, y]) square([stroke, 1.4], center = true);
         translate([x1, y]) square([stroke, 1.4], center = true);
@@ -110,7 +117,7 @@ module rear_section() {
         color("black") translate([bx[0], 0]) square([bx[1], 0.1]);
         color("black") translate([bx[0], 0.1]) rect_outline(bx[1], 0.75, 0.12);
     }
-    label("anchor-board strips (mat + 3/4\" ply) flank the kitchen — its tie-down straps land here (no-drill, Sec. 8)", kx0 + kitchen_box_width/2, -1.8, 0.95);
+    // MOVED TO THE DOCUMENT: label("anchor-board strips (mat + 3/4\" ply) flank the kitchen — its tie-down straps land here (no-drill, Sec. 8)", kx0 + kitchen_box_width/2, -1.8, 0.95);
 
     // hanging cheeks, deck underside down to the drawer's underside
     color("black") {
@@ -128,20 +135,20 @@ module rear_section() {
 
     dim_h(dx0, dx0 + kdrawer_box_w, z_d0 - 1.2, str(kdrawer_box_w, "\" box (~", kdrawer_box_w - 1, "\" clear inside)"));
     dim_h(ck_in_x1, ck_out_x0, z_rail1 + 3.4, str(kdrawer_span, "\" between cheek faces"));
-    label("2x 1/2\" ply cheeks, screwed UP into the deck (2\" screws every 6\")", 0, z_rail1 + 6.2, 1.05);
-    label("outer cheek also screws into the side rail's inner face", 0, z_rail1 + 4.8, 1.0);
-    label("24\" side-mount slides, 100lb pair — one per cheek", dx0 + kdrawer_box_w/2, z_d0 - 4.9, 1.05);
+    // MOVED TO THE DOCUMENT: label("2x 1/2\" ply cheeks, screwed UP into the deck (2\" screws every 6\")", 0, z_rail1 + 6.2, 1.05);
+    // MOVED TO THE DOCUMENT: label("outer cheek also screws into the side rail's inner face", 0, z_rail1 + 4.8, 1.0);
+    // MOVED TO THE DOCUMENT: label("24\" side-mount slides, 100lb pair — one per cheek", dx0 + kdrawer_box_w/2, z_d0 - 4.9, 1.05);
 
-    label("REAR SECTION — looking in from the open tailgate (passenger side at right)", 0, -3.4, 1.2);
+    // MOVED TO THE DOCUMENT: label("REAR SECTION — looking in from the open tailgate (passenger side at right)", 0, -3.4, 1.2);
 }
 
 module drawing() {
     side_section();
     translate([panel_c_length + 24, 0]) translate([panel_width/2, 0]) rear_section();
 
-    label("KITCHEN DRAWER — hung under Panel C's deck, above the kitchen unit (Component 7)", panel_c_length + 12, z_deck + 12, 1.9);
-    label("Box: 1/2\" ply, glue + 1-1/4\" screws, ~3.5\" clear inside — utensils / cutting board / flat dry goods / griddle plate.", panel_c_length + 12, z_deck + 9.8, 1.15);
-    label("Face gets a magnetic catch so nothing rattles in transit (the old cabinet door it matched was cut — open bay now).", panel_c_length + 12, z_deck + 8.4, 1.15);
+    // MOVED TO THE DOCUMENT: label("KITCHEN DRAWER — hung under Panel C's deck, above the kitchen unit (Component 7)", panel_c_length + 12, z_deck + 12, 1.9);
+    // MOVED TO THE DOCUMENT: label("Box: 1/2\" ply, glue + 1-1/4\" screws, ~3.5\" clear inside — utensils / cutting board / flat dry goods / griddle plate.", panel_c_length + 12, z_deck + 9.8, 1.15);
+    // MOVED TO THE DOCUMENT: label("Face gets a magnetic catch so nothing rattles in transit (the old cabinet door it matched was cut — open bay now).", panel_c_length + 12, z_deck + 8.4, 1.15);
 }
 
 color("black") drawing();

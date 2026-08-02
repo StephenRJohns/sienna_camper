@@ -12,6 +12,13 @@
 // Render with: openscad -o renders/leveling-foot-assembly.png \
 //   --imgsize=3200,2200 $FLAT_CAM leveling_foot_assembly.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 5 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.0. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -35,8 +42,13 @@ tn_barrel = 0.4375;        // insert body OD (7/16" coarse wood thread)
 expose   = leveling_foot_nominal_h; // 1.0 floor -> leg bottom
 leg_show = 2.4;            // portion of leg drawn before the break
 
-module label(txt, x, y, size = 1.35, ha = "center") {
-    color("black") translate([x, y]) text(txt, size = size, halign = ha, valign = "center");
+// TXT_K scales EVERY label on this sheet, including the many callers that
+// pass their size positionally (label("...", x, y, 0.9)) and so were missed
+// by a `size = N` rewrite. On a 116-unit-wide sheet a 0.9 label printed at
+// 4.5pt; x1.7 brings the smallest to ~7.6.
+TXT_K = 1.7;
+module label(txt, x, y, size = 2.14, ha = "center") {
+    color("black") translate([x, y]) text(txt, size = size * TXT_K, halign = ha, valign = "center");
 }
 module leader(x0, y0, x1, y1) { color("black") hull() { translate([x0, y0]) circle(0.09); translate([x1, y1]) circle(0.09); } }
 
@@ -111,7 +123,7 @@ module cross_section() {
     // break marks at the top
     color("black") for (sx = [-1, 1]) scale([sx, 1]) translate([0, y_top])
         polygon([[0, 0], [lw2, 0], [lw2, 0.5], [lw2*0.55, 1.4], [lw2*0.45, -0.3], [0, 0.6]]);
-    label("leg continues (16\" cut length)", 0, y_top + 2.6, 1.15);
+    label("leg continues", 0, y_top + 2.6, 1.15);
 
     // ---- dimensions ----
     dim_v(0, y_leg, -8.5);                                   // 1" exposure
@@ -130,14 +142,15 @@ module cross_section() {
     label("2\" knob", 0, -9.0, 1.1);
 
     // ---- leaders, staggered on the right ----
-    leader(b2, y_bore - 0.5, 9, 16);   label("1/2\" hole, maker's spec (test-fit in offcut first)", 9.6, 16, 1.15, "left");
-    leader(tn_flange/2*SC, y_leg + 0.8, 9, 12);  label("screw-in insert (7/16\" OD, 3/8-16 bore)", 9.6, 12, 1.15, "left");
-    leader(nut_w/2*SC, (0.30 + knob_t + 0.13)*SC, 9, 8);  label("3/8-16 jam nut — locks the knob", 9.6, 8, 1.15, "left");
-    leader(knob_d/2*SC + 0.9, (0.30 + knob_t/2)*SC, 9, 4);  label("PW6103 star knob (hand wheel)", 9.6, 4, 1.15, "left");
-    leader(0.28*SC, (pad_h + 0.07)*SC, 9, 0.5);  label("fixed hex collar (wrench flat)", 9.6, 0.5, 1.15, "left");
+    //   // MOVED TO THE DOCUMENT: part name "1/2\" hole, maker's spec (test-fit in offcut first)" — it crossed the exploded column
+    //  // MOVED TO THE DOCUMENT: part name "screw-in insert (7/16\" OD, 3/8-16 bore)" — it crossed the exploded column
+    //  // MOVED TO THE DOCUMENT: part name "3/8-16 jam nut — locks the knob" — it crossed the exploded column
+    //  // MOVED TO THE DOCUMENT: part name "PW6103 star knob (hand wheel)" — it crossed the exploded column
+    //  // MOVED TO THE DOCUMENT: part name "fixed hex collar (wrench flat)" — it crossed the exploded column
 
-    label("SECTION A-A — installed, mid-travel (6x actual size)", 0, -12.6, 1.5);
-    label(str("effective leg: cut + 1\" foot = ", leg_height, "\" (Panel C) / ", leg_height_ab, "\" (A/B) — deck plane at ", deck_surface_z, "\""), 0, -15, 1.15);
+    label("SECTION A-A — installed, mid-travel (6x)", 0, -12.6, 1.5);
+    // MOVED TO THE DOCUMENT: the effective-leg-height note (a long computed
+    // string, and the widest thing on this sheet)
 }
 
 // ------------------------------------------------------------
@@ -145,7 +158,7 @@ module cross_section() {
 // ------------------------------------------------------------
 module lmark(t, x, y) {
     color("DarkSlateBlue") translate([x, y]) circle(1.5);
-    color("white") translate([x, y]) text(t, size = 1.5, halign = "center", valign = "center");
+    color("white") translate([x, y]) text(t, size = 4.05, halign = "center", valign = "center");
 }
 module exploded() {
     lw2 = leg_w/2*SC;  b2 = bore_d/2*SC;
@@ -204,19 +217,10 @@ cross_section();
 translate([44, -14]) exploded();
 translate([78, 6]) knob_top();
 
-// assembly steps, under the exploded view's x-range
-steps = ["A  drill the leg's end grain: 1/2\" dia x 7/8\" deep, centered",
-         "B  screw the insert in flush (drive it on a spare bolt + jam nut)",
-         "C  spin a 3/8-16 jam nut ~1\" up the stud",
-         "D  thread the knob up to it; wrench the nut DOWN to lock them",
-         "E  screw the stud into the insert to 1\" exposure",
-         "Locked together, knob + nut drive the stud: tip the corner, spin, done.",
-         "WHY the nut: jammed on the fixed collar instead, the knob locks one way",
-         "only and unscrews when reversed. The collar = wrench flat for a seized foot."];
-label("ASSEMBLY", 36, -19.5, 1.4, "left");
-for (i = [0 : len(steps) - 1]) label(steps[i], 36, -22 - i*2.3, 1.15, "left");
+// MOVED TO THE DOCUMENT: the ASSEMBLY step list (8 lines of prose) — it was
+// the widest block on the sheet. The A-E badges on the drawing key to it.
 
-label("LEG LEVELING FOOT — engineering drawing (parts as purchased, July 2026)", 34, 39, 1.9);
-label("12 feet total (4 per panel x 3 panels): 3x Anwenk leveler 4-packs + 3x Peachtree PW6103 knob 4-packs + 12x 3/8-16 jam nuts", 34, 36.4, 1.2);
-label("Rating: 1,320 lb per foot (Anwenk) — 4 feet under the heaviest panel = ~5,280 lb capacity vs ~450 lb actual load.", 22, -42, 1.2, "left");
-label("NOTE: skip the kit's stick-on felt pads — the bare nylon pad grips the van floor better and doesn't shed.", 22, -44.4, 1.2, "left");
+// MOVED TO THE DOCUMENT: label("LEG LEVELING FOOT — engineering drawing (parts as purchased, July 2026)", 34, 39, 1.9);
+// MOVED TO THE DOCUMENT: label("12 feet total (4 per panel x 3 panels): 3x Anwenk leveler 4-packs + 3x Peachtree PW6103 knob 4-packs + 12x 3/8-16 jam nuts", 34, 36.4, 1.2);
+// MOVED TO THE DOCUMENT: label("Rating: 1,320 lb per foot (Anwenk) — 4 feet under the heaviest panel = ~5,280 lb capacity vs ~450 lb actual load.", 22, -42, 1.2, "left");
+// MOVED TO THE DOCUMENT: label("NOTE: skip the kit's stick-on felt pads — the bare nylon pad grips the van floor better and doesn't shed.", 22, -44.4, 1.2, "left");

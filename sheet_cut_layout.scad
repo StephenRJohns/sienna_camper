@@ -26,60 +26,70 @@
 //
 // Render with: openscad -o renders/sheet-cut-layout.svg sheet_cut_layout.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 2 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.0. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <van_plan.scad>   // also pulls in sheet2d.scad
 
-SW = 210;
-SH = 150;
+// 2x2 grid, not 4 across: four columns took the sheet to 227 units wide,
+// and a figure's printed text height is size x (page_width / sheet_width),
+// so every label sat at ~4.7pt. Two columns halves the width.
+SW = 125;
+SH = 152;   // room for the header above the top row of sheets
 K = 0.62;                 // sheet units per plywood inch
 
 // column origins: 3/4", 1/2", 3/8" panel 1, 3/8" panel 2
-COLX = [8, 58, 108, 158];
-COLY = 34;                // bottom of every sheet drawing
+COLX = [8, 66, 8, 66];
+COLY = [64, 64, 8, 8];    // bottom of each sheet drawing: full sheets up, handy panels down
 
 function cx(col, x) = COLX[col] + x * K;
-function cy(y) = COLY + y * K;
+function cy(col, y) = COLY[col] + y * K;
 
 // ---- one part rectangle with its label ------------------------
 module part(col, x, y, w, h, name, size) {
-    color(GRY) rect_ol(cx(col, x), cy(y), w * K, h * K, MED);
+    color(GRY) rect_ol(cx(col, x), cy(col, y), w * K, h * K, MED);
     // Anything under ~7" wide cannot carry a two-line label at this
     // scale without printing over its neighbour — those get a short
     // code and are spelled out in the key beneath the column.
     if (w >= 7) {
-        txt(name, cx(col, x) + 1.2, cy(y + h) - 3.0, 2.0, "left", "Black");
-        txt(size, cx(col, x) + 1.2, cy(y + h) - 5.4, 1.8, "left", GRY);
+        txt(name, cx(col, x) + 1.2, cy(col, y + h) - 3.0, 2.0, "left", "Black");
+        txt(size, cx(col, x) + 1.2, cy(col, y + h) - 5.4, 2.1, "left", GRY);
     } else {
         }
 }
 // leftover area, hatched-free but marked
 module spare(col, x, y, w, h, label) {
-    color("Black") dash_rect(cx(col, x), cy(y), w * K, h * K, THIN);
-    txt(label, cx(col, x) + 1.2, cy(y) + 2.2, 1.7, "left", GRY);
+    color("Black") dash_rect(cx(col, x), cy(col, y), w * K, h * K, THIN);
+    txt(label, cx(col, x) + 1.2, cy(col, y) + 2.2, 2.1, "left", GRY);
 }
 // a numbered store cut: dir "x" = a rip along the length, "y" = a crosscut
 module scut(col, n, dir, at, from, to) {
     if (dir == "y")
-        color(RED) translate([cx(col, from), cy(at) - 0.45]) square([(to - from) * K, 0.9]);
+        color(RED) translate([cx(col, from), cy(col, at) - 0.45]) square([(to - from) * K, 0.9]);
     else
-        color(RED) translate([cx(col, at) - 0.45, cy(from)]) square([0.9, (to - from) * K]);
+        color(RED) translate([cx(col, at) - 0.45, cy(col, from)]) square([0.9, (to - from) * K]);
     bx = (dir == "y") ? cx(col, to) + 2.6 : cx(col, at);
-    by = (dir == "y") ? cy(at) : cy(to) + 2.6;
+    by = (dir == "y") ? cy(col, at) : cy(col, to) + 2.6;
     color(RED) translate([bx, by]) circle(r = 2.2, $fn = 24);
     txt(n, bx, by - 0.2, 2.1, "center", "White");
 }
 
 module sheet_block(col, title, sub, w, h) {
     // the raw sheet, and the trim margin inside it
-    color("Black") rect_ol(cx(col, -0.5), cy(-0.5), (w + 1) * K, (h + 1) * K, MED);
-    color("Black") dash_rect(cx(col, 0), cy(0), w * K, h * K, THIN);
+    color("Black") rect_ol(cx(col, -0.5), cy(col, -0.5), (w + 1) * K, (h + 1) * K, MED);
+    color("Black") dash_rect(cx(col, 0), cy(col, 0), w * K, h * K, THIN);
     // Titles are STAGGERED in y by column: at 29 units wide per sheet
     // and ~45 wide per title, neighbouring titles would otherwise
     // overprint each other.
-    ty = cy(h) + ((col % 2 == 0) ? 9.5 : 4.5);
+    ty = cy(col, h) + ((col % 2 == 0) ? 9.5 : 4.5);
     txt(title, COLX[col], ty, 2.5, "left", "Black");
-    txt(sub, COLX[col], ty - 2.6, 1.8, "left", GRY);
+    txt(sub, COLX[col], ty - 2.6, 2.1, "left", GRY);
 }
 
 // ============================================================
@@ -110,9 +120,8 @@ module sheets() {
     scut(1, "S2", "y", 44, 0, 47);
     scut(1, "S3", "x", 18, 69, 95);
     scut(1, "S4", "x", 20, 44, 69);
-    // key for this column's narrow strips
-    txt("left to right after S3: 2 cheeks 5.45 x 26, 2 sides 4 x 26,", COLX[1], cy(-0.5) - 3.0, 1.8, "left", GRY);
-    txt("then front + back 4 x 17 (upper strip)", COLX[1], cy(-0.5) - 5.4, 1.8, "left", GRY);
+    // the narrow-strip key for this column is Section 3 prose now — it was
+    // outside any column scope here, so it also broke cy()'s new signature
 
     // ---------------- 3/8" handy panel 1 ---------------------
     sheet_block(2, "3/8\" — panel 1 of 2", "front wall + drawer sides", 47, 47);
@@ -135,39 +144,18 @@ module sheets() {
     scut(3, "S3", "x", 20, 0, 16);
 }
 
-// ============================================================
-module notes() {
-    txt("WHAT TO SAY AT THE SAW", 8, 23, 2.9, "left", "Black");
-    lines = [
-      "1.  \"Trim about 1/2 inch off all four edges of each sheet first.\"   (cuts T1-T4)",
-      "2.  Then the numbered cuts IN ORDER: crosscuts before rips. A crosscut on a full",
-      "     sheet is easier to hold straight, and it makes each following piece handleable.",
-      "3.  Ask ~1/8\" OVERSIZE on parts that must end up exact — store saws hold about +/-1/8\".",
-      "     Trim those at home: the deck, the front wall and the fridge tray are the ones that matter.",
-      "4.  If they will not rip under ~4\", bring the cheeks and sides home as one wide strip",
-      "     and rip them yourself — easy fence cuts once the sheet is already broken down.",
-    ];
-    for (i = [0 : len(lines) - 1])
-        txt(lines[i], 8, 18.5 - i * 3.1, 2.05, "left", "Black");
-
-    txt("STILL A SHOP CUT (do NOT ask the store):", 150, 23, 2.4, "left", RED);
-    shop = ["- the anchor board's COMB outline (jigsaw, from the 46 x 33 blank)",
-            "- the 3/4 x 3/4 deck bearer cleats and the pantry cleats",
-            "- the fridge tray's final trim to 17.72 x 28.74",
-            "- every hole: fan, grommets, finger holes"];
-    for (i = [0 : len(shop) - 1])
-        txt(shop[i], 150, 18.5 - i * 3.1, 1.8, "left", RED);
-}
+// The two note blocks that used to sit here ("what to say at the saw"
+// and "still a shop cut") are Section 3 prose — they were also part of
+// what made this sheet 227 units wide.
 
 module sheet() {
     color("Black") rect_ol(0, 0, SW, SH, 0.5);
-    txt("PLYWOOD CUTTING LAYOUT — STORE CUTS vs SHOP CUTS", 6, SH - 8, 3.5, "left", "Black");
-    txt("Bring this page to the panel saw. Dashed inner line = the sheet after its factory edges are trimmed off; RED = a numbered store cut.",
-        6, SH - 13, 2.4, "left", GRY);
-    txt("CHANGED Aug 2026: the 3/8\" material is now TWO 4x4 handy panels, not one half sheet — the four 3/8\" parts total 18.0 sq ft and half a 4x8 is only 16.0.",
-        6, SH - 17.5, 2.4, "left", RED);
+    txt("PLYWOOD CUTTING LAYOUT — STORE CUTS vs SHOP CUTS", 6, 146, 3.4, "left", "Black");
+    txt("Bring this to the panel saw. Dashed inner line = the sheet after its", 6, 141.5, 2.2, "left", GRY);
+    txt("factory edges come off; RED = a numbered store cut, in order.", 6, 138.5, 2.2, "left", GRY);
+    txt("CHANGED Aug 2026: the 3/8\" material is TWO 4x4 handy panels, not one", 6, 134.5, 2.2, "left", RED);
+    txt("half sheet — the four 3/8\" parts total 18.0 sq ft, half a 4x8 is 16.0.", 6, 131.5, 2.2, "left", RED);
     sheets();
-    notes();
 }
 
 sheet();

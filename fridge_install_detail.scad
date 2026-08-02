@@ -47,6 +47,13 @@
 //
 // Render with: openscad -o renders/fridge-install-detail.svg fridge_install_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 6 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.4. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -61,12 +68,12 @@ module rect_outline(w, l, s = stroke) {
     }
 }
 
-module label(txt, x, y, size = 1.4) {
+module label(txt, x, y, size = 3.36) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.2) {
+module label_left(txt, x, y, size = 2.88) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -79,7 +86,7 @@ module marker(n, x, y, col) {
     // pairs to the list row, color separates markers at a glance
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.3);
-        color("white") text(str(n), size = 1.4, halign = "center", valign = "center");
+        color("white") text(str(n), size = 3.36, halign = "center", valign = "center");
     }
 }
 
@@ -160,7 +167,7 @@ module drawing() {
             translate([sx, 40]) polygon([[0, 1.6], [-0.9, 0], [0.9, 0]]);
         }
     }
-    color("Firebrick") translate([2, 47.4]) text("3 ratchet straps -> 3rd-row STRIKER LOOPS (crash-rated, ~10-14\" fwd of Panel C — position UNVERIFIED, F4)", size = 1.0);
+    // MOVED TO THE DOCUMENT: color("Firebrick") translate([2, 47.4]) text("3 ratchet straps -> 3rd-row STRIKER LOOPS (crash-rated, ~10-14\" fwd of Panel C — position UNVERIFIED, F4)", size = 2.4);
     // 2 steel rail tongues, bridge -> the rear ends of the 2nd-row
     // long-slide floor rails (bolted/clamped there — the PRIMARY
     // forward connection, F8; fallback: butt the striker-row step).
@@ -177,8 +184,8 @@ module drawing() {
         translate([tx - 1.1, 45.8]) square([2.2, 0.22]);
     }
     color("Black") for (tx = [15, 30]) translate([tx, 42]) circle(r = 0.35, $fn = 20); // tongue-to-rail bolt/clamp
-    label_left("2 steel rail tongues (2\"x3/16\") BOLT to the rear ends of the 2nd-row FLOOR RAILS (seat anchorage — no new holes; F8;", 2, 50.7, 1.0);
-    label_left("fallback: butt the striker-row step, F7) — forward restraint is steel-to-steel to the van's own rails (Sec. 8)", 2, 49.1, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("2 steel rail tongues (2\"x3/16\") BOLT to the rear ends of the 2nd-row FLOOR RAILS (seat anchorage — no new holes; F8;", 2, 50.7, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("fallback: butt the striker-row step, F7) — forward restraint is steel-to-steel to the van's own rails (Sec. 8)", 2, 49.1, 1.0);
     marker(9, 15, 34.8, "DimGray");
     marker(10, 8, 33.8, "Firebrick");
 
@@ -236,7 +243,7 @@ module drawing() {
     flow_arrow(fridge_x0 + fridge_ext_length/2, panel_c_length + 1.5, fridge_x0 + fridge_ext_length/2, panel_c_length - 3.5);
     flow_arrow(fridge_x0 + 3, 10, fridge_x0 + fridge_ext_length - 2, 10);
     flow_arrow(fridge_x0 + fridge_ext_length - 2, fridge_ext_width/2, fridge_x0 + fridge_ext_length + 3.5, fridge_ext_width/2);
-    color("SteelBlue") translate([fridge_x0 + 2, 7.2]) text("airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT through the OPEN utility bay toward the tailgate (no door)", size = 0.95);
+    // MOVED TO THE DOCUMENT: color("SteelBlue") translate([fridge_x0 + 2, 7.2]) text("airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT through the OPEN utility bay toward the tailgate (no door)", size = 2.28);
     // the 2 slide rails stand VERTICALLY flanking the tray (side-mount
     // — see fridge-slide-detail): drawn as the 2 narrow bands beside
     // the fridge, set back ~2.5in from the tailgate face so the
@@ -263,7 +270,7 @@ module drawing() {
     // switches are reached by hand.
     bay_x0 = fridge_x0 + fridge_ext_length + fridge_slide_margin + fridge_rail_stack; // past the passenger-side rail + riser
     bay_w  = kitchen_x0 - bay_x0;
-    color("black") translate([bay_x0 + 0.7, 6.8]) rotate(90) text("OPEN BAY (no door)", size = 0.75, halign = "left", valign = "center");
+    color("black") translate([bay_x0 + 0.7, 6.8]) rotate(90) text("OPEN BAY (no door)", size = 1.8, halign = "left", valign = "center");
     flow_arrow(bay_x0 + bay_w/2 + 0.6, 6.2, bay_x0 + bay_w/2 + 0.6, -0.9); // exhaust air exits the open bay toward the tailgate
 
     // WAVE 3 hose/cord storage hook — in the open bay's void (under
@@ -277,8 +284,8 @@ module drawing() {
     ctrl_x0 = bay_x0 + bay_w/2 - control_panel_width/2;
     color("Black") translate([ctrl_x0, 1.8]) rect_outline(control_panel_width, 1.5);
     marker(4, ctrl_x0 + control_panel_width/2, 5.5, "Black");
-    label("(4 sits in the OPEN utility bay — Z in the list.", panel_width/2, -7.6, 1.05);
-    label("CO monitor + fire extinguisher: owner-placed, not located here)", panel_width/2, -9.3, 1.05);
+    // MOVED TO THE DOCUMENT: label("(4 sits in the OPEN utility bay — Z in the list.", panel_width/2, -7.6, 1.05);
+    // MOVED TO THE DOCUMENT: label("CO monitor + fire extinguisher: owner-placed, not located here)", panel_width/2, -9.3, 1.05);
 
     // ---- side list: numbered components with coordinates + fastener spec ----
     list_x = panel_width + 6;
@@ -299,7 +306,7 @@ module drawing() {
     for (i = [0 : len(items) - 1]) {
         y = panel_c_length - 11 - i * 8.5;
         color(marker_col_s(items[i][0])) translate([list_x, y + 3.4]) circle(r = 1.2); // hue matches the drawing marker
-        color("white") translate([list_x, y + 3.4]) text(items[i][0], size = 1.2, halign = "center", valign = "center");
+        color("white") translate([list_x, y + 3.4]) text(items[i][0], size = 2.88, halign = "center", valign = "center");
         label_left(items[i][2], list_x + 3, y + 3.4, 1.1);
         label_left(items[i][3], list_x + 3, y + 1.7, 1.0);
         label_left(items[i][4], list_x + 3, y, 1.0);

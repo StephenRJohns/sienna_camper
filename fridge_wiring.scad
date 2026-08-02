@@ -35,13 +35,20 @@
 //
 // Render with: openscad -o renders/fridge-wiring.svg fridge_wiring.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 7 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.4. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
-module label(txt, x, y, size = 1.3) {
+module label(txt, x, y, size = 3.12) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.1) {
+module label_left(txt, x, y, size = 2.64) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -91,7 +98,7 @@ module signal_wire(x0, y0, x1, y1, col = "DarkGray") {
 module pmark(n, x, y) {
     translate([x, y]) {
         color("Black") circle(r = 1.15);
-        color("White") text(str("P", n), size = 0.95, halign = "center", valign = "center");
+        color("White") text(str("P", n), size = 2.28, halign = "center", valign = "center");
     }
 }
 
@@ -112,8 +119,8 @@ module drawing() {
         ["2048Wh combined — Panel A right drawer", 0.95],
         ["AC in 1500W (0-100% in ~56 min) · 12V car-power DC out 12.6V/30A", 0.9],
     ], "SteelBlue");
-    label("Charge + discharge simultaneously supported — running the fridge/fans", -14, 39.6, 0.85);
-    label("while AC-charging is normal, just slows the charge rate a bit", -14, 38.6, 0.85);
+    // MOVED TO THE DOCUMENT: label("Charge + discharge simultaneously supported — running the fridge/fans", -14, 39.6, 0.85);
+    // MOVED TO THE DOCUMENT: label("while AC-charging is normal, just slows the charge rate a bit", -14, 38.6, 0.85);
 
     // ---- ONE 16AWG SAE line, DELTA 3 -> fuse block, 4 hops ----
     wire(-14, 38, -14, 36.9);
@@ -232,7 +239,7 @@ module drawing() {
         ["warm air OUT", 0.95],
     ], "Gray");
 
-    label("Circuit 1 (right): fridge — F1 10A, switched at SW1. Circuit 2 (left): fans — F2 3A, switched at SW2, W1209-driven off the NTC probe.", -3, -20.5, 1.0);
+    // MOVED TO THE DOCUMENT: label("Circuit 1 (right): fridge — F1 10A, switched at SW1. Circuit 2 (left): fans — F2 3A, switched at SW2, W1209-driven off the NTC probe.", -3, -20.5, 1.0);
 
     // legend
     leg_x = -52; leg_y = -23.5;
@@ -244,7 +251,7 @@ module drawing() {
 
     // ---- side table: every connection point, in install order ----
     tx = 48;
-    label_left("CONNECTION POINTS — every wire landing, in install order", tx, 54, 1.25);
+    // MOVED TO THE DOCUMENT: label_left("CONNECTION POINTS — every wire landing, in install order", tx, 54, 1.25);
     rows = [
         ["P1", "DELTA 3 12V car-power outlet -> fused (15A) car-plug/SAE adapter — hand-plug, no tools"],
         ["P2", "SAE #1 at the A/B seam — mate the OYMSAE cord ends; zip-tie a strain loop each side"],
@@ -263,8 +270,8 @@ module drawing() {
         pmark(i + 1, tx + 1.2, 51 - i * 4);
         label_left(rows[i][1], tx + 3.4, 51 - i * 4, 0.88);
     }
-    label_left("Wire spec: main run 16AWG (the OYMSAE SAE cord itself); in-bay branches 18AWG red/black;", tx, 51 - 12*4 + 0.5, 0.9);
-    label_left("crimps: heat-shrink ring #10 (block studs) + 0.25\" female spades (switch tabs). Crimp, tug-test, then shrink.", tx, 51 - 12*4 - 1, 0.9);
+    // MOVED TO THE DOCUMENT: label_left("Wire spec: main run 16AWG (the OYMSAE SAE cord itself); in-bay branches 18AWG red/black;", tx, 51 - 12*4 + 0.5, 0.9);
+    // MOVED TO THE DOCUMENT: label_left("crimps: heat-shrink ring #10 (block studs) + 0.25\" female spades (switch tabs). Crimp, tug-test, then shrink.", tx, 51 - 12*4 - 1, 0.9);
 }
 
 // NOTE: no outer color("black") wrapper — every box()/wire()/label()

@@ -25,6 +25,13 @@
 //
 // Render with: openscad -o renders/anchor-platform-overhead.svg anchor_platform_overhead.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 4 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.8. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -39,12 +46,12 @@ module rect_outline(w, l, s = stroke) {
     }
 }
 
-module label(txt, x, y, size = 1.3) {
+module label(txt, x, y, size = 2.34) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.1) {
+module label_left(txt, x, y, size = 1.98) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -111,7 +118,7 @@ module drawing() {
     dash_x(0, panel_width, panel_c_length + panel_b_length > 62 ? 60 : panel_c_length + panel_b_length); // Panel B far edge (clipped)
     dash_y(0, panel_c_length, 60); dash_y(panel_width - 0.2, panel_c_length, 60);
     label("PANEL B sits above everything up here (bare cube frame) —", panel_width/2, 38.6, 1.0);
-    label("tongues + straps pass UNDER its rear bottom rail (shallow notches)", panel_width/2, 37.1, 1.0);
+    // MOVED TO THE DOCUMENT: label("tongues + straps pass UNDER its rear bottom rail (shallow notches)", panel_width/2, 37.1, 1.0);
     label("TAILGATE (open) — Y = 0", panel_width/2, -2, 1.3);
     label("DRIVER side (X=0)", 6.5, -4, 1.0);
     label("PASSENGER side", panel_width - 7, -4, 1.0);
@@ -160,11 +167,11 @@ module drawing() {
         dash_y(tx - 1.2, railend_y + 8, 60, 0.25);
         dash_y(tx + 0.95, railend_y + 8, 60, 0.25);
         color("Black") translate([tx, railend_y + 1.2]) circle(r = 0.4, $fn = 20);  // tongue-to-rail bolt/clamp point
-        color("black") translate([tx + 1.9, 34.2]) rotate(90) text("STEEL TONGUE", size = 0.9, halign = "left", valign = "center");
+        color("black") translate([tx + 1.9, 34.2]) rotate(90) text("STEEL TONGUE", size = 1.62, halign = "left", valign = "center");
     }
     // name the strips right on them (rotated to fit)
-    color("black") translate([1.25, 9]) rotate(90) text("ply strip — fridge rail riser bolts here", size = 0.78, halign = "left", valign = "center");
-    color("black") translate([21.6, 5]) rotate(90) text("ply strip — rail riser + kitchen L-track", size = 0.78, halign = "left", valign = "center");
+    color("black") translate([1.25, 9]) rotate(90) text("ply strip — fridge rail riser bolts here", size = 1.404, halign = "left", valign = "center");
+    color("black") translate([21.6, 5]) rotate(90) text("ply strip — rail riser + kitchen L-track", size = 1.404, halign = "left", valign = "center");
     // right-margin component callouts (the "what is what" labels) —
     // short wrapped lines so the drawing stays the dominant element
     cx = panel_width + 2;
@@ -179,9 +186,9 @@ module drawing() {
     label_left("   bolts/clamps to the rail's existing", cx, 41.2, 1.05);
     label_left("   end hardware: NO new holes (F8)", cx, 39.8, 1.05);
     color("Firebrick") {
-        translate([cx, 37.2]) text("<- RATCHET STRAP (x3, 400lb WLL):", size = 1.05);
-        translate([cx, 35.8]) text("   bridge D-ring -> striker loop", size = 1.05);
-        translate([cx, 34.4]) text("   (rearward + lift restraint)", size = 1.05);
+        translate([cx, 37.2]) text("<- RATCHET STRAP (x3, 400lb WLL):", size = 1.89);
+        translate([cx, 35.8]) text("   bridge D-ring -> striker loop", size = 1.89);
+        translate([cx, 34.4]) text("   (rearward + lift restraint)", size = 1.89);
     }
     label_left("<- stud D-RING (x3) in the bridge", cx, 32, 1.05);
     label_left("<- 3/4\" PLY BRIDGE, full width — the", cx, 30.3, 1.05);
@@ -230,7 +237,7 @@ module drawing() {
         color(readme[i][2])
             translate([-10, -7 - i * 1.75]) text(readme[i][0], size = readme[i][1], halign = "left", valign = "center");
 
-    label("NO-DRILL ANCHOR PLATFORM — overhead: Panel C + the factory hardpoints forward of it (Section 8)", 22, 63, 1.6);
+    // MOVED TO THE DOCUMENT: label("NO-DRILL ANCHOR PLATFORM — overhead: Panel C + the factory hardpoints forward of it (Section 8)", 22, 63, 1.6);
 }
 
 // no outer color() wrapper — helpers self-color (see

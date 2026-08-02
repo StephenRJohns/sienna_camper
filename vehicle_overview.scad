@@ -14,6 +14,13 @@
 //
 // Render with: openscad -o renders/vehicle-overview.svg vehicle_overview.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 2 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.6. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 
@@ -126,6 +133,14 @@ module wheel() {
     }
 }
 
+// Plain dark numerals, NOT a filled badge with white text: a circle and
+// the numeral inside it touch, and OpenSCAD merges touching 2D shapes into
+// one polygon painted a single colour — the badges came out as solid dots.
+module vo_badge(n, x, y) {
+    color("DarkSlateBlue") translate([x, y])
+        text(str(n), size = 8, halign = "center", valign = "center");
+}
+
 module drawing() {
     // ground line
     translate([-5, 0]) square([vehicle_length + 10, stroke]);
@@ -151,14 +166,14 @@ module drawing() {
             translate([stroke, stroke]) square([van_interior_length - 2*stroke, van_interior_height - 2*stroke]);
         }
     color("black") translate([vehicle_length/2, -4.5])
-        text(str("Cargo interior envelope (thin outline): ", van_interior_length, "in x ", van_interior_height, "in, 2nd row removed — UNVERIFIED length"), size = 2.0, halign = "center", valign = "center");
+        text(str("interior ", van_interior_length, " x ", van_interior_height, "in"), size = 6.197, halign = "center", valign = "center");
 
     // liftgate opening callout (UNVERIFIED — see params.scad) drawn
     // against the tailgate face
     color("Black") translate([vehicle_length - rear_overhang - 3, floor_z])
         square([stroke * 2, gate_opening_height]);
     color("Black") translate([vehicle_length - rear_overhang + 6, floor_z + gate_opening_height/2])
-        text(str("Liftgate opening ", gate_opening_height, "in tall (UNVERIFIED)"), size = 2.2, halign = "left", valign = "center");
+        text(str("gate ", gate_opening_height, "in"), size = 6.816, halign = "left", valign = "center");
 
     // -------------------------------------------------------
     // Platform assembly, to scale, inside the cargo envelope. ONE
@@ -211,7 +226,7 @@ module drawing() {
             translate([stroke, stroke]) square([mattress_length - 2*stroke, mattress_total_thickness - 2*stroke]);
         }
     color("black") translate([panels_x0 + mattress_length/2, (matt_z0 + matt_z1)/2])
-        text(str("mattress (", mattress_total_thickness, "\" foam on the 3/4\" platform)"), size = 1.8, halign = "center", valign = "center");
+        text(str("mattress (", mattress_total_thickness, "\" foam on the 3/4\" platform)"), size = 5.577, halign = "center", valign = "center");
 
     // SITTING HEADROOM: mattress top -> ceiling, dimensioned with
     // ticks so the person-space is explicit
@@ -223,27 +238,26 @@ module drawing() {
         translate([hx - 2, floor_z + van_interior_height - stroke]) square([4, stroke]);
     }
     color("black") translate([hx + 2.5, (matt_z1 + floor_z + van_interior_height)/2 + 2])
-        text(str(headroom, "\" of sitting headroom"), size = 2.2, halign = "left", valign = "center");
+        text(str(headroom, "\" headroom"), size = 6.816, halign = "left", valign = "center");
     color("black") translate([hx + 2.5, (matt_z1 + floor_z + van_interior_height)/2 - 1])
-        text("(mattress top to ceiling)", size = 1.7, halign = "left", valign = "center");
+        vo_badge(1, 0, 0);   // name in the figure caption
 
     color("black") translate([panels_x0 + panels_total_length/2, floor_z + 9])
-        text("Panels A / B / C (boxes on the floor; full untrimmed queen mattress above)", size = 1.8, halign = "center", valign = "center");
+        vo_badge(2, 0, 0);   // name in the figure caption
     color("black") translate([pantry_x0 + pantry_len/2, floor_z + panel_module_height + pantry_cluster_h + 3])
-        text("Rear pantry (prefab)", size = 1.6, halign = "center", valign = "center");
+        vo_badge(3, 0, 0);   // name in the figure caption
     color("black") translate([pantry_x0 + pantry_len/2, floor_z + panel_module_height + pantry_cluster_h + 1])
-        text("(on Panel C's deck)", size = 1.3, halign = "center", valign = "center");
+        vo_badge(4, 0, 0);   // name in the figure caption
     color("black") translate([panels_x0 + 6, floor_z - 3])
-        text("Fridge + kitchen unit hidden inside Panel C ->", size = 1.5, halign = "right", valign = "center");
+        vo_badge(5, 0, 0);   // name in the figure caption
 
     // front/rear labels for orientation
-    color("black") translate([20, 70]) text("FRONT", size = 3.2, halign = "center", valign = "center");
-    color("black") translate([190, 70]) text("REAR / TAILGATE", size = 3.2, halign = "center", valign = "center");
+    color("black") translate([20, 70]) text("FRONT", size = 8.5, halign = "center", valign = "center");
+    color("black") translate([190, 70]) text("REAR / TAILGATE", size = 8.5, halign = "center", valign = "center");
 
-    // disclaimer caption
-    color("black") translate([vehicle_length/2, -8])
-        text("Exterior body outline is illustrative only — cargo interior, liftgate opening, and platform dimensions are to scale.",
-             size = 1.8, halign = "center", valign = "center");
+    // MOVED TO THE DOCUMENT (figure caption): the body-outline disclaimer.
+    // It was the widest single element on a sheet whose geometry is already
+    // 258 units long, so it was holding every label down to ~6pt.
 }
 
 drawing();

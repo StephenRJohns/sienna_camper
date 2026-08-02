@@ -19,6 +19,13 @@
 //
 // Render with: openscad -o renders/jig-detail.svg jig_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 3 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.6. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -35,7 +42,7 @@ board_w = jig_len + 2 * board_margin;
 board_h = jig_ht + 2 * board_margin;
 bit_r   = router_bit_dia/2;                       // finished hole's corner radius, set by the bit itself
 
-module label(txt, x, y, size = 1.4, halign = "center") {
+module label(txt, x, y, size = 2.24, halign = "center") {
     color("black") translate([x, y]) text(txt, size = size, halign = halign, valign = "center");
 }
 
@@ -100,9 +107,9 @@ module drawing() {
     label(str("Porter Cable plunge router, ", router_base_dia, "\" dia base, riding directly on the cutout edge (no guide bushing)"), 0, board_h/2 + 11, 1.3);
     label(str("Assumes a ", router_bit_dia, "\" straight/spiral bit — swap router_bit_dia in params.scad and every dimension above recomputes"), 0, board_h/2 + 9.5, 1.2);
 
-    label("Cut the jig opening square with a jigsaw/circular saw — the HOLE takes its shape from what the bit cuts, not the jig's corners.", 0, -board_h/2 - 9, 1.2);
+    // MOVED TO THE DOCUMENT: label("Cut the jig opening square with a jigsaw/circular saw — the HOLE takes its shape from what the bit cuts, not the jig's corners.", 0, -board_h/2 - 9, 1.2);
     label(str("board: ", board_w, "\" x ", board_h, "\" min (1/2\" MDF or ply) — clamp centered over the rail's hand-hold centerline before plunging"), 0, -board_h/2 - 11, 1.2);
-    label("Plunge in the middle, then sweep the router's base around the cutout's full inside edge — the base edge follows the template.", 0, -board_h/2 - 13, 1.2);
+    // MOVED TO THE DOCUMENT: label("Plunge in the middle, then sweep the router's base around the cutout's full inside edge — the base edge follows the template.", 0, -board_h/2 - 13, 1.2);
 }
 
 drawing();

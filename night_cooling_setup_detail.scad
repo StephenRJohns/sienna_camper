@@ -28,6 +28,13 @@
 //
 // Render with: openscad -o renders/night-cooling-setup-detail.svg night_cooling_setup_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 6 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.0. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -42,12 +49,12 @@ module rect_outline(w, l, s = stroke) {
     }
 }
 
-module label(txt, x, y, size = 1.6) {
+module label(txt, x, y, size = 3.2) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.3) {
+module label_left(txt, x, y, size = 2.6) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -55,7 +62,7 @@ module label_left(txt, x, y, size = 1.3) {
 module marker(n, x, y) {
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.5);
-        color("white") text(str(n), size = 1.5, halign = "center", valign = "center");
+        color("white") text(str(n), size = 3.0, halign = "center", valign = "center");
     }
 }
 
@@ -107,7 +114,7 @@ module side_list(list_x, top_y, items) {
     for (i = [0 : len(items) - 1]) {
         y = top_y - 8 - i * 9.5;
         color(marker_col(i + 1)) translate([list_x, y + 3.4]) circle(r = 1.3);
-        color("white") translate([list_x, y + 3.4]) text(str(i + 1), size = 1.3, halign = "center", valign = "center");
+        color("white") translate([list_x, y + 3.4]) text(str(i + 1), size = 2.6, halign = "center", valign = "center");
         label_left(items[i][0], list_x + 3, y + 3.4, 1.15);
         label_left(items[i][1], list_x + 3, y + 1.6, 1.0);
         label_left(items[i][2], list_x + 3, y - 0.1, 1.0);
@@ -209,11 +216,11 @@ module drawing() {
         ["Conditioned airflow", "fans from the tailgate into the tent", "shares one open van+tent air volume — NIGHT ONLY"],
     ]);
 
-    label_left("Night-only setup: skip the factory AC here — it needs the van sealed", -van_interior_width/2, -tent_example_length - 8, 1.1);
-    label_left("(doors/tailgate shut) to run efficiently, which conflicts with the", -van_interior_width/2, -tent_example_length - 9.4, 1.1);
-    label_left("tent sleeve needing the tailgate open. Seal the tent's own mesh/", -van_interior_width/2, -tent_example_length - 10.8, 1.1);
-    label_left("vents shut and add a small circulation fan inside the tent to push", -van_interior_width/2, -tent_example_length - 12.2, 1.1);
-    label_left("the WAVE 3's output to the tent's far end — see Section 1.", -van_interior_width/2, -tent_example_length - 13.6, 1.1);
+    // MOVED TO THE DOCUMENT: label_left("Night-only setup: skip the factory AC here — it needs the van sealed", -van_interior_width/2, -tent_example_length - 8, 1.1);
+    // MOVED TO THE DOCUMENT: label_left("(doors/tailgate shut) to run efficiently, which conflicts with the", -van_interior_width/2, -tent_example_length - 9.4, 1.1);
+    // MOVED TO THE DOCUMENT: label_left("tent sleeve needing the tailgate open. Seal the tent's own mesh/", -van_interior_width/2, -tent_example_length - 10.8, 1.1);
+    // MOVED TO THE DOCUMENT: label_left("vents shut and add a small circulation fan inside the tent to push", -van_interior_width/2, -tent_example_length - 12.2, 1.1);
+    // MOVED TO THE DOCUMENT: label_left("the WAVE 3's output to the tent's far end — see Section 1.", -van_interior_width/2, -tent_example_length - 13.6, 1.1);
 }
 
 // NOTE: no outer color("black") wrapper — every helper above

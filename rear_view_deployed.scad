@@ -13,6 +13,13 @@
 //
 // Render with: openscad -o renders/rear-view-deployed.svg rear_view_deployed.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 1 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.4. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -25,16 +32,16 @@ module rect_outline(w, l, s = stroke) {
         translate([s, s]) square([w - 2*s, l - 2*s]);
     }
 }
-module label(txt, x, y, size = 1.6) {
+module label(txt, x, y, size = 2.24) {
     color("black") translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
-module label_left(txt, x, y, size = 1.3) {
+module label_left(txt, x, y, size = 1.82) {
     color("black") translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
 module marker(n, x, y) {
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.4);
-        color("white") text(str(n), size = 1.5, halign = "center", valign = "center");
+        color("white") text(str(n), size = 2.1, halign = "center", valign = "center");
     }
 }
 module fan_icon(x, z, r) {

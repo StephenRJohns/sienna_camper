@@ -8,6 +8,13 @@
 //
 // Render with: openscad -o renders/rear-pantry-detail.svg rear_pantry_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 2 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.8. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <steps/lego_lib.scad>
 include <colors.scad>
@@ -25,15 +32,15 @@ module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3); t = q + off;
     color(INK) line2d(q, t - off * (2.2 / max(2.2, norm(off))));
     color(marker_col(n)) translate(t) circle(r = 1.4);
-    color("white") translate(t) text(str(n), size = 1.4, halign = "center", valign = "center");
+    color("white") translate(t) text(str(n), size = 2.52, halign = "center", valign = "center");
 }
 module side_list(list_x, top_y, items) {
-    color(INK) translate([list_x, top_y]) text("Hold-down + fit-out", size = 1.7, halign = "left", valign = "center");
+    color(INK) translate([list_x, top_y]) text("Hold-down + fit-out", size = 3.06, halign = "left", valign = "center");
     for (i = [0 : len(items) - 1]) {
         y = top_y - 4 - i * 3.0;
         color(marker_col(i + 1)) translate([list_x + 0.8, y]) circle(r = 1.2);
-        color("white") translate([list_x + 0.8, y]) text(str(i + 1), size = 1.1, halign = "center", valign = "center");
-        color(INK) translate([list_x + 3.4, y]) text(items[i], size = 1.15, halign = "left", valign = "center");
+        color("white") translate([list_x + 0.8, y]) text(str(i + 1), size = 1.98, halign = "center", valign = "center");
+        color(INK) translate([list_x + 3.4, y]) text(items[i], size = 2.07, halign = "left", valign = "center");
     }
 }
 
@@ -76,8 +83,8 @@ module drawing() {
     marker3d(5, [DW/2 - 4, 2, PT + 2], [10, -2]);                  // power strip
 
     cap(str("REAR PANTRY — prefab 2x2 IRIS drawer cluster (", CW, "\" x ", CH, "\") + pot crate, on Panel C's deck (Component 1)"), 0, -15, 1.9);
-    cap("Replaces the plywood pantry — ~27 lb lighter, nothing built. Each drawer unit lifts straight out once the cam strap is loosened.", 0, -17.5, 1.3);
-    cap("Canned goods LOW, boxed dry goods UP. Cab-side cleat stops the forward slide under braking; the strap doubles as drawer-shut + hold-down.", 0, -19.7, 1.3);
+    // MOVED TO THE DOCUMENT: cap("Replaces the plywood pantry — ~27 lb lighter, nothing built. Each drawer unit lifts straight out once the cam strap is loosened.", 0, -17.5, 1.3);
+    // MOVED TO THE DOCUMENT: cap("Canned goods LOW, boxed dry goods UP. Cab-side cleat stops the forward slide under braking; the strap doubles as drawer-shut + hold-down.", 0, -19.7, 1.3);
 
     side_list(DW/2 + 12, CH + 2, [
         "Cam strap across drawer fronts (shut + hold-down)",

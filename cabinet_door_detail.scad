@@ -11,6 +11,13 @@
 //
 // Render with: openscad -o renders/cabinet-door-detail.svg cabinet_door_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 2 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.8. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <steps/lego_lib.scad>
 include <colors.scad>
@@ -29,23 +36,23 @@ module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3);
     t = q + off;
     color(marker_col(n)) translate(t) circle(r = 1.3);
-    color("white") translate(t) text(str(n), size = 1.3, halign = "center", valign = "center");
+    color("white") translate(t) text(str(n), size = 2.34, halign = "center", valign = "center");
     color(INK) line2d(q, t - off * (2.2 / max(2.2, norm(off))));
 }
 
 module side_list(list_x, top_y, items) {
     color(INK) {
-        translate([list_x, top_y - 1]) text("Component", size = 1.4, halign = "left", valign = "center");
-        translate([list_x, top_y - 3.6]) text("Position / fastener / material", size = 1.1, halign = "left", valign = "center");
+        translate([list_x, top_y - 1]) text("Component", size = 2.52, halign = "left", valign = "center");
+        translate([list_x, top_y - 3.6]) text("Position / fastener / material", size = 1.98, halign = "left", valign = "center");
     }
     for (i = [0 : len(items) - 1]) {
         y = top_y - 10 - i * 9;
         color(marker_col(i + 1)) translate([list_x, y + 3.8]) circle(r = 1.2);
-        color("white") translate([list_x, y + 3.8]) text(items[i][0], size = 1.2, halign = "center", valign = "center");
+        color("white") translate([list_x, y + 3.8]) text(items[i][0], size = 2.16, halign = "center", valign = "center");
         color(INK) {
-            translate([list_x + 3.2, y + 3.8]) text(items[i][1], size = 1.15, halign = "left", valign = "center");
-            translate([list_x + 3.2, y + 1.9]) text(items[i][2], size = 1.0, halign = "left", valign = "center");
-            translate([list_x + 3.2, y]) text(items[i][3], size = 1.0, halign = "left", valign = "center");
+            translate([list_x + 3.2, y + 3.8]) text(items[i][1], size = 2.07, halign = "left", valign = "center");
+            translate([list_x + 3.2, y + 1.9]) text(items[i][2], size = 1.8, halign = "left", valign = "center");
+            translate([list_x + 3.2, y]) text(items[i][3], size = 1.8, halign = "left", valign = "center");
         }
     }
 }
@@ -89,7 +96,7 @@ module drawing() {
 
     cap(str("UTILITY CABINET DOOR — exploded detail (", door_w, "\" wide x ", door_h, "\" tall x ", door_t, "\" thick)"), 13, -16, 2.0);
     cap("Hinged on the kitchen-side edge, swinging open toward the fridge — magnetic catch holds it shut on the free edge.", 13, -19, 1.4);
-    cap("A low louver (4) gives the exhaust fan's warm air a direct path OUT toward the tailgate — the rest stays dust/draft control.", 13, -21.5, 1.4);
+    // MOVED TO THE DOCUMENT: cap("A low louver (4) gives the exhaust fan's warm air a direct path OUT toward the tailgate — the rest stays dust/draft control.", 13, -21.5, 1.4);
 
     side_list(door_x0 + door_w + 20, door_h + 10, [
         ["1", "Door panel", str(door_w, "\" x ", door_h, "\" x ", door_t, "\", 3/4\" ply offcut"), "BurlyWood — matches the utility cabinet's own scrap"],

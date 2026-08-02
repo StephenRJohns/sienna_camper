@@ -8,6 +8,13 @@
 //
 // Render with: openscad -o renders/spare-stow-detail.svg spare_stow_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 2 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.9. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <steps/lego_lib.scad>
 include <colors.scad>
@@ -23,15 +30,15 @@ module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3); t = q + off;
     color(INK) line2d(q, t - off * (2.2 / max(2.2, norm(off))));
     color(marker_col(n)) translate(t) circle(r = 1.4);
-    color("white") translate(t) text(str(n), size = 1.4, halign = "center", valign = "center");
+    color("white") translate(t) text(str(n), size = 2.66, halign = "center", valign = "center");
 }
 module side_list(list_x, top_y, title, items) {
-    color(INK) translate([list_x, top_y]) text(title, size = 1.6, halign = "left", valign = "center");
+    color(INK) translate([list_x, top_y]) text(title, size = 3.04, halign = "left", valign = "center");
     for (i = [0 : len(items) - 1]) {
         y = top_y - 4 - i * 4.0;
         color(marker_col(i + 1)) translate([list_x + 0.8, y]) circle(r = 1.2);
-        color("white") translate([list_x + 0.8, y]) text(str(i + 1), size = 1.1, halign = "center", valign = "center");
-        color(INK) translate([list_x + 3.4, y]) text(items[i], size = 1.1, halign = "left", valign = "center");
+        color("white") translate([list_x + 0.8, y]) text(str(i + 1), size = 2.09, halign = "center", valign = "center");
+        color(INK) translate([list_x + 3.4, y]) text(items[i], size = 2.09, halign = "left", valign = "center");
     }
 }
 // white iso disc (tire lying flat) with black rim
@@ -85,7 +92,7 @@ module drawing() {
     marker3d(6, [-W/4, 0.7, bottom_rail_z + RS], [-12, -4]);       // footman
 
     cap("SPARE TIRE — flat in Panel B's bay at the AXLE (Component 3), exploded stack", 0, -24, 1.9);
-    cap("Best weight placement in the van — no hitch basket needed. NOTHING screws to the van floor: the skid sits on the liner, the strap ties to footman loops on the bottom rails.", 0, -26.5, 1.2);
+    // MOVED TO THE DOCUMENT: cap("Best weight placement in the van — no hitch basket needed. NOTHING screws to the van floor: the skid sits on the liner, the strap ties to footman loops on the bottom rails.", 0, -26.5, 1.2);
     cap(str("Height stack: cleats 3\" (clear the ", bottom_rail_z + RS, "\" curb) + spare ", spare_t, "\" + tote ", panelb_tote_h, "\" — fits under the ", LH + RS, "\" deck. Kitchen-drawer slot does NOT fit the 28.5\" disc; the drawer stays."), 0, -28.7, 1.2);
 
     side_list(W/2 + 20, LH + 10, "Exploded stack (top -> bottom)", [

@@ -8,6 +8,13 @@
 //
 // Render with: openscad -o renders/seam-clamp-detail.svg seam_clamp_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 5 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x2.2. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <steps/hardware_icons.scad>
 include <colors.scad>
@@ -23,7 +30,7 @@ module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3); t = q + off;
     color(INK) line2d(q, t - off * (2.2 / max(2.2, norm(off))));
     color(marker_col(n)) translate(t) circle(r = 1.4);
-    color("white") translate(t) text(str(n), size = 1.4, halign = "center", valign = "center");
+    color("white") translate(t) text(str(n), size = 3.08, halign = "center", valign = "center");
 }
 
 // hollow iso wireframe box (edges only), spanning Y = y0..y0+len
@@ -59,9 +66,9 @@ module drawing() {
     }
 
     cap("SEAM DRAW-LATCHES — clamp the 3 lift-out modules into one rigid beam (Component 5)", 0, -10, 1.9);
-    cap("4 latches total: one each side of BOTH the A/B and B/C seams, low on the bottom-rail band (~1.75\" up, hand-reach).", 0, -12.5, 1.3);
-    cap("Alignment pins LOCATE the modules; the latches PULL them tight against the bumper strip. Hand-released — panels still lift out in seconds.", 0, -14.7, 1.3);
-    cap("(front seats upper-left, tailgate lower-right; the bed platform already ties the Panel A + B tops)", 0, -16.9, 1.2);
+    // MOVED TO THE DOCUMENT: cap("4 latches total: one each side of BOTH the A/B and B/C seams, low on the bottom-rail band (~1.75\" up, hand-reach).", 0, -12.5, 1.3);
+    // MOVED TO THE DOCUMENT: cap("Alignment pins LOCATE the modules; the latches PULL them tight against the bumper strip. Hand-released — panels still lift out in seconds.", 0, -14.7, 1.3);
+    // MOVED TO THE DOCUMENT: cap("(front seats upper-left, tailgate lower-right; the bed platform already ties the Panel A + B tops)", 0, -16.9, 1.2);
 }
 
 // ---- detail vignette: one latch across two adjacent legs ----
@@ -72,7 +79,7 @@ module vignette() {
     ifill("Peru") translate([frame_rail_sz, 0, 0]) cube([bumper_thickness, frame_rail_sz, 12]); // bumper
     translate(p2([g/2 + frame_rail_sz/2, frame_rail_sz/2, seam_latch_z + 3])) scale([1.2, 1.2]) ic_latch();
     cap("DETAIL — one latch, two legs, bumper between", frame_rail_sz/2 + g/2, 15, 1.4);
-    cap("base plate on one leg, hooked bail + lever on the other;", frame_rail_sz/2 + g/2, 12.8, 1.05);
+    // MOVED TO THE DOCUMENT: cap("base plate on one leg, hooked bail + lever on the other;", frame_rail_sz/2 + g/2, 12.8, 1.05);
     cap("flip to clamp, flip to release (no tools)", frame_rail_sz/2 + g/2, 11.3, 1.05);
 }
 

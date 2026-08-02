@@ -8,16 +8,23 @@
 //
 // Render with: openscad -o renders/measurement-fridge-kitchen.svg measurement_fridge_kitchen.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 5 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.5. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <dim_style.scad>
 
-module label(txt, x, y, size = 1.3) {
+module label(txt, x, y, size = 1.95) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.1) {
+module label_left(txt, x, y, size = 1.65) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -25,7 +32,7 @@ module label_left(txt, x, y, size = 1.1) {
 module num(n, x, y, col = "Black") {
     translate([x, y]) {
         color(col) circle(r = 1.4);
-        color("white") text(str(n), size = 1.4, halign = "center", valign = "center");
+        color("white") text(str(n), size = 2.1, halign = "center", valign = "center");
     }
 }
 
@@ -61,8 +68,8 @@ module drawing() {
     label_left("(confirm intake/exhaust fan placement", fridge_ext_length + 3, 8.1, 1.0);
     label_left("still make sense — Section 2 coordinates)", fridge_ext_length + 3, 6.7, 1.0);
 
-    label("Also record: empty weight, cord length, and how far it must slide out", 20, -2, 1.0);
-    label("before the lid can open fully clear of the deck above (fridge_slide_length assumes 24\" is enough).", 20, -3.4, 1.0);
+    // MOVED TO THE DOCUMENT: label("Also record: empty weight, cord length, and how far it must slide out", 20, -2, 1.0);
+    // MOVED TO THE DOCUMENT: label("before the lid can open fully clear of the deck above (fridge_slide_length assumes 24\" is enough).", 20, -3.4, 1.0);
 
     // ================= KITCHEN (Y = -50 to -95) =================
     label("JAGAHAHA KITCHEN UNIT — top-down view, closed", 20, -46, 1.6);
@@ -86,10 +93,10 @@ module drawing() {
     translate([2, -80]) frame_rect(16, 14, 0.2, "Black");
     num(9, 10, -73, "Black");
     label("Stove tray L x W x clearance-height", 10, -95.5, 1.0);
-    label("(this plan estimated 23\" x 15.7\" x 5.7\" from listing PHOTOS,", 10, -97, 0.9);
-    label("not a spec sheet — the COOKTRON cooktop's fit depends on this)", 10, -98.4, 0.9);
+    // MOVED TO THE DOCUMENT: label("(this plan estimated 23\" x 15.7\" x 5.7\" from listing PHOTOS,", 10, -97, 0.9);
+    // MOVED TO THE DOCUMENT: label("not a spec sheet — the COOKTRON cooktop's fit depends on this)", 10, -98.4, 0.9);
 
-    label("Also record: empty weight, and the cord pass-through location for the cooktop's power cord.", 10, -101.5, 1.0);
+    // MOVED TO THE DOCUMENT: label("Also record: empty weight, and the cord pass-through location for the cooktop's power cord.", 10, -101.5, 1.0);
 }
 
 // NOTE: no outer color("black") wrapper — every helper above already

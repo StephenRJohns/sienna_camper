@@ -15,6 +15,13 @@
 //
 // Render with: openscad -o renders/panel-c-wall-detail.svg panel_c_wall_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 5 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.8. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 
@@ -31,13 +38,13 @@ gr_z   = 3;   // low, at cord height
 gr2_x  = 3;   // 2nd grommet: Power strip 1's line, exiting the rear pantry's under-deck run
 gr2_z  = 5.5; // stacked above the DC grommet — the two lines run the same driver-side channel
 
-module label(txt, x, y, size = 1.2, halign = "center") {
+module label(txt, x, y, size = 2.16, halign = "center") {
     color("black") translate([x, y]) text(txt, size = size, halign = halign, valign = "center");
 }
 module ring(r) {
     color("black") difference() { circle(r = r, $fn = 48); circle(r = r - stroke, $fn = 48); }
 }
-module dim_h(x0, x1, y, txt, size = 1.1) {
+module dim_h(x0, x1, y, txt, size = 1.98) {
     color("black") {
         translate([x0, y]) square([stroke, 1.4], center = true);
         translate([x1, y]) square([stroke, 1.4], center = true);
@@ -45,7 +52,7 @@ module dim_h(x0, x1, y, txt, size = 1.1) {
         label(txt, (x0 + x1)/2, y - 1.8, size);
     }
 }
-module dim_v(x, z0, z1, txt, size = 1.1) {
+module dim_v(x, z0, z1, txt, size = 1.98) {
     color("black") {
         translate([x, z0]) square([1.4, stroke], center = true);
         translate([x, z1]) square([1.4, stroke], center = true);
@@ -113,12 +120,12 @@ module drawing() {
     label("4x #8 fan screws on a 4.13\" (105mm) square", fan_x + fan_d/2 + 1.5, fan_z + 0.2, 1.0, "left");
     label(str("grommets: ", gr_d, "\" dia x2 — fridge DC line (low) + Power strip 1's line (upper)"), gr2_x + 1.5, gr2_z + 2.6, 1.05, "left");
     label(str("LOW INTAKE VENT: ", intake_vent_w, "\" x ", intake_vent_h, "\" louver at ", intake_vent_x, "\" over, ", intake_vent_z, "\" up — admits cool floor-level air"), intake_vent_x + 2, intake_vent_z - intake_vent_h/2 - 1.2, 1.0);
-    label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
+    // MOVED TO THE DOCUMENT: label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
 
     // ---- title + notes ----
     label("PANEL C FRONT WALL — 3/8\" ply, flat pattern (the ONLY wall on any panel)", WW/2, WH + 6.4, 1.8);
-    label("Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.", WW/2, WH + 4.4, 1.15);
-    label("Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + open utility bay + kitchen + kitchen drawer fill it.", WW/2, WH + 3.1, 1.05);
+    // MOVED TO THE DOCUMENT: label("Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.", WW/2, WH + 4.4, 1.15);
+    // MOVED TO THE DOCUMENT: label("Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + open utility bay + kitchen + kitchen drawer fill it.", WW/2, WH + 3.1, 1.05);
     label("DRIVER side at left (the fridge bay's side) — PASSENGER at right. All positions computed from params.scad.", WW/2, -13, 1.05);
 }
 

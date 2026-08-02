@@ -17,6 +17,13 @@
 //
 // Render with: openscad -o renders/panel-a-detail.svg -D 'panel="A"' panel_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 6 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.8. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <steps/lego_lib.scad>
 include <colors.scad>
@@ -41,23 +48,23 @@ module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3);
     t = q + off;
     color(marker_col(n)) translate(t) circle(r = 1.3);
-    color("white") translate(t) text(str(n), size = 1.3, halign = "center", valign = "center");
+    color("white") translate(t) text(str(n), size = 2.34, halign = "center", valign = "center");
     color(INK) line2d(q, t - off * (2.2 / max(2.2, norm(off))));
 }
 
 module side_list(list_x, top_y, items) {
     color(INK) {
-        translate([list_x, top_y - 1]) text("Component", size = 1.4, halign = "left", valign = "center");
-        translate([list_x, top_y - 3.6]) text("Position / fastener / material", size = 1.1, halign = "left", valign = "center");
+        translate([list_x, top_y - 1]) text("Component", size = 2.52, halign = "left", valign = "center");
+        translate([list_x, top_y - 3.6]) text("Position / fastener / material", size = 1.98, halign = "left", valign = "center");
     }
     for (i = [0 : len(items) - 1]) {
         y = top_y - 10 - i * 9;
         color(marker_col(i + 1)) translate([list_x, y + 3.8]) circle(r = 1.2);
-        color("white") translate([list_x, y + 3.8]) text(items[i][0], size = 1.2, halign = "center", valign = "center");
+        color("white") translate([list_x, y + 3.8]) text(items[i][0], size = 2.16, halign = "center", valign = "center");
         color(INK) {
-            translate([list_x + 3.2, y + 3.8]) text(items[i][1], size = 1.15, halign = "left", valign = "center");
-            translate([list_x + 3.2, y + 1.9]) text(items[i][2], size = 1.0, halign = "left", valign = "center");
-            translate([list_x + 3.2, y]) text(items[i][3], size = 1.0, halign = "left", valign = "center");
+            translate([list_x + 3.2, y + 3.8]) text(items[i][1], size = 2.07, halign = "left", valign = "center");
+            translate([list_x + 3.2, y + 1.9]) text(items[i][2], size = 1.8, halign = "left", valign = "center");
+            translate([list_x + 3.2, y]) text(items[i][3], size = 1.8, halign = "left", valign = "center");
         }
     }
 }
@@ -185,10 +192,10 @@ module drawing_b() {
         circle(r = 0.25 * s3, $fn = 32); circle(r = 0.25 * s3 - 0.25, $fn = 32);
     }
     color(INK) {
-        translate([ix, iy + RS * s3 + 5.5]) text("LEG BOTTOM, zoomed — same hole on all 12 legs", size = 1.3);
-        translate([ix, iy + RS * s3 + 3.5]) text("1/2\" dia x 3/4\" deep, dead center of the", size = 1.1);
-        translate([ix, iy + RS * s3 + 2]) text("1.5\" x 1.5\" end grain -> 3/8-16 insert", size = 1.1);
-        translate([ix, iy - 2]) text("drill BEFORE assembly (Leveling Foot render)", size = 1.05);
+        translate([ix, iy + RS * s3 + 5.5]) text("LEG BOTTOM, zoomed — same hole on all 12 legs", size = 2.34);
+        translate([ix, iy + RS * s3 + 3.5]) text("1/2\" dia x 3/4\" deep, dead center of the", size = 1.98);
+        translate([ix, iy + RS * s3 + 2]) text("1.5\" x 1.5\" end grain -> 3/8-16 insert", size = 1.98);
+        translate([ix, iy - 2]) text("drill BEFORE assembly (Leveling Foot render)", size = 1.89);
     }
 
     // ---- zoom inset 2: end-rail seam face, alignment-pin holes ----
@@ -202,9 +209,9 @@ module drawing_b() {
             circle(r = 0.7, $fn = 24); circle(r = 0.5, $fn = 24);
         }
     color(INK) {
-        translate([jx, jy + RS * 2.2 + 3.5]) text("END-RAIL SEAM FACE — both ends", size = 1.3);
-        translate([jx, jy + RS * 2.2 + 1.5]) text("2x 3/8\" dia x 3/8\" deep pin holes, 3\" in from each side edge, centered on the rail", size = 1.05);
-        translate([jx, jy - 2]) text("drill the mating panel's face as a matched pair — clamp both, drill through a guide block (Component 5)", size = 1.0);
+        translate([jx, jy + RS * 2.2 + 3.5]) text("END-RAIL SEAM FACE — both ends", size = 2.34);
+        translate([jx, jy + RS * 2.2 + 1.5]) text("2x 3/8\" dia x 3/8\" deep pin holes, 3\" in from each side edge, centered on the rail", size = 1.89);
+        translate([jx, jy - 2]) text("drill the mating panel's face as a matched pair — clamp both, drill through a guide block (Component 5)", size = 1.8);
     }
 }
 
@@ -215,7 +222,7 @@ module drawing() {
     cap(str(panel_name, " — exploded detail (", L, "\" x ", W, "\")"), 13, -16, 2.0);
 
     if (is_c) {
-        cap("No divider, no drawers — the void stays open for the bought fridge + kitchen unit (Component 7). ONE wall: the front (B-facing) face.", 13, -19, 1.4);
+        // MOVED TO THE DOCUMENT: cap("No divider, no drawers — the void stays open for the bought fridge + kitchen unit (Component 7). ONE wall: the front (B-facing) face.", 13, -19, 1.4);
         side_list(56, LH + RS + 9 + PT + 24, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
             ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\""), "insert hole in each bottom — see the Panel B detail's inset"],
@@ -226,15 +233,15 @@ module drawing() {
             ["7", "Bottom rail (x1, FRONT face only)", str("2x2 pine, underside at ", bottom_rail_z, "\", behind the wall"), "tailgate face stays open (appliances exit there); REAR legs at the TRUE corners"],
         ]);
     } else if (!is_a) {
-        cap("NO divider, NO drawers, no skirts — the side doors don't reach Panel B, so its whole bay is deep storage, loaded from above.", 13, -19, 1.4);
-        cap("THE FULL CUBE: bottom rails on all 4 faces (nothing exits Panel B sideways). Both hole types dimensioned in the insets at left.", 13, -21.5, 1.3);
+        // MOVED TO THE DOCUMENT: cap("NO divider, NO drawers, no skirts — the side doors don't reach Panel B, so its whole bay is deep storage, loaded from above.", 13, -19, 1.4);
+        // MOVED TO THE DOCUMENT: cap("THE FULL CUBE: bottom rails on all 4 faces (nothing exits Panel B sideways). Both hole types dimensioned in the insets at left.", 13, -21.5, 1.3);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue; grip these rails to lift the panel"],
             ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 3/4\" insert hole in each bottom (inset at left)"],
             ["3", "Bottom rails (x4 — full cube)", str("2x2 pine, underside at ", bottom_rail_z, "\" (clears the feet/knobs)"), "2x 2\" screws + glue into each leg — the frame racks far less as a closed box"],
         ]);
     } else {
-        cap("Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.", 13, -19, 1.4);
+        // MOVED TO THE DOCUMENT: cap("Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.", 13, -19, 1.4);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
             ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 3/4\" insert hole in each bottom (Panel B detail's inset)"],

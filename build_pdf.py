@@ -336,7 +336,7 @@ def main():
 
 ![Whole vehicle overview](renders/vehicle-overview.png)
 
-*Side profile of the van itself (illustrative exterior body outline — hood, windshield, roofline, tailgate, wheels) with the cargo interior envelope, liftgate opening, and platform assembly drawn to scale inside it. Front at left, tailgate at right.*
+*Side profile of the van, front at left and tailgate at right, with the cargo envelope, liftgate opening and platform drawn to scale inside an illustrative body outline. **Numbered callouts:** **1** sitting headroom, mattress top to ceiling. **2** Panels A / B / C with the mattress above. **3** the rear pantry (prefab drawer cluster), **4** sitting on Panel C's deck. **5** the fridge and kitchen unit, hidden under Panel C's deck. Body outline illustrative; the interior and platform dimensions are to scale. The names were moved off the sheet — its geometry is already 258 units long, so its own labels were holding every one of them to ~5pt on the page.*
 
 ### Overhead Floorplan
 

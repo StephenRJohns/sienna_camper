@@ -24,6 +24,13 @@
 //
 // Render with: openscad -o renders/fridge-slide-detail.svg fridge_slide_detail.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 22 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.7. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 
@@ -57,17 +64,17 @@ module rect_dashed(w, h, col = "DimGray") {
     }
 }
 
-module label(txt, x, y, size = 1.3) {
+module label(txt, x, y, size = 2.21) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.2) {
+module label_left(txt, x, y, size = 2.04) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
 
-module dim_arrow(x0, y, x1, size = 1) {
+module dim_arrow(x0, y, x1, size = 1.7) {
     color("black") {
         translate([x0, y]) circle(r = 0.08);
         translate([x1, y]) circle(r = 0.08);
@@ -113,13 +120,13 @@ module drawing() {
     rail_y0 = 2.5;                       // set-back from the tailgate face
     rail_zb = aboard_top + fridge_riser_t; // rail bottom: mat + board + the riser's bolt flange
     color("DimGray") translate([rail_y0, rail_zb]) rect_outline(fridge_slide_length, 3);
-    label_left("FIXED rail (VADANIA VD2576, 3\" tall, stands VERTICALLY beside the tray —", fridge_ext_width + 1.5, 5.0, 1.0);
-    label_left("screwed to a steel riser angle bolted to the ANCHOR BOARD strip; it adds", fridge_ext_width + 1.5, 3.7, 1.0);
-    label_left("WIDTH beside the tray, ZERO height under it — never mount it undermount:", fridge_ext_width + 1.5, 2.4, 1.0);
-    label_left("flat under the tray it would add ~1.2\" and hit the end rail above.", fridge_ext_width + 1.5, 1.1, 1.0);
-    label_left("DC line slack clips to THIS fixed rail (3 screw-mount", fridge_ext_width + 1.5, 9.2, 0.9);
-    label_left("clips, Sec. 5/6) — never to the moving tray, so it can't", fridge_ext_width + 1.5, 7.9, 0.9);
-    label_left("get pinched between apron and rail when the slide comes home.", fridge_ext_width + 1.5, 6.6, 0.9);
+    // MOVED TO THE DOCUMENT: label_left("FIXED rail (VADANIA VD2576, 3\" tall, stands VERTICALLY beside the tray —", fridge_ext_width + 1.5, 5.0, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("screwed to a steel riser angle bolted to the ANCHOR BOARD strip; it adds", fridge_ext_width + 1.5, 3.7, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("WIDTH beside the tray, ZERO height under it — never mount it undermount:", fridge_ext_width + 1.5, 2.4, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("flat under the tray it would add ~1.2\" and hit the end rail above.", fridge_ext_width + 1.5, 1.1, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("DC line slack clips to THIS fixed rail (3 screw-mount", fridge_ext_width + 1.5, 9.2, 0.9);
+    // MOVED TO THE DOCUMENT: label_left("clips, Sec. 5/6) — never to the moving tray, so it can't", fridge_ext_width + 1.5, 7.9, 0.9);
+    // MOVED TO THE DOCUMENT: label_left("get pinched between apron and rail when the slide comes home.", fridge_ext_width + 1.5, 6.6, 0.9);
 
     // NO-DRILL anchor board along this rail line (Section 8): rubber
     // mat on the van floor, 3/4in ply strip on it, riser flange on
@@ -131,10 +138,10 @@ module drawing() {
     color("Black")
         for (ay = [rail_y0 + 2, rail_y0 + fridge_slide_length - 2])
             translate([ay, aboard_mat_t + aboard_t/2]) circle(r = 0.22); // 1/4-20 T-nut bolts, riser -> board
-    label_left("ANCHOR BOARD strip under this rail line (Sec. 8, no-drill): non-slip mat +", fridge_ext_width + 1.5, -0.5, 0.95);
-    label_left("3/4\" ply, riser bolted with 1/4-20 T-nuts — NO holes in the van. The board", fridge_ext_width + 1.5, -1.8, 0.95);
-    label_left("runs fwd (+Y) to the bridge: 2 steel tongues bolt to the 2nd-row floor", fridge_ext_width + 1.5, -3.1, 0.95);
-    label_left("rails' rear ends (F8) + 3 straps drop into the 3rd-row striker loops.", fridge_ext_width + 1.5, -4.4, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("ANCHOR BOARD strip under this rail line (Sec. 8, no-drill): non-slip mat +", fridge_ext_width + 1.5, -0.5, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("3/4\" ply, riser bolted with 1/4-20 T-nuts — NO holes in the van. The board", fridge_ext_width + 1.5, -1.8, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("runs fwd (+Y) to the bridge: 2 steel tongues bolt to the 2nd-row floor", fridge_ext_width + 1.5, -3.1, 0.95);
+    // MOVED TO THE DOCUMENT: label_left("rails' rear ends (F8) + 3 straps drop into the 3rd-row striker loops.", fridge_ext_width + 1.5, -4.4, 0.95);
 
     // ---- CLOSED position: hanging tray + apron + fridge, flush to
     // Y=0 (tailgate) ----
@@ -149,7 +156,7 @@ module drawing() {
 
     // running clearance callout: mounted stack top vs the end rail
     color("Firebrick") translate([1.2, fridge_stack_top]) square([0.06, leg_height - fridge_stack_top]);
-    label("the fridge slides under the TAILGATE END RAIL above", fridge_ext_width/2, 13.9, 0.85);
+    // MOVED TO THE DOCUMENT: label("the fridge slides under the TAILGATE END RAIL above", fridge_ext_width/2, 13.9, 0.85);
     label(str("(underside 17\") with ", leg_height - fridge_stack_top, "\" clearance (assert, params.scad)"), fridge_ext_width/2, 12.8, 0.8);
 
     // ---- hold-down strap: hooks to the fridge's end handles, down to
@@ -167,10 +174,10 @@ module drawing() {
             translate([sy, fridge_top_z]) circle(r = 0.3); // fridge's end handle
         }
     }
-    label_left("Hold-down strap (x1, cam-buckle): fridge's end handle ->", fridge_ext_width + 1.5, 20.6, 1.0);
-    label_left("2 D-rings on the tray's side apron — stops the fridge lifting", fridge_ext_width + 1.5, 19.3, 1.0);
-    label_left("off the TRAY (the riser/board bolting only pins the TRAY", fridge_ext_width + 1.5, 18.0, 1.0);
-    label_left("to the van). Snug, not tight — must clear the lid at OPEN.", fridge_ext_width + 1.5, 16.7, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("Hold-down strap (x1, cam-buckle): fridge's end handle ->", fridge_ext_width + 1.5, 20.6, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("2 D-rings on the tray's side apron — stops the fridge lifting", fridge_ext_width + 1.5, 19.3, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("off the TRAY (the riser/board bolting only pins the TRAY", fridge_ext_width + 1.5, 18.0, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("to the van). Snug, not tight — must clear the lid at OPEN.", fridge_ext_width + 1.5, 16.7, 1.0);
 
     // ---- OPEN position: shifted -fridge_slide_length in Y, dashed ----
     open_y = -fridge_slide_length;
@@ -186,10 +193,10 @@ module drawing() {
     dim_arrow(open_y, dim_y, 0);
     label(str(fridge_slide_length, "\" full-extension travel"), open_y/2, dim_y - 1.3, 1.05);
 
-    label_left("VADANIA VD2576 industrial pair, 24\", 379lb, LOCKS closed (transit) and", fridge_ext_width + 1.5, 15.0, 1.0);
-    label_left("extended (loading) — loaded fridge can hit 60-90lb, well within rating.", fridge_ext_width + 1.5, 13.7, 1.0);
-    label_left("Tray (3/8\" ply + two 1x3 side aprons) hangs BETWEEN the rails on the", fridge_ext_width + 1.5, 12.1, 1.0);
-    label_left("moving members; the aprons' top edges are the fridge's anti-shift lip.", fridge_ext_width + 1.5, 10.8, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("VADANIA VD2576 industrial pair, 24\", 379lb, LOCKS closed (transit) and", fridge_ext_width + 1.5, 15.0, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("extended (loading) — loaded fridge can hit 60-90lb, well within rating.", fridge_ext_width + 1.5, 13.7, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("Tray (3/8\" ply + two 1x3 side aprons) hangs BETWEEN the rails on the", fridge_ext_width + 1.5, 12.1, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("moving members; the aprons' top edges are the fridge's anti-shift lip.", fridge_ext_width + 1.5, 10.8, 1.0);
 
     label("Y (in., toward Panel B) ->", fridge_ext_width/2 - 12, -8.5, 1.1);
 }

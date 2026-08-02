@@ -16,6 +16,12 @@ The overhead companion to the floorplan: Section 8's securing system in plan vie
 
 ![No-drill anchor platform — overhead](renders/anchor-platform-overhead.svg)
 
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- tongues + straps pass UNDER its rear bottom rail (shallow notches)
+- NO-DRILL ANCHOR PLATFORM — overhead: Panel C + the factory hardpoints forward of it (Section 8)
+
 ### Anchor Board — Assembly & Connection Details
 
 The IKEA-style header for the platform — the finished piece, its bought hardware (lettered), and its cut parts (numbered), in the same format as the Section 6 component banners:
@@ -56,6 +62,39 @@ How the platform actually goes together, in five views: **V1** the bare plywood 
 
 ![Anchor board — assembly and connection details](renders/anchor-board-assembly.svg)
 
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- riser-angle footprint (2"x24") — 4x 1/4-20 bolts into T-nuts
+- (riser shown dashed; same on the center strip)
+- steel tongue (2"x3/16"), let into a 3/16" dado in the
+- bridge's UNDERSIDE, 2x 1/4-20 T-nut bolts each — runs fwd,
+- cut to the F8-measured length (~10-14" past the bridge)
+- ONE PIECE — cut the whole comb from the 3/4" sheet's spare (V5):
+- NO ply-to-ply joints, no glue, no lap screws. Rubber mat under it.
+- Every fastener on this board holds HARDWARE, never wood to wood.
+- (gaps = bare van floor: the tray hangs there, the kitchen sits there)
+- V1 — TOP: the one-piece plywood board, 46"x33" (bench-built, then laid in as ONE piece)
+- ← fridge sits on the tray (dashed, continues up)
+- ← 3/8" ply TRAY — hangs 0.5" over BARE van floor (no board here)
+- ← 1x3 apron (the slide's moving member screws to it)
+- ← 1/4-20 bolt → T-nut (flange counterbored into the ply bottom)
+- (the whole stack repeats at the other rail line, on the center strip)
+- ← stud D-ring (WLL 1,333lb) dropped into the L-track
+- ^ floor STEP at the striker row = the tongue's bearing FALLBACK (F7)
+- Panel B rear bottom rail sits over the run — its shallow notch lets the tongue + strap pass
+- ← 3/4" PLY BRIDGE on its mat — strips continue right
+- RATCHET STRAP (x3): bridge D-ring → striker loop, tensioned (rearward + lift restraint)
+- STEEL TONGUE (x2) at floor level: bolt/clamp to the rail's rear end (F8) ... 2x T-nut bolts up into the bridge's underside dado
+- V5 — ONE-PIECE CUT: how the comb nests in the 3/4" sheet's spare
+- Why one piece matters: the striker straps hold the BRIDGE — the strips (and everything bolted to
+- them) hang off it in a rearward pull. As one piece that load path is continuous ply, instead of three
+- glue lines working in tension. (The steel tongues are NOT wood joints — they bolt through the
+- dashed = hidden or overlaid part (riser footprint,
+- tongue under the bridge, fridge above the tray)
+- stud-fitting D-ring (drops into an L-track slot)
+- ANCHOR BOARD — assembly & connections (Section 8; companion to the overhead platform diagram)
+
 | Top-down | Side profile |
 |---|---|
 | ![Top-down view](renders/top-down.svg) | ![Side profile](renders/side-profile.svg) |
@@ -64,29 +103,100 @@ The interior envelope used for fit checks (Section 1: 93.75" x 49" x 42" — all
 
 Rear view, looking forward from the open tailgate at Panel C with the fridge and kitchen unit both stowed for driving: ![Rear view](renders/rear-view.svg)
 
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- Exhaust fan: fridge's right wall, blows INTO the open utility bay | NTC probe: just inside the bay at that wall (in the hot exhaust, NOT the bay)
+- Intake fan + a passive LOW cool-air louver: both on Panel C's FRONT wall (see its render) | exhaust exits the OPEN bay toward the tailgate
+- Control panel: switches + surge protector — at the back of the open bay, reach in
+- Looking forward from the open tailgate at Panel C — both units shown stowed for driving
+- (standing at the tailgate looking in, the DRIVER side is on YOUR LEFT — exactly as drawn)
+
+
 ### Fridge Installation Detail
 
 The rear view above is too small-scale to label the fridge's 2 cooling fans and temperature sensor clearly. This top-down detail of Panel C zooms in on just that area, with numbered markers and a coordinate list (see Section 2 for the coordinate system and the full component coordinate table):
 
 ![Fridge install detail](renders/fridge-install-detail.svg)
 
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- 3 ratchet straps → 3rd-row STRIKER LOOPS (crash-rated, ~10-14" fwd of Panel C — position UNVERIFIED, F4)
+- 2 steel rail tongues (2"x3/16") BOLT to the rear ends of the 2nd-row FLOOR RAILS (seat anchorage — no new holes; F8;
+- fallback: butt the striker-row step, F7) — forward restraint is steel-to-steel to the van's own rails (Sec. 8)
+- airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT through the OPEN utility bay toward the tailgate (no door)
+- (4 sits in the OPEN utility bay — Z in the list.
+- CO monitor + fire extinguisher: owner-placed, not located here)
+
 And the electrical side — a schematic (not to physical scale) of how the fridge, both fans, and the NTC sensor are powered and wired — now down to **every physical wire landing**: connection points P1–P12 are numbered on the diagram, each naming the exact terminal, connector type, and crimp, with the full list repeated in Section 5's connection-point table:
 
 ![Fridge wiring diagram](renders/fridge-wiring.svg)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- Charge + discharge simultaneously supported — running the fridge/fans
+- while AC-charging is normal, just slows the charge rate a bit
+- Circuit 1 (right): fridge — F1 10A, switched at SW1. Circuit 2 (left): fans — F2 3A, switched at SW2, W1209-driven off the NTC probe.
+- CONNECTION POINTS — every wire landing, in install order
+- Wire spec: main run 16AWG (the OYMSAE SAE cord itself); in-bay branches 18AWG red/black;
+- crimps: heat-shrink ring #10 (block studs) + 0.25" female spades (switch tabs). Crimp, tug-test, then shrink.
 
 The fridge's slide mechanism itself, closed vs. fully extended. The VADANIA rails stand vertically BESIDE the tray (side-mount): each fixed rail on a steel riser angle bolted to the no-drill anchor board's mat + ply rail-line strip (Section 8 — the board raises only the rails; the tray keeps its hang), each moving rail on the tray's 1x3 side apron — nothing under the hanging tray, so the slide hardware adds zero height and the mounted fridge keeps 0.33" of running clearance under Panel C's end rail:
 
 ![Fridge slide detail](renders/fridge-slide-detail.svg)
 
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- FIXED rail (VADANIA VD2576, 3" tall, stands VERTICALLY beside the tray —
+- screwed to a steel riser angle bolted to the ANCHOR BOARD strip; it adds
+- WIDTH beside the tray, ZERO height under it — never mount it undermount:
+- flat under the tray it would add ~1.2" and hit the end rail above.
+- DC line slack clips to THIS fixed rail (3 screw-mount
+- clips, Sec. 5/6) — never to the moving tray, so it can't
+- get pinched between apron and rail when the slide comes home.
+- ANCHOR BOARD strip under this rail line (Sec. 8, no-drill): non-slip mat +
+- 3/4" ply, riser bolted with 1/4-20 T-nuts — NO holes in the van. The board
+- runs fwd (+Y) to the bridge: 2 steel tongues bolt to the 2nd-row floor
+- rails' rear ends (F8) + 3 straps drop into the 3rd-row striker loops.
+- the fridge slides under the TAILGATE END RAIL above
+- Hold-down strap (x1, cam-buckle): fridge's end handle →
+- 2 D-rings on the tray's side apron — stops the fridge lifting
+- off the TRAY (the riser/board bolting only pins the TRAY
+- to the van). Snug, not tight — must clear the lid at OPEN.
+- VADANIA VD2576 industrial pair, 24", 379lb, LOCKS closed (transit) and
+- extended (loading) — loaded fridge can hit 60-90lb, well within rating.
+- Tray (3/8" ply + two 1x3 side aprons) hangs BETWEEN the rails on the
+- moving members; the aprons' top edges are the fridge's anti-shift lip.
+
 The kitchen drawer — a shallow slide-out drawer hung under Panel C's deck in the dead air above the kitchen unit (11.8" unit, 17" clear void), riding a 24" full-extension slide pair and pulling out the open tailgate; ~3.5" clear inside for utensils, cutting board, flat dry goods, and the cooktop's griddle plate:
 
 ![Kitchen drawer detail](renders/kitchen-drawer-detail.svg)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- anchor-board strips (mat + 3/4" ply) flank the kitchen — its tie-down straps land here (no-drill, Sec. 8)
+- 2x 1/2" ply cheeks, screwed UP into the deck (2" screws every 6")
+- outer cheek also screws into the side rail's inner face
+- 24" side-mount slides, 100lb pair — one per cheek
+- REAR SECTION — looking in from the open tailgate (passenger side at right)
+- KITCHEN DRAWER — hung under Panel C's deck, above the kitchen unit (Component 7)
+- Box: 1/2" ply, glue + 1-1/4" screws, ~3.5" clear inside — utensils / cutting board / flat dry goods / griddle plate.
+- Face gets a magnetic catch so nothing rattles in transit (the old cabinet door it matched was cut — open bay now).
 
 ### Rear Pantry — Prefab Drawer Cluster + Pot Bay
 
 The custom plywood pantry was **swapped for bought prefab drawers** (owner, July 2026 — Component 1): a 2×2 array of IRIS USA 12"W stackable drawers (Home Depot #500163) on the tailgate end of Panel C's deck, plus a pot/pan bay in the ~21.8" of open deck beside it. Nothing is built — a cleat pocket + one cam strap hold it, and each drawer unit lifts straight out (removable). This deletes the plywood carcass, the cam-lever clamp set, the 2 steel sway braces, and the fiddle-lip retention kit, and drops the pantry from ~42 lb to ~15 lb:
 
 ![Rear pantry layout](renders/rear-pantry-detail.svg)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- Replaces the plywood pantry — ~27 lb lighter, nothing built. Each drawer unit lifts straight out once the cam strap is loosened.
+- Canned goods LOW, boxed dry goods UP. Cab-side cleat stops the forward slide under braking; the strap doubles as drawer-shut + hold-down.
 
 ### Floor Panel Detail
 
@@ -97,6 +207,14 @@ Each floor panel, exploded (Panel A: frame + legs + center divider + one right d
 ![Panel B detail](renders/panel-b-detail.svg)
 
 ![Panel C detail](renders/panel-c-detail.svg)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- No divider, no drawers — the void stays open for the bought fridge + kitchen unit (Component 7). ONE wall: the front (B-facing) face.
+- NO divider, NO drawers, no skirts — the side doors don't reach Panel B, so its whole bay is deep storage, loaded from above.
+- THE FULL CUBE: bottom rails on all 4 faces (nothing exits Panel B sideways). Both hole types dimensioned in the insets at left.
+- Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.
 
 ### Bed Platform Detail
 
@@ -122,6 +240,12 @@ Component 2's slatted bed platform (58" x 49" overall, 15 slats pocket-screwed b
 Leveling lives at the floor: each leg is cut 1" short and gets a 3/8-16 insert in its bottom end grain, taking a leveling glide bolt with a floor pad and a ~2" star-knob hand grip (12 total: 4 per panel x 3). Effective leg heights are 17" on Panel C / 16.25" on A/B (cuts: 16" and 15.25" — deck recess); dropping the old between-layers adjusters bought 1.25" of headroom, and recessing the deck ply into the rail plane buys another 3/4". To adjust: tip that corner of the box slightly and spin the knob — every leg is exposed at floor level:
 
 ![Leveling foot detail](renders/leveling-foot-detail.svg)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- To level: kneel at the side door, tip that corner of the box slightly, spin the star knob. Every leg is exposed at
+- floor level — nothing boxes it in. The platform above rests DIRECTLY on the box rails (no adjusters up top anymore).
 
 **Load**: worst case is ~700 lb total (2 people + mattress + platform + boxes + cargo) spread over 12 feet — ~60 lb per foot against the feet's 330 lb rating each, a 5x margin before dynamic factors. The feet are not the weak point. If you want more margin anyway, 1/2"-13 leveling mounts (1,100 lb each) are a drop-in upgrade — same install, just a 5/8" insert hole instead of 1/2".
 
@@ -153,6 +277,13 @@ Stowage for the EcoFlow gear: the DELTA 3 Plus + Smart Extra Battery, stowed uns
 The one wall any panel gets, as a flat pattern with **every hole dimensioned**: the 120mm intake-fan hole (with its 105mm screw square) centered on the fridge bay, ONE 1" grommet (fridge DC line low — Power strip 1 now plugs into the REAR outlet and never crosses this wall), and the 8 perimeter mounting screws (2 now landing in the cube-frame bottom rail). Panels A and B have no walls or skirts at all, Panel C's sides stay open, and its tailgate face needs no wall — the fridge, the open utility bay between the units, the kitchen unit, and the kitchen drawer face fill it completely:
 
 ![Panel C front wall detail](renders/panel-c-wall-detail.svg)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- 8x #8 x 1-1/4" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail
+- Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.
+- Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + open utility bay + kitchen + kitchen drawer fill it.
 
 ---
 
@@ -332,6 +463,12 @@ The fridge and kitchen unit are bought products (Section 4) — **neither needs 
 ### Have the store break the sheets down (owner, Aug 2026)
 
 ![Plywood cutting layout](renders/sheet-cut-layout.svg)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- left to right after S3: 2 cheeks 5.45 x 26, 2 sides 4 x 26,
+- PLYWOOD CUTTING LAYOUT — STORE CUTS vs SHOP CUTS
 
 *Every red cut is a straight, full-length or full-width cut a store panel saw can follow, numbered in the order it has to happen. The dashed inner line is the sheet after its factory edges come off. Bring this page to the saw.*
 
@@ -612,6 +749,24 @@ Every purchased electrical component at its real position — icon-based top-dow
 
 ![Electrical layout](renders/electrical-layout.svg)
 
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- backer board at the back of the open bay (no door — reach in)
+- A LMioEtool enclosure — 4x #8 x 1" screws through its mounting ears into the wall
+- B W1209 controller (in its case) — NTC probe wire exits the bottom grommet,
+- runs to the fridge's kitchen-facing wall (Section 3)
+- C Nilight 6-way fuse block — feed from the DELTA 3's DC output (Panel A); fans + W1209 each
+- get their own fused circuit (5A is plenty)
+- D 3x Ampper switches (fridge / cooktop strip / fans) — 20mm holes in the
+- enclosure face, switches snap in from the front
+- FAN MOUNTING — face-on, both fans identical hardware
+- NTC probe: zip-tie 1-2" from the exhaust cutout
+- Cut a 4.5" round hole (or 4.5" square) in the wall; fan mounts over it with
+- 4x #8 x 1-1/4" screws through the corner holes. Grill goes on the AIR-ENTRY side.
+- Arrow on the fan's side frame shows its blow direction — point it per the labels above.
+- Wiring: both fans in parallel off the W1209 relay (Section 5 wiring schematic).
+
 **The fridge (and its fan system) now runs off the DELTA 3 stack, not the van's rear outlet** — see the "Why the fridge and fan system now run off the DELTA 3 stack" note in Section 1 for the full reasoning (reliability while people are away from the vehicle, backed by real runtime/recharge numbers). This does mean the fridge needs a cord after all, unlike the previous design's direct-plug simplification — a DC line from the DELTA 3 (Panel A's right drawer) forward to the fridge (Panel C), crossing the same 2 module seams the cooktop's cord does. The Sienna's rear 12V accessory outlet is simply unused now — nothing in this design plugs into it, so it's free for anything else later.
 
 **Cord management — run each module's cords in a surface raceway, not loose clips (owner, July 2026).** Instead of loose zip-tied/clip-covered runs, route the cords through a **segmented plastic surface raceway (wire duct / Wiremold-style)** — a short length screwed to the inside of each module's frame, one channel per panel, meeting at the existing seam disconnects. Two rules keep it correct: (1) the raceway must stay **segmented per module** (a separate length in A, B, and C) — NOT one continuous conduit spanning the seams, or a panel can't be lifted out; the inline AC connectors / SAE DC disconnects still live at each seam. (2) Keep the **120V AC and 12V DC lines in separate channels** (a divided duct, or two small ducts side by side) — don't bundle them together. This protects the cords from abrasion, makes every run traceable, and lets you pull or add a wire later without fishing it through the frame — a real serviceability win over clipped cords for a small added cost (see the raceway line in Section 4's BOM). Where a run has to cross into a module's interior bay, a snap-cover raceway lifts open without unscrewing.
@@ -776,7 +931,16 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 <div class="lego-parts"><p class="lego-noparts">no new parts — the assembled platform from Step 5 (leveling feet already on the legs, Step 1)</p></div>
 <div class="lego-main"><img src="renders/leveling-foot-detail.png" alt="Leg leveling foot detail">
 <img src="renders/leveling-foot-assembly.png" alt="Leg leveling foot engineering drawing — section, exploded assembly, and knob top view">
-<p class="lego-caption">Set the finished platform down directly on Panel A + B's top rails and Panel C's mattress zone, centered so it overhangs the boxes 3" per side — nothing fastens it, it rests there and lifts straight off for drawer-bay access (it enters/exits the van tilted diagonally through the liftgate). Then LEVEL the boxes at the floor: with a level on the platform, tip each box corner slightly and spin that leg's star-knob foot until the bubble centers along both axes. Re-check after the van is parked on level ground. <strong>Foot-assembly rule (engineering drawing above): lock the knob with the JAM NUT wrenched down on TOP of it — never by jamming the knob against the stud's fixed hex collar.</strong> Jammed on the collar, the knob only locks in the tightening direction — the first time you spin it the other way to lower a corner, it unscrews itself off the stud instead of driving it. Knob + jam nut locked together grip in BOTH directions, so one knob raises and lowers the leg. The hex collar's actual job: a wrench flat to break the foot loose if it ever seizes.</p></div>
+<p class="lego-caption"><b>Parts, keyed to A–E on the exploded view</b> (moved off the sheet so its own dimensions could be legible — the part names were crossing the exploded column):
+<b>A</b> the leg — drill its end grain ½" dia × ⅞" deep, centered (maker's spec; test-fit in an offcut first).
+<b>B</b> screw-in insert, 7/16" OD with a 3/8-16 bore — drive it in flush on a spare bolt + jam nut.
+<b>C</b> 3/8-16 jam nut — spin it ~1" up the stud; it locks the knob.
+<b>D</b> PW6103 star knob (hand wheel) — thread it up to the nut, then wrench the nut DOWN to lock the two together.
+<b>E</b> the stud + its fixed hex collar (a wrench flat for a seized foot) — screw the stud into the insert to 1" exposure.
+Locked together, knob + nut drive the stud: tip the corner, spin, done. <b>Why the jam nut</b> rather than jamming on the fixed collar: on the collar the knob locks one way only and unscrews when reversed.
+<b>12 feet total</b> (4 per panel × 3 panels): 3× Anwenk leveler 4-packs + 3× Peachtree PW6103 knob 4-packs. <b>Rating 1,320 lb per foot</b> (Anwenk) — 4 under the heaviest panel is ~5,280 lb of capacity against a ~90 lb module. <b>Skip the kit's stick-on felt pads</b> — the bare nylon pad grips the van floor better.
+Effective leg height = cut length + the 1" foot.</p>
+<p class="lego-caption">Set the finished platform down directly on Panel A + B's top rails and Panel C's mattress zone, centered so it overhangs the boxes 1.5" per side (was 3" before measurement V7 cut the platform to 49") — nothing fastens it, it rests there and lifts straight off for drawer-bay access (it enters/exits the van tilted diagonally through the liftgate). Then LEVEL the boxes at the floor: with a level on the platform, tip each box corner slightly and spin that leg's star-knob foot until the bubble centers along both axes. Re-check after the van is parked on level ground. <strong>Foot-assembly rule (engineering drawing above): lock the knob with the JAM NUT wrenched down on TOP of it — never by jamming the knob against the stud's fixed hex collar.</strong> Jammed on the collar, the knob only locks in the tightening direction — the first time you spin it the other way to lower a corner, it unscrews itself off the stud instead of driving it. Knob + jam nut locked together grip in BOTH directions, so one knob raises and lowers the leg. The hex collar's actual job: a wrench flat to break the foot loose if it ever seizes. <b>From the drawing (moved here so the sheet's own labels could be legible):</b> SECTION A-A — installed, mid-travel (6x actual size) LEG LEVELING FOOT — engineering drawing (parts as purchased, July 2026) 12 feet total (4 per panel x 3 panels): 3x Anwenk leveler 4-packs + 3x Peachtree PW6103 knob 4-packs + 12x 3/8-16 jam nuts. Rating: 1,320 lb per foot (Anwenk) — 4 feet under the heaviest panel = ~5,280 lb capacity vs ~450 lb actual load. NOTE: skip the kit's stick-on felt pads — the bare nylon pad grips the van floor better and doesn't shed.</p></div>
 </div>
 </div>
 
@@ -801,6 +965,11 @@ Same frame construction as Panel A — and that's the whole build. **Panel B has
 - NOTE: the spare does NOT fit above the kitchen (28.5" disc vs ~24" before the fridge blocks it) — Panel B is the only interior spot, and it's the best one: ~40 lb at the axle beats any hitch basket (which would lever ~130+ lb onto the rear axle)
 
 ![Spare tire stowage](renders/spare-stow-detail.png)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- Best weight placement in the van — no hitch basket needed. NOTHING screws to the van floor: the skid sits on the liner, the strap ties to footman loops on the bottom rails.
 
 <div class="lego-card">
 <div class="lego-step">
@@ -871,7 +1040,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">2</div>
 <div class="lego-parts"><p class="lego-noparts">2 over-center draw latches per seam (one each side), mounted low on the bottom-rail band</p></div>
 <div class="lego-main"><img src="renders/seam-clamp-detail.png" alt="Seam draw-latch positioning">
-<p class="lego-caption">The alignment pins only <em>locate</em> the modules; the draw latches <em>clamp</em> them together. Mount one over-center draw latch on each SIDE of each seam (4 total: both sides of A/B and B/C), <strong>low on the bottom-rail band (~1.75" up), over the inset leg line</strong> — hand-reachable from the side door / tailgate. The base plate screws to one module's leg/rail, the hooked bail + lever to its neighbour's; flip the handle to pull the two modules tight against the bumper strip, flip to release. This ties the three boxes into one rigid beam: the bed platform already couples the Panel A + B <em>tops</em>, and a low latch completes a top-and-bottom couple that kills sway and rattle. It stays fully modular — the latches are hand-released, so any panel still lifts out in seconds. <strong>Honest scope:</strong> this buys rigidity and quiet, not a higher weight rating — the cube-framed boxes are already strong (5× margin at the feet). Don't rely on the latches to carry more load; their job is to stop relative motion between modules.</p></div>
+<p class="lego-caption">The alignment pins only <em>locate</em> the modules; the draw latches <em>clamp</em> them together. Mount one over-center draw latch on each SIDE of each seam (4 total: both sides of A/B and B/C), <strong>low on the bottom-rail band (~1.75" up), over the inset leg line</strong> — hand-reachable from the side door / tailgate. The base plate screws to one module's leg/rail, the hooked bail + lever to its neighbour's; flip the handle to pull the two modules tight against the bumper strip, flip to release. This ties the three boxes into one rigid beam: the bed platform already couples the Panel A + B <em>tops</em>, and a low latch completes a top-and-bottom couple that kills sway and rattle. It stays fully modular — the latches are hand-released, so any panel still lifts out in seconds. <strong>Honest scope:</strong> this buys rigidity and quiet, not a higher weight rating — the cube-framed boxes are already strong (5× margin at the feet). Don't rely on the latches to carry more load; their job is to stop relative motion between modules. <b>From the drawing (moved here so the sheet's own labels could be legible):</b> SEAM DRAW-LATCHES — clamp the 3 lift-out modules into one rigid beam (Component 5) 4 latches total: one each side of BOTH the A/B and B/C seams, low on the bottom-rail band (~1.75" up, hand-reach). Alignment pins LOCATE the modules; the latches PULL them tight against the bumper strip. Hand-released — panels still lift out in seconds. (front seats upper-left, tailgate lower-right; the bed platform already ties the Panel A + B tops) base plate on one leg, hooked bail + lever on the other;.</p></div>
 </div>
 </div>
 
@@ -1399,6 +1568,15 @@ Appendices B and C consolidate Sections 4 and 3; Appendix B (build order), Appen
 
 ![Measurement guide: fridge and kitchen](renders/measurement-fridge-kitchen.svg)
 
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- Also record: empty weight, cord length, and how far it must slide out
+- before the lid can open fully clear of the deck above (fridge_slide_length assumes 24" is enough).
+- (this plan estimated 23" x 15.7" x 5.7" from listing PHOTOS,
+- not a spec sheet — the COOKTRON cooktop's fit depends on this)
+- Also record: empty weight, and the cord pass-through location for the cooktop's power cord.
+
 | # | Measure | Goes in `params.scad` as | Listing spec (unverified) | Your measurement |
 |---|---|---|---|---|
 | 1 | Fridge length as installed (left-right, the 450mm side) | `fridge_ext_length` | 17.72" | 17¾" (owner, July 2026 — matches) |
@@ -1709,6 +1887,15 @@ So the van, converted and empty, weighs only about **350 lb more than a stock se
 A **night-only** cooling arrangement for hot-weather campsites (worked out for a Texas-summer trip, but applies anywhere overnight lows still run warm): condition the van and an attached tailgate tent as one shared air volume with the WAVE 3 alone, and skip the factory AC overnight entirely. This builds directly on the WAVE 3 "with a tent" configuration already described in Section 1 — this appendix just adds the setup diagram and the night-specific hints.
 
 ![Nighttime van + tent cooling setup](renders/night-cooling-setup-detail.png)
+
+
+*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+
+- Night-only setup: skip the factory AC here — it needs the van sealed
+- (doors/tailgate shut) to run efficiently, which conflicts with the
+- tent sleeve needing the tailgate open. Seal the tent's own mesh/
+- vents shut and add a small circulation fan inside the tent to push
+- the WAVE 3's output to the tent's far end — see Section 1.
 
 **Why no factory AC at night:** the Sienna Hybrid's electric AC compressor cools the cabin well, but it needs the van **sealed** (tailgate/doors shut) to work efficiently, and it cycles the gas engine on and off to keep the hybrid battery fed — noisy, intermittent, and it burns fuel right through the park's quiet hours. A tailgate-attached tent needs the opposite: the tailgate **open** so the connection sleeve has something to wrap around. Trying to run both at once means either the AC fights a leaky open tailgate (worse cooling, more engine cycling) or the tent's connection collapses — there's no clean way to combine them. The WAVE 3 has neither problem: it's silent-ish, battery-only, and its whole design point (Section 1) is blowing straight through the open tailgate into the shared van+tent space.
 

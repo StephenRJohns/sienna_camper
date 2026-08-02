@@ -11,6 +11,13 @@
 //
 // Render with: openscad -o renders/rear-view.svg rear_view.scad
 // ============================================================
+// LEGIBILITY (Aug 2026): 6 prose line(s) moved out of this
+// sheet into the document, and every text size scaled x1.6. Those
+// sentences were setting the sheet's width, and a figure's printed
+// text height is size x (page_width / sheet_width) — so they were
+// holding every other label on the sheet down to 3-6pt on paper.
+// Keep prose in the markdown; this sheet carries geometry and short
+// labels only.
 
 include <params.scad>
 include <colors.scad>
@@ -34,12 +41,12 @@ module rect_outline(w, l, s = stroke) {
     }
 }
 
-module label(txt, x, y, size = 1.6) {
+module label(txt, x, y, size = 2.56) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 1.3) {
+module label_left(txt, x, y, size = 2.08) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -50,7 +57,7 @@ module label_left(txt, x, y, size = 1.3) {
 module marker(n, x, y) {
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.4);
-        color("white") text(str(n), size = 1.5, halign = "center", valign = "center");
+        color("white") text(str(n), size = 2.4, halign = "center", valign = "center");
     }
 }
 
@@ -199,8 +206,8 @@ module rear_view() {
     fan_in_x = fridge_x0 - 3;
     fan_icon(fan_in_x, fan_z, 1.1);
 
-    label("Exhaust fan: fridge's right wall, blows INTO the open utility bay | NTC probe: just inside the bay at that wall (in the hot exhaust, NOT the bay)", exhaust_x - 2, -3.4, 0.85);
-    label("Intake fan + a passive LOW cool-air louver: both on Panel C's FRONT wall (see its render) | exhaust exits the OPEN bay toward the tailgate", fan_in_x + 6, -4.8, 0.85);
+    // MOVED TO THE DOCUMENT: label("Exhaust fan: fridge's right wall, blows INTO the open utility bay | NTC probe: just inside the bay at that wall (in the hot exhaust, NOT the bay)", exhaust_x - 2, -3.4, 0.85);
+    // MOVED TO THE DOCUMENT: label("Intake fan + a passive LOW cool-air louver: both on Panel C's FRONT wall (see its render) | exhaust exits the OPEN bay toward the tailgate", fan_in_x + 6, -4.8, 0.85);
 
     // control panel: switches, surge protector, fan speed
     // controller — at the back of the OPEN utility bay (mounted on
@@ -209,7 +216,7 @@ module rear_view() {
     cab_cx = (door_x0 + door_x1)/2;
     color("Black")
         translate([cab_cx - control_panel_width/2, 6.5]) rect_outline(control_panel_width, 6);
-    label("Control panel: switches + surge protector — at the back of the open bay, reach in", cab_cx - 2, -6.2, 0.85);
+    // MOVED TO THE DOCUMENT: label("Control panel: switches + surge protector — at the back of the open bay, reach in", cab_cx - 2, -6.2, 0.85);
 
     // numbered markers on the drawing itself — every legend item
     // gets one (color-swatch-only pairing stopped working once the
@@ -249,10 +256,10 @@ module rear_view() {
         label_left(leg_items[i], leg_x + 3.4, y, 1.2);
     }
 
-    label("Looking forward from the open tailgate at Panel C — both units shown stowed for driving", 0, -7.5, 1.4);
+    // MOVED TO THE DOCUMENT: label("Looking forward from the open tailgate at Panel C — both units shown stowed for driving", 0, -7.5, 1.4);
     label("DRIVER side", -van_interior_width/2 + 8, van_interior_height - 2, 1.4);
     label("PASSENGER side", van_interior_width/2 - 10, van_interior_height - 2, 1.4);
-    label("(standing at the tailgate looking in, the DRIVER side is on YOUR LEFT — exactly as drawn)", 0, -9.5, 1.1);
+    // MOVED TO THE DOCUMENT: label("(standing at the tailgate looking in, the DRIVER side is on YOUR LEFT — exactly as drawn)", 0, -9.5, 1.1);
 }
 
 rear_view(); // no outer color() wrapper — see the note above rect_outline()
