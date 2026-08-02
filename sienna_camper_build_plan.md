@@ -128,14 +128,34 @@ The rear view above is too small-scale to label the fridge's 2 cooling fans and 
 ![Fridge install detail](renders/fridge-install-detail.svg)
 
 
-*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+**Marker key.** Markers 1–10 on the sheet index this table. It used to be
+printed on the drawing itself as a 10-row, 3-line side list; its longest line
+was 180 characters, which stretched the sheet to ~160 units wide against a
+46"-wide plan — and a figure's printed text height is `size × (page_width ÷
+sheet_width)`, so every label on it, the coordinates included, came out near
+3pt on paper.
 
-- 3 ratchet straps → 3rd-row STRIKER LOOPS (crash-rated, ~10-14" fwd of Panel C — position UNVERIFIED, F4)
-- 2 steel rail tongues (2"x3/16") BOLT to the rear ends of the 2nd-row FLOOR RAILS (seat anchorage — no new holes; F8;
-- fallback: butt the striker-row step, F7) — forward restraint is steel-to-steel to the van's own rails (Sec. 8)
-- airflow: cool air in at the front wall (fan + a low passive louver), across the fridge, OUT through the OPEN utility bay toward the tailgate (no door)
-- (4 sits in the OPEN utility bay — Z in the list.
-- CO monitor + fire extinguisher: owner-placed, not located here)
+| # | Component | Position | Fastening |
+|---|---|---|---|
+| 1 | Intake fan (120mm) — blows IN | X=10.86, Y=35.75 (Panel C's FRONT wall), Z=8.8 | 4× M4×20 machine screws over the wall's fan hole (see the Panel C Front Wall render) |
+| 2 | Exhaust fan (120mm) — blows INTO the open utility bay | X=19.72, Y=14.4, Z=8.8 | 4× M4×20 machine screws, 105mm bolt circle, into a plywood fan ring |
+| 3 | NTC temp sensor | X=18.22, Y=12.2, Z=8.8 | Adhesive thermal pad, or 1× #4 screw through its bracket tab |
+| 4 | Control panel enclosure (switches + surge protector) | X=21.5–24.3, Y≈2, Z=6.5–12.5 — in the OPEN utility bay, no door: reach in | Backer board (3/4" offcut) hung from the deck; 4× #8×1" screws |
+| 5 | Anchor-board rail strips (2 of the board's 3, under the slide rails) | A mat + 3/4" ply band on each rail line BESIDE the tray (side-mount) — part of the ONE-piece board, not separate strips; the fixed rails' risers bolt to them | 1/4-20 machine screws into T-nuts from below — NO holes in the van (Section 8) |
+| 6 | Kitchen tie-down: L-track + 4 stud D-rings | On the board's kitchen-side strips (the utility-bay gap + the 1.5" band at the panel edge) | 4 ratchet straps (400 lb WLL) criss-crossed over the top into the D-rings |
+| 7 | WAVE 3 hose/cord hook | In the open bay, kitchen side — bundle the hoses so nothing swings out | 1× heavy-duty hook, #8×1.5" screw up into the deck underside |
+| 8 | Fridge hold-down strap D-rings (×2) | Tray side apron, near the tailgate end — hooks to the fridge's 2 end handles | Cam strap, snug not tight. This secures the fridge TO its tray; the anchor board secures the tray to the van. Side profile in the Fridge Slide detail |
+| 9 | Board bridge (same piece) + 2 steel rail tongues | The board's full-width front edge at Y=29–35 — one continuous 46"×33" comb with the strips, NO joints | 2"×3/16" flat bars run forward and BOLT to the rear ends of the 2nd-row FLOOR rails (seat anchorage, F8). Forward restraint is steel-to-steel to the van's own rails — no new holes. Fallback: butt the striker-row step (F7) |
+| 10 | Striker straps (×3) | Bridge D-rings → the 3rd-row seat striker loops, forward of Panel C (crash-rated; position UNVERIFIED, F4) | 400 lb WLL ratchet straps — rearward + lift restraint. Re-tension after the first drive |
+
+All coordinates are measured from Panel C's tailgate-facing left corner at
+floor level. **NO-DRILL (Section 8): no new holes in the van** — the board
+straps to the 3rd-row striker loops and its tongues bolt to the 2nd-row floor
+rails' rear ends. Cut the board's outline only AFTER the Appendix A F1–F8
+survey. The airflow arrows on the sheet show cool air in at the front wall
+(fan + the low passive louver), across the fridge, and OUT through the open
+utility bay toward the tailgate — there is no door in the way. The CO monitor
+and fire extinguisher are owner-placed and deliberately not located here.
 
 And the electrical side — a schematic (not to physical scale) of how the fridge, both fans, and the NTC sensor are powered and wired — now down to **every physical wire landing**: connection points P1–P12 are numbered on the diagram, each naming the exact terminal, connector type, and crimp, with the full list repeated in Section 5's connection-point table:
 
@@ -205,28 +225,17 @@ The fridge's slide mechanism itself, closed vs. fully extended. The VADANIA rail
 ![Fridge slide detail](renders/fridge-slide-detail.svg)
 
 
-*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+*What the sheet shows, in words. (These sentences used to be printed on the
+drawing, where their length set the sheet's width and held every label on it to
+3–6pt on paper — and where the batch pass that lifted them out left them broken
+mid-sentence.)*
 
-- FIXED rail (VADANIA VD2576, 3" tall, stands VERTICALLY beside the tray —
-- screwed to a steel riser angle bolted to the ANCHOR BOARD strip; it adds
-- WIDTH beside the tray, ZERO height under it — never mount it undermount:
-- flat under the tray it would add ~1.2" and hit the end rail above.
-- DC line slack clips to THIS fixed rail (3 screw-mount
-- clips, Sec. 5/6) — never to the moving tray, so it can't
-- get pinched between apron and rail when the slide comes home.
-- ANCHOR BOARD strip under this rail line (Sec. 8, no-drill): non-slip mat +
-- 3/4" ply, riser bolted with 1/4-20 T-nuts — NO holes in the van. The board
-- runs fwd (+Y) to the bridge: 2 steel tongues bolt to the 2nd-row floor
-- rails' rear ends (F8) + 3 straps drop into the 3rd-row striker loops.
-- the fridge slides under the TAILGATE END RAIL above
-- Hold-down strap (x1, cam-buckle): fridge's end handle →
-- 2 D-rings on the tray's side apron — stops the fridge lifting
-- off the TRAY (the riser/board bolting only pins the TRAY
-- to the van). Snug, not tight — must clear the lid at OPEN.
-- VADANIA VD2576 industrial pair, 24", 379lb, LOCKS closed (transit) and
-- extended (loading) — loaded fridge can hit 60-90lb, well within rating.
-- Tray (3/8" ply + two 1x3 side aprons) hangs BETWEEN the rails on the
-- moving members; the aprons' top edges are the fridge's anti-shift lip.
+- **The slides** are a VADANIA VD2576 industrial pair: 24", 379 lb, locking both closed (transit) and extended (loading). A loaded fridge can hit 60–90 lb, so the rating has plenty of margin.
+- **The tray** is 3/8" ply with two 1x3 side aprons, and hangs BETWEEN the rails on the slides' moving members — the moving member screws to the apron, not under the tray, so nothing sits beneath it. Each apron's top edge stands proud of the tray as the fridge's anti-shift lip, and the tray itself hangs 0.5" clear of the van floor.
+- **The fixed rail stands VERTICALLY beside the tray**, screwed to a steel riser angle that bolts to the anchor-board strip. Mounted this way it adds width beside the tray and *zero* height under it. Never mount it undermount: laid flat under the tray it adds ~1.2" and the fridge then hits the tailgate end rail it has to slide under.
+- **The DC line's slack clips to the FIXED rail** (3 screw-mount clips, Sections 5–6) — never to the moving tray, where it could get pinched between apron and rail as the slide comes home.
+- **Under this rail line runs the anchor-board strip** (Section 8, no-drill): non-slip mat + 3/4" ply, riser bolted through with 1/4-20 T-nuts, no holes in the van. The board continues forward (+Y) to the bridge, where 2 steel tongues bolt to the 2nd-row floor rails' rear ends (F8) and 3 straps drop into the 3rd-row striker loops.
+- **The hold-down strap** (×1, cam-buckle) runs from the fridge's end handle to 2 D-rings on the tray's side apron. It stops the fridge lifting off the TRAY — the riser and board bolting only pin the tray to the van. Snug, not tight, and it must clear the lid at full extension.
 
 The kitchen drawer — a shallow slide-out drawer hung under Panel C's deck in the dead air above the kitchen unit (11.8" unit, 17" clear void), riding a 24" full-extension slide pair and pulling out the open tailgate; ~3.5" clear inside for utensils, cutting board, flat dry goods, and the cooktop's griddle plate:
 
@@ -498,8 +507,8 @@ Two coordinate conventions, each picked to match how you'd actually stand at the
 | Fridge (BougeRV Rocky 40) | C | 2–19.7 (slide rails flank at ~0.6–1.5 and ~20.2–21.2) | 0–28.74 | 0.5–16.67 (hanging tray + fridge) |
 | Intake fan (120mm) | C | 10.86 (on the front wall) | ~35 (Panel C's front wall) | 8.8 |
 | Exhaust fan (120mm) | C | 19.7 (fridge's kitchen-facing wall) | ~14.4 | 8.8 |
-| NTC temp sensor | C | ~18.2 (just inside the fridge's exhaust wall) | ~12.9 | 8.8 |
-| Control panel (switches, surge protector) | C | 21.1–25.1 | ~2 (at the tailgate end of the open utility bay) | 6.5–12.5 — in the open utility bay, on a backer board hung from the deck underside |
+| NTC temp sensor | C | ~18.2 (just inside the fridge's exhaust wall) | ~12.2 | 8.8 |
+| Control panel (switches, surge protector) | C | 21.5–24.3 | ~2 (at the tailgate end of the open utility bay) | 6.5–12.5 — in the open utility bay, on a backer board hung from the deck underside |
 | Power strip 2 (cooktop) | C | ~34.5–37.5 | ~26 (kitchen unit's front face) | ~1.5 |
 | Right drawer (the only one) | A | 23.75–43.75 | 2–27 | 0–13.75 |
 | Center divider | A | 22.25–23.75 | 1.5–27.5 | 0–16.25 |

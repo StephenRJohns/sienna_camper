@@ -1,0 +1,511 @@
+<title>Sienna Gear Deck — Build Sheet</title>
+<style>
+  :root {
+    --paper: #F4F5F2;
+    --panel: #FFFFFF;
+    --ink: #1E2328;
+    --muted: #5A6470;
+    --line: #C6CBD2;
+    --line-soft: #DDE1E6;
+    --accent: #2B57C4;
+    --accent-soft: #E7EDFB;
+    --warn: #8A6D0B;
+    --warn-bg: #FBF3D9;
+    --display: "Avenir Next Condensed", "Helvetica Neue", "Arial Narrow", Arial, sans-serif;
+    --body: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171B;
+      --panel: #1C2126;
+      --ink: #E6E9ED;
+      --muted: #98A2AE;
+      --line: #39414B;
+      --line-soft: #2A3138;
+      --accent: #82A4FF;
+      --accent-soft: #1F2A45;
+      --warn: #E2C05C;
+      --warn-bg: #2A2410;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #F4F5F2; --panel: #FFFFFF; --ink: #1E2328; --muted: #5A6470;
+    --line: #C6CBD2; --line-soft: #DDE1E6; --accent: #2B57C4; --accent-soft: #E7EDFB;
+    --warn: #8A6D0B; --warn-bg: #FBF3D9;
+  }
+  :root[data-theme="dark"] {
+    --paper: #14171B; --panel: #1C2126; --ink: #E6E9ED; --muted: #98A2AE;
+    --line: #39414B; --line-soft: #2A3138; --accent: #82A4FF; --accent-soft: #1F2A45;
+    --warn: #E2C05C; --warn-bg: #2A2410;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.55;
+    margin: 0;
+    padding: 2rem 1rem 5rem;
+  }
+  .sheet { max-width: 60rem; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; }
+
+  /* ---- title block ---- */
+  .titleblock {
+    border: 1.5px solid var(--ink);
+    background: var(--panel);
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  }
+  .titleblock > div { padding: .6rem .85rem; border-left: 1px solid var(--line); }
+  .titleblock > div:first-child { border-left: none; grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: center; }
+  .titleblock .wide { grid-column: 2 / 5; border-top: 1px solid var(--line); }
+  .tb-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; }
+  .tb-value { font-family: var(--display); font-weight: 600; font-size: .95rem; letter-spacing: .03em; text-transform: uppercase; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: 1.7rem; letter-spacing: .04em; text-transform: uppercase; margin: 0; text-wrap: balance; }
+  .subtitle { font-family: var(--mono); font-size: .72rem; color: var(--muted); letter-spacing: .08em; margin-top: .3rem; }
+
+  /* ---- sections ---- */
+  section { display: flex; flex-direction: column; gap: .9rem; }
+  h2 { font-family: var(--display); font-weight: 700; font-size: 1.08rem; letter-spacing: .07em; text-transform: uppercase; margin: 0; border-bottom: 2px solid var(--ink); padding-bottom: .35rem; }
+  h2 .secno { color: var(--accent); margin-right: .5rem; font-family: var(--mono); font-size: .95rem; }
+  h3 { font-family: var(--display); font-weight: 600; font-size: .92rem; letter-spacing: .06em; text-transform: uppercase; margin: .4rem 0 0; }
+  p { margin: 0; max-width: 68ch; }
+  .note { color: var(--muted); font-size: .9rem; max-width: 68ch; }
+
+  .callout {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn);
+    padding: .8rem 1rem;
+    max-width: none;
+  }
+  .callout strong { color: var(--warn); font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: .3rem; }
+  .callout p { font-size: .92rem; }
+
+  /* ---- tables ---- */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+  th {
+    font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); text-align: left; padding: .55rem .8rem;
+    border-bottom: 1.5px solid var(--ink); background: var(--panel); white-space: nowrap;
+  }
+  td { padding: .5rem .8rem; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+  td.mono { font-family: var(--mono); font-size: .82rem; white-space: nowrap; }
+  tfoot td { border-top: 1.5px solid var(--ink); font-weight: 600; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---- drawings ---- */
+  figure { margin: 0; border: 1px solid var(--line); background: var(--panel); overflow-x: auto; }
+  figure svg { display: block; min-width: 560px; width: 100%; height: auto; }
+  figcaption {
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted); padding: .5rem .8rem; border-top: 1px solid var(--line-soft);
+  }
+  .d-ink   { stroke: var(--ink); }
+  .d-line  { stroke: var(--muted); }
+  .d-fill  { fill: var(--panel); }
+  .d-acc   { fill: var(--accent); }
+  .d-accst { stroke: var(--accent); }
+  text.d-t { font-family: var(--mono); font-size: 11px; fill: var(--ink); }
+  text.d-dim { font-family: var(--mono); font-size: 10.5px; fill: var(--muted); }
+  text.d-lbl { font-family: var(--display); font-size: 11.5px; font-weight: 600; letter-spacing: .04em; fill: var(--ink); }
+  text.d-anchor { font-family: var(--mono); font-size: 10px; fill: var(--accent); }
+
+  /* ---- install steps ---- */
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 1rem; }
+  ol.steps > li { counter-increment: step; display: grid; grid-template-columns: 2.4rem 1fr; gap: .8rem; }
+  ol.steps > li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--mono); font-size: .9rem; color: var(--accent); font-weight: 600;
+    border-top: 2px solid var(--accent); padding-top: .2rem; height: fit-content;
+  }
+  ol.steps h3 { margin: 0 0 .25rem; }
+  ol.steps p { font-size: .93rem; }
+  ol.steps ul { margin: .4rem 0 0; padding-left: 1.1rem; font-size: .9rem; }
+  ol.steps li li { margin-bottom: .2rem; }
+
+  ul.check { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .45rem; max-width: 68ch; }
+  ul.check li { display: grid; grid-template-columns: 1.4rem 1fr; gap: .5rem; font-size: .93rem; }
+  ul.check li::before { content: "☐"; color: var(--accent); font-size: 1rem; line-height: 1.35; }
+
+  footer { font-family: var(--mono); font-size: .7rem; color: var(--muted); letter-spacing: .06em; border-top: 1px solid var(--line); padding-top: .8rem; }
+  @media (prefers-reduced-motion: no-preference) { a { transition: color .12s ease; } }
+</style>
+
+<div class="sheet">
+
+  <header class="titleblock">
+    <div>
+      <h1>Sienna Gear Deck</h1>
+      <div class="subtitle">Removable cargo platform · L-track tie-down system</div>
+    </div>
+    <div><span class="tb-label">Sheet</span><span class="tb-value">1 of 1</span></div>
+    <div><span class="tb-label">Rev</span><span class="tb-value">B</span></div>
+    <div><span class="tb-label">Date</span><span class="tb-value">2026-07-26</span></div>
+    <div class="wide"><span class="tb-label">Vehicle</span><span class="tb-value">2026 Toyota Sienna Woodland · third row stowed</span></div>
+  </header>
+
+  <div class="callout">
+    <strong>Verify in vehicle before cutting</strong>
+    <p>All deck dimensions below are derived from your tape-measure photos and assume a nominal <span style="font-family:var(--mono)">48 × 40 in</span> platform. Confirm three measurements first: <b>(A)</b> floor width at the tailgate edge (~41 in in photo), <b>(B)</b> floor width at the seat-striker row (~38 in), <b>(C)</b> length from tailgate edge to 2 in behind the striker row (assumed 48 in — not visible in photos). Adjust the cut list to match.</p>
+  </div>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S1</span>Load manifest</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Item</th><th class="num">Dry wt (lb)</th><th class="num">Loaded est (lb)</th><th>Footprint W × D (in)</th><th>Restraint</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Rocky V3.0 41QT fridge</td><td class="num">46.8</td><td class="num">75</td><td class="mono">17.7 × 28.0</td><td>2× cam strap + snug bay</td></tr>
+          <tr><td>JAGAHAHA kitchen slide-out (closed)</td><td class="num">45</td><td class="num">75</td><td class="mono">20.0 × 26.0</td><td>2× cam strap + rear chock</td></tr>
+          <tr><td>EcoFlow WAVE 3 AC/heater</td><td class="num">34</td><td class="num">34</td><td class="mono">20.4 × 11.7</td><td>2× cam strap</td></tr>
+          <tr><td>EcoFlow DELTA 3 Plus</td><td class="num">27.6</td><td class="num" rowspan="2">50</td><td class="mono">15.7 × 7.9</td><td rowspan="2">2× cam strap around stack</td></tr>
+          <tr><td>DELTA 3 Series extra battery (stacked)</td><td class="num">22</td><td class="mono">15.7 × 7.9</td></tr>
+          <tr><td>Deck + track + hardware</td><td class="num">≈45</td><td class="num">45</td><td class="mono">48 × 40</td><td>2× ratchet fwd, 2× cam aft</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total on floor</td><td class="num">≈220</td><td class="num">≈280</td><td></td><td></td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="note">Capacity margins: cam straps WLL 400 lb each (two per item), stud fittings WLL 1,333 lb, L-track itself ≥2,000 lb/ft. The straps govern — 800 lb of working restraint on a 75 lb fridge covers a hard-stop surge with room to spare. Chocks and the surface-mounted track lips take sliding loads; straps take lift.</p>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S2</span>Anchor strategy</h2>
+    <p><b>Primary anchors — the three third-row seat strikers</b> (the wire loops you circled at the base of the second row). These are the latch points the third-row seat legs lock into when deployed; they carry FMVSS 207 crash loads and are the strongest exposed steel in the cargo floor. The deck's forward ratchet straps land here.</p>
+    <p><b>Secondary anchors — the two factory tie-down D-rings at the tailgate edge.</b> Light stamped-wire convenience hooks, unrated by Toyota. Used here for <em>anti-lift and anti-rattle only</em>, never as primary restraint.</p>
+    <p><b>Forward surge path:</b> the deck's front edge butts the raised floor step at the striker row, so in a hard stop the load path is wood-to-steel structure — the straps only keep the deck seated. Every appliance straps to deck-mounted L-track, never to the factory hooks.</p>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S3</span>Plan view &amp; rail spacing</h2>
+    <figure>
+      <svg viewBox="0 0 660 650" role="img" aria-label="Plan view of the 48 by 40 inch deck showing three cross rails and four equipment bays">
+        <!-- strikers (front of van, top) -->
+        <g>
+          <path d="M170 44 a7 7 0 0 1 14 0 v6 h-14 z" fill="none" class="d-accst" stroke-width="2.5"/>
+          <path d="M303 44 a7 7 0 0 1 14 0 v6 h-14 z" fill="none" class="d-accst" stroke-width="2.5"/>
+          <path d="M436 44 a7 7 0 0 1 14 0 v6 h-14 z" fill="none" class="d-accst" stroke-width="2.5"/>
+          <text x="330" y="26" text-anchor="middle" class="d-anchor">3RD-ROW SEAT STRIKERS — CRASH-RATED · DECK FWD ANCHORS</text>
+        </g>
+
+        <!-- deck outline -->
+        <rect x="110" y="70" width="400" height="480" fill="none" class="d-ink" stroke-width="2"/>
+        <line x1="110" y1="110" x2="135" y2="70" class="d-line" stroke-dasharray="4 3"/>
+        <line x1="510" y1="110" x2="485" y2="70" class="d-line" stroke-dasharray="4 3"/>
+        <text x="118" y="64" class="d-dim">trim front corners to template</text>
+
+        <!-- rails -->
+        <g class="d-acc">
+          <rect x="130" y="84" width="360" height="11"/>
+          <rect x="110" y="219" width="400" height="11"/>
+          <rect x="110" y="519" width="400" height="11"/>
+        </g>
+        <text x="500" y="93" text-anchor="end" class="d-anchor" style="fill:var(--paper)"></text>
+        <text x="134" y="81" class="d-anchor">RAIL F · 36″</text>
+        <text x="114" y="216" class="d-anchor">RAIL M · 40″</text>
+        <text x="114" y="516" class="d-anchor">RAIL R · 40″</text>
+
+        <!-- items -->
+        <g fill="none" class="d-ink" stroke-width="1.5">
+          <rect x="296" y="101" width="204" height="117" class="d-fill" fill-opacity="0"/>
+          <rect x="118" y="98" width="157" height="79"/>
+          <rect x="113" y="93" width="157" height="79" stroke-dasharray="5 3" opacity=".5"/>
+          <rect x="110" y="239" width="177" height="280"/>
+          <rect x="307" y="234" width="200" height="260"/>
+          <rect x="307" y="498" width="200" height="9" fill="currentColor" opacity=".25"/>
+        </g>
+        <!-- vent channel between fridge and kitchen -->
+        <rect x="287" y="234" width="20" height="285" fill="var(--accent-soft)"/>
+        <circle cx="297" cy="248" r="7" fill="none" class="d-accst" stroke-width="2"/>
+        <line x1="297" y1="258" x2="297" y2="272" class="d-accst" stroke-width="1.5"/>
+        <path d="M293 268 L297 276 L301 268" fill="none" class="d-accst" stroke-width="1.5"/>
+        <text x="300" y="400" text-anchor="middle" class="d-anchor" transform="rotate(-90 300 400)" style="font-size:9.5px">2.0″ FORCED-AIR DUCT · FAN ▸ AFT</text>
+        <!-- compressor plenum forward of fridge -->
+        <rect x="112" y="181" width="173" height="36" fill="var(--accent-soft)"/>
+        <rect x="120" y="192" width="10" height="10" fill="none" class="d-accst" stroke-width="2"/>
+        <text x="200" y="203" text-anchor="middle" class="d-anchor" style="font-size:9.5px">≈6″ COMPRESSOR PLENUM · ▪ SENSOR</text>
+        <text x="398" y="152" text-anchor="middle" class="d-lbl">WAVE 3</text>
+        <text x="398" y="168" text-anchor="middle" class="d-dim">20.4 × 11.7 · duct → passenger window</text>
+        <text x="196" y="130" text-anchor="middle" class="d-lbl">DELTA 3 PLUS</text>
+        <text x="196" y="146" text-anchor="middle" class="d-dim">+ extra batt stacked · 15.7 × 7.9</text>
+        <text x="198" y="375" text-anchor="middle" class="d-lbl">FRIDGE</text>
+        <text x="198" y="391" text-anchor="middle" class="d-dim">17.7 × 28.0 · louvers → channel</text>
+        <text x="198" y="407" text-anchor="middle" class="d-dim">compressor/control end fwd ▲</text>
+        <text x="407" y="356" text-anchor="middle" class="d-lbl">KITCHEN BOX</text>
+        <text x="407" y="372" text-anchor="middle" class="d-dim">20 × 26 closed · slides out aft</text>
+        <text x="407" y="491" text-anchor="middle" class="d-dim">1×2 chock</text>
+
+        <!-- deck anchor straps -->
+        <g class="d-accst" stroke-width="1.5" stroke-dasharray="6 4" fill="none">
+          <line x1="145" y1="86" x2="177" y2="52"/>
+          <line x1="475" y1="86" x2="443" y2="52"/>
+          <line x1="140" y1="528" x2="128" y2="576"/>
+          <line x1="480" y1="528" x2="492" y2="576"/>
+        </g>
+
+        <!-- rear factory rings (tailgate, bottom) -->
+        <g>
+          <path d="M121 592 a7 7 0 0 1 14 0 v5 h-14 z" fill="none" class="d-line" stroke-width="2"/>
+          <path d="M485 592 a7 7 0 0 1 14 0 v5 h-14 z" fill="none" class="d-line" stroke-width="2"/>
+          <text x="310" y="600" text-anchor="middle" class="d-dim">FACTORY TIE-DOWNS · ~37″ APART · ANTI-LIFT ONLY</text>
+        </g>
+
+        <!-- dims: width bottom -->
+        <g class="d-line" stroke-width="1">
+          <line x1="110" y1="622" x2="510" y2="622"/>
+          <line x1="110" y1="616" x2="110" y2="628"/>
+          <line x1="510" y1="616" x2="510" y2="628"/>
+        </g>
+        <text x="310" y="640" text-anchor="middle" class="d-dim">40.0 — VERIFY (A)</text>
+
+        <!-- dims: length left -->
+        <g class="d-line" stroke-width="1">
+          <line x1="82" y1="70" x2="82" y2="550"/>
+          <line x1="76" y1="70" x2="88" y2="70"/>
+          <line x1="76" y1="550" x2="88" y2="550"/>
+        </g>
+        <text x="70" y="315" text-anchor="middle" class="d-dim" transform="rotate(-90 70 315)">48.0 — VERIFY (C)</text>
+
+        <!-- rail centerline offsets, right -->
+        <g class="d-line" stroke-width="1">
+          <line x1="518" y1="70" x2="560" y2="70"/>
+          <line x1="518" y1="89.5" x2="560" y2="89.5"/>
+          <line x1="518" y1="224.5" x2="560" y2="224.5"/>
+          <line x1="518" y1="524.5" x2="560" y2="524.5"/>
+          <line x1="556" y1="70" x2="556" y2="524.5"/>
+        </g>
+        <text x="566" y="86" class="d-dim">2.5</text>
+        <text x="566" y="228" class="d-dim">16.0</text>
+        <text x="566" y="528" class="d-dim">46.0</text>
+        <text x="566" y="106" class="d-dim" style="font-size:9px">rail ℄ from</text>
+        <text x="566" y="118" class="d-dim" style="font-size:9px">front edge</text>
+
+        <!-- compass -->
+        <text x="330" y="12" text-anchor="middle" class="d-dim">◄ FRONT OF VAN (2ND ROW)</text>
+      </svg>
+      <figcaption>DWG-01 · Plan view, scale 10 px = 1 in · clear bays 12.4″ (front) and 28.9″ (rear) · fridge compressor end forward into ≈6″ plenum, louvered side on 2.0″ fan duct</figcaption>
+    </figure>
+
+    <h3>Rail schedule</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Rail</th><th class="num">Length (in)</th><th class="num">Centerline from front edge (in)</th><th>Fasteners</th><th>Serves</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">F (front)</td><td class="num">36 (cut)</td><td class="num">2.5</td><td>8× ¼-20 FH + T-nut</td><td>Fwd deck anchors · front of WAVE 3 / power stack</td></tr>
+          <tr><td class="mono">M (mid)</td><td class="num">40 (cut)</td><td class="num">16.0</td><td>10× ¼-20 FH + T-nut</td><td>Rear of front bay · front of fridge/kitchen bay</td></tr>
+          <tr><td class="mono">R (rear)</td><td class="num">40 (cut)</td><td class="num">46.0</td><td>10× ¼-20 FH + T-nut</td><td>Rear of fridge/kitchen · aft deck anchors</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Rails come as 48″ sticks (4-pack) — cut with a hacksaw or miter saw and deburr. The fourth stick stays whole as a spare, or cut it into two 12″ stubs screwed fore-aft along the side edges for extra side-pull points. Stud fittings drop in every 1″ along a rail, so fore-aft strap positions are infinitely adjustable — the fixed engineering is the three centerlines above. Bay depths are chock-snug on purpose: fridge (28.0″ per the BougeRV manual) in a 28.9″ clear bay pushed aft against Rail R, WAVE 3 (11.7″) in 12.4″. The ½″-tall track lip plus item snugness stops sliding; straps handle lift.</p>
+    <p class="note"><b>Rear bay width allocation — compressor plenum + fan duct.</b> The fridge and kitchen together are 37.7″ wide, so the spare width is consolidated into one 2.0″ channel between them: fridge flush to the driver-side deck edge, channel, kitchen flush to the passenger edge. Per the BougeRV Rocky manual, the unit wants 100 mm (3.9″) at the sides and 200 mm (7.9″) at the back, with the compressor compartment, louvers, control panel, and power port all at one end. The layout meets this by pointing the <b>compressor/control end forward</b> — the DELTA stack in front of it is only 7.9″ deep against Rail F, leaving a <b>≈6″ open-air plenum</b> (≈160 mm) between the stack and the fridge's hot end, open to the full cabin volume above. The fridge sits aft against Rail R (its lip is the aft chock) with the <b>louvered long side facing the 2.0″ channel</b>, which the MULTIFAN S1 runs as a forced-air duct, blowing aft and exhausting at the tailgate. The Govee sensor lives in the plenum facing the compressor grille, with an app alert at 110 °F. Run ECO mode when the van is closed up; crack a window or run the WAVE 3 if the alert trips. Trade-off of the forward-facing control panel: you read temps via the BougeRV app (manual §13) instead of the panel — the app is the everyday interface anyway.</p>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S4</span>Section &amp; strap schedule</h2>
+    <figure>
+      <svg viewBox="0 0 660 235" role="img" aria-label="Side section showing deck on rubber mat over folded seats, fridge strapped between rails M and R, forward strap to striker">
+        <text x="330" y="18" text-anchor="middle" class="d-dim">SECTION A-A · LOOKING TOWARD PASSENGER SIDE · NTS</text>
+        <!-- folded seatback floor -->
+        <line x1="40" y1="196" x2="620" y2="196" class="d-ink" stroke-width="2"/>
+        <text x="330" y="214" text-anchor="middle" class="d-dim">FOLDED 3RD-ROW SEATBACKS (LOAD FLOOR)</text>
+        <!-- mat -->
+        <rect x="90" y="188" width="500" height="8" class="d-acc" opacity=".35"/>
+        <text x="600" y="185" text-anchor="end" class="d-dim">¼″ rubber mat</text>
+        <!-- deck -->
+        <rect x="90" y="174" width="500" height="14" fill="none" class="d-ink" stroke-width="1.8"/>
+        <text x="97" y="171" class="d-dim">¾″ ply deck</text>
+        <!-- rails on top: F at left, M, R -->
+        <rect x="108" y="167" width="16" height="7" class="d-acc"/>
+        <rect x="248" y="167" width="16" height="7" class="d-acc"/>
+        <rect x="548" y="167" width="16" height="7" class="d-acc"/>
+        <text x="116" y="160" text-anchor="middle" class="d-anchor">F</text>
+        <text x="256" y="160" text-anchor="middle" class="d-anchor">M</text>
+        <text x="556" y="160" text-anchor="middle" class="d-anchor">R</text>
+        <!-- fridge between M and R -->
+        <rect x="278" y="92" width="256" height="75" fill="none" class="d-ink" stroke-width="1.5"/>
+        <text x="406" y="134" text-anchor="middle" class="d-lbl">FRIDGE</text>
+        <!-- strap arc over fridge -->
+        <path d="M258 165 L278 90 Q406 68 534 90 L556 165" fill="none" class="d-accst" stroke-width="2" stroke-dasharray="7 4"/>
+        <text x="406" y="60" text-anchor="middle" class="d-anchor">1″ CAM STRAP · STUD FITTINGS INTO RAILS M + R · ×2 PER ITEM</text>
+        <!-- fwd anchor strap -->
+        <path d="M112 166 L62 140" fill="none" class="d-accst" stroke-width="2" stroke-dasharray="7 4"/>
+        <path d="M52 132 a7 7 0 0 1 14 0 v5 h-14 z" fill="none" class="d-accst" stroke-width="2.2"/>
+        <text x="46 " y="120" class="d-anchor">RATCHET → STRIKER</text>
+        <!-- front edge butt -->
+        <line x1="90" y1="130" x2="90" y2="196" class="d-line" stroke-width="3"/>
+        <text x="84" y="122" text-anchor="end" class="d-dim">deck edge butts floor step</text>
+      </svg>
+      <figcaption>DWG-02 · Section A-A, not to scale · strap-over-top restraint with structural butt joint forward</figcaption>
+    </figure>
+
+    <h3>Strap schedule</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Load</th><th>Straps</th><th>Route</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fridge</td><td class="mono">2× 1″ cam</td><td>Rail M → through side carry handles / around lower body → Rail R</td><td>Route straps below the lid line so the lid opens with the fridge strapped in place — no unstrapping for food access</td></tr>
+          <tr><td>Kitchen box</td><td class="mono">2× 1″ cam</td><td>Rail M → over top → Rail R</td><td>Unstrap to deploy slide-out at camp; chock takes aft gap</td></tr>
+          <tr><td>WAVE 3</td><td class="mono">2× 1″ cam</td><td>Rail F → over top → Rail M</td><td>Can run while strapped; ducts exit above strap line</td></tr>
+          <tr><td>Power stack</td><td class="mono">2× 1″ cam</td><td>Rail F → over top → Rail M</td><td>Straps capture both units; handles stay reachable</td></tr>
+          <tr><td>Spare tire (RJ-MODINI kit)</td><td class="mono">1× 1″ cam</td><td>Through wheel hub → center seat striker, upright in 3rd-row footwell</td><td>Off-deck, forward of striker row; see S9</td></tr>
+          <tr><td>Deck, forward</td><td class="mono">2× ratchet</td><td>Rail F stud D-rings → outer seat strikers</td><td>Primary anchor — snug, do not crank past strap WLL</td></tr>
+          <tr><td>Deck, aft</td><td class="mono">2× 1″ cam</td><td>Rail R stud D-rings → factory tie-downs</td><td>Anti-lift/rattle only</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Total stud fittings used: 12 in service (8 strap ends on items are integral; 4 D-ring studs for deck anchors) — the 10-pack plus the straps' own stud ends covers it with spares. Every appliance releases in under a minute: two cam buckles each, no tools.</p>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S5</span>Cut list</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Part</th><th class="num">Qty</th><th>Stock</th><th>Cut to</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Deck</td><td class="num">1</td><td>¾″ birch or BC plywood, 4×8</td><td class="mono">48 × 40 (front corners per template)</td></tr>
+          <tr><td>Rail F</td><td class="num">1</td><td>48″ L-track</td><td class="mono">36″</td></tr>
+          <tr><td>Rails M, R</td><td class="num">2</td><td>48″ L-track</td><td class="mono">40″ each</td></tr>
+          <tr><td>Side stubs (optional)</td><td class="num">2</td><td>4th 48″ L-track</td><td class="mono">12″ each</td></tr>
+          <tr><td>Kitchen chock</td><td class="num">1</td><td>1×2 hardwood</td><td class="mono">20″</td></tr>
+          <tr><td>Underlay</td><td class="num">1</td><td>¼″ rubber utility mat</td><td class="mono">trim to deck outline −1″ all around</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S6</span>Bill of materials</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Item</th><th class="num">Qty</th><th class="num">Est.</th><th>Source</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">1</td><td>US Cargo Control aluminum L-track, 48″ 4-pack</td><td class="num">1</td><td class="num">$95</td><td><a href="https://www.amazon.com/US-Cargo-Control-Strength-Aluminum/dp/B07W923TC6">Amazon</a></td></tr>
+          <tr><td class="mono">2</td><td>L-track single-stud fittings with D-ring, WLL 1,333 lb, 10-pack</td><td class="num">1</td><td class="num">$45</td><td><a href="https://www.amazon.com/US-Cargo-Control-Black-Fitting/dp/B07W5T13JS">Amazon</a></td></tr>
+          <tr><td class="mono">3</td><td>1″ cam-buckle straps with L-track stud ends, WLL 400 lb</td><td class="num">8</td><td class="num">$100</td><td><a href="https://www.uscargocontrol.com/collections/l-track-straps">US Cargo Control</a> · <a href="https://www.cargoequipmentcorp.com/1-Inch-Cam-Buckle-Strap-with-Single-Stud-L-Track-Fittings">Cargo Equipment</a></td></tr>
+          <tr><td class="mono">4</td><td>Erickson 1″×10′ ratchet straps, 500 lb WLL, 4-pack (deck anchors + spares)</td><td class="num">1</td><td class="num">$25</td><td><a href="https://www.etrailer.com/Cargo-Tie-Downs/toyota/sienna/Erickson/EM31352.html">etrailer</a></td></tr>
+          <tr><td class="mono">5</td><td>EcoFlow WAVE Series car window vent kit (EFWAVE3-EB) — <b>already owned</b></td><td class="num">✓</td><td class="num">$0</td><td>On hand</td></tr>
+          <tr><td class="mono">6</td><td>¾″ plywood 4×8 (birch or sanded BC)</td><td class="num">1</td><td class="num">$60</td><td>Local lumber yard</td></tr>
+          <tr><td class="mono">7</td><td>¼-20 × 1¼″ flat-head machine screws + ¼-20 T-nuts</td><td class="num">30+30</td><td class="num">$20</td><td>Local hardware / McMaster</td></tr>
+          <tr><td class="mono">8</td><td>¼″ rubber utility mat, ≥4×6 ft</td><td class="num">1</td><td class="num">$40</td><td>Local farm/hardware store</td></tr>
+          <tr><td class="mono">9</td><td>1×2 hardwood + wood glue + poly finish</td><td class="num">—</td><td class="num">$25</td><td>Local</td></tr>
+          <tr><td class="mono">10</td><td>Anderson Powerpole SB50 or Amass XT90 connectors (optional — only for added hardwired 12V circuits)</td><td class="num">2 pr</td><td class="num">$15</td><td>Amazon / Powerwerx</td></tr>
+          <tr><td class="mono">11</td><td>AC Infinity MULTIFAN S1, 80mm USB fan with speed control (vent-channel circulation)</td><td class="num">1</td><td class="num">$15</td><td><a href="https://www.amazon.com/AC-Infinity-MULTIFAN-UL-Certified-Receiver/dp/B0FVPX122T">Amazon</a></td></tr>
+          <tr><td class="mono">12</td><td>Govee H5075 Bluetooth thermometer/hygrometer (vent-channel heat monitor)</td><td class="num">1</td><td class="num">$13</td><td><a href="https://www.amazon.com/Govee-Thermometer-Hygrometer-Temperature-Notification/dp/B08QDF3ZJ7">Amazon</a></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td></td><td>Total to buy (vent kit already owned)</td><td class="num"></td><td class="num">≈$340</td><td></td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="note">Skipped on purpose: a dedicated fridge slide ($200–350). The snug bay + two cam straps gives the same security; the 41QT fridge is light enough to lift its lid in place or pull the whole unit in one motion. Alternative anchor if you'd rather bolt through the floor instead of using a deck: <a href="https://www.etrailer.com/E-Track/Toyota/Sienna/Snap-Loc/SLSS.html">Snap-Loc 1,000 lb bolt-on anchors</a> — but that means drilling the Sienna; the deck doesn't.</p>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S7</span>Installation</h2>
+    <ol class="steps">
+      <li>
+        <div>
+          <h3>Template &amp; verify</h3>
+          <p>Stow the third row flat. Lay cardboard over the floor and trace the usable outline: tailgate edge, side trim, and a front edge stopping 2″ behind the striker row so all three strikers stay exposed. Record measurements A, B, C from the callout above.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Cut the deck</h3>
+          <p>Transfer the template to the plywood, cut, round all corners (~1″ radius), and ease the edges. Dry-fit in the van: it should drop in flat, butt the front floor step, and leave the tailgate latch striker clear.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Mount the rails</h3>
+          <p>Snap chalk lines at the three centerlines (2.5″ / 16.0″ / 46.0″ from the front edge). Center each cut rail side-to-side, mark through the track's pre-drilled holes, and drill ¼″ through the deck. Counterbore the underside with a ¾″ Forstner bit ~⅛″ deep at each hole so the T-nuts sit flush, tap the T-nuts in, and bolt the rails down with the flat-head screws — snug plus a quarter turn (~75 in-lb).</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Finish</h3>
+          <p>Sand and seal with two coats of polyurethane (or glue down indoor/outdoor carpet, slitting it over the rails). Glue the 1×2 chock behind the kitchen-box position after a loaded dry-fit confirms its exact spot.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Set the deck</h3>
+          <p>Lay the rubber mat on the folded seatbacks, then the deck on top. Drop two stud D-rings into Rail F near its ends and run the two ratchet straps forward and down to the outer seat strikers — tension until snug, not cranked. Drop two studs into Rail R ends and cam-strap down to the factory tie-downs.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Load &amp; strap the gear</h3>
+          <p>Heavy items go in their bays per DWG-01 — fridge and kitchen in the rear bay, WAVE 3 and power stack forward against Rail M / Rail F. Two cam straps over each item, stud ends into the flanking rails, buckles positioned where you can reach them from the tailgate.</p>
+          <p style="margin-top:.4rem">Fridge orientation: <b>compressor/control end forward</b> into the plenum, louvered side toward the vent channel, pushed aft against Rail R. The Rocky's lid hinge is reversible (manual §4.4) — set it so the lid swings toward the driver-side wall and you load groceries from the channel side while standing at the tailgate. First setup only: let the fridge rest 12 hours after transport before powering on (manual requirement).</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Wire &amp; vent</h3>
+          <p>Fridge 12V cable → DELTA 3 Plus 12V port — with the fridge's power port now facing forward, it's a short direct run to the DELTA sitting right in front of it. WAVE 3 → DELTA AC outlet (or its own add-on battery). Route cables along deck edges, out of strap paths. Fit the window vent kit in the <b>passenger-side rear window</b> and connect the WAVE 3 exhaust duct — the front-passenger bay puts the unit a straight 2–3 ft run from the glass, which matters: every added foot of exhaust hose and every 90° bend adds static-pressure loss the compressor has to fight, and a long hot hose radiates heat back into the van.</p>
+          <p style="margin-top:.4rem">Vent gear: zip-tie the MULTIFAN S1 to a Rail M stud fitting at the front mouth of the 2″ channel, blowing aft along the fridge's louvered side (USB power from a DELTA port; low speed is enough for continuous duty). Stick the Govee sensor to the back of the DELTA stack facing the fridge's compressor grille across the plenum, and set a Govee app alert at 110 °F.</p>
+          <p style="margin-top:.4rem">If you later hardwire any 12V runs (instead of the factory plugs), terminate them in Anderson Powerpole SB50 (50–75 A) or XT60/XT90 (60–90 A) connectors rather than screw terminals — silver/gold-plated contacts hold &lt;1 mΩ across hundreds of unplug cycles, so the pull-it-out-in-a-minute goal doesn't create loose, heat-generating connections. The factory EcoFlow and fridge cables are already quick-disconnect; custom connectors are only needed for added circuits.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Road test</h3>
+          <p>Drive 15–30 minutes with normal braking and a few firm stops in an empty lot. Re-tension every strap afterward — new webbing settles. Then run the pre-drive checklist below before every trip.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S8</span>Pre-drive checklist &amp; limits</h2>
+    <ul class="check">
+      <li>All 8 item straps tensioned, cam buckles fully closed, loose tails wrapped</li>
+      <li>Deck anchor straps snug — 2 forward at strikers, 2 aft at factory rings</li>
+      <li>Fridge lid latched; kitchen box locked closed; slide not deployed</li>
+      <li>WAVE 3 ducts either stowed or vent panel seated in window</li>
+      <li>No strap, cable, or duct across the tailgate latch; tailgate closes freely</li>
+      <li>Nothing loose on top of strapped items</li>
+    </ul>
+    <div class="callout" style="margin-top:.5rem">
+      <strong>Limits</strong>
+      <p>Third row is unusable while the deck is in (it sits on the folded seatbacks) — full removal is 4 straps and a slide-out. Never substitute the factory tailgate-edge hooks for primary restraint. Keep total deck cargo under ~350 lb and the heaviest items forward, against Rail M or the front bay. Re-check strap tension after the first 30 minutes of any trip.</p>
+    </div>
+  </section>
+
+  <!-- ================================================== -->
+  <section>
+    <h2><span class="secno">S9</span>Spare tire — RJ-MODINI in-cabin kit</h2>
+    <p>The Sienna carries no factory spare; the RJ-MODINI kit (T155/85R18 on an 18×4 steel wheel, <b>28.5″ rolling diameter × ~6″ wide</b>, tool case nesting flush in the wheel barrel, jack and covers — call it ~45 lb as one package) rides in the cabin. It does <em>not</em> fit on the deck: laid flat on the kitchen box, a 28.5″ disc overhangs the 20″-wide box by ~6″ into the fridge (which stands 4″ taller) or past the deck edge into the wall trim.</p>
+    <p><b>Stowage: the third-row footwell, forward of the deck.</b> The strip of open floor between the seat-striker row and the second-row seatbacks is dead space the deck never claims. Stand the tire upright there (28.5″ tall ≈ seatback height), leaning against the second-row seatbacks, centered on the van, in its soft cover. Run one cam strap through the wheel hub down to the <b>center seat striker</b> — the deck's forward anchors use only the two outer strikers, so the crash-rated center one is free. That puts 45 lb at the lowest, most central spot in the cargo area (the best place in the whole van for it) and touches nothing on the deck.</p>
+    <p class="note">Checks: verify the second row still has the slide/recline range you use with the tire in place, and that the strap is tight enough that the tire can't drum against the seatback. Getting the tire out at a flat means opening a sliding door, not the tailgate — arguably faster than unloading a deck bay anyway. Keep the jack's tool case nested in the wheel barrel so it's all one strapped mass.</p>
+  </section>
+
+  <footer>SMORES OUTDOORS · GEAR DECK REV B · DIMENSIONS IN INCHES · DRAWINGS DWG-01/02 NOT FOR SCALE MEASUREMENT · VERIFY A/B/C IN VEHICLE BEFORE CUTTING</footer>
+
+</div>

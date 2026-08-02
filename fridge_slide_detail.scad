@@ -99,11 +99,11 @@ module drawing() {
     // end rail at Y=0, the ONE thing the mounted fridge must clear as
     // it slides out (its underside is at leg_height) ----
     color("Gray") translate([frame_rail_sz, z_deck - panel_thickness]) rect_outline(fridge_ext_width - frame_rail_sz, panel_thickness);
-    label("deck (Panel C top — recessed flush)", fridge_ext_width/2, z_deck + 1.5, 1.0);
+    label("deck (Panel C top — recessed flush)", fridge_ext_width/2 + 2, z_deck + 1.5, 1.5);
     color("Gray") translate([0, leg_height]) rect_outline(frame_rail_sz, frame_rail_sz);
-    label("end rail", 0.9, 19.9, 0.8);
+    label("end rail", -1.2, 21.6, 1.5);
     color("Gray") translate([fridge_ext_width - frame_rail_sz, leg_height]) rect_outline(frame_rail_sz, frame_rail_sz);
-    label("frame rail", fridge_ext_width - frame_rail_sz/2 - 2.3, leg_height - 0.75, 0.8);
+    label("frame rail", fridge_ext_width - 9, leg_height - 3.4, 1.5);  // clear of the strap line
 
     // ---- SIDE-MOUNT slide (fixes the old undermount drawing): the
     // VADANIA's 3in rail stands VERTICALLY beside the tray — fixed
@@ -147,9 +147,10 @@ module drawing() {
     // Y=0 (tailgate) ----
     color("Gray") translate([0, fridge_tray_gap]) rect_outline(fridge_ext_width, fridge_tray_t);
     color("SaddleBrown") translate([0, fridge_tray_gap]) rect_outline(fridge_ext_width, 2.5, 0.12);
-    label("1x3 side apron on the tray edge —", fridge_ext_width/2, 6.6, 0.8);
-    label("moving member screws to it; top edge is the", fridge_ext_width/2, 5.5, 0.8);
-    label(str("anti-shift lip; tray hangs ", fridge_tray_gap, "\" off the floor"), fridge_ext_width/2, 4.4, 0.8);
+    // This three-line note used to print here at 0.8, straight across the tray
+    // and apron it describes — the same sentences are already in the document
+    // under this figure. One short tag stays.
+    label("1x3 side apron", fridge_ext_width/2, 5.5, 1.7);
     color("DimGray", 0.3) translate([0, fridge_tray_gap + fridge_tray_t]) rect_outline(fridge_ext_width, fridge_ext_height);
     label("Fridge — CLOSED", fridge_ext_width/2, fridge_tray_gap + fridge_tray_t + fridge_ext_height/2 + 2, 1.1);
     label("(driving position)", fridge_ext_width/2, fridge_tray_gap + fridge_tray_t + fridge_ext_height/2 + 0.6, 0.95);
