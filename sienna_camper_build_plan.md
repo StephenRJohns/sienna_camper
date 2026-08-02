@@ -866,6 +866,28 @@ Every purchased electrical component at its real position — icon-based top-dow
 
 ![Electrical layout](renders/electrical-layout.svg)
 
+**Marker key.** Markers 1–14 on the sheet index this table. It used to print
+beside the plan; its longest row was 126 characters, which set the sheet at 158
+units wide, so the rows themselves came out near 6pt on paper.
+
+| # | Component |
+|---|---|
+| 1 | Power strip 1 — on the rear-pantry deck edge (phone / light / Windmill fan) |
+| 2 | Power strip 1's cord — a SHORT hop to the rear outlet beside the pantry (no seams) |
+| 3 | REAR AC outlet — passenger rear quarter trim, **22.5" up, 10" in** from the sidewall (MEASURED V9b). Shares the one 1500W inverter |
+| 4 | Cooktop cord — SHORT run to the rear outlet, with a slack loop for the kitchen's slide (no seams) |
+| 5 | 2-way outlet tap at the rear outlet — Power strip 1 and the cooktop share it |
+| 6 | 1" grommets — deck-edge exits for the two short AC cords |
+| 7 | Power strip 2 — ON the slide-out kitchen unit (cooktop); cord slack for the slide, fed from the rear outlet |
+| 8 | Control enclosure — in the open utility bay (Section 2 below) |
+| 9 | Intake fan, 120mm — on Panel C's FRONT wall, over the fridge's B-facing end |
+| 10 | Exhaust fan, 120mm, into the open bay + NTC probe inside the bay at that wall, in the hot exhaust |
+| 11 | Fridge DC line — DELTA 3 (Panel A) forward to the fridge (Panel C), its own dedicated run |
+| 12 | SAE quick-disconnects — on the fridge DC line, one at each seam it crosses |
+| 13 | DELTA 3 AC charging cord — the front console's ONE outlet (1500W, verified) to Panel A's drawer |
+| 14 | DELTA 3 drawer grommet — WAVE 3 charge cable exit (see the stowage detail) |
+
+
 
 *Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
 

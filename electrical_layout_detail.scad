@@ -71,10 +71,15 @@ module marker(n, x, y) {
 module mlabel(txt, x, y, size = 2.8) {
     color("black") translate([x, y]) mirror([1, 0, 0]) text(txt, size = size, halign = "center", valign = "center");
 }
-module mmarker(n, x, y) {
+// Numeral BESIDE the icon. A white numeral centred in a filled circle vanishes:
+// OpenSCAD merges touching 2D shapes into one polygon set and paints them one
+// colour. The plan is drawn MIRRORED, so the mirror goes outside the offset —
+// which puts the numeral on the icon's left as seen on the sheet.
+module mmarker(n, x, y, nx = 1.9) {
     translate([x, y]) {
-        color(marker_col(n)) circle(r = 1.5);
-        color("white") mirror([1, 0, 0]) text(str(n), size = 3.2, halign = "center", valign = "center");
+        color(marker_col(n)) circle(r = 1.2);
+        color(marker_col(n)) mirror([1, 0, 0]) translate([nx, 0])
+            text(str(n), size = 2.6, halign = "left", valign = "center");
     }
 }
 module wire(pts, w = 0.28, col = "Black") { // solid polyline
@@ -176,20 +181,20 @@ module section1_content() {
 
     rect_outline(W, y_tg);
     mlabel("ELECTRICAL LAYOUT — top-down (front at bottom, tailgate at top)", W/2, y_tg + 3.4, 1.5);
-    mlabel("DRIVER side", 4, y_tg + 1.2, 1.1);
-    mlabel("PASSENGER side", W - 6, y_tg + 1.2, 1.1);
+    mlabel("DRIVER side", 6, y_tg + 1.4, 2.0);
+    mlabel("PASSENGER side", W - 8, y_tg + 1.4, 2.0);
     color("Silver") for (y = [y_ab, y_bc]) translate([0, y - 0.1]) square([W, 0.2]);
-    mlabel("PANEL A", W/2 - 12, (y_front + y_ab)/2, 1.2);
-    mlabel("PANEL B", W/2, (y_ab + y_bc)/2 + 6, 1.2);
-    mlabel("PANEL C", 27, y_bc + 2.2, 1.2);
+    mlabel("PANEL A", W/2 - 12, (y_front + y_ab)/2 - 3, 2.2);
+    mlabel("PANEL B", W/2, (y_ab + y_bc)/2 + 6, 2.2);
+    mlabel("PANEL C", 27, y_bc + 5.5, 2.2);
 
     // kitchen / cabinet / fridge footprints inside Panel C
     color("Gainsboro") translate([W - frame_rail_sz - kitchen_box_width, y_tg - kitchen_box_length]) square([kitchen_box_width - 0.4, kitchen_box_length - 0.4]);
-    mlabel("KITCHEN", W - frame_rail_sz - kitchen_box_width/2, y_tg - kitchen_box_length/2, 1.1);
+    mlabel("KITCHEN", W - frame_rail_sz - kitchen_box_width/2 - 5, y_tg - kitchen_box_length/2 - 2, 2.0);
     fr_x0 = 1.9;                                   // fridge against the driver-side rear corner leg (1.5in leg + margin)
     color("Silver") translate([fr_x0, y_bc + 0.4]) square([fridge_ext_length - 0.4, fridge_ext_width]);
-    mlabel("FRIDGE", fr_x0 + fridge_ext_length/2, y_bc + fridge_ext_width/2, 1.1);
-    mlabel("utility bay", 19.5, y_tg - 6.5, 0.9);
+    mlabel("FRIDGE", fr_x0 + fridge_ext_length/2, y_bc + fridge_ext_width/2, 2.0);
+    mlabel("utility bay", 17, y_tg - 4.0, 1.9);
 
     // Rear-pantry footprint: the prefab drawer cluster ON Panel C's
     // deck, at the tailgate end (last pantry_len of Panel C's own length) —
@@ -198,19 +203,19 @@ module section1_content() {
     hb_y0 = y_tg - pantry_len;
     color("DarkGray") rect_outline(W, pantry_len, 0.15);
     translate([0, hb_y0]) color("DarkGray") square([W, 0.15]); // divider line at the pantry's front edge
-    mlabel("REAR PANTRY", W/2, y_tg - pantry_len - 2.2, 1.0);
+    mlabel("REAR PANTRY", W/2, y_tg - pantry_len - 2.4, 2.0);
 
     // 1: Power strip 1 — on the deck edge in the pantry's OPEN BAY
     // (passenger side, next to the pot crate) — see the Rear Pantry render
     translate([38, hb_y0 + 6]) strip_icon(4);
-    mmarker(1, 32, hb_y0 + 8.5);
+    mmarker(1, 36, hb_y0 + 10.5);
 
     // 3: the REAR AC outlet — back passenger area (VERIFIED to exist;
     // exact spot + shared-inverter check in Appendix A/5). Drawn just
     // outside the deck on the passenger wall, near the tailgate.
     translate([W + 5, y_tg - 10]) outletAC_icon();
-    mlabel("REAR AC outlet", W + 5, y_tg - 13, 0.95);
-    mlabel("(passenger rear quarter — 22.5\" up, 10\" in)", W + 5, y_tg - 14.8, 0.8);
+    mlabel("REAR AC outlet", W + 5, y_tg - 21, 2.0);
+    mlabel("(22.5\" up, 10\" in)", W + 5, y_tg - 23.6, 1.9);
     mmarker(3, W + 2, y_tg - 6.5);
 
     // 2: Power strip 1's cord — a SHORT hop to the rear outlet beside
@@ -224,11 +229,11 @@ module section1_content() {
     // slack loop for the kitchen's slide travel. No seams crossed.
     cord = [[34.5, y_tg - 5.5], [39, y_tg - 7.5], [W + 3, y_tg - 10.5]];
     wire(cord, 0.3, marker_col(4));
-    mmarker(4, 39, y_tg - 9.5);
+    mmarker(4, 41, y_tg - 12.5);
 
     // front console: ONE AC outlet (1500W verified) — DELTA 3 charging only
     translate([27, -3.5]) outletAC_icon();
-    mlabel("front console — 1 AC outlet (1500W VERIFIED) — DELTA 3 charging", 23, -6.2, 0.9);
+    mlabel("front console outlet — DELTA 3 charging", 23, -6.6, 1.9);
 
     // 5: 2-way tap at the rear outlet — Power strip 1 + the cooktop share it
     translate([W + 5, y_tg - 7.6]) square([3.4, 0.5], center = true);
@@ -243,11 +248,11 @@ module section1_content() {
     // travels to the cook position; its cord to the rear outlet keeps
     // a slack loop for the slide travel (Section 5)
     translate([34.5, y_tg - 3.8]) strip_icon(4);
-    mmarker(7, 28, y_tg - 4.5);
+    mmarker(7, 23, y_tg - 2.6);
 
     // 8: control enclosure — in the open utility bay (footprint; see Section 2)
     translate([33, y_tg - 1.9]) enclosure_icon(5, 2.6);
-    mmarker(8, 28, y_tg - 4.5);
+    mmarker(8, 32, y_tg - 8.5);
 
     // 9: intake fan — on Panel C's FRONT wall, over the fridge's B-facing end
     translate([fr_x0 + fridge_ext_length/2, y_bc - 2.6]) fan_icon(1.7);
@@ -289,12 +294,12 @@ module section1_content() {
 // ============================================================
 module section2() {
     z_deck = leg_height + frame_rail_sz; // 18.5
-    label("CONTROL CLUSTER — in the open utility bay, elevation", 23, 36, 1.4);
+    label("CONTROL CLUSTER — in the open utility bay", 23, 36, 2.2);
     rect_outline(30, 33);                              // wall section, x 0-30, z 0-33
     // MOVED TO THE DOCUMENT: label("backer board at the back of the open bay (no door — reach in)", 15, -2.2, 1.0);
     color("Silver") translate([0, z_deck - 0.1]) square([30, 0.2]);
-    label_left("deck level", -8.5, z_deck + 0.8, 0.9);
-    label_left("18.5\"", -8.5, z_deck - 0.8, 0.9);
+    label_left("deck level", 49, z_deck + 1.1, 1.9);
+    label_left("18.5\"", 49, z_deck - 1.3, 1.9);
 
     // enclosure with the whole cluster inside
     translate([10, z_deck + 4]) {
@@ -304,11 +309,11 @@ module section2() {
         for (i = [0:2]) translate([-4.5 + i * 3.2, -2.6]) switch_icon();
     }
 
-    label_left("A", 3.2, z_deck + 9.5, 1.4);
-    label_left("B", 5.5, z_deck + 6.3, 1.4);
-    label_left("C", 12.2, z_deck + 7, 1.4);
-    label_left("D", 4.2, z_deck + 0.6, 1.4);
-    label_left("E", 26.5, 29.5, 1.4);
+    label_left("A", 3.2, z_deck + 9.5, 2.2);
+    label_left("B", 5.5, z_deck + 6.3, 2.2);
+    label_left("C", 12.2, z_deck + 7, 2.2);
+    label_left("D", 4.2, z_deck - 1.8, 2.2);
+    label_left("E", 26.5, 29.5, 2.2);
 
     // MOVED TO THE DOCUMENT: label_left("A  LMioEtool enclosure — 4x #8 x 1\" screws through its mounting ears into the wall", 34, 31.5, 1.0);
     // MOVED TO THE DOCUMENT: label_left("B  W1209 controller (in its case) — NTC probe wire exits the bottom grommet,", 34, 28.5, 1.0);
@@ -331,7 +336,7 @@ module section3() {
         color(marker_col(9)) translate([0, 7]) text("INTAKE", size = 2.6, halign = "center");
         wire([[-8, 0], [-5.6, 0]], 0.35, "Black");
         color("Black") translate([-5.6, 0]) rotate(-90) polygon([[-1, 0], [1, 0], [0, 1.6]]);
-        label("cabin air IN", -8, 2.2, 0.9);
+        label("cabin air IN", -8, -5.5, 1.9);
     }
     // exhaust fan, blowing OUT into the open bay
     translate([38, 4]) {
@@ -339,7 +344,7 @@ module section3() {
         color(marker_col(10)) translate([0, 7]) text("EXHAUST", size = 2.6, halign = "center");
         wire([[5.6, 0], [8, 0]], 0.35, "Black");
         color("Black") translate([8, 0]) rotate(90) polygon([[-1, 0], [1, 0], [0, 1.6]]);
-        label("warm air OUT", 11.5, 2.2, 0.9);
+        label("warm air OUT", 11, -5.5, 1.9);
         color("SeaGreen") translate([6.5, -3.5]) circle(r = 0.5);
         // MOVED TO THE DOCUMENT: label("NTC probe: zip-tie 1-2\" from the exhaust cutout", 8, -6.2, 0.9);
     }
@@ -350,34 +355,20 @@ module section3() {
     // MOVED TO THE DOCUMENT: label_left("Wiring: both fans in parallel off the W1209 relay (Section 5 wiring schematic).", 0, -16.2, 1.0);
 }
 
-// ---- legend (Section 1's numbered markers) ----------------------
-module legend() {
-    items = [
-        "Power strip 1 — on the rear-pantry deck edge (phone/light/Windmill fan)",
-        "Power strip 1's cord — a SHORT hop to the rear outlet beside the pantry (no seams)",
-        "REAR AC outlet — passenger rear quarter trim, 22.5\" up, 10\" in from the sidewall (MEASURED V9b; shares the one 1500W inverter)",
-        "Cooktop cord — SHORT run to the rear outlet, slack loop for the kitchen's slide (no seams)",
-        "2-way outlet tap at the rear outlet — Power strip 1 + the cooktop share it",
-        "1\" grommets — deck-edge exits for the two short AC cords",
-        "Power strip 2 — ON the slide-out kitchen unit (cooktop); cord slack for the slide, feeds from the rear outlet",
-        "Control enclosure — in the open utility bay (Section 2 below)",
-        "Intake fan 120mm — on Panel C's FRONT wall, over the fridge's B-facing end",
-        "Exhaust fan 120mm (into the open bay) + NTC probe (inside the bay at that wall, in the hot exhaust)",
-        "Fridge DC line — DELTA 3 (Panel A) forward to the fridge (Panel C), own dedicated run",
-        "SAE quick-disconnects — fridge DC line, one at each seam it crosses",
-        "DELTA 3 AC charging cord — the front console's ONE outlet (1500W, verified) to Panel A's drawer",
-        "DELTA 3 drawer grommet — WAVE 3 charge cable exit (see stowage detail)",
-    ];
-    label_left("Legend", 0, 4, 1.6);
-    for (i = [0 : len(items) - 1]) {
-        y = -i * 3.4;
-        marker(i + 1, 1, y);
-        label_left(items[i], 3.4, y, 1.05);
-    }
-}
+// The 14-row legend that used to sit beside the plan is a table in the
+// document under this figure. Its longest row was 126 characters, which set
+// this sheet at 158 units wide; printed text height is size x (page_width /
+// sheet_width), so its own rows came out near 6pt. Markers 1-14 index it.
 
 // ---- assemble ----------------------------------------------------
 section1();
-translate([54, 88]) legend();
-translate([8, -55]) section2();
-translate([8, -85]) section3();
+// The two insets go BESIDE the van plan, not under it. Stacked, this sheet was
+// 82 x 179 units — so tall and narrow that the page fitted it by HEIGHT and it
+// used barely a third of the available width, which is what actually set its
+// printed text size. Side by side it comes out near 139 x 106, close to the
+// page's own proportions, and the same labels print roughly half again larger.
+// Measured extents: section1 x -16..54 / y -7..99, section2 x -9..47 / y 0..37,
+// section3 x -4..54 / y -1..14, about their own origins.
+translate([69, 60]) section2();
+translate([69, 26]) section3();
+label("Markers 1-14: see the key under this figure", 24, -13, 2.4);
