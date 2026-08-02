@@ -112,6 +112,29 @@ The interior envelope used for fit checks (Section 1: 93.75" x 49" x 42" — all
 
 Rear view, looking forward from the open tailgate at Panel C with the fridge and kitchen unit both stowed for driving: ![Rear view](renders/rear-view.svg)
 
+**Marker key.** This 11-row legend used to print beside the view. Its longest
+row was 77 characters, which set the sheet at 128 units wide against a 49"-wide
+van — and a figure's printed text height is `size × (page_width ÷ sheet_width)`,
+so it was holding every label on the drawing to about 4pt on paper.
+
+| # | Part |
+|---|---|
+| 1 | Frame / deck / fridge tray |
+| 2 | Kitchen unit (standalone) |
+| 3 | Fridge (standalone) |
+| 4 | Intake fan (120mm) |
+| 5 | Exhaust fan (120mm) |
+| 6 | NTC temp sensor |
+| 7 | Control panel — switches + surge protector, at the back of the open bay; reach in |
+| 8 | Power strip 2 (cooktop) |
+| 9 | Floor vent intrusion (both sides) |
+| 10 | Open utility bay — no door |
+| 11 | Anchor-board strips, end-on (mat + 3/4" ply — the no-drill rail platform, Section 8) |
+
+Standing at the tailgate looking in, the DRIVER side is on **your left** —
+exactly as drawn. Both appliances are shown stowed for driving.
+
+
 *Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
 
 - Exhaust fan: fridge's right wall, blows INTO the open utility bay | NTC probe: just inside the bay at that wall (in the hot exhaust, NOT the bay)
@@ -1039,6 +1062,8 @@ Same frame construction as Panel A — and that's the whole build. **Panel B has
 
 ![Spare tire stowage](renders/spare-stow-detail.png)
 
+**Does it fit?** Height stack, floor upward: 3" cleats (clearing the 2.5" floor-edge curb) + 6.4" spare + 5.9" tote = 15.3", under Panel B's 17.75" deck. Nothing screws to the van floor — the skid sits on the liner and the strap ties to footman loops on the bottom rails, which is also the best weight placement in the van (at the axle), so no hitch basket is needed. The kitchen-drawer slot does **not** fit the 28.5" disc, so that drawer stays where it is.
+
 
 *Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
 
@@ -1962,13 +1987,26 @@ A **night-only** cooling arrangement for hot-weather campsites (worked out for a
 ![Nighttime van + tent cooling setup](renders/night-cooling-setup-detail.png)
 
 
-*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+*The tent is drawn broken.* At true scale its 127" footprint runs back from
+the tailgate against a 93.75" van, so more than half the sheet was an empty
+dashed rectangle — and since sheet height sets printed text size, that
+emptiness was costing every label on the drawing about half its size.
 
-- Night-only setup: skip the factory AC here — it needs the van sealed
-- (doors/tailgate shut) to run efficiently, which conflicts with the
-- tent sleeve needing the tailgate open. Seal the tent's own mesh/
-- vents shut and add a small circulation fan inside the tent to push
-- the WAVE 3's output to the tent's far end — see Section 1.
+**Marker key.**
+
+| # | What | Where |
+|---|---|---|
+| 1 | WAVE 3 + non-slip mat | Panel C's deck, a few inches forward of the pantry, facing the open tailgate |
+| 2 | Intake/exhaust hoses | Past the pantry and out the open tailgate gap to true outside air |
+| 3 | DELTA 3 Plus + Smart Extra Battery | Panel A's right (passenger) drawer — cord runs the length of the van |
+| 4 | Tent connection sleeve | Elastic, wraps the open tailgate/liftgate. Not part of this build — the tent's own accessory |
+| 5 | Tent footprint (example) | 127" × 96", a VEVOR SUV tent standing in for yours |
+| 6 | Conditioned airflow | Fans from the tailgate into the tent — one shared van+tent air volume, NIGHT ONLY |
+
+Two night-specific points are expanded below: why the factory AC is skipped
+here (it needs the van sealed, which the tent sleeve prevents), and sealing the
+tent's own mesh vents plus adding a small circulation fan to carry the WAVE 3's
+output to the tent's far end.
 
 **Why no factory AC at night:** the Sienna Hybrid's electric AC compressor cools the cabin well, but it needs the van **sealed** (tailgate/doors shut) to work efficiently, and it cycles the gas engine on and off to keep the hybrid battery fed — noisy, intermittent, and it burns fuel right through the park's quiet hours. A tailgate-attached tent needs the opposite: the tailgate **open** so the connection sleeve has something to wrap around. Trying to run both at once means either the AC fights a leaky open tailgate (worse cooling, more engine cycling) or the tent's connection collapses — there's no clean way to combine them. The WAVE 3 has neither problem: it's silent-ish, battery-only, and its whole design point (Section 1) is blowing straight through the open tailgate into the shared van+tent space.
 

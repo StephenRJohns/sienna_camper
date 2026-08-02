@@ -54,10 +54,15 @@ module label_left(txt, x, y, size = 2.08) {
 // numbered, hue-coded marker (marker_col, colors.scad) — same
 // convention as the detail views: the number pairs the marker to
 // its legend row, the distinct color separates markers at a glance
-module marker(n, x, y) {
+// A white numeral centred in a filled circle disappears: OpenSCAD merges
+// touching 2D shapes into one polygon set and paints them one colour. The
+// numeral goes beside the icon.
+module marker(n, x, y, nx = 1.3) {
     translate([x, y]) {
-        color(marker_col(n)) circle(r = 1.4);
-        color("white") text(str(n), size = 2.4, halign = "center", valign = "center");
+        color(marker_col(n)) circle(r = 0.75);
+        color(marker_col(n)) translate([nx, 0])
+            text(str(n), size = 1.5, halign = nx > 0 ? "left" : "right",
+                 valign = "center");
     }
 }
 
@@ -83,7 +88,7 @@ module rear_view() {
         translate([panel_width/2 - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height); // right leg
         translate([-panel_width/2, leg_height]) rect_outline(panel_width, frame_rail_sz); // tailgate end rail — the deck is recessed flush BEHIND it
     }
-    label(str("Panel C end rail — deck recessed flush at ", z_deck, "\""), -panel_width/2 + 14, leg_height + 0.72, 1.05);
+    label(str("end rail — deck flush at ", z_deck, "\""), 0, leg_height + 0.75, 1.1);
 
     // ---- rear pantry, ON the deck — from the open tailgate you're
     // looking straight at the 2x2 prefab drawer cluster's drawer
@@ -101,28 +106,30 @@ module rear_view() {
         translate([px0 + pantry_cluster_w + 1.5, z_deck])
             rect_outline(pantry_pot_bin, pantry_pot_bin, 0.2);
     }
-    label(str("Rear pantry: 2x2 prefab drawer cluster (", pantry_cluster_w, "\" x ", pantry_cluster_h,
-              "\") + pot bin in the open bay — see Rear Pantry render"),
-          -6, z_deck + pantry_cluster_h + 2.2, 1.1);
+    // ran outside the van outline on the left and into the legend on the right
+    label(str("Rear pantry: 2x2 cluster + pot bin (", pantry_cluster_w, "\" x ",
+              pantry_cluster_h, "\")"),
+          0, z_deck + pantry_cluster_h + 2.4, 1.3);
 
     // ---- kitchen unit — RIGHT/passenger side (x_kitchen > 0) ----
     color("Gainsboro")
         translate([x_kitchen - kitchen_box_width/2, 0]) rect_outline(kitchen_box_width, kitchen_box_height);
     kx = x_kitchen; // 1.5in inboard now — flush against Panel C's rear corner leg
     label("Kitchen unit", kx, kitchen_box_height/2 + 2.4, 1.5);
-    label(str("(JAGAHAHA, ", kitchen_box_width, "\" x ", kitchen_box_height, "\")"), kx, kitchen_box_height/2 + 0.4, 1.1);
-    label("slides out the tailgate", kx, kitchen_box_height/2 - 1.6, 1.1);
+    label(str("(JAGAHAHA, ", kitchen_box_width, "\" x ", kitchen_box_height, "\")"), kx, kitchen_box_height/2 - 0.2, 1.1);
+    label("slides out the tailgate", kx, kitchen_box_height/2 - 2.0, 1.1);
 
     // kitchen drawer, hung from the deck in the gap above the unit
     ddx0 = panel_width/2 - frame_rail_sz - kdrawer_cheek_t - kdrawer_span + 0.5;
     color("DimGray") translate([ddx0, kdrawer_z0]) rect_outline(kdrawer_box_w, kdrawer_box_h);
-    label("kitchen drawer", ddx0 + kdrawer_box_w/2, kdrawer_z0 + kdrawer_box_h/2 + 0.9, 1.0);
-    label("(hung from the deck)", ddx0 + kdrawer_box_w/2, kdrawer_z0 + kdrawer_box_h/2 - 0.9, 0.9);
+    label("kitchen drawer", ddx0 + kdrawer_box_w/2, kdrawer_z0 + kdrawer_box_h/2 + 0.8, 1.1);
+    label("(hung from the deck)", ddx0 + kdrawer_box_w/2, kdrawer_z0 + kdrawer_box_h/2 - 0.8, 1.0);
+
 
     // Power strip 2 — mounted at the kitchen unit, powers the
     // induction cooktop and other small kitchen appliances (Section 7)
     color("DimGray") translate([kx - 1.5, 1.5]) square([3, 2]);
-    label("Power strip 2 (cooktop)", kx, -1.5, 1.0);
+    label("Power strip 2 (cooktop)", kx, -2.0, 1.1);
 
     // ---- fridge zone — LEFT/driver side (x_fridge_module < 0) ----
     // Only 3in of headroom between the fridge top and the deck
@@ -136,7 +143,7 @@ module rear_view() {
     color("Gray")
         translate([fridge_x0 - fridge_ext_length/2, fridge_tray_gap]) rect_outline(fridge_ext_length, fridge_tray_t);
     label("Fridge", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t + 1, 1.1);
-    label("slides out back", fridge_x0 + 2, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t - 1, 1.0);
+    label("slides out back", fridge_x0 - 0.5, fridge_ext_height/2 + fridge_tray_gap + fridge_tray_t - 1, 1.0);
 
     // OPEN utility bay between the kitchen unit and the fridge, at
     // the tailgate face (Section 6/8) — NO door (the old hinged,
@@ -168,9 +175,11 @@ module rear_view() {
     module dash_v(x, z0, z1) { for (dz = [0 : 1.6 : z1 - z0 - 0.8]) color("Silver") translate([x, z0 + dz]) square([0.18, 0.8]); }
     dash_h(door_x0, door_x1, leg_height - 0.2);
     dash_v(door_x0, 0, leg_height); dash_v(door_x1 - 0.18, 0, leg_height);
-    label("OPEN", (door_x0 + door_x1)/2, leg_height - 2, 0.9);
-    label("utility bay", (door_x0 + door_x1)/2, leg_height - 3.6, 0.9);
-    label("(no door)", (door_x0 + door_x1)/2, leg_height - 5.2, 0.8);
+
+    
+
+    label("OPEN", (door_x0 + door_x1)/2, leg_height - 2.2, 1.0);
+    label("bay", (door_x0 + door_x1)/2, leg_height - 3.5, 1.0);
 
     // Exhaust fan mounts on the fridge's RIGHT (kitchen-facing) wall,
     // blowing INTO the utility cabinet. The NTC sensor sits just
@@ -223,42 +232,26 @@ module rear_view() {
     // part fills went grayscale; number + distinct marker hue works
     // in any palette)
     marker(1, 18, z_deck - 2.7);                                    // frame/deck (end rail band)
-    marker(2, -panel_width/2 + 3, kitchen_box_height - 2.5);        // kitchen unit
+    marker(2, x_kitchen - kitchen_box_width/2 + 2.5, kitchen_box_height - 2.5); // kitchen unit
     marker(3, fridge_x0 - fridge_ext_length/2 + 2.5, fridge_tray_gap + fridge_tray_t + 2.5); // fridge
     marker(4, fan_in_x, fan_z + 3.2);                               // intake fan icon
-    marker(5, exhaust_x - 4.2, fan_z);                              // exhaust fan
+    marker(5, exhaust_x - 6.5, fan_z + 4.2, -1.3);                  // exhaust fan
     marker(6, exhaust_x - 1.8, fan_z + 3);                          // NTC sensor — inside the bay at the exhaust wall
-    marker(7, cab_cx - 3.2, 9.5);                                   // control panel (inside the cabinet)
+    marker(7, cab_cx - 3.4, 5.6, -1.3);                             // control panel (inside the cabinet)
     marker(8, kx + 5, 2.5);                                         // power strip 2
     marker(9, -van_interior_width/2 + 1.25, 8.5);                  // vent intrusion (left zone shown)
     marker(10, (door_x0 + door_x1)/2 + 2.4, leg_height - 2);        // open utility bay
 
-    // legend — numbered markers (matching the drawing), LEFT-aligned
-    // text after each
-    leg_x = van_interior_width/2 + 5;
-    leg_items = [
-        "Frame / deck / fridge tray",
-        "Kitchen unit (standalone)",
-        "Fridge (standalone)",
-        "Intake fan (120mm)",
-        "Exhaust fan (120mm)",
-        "NTC temp sensor",
-        "Control panel",
-        "Power strip 2 (cooktop)",
-        "Floor vent intrusion (both sides)",
-        "Open utility bay (no door)",
-        "Anchor-board strips, end-on (mat + 3/4\" ply — no-drill rail platform, Sec. 8)",
-    ];
-    label_left("Legend", leg_x, van_interior_height - 2, 1.7);
-    for (i = [0 : len(leg_items) - 1]) {
-        y = van_interior_height - 5.5 - i * 3.2;
-        marker(i + 1, leg_x + 0.8, y);
-        label_left(leg_items[i], leg_x + 3.4, y, 1.2);
-    }
+    // The 11-row legend that used to print beside this view is now a table in
+    // the document under the figure. Its longest row was 77 characters, which
+    // set this sheet at 128 units wide against a 49in-wide van — and printed
+    // text height is size x (page_width / sheet_width), so it was holding
+    // every label here to about 4pt.
+    label("Markers 1-11: see the key under this figure", 0, -6.5, 1.3);
 
     // MOVED TO THE DOCUMENT: label("Looking forward from the open tailgate at Panel C — both units shown stowed for driving", 0, -7.5, 1.4);
-    label("DRIVER side", -van_interior_width/2 + 8, van_interior_height - 2, 1.4);
-    label("PASSENGER side", van_interior_width/2 - 10, van_interior_height - 2, 1.4);
+    label("DRIVER side", -van_interior_width/2 + 7, van_interior_height - 2, 1.3);
+    label("PASSENGER side", van_interior_width/2 - 8, van_interior_height - 2, 1.3);
     // MOVED TO THE DOCUMENT: label("(standing at the tailgate looking in, the DRIVER side is on YOUR LEFT — exactly as drawn)", 0, -9.5, 1.1);
 }
 

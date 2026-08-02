@@ -93,7 +93,12 @@ module drawing() {
 
     cap("SPARE TIRE — flat in Panel B's bay at the AXLE (Component 3), exploded stack", 0, -24, 1.9);
     // MOVED TO THE DOCUMENT: cap("Best weight placement in the van — no hitch basket needed. NOTHING screws to the van floor: the skid sits on the liner, the strap ties to footman loops on the bottom rails.", 0, -26.5, 1.2);
-    cap(str("Height stack: cleats 3\" (clear the ", bottom_rail_z + RS, "\" curb) + spare ", spare_t, "\" + tote ", panelb_tote_h, "\" — fits under the ", LH + RS, "\" deck. Kitchen-drawer slot does NOT fit the 28.5\" disc; the drawer stays."), 0, -28.7, 1.2);
+    // The height stack that proves this fits is 170 characters long — printed
+    // here it set the sheet's width and so its own point size. It is in the
+    // document under this figure; the arithmetic is what matters, not where
+    // it is written.
+    cap(str("Stack: 3\" cleats + ", spare_t, "\" spare + ", panelb_tote_h,
+            "\" tote, under the ", LH + RS, "\" deck"), 0, -28.7, 2.1);
 
     side_list(W/2 + 20, LH + 10, "Exploded stack (top -> bottom)", [
         "Spare, FLAT, valve stem UP (pressure checks in place)",

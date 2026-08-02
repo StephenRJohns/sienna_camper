@@ -59,10 +59,15 @@ module label_left(txt, x, y, size = 2.6) {
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
 
-module marker(n, x, y) {
+// The numeral sits BESIDE the icon: OpenSCAD merges touching 2D shapes into
+// one polygon set and paints them a single colour, so a white numeral centred
+// in a filled circle vanishes and the marker reads as an anonymous blob.
+module marker(n, x, y, nx = 2.6) {
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.5);
-        color("white") text(str(n), size = 3.0, halign = "center", valign = "center");
+        color(marker_col(n)) translate([nx, 0])
+            text(str(n), size = 3.4, halign = nx > 0 ? "left" : "right",
+                 valign = "center");
     }
 }
 
@@ -108,18 +113,6 @@ module arrow_flow(x, y0, len, spread = 0) {
     }
 }
 
-module side_list(list_x, top_y, items) {
-    label_left("Component", list_x, top_y - 1, 1.3);
-    label_left("Position / note", list_x, top_y - 3.2, 1.1);
-    for (i = [0 : len(items) - 1]) {
-        y = top_y - 8 - i * 9.5;
-        color(marker_col(i + 1)) translate([list_x, y + 3.4]) circle(r = 1.3);
-        color("white") translate([list_x, y + 3.4]) text(str(i + 1), size = 2.6, halign = "center", valign = "center");
-        label_left(items[i][0], list_x + 3, y + 3.4, 1.15);
-        label_left(items[i][1], list_x + 3, y + 1.6, 1.0);
-        label_left(items[i][2], list_x + 3, y - 0.1, 1.0);
-    }
-}
 
 module drawing() {
     // ---------- van interior envelope + panel layout (same math as
@@ -188,33 +181,47 @@ module drawing() {
     marker(4, sleeve_half + 3, 0);
 
     // ---------- 5: tent footprint (example — VEVOR SUV tent) ----------
+    // Drawn BROKEN. At true scale the tent runs 127in back from the tailgate
+    // against a 93.75in van, so better than half this sheet's height was an
+    // empty dashed rectangle — and sheet height sets printed text size, so
+    // that emptiness was costing every label on the sheet about half its
+    // size. Only the first tent_shown inches are drawn, closed with a break
+    // line; the full footprint is called out in the caption.
     tent_y1 = -2; // just beyond the sleeve
-    tent_y0 = tent_y1 - tent_example_length;
-    color("Gainsboro") dashed_rect_outline(-tent_example_width/2, tent_y0, tent_example_width, tent_example_length);
+    tent_shown = 29;
+    tent_y0 = tent_y1 - tent_shown;
+    color("Gainsboro") dashed_rect_outline(-tent_example_width/2, tent_y0, tent_example_width, tent_shown);
+    // zig-zag break across the open end
+    color("Gainsboro") for (i = [0 : 15]) {
+        x0 = -tent_example_width/2 + i * (tent_example_width / 16);
+        x1 = x0 + tent_example_width / 32;
+        hull() { translate([x0, tent_y0 - 1.2]) circle(r = 0.22, $fn = 8);
+                 translate([x1, tent_y0 + 1.2]) circle(r = 0.22, $fn = 8); }
+        hull() { translate([x1, tent_y0 + 1.2]) circle(r = 0.22, $fn = 8);
+                 translate([x0 + tent_example_width / 16, tent_y0 - 1.2]) circle(r = 0.22, $fn = 8); }
+    }
 
     // ---------- 6: conditioned airflow, fanning from the open tailgate
     // into the shared tent volume — kept short so it clears the caption
     // text placed below it ----------
-    arrow_flow(0, -1.5, 20, 0);
-    arrow_flow(0, -1.5, 18, -14);
-    arrow_flow(0, -1.5, 18, 14);
+    arrow_flow(0, -1.5, 12, 0);
+    arrow_flow(0, -1.5, 11, -12);
+    arrow_flow(0, -1.5, 11, 12);
 
     // captions placed well below the arrows, safely inside the tent's
     // own footprint, clear of the tailgate/hose/sleeve clutter above
-    label("TENT — EXAMPLE FOOTPRINT (swap for your tent's spec)", 0, -33, 1.3);
-    label(str(tent_example_length, "\" x ", tent_example_width, "\" — VEVOR SUV tailgate tent"), 0, -35.4, 1.1);
-    marker(5, -tent_example_width/2 + 5, -33);
-    marker(6, tent_example_width/2 - 5, -33);
+    label("TENT — EXAMPLE FOOTPRINT (swap for your tent's spec)", 0, -19, 2.2);
+    label(str(tent_example_length, "\" x ", tent_example_width,
+              "\" VEVOR SUV tailgate tent — shown broken, continues off-sheet"),
+          0, -22.4, 2.2);
+    marker(5, -tent_example_width/2 + 5, -14.5);   // above the caption band
+    marker(6, tent_example_width/2 - 5, -14.5, -2.6);
 
-    // ---------- side list ----------
-    side_list(panel_width/2 + 10, y_panel_a + panel_a_length, [
-        ["WAVE 3 + non-slip mat", "Panel C's deck, a few in. forward of the pantry", "blows toward the open tailgate"],
-        ["Intake/exhaust hoses", str(wave3_intake_hose_dia, "\"/", wave3_exhaust_hose_dia, "\" dia, past the pantry"), "out the open tailgate gap to true outside air"],
-        ["DELTA 3 Plus + Extra Battery", "Panel A right (passenger) drawer", "power source — cord runs the length of the van"],
-        ["Tent connection sleeve", "elastic, wraps the open tailgate/liftgate", "not part of this build — the tent's own accessory"],
-        ["Tent footprint (example)", str(tent_example_length, "\" x ", tent_example_width, "\""), "VEVOR SUV tent or similar — swap in your own spec"],
-        ["Conditioned airflow", "fans from the tailgate into the tent", "shares one open van+tent air volume — NIGHT ONLY"],
-    ]);
+    // The side list that used to print here (6 rows x 3 lines) said the same
+    // thing as Appendix G's numbered setup steps, and its longest line made
+    // this sheet wide enough to shrink every label on it. Markers 1-6 index
+    // the key under the figure.
+    label("Markers 1-6: see the key under this figure", 0, -25.8, 2.2);
 
     // MOVED TO THE DOCUMENT: label_left("Night-only setup: skip the factory AC here — it needs the van sealed", -van_interior_width/2, -tent_example_length - 8, 1.1);
     // MOVED TO THE DOCUMENT: label_left("(doors/tailgate shut) to run efficiently, which conflicts with the", -van_interior_width/2, -tent_example_length - 9.4, 1.1);

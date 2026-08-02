@@ -38,10 +38,15 @@ module label(txt, x, y, size = 2.24) {
 module label_left(txt, x, y, size = 1.82) {
     color("black") translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
-module marker(n, x, y) {
+// Numeral BESIDE the icon: OpenSCAD merges touching 2D shapes into one polygon
+// set and paints them a single colour, so a white numeral centred in a filled
+// circle vanishes and the marker reads as an anonymous blob.
+module marker(n, x, y, nx = 1.9) {
     translate([x, y]) {
-        color(marker_col(n)) circle(r = 1.4);
-        color("white") text(str(n), size = 2.1, halign = "center", valign = "center");
+        color(marker_col(n)) circle(r = 1.1);
+        color(marker_col(n)) translate([nx, 0])
+            text(str(n), size = 2.2, halign = nx > 0 ? "left" : "right",
+                 valign = "center");
     }
 }
 module fan_icon(x, z, r) {
@@ -65,8 +70,8 @@ module deployed() {
     // ---------- IN THE VAN (above the floor line) ----------
     translate([-van_interior_width/2, 0]) rect_outline(van_interior_width, van_interior_height);
     label("Sienna interior envelope (width x height)", 0, van_interior_height + 3, 1.7);
-    label("DRIVER side", -van_interior_width/2 + 8, van_interior_height - 2, 1.4);
-    label("PASSENGER side", van_interior_width/2 - 10, van_interior_height - 2, 1.4);
+    label("DRIVER side", -van_interior_width/2 + 8, van_interior_height - 2, 1.9);
+    label("PASSENGER side", van_interior_width/2 - 10, van_interior_height - 2, 1.9);
 
     // Panel C frame + deck
     color("Gray") {
@@ -74,7 +79,11 @@ module deployed() {
         translate([panel_width/2 - frame_rail_sz, 0]) rect_outline(frame_rail_sz, leg_height);
         translate([-panel_width/2, leg_height]) rect_outline(panel_width, frame_rail_sz); // tailgate end rail — deck recessed flush behind it
     }
-    label(str("Panel C deck plane (", panel_width, "\" wide, recessed flush)"), -panel_width/2 + 13, leg_height + 0.72, 1.0);
+    // No deck-plane caption here. Anywhere it fits on this view it touches the
+    // grey frame — and OpenSCAD merges touching 2D shapes into one polygon set
+    // and paints them a single colour, so the text came out grey-on-grey over
+    // the legs. The 46" deck is dimensioned on the Panel C sheets; this view is
+    // about the deployed state, not the geometry.
 
     // rear pantry on the deck (context outline): 2x2 drawer cluster + pot bin
     px0 = -panel_width/2;
@@ -86,30 +95,31 @@ module deployed() {
         translate([px0 + pantry_cluster_w + 1.5, z_deck])
             rect_outline(pantry_pot_bin, pantry_pot_bin, 0.2);
     }
-    label("Rear pantry: prefab drawer cluster + pot bin (stays put)", 0, z_deck + pantry_cluster_h + 2.2, 1.3);
+    label("Rear pantry — stays put", 0, z_deck + pantry_cluster_h + 2.4, 1.8);
 
     // the now-EMPTY under-deck bays the appliances slid out of
     color("LightGray") {
         translate([x_fridge_module - fridge_ext_length/2, 0]) rect_outline(fridge_ext_length, leg_height, 0.2);
         translate([x_kitchen - kitchen_box_width/2, 0]) rect_outline(kitchen_box_width, leg_height, 0.2);
     }
-    label("empty fridge bay", x_fridge_module, leg_height/2 + 0.9, 1.0);
-    label("(slid out)", x_fridge_module, leg_height/2 - 0.9, 0.9);
-    label("empty kitchen bay", x_kitchen, leg_height/2 + 0.9, 1.0);
-    label("(slid out)", x_kitchen, leg_height/2 - 0.9, 0.9);
+    label("empty fridge bay", x_fridge_module, leg_height/2 + 1.2, 1.8);
+    label("(slid out)", x_fridge_module, leg_height/2 - 1.2, 1.8);
+    label("empty kitchen bay", x_kitchen, leg_height/2 + 1.2, 1.8);
+    label("(slid out)", x_kitchen, leg_height/2 - 1.2, 1.8);
 
     // OPEN utility bay (no door — it was cut), control panel at its back
     door_x0 = x_fridge_module + fridge_ext_length/2;
     door_x1 = x_kitchen - kitchen_box_width/2;
     cab_cx = (door_x0 + door_x1)/2;
     color("Black") translate([cab_cx - control_panel_width/2, 4.5]) rect_outline(control_panel_width, 6);
-    label("open utility", cab_cx, 12.6, 0.85);
-    label("bay (no door)", cab_cx, 11.5, 0.85);
+    
+    // "open utility bay (no door)" printed at 0.85 inside a 3.3in-wide bay,
+    // overflowing it on both sides. Marker 3 plus the legend row carry it now.
 
     // floor line + the two band captions (this band stays otherwise empty)
     color("black") translate([-van_interior_width/2 - 6, 0]) square([van_interior_width + 12, stroke * 1.2]);
-    label("VAN FLOOR / TAILGATE SILL", 0, -2.2, 1.3);
-    label("pulled out the tailgate & set up for use", 0, -5, 1.4);
+    label("VAN FLOOR / TAILGATE SILL", 0, -2.4, 1.9);
+    label("pulled out the tailgate & set up for use", 0, -5.6, 1.9);
 
     // ---------- DEPLOYED AT THE TAILGATE (well below the floor line) ----------
     ftop = -13;                        // body tops sit here, clear of the caption band
@@ -120,16 +130,16 @@ module deployed() {
     // fridge body + dual-zone divider
     color("DimGray") translate([fx - fw/2, ftop - fh]) rect_outline(fw, fh);
     color("DimGray") translate([fx - 0.15, ftop - fh + 1]) square([0.3, fh - 2]);
-    label("17L", fx - fw/4, ftop - fh/2, 1.0);
-    label("19L", fx + fw/4, ftop - fh/2, 1.0);
+    label("17L", fx - fw/4, ftop - fh/2, 1.8);
+    label("19L", fx + fw/4, ftop - fh/2, 1.8);
     // two clamshell lids hinged open at the top corners
     color("DarkOrange") {
         translate([fx + fw/2, ftop]) rotate(55) square([5, 0.5]);
         translate([fx - fw/2, ftop]) rotate(125) square([5, 0.5]);
     }
-    label("FRIDGE — out on 24\" slides,", fx, ftop - fh - 2.6, 1.1);
-    label("both dual-zone lids open", fx, ftop - fh - 4.1, 1.0);
-    label("compressor/battery end -> tailgate", fx, ftop - fh - 5.6, 0.9);
+    label("FRIDGE — on 24\" slides", fx - 1.5, ftop - fh - 2.8, 1.8);
+    label("both lids open", fx, ftop - fh - 5.2, 1.8);
+    label("compressor end → tailgate", fx, ftop - fh - 7.6, 1.8);
 
     // kitchen: slid out and opened — worktop leaf, 2-burner cooktop, drawer out
     kx = x_kitchen;
@@ -141,16 +151,16 @@ module deployed() {
     color("Black") for (bx = [-1, 1])
         translate([kx + bx * 4.5, ftop + 2.6]) difference() { circle(r = 2, $fn = 32); circle(r = 1.35, $fn = 32); }
     color("Goldenrod") translate([kx + kw/2, ftop - kh + 2]) rect_outline(4.5, 3.5, 0.25); // side drawer out
-    label("KITCHEN — slid out (70\" in use),", kx + 2, ftop - kh - 2.6, 1.1);
-    label("worktop + 2-burner cooktop up,", kx + 2, ftop - kh - 4.1, 1.0);
-    label("side drawer out | Power strip 2 feeds it", kx + 2, ftop - kh - 5.6, 0.9);
+    label("KITCHEN — 70\" in use", kx + 4, ftop - kh - 2.8, 1.8);
+    label("cooktop up, drawer out", kx + 4, ftop - kh - 5.2, 1.8);
+    label("Power strip 2 feeds it", kx + 4, ftop - kh - 7.6, 1.8);
 
     // ---------- markers + legend ----------
     marker(1, fx, ftop - fh + 2.2);
     marker(2, kx, ftop - kh + 1.6);
     marker(3, cab_cx + 2.2, 7);
     marker(4, kx - 4.5, ftop + 2.6);
-    marker(5, x_fridge_module, leg_height - 2);
+    marker(5, x_fridge_module - 8, leg_height - 4.5);   // clear of the deck-plane caption
 
     leg_x = van_interior_width/2 + 6;
     items = ["Fridge — deployed, both lids open",
@@ -162,11 +172,11 @@ module deployed() {
     for (i = [0 : len(items) - 1]) {
         y = van_interior_height - 5.5 - i * 3.2;
         marker(i + 1, leg_x + 0.8, y);
-        label_left(items[i], leg_x + 3.4, y, 1.2);
+        label_left(items[i], leg_x + 5.0, y, 1.2);
     }
 
-    label("DEPLOYED — looking into the open tailgate with the fridge & kitchen pulled out and set up for use",
-          0, ftop - fh - 9, 1.4);
+    label("DEPLOYED — looking in the open tailgate, both units set up for use",
+          0, ftop - fh - 11.5, 1.9);
 }
 
 deployed(); // no outer color() wrapper — helpers self-color (see rear_view.scad)
