@@ -72,7 +72,7 @@ h4 { font-size: 11pt; color: #26496b; margin: 14pt 0 4pt 0; }
 /* h5 exists only inside Appendix A (the measurement survey): its own
    V1-V10 / F1-F8 items sit one level deeper than the other appendices
    need, because the whole survey was demoted when it moved out of
-   Section 0. Without this it would inherit the browser default and
+   Appendix A. Without this it would inherit the browser default and
    render SMALLER than body text. */
 h5 { font-size: 10.5pt; color: #1a3a5c; margin: 12pt 0 3pt 0; }
 th { background: #eaf0f6; font-weight: 600; }
@@ -342,7 +342,29 @@ def main():
 
 ![No-drill anchor platform — overhead detail](renders/anchor-platform-overhead.png)
 
-*The no-drill rail platform (Section 8) in plan view, before the whole-van floorplan below: the mat + ply anchor board under Panel C, its 2 steel tongues bolted to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Tailgate at the bottom, forward at the top. Rail-end and striker positions are ASSUMED until the Appendix A F1–F8 survey.*
+*The no-drill rail platform (Section 8) in plan view, before the whole-van floorplan below: the mat + ply anchor board under Panel C, its 2 steel tongues bolted to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Tailgate at the bottom, forward at the top.*
+
+**What this platform is.** A skeleton of 3/4" plywood on a non-slip rubber mat,
+laid on the van floor. It is **ONE comb-shaped piece** — a full-width BRIDGE
+with 3 narrow STRIPS running back from it (the hatched shape on the sheet), cut
+from a single 46"×33" blank. There are **no joints in it**: nothing is glued or
+screwed to another piece of ply. It is **not** a full plywood floor — nothing
+sits under the fridge tray or the kitchen unit, where the van floor stays bare.
+
+**The appliances anchor to the BOARD.** The fridge slide's steel riser angles
+bolt to the two rail-line strips (1/4-20 T-nuts), and the kitchen's 4 ratchet
+straps criss-cross into L-track D-rings on its two flanking strips.
+
+**The board anchors to the VAN at two factory hardpoints — zero new holes.**
+
+- **RAILS:** 2 steel tongues (2"×3/16" flat bar) bolt under the bridge and bolt/clamp to the 2nd-row floor rails' rear ends → takes the FORWARD crash load.
+- **STRIKERS:** 3 ratchet straps run from bridge D-rings into the 3rd-row striker loops → takes REARWARD + LIFT loads, and they pin the board down.
+
+Rail-end and striker positions are **ASSUMED** until the Appendix A F1–F8
+survey. (This explanation used to be printed as a 20-line block below the
+drawing. It is what made that sheet 101 units tall, and since sheet height sets
+printed text size, it was holding its own lines — and every label on the drawing
+— to about 5pt on paper.)
 
 ![Overhead floorplan](renders/top-down.png)
 
@@ -400,7 +422,9 @@ def main():
     # isometric/side-profile/fit-check images as captioned figures too —
     # match the whole enclosing <p> so we don't nest a block-level
     # <figure> inside it (invalid HTML that Chrome silently mangles)
-    for alt in ["Side profile", "Rear view", "Plywood cutting layout",
+    for alt in ["Side profile", "Rear view", "Rear view — deployed",
+                "Driver-side elevation", "Passenger-side elevation",
+                "Plywood cutting layout",
                 "Tongue to 2nd-row rail connection detail",
                 "Fridge install detail", "Fridge wiring diagram", "Fridge slide detail",
                 "Kitchen drawer detail", "Seam draw-latch positioning",
@@ -412,7 +436,7 @@ def main():
             html_body,
         )
 
-    # the 8 rear-floor survey plans (Section 0, one per F1-F8 section) —
+    # the 8 rear-floor survey plans (Appendix A, one per F1-F8 section) —
     # matched by pattern rather than listed, so adding a survey section
     # doesn't need a change here. Full page width: they're ~1.45:1.
     html_body = re.sub(

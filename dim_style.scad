@@ -71,7 +71,7 @@ module dim_label(txt, x, y, size = 1.0) {
 
 // small square + lightning-bolt outlet icon (schematic position only —
 // none of this project's outlet positions are precisely measured yet,
-// see Section 0)
+// see Appendix A)
 module bolt_icon(x, y, s = 1.6) {
     translate([x, y]) {
         color(DIM_ORANGE) square([s * 1.7, s * 2.1], center = true);

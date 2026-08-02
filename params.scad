@@ -17,7 +17,7 @@
 // ============================================================
 
 /* [Vehicle constraints — 2nd row seats REMOVED entirely] */
-// ALL MEASURED (owner, Aug 1 2026 — Section 0 survey V1-V10, taken
+// ALL MEASURED (owner, Aug 1 2026 — Appendix A survey V1-V10, taken
 // with the 2nd row physically out and the 3rd row folded as it sits
 // in camper mode). These are no longer estimates. Three of them came
 // back tighter than the numbers this design was built on, and the
@@ -352,8 +352,9 @@ leg_height_ab  = leg_height - deck_drop;       // 16.25 — Panel A/B legs (plat
 deck_surface_z = leg_height + frame_rail_sz;   // 18.5 — the ONE deck/sleeping plane (Panel C rail tops)
 // EXCEPTION: Panel C's REAR leg pair sits at the TRUE corners (zero
 // inset) — the fridge/kitchen slide paths pass exactly where inset
-// legs would stand. UNVERIFIED (Section 0): confirm the floor vents
-// don't reach the last ~4in at the tailgate corners.
+// legs would stand. CONFIRMED CLEAR (owner, Aug 2026, Appendix A row 5b):
+// the rear-corner floor vents do NOT reach the last ~4in at the tailgate
+// corners, so those legs land on solid floor.
 
 // CUBE FRAMES (owner, July 2026): each box also gets BOTTOM rails
 // (2x2, between the legs just above the leveling feet) wherever a
@@ -625,7 +626,7 @@ fridge_rail_stack   = fridge_rail_t + fridge_riser_t; // 1.0 per side, OUTBOARD 
 // Nothing bolts to the vehicle. The board is ONE comb-shaped piece,
 // 46 x 33 overall — bridge and strips continuous, so there is no
 // ply-to-ply joinery (no glue, no lap screws; assembly sheet V1/V5).
-// Strip outlines are cut only after the Section 0 F1-F7 floor survey.
+// Strip outlines are cut only after the Appendix A F1-F7 floor survey.
 // (F4 Aug 2026) That survey is now DONE: the striker row measures
 // 44.5in from the closed hatch — 1.5in nearer than the 46-50in that
 // was assumed, so the steel tongues come in at the SHORT end of the

@@ -23,7 +23,7 @@
 //       out, cut order and the fillet at each inside corner.
 //       (There is no joinery view: the board has no joints.)
 //
-// Rail-end/striker geometry is ASSUMED until the Section 0 F1-F8
+// Rail-end/striker geometry is ASSUMED until the Appendix A F1-F8
 // survey (tongue length is cut to what F8 measures).
 //
 // Render with: openscad -o renders/anchor-board-assembly.svg anchor_board_assembly.scad

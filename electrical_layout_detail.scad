@@ -206,7 +206,7 @@ module section1_content() {
     mmarker(1, 32, hb_y0 + 8.5);
 
     // 3: the REAR AC outlet — back passenger area (VERIFIED to exist;
-    // exact spot + shared-inverter check in Section 0/5). Drawn just
+    // exact spot + shared-inverter check in Appendix A/5). Drawn just
     // outside the deck on the passenger wall, near the tailgate.
     translate([W + 5, y_tg - 10]) outletAC_icon();
     mlabel("REAR AC outlet", W + 5, y_tg - 13, 0.95);

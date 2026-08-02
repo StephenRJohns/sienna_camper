@@ -47,24 +47,29 @@ pull  = 14; // how far a drawer pulls out for the exploded view
 module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3);
     t = q + off;
-    color(marker_col(n)) translate(t) circle(r = 1.3);
-    color("white") translate(t) text(str(n), size = 2.34, halign = "center", valign = "center");
+    color(marker_col(n)) translate(t) circle(r = 0.9);
+    color(marker_col(n)) translate(t + [1.6, 0])
+        text(str(n), size = 2.34, halign = "left", valign = "center");
     color(INK) line2d(q, t - off * (2.2 / max(2.2, norm(off))));
 }
 
 module side_list(list_x, top_y, items) {
     color(INK) {
         translate([list_x, top_y - 1]) text("Component", size = 2.52, halign = "left", valign = "center");
-        translate([list_x, top_y - 3.6]) text("Position / fastener / material", size = 1.98, halign = "left", valign = "center");
+        translate([list_x, top_y - 4.4]) text("Position / fastener / material", size = 1.98, halign = "left", valign = "center");
     }
     for (i = [0 : len(items) - 1]) {
-        y = top_y - 10 - i * 9;
-        color(marker_col(i + 1)) translate([list_x, y + 3.8]) circle(r = 1.2);
-        color("white") translate([list_x, y + 3.8]) text(items[i][0], size = 2.16, halign = "center", valign = "center");
+        y = top_y - 12 - i * 11;
+        // numeral BESIDE the swatch — a white numeral centred in a filled
+        // circle merges with it (OpenSCAD unions touching 2D shapes and paints
+        // them one colour) and the marker reads as an anonymous blob
+        color(marker_col(i + 1)) translate([list_x, y + 4.6]) circle(r = 1.1);
+        color(marker_col(i + 1)) translate([list_x + 1.9, y + 4.6])
+            text(items[i][0], size = 2.16, halign = "left", valign = "center");
         color(INK) {
-            translate([list_x + 3.2, y + 3.8]) text(items[i][1], size = 2.07, halign = "left", valign = "center");
-            translate([list_x + 3.2, y + 1.9]) text(items[i][2], size = 1.8, halign = "left", valign = "center");
-            translate([list_x + 3.2, y]) text(items[i][3], size = 1.8, halign = "left", valign = "center");
+            translate([list_x + 5.2, y + 4.6]) text(items[i][1], size = 2.07, halign = "left", valign = "center");
+            translate([list_x + 5.2, y + 2.1]) text(items[i][2], size = 1.8, halign = "left", valign = "center");
+            translate([list_x + 5.2, y - 0.3]) text(items[i][3], size = 1.8, halign = "left", valign = "center");
         }
     }
 }
@@ -192,10 +197,10 @@ module drawing_b() {
         circle(r = 0.25 * s3, $fn = 32); circle(r = 0.25 * s3 - 0.25, $fn = 32);
     }
     color(INK) {
-        translate([ix, iy + RS * s3 + 5.5]) text("LEG BOTTOM, zoomed — same hole on all 12 legs", size = 2.34);
-        translate([ix, iy + RS * s3 + 3.5]) text("1/2\" dia x 3/4\" deep, dead center of the", size = 1.98);
-        translate([ix, iy + RS * s3 + 2]) text("1.5\" x 1.5\" end grain -> 3/8-16 insert", size = 1.98);
-        translate([ix, iy - 2]) text("drill BEFORE assembly (Leveling Foot render)", size = 1.89);
+        translate([ix, iy + RS * s3 + 8.4]) text("LEG BOTTOM — all 12 legs", size = 2.34);
+        translate([ix, iy + RS * s3 + 5.4]) text("1/2\" dia x 3/4\" deep, dead", size = 1.98);
+        translate([ix, iy + RS * s3 + 2.8]) text("center of the end grain", size = 1.98);
+        translate([ix, iy - 3.2]) text("drill BEFORE assembly", size = 1.89);
     }
 
     // ---- zoom inset 2: end-rail seam face, alignment-pin holes ----
@@ -209,9 +214,9 @@ module drawing_b() {
             circle(r = 0.7, $fn = 24); circle(r = 0.5, $fn = 24);
         }
     color(INK) {
-        translate([jx, jy + RS * 2.2 + 3.5]) text("END-RAIL SEAM FACE — both ends", size = 2.34);
-        translate([jx, jy + RS * 2.2 + 1.5]) text("2x 3/8\" dia x 3/8\" deep pin holes, 3\" in from each side edge, centered on the rail", size = 1.89);
-        translate([jx, jy - 2]) text("drill the mating panel's face as a matched pair — clamp both, drill through a guide block (Component 5)", size = 1.8);
+        translate([jx, jy + RS * 2.2 + 6.2]) text("END-RAIL SEAM FACE", size = 2.34);
+        translate([jx, jy + RS * 2.2 + 3.2]) text("2x 3/8\" pin holes, 3\" in", size = 1.89);
+        translate([jx, jy - 3.2]) text("drill as a matched pair", size = 1.8);
     }
 }
 

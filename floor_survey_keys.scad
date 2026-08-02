@@ -1,7 +1,7 @@
 // ============================================================
 // Rear-floor survey (F1-F8) — one WHOLE-VEHICLE plan per section
 // ============================================================
-// Section 0's rear-floor survey used to be a table with thumbnail key
+// Appendix A's rear-floor survey used to be a table with thumbnail key
 // maps of the cargo zone alone. It is now one section per measurement,
 // and each gets a full page-width drawing of the WHOLE Sienna in plan,
 // so the thing you are being asked to measure is located against the
@@ -27,7 +27,7 @@
 //
 // Datum: the survey's own Y = 0 is the CLOSED HATCH, +Y forward, and
 // its X = 0 is the DRIVER-side edge of the usable floor — the same
-// datum every other Section 0/8 drawing uses. sx()/sy() convert those
+// datum every other Appendix A/8 drawing uses. sx()/sy() convert those
 // survey coordinates into sheet coordinates, so the numbers in this
 // file stay readable as survey numbers.
 //
@@ -144,7 +144,9 @@ module van_base() {
     txt("PANEL C", sx(16), FLOOR_Y1 + 4, 2.7, "center", GRY);
     txt("STRIKERS", sx(STRIKER_Y), FLOOR_Y1 + 9.2, 2.6, "center", GRY);
     txt("WELL", sx(19), FLOOR_Y1 + 9.2, 2.6, "center", GRY);
-    txt("long-slide FLOOR RAILS", sx(95), sy(-6.5), 2.6, "center", GRY);
+    // pulled rearward + further out: at sx(95) this 33-unit-wide label ran into
+    // "FRONT SEATS" (centred at sx(107)) on all 8 survey sheets
+    txt("long-slide FLOOR RAILS", sx(76), sy(23), 2.6, "center", GRY);
     txt("3rd ROW FOLDED", sx(44), FLOOR_Y1 + 4, 2.6, "center", GRY);
 
     txt("<- FRONT", 4, TITLE_Y, 3.2, "left", "Black");
@@ -153,7 +155,7 @@ module van_base() {
     color(GRY) translate([BODY_X0 - 4, BODY_Y1 - 2]) rotate(-90) text("PASSENGER side", size = 2.7, valign = "center");
     // datum note goes in the LEFT of the top band — the dimension lines all
     // live at the tailgate end, so nothing crosses it there
-    txt("CLOSED HATCH (the right-hand edge) = the Y datum for all Section 0 measurements",
+    txt("CLOSED HATCH (the right-hand edge) = the Y datum for all Appendix A measurements",
         4, 134, 2.6, "left", "Black");
     txt("Body outline illustrative. Dashed interior features were ASSUMED; the survey (Aug 1 2026) confirmed or corrected each one — see the findings below.",
         4, 4, 2.6, "left", GRY);
@@ -190,7 +192,7 @@ module f2() {
     callout("F2", [
         "Fore-aft position of the STOWAGE WELL: where its rear and forward edges",
         "sit, both measured from the CLOSED HATCH — the same Y datum as every",
-        "other Section 0 measurement.",
+        "other Appendix A measurement.",
         "-> Sets the anchor board's strip lengths, and where filler blocking has",
         "   to start and stop.",
     ]);

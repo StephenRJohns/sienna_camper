@@ -317,12 +317,16 @@ Each floor panel, exploded (Panel A: frame + legs + center divider + one right d
 ![Panel C detail](renders/panel-c-detail.svg)
 
 
-*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+**The two hole details in the left margin of each sheet, in full.**
 
-- No divider, no drawers — the void stays open for the bought fridge + kitchen unit (Component 7). ONE wall: the front (B-facing) face.
-- NO divider, NO drawers, no skirts — the side doors don't reach Panel B, so its whole bay is deep storage, loaded from above.
-- THE FULL CUBE: bottom rails on all 4 faces (nothing exits Panel B sideways). Both hole types dimensioned in the insets at left.
-- Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.
+- **LEG BOTTOM** — the same hole on all 12 legs: 1/2" dia × 3/4" deep, dead centre of the 1.5" × 1.5" end grain, taking a 3/8-16 threaded insert. **Drill it before assembly** — see the Leveling Foot render.
+- **END-RAIL SEAM FACE**, both ends — 2× 3/8" dia × 3/8" deep pin holes, 3" in from each side edge, centred on the rail. Drill the mating panel's face **as a matched pair**: clamp both panels together and drill through a guide block (Component 5).
+
+**Per-panel differences:**
+
+- **Panel A** — left (driver-side) bay is WAVE 3 open storage: no drawer box, no slide. The unit is too wide for a boxed drawer.
+- **Panel B** — no divider, no drawers, no skirts. The side doors don't reach it, so its whole bay is deep storage loaded from above. It is **the full cube**: bottom rails on all 4 faces, since nothing exits Panel B sideways.
+- **Panel C** — no divider, no drawers; the void stays open for the bought fridge and kitchen unit (Component 7). It carries the ONE wall in the build, on its front (B-facing) face.
 
 ### Bed Platform Detail
 
@@ -1684,13 +1688,10 @@ Appendices B and C consolidate Sections 4 and 3; Appendix B (build order), Appen
 ![Measurement guide: fridge and kitchen](renders/measurement-fridge-kitchen.svg)
 
 
-*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
-
-- Also record: empty weight, cord length, and how far it must slide out
-- before the lid can open fully clear of the deck above (fridge_slide_length assumes 24" is enough).
-- (this plan estimated 23" x 15.7" x 5.7" from listing PHOTOS,
-- not a spec sheet — the COOKTRON cooktop's fit depends on this)
-- Also record: empty weight, and the cord pass-through location for the cooktop's power cord.
+*The sheet carries only the numbered dimension tags. Each number is a row of the
+table below, which is where the question, the listing spec, and the blank for
+your measurement live — printed on the drawing as wrapped prose they came out at
+4–5pt and said the same thing twice.*
 
 | # | Measure | Goes in `params.scad` as | Listing spec (unverified) | Your measurement |
 |---|---|---|---|---|

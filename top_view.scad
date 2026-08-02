@@ -31,7 +31,7 @@ stroke = 0.3; // outline thickness, inches
 
 // ------------------------------------------------------------
 // Van body context — the SHARED plan geometry from van_plan.scad, so
-// this floorplan and the Section 0 survey plans read as the same
+// this floorplan and the Appendix A survey plans read as the same
 // vehicle (they used to each draw their own silhouette).
 //
 // van_plan.scad's canonical frame is X = fore-aft from the REAR

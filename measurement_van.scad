@@ -94,7 +94,7 @@ module drawing() {
     label_left("corners are rounded, measure", -34, -76.8, 0.9);
     label_left("where they start cutting in)", -34, -78.1, 0.9);
 
-    // rear 12V accessory outlet — schematic position only (Section 0
+    // rear 12V accessory outlet — schematic position only (Appendix A
     // asks you to confirm both its exact position and whether it
     // stays powered with the ignition off)
     bolt_icon(40, -80, 1.5);

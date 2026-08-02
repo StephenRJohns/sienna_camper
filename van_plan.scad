@@ -10,7 +10,7 @@
 // includes THIS file gets those too and must not include it again.
 //
 // GEOMETRY ONLY — no text. That is deliberate: callers draw in
-// different orientations (the Section 0 survey plans run front-at-left,
+// different orientations (the Appendix A survey plans run front-at-left,
 // the platform floorplan runs front-at-top), and rotating a module that
 // contained labels would rotate the labels with it. Each caller adds
 // its own labels in its own frame.
@@ -90,7 +90,7 @@ module vp_sliding_doors(col = "Black") {
         translate([VP_DOOR_X0, dy]) square([VP_DOOR_X1 - VP_DOOR_X0, 1.4]);
 }
 
-// the closed hatch — the Y datum every Section 0 measurement works from
+// the closed hatch — the Y datum every Appendix A measurement works from
 module vp_hatch(col = "Black") {
     color(col) translate([VP_HATCH - 0.8, -VP_HW + 5]) square([1.6, VP_W - 10]);
 }

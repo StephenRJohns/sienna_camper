@@ -9,7 +9,7 @@
 //
 // The body, glass, wheels, front seats, sliding doors and hatch come
 // from the SHARED van_plan.scad, so these read as the same vehicle as
-// the Section 0 survey plans and the platform floorplan.
+// the Appendix A survey plans and the platform floorplan.
 //
 // Several of these are NOT plan dimensions — interior height, the gate
 // opening, wall-to-wall width up at platform height, floor slope — so
@@ -22,7 +22,7 @@
 //
 // Orientation: FRONT at the LEFT, TAILGATE at the RIGHT; driver side
 // along the bottom. Fore-aft datum is the CLOSED HATCH, as everywhere
-// else in Section 0.
+// else in Appendix A.
 //
 // Render with: openscad -o renders/vanmeas-v1.svg -D key=1 van_measure_keys.scad
 //   key = 1..10  ->  V1..V10

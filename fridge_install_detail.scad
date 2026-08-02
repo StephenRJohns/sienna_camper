@@ -193,8 +193,8 @@ module drawing() {
     color("Black") for (tx = [15, 30]) translate([tx, 42]) circle(r = 0.35, $fn = 20); // tongue-to-rail bolt/clamp
     // MOVED TO THE DOCUMENT: label_left("2 steel rail tongues (2\"x3/16\") BOLT to the rear ends of the 2nd-row FLOOR RAILS (seat anchorage — no new holes; F8;", 2, 50.7, 1.0);
     // MOVED TO THE DOCUMENT: label_left("fallback: butt the striker-row step, F7) — forward restraint is steel-to-steel to the van's own rails (Sec. 8)", 2, 49.1, 1.0);
-    marker(9, 15, 34.8, "DimGray");
-    marker(10, 8, 33.8, "Firebrick", -2.1);
+    marker(9, 16.5, 33.0, "DimGray");
+    marker(10, 6, 33.0, "Firebrick", -2.1);
 
     // Panel C outline (the full 46in x 36in deck footprint)
     rect_outline(panel_width, panel_c_length);
@@ -235,7 +235,7 @@ module drawing() {
     }
     // intake fan: on Panel C's FRONT wall (the panel's one wall),
     // over its pre-cut fan hole — Panel C Front Wall render
-    marker(1, fridge_x0 + fridge_ext_length/2, panel_c_length, "DarkGray");
+    marker(1, fridge_x0 + fridge_ext_length/2, panel_c_length + 0.8, "DarkGray");
 
     // ---- airflow arrows: in through the front wall, across the
     // fridge, out into the cabinet ----
