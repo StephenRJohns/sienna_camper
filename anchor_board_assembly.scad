@@ -322,15 +322,12 @@ module v5_joints() {
         // the two gaps fall out as clean rectangles — usable offcut, not waste
         for (g = [[2.5, 16.85, "16.85x27"], [24, 20.5, "20.5x27"]]) {
             color("Gray") translate([g[0]*s, 0]) rect_outline(g[1]*s, 27*s, 0.08);
-            color("black") translate([(g[0] + g[1]/2)*s, 15*s]) {
-                text("OFFCUT", size = 1.44, halign = "center");
-                translate([0, -1.1]) text(g[2], size = 1.44, halign = "center");
-            }
+            // No label inside these: the V5 diagram is drawn at scale s, small
+            // enough that two full-size labels sat on top of each other. Both
+            // offcut sizes are in the document text under this figure.
         }
     }
     label_left("3/4\" SHEET SPARE — 48\"x60\"", 0, 60*s + 1.1, 0.85);
-    label_left("still spare: ~48\"x26\"", 1*s, 47*s, 0.75);
-    label_left("(backer, cleats, battens)", 1*s, 45.4*s, 0.75);
     // face-grain direction: along the sheet's 96" length = along the strips
     color("Firebrick") {
         translate([-1.6, 2]) square([0.14, 60*s - 4]);
@@ -339,38 +336,16 @@ module v5_joints() {
         translate([-2.2, 60*s/2]) rotate(90) text("FACE GRAIN", size = 2.04, halign = "center");
     }
 
-    lines = [
-        "ONE PIECE, NO WOOD JOINTS. The bridge and all three strips are a single",
-        "continuous 46\"x33\" comb. Nothing on this board is glued or screwed to another",
-        "piece of ply — the 12 lap screws and the wood glue are GONE from the BOM.",
-        "",
-        "IT FITS THE STOCK YOU ALREADY BUY. The 3/4\" sheet carries only Panel C's deck",
-        "plus some ripped cleats, leaving a contiguous spare of at least 48\"x60\": the",
-        "comb drops in with ~26\" of sheet length still left over for the control-panel",
-        "backer, the rear-pantry hold-down cleats and the spare-tire skid battens.",
-        "",
-        "FACE GRAIN RUNS ALONG THE STRIPS (the 33\" direction = the sheet's 96\" length).",
-        "That is the axis a rearward pull loads in tension, and the strips are the narrow",
-        "members — the panel-edge one is only 1.5\" wide, so it wants its face plies",
-        "running lengthwise. The bridge takes its load in-plane over a 6\" depth, where",
-        "cross-grain costs nothing that matters.",
-        "",
-        "THE FALLOFF IS NOT WASTE. The two gaps come out as clean rectangles",
-        "(16.85\"x27\" and 20.5\"x27\") — keep both as 3/4\" offcut stock.",
-        "",
-        "CUT ORDER: rip the two gaps out with a track saw or a circular saw on a",
-        "straightedge (both cuts run the full 27\" and STOP at the bridge line), then",
-        "crosscut the teeth free. FILLET every inside corner ~1/2\" radius — drill a 1/2\"",
-        "hole centered ON the corner first, then saw into it. A square re-entrant corner",
-        "is exactly where a comb starts a tear, and it is the only place this one-piece",
-        "board is weaker than three separate strips would be.",
-    ];
-    for (i = [0 : len(lines) - 1]) label_left(lines[i], 16, 16 - i*1.4, 1.0);
+    // MOVED TO THE DOCUMENT: the 24-line V5 rationale block. It was the widest
+    // thing on this sheet by a wide margin, and a figure's printed text height
+    // is size x (page_width / sheet_width) — it was holding every dimension
+    // label on all five views down to ~3.6pt.
 
     // MOVED TO THE DOCUMENT: label_left("Why one piece matters: the striker straps hold the BRIDGE — the strips (and everything bolted to", 0, -18.4, 1.0);
     // MOVED TO THE DOCUMENT: label_left("them) hang off it in a rearward pull. As one piece that load path is continuous ply, instead of three", 0, -19.8, 1.0);
     // MOVED TO THE DOCUMENT: label_left("glue lines working in tension. (The steel tongues are NOT wood joints — they bolt through the", 0, -21.2, 1.0);
-    label_left("bridge with the 1/4-20 T-nuts, V1.)", 0, -22.6, 1.0);
+    // MOVED TO THE DOCUMENT: tail of the "why one piece" paragraph, whose
+    // earlier lines went with it — it was left as an orphan fragment
 }
 
 // ============================================================

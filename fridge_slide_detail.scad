@@ -157,8 +157,8 @@ module drawing() {
     // running clearance callout: mounted stack top vs the end rail
     color("Firebrick") translate([1.2, fridge_stack_top]) square([0.06, leg_height - fridge_stack_top]);
     // MOVED TO THE DOCUMENT: label("the fridge slides under the TAILGATE END RAIL above", fridge_ext_width/2, 13.9, 0.85);
-    label(str("(underside 17\") with ", leg_height - fridge_stack_top, "\" clearance (assert, params.scad)"), fridge_ext_width/2, 12.8, 0.8);
-
+    // MOVED TO THE DOCUMENT: continuation of the line above it, which went
+    // to the document and left this as an orphan fragment
     // ---- hold-down strap: hooks to the fridge's end handles, down to
     // 2 D-rings screwed into the tray's side apron — the riser/anchor
     // bolting above secures the TRAY to the van; this strap is what

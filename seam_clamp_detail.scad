@@ -80,7 +80,8 @@ module vignette() {
     translate(p2([g/2 + frame_rail_sz/2, frame_rail_sz/2, seam_latch_z + 3])) scale([1.2, 1.2]) ic_latch();
     cap("DETAIL — one latch, two legs, bumper between", frame_rail_sz/2 + g/2, 15, 1.4);
     // MOVED TO THE DOCUMENT: cap("base plate on one leg, hooked bail + lever on the other;", frame_rail_sz/2 + g/2, 12.8, 1.05);
-    cap("flip to clamp, flip to release (no tools)", frame_rail_sz/2 + g/2, 11.3, 1.05);
+    // MOVED TO THE DOCUMENT: continuation of the line above it, which went
+    // to the document and left this as an orphan fragment
 }
 
 drawing();

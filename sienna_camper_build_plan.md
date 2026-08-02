@@ -62,6 +62,15 @@ How the platform actually goes together, in five views: **V1** the bare plywood 
 
 ![Anchor board — assembly and connection details](renders/anchor-board-assembly.svg)
 
+**Why the board is ONE piece** (moved off the sheet — this block was the widest thing on it, holding every dimension label on all five views to ~3.6pt):
+
+- **ONE PIECE, NO WOOD JOINTS** — The bridge and all three strips are a single continuous 46"x33" comb. Nothing on this board is glued or screwed to another piece of ply — the 12 lap screws and the wood glue are GONE from the BOM.
+- **IT FITS THE STOCK YOU ALREADY BUY** — The 3/4" sheet carries only Panel C's deck plus some ripped cleats, leaving a contiguous spare of at least 48"x60": the comb drops in with ~26" of sheet length still left over for the control-panel backer, the rear-pantry hold-down cleats and the spare-tire skid battens.
+- FACE GRAIN RUNS ALONG THE STRIPS (the 33" direction = the sheet's 96" length). That is the axis a rearward pull loads in tension, and the strips are the narrow members — the panel-edge one is only 1.5" wide, so it wants its face plies running lengthwise. The bridge takes its load in-plane over a 6" depth, where cross-grain costs nothing that matters.
+- **THE FALLOFF IS NOT WASTE** — The two gaps come out as clean rectangles (16.85"x27" and 20.5"x27") — keep both as 3/4" offcut stock.
+- **CUT ORDER** — rip the two gaps out with a track saw or a circular saw on a straightedge (both cuts run the full 27" and STOP at the bridge line), then crosscut the teeth free. FILLET every inside corner ~1/2" radius — drill a 1/2" hole centered ON the corner first, then saw into it. A square re-entrant corner is exactly where a comb starts a tear, and it is the only place this one-piece board is weaker than three separate strips would be.
+
+
 
 *Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
 
@@ -131,6 +140,55 @@ The rear view above is too small-scale to label the fridge's 2 cooling fans and 
 And the electrical side — a schematic (not to physical scale) of how the fridge, both fans, and the NTC sensor are powered and wired — now down to **every physical wire landing**: connection points P1–P12 are numbered on the diagram, each naming the exact terminal, connector type, and crimp, with the full list repeated in Section 5's connection-point table:
 
 ![Fridge wiring diagram](renders/fridge-wiring.svg)
+
+*The schematic carries the box titles and the P-numbers; every description was moved here so those titles could be legible (they were at ~4pt).*
+
+**Connection points P1–P12**
+
+| | Connection |
+|---|---|
+| **P1** | DELTA 3 12V car-power outlet → fused (15A) car-plug/SAE adapter — hand-plug, no tools |
+| **P2** | SAE #1 at the A/B seam — mate the OYMSAE cord ends; zip-tie a strain loop each side |
+| **P3** | SAE #2 at the B/C seam — same; both disconnects hang slack, never taut |
+| **P4** | 1" grommet, Panel C front wall (low, driver side) — push cord through, no termination |
+| **P5** | Fuse block main studs: red → +IN, black → -IN — #10 ring terminals, M5 nuts, 20 in-lb |
+| **P6** | SW1 FRIDGE: F1(10A) red → PWR spade; LOAD spade → pigtail red; GND spade → NEG bus |
+| **P7** | Pigtail: SAE mates to SW1 side; female 12V socket zip-tied by the fridge's kitchen wall |
+| **P8** | Fridge DC jack: fridge's own cord plug → socket; slack loop to the FIXED rail, 3 clips |
+| **P9** | SW2 FANS: F2(3A) red → PWR spade; LOAD spade → W1209 +12V; GND spade → NEG bus |
+| **P10** | W1209 screws: +12V, GND, K0 (jumper from +12V), K1 (fan feed) — strip 1/4", snug screws |
+| **P11** | NTC probe: plug on the W1209 header; TIP zip-tied at the kitchen-facing wall by the exhaust fan |
+| **P12** | WAGO 221 x2: K1 → both fan reds; fan blacks → one black → NEG bus — levers fully closed |
+
+**What each box on the schematic holds**
+
+- VERIFIED — charges DELTA 3; one 1500W inverter feeds BOTH van outlets
+- 2048Wh combined — Panel A right drawer
+- AC in 1500W (0-100% in ~56 min) · 12V car-power DC out 12.6V/30A
+- hand-plug into the DELTA 3's 12V car-power outlet
+- OYMSAE cord ends mate; pull apart to lift Panel A out
+- same cord family; pull apart to lift Panel B out
+- cord passes into the fridge bay → open utility bay
+- +IN / -IN main studs: strip 3/8", crimp #10 RING terminals, M5 nuts
+- F1 = 10A ATO → fridge branch · F2 = 3A ATO → fan branch · F3-F6 spare
+- EVERY black (-) return in the bay lands on this NEG bus (ring, screw)
+- PWR tab ← F1 · LOAD tab → pigtail · GND tab → NEG bus
+- (0.25" female spade crimps on all 3)
+- zip-tied in the open bay, near the fridge's kitchen wall
+- use the fridge's OWN 12V cord; leave a slack loop for
+- the 24" slide, clipped to the FIXED rail (3 clips)
+- cooktop is 120V AC — switch it at Power strip 2 instead)
+- PWR tab ← F2 · LOAD tab → W1209 "+12V" · GND tab → NEG bus
+- "+12V" ← SW2 LOAD · "GND" ← NEG bus (18AWG black)
+- "K0" ← short jumper from "+12V" · "K1" → fan feed wire
+- set: fans ON ~95F, OFF ~85F (P0=H mode, P1/P2 setpoints)
+- plug → W1209's
+- 2-pin probe header;
+- TIP by the exhaust fan
+- nut A: K1 feed → both fan REDS · nut B: both fan
+- BLACKS → one 18AWG black → NEG bus
+- cabin air IN
+- warm air OUT
 
 
 *Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*

@@ -43,12 +43,12 @@
 // Keep prose in the markdown; this sheet carries geometry and short
 // labels only.
 
-module label(txt, x, y, size = 3.12) {
+module label(txt, x, y, size = 1.95) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "center", valign = "center");
 }
 
-module label_left(txt, x, y, size = 2.64) {
+module label_left(txt, x, y, size = 1.85) {
     color("black")
     translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
@@ -97,8 +97,8 @@ module signal_wire(x0, y0, x1, y1, col = "DarkGray") {
 // numbered connection-point marker — pairs with the side table
 module pmark(n, x, y) {
     translate([x, y]) {
-        color("Black") circle(r = 1.15);
-        color("White") text(str("P", n), size = 2.28, halign = "center", valign = "center");
+        // no filled badge: circle + numeral touch and merge to one colour
+        color("DarkSlateBlue") text(str("P", n), size = 2.28, halign = "center", valign = "center");
     }
 }
 
@@ -108,7 +108,6 @@ module drawing() {
     // ---- AC charge source: front console outlet, charges the DELTA 3 ----
     box(-14, 53, 41, 4.5, [
         ["Front console AC outlet — 1500W", 1.3],
-        ["VERIFIED — charges DELTA 3; one 1500W inverter feeds BOTH van outlets", 0.9],
     ], "Gray");
 
     wire(-14, 50.7, -14, 47.8);
@@ -116,127 +115,101 @@ module drawing() {
     // ---- DELTA 3 stack: the ONE source for both circuits below ----
     box(-14, 44, 40, 6.5, [
         ["EcoFlow DELTA 3 Plus + Smart Extra Battery", 1.3],
-        ["2048Wh combined — Panel A right drawer", 0.95],
-        ["AC in 1500W (0-100% in ~56 min) · 12V car-power DC out 12.6V/30A", 0.9],
     ], "SteelBlue");
     // MOVED TO THE DOCUMENT: label("Charge + discharge simultaneously supported — running the fridge/fans", -14, 39.6, 0.85);
     // MOVED TO THE DOCUMENT: label("while AC-charging is normal, just slows the charge rate a bit", -14, 38.6, 0.85);
 
     // ---- ONE 16AWG SAE line, DELTA 3 -> fuse block, 4 hops ----
     wire(-14, 38, -14, 36.9);
-    pmark(1, -33.5, 34.8);
+    pmark(1, -38.0, 34.8);
     box(-14, 34.8, 36, 3.8, [
         ["Male car-plug -> SAE adapter, FUSED 15A", 1.05],
-        ["hand-plug into the DELTA 3's 12V car-power outlet", 0.82],
     ]);
 
     wire(-14, 32.9, -14, 31.7);
-    pmark(2, -33.5, 29.8);
+    pmark(2, -38.0, 29.8);
     box(-14, 29.8, 36, 3.6, [
         ["SAE quick-disconnect #1 — Panel A/B seam", 1.0],
-        ["OYMSAE cord ends mate; pull apart to lift Panel A out", 0.8],
     ]);
 
     wire(-14, 28, -14, 26.8);
-    pmark(3, -33.5, 24.9);
+    pmark(3, -38.0, 24.9);
     box(-14, 24.9, 36, 3.6, [
         ["SAE quick-disconnect #2 — Panel B/C seam", 1.0],
-        ["same cord family; pull apart to lift Panel B out", 0.8],
     ]);
 
     wire(-14, 23.1, -14, 21.9);
-    pmark(4, -33.5, 20);
+    pmark(4, -38.0, 20);
     box(-14, 20, 36, 3.6, [
         ["1\" grommet — Panel C front wall, LOW driver side", 1.0],
-        ["cord passes into the fridge bay -> open utility bay", 0.8],
     ]);
 
     wire(-14, 18.2, -14, 16.6);
-    pmark(5, -34.5, 12.5);
+    pmark(5, -39.0, 12.5);
     box(-14, 12.5, 38, 7.5, [
         ["Nilight 6-way fuse block + NEG bus — in the open utility bay", 1.1],
-        ["+IN / -IN main studs: strip 3/8\", crimp #10 RING terminals, M5 nuts", 0.82],
-        ["F1 = 10A ATO -> fridge branch · F2 = 3A ATO -> fan branch · F3-F6 spare", 0.82],
-        ["EVERY black (-) return in the bay lands on this NEG bus (ring, screw)", 0.82],
     ]);
 
     // ---- fridge branch: F1 -> SW1 -> socket pigtail -> fridge ----
     wire(5, 13.5, 11, 13.5);
     label("F1 out", 8, 15.3, 0.7);
     label("16AWG red", 8, 14.3, 0.7);
-    pmark(6, 43, 15.5);
+    pmark(6, 38.5, 15.5);
     box(26, 13.2, 30, 4.6, [
         ["SW1 \"FRIDGE\" — Ampper rocker, 3 spade tabs", 1.0],
-        ["PWR tab <- F1 · LOAD tab -> pigtail · GND tab -> NEG bus", 0.78],
-        ["(0.25\" female spade crimps on all 3)", 0.78],
     ]);
 
     wire(26, 10.9, 26, 9.4);
-    pmark(7, 43, 7.5);
+    pmark(7, 38.5, 7.5);
     box(26, 7.5, 30, 3.6, [
         ["SAE -> female 12V socket pigtail", 1.0],
-        ["zip-tied in the open bay, near the fridge's kitchen wall", 0.78],
     ]);
 
     wire(26, 5.7, 26, 4.4);
-    pmark(8, 43, 2.2);
+    pmark(8, 38.5, 2.2);
     box(26, 2.2, 30, 4.4, [
         ["BougeRV Rocky 40 — DC INPUT jack", 1.05],
-        ["use the fridge's OWN 12V cord; leave a slack loop for", 0.78],
-        ["the 24\" slide, clipped to the FIXED rail (3 clips)", 0.78],
     ]);
 
     // SW3 note: the BOM's third switch
     box(26, 19.5, 30, 3.6, [
-        ["SW3 = spare on the panel (BOM says \"cooktop\", but the", 0.8],
-        ["cooktop is 120V AC — switch it at Power strip 2 instead)", 0.8],
+        ["SW3 — spare switch (unused)", 0.8],
     ], "Gray");
 
     // ---- fan branch: F2 -> SW2 -> W1209 -> WAGO splits -> 2 fans ----
     wire(-14, 8.7, -14, 7.3);
     label("F2 out, 18AWG red", -7.5, 8, 0.75);
-    pmark(9, -33.5, 5);
+    pmark(9, -38.0, 5);
     box(-14, 5, 36, 4.4, [
         ["SW2 \"FANS\" — Ampper rocker, 3 spade tabs", 1.0],
-        ["PWR tab <- F2 · LOAD tab -> W1209 \"+12V\" · GND tab -> NEG bus", 0.78],
     ]);
 
     wire(-14, 2.8, -14, 1.4);
-    pmark(10, -34.6, -0.6);
+    pmark(10, -39.1, -0.6);
     box(-14, -2.5, 38, 7, [
         ["W1209 controller — 4 SCREW terminals + probe header", 1.05],
-        ["\"+12V\" <- SW2 LOAD · \"GND\" <- NEG bus (18AWG black)", 0.8],
-        ["\"K0\" <- short jumper from \"+12V\" · \"K1\" -> fan feed wire", 0.8],
-        ["set: fans ON ~95F, OFF ~85F (P0=H mode, P1/P2 setpoints)", 0.78],
     ]);
 
     // NTC sensor feeds the controller — signal, not power
-    pmark(11, -52, -2.2);
+    pmark(11, -56.5, -2.2);
     box(-44, -2.2, 14, 5.4, [
         ["NTC probe", 1.1],
-        ["plug -> W1209's", 0.82],
-        ["2-pin probe header;", 0.82],
-        ["TIP by the exhaust fan", 0.78],
     ], "DarkGray");
     signal_wire(-37, -3.6, -33, -3.6);
 
     wire(-14, -6, -14, -7.6);
-    pmark(12, -33.5, -9.8);
+    pmark(12, -38.0, -9.8);
     box(-14, -9.8, 36, 4.2, [
         ["WAGO 221-413 lever nuts (x2)", 1.0],
-        ["nut A: K1 feed -> both fan REDS · nut B: both fan", 0.78],
-        ["BLACKS -> one 18AWG black -> NEG bus", 0.78],
     ]);
 
     wire(-14, -11.9, -25, -14.6, "Gray");
     wire(-14, -11.9, -3, -14.6, "DimGray");
     box(-25, -16.8, 19, 4, [
         ["Intake fan (120mm)", 1.2],
-        ["cabin air IN", 0.95],
     ], "DimGray");
     box(-3, -16.8, 19, 4, [
         ["Exhaust fan (120mm)", 1.2],
-        ["warm air OUT", 0.95],
     ], "Gray");
 
     // MOVED TO THE DOCUMENT: label("Circuit 1 (right): fridge — F1 10A, switched at SW1. Circuit 2 (left): fans — F2 3A, switched at SW2, W1209-driven off the NTC probe.", -3, -20.5, 1.0);
@@ -266,10 +239,9 @@ module drawing() {
         ["P11", "NTC probe: plug on the W1209 header; TIP zip-tied at the kitchen-facing wall by the exhaust fan"],
         ["P12", "WAGO 221 x2: K1 -> both fan reds; fan blacks -> one black -> NEG bus — levers fully closed"],
     ];
-    for (i = [0 : len(rows) - 1]) {
-        pmark(i + 1, tx + 1.2, 51 - i * 4);
-        label_left(rows[i][1], tx + 3.4, 51 - i * 4, 0.88);
-    }
+    // The right-hand P1-P12 column is GONE: it was only ever there to carry
+    // the descriptions, which are a markdown table now (Section 5). The
+    // P-numbers beside the boxes already key to it.
     // MOVED TO THE DOCUMENT: label_left("Wire spec: main run 16AWG (the OYMSAE SAE cord itself); in-bay branches 18AWG red/black;", tx, 51 - 12*4 + 0.5, 0.9);
     // MOVED TO THE DOCUMENT: label_left("crimps: heat-shrink ring #10 (block studs) + 0.25\" female spades (switch tabs). Crimp, tug-test, then shrink.", tx, 51 - 12*4 - 1, 0.9);
 }
