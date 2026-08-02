@@ -524,6 +524,14 @@ seam_latch_x     = panel_width/2 - leg_inset;        // 20.5 — latch sits over
 pcwall_t = 0.375;       // WEIGHT SWAP: 1/2in -> 3/8in ply (-~2.5lb) — non-structural wall, just holds the intake fan + grommets
 pcwall_h = leg_height;  // 17 — van floor up to the front rail's underside
 pcwall_grommet_dia = 1; // fridge DC line pass-through
+// ONE grommet, not two. The verified-outlet round (the van has exactly 2 AC
+// outlets) moved Power strip 1 onto the REAR outlet, so its line no longer
+// crosses this wall — Section 2's parts table and Component 6's step both say
+// one, and the drawing was still showing the deleted second hole.
+// It sits in the driver-side strip OUTBOARD of the front leg (leg occupies
+// x 3.5-5.0), a natural cord chase, clear of the bottom rail and the louver.
+pcwall_grommet_x  = 3;   // center X from the driver edge
+pcwall_grommet_z  = 4;   // fridge DC line — 1.0in of ply above the bottom rail
 
 // Passive cooling vents (owner, July 2026 refinements). Both are
 // cheap louvered RV vents, no wiring:
@@ -534,10 +542,19 @@ pcwall_grommet_dia = 1; // fridge DC line pass-through
 //  - a LOW louver in the utility-cabinet door gives the exhaust fan's
 //    warm air a direct path OUT low toward the tailgate instead of
 //    only bleeding around the door edges.
-intake_vent_w = 7;    // low front-wall intake louver — width
-intake_vent_h = 2.5;  // height
-intake_vent_x = 5.5;  // center X from the driver edge (low-driver corner, clear of the fan)
-intake_vent_z = 5;    // center Z, just above the front bottom rail (top at 3.5)
+// RE-LAID OUT Aug 2026. The old numbers (7x2.5 at x=5.5, z=5) put three
+// openings on top of each other in one corner of a 3/8in wall: the upper
+// grommet was drilled INSIDE the vent cut-out, the lower grommet's edge
+// landed on the bottom rail (top at 2.5, not 3.5 as the old comment said),
+// and the vent's top edge left 0.18in of ply against the fan hole. The vent
+// now sits squarely UNDER the fan, on the fan's centerline, with the cord
+// grommets moved into the clear driver-side strip outboard of the front leg.
+// Widened 7 -> 9 so the passive area (18 sq in) still covers the 120mm fan's
+// own aperture (17.7 sq in) despite losing 0.5in of height.
+intake_vent_w = 9;    // low front-wall intake louver — width
+intake_vent_h = 2;    // height — set by the gap between bottom rail and fan hole
+intake_vent_x = 10.86; // center X = the fan's center (cross-checked by assert below)
+intake_vent_z = 4.4;  // center Z: 0.9in of ply over the bottom rail, 1.0in under the fan hole
 cabinet_vent_w = 2;   // low cabinet-door exhaust louver — width (the door narrowed to ~3.3in with the side-mount rail stack; was 3in in a ~4.3in door)
 cabinet_vent_h = 4;   // height
 cabinet_vent_z = 5;   // center Z, low in the door
@@ -1104,3 +1121,48 @@ assert(panelb_tote_l <= panel_b_length - 2 * frame_rail_sz && 2 * panelb_tote_w 
        "Panel B totes don't fit the bay 2-wide — check tote dims");
 assert(pantry_pot_bin <= pantry_bay_w,
        str("Pot bin (", pantry_pot_bin, "in) is wider than the open deck bay (", pantry_bay_w, "in)"));
+
+// ---- Panel C front wall: the four openings must not eat each other ----
+// This wall is 3/8in ply with a 120mm fan hole, a 9x2 louver and two 1in
+// cord grommets in it. In Aug 2026 the vent was overlapping BOTH grommets
+// and coming within 0.18in of the fan hole; these keep the webs honest.
+// Written down here (not in the drawing) because the drawing only shows what
+// the numbers produce — it cannot tell you the numbers are wrong.
+pcwall_fan_x   = panel_width/2 + x_fridge_module;   // 10.86
+pcwall_fan_z   = fridge_tray_gap + fridge_tray_t + fridge_ext_height/2;  // 8.8
+pcwall_web_min = 0.75;   // least ply left between any two openings
+
+assert(abs(intake_vent_x - pcwall_fan_x) < 0.02,
+       str("The intake louver is meant to sit on the fan's centerline, but intake_vent_x is ",
+           intake_vent_x, " and the fan is at ", pcwall_fan_x));
+// vent top edge -> fan hole bottom edge
+assert((pcwall_fan_z - intake_fan_dia/2) - (intake_vent_z + intake_vent_h/2) >= pcwall_web_min,
+       str("Only ", (pcwall_fan_z - intake_fan_dia/2) - (intake_vent_z + intake_vent_h/2),
+           "in of ply between the intake louver's top edge and the fan hole — need ",
+           pcwall_web_min, "in"));
+// vent bottom edge -> bottom rail top face (the rail backs the wall there)
+assert((intake_vent_z - intake_vent_h/2) - (bottom_rail_z + frame_rail_sz) >= pcwall_web_min * 0.8,
+       str("The intake louver's bottom edge is ",
+           (intake_vent_z - intake_vent_h/2) - (bottom_rail_z + frame_rail_sz),
+           "in above the bottom rail's top face — it will break through into the rail"));
+// grommets clear of the vent in X (they are in the driver-side strip)
+assert((intake_vent_x - intake_vent_w/2) - (pcwall_grommet_x + pcwall_grommet_dia/2) >= pcwall_web_min,
+       str("The cord grommets at x=", pcwall_grommet_x,
+           " run into the intake louver, which starts at x=",
+           intake_vent_x - intake_vent_w/2));
+// grommets clear of the bottom rail and of each other
+assert((pcwall_grommet_z - pcwall_grommet_dia/2) - (bottom_rail_z + frame_rail_sz) >= pcwall_web_min * 0.8,
+       str("The DC grommet's bottom edge is only ",
+           (pcwall_grommet_z - pcwall_grommet_dia/2) - (bottom_rail_z + frame_rail_sz),
+           "in above the bottom rail's top face"));
+// everything stays on the wall
+assert(pcwall_grommet_z + pcwall_grommet_dia/2 <= pcwall_h &&
+       pcwall_fan_z + intake_fan_dia/2 <= pcwall_h &&
+       intake_vent_x + intake_vent_w/2 <= panel_width,
+       "An opening in the Panel C front wall falls off the edge of the wall");
+// the passive louver should be worth cutting: at least the fan's own aperture
+assert(intake_vent_w * intake_vent_h >= 3.14159 * pow(intake_fan_dia/2, 2) * 0.95,
+       str("The passive louver is only ", intake_vent_w * intake_vent_h,
+           " sq in against the fan's ", 3.14159 * pow(intake_fan_dia/2, 2),
+           " sq in — widen it or it chokes the fan"));
+

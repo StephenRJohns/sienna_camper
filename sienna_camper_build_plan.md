@@ -239,8 +239,9 @@ The kitchen drawer — a shallow slide-out drawer hung under Panel C's deck in t
 - 2x 1/2" ply cheeks, screwed UP into the deck (2" screws every 6")
 - outer cheek also screws into the side rail's inner face
 - 24" side-mount slides, 100lb pair — one per cheek
-- REAR SECTION — looking in from the open tailgate (passenger side at right)
-- KITCHEN DRAWER — hung under Panel C's deck, above the kitchen unit (Component 7)
+- The drawer box is 26" deep, riding that 24" full-extension slide pair, and pulls straight out the open tailgate.
+- The box is 18" wide across its outside, leaving ~17" clear inside it, in the 19" between the two cheek faces.
+- The kitchen unit below it is the bought JAGAHAHA slide-out camp kitchen, 11.8" tall, which slides out on its own rails — nothing in this drawing supports it.
 - Box: 1/2" ply, glue + 1-1/4" screws, ~3.5" clear inside — utensils / cutting board / flat dry goods / griddle plate.
 - Face gets a magnetic catch so nothing rattles in transit (the old cabinet door it matched was cut — open bay now).
 
@@ -337,11 +338,16 @@ The one wall any panel gets, as a flat pattern with **every hole dimensioned**: 
 ![Panel C front wall detail](renders/panel-c-wall-detail.svg)
 
 
-*Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
+*The sheet carries the geometry; here is what each opening on it is for. (These
+sentences used to be printed on the drawing, where their length set the sheet's
+width and held every label on it to 3–6pt on paper.)*
 
-- 8x #8 x 1-1/4" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail
-- Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.
-- Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + open utility bay + kitchen + kitchen drawer fill it.
+- **Where it goes.** Panel C's front (B-facing) face, floor to rail underside. This is the ONLY wall on any panel — Panel A has none (both bays face the side doors), Panel B has none (bare-frame deep storage), and Panel C's sides stay open (van wall ~1" away) and its tailgate face is filled by the fridge, open utility bay, kitchen unit and kitchen drawer.
+- **FAN 4.75" dia** — the 120mm intake fan, blowing IN. Cut with a hole saw or jigsaw. Fastened with 4× #8 screws on a 4.13" (105mm) square, the standard 120mm pattern.
+- **DC CORD GROMMET 1" dia** — carries the fridge DC line, in the driver-side cord chase outboard of the front leg. Just the one: the verified-outlet round put Power strip 1 on the van's rear outlet, so its line never crosses this wall.
+- **LOUVER 9" × 2"** — a passive scoop admitting cool floor-level air, directly under the fan and on the fan's centerline. 18 sq in, which covers the 120mm fan's own 17.7 sq in aperture.
+- **Openings re-laid out Aug 2026.** The earlier numbers put three openings on top of each other in one corner of a 3/8" wall: the second grommet was drilled *inside* the louver cut-out, the DC grommet's edge landed on the bottom rail, and 0.18" of ply separated the louver from the fan hole. `params.scad` now asserts a 3/4" minimum web between every pair of openings, so this cannot come back.
+- **Perimeter fastening** — 8× #8 × 1-1/4" screws: 2 into each front leg, 2 up into the top rail, 2 into the bottom rail.
 
 ---
 
@@ -1052,7 +1058,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - Legs — 4, 16" cut, 2x2 pine (leveling feet make up the inch; REAR pair at the true corners)
 - Bottom rail — 1, 46" cut, 2x2 pine (FRONT face only)
 - Corner brackets — 4
-- Front wall — 1, 46" x 17", 3/8" ply, with the 120mm fan hole + two 1" grommet holes + the 7" x 2.5" low intake louver pre-cut (Panel C Front Wall render — every opening dimensioned)
+- Front wall — 1, 46" x 17", 3/8" ply, with the 120mm fan hole + one 1" grommet hole + the 9" x 2" low intake louver pre-cut (Panel C Front Wall render — every opening dimensioned)
 - Louvered RV vent — 1 snap-in (low intake in the front wall)
 - No divider, no drawers — the void stays fully open for Component 7 (Fridge & Kitchen Install)
 
@@ -1073,7 +1079,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">3</div>
 <div class="lego-parts"><p class="lego-noparts">front wall: 46" x 17" 3/8" ply, holes pre-cut per the Panel C Front Wall render</p></div>
 <div class="lego-main"><img src="renders/panel-c-wall-detail.png" alt="Panel C front wall flat pattern">
-<p class="lego-caption">Cut the front wall and its openings to the render's dimensions — the 4.75" (120mm) fan hole centered on the fridge bay (10.86" from the driver edge, 8.4" up), one 1" grommet hole at 3" in, 3" up (fridge DC line — Power strip 1 feeds off the rear outlet, so this wall no longer passes its line), and the 7" x 2.5" LOW INTAKE LOUVER in the driver-side corner (5.5" over, 5" up) — a passive cool-air scoop that feeds the fridge the coolest floor-level cabin air, screened with a snap-in RV louver vent — then screw it to the front (B-facing) face: 2x #8 x 1-1/4" into each front leg + 2 into the top rail + 2 into the bottom rail (8 total). This is the ONLY wall on any panel; the intake fan bolts over the fan hole in Component 7. Panel C's sides stay open and its tailgate face is fully occupied by the fridge, the open utility bay, the kitchen unit, and the kitchen drawer.</p></div>
+<p class="lego-caption">Cut the front wall and its openings to the render's dimensions — the 4.75" (120mm) fan hole centered on the fridge bay (10.86" from the driver edge, 8.8" up), one 1" grommet hole at 3" in, 4" up (fridge DC line — Power strip 1 feeds off the rear outlet, so this wall no longer passes its line), and the 9" x 2" LOW INTAKE LOUVER directly under the fan on its centerline (10.86" over, 4.4" up) — a passive cool-air scoop that feeds the fridge the coolest floor-level cabin air, screened with a snap-in RV louver vent — then screw it to the front (B-facing) face: 2x #8 x 1-1/4" into each front leg + 2 into the top rail + 2 into the bottom rail (8 total). This is the ONLY wall on any panel; the intake fan bolts over the fan hole in Component 7. Panel C's sides stay open and its tailgate face is fully occupied by the fridge, the open utility bay, the kitchen unit, and the kitchen drawer.</p></div>
 </div>
 </div>
 

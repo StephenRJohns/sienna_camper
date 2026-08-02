@@ -50,10 +50,17 @@ module label(txt, x, y, size = 2.8) {
 module label_left(txt, x, y, size = 2.4) {
     color("black") translate([x, y]) text(txt, size = size, halign = "left", valign = "center");
 }
+// The numeral goes BESIDE the icon, not on it: a filled circle and the
+// numeral inside it touch, and OpenSCAD merges touching 2D shapes into one
+// polygon painted a single colour — the numbers were rendering as ghosts
+// over their own icons.
 module marker(n, x, y) {
     translate([x, y]) {
         color(marker_col(n)) circle(r = 1.5);
-        color("white") text(str(n), size = 3.2, halign = "center", valign = "center");
+        // LEFT of the icon: the legend's own text starts just to the right of
+        // it, so a numeral on that side lands on top of the description.
+        color(marker_col(n)) translate([-2.4, 0])
+            text(str(n), size = 3.0, halign = "right", valign = "center");
     }
 }
 // Counter-mirrored text emitters for the MIRRORED top-down section:
@@ -168,7 +175,7 @@ module section1_content() {
     W = panel_width;
 
     rect_outline(W, y_tg);
-    mlabel("ELECTRICAL LAYOUT — top-down (front of van at bottom, tailgate at top)", W/2, y_tg + 3.4, 1.5);
+    mlabel("ELECTRICAL LAYOUT — top-down (front at bottom, tailgate at top)", W/2, y_tg + 3.4, 1.5);
     mlabel("DRIVER side", 4, y_tg + 1.2, 1.1);
     mlabel("PASSENGER side", W - 6, y_tg + 1.2, 1.1);
     color("Silver") for (y = [y_ab, y_bc]) translate([0, y - 0.1]) square([W, 0.2]);
@@ -191,7 +198,7 @@ module section1_content() {
     hb_y0 = y_tg - pantry_len;
     color("DarkGray") rect_outline(W, pantry_len, 0.15);
     translate([0, hb_y0]) color("DarkGray") square([W, 0.15]); // divider line at the pantry's front edge
-    mlabel("REAR PANTRY — prefab drawers (on Panel C's deck, above)", W/2, y_tg - pantry_len - 2.2, 1.0);
+    mlabel("REAR PANTRY", W/2, y_tg - pantry_len - 2.2, 1.0);
 
     // 1: Power strip 1 — on the deck edge in the pantry's OPEN BAY
     // (passenger side, next to the pot crate) — see the Rear Pantry render
@@ -203,7 +210,7 @@ module section1_content() {
     // outside the deck on the passenger wall, near the tailgate.
     translate([W + 5, y_tg - 10]) outletAC_icon();
     mlabel("REAR AC outlet", W + 5, y_tg - 13, 0.95);
-    mlabel("(passenger rear quarter — VERIFIED: ~9.5\" up, ~10\" fwd of the scuff)", W + 5, y_tg - 14.8, 0.8);
+    mlabel("(passenger rear quarter — 22.5\" up, 10\" in)", W + 5, y_tg - 14.8, 0.8);
     mmarker(3, W + 2, y_tg - 6.5);
 
     // 2: Power strip 1's cord — a SHORT hop to the rear outlet beside
@@ -282,7 +289,7 @@ module section1_content() {
 // ============================================================
 module section2() {
     z_deck = leg_height + frame_rail_sz; // 18.5
-    label("CONTROL CLUSTER — in the open utility bay on its backer board, elevation (looking forward from tailgate)", 23, 36, 1.4);
+    label("CONTROL CLUSTER — in the open utility bay, elevation", 23, 36, 1.4);
     rect_outline(30, 33);                              // wall section, x 0-30, z 0-33
     // MOVED TO THE DOCUMENT: label("backer board at the back of the open bay (no door — reach in)", 15, -2.2, 1.0);
     color("Silver") translate([0, z_deck - 0.1]) square([30, 0.2]);
@@ -348,7 +355,7 @@ module legend() {
     items = [
         "Power strip 1 — on the rear-pantry deck edge (phone/light/Windmill fan)",
         "Power strip 1's cord — a SHORT hop to the rear outlet beside the pantry (no seams)",
-        "REAR AC outlet — passenger rear quarter trim, ~9.5\" up, ~10\" fwd of the liftgate scuff (VERIFIED; shares the one 1500W inverter)",
+        "REAR AC outlet — passenger rear quarter trim, 22.5\" up, 10\" in from the sidewall (MEASURED V9b; shares the one 1500W inverter)",
         "Cooktop cord — SHORT run to the rear outlet, slack loop for the kitchen's slide (no seams)",
         "2-way outlet tap at the rear outlet — Power strip 1 + the cooktop share it",
         "1\" grommets — deck-edge exits for the two short AC cords",

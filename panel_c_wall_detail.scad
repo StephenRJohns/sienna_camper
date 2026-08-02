@@ -33,13 +33,22 @@ fan_d  = intake_fan_dia;                              // 4.75 (120mm)
 fan_x  = panel_width/2 + x_fridge_module;             // 10.86 — centered on the fridge bay (which now sits against the rear corner leg, 1.5 in from the edge)
 fan_z  = fridge_tray_gap + fridge_tray_t + fridge_ext_height/2; // 8.8 — centered on the fridge's height (tray hangs 0.5in up between its side-mount rails)
 gr_d   = pcwall_grommet_dia;                          // 1 — fridge DC line
-gr_x   = 3;   // from the driver edge — the DC line hugs the driver-side floor run
-gr_z   = 3;   // low, at cord height
-gr2_x  = 3;   // 2nd grommet: Power strip 1's line, exiting the rear pantry's under-deck run
-gr2_z  = 5.5; // stacked above the DC grommet — the two lines run the same driver-side channel
+gr_x   = pcwall_grommet_x;   // driver-side cord chase, outboard of the front leg
+gr_z   = pcwall_grommet_z;   // fridge DC line
+// (a 2nd grommet for Power strip 1's line used to sit above this one; the
+// verified-outlet round put that strip on the van's rear outlet instead)
 
 module label(txt, x, y, size = 2.16, halign = "center") {
     color("black") translate([x, y]) text(txt, size = size, halign = halign, valign = "center");
+}
+// text on a leader line: kink from the feature out to the label
+module callout(txt, fx, fz, tx, tz, size = 1.7) {
+    color("black") {
+        hull() { translate([fx, fz]) circle(r = stroke/2, $fn = 8);
+                 translate([tx - 0.8, tz]) circle(r = stroke/2, $fn = 8); }
+        translate([fx, fz]) circle(r = 0.3, $fn = 16);
+    }
+    label(txt, tx, tz, size, "left");
 }
 module ring(r) {
     color("black") difference() { circle(r = r, $fn = 48); circle(r = r - stroke, $fn = 48); }
@@ -52,12 +61,17 @@ module dim_h(x0, x1, y, txt, size = 1.98) {
         label(txt, (x0 + x1)/2, y - 1.8, size);
     }
 }
-module dim_v(x, z0, z1, txt, size = 1.98) {
+// tx/ta let the caller pull the text out to a shared column and choose a
+// side. at_top puts it level with the upper tick instead of the midpoint —
+// three dims that all start at the floor have near-identical midpoints, so
+// midpoint text piles up in one band.
+module dim_v(x, z0, z1, txt, size = 1.98, tx = undef, ta = "left", at_top = false) {
     color("black") {
         translate([x, z0]) square([1.4, stroke], center = true);
         translate([x, z1]) square([1.4, stroke], center = true);
         translate([x - stroke/2, z0]) square([stroke, z1 - z0]);
-        label(txt, x + 1.4, (z0 + z1)/2, size, "left");
+        label(txt, is_undef(tx) ? x + 1.4 : tx,
+              at_top ? z1 : (z0 + z1)/2, size, ta);
     }
 }
 
@@ -68,14 +82,12 @@ module drawing() {
         translate([stroke, stroke]) square([WW - 2*stroke, WH - 2*stroke]);
         translate([fan_x, fan_z]) circle(r = fan_d/2, $fn = 48);
         translate([gr_x, gr_z]) circle(r = gr_d/2, $fn = 32);
-        translate([gr2_x, gr2_z]) circle(r = gr_d/2, $fn = 32);
         translate([intake_vent_x - intake_vent_w/2, intake_vent_z - intake_vent_h/2])
             square([intake_vent_w, intake_vent_h]);
     }
     // hole edges
     translate([fan_x, fan_z]) ring(fan_d/2);
     translate([gr_x, gr_z]) ring(gr_d/2);
-    translate([gr2_x, gr2_z]) ring(gr_d/2);
     // low intake vent: rectangular opening with louver hints
     color("black") difference() {
         translate([intake_vent_x - intake_vent_w/2 - stroke, intake_vent_z - intake_vent_h/2 - stroke])
@@ -108,25 +120,35 @@ module drawing() {
     }
 
     // ---- hole dimensions (all of them) ----
-    dim_h(0, fan_x, -3, str(fan_x, "\" driver edge -> fan center"));
-    dim_v(WW + 2.5, 0, fan_z, str(round(fan_z * 10) / 10, "\" floor -> fan center"));
-    dim_h(0, gr_x, -6.5, str(gr_x, "\" -> both grommet centers"));
-    dim_v(WW + 7.5, 0, gr_z, str(gr_z, "\" -> DC grommet"));
-    dim_v(WW + 12, 0, gr2_z, str(gr2_z, "\" -> strip-line grommet"));
-    dim_h(0, WW, -10, str(WW, "\" wide"));
-    dim_v(-2.5, 0, WH, str(WH, "\" tall"));
+    dim_h(0, fan_x, -3, str(fan_x, "\" → fan center"));
+    dim_h(0, gr_x, -7, str(gr_x, "\" → grommet"));
+    dim_h(0, WW, -11, str(WW, "\" wide"));
+    TXCOL = WW + 13.5;   // shared text column for the three floor-referenced dims
+    dim_v(WW + 2.5, 0, fan_z, str(round(fan_z * 10) / 10, "\" fan"),
+          tx = TXCOL, at_top = true);
+    dim_v(WW + 7.5, 0, gr_z, str(gr_z, "\" DC grommet"),
+          tx = TXCOL, at_top = true);
+    // the height dim reads outward to the LEFT; text inside the blank would
+    // land on the vent and grommet callouts
+    dim_v(-2.5, 0, WH, str(WH, "\" tall"),
+          tx = -3.6, ta = "right");
 
-    label(str("fan hole: ", fan_d, "\" dia (120mm) — hole saw or jigsaw"), fan_x + fan_d/2 + 1.5, fan_z + 1.6, 1.15, "left");
-    label("4x #8 fan screws on a 4.13\" (105mm) square", fan_x + fan_d/2 + 1.5, fan_z + 0.2, 1.0, "left");
-    label(str("grommets: ", gr_d, "\" dia x2 — fridge DC line (low) + Power strip 1's line (upper)"), gr2_x + 1.5, gr2_z + 2.6, 1.05, "left");
-    label(str("LOW INTAKE VENT: ", intake_vent_w, "\" x ", intake_vent_h, "\" louver at ", intake_vent_x, "\" over, ", intake_vent_z, "\" up — admits cool floor-level air"), intake_vent_x + 2, intake_vent_z - intake_vent_h/2 - 1.2, 1.0);
+    // Callouts sit in the wall's empty passenger half on leader lines. Set
+    // beside the openings they had nowhere to go — the fan, louver and
+    // grommets are all in the driver third.
+    // stacked in one column in the wall's empty upper-right quadrant, in the
+    // same top-to-bottom order as the features they point at
+    callout(str("FAN ", fan_d, "\" dia"), fan_x + fan_d/2, fan_z + 1.4, 21, 14);
+    callout(str("LOUVER ", intake_vent_w, "\" x ", intake_vent_h, "\""),
+            intake_vent_x + intake_vent_w/2, intake_vent_z, 21, 11);
+    callout("DC GROMMET 1\"", gr_x + gr_d/2, gr_z, 21, 8);
     // MOVED TO THE DOCUMENT: label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
 
     // ---- title + notes ----
-    label("PANEL C FRONT WALL — 3/8\" ply, flat pattern (the ONLY wall on any panel)", WW/2, WH + 6.4, 1.8);
+    label("PANEL C FRONT WALL — 3/8\" ply, flat pattern", WW/2, WH + 4.5, 2.4);
     // MOVED TO THE DOCUMENT: label("Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.", WW/2, WH + 4.4, 1.15);
     // MOVED TO THE DOCUMENT: label("Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + open utility bay + kitchen + kitchen drawer fill it.", WW/2, WH + 3.1, 1.05);
-    label("DRIVER side at left (the fridge bay's side) — PASSENGER at right. All positions computed from params.scad.", WW/2, -13, 1.05);
+    label("DRIVER side at left (the fridge bay) — PASSENGER at right", WW/2, -15.5, 1.9);
 }
 
 color("black") drawing();
