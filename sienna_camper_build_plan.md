@@ -134,6 +134,23 @@ so it was holding every label on the drawing to about 4pt on paper.
 Standing at the tailgate looking in, the DRIVER side is on **your left** —
 exactly as drawn. Both appliances are shown stowed for driving.
 
+And the same view with both units **deployed** — pulled out the tailgate and set
+up for use, leaving their bays in Panel C empty:
+
+![Rear view — deployed](renders/rear-view-deployed.svg)
+
+The deck plane the two units slide out of is 46" wide, recessed flush behind the
+tailgate end rail — dimensioned on the Panel C sheets. Markers 1–5 are keyed in
+the legend on the sheet itself.
+
+Side elevations, driver and passenger, showing where each panel sits against the
+van's own openings — the side doors reach Panel A but not Panel B, which is why
+Panel B is top-loaded:
+
+![Driver-side elevation](renders/side-driver.svg)
+
+![Passenger-side elevation](renders/side-passenger.svg)
+
 
 *Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
 

@@ -68,8 +68,11 @@ module drawing() {
         translate([side_door_y0 + side_door_opening_width - stroke, 0]) square([stroke, side_door_opening_height]);
         translate([side_door_y0, side_door_opening_height - stroke]) square([side_door_opening_width, stroke]);
     }
-    label(str(side_door_opening_width, "\" sliding-door opening (UNVERIFIED position)"),
-          side_door_y0 + side_door_opening_width/2, side_door_opening_height + 1.6, 1.15);
+    // side_door_y0 was MEASURED in Aug 2026 (the seatback is even with the
+    // opening, ~1/4in into it) — this label still said UNVERIFIED.
+    label(str(side_door_opening_width, "\" x ", side_door_opening_height,
+              "\" side-door opening (MEASURED)"),
+          side_door_y0 + side_door_opening_width/2, side_door_opening_height + 1.8, 1.5);
 
     // the three panel boxes: legs + top rail
     plen = [panel_a_length, panel_b_length, panel_c_length];
@@ -83,7 +86,7 @@ module drawing() {
         label(pnm[i], pys[i] + frame_rail_sz + 2, plh[i] - 1.1, 1.35, "left"); // corner tag, tucked under the top rail clear of the shelf lines
     }
     // Panel B is a bare deep-storage cube (nothing exits it sideways)
-    label("bare-frame deep storage", y_b + panel_b_length/2, leg_height_ab/2, 1.1);
+    label("bare-frame deep storage", y_b + panel_b_length/2, leg_height_ab/2, 1.5);
     // Panel C deck — recessed between its rails, flush with the rail tops
     translate([y_c + frame_rail_sz, z_rail_top - panel_thickness]) rect_outline(panel_c_length - 2 * frame_rail_sz, panel_thickness);
 
@@ -93,18 +96,18 @@ module drawing() {
         // WAVE 3 sitting in the open bay (no drawer box)
         wy = y_a + frame_rail_sz + 1;
         translate([wy, 0]) dash_box(wave3_depth, wave3_height);
-        label("WAVE 3 A/C", wy + wave3_depth/2, wave3_height/2 + 1, 1.05);
-        label("(open bay,", wy + wave3_depth/2, wave3_height/2 - 0.6, 0.9);
-        label("hand-slid)", wy + wave3_depth/2, wave3_height/2 - 2, 0.9);
+        label("WAVE 3 A/C", wy + wave3_depth/2, wave3_height/2 + 1.6, 1.5);
+        label("(open bay,", wy + wave3_depth/2, wave3_height/2 - 0.3, 1.4);
+        label("hand-slid)", wy + wave3_depth/2, wave3_height/2 - 2.2, 1.4);
         // found-storage shelf above it (cleat-mounted)
         color("SaddleBrown") translate([y_a + frame_rail_sz, wave3_shelf_z]) square([drawer_depth, 0.3]);
     } else {
         // DELTA 3 drawer
         dy = y_a + frame_rail_sz + 1;
         translate([dy, 1]) dash_box(drawer_depth - 2, drawer_height - 1);
-        label("DELTA 3 Plus +", dy + (drawer_depth-2)/2, drawer_height/2 + 1, 1.05);
-        label("Extra Battery", dy + (drawer_depth-2)/2, drawer_height/2 - 0.5, 1.0);
-        label("(slide-out drawer)", dy + (drawer_depth-2)/2, drawer_height/2 - 2, 0.9);
+        label("DELTA 3 Plus +", dy + (drawer_depth-2)/2, drawer_height/2 + 1.7, 1.5);
+        label("Extra Battery", dy + (drawer_depth-2)/2, drawer_height/2 - 0.2, 1.5);
+        label("(slide-out drawer)", dy + (drawer_depth-2)/2, drawer_height/2 - 2.3, 1.4);
         color("SaddleBrown") translate([dy, drawer_height]) square([drawer_depth - 2, 0.3]);
     }
 
@@ -114,28 +117,28 @@ module drawing() {
         fy = y_c + panel_c_length - fridge_ext_width - 0.5;
         translate([fy, fridge_tray_gap + fridge_tray_t]) dash_box(fridge_ext_width, fridge_ext_height);
         color("Gray") translate([fy, fridge_tray_gap]) square([fridge_ext_width, fridge_tray_t]);
-        label("Fridge (Rocky 40)", fy + fridge_ext_width/2, fridge_ext_height/2 + 1.5, 1.05);
-        label("on a tray + slides", fy + fridge_ext_width/2, fridge_ext_height/2, 0.9);
-        label("-> out the tailgate", fy + fridge_ext_width/2, fridge_ext_height/2 - 1.6, 0.9);
+        label("Fridge (Rocky 40)", fy + fridge_ext_width/2, fridge_ext_height/2 + 2.4, 1.5);
+        label("on a tray + slides", fy + fridge_ext_width/2, fridge_ext_height/2 + 0.2, 1.4);
+        label("→ out the tailgate", fy + fridge_ext_width/2, fridge_ext_height/2 - 2.0, 1.4);
     } else {
         // kitchen unit
         ky = y_c + panel_c_length - kitchen_box_length - 0.5;
         translate([ky, 0]) dash_box(kitchen_box_length, kitchen_box_height);
-        label("Kitchen unit (JAGAHAHA)", ky + kitchen_box_length/2, kitchen_box_height/2 + 1, 1.05);
-        label("-> slides out the tailgate", ky + kitchen_box_length/2, kitchen_box_height/2 - 0.8, 0.9);
+        label("Kitchen unit (JAGAHAHA)", ky + kitchen_box_length/2, kitchen_box_height/2 + 1.4, 1.5);
+        label("→ slides out the tailgate", ky + kitchen_box_length/2, kitchen_box_height/2 - 1.2, 1.4);
         // kitchen drawer hung above it
         color("Goldenrod") translate([ky + 1, kdrawer_z0]) dash_box(kdrawer_box_len - 2, kdrawer_box_h);
-        label("kitchen drawer", ky + kitchen_box_length/2, kdrawer_z0 + kdrawer_box_h/2, 0.85);
+        label("kitchen drawer", ky + kitchen_box_length/2, kdrawer_z0 + kdrawer_box_h/2, 1.4);
     }
 
     // bed platform + mattress + rear pantry (shared stack, both sides)
     translate([y_a, z_ab_rail]) rect_outline(bed_frame_length, bed_frame_thickness);
     translate([y_a, z_plat_top]) rect_outline(mattress_length, mattress_total_thickness);
-    label(str("Mattress (top at ", z_matt_top, "\")"), mattress_length/2, z_plat_top + mattress_total_thickness/2, 1.4);
+    label(str("Mattress (top at ", z_matt_top, "\")"), mattress_length/2, z_plat_top + mattress_total_thickness/2, 1.6);
     translate([y_pan, z_deck]) rect_outline(pantry_unit_d, pantry_cluster_h);
     translate([y_pan, z_deck + pantry_unit_h]) square([pantry_unit_d, stroke]);
-    label("Pan-", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 3, 1.15);
-    label("try", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 5, 1.15);
+    label("Pan-", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 3.4, 1.5);
+    label("try", y_pan + pantry_unit_d/2, z_deck + pantry_cluster_h - 5.6, 1.5);
 
     label(str(is_driver ? "DRIVER SIDE — looking in from this door.  FRONT SEATS at left, TAILGATE at right."
                         : "PASSENGER SIDE — looking in from this door.  TAILGATE at left, FRONT SEATS at right."),

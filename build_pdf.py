@@ -342,7 +342,7 @@ def main():
 
 ![No-drill anchor platform — overhead detail](renders/anchor-platform-overhead.png)
 
-*The no-drill rail platform (Section 8) in plan view, before the whole-van floorplan below: the mat + ply anchor board under Panel C, its 2 steel tongues bolted to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Tailgate at the bottom, forward at the top. Rail-end and striker positions are ASSUMED until the Section 0 F1–F8 survey.*
+*The no-drill rail platform (Section 8) in plan view, before the whole-van floorplan below: the mat + ply anchor board under Panel C, its 2 steel tongues bolted to the rear ends of the 2nd-row long-slide floor rails, and its 3 ratchet straps dropping into the crash-rated 3rd-row striker loops. Tailgate at the bottom, forward at the top. Rail-end and striker positions are ASSUMED until the Appendix A F1–F8 survey.*
 
 ![Overhead floorplan](renders/top-down.png)
 
