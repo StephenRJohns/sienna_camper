@@ -74,18 +74,18 @@ module van_base() {
         dash_x(sy(van_interior_width - vent_intrusion_width), sx(van_interior_length), HATCH_X, THIN);
     }
 
-    txt("FRONT SEATS", sx(SEAT_MID_Y), CL - 26, 2.7, "center", GRY);
-    txt("SLIDING DOOR", sx((DOOR_Y0+DOOR_Y1)/2), BODY_Y0 - 4.5, 2.7, "center", GRY);
-    txt("SLIDING DOOR", sx((DOOR_Y0+DOOR_Y1)/2), BODY_Y1 + 4.5, 2.7, "center", GRY);
-    txt("usable interior floor (2nd row OUT)", sx(60), CL, 2.7, "center", GRY);
+    txt("FRONT SEATS", sx(SEAT_MID_Y), CL - 26, 3.5, "center", GRY);
+    txt("SLIDING DOOR", sx((DOOR_Y0+DOOR_Y1)/2), BODY_Y0 - 4.5, 3.5, "center", GRY);
+    txt("SLIDING DOOR", sx((DOOR_Y0+DOOR_Y1)/2), BODY_Y1 + 4.5, 3.5, "center", GRY);
+    txt("usable interior floor (2nd row OUT)", sx(60), CL, 3.5, "center", GRY);
 
-    txt("<- FRONT", 4, TITLE_Y, 3.2, "left", "Black");
-    txt("TAILGATE ->", SW - 4, TITLE_Y, 3.2, "right", "Black");
-    color(GRY) translate([BODY_X0 - 4, BODY_Y0 + 2]) rotate(90) text("DRIVER side", size = 2.7, valign = "center");
-    color(GRY) translate([BODY_X0 - 4, BODY_Y1 - 2]) rotate(-90) text("PASSENGER side", size = 2.7, valign = "center");
-    txt("CLOSED HATCH (the right-hand edge) = the fore-aft datum", 4, 134, 2.6, "left", "Black");
-    txt("Body outline illustrative. Interior features are drawn at the MEASURED dimensions (owner, Aug 1 2026) — this is a record, not a checklist.",
-        4, 1.6, 2.6, "left", GRY);
+    txt("<- FRONT", 4, TITLE_Y, 4.2, "left", "Black");
+    txt("TAILGATE ->", SW - 4, TITLE_Y, 4.2, "right", "Black");
+    color(GRY) translate([BODY_X0 - 4, BODY_Y0 + 2]) rotate(90) text("DRIVER side", size = 3.4, valign = "center");
+    color(GRY) translate([BODY_X0 - 4, BODY_Y1 - 2]) rotate(-90) text("PASSENGER side", size = 3.4, valign = "center");
+    txt("CLOSED HATCH (the right-hand edge) = the fore-aft datum", 4, 134, 3.4, "left", "Black");
+    txt("Body outline illustrative. Interior features drawn at the MEASURED dimensions (Aug 2026) — a record, not a checklist.",
+        4, 1.6, 3.0, "left", GRY);
 }
 
 // ============================================================
@@ -96,7 +96,7 @@ module v1() {
         dash_y(sx(van_interior_length), FLOOR_Y0 - 3, FLOOR_Y1 + 3, HEAVY);
         translate([HATCH_X - 0.8, FLOOR_Y0 - 3]) square([1.6, van_interior_width + 6]);
     }
-    dim_x(HATCH_X, sx(van_interior_length), DIM1_Y, "V1", 2.9, RED, DIM1_Y - FLOOR_Y1 - 2);
+    dim_x(HATCH_X, sx(van_interior_length), DIM1_Y, "V1", 3.6, RED, DIM1_Y - FLOOR_Y1 - 2);
     callout("V1", [
         "INTERIOR LENGTH — closed hatch to the front seatbacks, along the floor.",
         "This is the number the whole panel train is sized against: Panel A + B + C",
@@ -130,13 +130,14 @@ module v2() {
 // ============================================================
 module v3() {
     color(RED) dash_y(sx(50), FLOOR_Y0, FLOOR_Y1, HEAVY);
-    txt("section taken here", sx(50), FLOOR_Y1 + 4.5, 2.6, "center", RED);
+    txt("section taken here", sx(50), FLOOR_Y1 + 4.5, 3.4, "center", RED);
     callout("V3", [
-        "INTERIOR HEIGHT — cargo floor up to the headliner, at the",
-        "sleeping run (not at the tailgate, where the roof drops).",
-        "-> params.scad: van_interior_height. MEASURED 42\" mid-van",
-        "   (37\" back at the gate) — Aug 2026. It caps the whole",
-        "   stack: deck + mattress + sitting headroom (now 19.5\").",
+        "INTERIOR HEIGHT — cargo floor to the",
+        "headliner at the sleeping run (not the",
+        "tailgate, where the roof drops).",
+        "-> params.scad: van_interior_height.",
+        "   MEASURED 42\" mid-van, 37\" at the gate",
+        "   (Aug 2026). It caps the whole stack.",
     ]);
     inset(INSET_X, 6, 98, 30, "V3  REAR SECTION — floor to headliner") {
         color("Black") {
@@ -145,9 +146,10 @@ module v3() {
             translate([INSET_X + 20, 8]) square([0.7, 19]);
             translate([INSET_X + 77.3, 8]) square([0.7, 19]);
         }
-        txt("headliner", INSET_X + 22, 29, 2.4, "left", GRY);
-        txt("cargo floor", INSET_X + 22, 6, 2.4, "left", GRY);
-        dim_y(8.7, 27, INSET_X + 15, "V3", 2.7);
+        // inside the section, clear of both lines and of the box edge
+        txt("headliner", INSET_X + 22, 24.2, 3.2, "left", GRY);
+        txt("cargo floor", INSET_X + 22, 10.8, 3.2, "left", GRY);
+        dim_y(8.7, 27, INSET_X + 15, "V3", 3.5);
     }
 }
 
@@ -161,10 +163,10 @@ module v4() {
     }
     // the strips are only ~2.5" wide, so a centred dim label lands on top
     // of the line — put the tags outboard of the floor edges instead
-    dim_y(FLOOR_Y0, sy(vent_intrusion_width), sx(24), "", 2.9, RED, "left");
-    dim_y(sy(van_interior_width - vent_intrusion_width), FLOOR_Y1, sx(24), "", 2.9, RED, "right");
-    txt("V4a", sx(24), FLOOR_Y0 - 5, 2.9, "center", RED);
-    txt("V4b", sx(24), FLOOR_Y1 + 5, 2.9, "center", RED);
+    dim_y(FLOOR_Y0, sy(vent_intrusion_width), sx(24), "", 3.6, RED, "left");
+    dim_y(sy(van_interior_width - vent_intrusion_width), FLOOR_Y1, sx(24), "", 3.6, RED, "right");
+    txt("V4a", sx(24), FLOOR_Y0 - 5, 3.6, "center", RED);
+    txt("V4b", sx(24), FLOOR_Y1 + 5, 3.6, "center", RED);
     callout("V4", [
         "VENT INTRUSION at FLOOR LEVEL, one measurement per side: how far the",
         "floor vent / trim kick eats into the usable width down at the floor.",
@@ -182,7 +184,7 @@ module v5() {
         dash_y(sx(hatch_curvature_clearance), FLOOR_Y0, FLOOR_Y1, HEAVY);
         translate([HATCH_X - 0.8, FLOOR_Y0]) square([1.6, van_interior_width]);
     }
-    dim_x(HATCH_X, sx(hatch_curvature_clearance), DIM1_Y, "V5", 2.9, RED, DIM1_Y - FLOOR_Y1 - 2);
+    dim_x(HATCH_X, sx(hatch_curvature_clearance), DIM1_Y, "V5", 3.6, RED, DIM1_Y - FLOOR_Y1 - 2);
     callout("V5", [
         "HATCH CURVATURE CLEARANCE — how far forward of the closed hatch you have",
         "to stop building, because the glass and trim curve inward above the floor.",
@@ -197,14 +199,14 @@ module v5() {
 // ============================================================
 module v6() {
     color(RED) translate([HATCH_X - 0.8, FLOOR_Y0 - 4]) square([1.6 + HEAVY, van_interior_width + 8]);
-    txt("elevation taken at the open tailgate ->", sx(14), FLOOR_Y1 + 4.5, 2.6, "right", RED);
+    txt("elevation taken at the open tailgate ->", sx(14), FLOOR_Y1 + 4.5, 3.4, "right", RED);
     callout("V6", [
-        "The TAILGATE (gate) opening, from outside at the open",
-        "hatch: WIDTH at its NARROWEST point (V6a), and HEIGHT",
-        "where the rounded corners start cutting in (V6b).",
-        "-> MEASURED Aug 2026: gate_opening_width 50\",",
-        "   gate_opening_height 37\" at the centre — but only",
-        "   20.5\" at the corner radius. Carry modules up the MIDDLE.",
+        "The TAILGATE opening, from outside at",
+        "the open hatch: WIDTH at its NARROWEST",
+        "point (V6a), HEIGHT where the corners",
+        "cut in (V6b). Carry modules up the MIDDLE.",
+        "-> MEASURED Aug 2026: 50\" wide, 37\" high",
+        "   at the centre, only 20.5\" at the radius.",
     ]);
     inset(INSET_X, 6, 98, 30, "V6  REAR ELEVATION — the gate opening") {
         // opening with radiused corners, drawn small-scale
@@ -212,10 +214,11 @@ module v6() {
             offset(r = 4) translate([4, 4]) square([44, 16]);
             offset(r = 3.4) translate([4, 4]) square([44, 16]);
         }
-        dim_x(INSET_X + 26, INSET_X + 78, 25.5, "V6a", 2.6);
-        dim_y(7, 31, INSET_X + 22, "V6b", 2.6);
-        txt("measure the NARROWEST width and the height", INSET_X + 26, 4.6, 2.3, "left", GRY);
-        txt("where the corner radius starts", INSET_X + 26, 2.2, 2.3, "left", GRY);
+        dim_x(INSET_X + 26, INSET_X + 78, 25.5, "V6a", 3.4);
+        dim_y(7, 31, INSET_X + 22, "V6b", 3.4);
+        // (the "narrowest width, height where the radius starts" note that
+        // used to print here is the callout above, said twice — and it sat
+        // below the box edge, on top of the sheet footer)
     }
 }
 
@@ -228,14 +231,14 @@ module v7() {
         dash_x(FLOOR_Y1 + 2.5, sx(80), HATCH_X, HEAVY);
         translate([sx(80) - 0.8, FLOOR_Y0 - 2.5]) square([1.6, van_interior_width + 5]);
     }
-    dim_x(HATCH_X, sx(80), DIM1_Y, "along the whole sleeping run", 2.9, RED, DIM1_Y - FLOOR_Y1 - 4);
+    dim_x(HATCH_X, sx(80), DIM1_Y, "along the whole sleeping run", 3.6, RED, DIM1_Y - FLOOR_Y1 - 4);
     callout("V7", [
-        "WALL-TO-WALL WIDTH at PLATFORM HEIGHT — at ~18.5\"",
-        "(V7a) and ~22.5\" (V7b) above the floor. 49\" is the",
-        "FLOOR pinch; the walls were ASSUMED to flare wider up.",
-        "-> MEASURED Aug 2026: they do NOT — 50\" and 49.5\",",
-        "   against the >= 53\" needed. So bed_frame_width was",
-        "   cut 52\" -> 49\", and the slats 45\" -> 42\".",
+        "WALL-TO-WALL WIDTH at PLATFORM HEIGHT:",
+        "~18.5\" (V7a), ~22.5\" (V7b). 49\" is the",
+        "FLOOR pinch; walls ASSUMED to flare up.",
+        "-> MEASURED Aug 2026: they do NOT — 50\"",
+        "   and 49.5\" vs the >= 53\" needed. So",
+        "   bed_frame_width 52->49\", slats 45->42\"",
     ]);
     inset(INSET_X, 6, 98, 30, "V7  REAR SECTION — width vs. height") {
         color("Black") {
@@ -247,9 +250,9 @@ module v7() {
             translate([INSET_X + 20, 15]) square([58, 0.6]);   // ~18.5"
             translate([INSET_X + 19, 22]) square([60, 0.6]);   // ~22.5"
         }
-        txt("V7a ~18.5\"", INSET_X + 79, 15.3, 2.4, "left", RED);
-        txt("V7b ~22.5\"", INSET_X + 79, 22.3, 2.4, "left", RED);
-        txt("floor pinch 49\"", INSET_X + 24, 9.2, 2.3, "left", GRY);
+        txt("V7a ~18.5\"", INSET_X + 26, 17.6, 3.2, "left", RED);
+        txt("V7b ~22.5\"", INSET_X + 26, 24.6, 3.2, "left", RED);
+        txt("floor pinch 49\"", INSET_X + 26, 9.4, 3.2, "left", GRY);
     }
 }
 
@@ -259,24 +262,24 @@ module v7() {
 module v8() {
     color(RED) for (dy = [BODY_Y0 - 2, BODY_Y1 + 0.6])
         translate([sx(DOOR_Y1), dy]) square([DOOR_Y1 - DOOR_Y0, 1.4]);
-    dim_x(sx(DOOR_Y1), sx(DOOR_Y0), DIM1_Y, "V8a", 2.9, RED, DIM1_Y - BODY_Y1 - 3);
+    dim_x(sx(DOOR_Y1), sx(DOOR_Y0), DIM1_Y, "V8a", 3.6, RED, DIM1_Y - BODY_Y1 - 3);
     callout("V8", [
-        "The SIDE SLIDING DOOR: fore-aft WIDTH (V8a), HEIGHT",
-        "(V8b), and the one that actually matters — the USABLE",
-        "CLEAR width/height at the door's real STOPPING POINT (V8c).",
-        "-> MEASURED Aug 2026: aperture 35 x 45\", but the door parks",
-        "   6\" short of its forward edge, so the usable CLEAR gap is",
-        "   only 29\" — 11\" tighter than the 40\" assumed.",
+        "The SIDE SLIDING DOOR: fore-aft WIDTH",
+        "(V8a), HEIGHT (V8b), and the one that",
+        "matters — USABLE CLEAR width/height",
+        "where the door STOPS (V8c).",
+        "-> MEASURED Aug 2026: aperture 35 x 45\",",
+        "   door parks 6\" short: CLEAR gap 29\".",
     ]);
     inset(INSET_X, 6, 98, 30, "V8  SIDE ELEVATION — the door opening") {
         color("Black") translate([INSET_X + 24, 8]) difference() {
             offset(r = 3) translate([3, 3]) square([46, 16]);
             offset(r = 2.5) translate([3, 3]) square([46, 16]);
         }
-        dim_x(INSET_X + 24, INSET_X + 76, 26, "V8a", 2.6);
-        dim_y(8, 30, INSET_X + 20, "V8b", 2.6);
+        dim_x(INSET_X + 24, INSET_X + 76, 26, "V8a", 3.4);
+        dim_y(8, 30, INSET_X + 20, "V8b", 3.4);
         color(RED) translate([INSET_X + 33, 9]) square([34, 0.6]);
-        txt("V8c = clear at the door's actual stop", INSET_X + 24, 5.4, 2.3, "left", RED);
+        txt("V8c", INSET_X + 48, 14, 3.2, "left", RED);
     }
 }
 
@@ -289,23 +292,31 @@ module v9() {
         translate([front_x - 1.6, CL - 1.6]) square([3.2, 3.2]);          // front console
         translate([sx(10) - 1.6, sy(van_interior_width - 16) - 1.6]) square([3.2, 3.2]); // rear quarter trim
     }
-    txt("V9a", front_x, CL + 5, 2.9, "center", RED);
-    txt("V9b", sx(10), sy(van_interior_width - 16) + 5, 2.9, "center", RED);
+    txt("V9a", front_x, CL + 5, 3.6, "center", RED);
+    txt("V9b", sx(10), sy(van_interior_width - 16) + 5, 3.6, "center", RED);
     callout("V9", [
-        "The van's TWO AC outlets — both fed by the ONE 1500W",
-        "inverter, so they share one budget. V9a front centre",
-        "console (1500W, VERIFIED). V9b rear passenger-side",
-        "quarter trim (VERIFIED — inset shows where exactly).",
-        "-> NEW check: confirm the quarter trim / cup holders",
-        "   don't intrude inboard of the 46\" deck width.",
+        "The van's TWO AC outlets — both fed by",
+        "the ONE 1500W inverter, so they share",
+        "one budget. V9a front console (1500W),",
+        "V9b rear passenger quarter trim (inset).",
+        "-> Confirm the trim / cup holders do not",
+        "   intrude inboard of the 46\" deck width.",
     ]);
     inset(INSET_X, 6, 98, 30, "V9b  REAR OUTLET — where it sits") {
         color("Black") translate([INSET_X + 20, 7]) rect_ol(0, 0, 60, 22, 0.45);
-        color(RED) translate([INSET_X + 46, 14]) square([4, 4]);
-        txt("~9.5\" above the cargo floor,", INSET_X + 22, 25, 2.4, "left", GRY);
-        txt("~10\" fwd of the liftgate scuff plate,", INSET_X + 22, 22.4, 2.4, "left", GRY);
-        txt("socket centre ~16\" in from the sidewall", INSET_X + 22, 19.8, 2.4, "left", GRY);
-        txt("above the 12V battery panel, below the cup holders", INSET_X + 4, 9.5, 2.3, "left", GRY);
+        color(RED) translate([INSET_X + 66, 12]) square([4, 4]);
+        // MEASURED Aug 1 2026. This inset carried the pre-survey guess
+        // (~9.5in up, ~16in in) while its own callout said "VERIFIED — inset
+        // shows where exactly"; Section 5 records the real numbers as
+        // correcting exactly those two figures.
+        // The box is y 6..36 with its title at the top and the trim-panel
+        // rectangle filling 7..29, so there is no free band outside it for four
+        // lines — they land on the title and across the rectangle's edges.
+        // Inside the rectangle, 4.5 apart, with the socket marker moved clear.
+        txt("22.5\" above the cargo floor", INSET_X + 23, 25, 3.2, "left", RED);
+        txt("socket centre 10\" in", INSET_X + 23, 20.5, 3.2, "left", RED);
+        txt("~10\" fwd of the scuff plate", INSET_X + 23, 16, 3.2, "left", GRY);
+        txt("over the 12V panel", INSET_X + 23, 10.5, 3.2, "left", GRY);
     }
 }
 
@@ -314,21 +325,21 @@ module v9() {
 // ============================================================
 module v10() {
     color(RED) for (yy = [8, 30, 52, 74]) dash_y(sx(yy), FLOOR_Y0, FLOOR_Y1, MED);
-    txt("check level at several stations along the run", sx(40), FLOOR_Y1 + 4.5, 2.6, "center", RED);
+    txt("check level at several stations along the run", sx(40), FLOOR_Y1 + 4.5, 3.4, "center", RED);
     callout("V10", [
-        "Is the CARGO FLOOR LEVEL front-to-back, or sloped?",
-        "Lay a long level along the run, check several points.",
-        "Every module's 4 legs are one length, which only gives",
-        "a level deck if the floor itself is level.",
-        "-> MEASURED Aug 2026: mostly level — level at the ends,",
-        "   minor change between. The leg feet absorb it.",
+        "Is the CARGO FLOOR LEVEL front-to-back,",
+        "or sloped? Lay a long level along the run.",
+        "Every module's 4 legs are one length, so",
+        "the deck is level only if the floor is.",
+        "-> MEASURED Aug 2026: level at the ends,",
+        "   minor change between; the feet absorb it.",
     ]);
     inset(INSET_X, 6, 98, 30, "V10  SIDE SECTION — level check") {
         color("Black") translate([INSET_X + 12, 12]) polygon([[0,0],[74,3],[74,4],[0,1]]);
         color(RED) translate([INSET_X + 12, 20]) square([74, 0.7]);
-        txt("a true level", INSET_X + 14, 22.6, 2.4, "left", RED);
-        txt("floor — sloped? by how much, over what run?", INSET_X + 12, 9, 2.3, "left", GRY);
-        txt("TAILGATE ->", INSET_X + 86, 14, 2.3, "right", GRY);
+        txt("a true level", INSET_X + 14, 22.6, 3.2, "left", RED);
+        txt("floor", INSET_X + 14, 8.6, 3.2, "left", GRY);
+        txt("TAILGATE ->", INSET_X + 86, 25.5, 3.2, "right", GRY);
     }
 }
 

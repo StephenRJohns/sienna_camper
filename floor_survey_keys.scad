@@ -136,29 +136,32 @@ module van_base() {
     // ---- base labels. The cargo zone is tight, so these are placed on
     // two rows OUTSIDE the floor (passenger side) plus a row below it,
     // chosen so nothing lands on the striker column or a wheel well. ----
-    txt("FRONT SEATS", sx(SEAT_MID_Y), CL - 26, 2.7, "center", GRY);
-    txt("SLIDING DOOR", sx(DOOR_MID_Y), BODY_Y0 - 4.5, 2.7, "center", GRY);
-    txt("SLIDING DOOR", sx(DOOR_MID_Y), BODY_Y1 + 4.5, 2.7, "center", GRY);
-    txt("2nd ROW REMOVED", sx(88), CL + 14, 3.0, "center", GRY);
-    txt("(carriages parked fwd)", sx(88), CL + 9.6, 2.5, "center", GRY);
-    txt("PANEL C", sx(16), FLOOR_Y1 + 4, 2.7, "center", GRY);
-    txt("STRIKERS", sx(STRIKER_Y), FLOOR_Y1 + 9.2, 2.6, "center", GRY);
-    txt("WELL", sx(19), FLOOR_Y1 + 9.2, 2.6, "center", GRY);
-    // pulled rearward + further out: at sx(95) this 33-unit-wide label ran into
-    // "FRONT SEATS" (centred at sx(107)) on all 8 survey sheets
-    txt("long-slide FLOOR RAILS", sx(76), sy(23), 2.6, "center", GRY);
-    txt("3rd ROW FOLDED", sx(44), FLOOR_Y1 + 4, 2.6, "center", GRY);
+    txt("FRONT SEATS", sx(SEAT_MID_Y), CL - 26, 3.5, "center", GRY);
+    txt("SLIDING DOOR", sx(DOOR_MID_Y), BODY_Y0 - 4.5, 3.5, "center", GRY);
+    txt("SLIDING DOOR", sx(DOOR_MID_Y), BODY_Y1 + 4.5, 3.5, "center", GRY);
+    txt("2nd ROW REMOVED", sx(88), CL + 14, 3.5, "center", GRY);
+    txt("(carriages parked fwd)", sx(88), CL + 9.6, 3.0, "center", GRY);
+    txt("PANEL C", sx(16), FLOOR_Y1 + 4, 3.5, "center", GRY);
+    txt("STRIKERS", sx(STRIKER_Y), FLOOR_Y1 + 4, 3.4, "center", GRY);
+    txt("WELL", sx(19), FLOOR_Y1 + 9.2, 3.4, "center", GRY);
+    // Sits between the two rails (sy 23 is just under the centreline) and well
+    // FORWARD, at sx(100). Every section's red overlay lives at the tailgate end
+    // (sx < ~55: the strikers on F4, the 3rd row on F6, Panel C on F5), and at
+    // sx(82) the red labels F4b/F6a were landing on this one. "FRONT SEATS" is
+    // in a different lateral band (y 57 vs 81.5), so passing over it is fine.
+    txt("long-slide FLOOR RAILS", sx(100), sy(23), 3.4, "center", GRY);
+    txt("3rd ROW FOLDED", sx(50), FLOOR_Y1 + 9.2, 3.4, "center", GRY);
 
-    txt("<- FRONT", 4, TITLE_Y, 3.2, "left", "Black");
-    txt("TAILGATE ->", SW - 4, TITLE_Y, 3.2, "right", "Black");
-    color(GRY) translate([BODY_X0 - 4, BODY_Y0 + 2]) rotate(90) text("DRIVER side", size = 2.7, valign = "center");
-    color(GRY) translate([BODY_X0 - 4, BODY_Y1 - 2]) rotate(-90) text("PASSENGER side", size = 2.7, valign = "center");
+    txt("<- FRONT", 4, TITLE_Y, 4.2, "left", "Black");
+    txt("TAILGATE ->", SW - 4, TITLE_Y, 4.2, "right", "Black");
+    color(GRY) translate([BODY_X0 - 4, BODY_Y0 + 2]) rotate(90) text("DRIVER side", size = 3.4, valign = "center");
+    color(GRY) translate([BODY_X0 - 4, BODY_Y1 - 2]) rotate(-90) text("PASSENGER side", size = 3.4, valign = "center");
     // datum note goes in the LEFT of the top band — the dimension lines all
     // live at the tailgate end, so nothing crosses it there
     txt("CLOSED HATCH (the right-hand edge) = the Y datum for all Appendix A measurements",
-        4, 134, 2.6, "left", "Black");
-    txt("Body outline illustrative. Dashed interior features were ASSUMED; the survey (Aug 1 2026) confirmed or corrected each one — see the findings below.",
-        4, 4, 2.6, "left", GRY);
+        4, 134, 3.0, "left", "Black");
+    txt("Body outline illustrative. Dashed features were ASSUMED — the Aug 2026 survey confirmed or corrected each one.",
+        4, 4, 3.0, "left", GRY);
 }
 
 // ============================================================
@@ -187,8 +190,8 @@ module f2() {
         dash_y(sx(WELL_Y0), sy(WELL_X0), sy(WELL_X1), HEAVY);
         dash_y(sx(WELL_Y1), sy(WELL_X0), sy(WELL_X1), HEAVY);
     }
-    dim_x(HATCH_X, sx(WELL_Y0), DIM1_Y, "F2a", 2.9, RED, DIM1_Y - FLOOR_Y1 - 2);
-    dim_x(HATCH_X, sx(WELL_Y1), DIM2_Y, "F2b", 2.9, RED, DIM2_Y - FLOOR_Y1 - 2);
+    dim_x(HATCH_X, sx(WELL_Y0), DIM1_Y, "F2a", 3.6, RED, DIM1_Y - FLOOR_Y1 - 2);
+    dim_x(HATCH_X, sx(WELL_Y1), DIM2_Y, "F2b", 3.6, RED, DIM2_Y - FLOOR_Y1 - 2);
     callout("F2", [
         "Fore-aft position of the STOWAGE WELL: where its rear and forward edges",
         "sit, both measured from the CLOSED HATCH — the same Y datum as every",
@@ -215,18 +218,18 @@ module f3() {
             translate([INSET_X + 22, 12]) square([0.7, 13]);
             translate([INSET_X + 51.3, 12]) square([0.7, 13]);
         }
-        txt("load floor", INSET_X + 6, 27.2, 2.4, "left", GRY);
-        dim_y(12.7, 25, INSET_X + 19, "depth", 2.6);
-        txt("structural bottom", INSET_X + 24, 9.6, 2.4, "left", GRY);
+        txt("load floor", INSET_X + 6, 27.2, 3.2, "left", GRY);
+        dim_y(12.7, 25, INSET_X + 19, "depth", 3.4);
+        txt("structural bottom", INSET_X + 24, 9.6, 3.2, "left", GRY);
     }
 }
 
 module f4() {
     for (s = STRIKER_X) loop_icon(sx(STRIKER_Y), sy(s), 3.0, 1.1, RED);
     color(RED) dash_y(sx(STRIKER_Y), FLOOR_Y0, FLOOR_Y1, MED);
-    dim_x(HATCH_X, sx(STRIKER_Y), DIM1_Y, "F4a", 2.9, RED, DIM1_Y - FLOOR_Y1 - 2);
+    dim_x(HATCH_X, sx(STRIKER_Y), DIM1_Y, "F4a", 3.6, RED, DIM1_Y - FLOOR_Y1 - 2);
     dim_y(sy(STRIKER_X[0]), sy(STRIKER_X[2]), sx(STRIKER_Y) - 9, "F4b");
-    txt("F4c", sx(STRIKER_Y - 5), sy(STRIKER_X[2]), 2.9, "left", RED);   // each loop's inside clearance
+    txt("F4c", sx(STRIKER_Y - 5), sy(STRIKER_X[2]), 3.6, "left", RED);   // each loop's inside clearance
     callout("F4", [
         "All 3 STRIKER LOOPS: each loop's fore-aft distance from the hatch, its",
         "lateral position, and its inside clearance — a strap hook has to SEAT in",
@@ -243,8 +246,8 @@ module f5() {
             translate([sx(ly + 3), sy(lx)]) square([3, 3]);
         rect_ol(sx(26), sy(kx0), 26, 20, HEAVY);
     }
-    txt("F5a", sx(panel_c_length + 4), sy(1.5), 2.9, "right", RED);
-    txt("F5b", sx(12), sy(kx0 + 10), 2.9, "center", RED);
+    txt("F5a", sx(panel_c_length + 4), sy(1.5), 3.6, "right", RED);
+    txt("F5b", sx(12), sy(kx0 + 10), 3.6, "center", RED);
     callout("F5", [
         "What Panel C's 4 LEG PADS (red squares) and the KITCHEN UNIT's footprint",
         "actually bear on: solid floor, or folded seatback? A deck leg standing on",
@@ -263,8 +266,8 @@ module f6() {
         }
         for (s = STRIKER_X) translate([sx(ROW3_Y0 - 2.5), sy(s) - 1.4]) square([2.8, 2.8]);
     }
-    txt("F6a", sx(ROW3_Y1 + 4), CL, 2.9, "right", RED);
-    txt("F6b", sx(ROW3_Y0 - 6), sy(WELL_X1 - 2), 2.9, "left", RED);
+    txt("F6a", sx(ROW3_Y1 + 4), CL, 3.6, "right", RED);
+    txt("F6b", sx(ROW3_Y0 - 6), sy(WELL_X1 - 2), 3.6, "left", RED);
     callout("F6", [
         "Does a solid bearing surface require REMOVING the 3rd row rather than",
         "folding it? If so, does the 3rd row carry its own SRS / seatbelt-",
@@ -277,7 +280,7 @@ module f6() {
 
 module f7() {
     color(RED) translate([sx(STEP_Y) - 0.8, FLOOR_Y0]) square([1.6 + HEAVY, van_interior_width]);
-    txt("F7a", sx(STEP_Y + 4), sy(WELL_X1 - 2), 2.9, "right", RED);
+    txt("F7a", sx(STEP_Y + 4), sy(WELL_X1 - 2), 3.6, "right", RED);
     callout("F7", [
         "Is there a SQUARE, HARD vertical face at the step/riser",
         "by the striker row — metal under the trim? — for the two",
@@ -292,10 +295,10 @@ module f7() {
             translate([INSET_X + 41.3, 23.3]) square([26, 0.7]);
         }
         color(RED) translate([INSET_X + 39.6, 13]) square([2, 11]);
-        txt("cargo floor", INSET_X + 9, 15.2, 2.4, "left", GRY);
-        txt("striker row", INSET_X + 45, 25.6, 2.4, "left", GRY);
-        dim_y(13.7, 23.3, INSET_X + 37, "height", 2.6);
-        txt("tongue butts ->", INSET_X + 8, 10, 2.4, "left", RED);
+        txt("cargo floor", INSET_X + 9, 15.2, 3.2, "left", GRY);
+        txt("striker row", INSET_X + 45, 25.6, 3.2, "left", GRY);
+        dim_y(13.7, 23.3, INSET_X + 37, "height", 3.4);
+        txt("tongue butts ->", INSET_X + 8, 10, 3.2, "left", RED);
     }
 }
 
@@ -304,7 +307,7 @@ module f8() {
         rect_ol(sx(RAILEND_Y + 16), sy(rx) - 1.4, 16, 2.8, MED);
         translate([sx(RAILEND_Y) - 3.4, sy(rx) - 2.4]) square([3.4, 4.8]);
     }
-    dim_x(HATCH_X, sx(RAILEND_Y), DIM1_Y, "F8a", 2.9, RED, DIM1_Y - FLOOR_Y1 - 2);
+    dim_x(HATCH_X, sx(RAILEND_Y), DIM1_Y, "F8a", 3.6, RED, DIM1_Y - FLOOR_Y1 - 2);
     dim_y(sy(RAIL_X[0]), sy(RAIL_X[1]), sx(RAILEND_Y) - 20, "F8b");
     callout("F8", [
         "With the 2nd-row carriages parked fully FORWARD: where",
@@ -315,16 +318,23 @@ module f8() {
         "   tongues bolt or clamp here, so this decides the",
         "   bracket detail and tongue length.",
     ]);
-    // the three cases you have to tell apart
-    for (i = [0 : 2]) translate([INSET_X + i * 25, 6]) {
-        color("Black") round_ol(0, 4, 23, 26, 3, 0.45);
-        color(GRY) rect_ol(4, 15, 15, 9, THIN);
-        if (i == 1) { color("Black") translate([11.5, 19.5]) circle(r = 2.4, $fn = 20); }
-        if (i == 2) { color(GRY) translate([6, 17.5]) square([11, 4]); }
-        txt(i == 0 ? "end cap" : i == 1 ? "track bolt" : "open slot", 11.5, 11, 2.5, "center", "Black");
-        txt(i == 0 ? "unclips?" : i == 1 ? "exposed?" : "or a lip?", 11.5, 7.6, 2.3, "center", GRY);
+    // The three cases you have to tell apart. Bubbles widened 23 -> 26 and
+    // taller, with 4.4 between the two caption lines instead of 3.4: at the
+    // scaled-up text the second line was sitting on the first and on the
+    // bubble's own bottom edge.
+    for (i = [0 : 2]) translate([INSET_X + i * 27, 4]) {
+        color("Black") round_ol(0, 4, 26, 30, 3, 0.45);
+        color(GRY) rect_ol(5.5, 19, 15, 9, THIN);
+        if (i == 1) { color("Black") translate([13, 23.5]) circle(r = 2.4, $fn = 20); }
+        if (i == 2) { color(GRY) translate([7.5, 21.5]) square([11, 4]); }
+        txt(i == 0 ? "end cap" : i == 1 ? "track bolt" : "open slot", 13, 13.4, 3.3, "center", "Black");
+        txt(i == 0 ? "unclips?" : i == 1 ? "exposed?" : "or a lip?", 13, 9, 3.2, "center", GRY);
     }
-    txt("Which is it? This decides the bracket:", INSET_X, 39, 2.7, "left", "Black");
+    // Shares its row with the bottom SLIDING DOOR label on the plan above,
+    // which measures out to x=153, and the bubbles below leave no room to move
+    // down. So it is just the question — F8's wording already says what it
+    // decides ("the bracket detail and tongue length").
+    txt("Which is it?", INSET_X + 10, 40.5, 3.5, "left", "Black");
 }
 
 // ============================================================

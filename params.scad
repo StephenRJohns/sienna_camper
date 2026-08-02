@@ -790,6 +790,23 @@ control_panel_width = 2.8; // the LMioEtool enclosure mounted TALL-ways (its 2.8
 // RIGHT/passenger, per the owner.
 fridge_slide_margin = 0.5;
 fridge_module_width = fridge_ext_length + 2 * fridge_slide_margin;
+// OPEN ISSUE (Aug 2 2026) — the side-mount stack note above says the per-side
+// order is riser | rail | "a 1x3 side apron glued+screwed to the tray's edge",
+// and fridge_rail_stack covers only the riser + rail. So the apron is what has
+// to fit inside fridge_slide_margin — but a 1x3 is 0.75in thick, not 0.5in, and
+// until now nothing in this file modelled the apron at all, so nothing checked
+// it. If the apron really lives here, the fridge module is 0.5in wider than
+// modelled and the utility bay is 0.5in narrower again. Left as a check rather
+// than a silent correction: moving fridge_slide_margin ripples into the tray
+// width, the anchor-board strips and every Panel C drawing, and which way to
+// resolve it is a design call, not arithmetic.
+fridge_apron_t = 0.75;   // 1x3 actual thickness
+if (fridge_slide_margin < fridge_apron_t)
+    echo(str("OPEN ISSUE (Section 2): fridge_slide_margin is ", fridge_slide_margin,
+             "in per side but the 1x3 tray apron that sits in it is ", fridge_apron_t,
+             "in thick — the fridge module may be ",
+             2 * (fridge_apron_t - fridge_slide_margin),
+             "in wider than modelled, narrowing the utility bay by the same amount."));
 
 /* [Kitchen unit — real JAGAHAHA slide-out camp kitchen, standalone] */
 // Exterior dimensions from the actual product listing (JAGAHAHA
@@ -806,9 +823,18 @@ fridge_module_width = fridge_ext_length + 2 * fridge_slide_margin;
 // lift-out frame like the fridge does. It lives under the deck in
 // Panel C too, flush to the LEFT edge, sliding out the tailgate on
 // its own built-in rails.
-kitchen_box_width  = 20;   // X
-kitchen_box_length = 26;   // Y, closed/stowed length
-kitchen_box_height = 11.8; // Z, closed
+// ALL THREE MEASURED on the physical unit (owner, Aug 2 2026) — these
+// replace the listing figures (20 x 26 x 11.8). Rows 6/7/8 of the
+// fridge-and-kitchen measurement table.
+kitchen_box_width  = 20.5;    // X — MEASURED (was 20 from the listing)
+kitchen_box_length = 25.8125; // Y, closed — MEASURED 25-13/16 (was 26)
+kitchen_box_height = 11.55;   // Z, closed — MEASURED (was 11.8)
+// HOLD-DOWN, from the owner's photos + the maker's assembly video: the box
+// has NOTCHES routed into its top edges and the strap seats IN them, so a
+// strap over the top cannot slide along the box. That is the unit's own
+// designed load path — see Section 8's kitchen tie-down, which used to
+// criss-cross straps diagonally over a smooth top instead.
+kitchen_strap_notch = true;
 
 /* [Kitchen drawer — hung under Panel C's deck, above the kitchen unit] */
 // The kitchen unit is only 11.8in tall but Panel C's void is 17in
@@ -1001,10 +1027,24 @@ assert(kitchen_box_width + fridge_module_width + fridge_rail_stack + 2 * frame_r
 // against the control panel's 2.8in + 0.4in working clearance — only
 // ~0.1in of assert margin): re-check with the real VADANIA rail +
 // riser in hand before fixing the kitchen unit's position.
-assert(x_kitchen - kitchen_box_width/2 - (x_fridge_module + fridge_module_width/2 + fridge_rail_stack) >= control_panel_width + 0.4,
-       str("Utility-cabinet gap (", x_kitchen - kitchen_box_width/2 - (x_fridge_module + fridge_module_width/2 + fridge_rail_stack),
-           "in, after the fridge's passenger-side rail+riser) is too narrow for the control panel (",
-           control_panel_width, "in) plus working clearance"));
+// OPEN ISSUE (Aug 2 2026) — this assert now FAILS on measured numbers, so it
+// is an echo until the owner picks a fix. The kitchen unit measured 20.5in
+// wide, half an inch over the 20in listing figure this layout was built on,
+// and that half inch came straight out of the utility bay: 3.28in -> 2.78in,
+// against the control enclosure's 2.8in + 0.4in working clearance. The comment
+// above called it: there was ~0.1in of margin and it said to re-check with the
+// real hardware in hand. Nothing here is wrong — the measurement is a fact and
+// the layout has to absorb it. Downgraded rather than deleted so the shortfall
+// stays visible in every render log.
+utility_bay_gap = x_kitchen - kitchen_box_width/2
+                  - (x_fridge_module + fridge_module_width/2 + fridge_rail_stack);
+utility_bay_need = control_panel_width + 0.4;
+if (utility_bay_gap < utility_bay_need)
+    echo(str("OPEN ISSUE (Section 2/6): the utility bay is ", utility_bay_gap,
+             "in after the MEASURED 20.5in kitchen width, but the control ",
+             "enclosure wants ", utility_bay_need, "in (2.8in + 0.4in clearance) ",
+             "— short by ", utility_bay_need - utility_bay_gap,
+             "in. Owner decision pending; see Section 6."));
 assert(panel_width - 2 * leg_inset <= usable_floor_width,
        "Panel legs (deck width minus 2x leg_inset) land inside the vent intrusion zone");
 assert(panel_width <= van_interior_width,

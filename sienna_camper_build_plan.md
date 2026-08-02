@@ -1725,13 +1725,35 @@ your measurement live — printed on the drawing as wrapped prose they came out 
 | 5b | Floor vents at Panel C's REAR corners | Panel C's rear legs sit at the TRUE corners now | must be vent-free for ~4" | ✅ **CLEAR — the rear-corner floor vents do not reach the leg area** (owner, Aug 2026). Panel C's rear legs land on solid floor |
 | — | Fridge cord length | (confirms it reaches the new DC line's connection point inside Panel C's void — Section 5) | — | |
 | — | Fridge slide clearance — how far it must come out before the lid opens fully | `fridge_slide_length` (confirms 24" is enough) | 24" slide | |
-| 6 | Kitchen unit width, closed | `kitchen_box_width` | 20" | |
-| 7 | Kitchen unit length, closed | `kitchen_box_length` | 26" | |
-| 8 | Kitchen unit height, closed | `kitchen_box_height` | 11.8" | |
+| 6 | Kitchen unit width, closed | `kitchen_box_width` | 20" | **20.5"** (MEASURED — owner, Aug 2 2026). Half an inch over the listing figure, and it lands entirely on the utility bay — see the open issue below |
+| 7 | Kitchen unit length, closed | `kitchen_box_length` | 26" | **25 13/16" (25.8125")** (MEASURED — owner, Aug 2 2026) |
+| 8 | Kitchen unit height, closed | `kitchen_box_height` | 11.8" | **11.55"** (MEASURED — owner, Aug 2 2026). A quarter-inch shorter, so the kitchen drawer above it gains that much clearance |
 | 9 | Stove tray length x width x clearance height | (Section 7 — the COOKTRON cooktop's fit depends on this; the current numbers came from listing photos, not a spec sheet) | 23" x 15.7" x 5.7" | |
 | 10 | Kitchen unit empty weight | (Section 8 weight table) | ~45 lb | |
 | — | Cord pass-through location for the cooktop's power cord | (Section 5/6 cord routing) | — | |
 | — | Confirm it still extends to ~70" open | (sanity check — this happens outside the vehicle, doesn't affect interior length) | ~70" | |
+
+**The kitchen unit is designed to be strapped down, and it tells you where.**
+The owner's photos of the physical unit (Aug 2 2026) show **notches routed into
+the box's top edges**, and the maker's own assembly video shows a cam strap
+seated **in** such a notch, running around the box. That is the unit's designed
+hold-down load path: a strap over the top sits down in the notches and cannot
+slide along the box. It supersedes Section 8's original kitchen tie-down, which
+criss-crossed 4 ratchet straps diagonally over what was assumed to be a smooth
+top — the notches make a straight-across strap both simpler and more secure.
+The unit also carries folding stainless handles on its ends and two oval
+hand-holds, so lifting points are built in.
+
+> **OPEN ISSUE — the measured width costs the utility bay 0.5".** At 20.5"
+> instead of 20", the kitchen leaves the open utility bay **2.78" wide** where
+> the control enclosure needs **2.8" + 0.4" working clearance = 3.2"** — short
+> by **0.42"**. `params.scad` had flagged this exact risk before the
+> measurement ("only ~0.1in of assert margin: re-check with the real VADANIA
+> rail + riser in hand before fixing the kitchen unit's position"), so the
+> layout was known to be one rounding error from this. The hard assert is now
+> an `echo`, so every render logs the shortfall rather than refusing to build.
+> Nothing in the measurement is wrong; the layout has to absorb it, and how is
+> an owner call.
 
 #### The rear floor under Panel C — what does the anchor board actually sit on and strap to? (SURVEYED Aug 1 2026 — findings below)
 
