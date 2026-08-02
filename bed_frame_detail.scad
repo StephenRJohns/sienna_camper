@@ -45,30 +45,19 @@ HS = bed_bhalf_slat_l;  // 17.5 — the short slats inside each half
 lift = 6;               // how far slats float above their slots
 riseB = 10;             // how far the Panel B halves float, to read as removable
 
+// Badges are the ONLY text left on this sheet now that the prose moved to
+// markdown, so they can be sized for the page rather than squeezed in
+// beside paragraphs: r/size 2.0 prints near 11pt, where 1.3 printed at 7.
 module marker3d(n, anchor3, off = [6, 4]) {
     q = p2(anchor3);
     t = q + off;
-    color(marker_col(n)) translate(t) circle(r = 1.3);
-    color("white") translate(t) text(str(n), size = 1.3, halign = "center", valign = "center");
-    color(INK) line2d(q, t - off * (2.2 / max(2.2, norm(off))));
+    color(marker_col(n)) translate(t) circle(r = 2.0);
+    color("white") translate(t) text(str(n), size = 2.0, halign = "center", valign = "center");
+    color(INK) line2d(q, t - off * (2.8 / max(2.8, norm(off))));
 }
 
-module side_list(list_x, top_y, items) {
-    color(INK) {
-        translate([list_x, top_y - 1]) text("Component", size = 1.4, halign = "left", valign = "center");
-        translate([list_x, top_y - 3.6]) text("Position / fastener / material", size = 1.1, halign = "left", valign = "center");
-    }
-    for (i = [0 : len(items) - 1]) {
-        y = top_y - 10 - i * 9;
-        color(marker_col(i + 1)) translate([list_x, y + 3.8]) circle(r = 1.2);
-        color("white") translate([list_x, y + 3.8]) text(items[i][0], size = 1.2, halign = "center", valign = "center");
-        color(INK) {
-            translate([list_x + 3.2, y + 3.8]) text(items[i][1], size = 1.15, halign = "left", valign = "center");
-            translate([list_x + 3.2, y + 1.9]) text(items[i][2], size = 1.0, halign = "left", valign = "center");
-            translate([list_x + 3.2, y]) text(items[i][3], size = 1.0, halign = "left", valign = "center");
-        }
-    }
-}
+// (side_list is gone: the parts list it drew is a markdown table now.)
+
 
 // one ladder piece: 2 side rails spanning y0..y0+len at x0..x0+wid,
 // with n slats floating above their slots between them.
@@ -120,19 +109,18 @@ module drawing() {
     marker3d(5, [0, LA + bed_bearer_len * 0.7, -frame_rail_sz/2], [-17, -9]);
     marker3d(6, [-W/2 - 0.1, LA * 0.5, 0.4], [-13, 9]);
 
-    cap(str("BED PLATFORM — exploded (Component 2, ", L, "\" x ", W, "\" overall, ", bed_slat_count, " slats, ", bed_frame_thickness, "\" thick)"), 13, -14, 1.9);
-    cap(str("SPLIT Aug 2026: Panel A keeps one ", LA, " x ", W, "\" section, SCREWED DOWN. Panel B's top is TWO ", LB, " x ", HW, "\" halves, split on the centreline, each lifting out on its own."), 13, -17, 1.3);
-    cap(str("Panel B is top-load-ONLY — the ", side_door_opening_width, " x ", side_door_opening_height, "\" side door sits over Panel A and only ", side_door_clear_width, "\" of it is ever clear. At ", HW, "\" wide a half fits back out through that door; a ", W, "\" piece never would."), 13, -19.5, 1.3);
-    cap("Lift the mattress clear, take out only the half on the side you are standing at. The centre bearer also halves the deck's unsupported span over Panel B (46\" -> ~22\").", 13, -22, 1.3);
-
-    side_list(W/2 + 31, L * 0.55 + 16, [
-        ["1", "Side rails (x2 per piece, x6)", str("6x ", LA, "\" x ", RW, "\" x ", bed_slat_t, "\" — 1x4 pine"), "each piece's spine — its slats screw into the inner edges"],
-        ["2", str("Panel A slats (x", bed_slat_n_a, ")"), str(SL, "\" x ", bed_slat_width, "\" x ", bed_slat_t, "\" — 1x4 pine, two per 8ft board"), str("~", round(bed_gap_a * 10) / 10, "\" gaps")],
-        ["3", "Panel B half (x2)", str(LB, "\" x ", HW, "\" — lifts out on its own, ~6 lb"), "24.5\" wide clears the 35\" side door; no hinge, no lid stay, no angle limit"],
-        ["4", str("Panel B slats (x", 2 * bed_slat_n_bhalf, ")"), str(HS, "\" x ", bed_slat_width, "\" x ", bed_slat_t, "\" — 1x4 pine, five per 8ft board"), str(bed_slat_n_bhalf, " per half, ~", round(bed_gap_bhalf * 10) / 10, "\" gaps")],
-        ["5", "Centre bearer (Panel B frame)", str(bed_bearer_len, "\" x ", bed_bearer_w, "\" — two 2x2s side by side, top flush with Panel B's long rails"), "1.5\" of bearing per half; halves the 46\" unsupported span (NEW, Aug 2026)"],
-        ["6", "Bubble level (PITCH)", "Larbeti stick-on bar level (self-adhesive — degrease the rail edge first)", "its twin (ROLL) mounts on the rear-pantry deck edge — read while leveling"],
-    ]);
+    // The four caption lines and the six-row parts list that used to sit
+    // here are MARKDOWN now (Section "Bed Platform Detail"). They took the
+    // sheet to 160 units wide, and a figure's printed text height is
+    // size x (page_width / sheet_width) — so every label on it landed at
+    // 3-4pt. With only the drawing and its numbered markers left, the
+    // sheet is ~60 wide and the same labels print near 10pt.
+    // Keep it that way: no paragraphs on this sheet.
+    // -17/-21: the exploded far rail reaches to about -10 in page space,
+    // so anything higher than this prints over it.
+    cap(str(L, "\" x ", W, "\" overall — ", bed_slat_count, " slats in one 3/4\" plane"),
+        0, -17, 2.6);
+    cap("1-6 keyed to the parts table in the text", 0, -21, 2.2);
 }
 
 drawing();

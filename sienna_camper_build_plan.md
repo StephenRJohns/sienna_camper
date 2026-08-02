@@ -104,6 +104,19 @@ Component 2's slatted bed platform (58" x 49" overall, 15 slats pocket-screwed b
 
 ![Bed frame detail](renders/bed-frame-detail.svg)
 
+*The numbers on the drawing key to this table. They used to be a six-row list printed on the sheet itself, which took it to 160 units wide and drove every label to 3–4pt on paper; as text they render at the document's own size.*
+
+| | Part | Size | Notes |
+|---|---|---|---|
+| **1** | Side rails (×2 per piece, ×6) | 6 × 29" × 3.5" × ¾" — 1x4 pine | Each piece's spine; its slats pocket-screw into the inner edges |
+| **2** | Panel A slats (×5) | 42" × 3.5" × ¾" — 1x4 pine, two per 8ft board | ~2.9" gaps. This section is **screwed down** — it is also acting as a diaphragm across Panel A's rails |
+| **3** | Panel B half (×2) | 29" × 24.5" | **Lifts out on its own**, ~6 lb. 24.5" wide clears the 35" side door — a 49" piece never would. No hinge, no lid stay, no opening-angle limit |
+| **4** | Panel B slats (×10) | 17.5" × 3.5" × ¾" — 1x4 pine, five per 8ft board | 5 per half, ~2.9" gaps |
+| **5** | Centre bearer (Panel B's frame) | 26" × 3" — two 2x2s side by side, top flush with Panel B's long rails | 1½" of bearing per half, and it **halves the deck's unsupported span** over Panel B, 46" → ~22". Panel B never had a centre divider where Panel A always did (**new, Aug 2026**) |
+| **6** | Bubble level (PITCH) | Larbeti stick-on bar level | Self-adhesive — degrease the rail edge first. Its twin (ROLL) mounts on the rear-pantry deck edge; read both while turning the leg-foot knobs |
+
+**Panel B is top-load-only**, which is why its top splits: the measured side-door aperture is 35" × 45" with only 29" ever clear, and it sits over Panel A's footprint, not Panel B's. Lift the mattress clear and take out only the half on the side you're standing at.
+
 ### Leg Leveling Foot Detail
 
 Leveling lives at the floor: each leg is cut 1" short and gets a 3/8-16 insert in its bottom end grain, taking a leveling glide bolt with a floor pad and a ~2" star-knob hand grip (12 total: 4 per panel x 3). Effective leg heights are 17" on Panel C / 16.25" on A/B (cuts: 16" and 15.25" — deck recess); dropping the old between-layers adjusters bought 1.25" of headroom, and recessing the deck ply into the rail plane buys another 3/4". To adjust: tip that corner of the box slightly and spin the knob — every leg is exposed at floor level:
@@ -438,6 +451,30 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 - **No fasteners:** the adjustable shelf rests on pins, and the DELTA 3 tray + utility-bay bins just drop in (the bay bins get hook-and-loop tape — the bay is open to the tailgate).
 
 ![Joinery and fastener guide](renders/joinery-detail.svg)
+
+*The five numbered vignettes on the sheet give the geometry and spacing; what each one means is below. The sentences and the method table used to be printed on the sheet itself, which set its width and drove every label to ~4.6pt on paper.*
+
+| | Vignette | What it specifies |
+|---|---|---|
+| **1** | **Spacing rule** — any biscuited joint, edge-on | First biscuit **2" from each end**, then **~6" on centre**, always **centred on the stock thickness**. Glue the slot *and* the face; clamp until set |
+| **2** | **Shelf into a side panel** (¾" ply → R3) | **3 × R3 per end**, at **2" / 7" / 12"** from the front, centred on the ¾". Glue + clamp |
+| **3** | **Box corners** (½" ply → R1) | **2 × R1 per corner** + glue, all four corners — Panel A's drawer, the kitchen drawer, the fridge-tray apron |
+| **4** | **2×2 frames** (rails / legs / bottom rails / dividers) | **Screws only.** 2 × 2" screws + glue per corner + a steel corner bracket. A biscuit would blow out the 1.5" stock — the one place not to use one |
+| **5** | **Ply to frame** (Panel C's top, front wall, cleats, cheeks) | **Screws + glue.** 1¼" screws ~8" o.c. into the rail. Front wall: 8 screws, positions on the Panel C Front Wall render. Cheeks and cleats: 2" screws ~6" o.c. |
+
+#### Method by component
+
+| Component | Joint | Method (biscuit sizes are Ryobi R1/R2/R3) |
+|---|---|---|
+| Panel A drawer + kitchen drawer boxes (½") | box corners | 2 × R1 per corner + glue; bottom in a glued rabbet |
+| Fridge tray + slide apron (½" + pine) | edge / face | R1 biscuits **or** 1¼" screws + glue |
+| Kitchen-drawer hanging cheeks ↔ deck (¾") | face-to-face | 2" screws every ~6" up into the deck |
+| WAVE 3 overhead shelf ↔ 1x1 cleats | shelf-on-cleat | Cleats screwed to the frame; shelf screws down to the cleats |
+| Panel C fixed top ↔ 2×2 rails | ply-to-frame | 1¼" screws every ~8" + glue (R2 optional at the corners, to align) |
+| Panel C front wall ↔ frame | ply-to-frame | 8 × #8 × 1¼" screws (exact positions on the Front Wall render) |
+| **All 2×2 frames** (rails / legs / bottom rails / dividers) | 2×2 corners | 2 × 2" screws + glue + a steel corner bracket — **no biscuit** |
+| Bed platform slats ↔ 1x4 side rails | end-to-edge | 2 × 1¼" pocket screws per end (**or** 1 × R2 biscuit + glue, cleaner) |
+| DELTA 3 tray / utility-bay bins / adjustable shelf | none | Drop in or rest on pins — no fasteners |
 
 ---
 
