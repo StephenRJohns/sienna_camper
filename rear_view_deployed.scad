@@ -108,9 +108,9 @@ module deployed() {
     label("(slid out)", x_kitchen, leg_height/2 - 1.2, 1.8);
 
     // OPEN utility bay (no door — it was cut), control panel at its back
-    door_x0 = x_fridge_module + fridge_ext_length/2;
-    door_x1 = x_kitchen - kitchen_box_width/2;
-    cab_cx = (door_x0 + door_x1)/2;
+    bay_x0 = x_fridge_module + fridge_ext_length/2;
+    bay_x1 = x_kitchen - kitchen_box_width/2;
+    cab_cx = (bay_x0 + bay_x1)/2;
     color("Black") translate([cab_cx - control_panel_width/2, 4.5]) rect_outline(control_panel_width, 6);
     
     // "open utility bay (no door)" printed at 0.85 inside a 3.3in-wide bay,

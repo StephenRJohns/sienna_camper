@@ -452,7 +452,7 @@ printed text size, it was holding its own lines — and every label on the drawi
     for alt in ["Measurement guide: the van", "Measurement guide: fridge and kitchen",
                 "DELTA 3 and WAVE 3 stowage detail", "Electrical layout",
                 "Rear pantry layout", "Spare tire stowage", "Panel A detail", "Panel B detail",
-                "Panel C detail", "Cabinet door detail", "Bed frame detail",
+                "Panel C detail", "Bed frame detail",
                 "Leveling foot detail", "Panel C front wall detail",
                 "Joinery and fastener guide"]:
         html_body = re.sub(

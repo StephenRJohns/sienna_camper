@@ -168,18 +168,18 @@ module rear_view() {
         color("Peru") translate([bx[0], aboard_mat_t]) rect_outline(bx[1], aboard_t, 0.12);
     }
     marker(11, fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_t/2 + 1.1, -1.3);
-    door_x0 = fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_stack;
-    door_x1 = x_kitchen - kitchen_box_width/2;
+    bay_x0 = fridge_x0 + fridge_ext_length/2 + fridge_slide_margin + fridge_rail_stack;
+    bay_x1 = x_kitchen - kitchen_box_width/2;
     // dashed outline = an opening, not a panel
     module dash_h(x0, x1, z) { for (dx = [0 : 1.6 : x1 - x0 - 0.8]) color("Silver") translate([x0 + dx, z]) square([0.8, 0.18]); }
     module dash_v(x, z0, z1) { for (dz = [0 : 1.6 : z1 - z0 - 0.8]) color("Silver") translate([x, z0 + dz]) square([0.18, 0.8]); }
-    dash_h(door_x0, door_x1, leg_height - 0.2);
-    dash_v(door_x0, 0, leg_height); dash_v(door_x1 - 0.18, 0, leg_height);
+    dash_h(bay_x0, bay_x1, leg_height - 0.2);
+    dash_v(bay_x0, 0, leg_height); dash_v(bay_x1 - 0.18, 0, leg_height);
 
     
 
-    label("OPEN", (door_x0 + door_x1)/2, leg_height - 2.2, 1.0);
-    label("bay", (door_x0 + door_x1)/2, leg_height - 3.5, 1.0);
+    label("OPEN", (bay_x0 + bay_x1)/2, leg_height - 2.2, 1.0);
+    label("bay", (bay_x0 + bay_x1)/2, leg_height - 3.5, 1.0);
 
     // Exhaust fan mounts on the fridge's RIGHT (kitchen-facing) wall,
     // blowing INTO the utility cabinet. The NTC sensor sits just
@@ -222,7 +222,7 @@ module rear_view() {
     // controller — at the back of the OPEN utility bay (mounted on
     // the backer board hung from the deck underside); everything
     // electrical is reached by just reaching into the bay.
-    cab_cx = (door_x0 + door_x1)/2;
+    cab_cx = (bay_x0 + bay_x1)/2;
     color("Black")
         translate([cab_cx - control_panel_width/2, 6.5]) rect_outline(control_panel_width, 6);
     // MOVED TO THE DOCUMENT: label("Control panel: switches + surge protector — at the back of the open bay, reach in", cab_cx - 2, -6.2, 0.85);
@@ -240,7 +240,7 @@ module rear_view() {
     marker(7, cab_cx - 3.4, 5.6, -1.3);                             // control panel (inside the cabinet)
     marker(8, kx + 5, 2.5);                                         // power strip 2
     marker(9, -van_interior_width/2 + 1.25, 8.5);                  // vent intrusion (left zone shown)
-    marker(10, (door_x0 + door_x1)/2 + 2.4, leg_height - 2);        // open utility bay
+    marker(10, (bay_x0 + bay_x1)/2 + 2.4, leg_height - 2);        // open utility bay
 
     // The 11-row legend that used to print beside this view is now a table in
     // the document under the figure. Its longest row was 77 characters, which

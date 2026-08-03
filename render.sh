@@ -122,7 +122,7 @@ for p in A B C; do
 done
 
 # cabinet door: CUT from the design (the utility bay is open now) —
-# cabinet_door_detail.scad stays on disk, unrendered (like step-06)
+# (cabinet_door_detail.scad used to sit here unrendered; deleted Aug 2 2026)
 
 echo "Rendering leveling foot detail..."
 openscad -o renders/leveling-foot-detail.svg leveling_foot_detail.scad

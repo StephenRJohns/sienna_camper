@@ -563,9 +563,11 @@ intake_vent_x = 11.11; // center X = the fan's center (cross-checked by assert b
                        // in order — hence the cross-check assert, which is what
                        // caught this drift.
 intake_vent_z = 4.4;  // center Z: 0.9in of ply over the bottom rail, 1.0in under the fan hole
-cabinet_vent_w = 2;   // low cabinet-door exhaust louver — width (the door narrowed to ~3.3in with the side-mount rail stack; was 3in in a ~4.3in door)
-cabinet_vent_h = 4;   // height
-cabinet_vent_z = 5;   // center Z, low in the door
+// (cabinet_vent_w/h/z lived here — the low exhaust louver in the utility
+// cabinet's hinged DOOR. The door was cut from the design when it turned out to
+// be trapping the exhaust air it existed to vent, and the last of it went Aug 2
+// 2026: the bay it hung on is 1.28in wide now, past any useful door. The louver
+// is gone with it, and the bay vents straight out the open tailgate face.)
 
 /* [Fridge — BougeRV ROCKY 40 (CR04001), 41QT dual-zone] */
 // Dimensions VERIFIED against the user manual the owner saved at
