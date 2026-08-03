@@ -1,4 +1,4 @@
-# Project Smores — Full Build Plan
+# Project S'mores — Full Build Plan
 
 *Free to view, share, and build from for personal, non-commercial use only. Commercial use, resale, or redistribution for profit is prohibited without prior written permission. © 2026 JJJJJ Enterprises, LLC — all rights reserved.*
 

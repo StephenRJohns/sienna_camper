@@ -178,7 +178,7 @@ img[alt^="Component "] { display: block; width: 100%; height: auto;
 COVER = """
 <div class="cover">
   <div class="cover-head">
-    <h1>Project Smores</h1>
+    <h1>Project S'mores</h1>
     <p class="cover-sub">Toyota Sienna Modular Camper Conversion — Full Build Plan</p>
     <p class="cover-meta">Vehicle measurements surveyed and verified Aug 1, 2026.
        Dimensions in this document drive real cuts — re-measure your own vehicle before building.</p>
@@ -258,18 +258,18 @@ COVER = """
 """
 
 TEMPLATE = """<!doctype html>
-<html><head><meta charset="utf-8"><title>Project Smores Build Plan</title>
+<html><head><meta charset="utf-8"><title>Project S'mores Build Plan</title>
 <style>{css}</style></head>
 <body>
 {cover}
-<h1 class="doctitle">Project Smores</h1>
+<h1 class="doctitle">Project S'mores</h1>
 <p class="subtitle">Full Build Plan — Modular Lift-Out Design</p>
 {toc}
 {body}
 </body></html>
 """
 
-FOOTER_TITLE = "Project Smores — Sienna Camper Build Plan"
+FOOTER_TITLE = "Project S'mores — Sienna Camper Build Plan"
 FOOTER_NOTE = "Build at your own risk — see the disclaimer on the cover"
 
 
