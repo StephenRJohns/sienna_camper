@@ -1028,12 +1028,19 @@ x_fridge_module = -panel_width/2 + frame_rail_sz + fridge_module_width/2;
 x_fridge        = x_fridge_module; // fridge cavity center = module center now (no separate control-panel column)
 // Cluster face on the front wall, in wall coordinates (x from the DRIVER edge,
 // z from the van floor — same datum as the fan/louver/grommet).
-cluster_w   = 10;    // face width  — switches, W1209 and surge strip in a row
-cluster_h   = 6;     // face height
-cluster_x   = 30;    // driver edge -> cluster's left edge (passenger half)
-cluster_z   = 8;     // floor -> bottom edge. Upper passenger corner of the
-                     // wall: the three opening callouts read out along the
-                     // LOWER band, so this keeps the two apart.
+// RESHAPED Aug 2 2026, once the owner confirmed the SPARE IS CENTRED in Panel
+// B. That fixes what is in front of this wall: a 28.5in spare centred in 46in
+// spans x 8.75-37.25, and the two 16.9in totes stacked on it span 6.1-39.9.
+// The first attempt put the cluster at x 30-40, squarely inside both. What is
+// actually clear, full height, is a ~6in column at each END of the wall — so
+// the cluster becomes tall and narrow and lives in the PASSENGER one.
+// It lands over the passenger front leg (x 41-42.5), which is better screw
+// purchase than 3/8in ply. Fit the wall and drive its perimeter screws BEFORE
+// mounting the cluster — it covers the two leg screws at x 41.75.
+cluster_w   = 5;     // face width  — switches, W1209 and surge strip in a column
+cluster_h   = 11;    // face height
+cluster_x   = 40.4;  // driver edge -> left edge: clear of the totes' 39.9
+cluster_z   = 3.5;   // floor -> bottom edge, above the bottom rail's 2.5
 cluster_proj = control_panel_across; // how far it stands off the wall into Panel B
 x_control_panel = -panel_width/2 + cluster_x + cluster_w/2; // panel-centred X
 
@@ -1137,9 +1144,25 @@ assert(cluster_x >= intake_vent_x + intake_vent_w/2 + 0.75 &&
            " on the front wall, which is not clear of the louver (ends ",
            intake_vent_x + intake_vent_w/2, ") or the fan hole (ends ",
            pcwall_fan_x + intake_fan_dia/2, ")"));
-assert(cluster_x + cluster_w <= panel_width - frame_rail_sz &&
-       cluster_z + cluster_h <= pcwall_h,
-       "The control cluster runs off the front wall's edge");
+assert(cluster_x + cluster_w <= panel_width - 0.5 &&
+       cluster_z + cluster_h <= pcwall_h &&
+       cluster_z >= bottom_rail_z + frame_rail_sz,
+       "The control cluster runs off the front wall's edge, or into the bottom rail");
+// What sits against this wall on the Panel-B side. Both CENTRED (spare
+// confirmed by the owner Aug 2 2026; the totes restack on it), so each blocks a
+// band of the wall from the floor up to its own top and the cluster has to miss
+// both. This is the check that caught the first placement.
+spareb_x0 = (panel_width - spare_dia) / 2;          // 8.75
+spareb_x1 = spareb_x0 + spare_dia;                  // 37.25
+toteb_x0  = (panel_width - panelb_tote_n * panelb_tote_w) / 2;   // 6.1
+toteb_x1  = toteb_x0 + panelb_tote_n * panelb_tote_w;            // 39.9
+assert(cluster_x >= max(spareb_x1, toteb_x1) + 0.4,
+       str("The control cluster starts at x=", cluster_x,
+           " on the front wall, but Panel B's spare reaches x=", spareb_x1,
+           " and its totes reach x=", toteb_x1,
+           " — it would be pressed against them. Clear columns are x 0-",
+           min(spareb_x0, toteb_x0), " and x ", max(spareb_x1, toteb_x1), "-",
+           panel_width));
 assert(panel_width - 2 * leg_inset <= usable_floor_width,
        "Panel legs (deck width minus 2x leg_inset) land inside the vent intrusion zone");
 assert(panel_width <= van_interior_width,

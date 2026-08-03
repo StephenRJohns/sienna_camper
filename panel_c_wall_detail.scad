@@ -150,7 +150,9 @@ module drawing() {
         translate([cluster_x, cluster_z + i * cluster_h/3]) square([cluster_w, 0.12]);
         translate([cluster_x + i * cluster_w/3, cluster_z]) square([0.12, cluster_h]);
     }
-    label("CONTROL CLUSTER", cluster_x + cluster_w/2, cluster_z + cluster_h + 1.4, 1.6);
+    // reads INBOARD of the patch: centred over it, the label ran off the wall's
+    // passenger edge (the patch itself is hard against it)
+    label("CONTROL CLUSTER", cluster_x - 1.4, cluster_z + cluster_h - 2, 1.6, "right");
     // MOVED TO THE DOCUMENT: label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
 
     // ---- title + notes ----
