@@ -111,7 +111,7 @@ module rear_section() {
     label("kitchen unit", kx0 + kitchen_box_width/2, kitchen_box_height/2, 2.0);
 
     // the no-drill anchor board's strips flanking the kitchen, end-on
-    // (mat + 3/4" ply, Section 8) — the unit's criss-cross tie-down
+    // (mat + 3/4" ply, Section 8) — the unit's notch-seated tie-down
     // straps land in L-track on these
     for (bx = [[kx0 - 2.4, 2], [kx0 + kitchen_box_width, panel_width/2 - (kx0 + kitchen_box_width)]]) {
         color("black") translate([bx[0], 0]) square([bx[1], 0.1]);

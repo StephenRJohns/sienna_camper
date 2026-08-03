@@ -250,7 +250,7 @@ module section1_content() {
     translate([34.5, y_tg - 3.8]) strip_icon(4);
     mmarker(7, 23, y_tg - 2.6);
 
-    // 8: control enclosure — in the open utility bay (footprint; see Section 2)
+    // 8: control cluster (no enclosure) — in the open utility bay (footprint)
     translate([33, y_tg - 1.9]) enclosure_icon(5, 2.6);
     mmarker(8, 32, y_tg - 8.5);
 
@@ -315,7 +315,7 @@ module section2() {
     label_left("D", 4.2, z_deck - 1.8, 2.2);
     label_left("E", 26.5, 29.5, 2.2);
 
-    // MOVED TO THE DOCUMENT: label_left("A  LMioEtool enclosure — 4x #8 x 1\" screws through its mounting ears into the wall", 34, 31.5, 1.0);
+    // MOVED TO THE DOCUMENT: label_left("A  backer board — 4x #8 x 1\" screws up into the deck underside (the LMioEtool enclosure was deleted Aug 2026)", 34, 31.5, 1.0);
     // MOVED TO THE DOCUMENT: label_left("B  W1209 controller (in its case) — NTC probe wire exits the bottom grommet,", 34, 28.5, 1.0);
     // MOVED TO THE DOCUMENT: label_left("    runs to the fridge's kitchen-facing wall (Section 3)", 34, 26.8, 1.0);
     // MOVED TO THE DOCUMENT: label_left("C  Nilight 6-way fuse block — feed from the DELTA 3's DC output (Panel A); fans + W1209 each", 34, 24.0, 1.0);

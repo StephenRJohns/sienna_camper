@@ -413,14 +413,15 @@ module fridge_bay_module(y_offset, wireframe = false, x_offset = 0, panel_length
 // build, so no custom frame/legs/hand-hold here, just its closed
 // footprint living inside Panel C's void (flush to the tailgate-
 // facing edge so its own built-in slide can pull it straight out
-// the open tailgate) plus its no-drill tie-down: ratchet straps
-// criss-crossed into L-track on the anchor board's strip
+// the open tailgate) plus its no-drill tie-down: 2 ratchet straps,
+// each seated in one face's pair of the unit's own top-edge notches
+// and hooked into L-track on the anchor board's strips
 // (Section 8 — upgraded from a plain strap-to-factory-hook design
 // after confirming the Sienna's factory cargo hooks are rated for
 // cargo nets only, NOT for restraining a 45lb+ item; the drilled
 // E-track floor anchors that replaced them were in turn replaced
 // by the anchor board when the owner ruled out holes in the van). It's shorter
-// than the sleeping deck (11.8in vs 19.25in) since it doesn't need
+// than the sleeping deck (11.55in measured vs 19.25in) since it doesn't need
 // to hide anything — its own slide handles access.
 module kitchen_box_module(y_offset, wireframe = false, x_offset = 0, panel_length) {
   translate([x_offset, 0, 0]) {
@@ -434,8 +435,9 @@ module kitchen_box_module(y_offset, wireframe = false, x_offset = 0, panel_lengt
     // No-drill kitchen tie-down (Section 8): a mat + 3/4in ply strip
     // of the anchor board runs along the kitchen's cabinet-gap side,
     // carrying a length of L-track with stud-fitting D-rings; the
-    // ratchet straps criss-cross over the top into those. Nothing
-    // bolts to the van — the board straps to the 3rd-row strikers.
+    // 2 ratchet straps run straight across into those, each seated in
+    // one face's pair of the unit's top-edge notches. Nothing bolts to
+    // the van — the board straps to the 3rd-row strikers.
     color([0.15, 0.15, 0.15])
         translate([x0 - 2.4, y_offset + y0 - 2, 0])
             bx(2, kitchen_box_length, aboard_mat_t, wireframe);

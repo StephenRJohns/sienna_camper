@@ -12,7 +12,7 @@
 //   V2  SIDE — appliances -> board, fridge side: section through
 //       a rail-line strip (mat / ply / T-nut / riser / rail /
 //       apron / hanging tray), drawn at 4x scale.
-//   V3  SIDE — appliances -> board, kitchen side: the criss-cross
+//   V3  SIDE — appliances -> board, kitchen side: the notch-seated
 //       ratchet straps into the stud D-rings, rear elevation.
 //   V4  SIDE — board -> van: the steel tongue let into the
 //       bridge's underside dado, bolted, running forward to the
@@ -242,17 +242,35 @@ module v3_kitchen_straps() {
     color("Gainsboro") rect_outline(kitchen_box_width, kitchen_box_height, 0.2);
     label("kitchen unit", kitchen_box_width/2, kitchen_box_height/2 + 1, 1.2);
     label(str(kitchen_box_width, "\" x ", kitchen_box_height, "\" — sits on BARE floor"), kitchen_box_width/2, kitchen_box_height/2 - 1, 0.95);
-    // criss-cross straps: each D-ring -> over the top -> opposite top corner zone
+    // STRAIGHT-ACROSS straps, seated in the unit's own notches (MEASURED Aug
+    // 2026): the box has 4 notches routed at its 4 TOP CORNERS, so each strap
+    // crosses the top edge at two of them — one per side — and cannot slide
+    // along the box. Two straps, front face and back face; in this rear
+    // elevation they superimpose, so what is drawn is one path.
+    NOTCH_IN = 1.1;                      // notch centre, in from each side edge
+    NOTCH_W  = 0.9;
     color("Firebrick") {
-        hull() { translate([-1.4, 2.4]) circle(r = 0.22, $fn = 16); translate([6, kitchen_box_height + 0.3]) circle(r = 0.22, $fn = 16); }
-        hull() { translate([6, kitchen_box_height + 0.3]) circle(r = 0.22, $fn = 16); translate([21.25, 2.4]) circle(r = 0.22, $fn = 16); }
-        hull() { translate([21.25, 2.4]) circle(r = 0.22, $fn = 16); translate([14, kitchen_box_height + 0.3]) circle(r = 0.22, $fn = 16); }
-        hull() { translate([14, kitchen_box_height + 0.3]) circle(r = 0.22, $fn = 16); translate([-1.4, 2.4]) circle(r = 0.22, $fn = 16); }
+        // up the driver side, across the top, down the passenger side
+        hull() { translate([-1.4, 2.4]) circle(r = 0.22, $fn = 16);
+                 translate([NOTCH_IN, kitchen_box_height + 0.25]) circle(r = 0.22, $fn = 16); }
+        hull() { translate([NOTCH_IN, kitchen_box_height + 0.25]) circle(r = 0.22, $fn = 16);
+                 translate([kitchen_box_width - NOTCH_IN, kitchen_box_height + 0.25]) circle(r = 0.22, $fn = 16); }
+        hull() { translate([kitchen_box_width - NOTCH_IN, kitchen_box_height + 0.25]) circle(r = 0.22, $fn = 16);
+                 translate([21.25, 2.4]) circle(r = 0.22, $fn = 16); }
     }
+    // the notches themselves, as gaps bitten out of the top edge
+    color("Gainsboro") for (nx = [NOTCH_IN, kitchen_box_width - NOTCH_IN])
+        translate([nx - NOTCH_W/2, kitchen_box_height - 0.45]) square([NOTCH_W, 0.9]);
+    color("Black") for (nx = [NOTCH_IN, kitchen_box_width - NOTCH_IN])
+        translate([nx - NOTCH_W/2, kitchen_box_height - 0.45]) difference() {
+            square([NOTCH_W, 0.9]);
+            translate([0.12, 0]) square([NOTCH_W - 0.24, 0.78]);
+        }
     // MOVED TO THE DOCUMENT: label_left("<- stud D-ring (WLL 1,333lb) dropped into the L-track", 22.6, 1.9, 1.0);
-    label_left("ratchet straps (4x, 400lb WLL) criss-cross", 22.6, kitchen_box_height - 1, 1.0);
-    label_left("over the top — this is the 2-of-4 view;", 22.6, kitchen_box_height - 2.4, 1.0);
-    label_left("the other pair crosses fore-aft", 22.6, kitchen_box_height - 3.8, 1.0);
+    label_left("2x ratchet strap (400lb WLL), one over", 22.6, kitchen_box_height - 1, 1.0);
+    label_left("the FRONT face + one over the BACK,", 22.6, kitchen_box_height - 2.4, 1.0);
+    label_left("each seated in that face's 2 NOTCHES", 22.6, kitchen_box_height - 3.8, 1.0);
+    label_left("(4 notches at the top corners, MEASURED)", 22.6, kitchen_box_height - 5.2, 1.0);
     label("V3 — REAR elevation, kitchen side: straps -> D-rings -> L-track -> BOARD", 13, -2.6, 1.2);
 }
 

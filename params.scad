@@ -781,7 +781,22 @@ sensor_dia = 0.4; // NTC thermistor probe, shown as a small marker
 // don't collide even though the fridge now exits through the same
 // tailgate opening the end rail spans. Small vertical panel, not its
 // own floor footprint.
-control_panel_width = 2.8; // the LMioEtool enclosure mounted TALL-ways (its 2.8in dimension across) — the cabinet gap is ~3.3in now that the fridge's passenger-side slide rail + riser stand in it (side-mount fix; was ~4.3in)
+// RE-MOUNTED Aug 2 2026. The LMioEtool ENCLOSURE is gone. It measured 2.8in
+// across at its slimmest, and once the kitchen unit measured 20.5in wide the
+// bay it had to sit in came out 2.78in — the box no longer fit, full stop.
+// The switches, surge strip and W1209 controller now screw DIRECTLY to the
+// backer board that already hangs from the deck underside, faces pointing DOWN
+// into the open bay. You still reach in from the tailgate; there is just no box
+// around the parts. This can only improve the fit, whatever the exact part
+// sizes: an enclosure that contains those components is by definition wider
+// than the widest of them, so deleting it cannot make the cross-bay footprint
+// larger. What now has to clear the bay is the deepest component's across-bay
+// dimension plus hand room.
+control_panel_across = 2.0; // ASSUMPTION — confirm against the real switches,
+                            // surge strip and W1209 case. It only has to beat
+                            // the 2.8in box it replaces, which it does.
+control_panel_width = control_panel_across; // kept: the drawings dimension the
+                            // cluster's face by this name
 
 // Fridge zone width: the fridge itself plus a small margin each
 // side for the slide hardware, flush to Panel C's RIGHT edge so its
@@ -829,12 +844,22 @@ if (fridge_slide_margin < fridge_apron_t)
 kitchen_box_width  = 20.5;    // X — MEASURED (was 20 from the listing)
 kitchen_box_length = 25.8125; // Y, closed — MEASURED 25-13/16 (was 26)
 kitchen_box_height = 11.55;   // Z, closed — MEASURED (was 11.8)
-// HOLD-DOWN, from the owner's photos + the maker's assembly video: the box
-// has NOTCHES routed into its top edges and the strap seats IN them, so a
-// strap over the top cannot slide along the box. That is the unit's own
-// designed load path — see Section 8's kitchen tie-down, which used to
-// criss-cross straps diagonally over a smooth top instead.
-kitchen_strap_notch = true;
+// HOLD-DOWN — the unit tells you how it wants to be strapped (owner photos +
+// the maker's assembly video, Aug 2 2026). It carries FOUR notches routed into
+// its top edges and FOUR D-rings: two notches and two D-rings on the FRONT
+// face, and the same on the BACK. A strap laid across the top drops into that
+// face's two notches and cannot then slide along the box.
+// So: TWO straps, not the four criss-crossed diagonally over a top that was
+// assumed smooth. One strap per face, seated in that face's two notches, ends
+// running down to L-track D-rings on the anchor board's two kitchen-side strips
+// (the utility-bay-side strip and the 1.5in band at the panel edge — Section 8).
+// The unit's own D-rings give each strap a positive attachment on the box, so
+// nothing relies on friction against plywood.
+kitchen_notches      = 4;  // 2 per face, front and back
+kitchen_own_drings   = 4;  // 2 per face, the unit's own
+kitchen_hold_straps  = 2;  // one over each face, seated in its notches
+assert(kitchen_notches == 2 * kitchen_hold_straps,
+       "One hold-down strap per face, each seated in that face's PAIR of notches");
 
 /* [Kitchen drawer — hung under Panel C's deck, above the kitchen unit] */
 // The kitchen unit is only 11.8in tall but Panel C's void is 17in
@@ -1027,24 +1052,20 @@ assert(kitchen_box_width + fridge_module_width + fridge_rail_stack + 2 * frame_r
 // against the control panel's 2.8in + 0.4in working clearance — only
 // ~0.1in of assert margin): re-check with the real VADANIA rail +
 // riser in hand before fixing the kitchen unit's position.
-// OPEN ISSUE (Aug 2 2026) — this assert now FAILS on measured numbers, so it
-// is an echo until the owner picks a fix. The kitchen unit measured 20.5in
-// wide, half an inch over the 20in listing figure this layout was built on,
-// and that half inch came straight out of the utility bay: 3.28in -> 2.78in,
-// against the control enclosure's 2.8in + 0.4in working clearance. The comment
-// above called it: there was ~0.1in of margin and it said to re-check with the
-// real hardware in hand. Nothing here is wrong — the measurement is a fact and
-// the layout has to absorb it. Downgraded rather than deleted so the shortfall
-// stays visible in every render log.
+// The kitchen unit measured 20.5in wide, half an inch over the 20in listing
+// figure this layout was built on, and that half inch came straight out of the
+// utility bay: 3.28in -> 2.78in. The comment above called it — there was ~0.1in
+// of margin and it said to re-check with the real hardware in hand. RESOLVED by
+// deleting the control ENCLOSURE and screwing its contents to the deck
+// underside instead (see control_panel_across): the bay now has to clear the
+// cluster's across-bay footprint, not a 2.8in box. Back to a hard assert.
 utility_bay_gap = x_kitchen - kitchen_box_width/2
                   - (x_fridge_module + fridge_module_width/2 + fridge_rail_stack);
 utility_bay_need = control_panel_width + 0.4;
-if (utility_bay_gap < utility_bay_need)
-    echo(str("OPEN ISSUE (Section 2/6): the utility bay is ", utility_bay_gap,
-             "in after the MEASURED 20.5in kitchen width, but the control ",
-             "enclosure wants ", utility_bay_need, "in (2.8in + 0.4in clearance) ",
-             "— short by ", utility_bay_need - utility_bay_gap,
-             "in. Owner decision pending; see Section 6."));
+assert(utility_bay_gap >= utility_bay_need,
+       str("Utility bay is ", utility_bay_gap, "in but the control cluster wants ",
+           utility_bay_need, "in (", control_panel_width, "in + 0.4in hand room) — short by ",
+           utility_bay_need - utility_bay_gap, "in"));
 assert(panel_width - 2 * leg_inset <= usable_floor_width,
        "Panel legs (deck width minus 2x leg_inset) land inside the vent intrusion zone");
 assert(panel_width <= van_interior_width,

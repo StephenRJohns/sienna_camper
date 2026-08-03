@@ -40,7 +40,7 @@ The banner above only *names* accessories A–G. **Where each one goes is the in
 |---|---|---|
 | **A** | **L-track, cut down** (×2) | Bolted flat onto the two KITCHEN-SIDE strips: the centre strip's kitchen face (X=23) and the 1.5" panel-edge strip (X=44.75), ~23" each. 7 bolts per length, ~3" apart, down into T-nuts. Cut the 48" stock down first; deburr the slots |
 | **B** | **Stud fitting w/ D-ring** (×7) | No fasteners — each one **drops into** an L-track slot and twist-locks. 4 go in the kitchen L-track (2 per side, at Y=6 and Y=24) as the kitchen strap corners; 3 go on the BRIDGE (X=8, 23, 38) as the striker-strap points |
-| **C** | **Ratchet strap, 400 lb WLL** (×7) | Never fastened to the board — they hook to B's D-rings. 4 criss-cross **over** the kitchen unit into its 4 L-track D-rings; 3 run forward from the bridge D-rings into the van's 3rd-row striker loops, **measured 44.5" from the hatch** (F4a). Tension last; re-tension after one drive |
+| **C** | **Ratchet strap, 400 lb WLL** (×5) | Never fastened to the board — they hook to B's D-rings. **2 run straight across the kitchen unit, each seated in that face's pair of notches** (the unit has 4 notches and 4 D-rings of its own — MEASURED Aug 2026), ends into the L-track D-rings; 3 run forward from the bridge D-rings into the van's 3rd-row striker loops, **measured 44.5" from the hatch** (F4a). Tension last; re-tension after one drive |
 | **D** | **¼"-20 bolt + T-nut** (~30 pairs, incl. spares) | The T-nut goes in the board's **underside**, counterbored flush so the board still lies flat on its mat; the bolt comes down from **above** through whatever it holds: riser flanges (4 each = 8), L-track (7 each = 14), steel tongues (2 each = 4). **Seat every T-nut before any hardware goes on** — you cannot reach them afterward |
 | **E** | **Non-slip rubber mat** (×1) | Cut to the board's outline and laid **under** it — friction, trim protection and rattle control. Not fastened to anything. It goes in only when the finished board is set into the van (step 7), not on the bench |
 | **F** | **Threadlocker, blue 242** (×1) | One drop on every machine screw as you fit it — that is the A, D and G fasteners (B needs none, it twist-locks). They all end up hidden under the appliances, so they must never need re-checking. Cure ~24 h before loading |
@@ -58,7 +58,7 @@ The banner above only *names* accessories A–G. **Where each one goes is the in
 
 Nothing in this sequence joins plywood to plywood — the board arrives at step 2 already whole.
 
-How the platform actually goes together, in five views: **V1** the bare plywood board from above — ONE 46"x33" comb (full-width bridge + 3 strips, continuous ply, no wood joints), dimensioned, with the steel tongue runs, L-track, D-rings, and riser bolt patterns; **V2** a 4x-scale side section through a rail-line strip (mat → ply → T-nut → riser angle → rail, with the tray hanging over bare floor beside it); **V3** the kitchen's criss-cross straps into the stud D-rings, rear elevation; **V4** the board-to-van side view — the steel tongue let into the bridge's underside dado, bolted, running forward to the floor rail's rear end, plus the striker strap and the step fallback; **V5** the cut plan — how the comb nests in the 3/4" sheet's spare, which way the face grain runs, the two offcut rectangles that fall out of it, the cut order and the fillet at each inside corner (there is no joinery view, because the board has no joints) — with a SYMBOLS legend decoding every mark:
+How the platform actually goes together, in five views: **V1** the bare plywood board from above — ONE 46"x33" comb (full-width bridge + 3 strips, continuous ply, no wood joints), dimensioned, with the steel tongue runs, L-track, D-rings, and riser bolt patterns; **V2** a 4x-scale side section through a rail-line strip (mat → ply → T-nut → riser angle → rail, with the tray hanging over bare floor beside it); **V3** the kitchen's 2 hold-down straps, each seated in a pair of the unit's own top-edge notches, into the stud D-rings, rear elevation; **V4** the board-to-van side view — the steel tongue let into the bridge's underside dado, bolted, running forward to the floor rail's rear end, plus the striker strap and the step fallback; **V5** the cut plan — how the comb nests in the 3/4" sheet's spare, which way the face grain runs, the two offcut rectangles that fall out of it, the cut order and the fillet at each inside corner (there is no joinery view, because the board has no joints) — with a SYMBOLS legend decoding every mark:
 
 ![Anchor board — assembly and connection details](renders/anchor-board-assembly.svg)
 
@@ -180,9 +180,9 @@ sheet_width)`, so every label on it, the coordinates included, came out near
 | 1 | Intake fan (120mm) — blows IN | X=10.86, Y=35.75 (Panel C's FRONT wall), Z=8.8 | 4× M4×20 machine screws over the wall's fan hole (see the Panel C Front Wall render) |
 | 2 | Exhaust fan (120mm) — blows INTO the open utility bay | X=19.72, Y=14.4, Z=8.8 | 4× M4×20 machine screws, 105mm bolt circle, into a plywood fan ring |
 | 3 | NTC temp sensor | X=18.22, Y=12.2, Z=8.8 | Adhesive thermal pad, or 1× #4 screw through its bracket tab |
-| 4 | Control panel enclosure (switches + surge protector) | X=21.5–24.3, Y≈2, Z=6.5–12.5 — in the OPEN utility bay, no door: reach in | Backer board (3/4" offcut) hung from the deck; 4× #8×1" screws |
+| 4 | Control cluster — switches + surge protector + W1209, **no enclosure** | X≈21.9–23.9, Y≈2, Z=6.5–12.5 — in the OPEN utility bay, no door: reach in | Screwed DIRECTLY to a backer board (3/4" offcut) hung from the deck underside, faces pointing down into the bay; 4× #8×1" screws |
 | 5 | Anchor-board rail strips (2 of the board's 3, under the slide rails) | A mat + 3/4" ply band on each rail line BESIDE the tray (side-mount) — part of the ONE-piece board, not separate strips; the fixed rails' risers bolt to them | 1/4-20 machine screws into T-nuts from below — NO holes in the van (Section 8) |
-| 6 | Kitchen tie-down: L-track + 4 stud D-rings | On the board's kitchen-side strips (the utility-bay gap + the 1.5" band at the panel edge) | 4 ratchet straps (400 lb WLL) criss-crossed over the top into the D-rings |
+| 6 | Kitchen tie-down: L-track + 4 stud D-rings | On the board's kitchen-side strips (the utility-bay gap + the 1.5" band at the panel edge) | **2** ratchet straps (400 lb WLL), one across each face, each dropped into that face's pair of the unit's own top-edge notches, ends into the D-rings |
 | 7 | WAVE 3 hose/cord hook | In the open bay, kitchen side — bundle the hoses so nothing swings out | 1× heavy-duty hook, #8×1.5" screw up into the deck underside |
 | 8 | Fridge hold-down strap D-rings (×2) | Tray side apron, near the tailgate end — hooks to the fridge's 2 end handles | Cam strap, snug not tight. This secures the fridge TO its tray; the anchor board secures the tray to the van. Side profile in the Fridge Slide detail |
 | 9 | Board bridge (same piece) + 2 steel rail tongues | The board's full-width front edge at Y=29–35 — one continuous 46"×33" comb with the strips, NO joints | 2"×3/16" flat bars run forward and BOLT to the rear ends of the 2nd-row FLOOR rails (seat anchorage, F8). Forward restraint is steel-to-steel to the van's own rails — no new holes. Fallback: butt the striker-row step (F7) |
@@ -802,7 +802,7 @@ Every wooden joint's method — biscuit vs. screw — with the exact biscuit spa
 | ¼"-20 bolts + washers + nylocks — 2 per tongue through the bridge | 4 | $1 ea | $4 |
 | Non-slip rubber utility mat, under the anchor board's strips | 1 | $25 | $25 |
 | Blue medium-strength threadlocker (Loctite 242 or equivalent — on the anchor board's machine screws) | 1 bottle | $8 | $8 |
-| Erickson ratchet straps (01415), 400 lb WLL / 1,200 lb break, 1" x 10' (4: kitchen unit, criss-crossed over the top to the board's L-track; 3: bridge D-rings to the 3rd-row striker loops; 1 spare) | 2 packs of 4 | $32 | $64 |
+| Erickson ratchet straps (01415), 400 lb WLL / 1,200 lb break, 1" x 10' (2: kitchen unit, one across each face in its notches, to the board's L-track; 3: bridge D-rings to the 3rd-row striker loops; 1 spare) | 2 packs of 4 | $32 | $64 |
 | Fridge hold-down — 1 low-profile cam strap + 2 screw-eye D-rings (hooks to the fridge's 2 end handles, down to the tray's side apron — keeps the fridge from lifting off the tray in a hard stop) | 1 set | $10 | $10 |
 | Cable clips for the fridge DC line's slide-travel slack (3, screwed to the slide's fixed outer rail — same VIPMOON-type clip as the cooktop run, buy links below) | 3 | $1 | $3 |
 | Tension rod + blackout curtain fabric | 1 | $40 | $40 |
@@ -842,7 +842,7 @@ Specific products verified against this plan's specs, full URLs shown for copy-p
 <tr><td>W1209 temp controller + NTC probe (need 1; 2nd is a spare)</td><td>HiLetgo 2pcs W1209 12V with case + waterproof probe (~$10)</td><td><a href="https://www.amazon.com/HiLetgo-Temperature-Controller-Thermostat-One-Channel/dp/B07VDWRZKB">https://www.amazon.com/HiLetgo-Temperature-Controller-Thermostat-One-Channel/dp/B07VDWRZKB</a></td></tr>
 <tr><td>Fused 12V distribution block — <strong>PURCHASED</strong> (July 2026)</td><td>Nilight 6-way blade fuse block w/ negative bus, waterproof cover, label stickers + fuse assortment included ($17.98 — replaces the Blue Sea 5025 pick and the separate ATO fuse pack)</td><td><a href="https://www.amazon.com/Nilight-Negative-Standard-Waterproof-Automotive/dp/B09NPQBXCG">https://www.amazon.com/Nilight-Negative-Standard-Waterproof-Automotive/dp/B09NPQBXCG</a></td></tr>
 <tr><td>Illuminated toggle switches — need 3 — <strong>PURCHASED</strong> (July 2026)</td><td>Ampper 12V 20A illuminated round rockers, 10-pack ($8.99)</td><td><a href="https://www.amazon.com/Illuminated-Rocker-Switches-Ampper-Terminals/dp/B0BZPY5D9L">https://www.amazon.com/Illuminated-Rocker-Switches-Ampper-Terminals/dp/B0BZPY5D9L</a></td></tr>
-<tr><td>Control panel enclosure</td><td>LMioEtool IP65 hinged ABS junction box, 5.9" x 3.9" x 2.8" (~$12)</td><td><a href="https://www.amazon.com/LMioEtool-Waterproof-Dustproof-Universal-Electrical/dp/B0CJJCKXK3">https://www.amazon.com/LMioEtool-Waterproof-Dustproof-Universal-Electrical/dp/B0CJJCKXK3</a></td></tr>
+<tr><td>Control panel enclosure</td><td><strong>DELETED (Aug 2026).</strong> Was an LMioEtool IP65 hinged ABS box, 5.9" x 3.9" x 2.8" (~$12). Its slimmest dimension is 2.8" and the measured kitchen width left the utility bay 2.78" — it no longer fits. The switches, surge strip and W1209 screw straight to the backer board instead, which cannot be a worse fit: a box that holds those parts is wider than the parts.</td><td>—</td></tr>
 <tr><td>16 AWG AC cords — cooktop → REAR outlet + Power strip 1 → REAR outlet (both short, no seams) + DELTA 3 charging → front console</td><td>DEWENWILS 3ft 16AWG SJTW indoor/outdoor extension cord, ETL listed, 2-pack (~$13) — 1 pack covers the two short rear-outlet hops; add a 2nd cord for the DELTA 3 charging line (or size one to your console distance)</td><td><a href="https://www.amazon.com/DEWENWILS-Extension-Weatherproof-Outdoor-Grounded/dp/B0891VDLV5">https://www.amazon.com/DEWENWILS-Extension-Weatherproof-Outdoor-Grounded/dp/B0891VDLV5</a></td></tr>
 <tr><td>16 AWG DC cord run + 2 seam disconnects (fridge line — this one really is 12V DC, DELTA 3 to fridge, so the SAE connector IS the right part here)</td><td>OYMSAE 12 ft 16AWG SAE-to-SAE quick-disconnect cables, 2-pack — the SAE plugs ARE the seam disconnects (~$14)</td><td><a href="https://www.amazon.com/OYMSAE-Extension-Disconnect-Connector-Automotive/dp/B0B2JLGJCR">https://www.amazon.com/OYMSAE-Extension-Disconnect-Connector-Automotive/dp/B0B2JLGJCR</a></td></tr>
 <tr><td>16 AWG cord, ~3-4ft (DELTA 3 AC charging line, front console to Panel A — household AC-rated, no seam crossing)</td><td>DEWENWILS 3ft 16AWG SJTW indoor/outdoor extension cord, ETL listed, 2-pack (~$13) — same product as the cooktop line above, 1 pack covers this with a spare</td><td><a href="https://www.amazon.com/DEWENWILS-Extension-Weatherproof-Outdoor-Grounded/dp/B0891VDLV5">https://www.amazon.com/DEWENWILS-Extension-Weatherproof-Outdoor-Grounded/dp/B0891VDLV5</a></td></tr>
@@ -879,7 +879,7 @@ units wide, so the rows themselves came out near 6pt on paper.
 | 5 | 2-way outlet tap at the rear outlet — Power strip 1 and the cooktop share it |
 | 6 | 1" grommets — deck-edge exits for the two short AC cords |
 | 7 | Power strip 2 — ON the slide-out kitchen unit (cooktop); cord slack for the slide, fed from the rear outlet |
-| 8 | Control enclosure — in the open utility bay (Section 2 below) |
+| 8 | Control cluster (no enclosure) — in the open utility bay (Section 2 below) |
 | 9 | Intake fan, 120mm — on Panel C's FRONT wall, over the fridge's B-facing end |
 | 10 | Exhaust fan, 120mm, into the open bay + NTC probe inside the bay at that wall, in the hot exhaust |
 | 11 | Fridge DC line — DELTA 3 (Panel A) forward to the fridge (Panel C), its own dedicated run |
@@ -892,7 +892,7 @@ units wide, so the rows themselves came out near 6pt on paper.
 *Notes that used to be printed on this sheet — they set its width, which held every label on it to 3–6pt on paper:*
 
 - backer board at the back of the open bay (no door — reach in)
-- A LMioEtool enclosure — 4x #8 x 1" screws through its mounting ears into the wall
+- A backer board (3/4" offcut) — 4x #8 x 1" screws up into the deck underside; the switches, surge strip and W1209 mount to its face (the LMioEtool enclosure they used to sit in was deleted Aug 2026, see Section 2)
 - B W1209 controller (in its case) — NTC probe wire exits the bottom grommet,
 - runs to the fridge's kitchen-facing wall (Section 3)
 - C Nilight 6-way fuse block — feed from the DELTA 3's DC output (Panel A); fans + W1209 each
@@ -933,7 +933,7 @@ The fridge's DC line runs from the DELTA 3 Plus's DC output (Panel A's right dra
 
 1. Drill a 1" grommet hole in Panel A's frame rail near the DELTA 3 drawer, and one more at each of the 2 seams it crosses (Panel A → B, Panel B → C) — 3 total, reusing the same rail-channel approach as the cooktop line (a dado groove or a zip-tied cord under a clip-cover strip both work).
 2. Install a quick-disconnect connector at each of the 2 seams so Panel A and Panel B still lift out independently.
-3. Terminate the cord at the fridge's DC input inside Panel C's void, near the control enclosure (Component 7).
+3. Terminate the cord at the fridge's DC input inside Panel C's void, near the control cluster (Component 7).
 4. Leave a few inches of slack at the DELTA 3 end so opening/closing that drawer doesn't strain the connection.
 5. **At the fridge end, clip the slide-travel slack loop to the slide's FIXED outer rail — not the tray, and not left loose** — 2-3 screw-mount cable clips (same VIPMOON-type clips as the cooktop line, Section 4 BOM) along the rail's inside face. The outer rail never moves, so the clipped loop stays out of the pinch point between the tray and the rail as the tray slides home; a loose coil left to dangle can get caught under the tray or crushed against the rail on the way in.
 
@@ -1242,7 +1242,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - 12V surge protector/fused distribution block, 3 illuminated toggle switches, small electrical enclosure
 - Anchor board (3/4" ply — ONE 46" x 33" comb: bridge + 3 strips continuous, no wood joints, Section 8) + 2 steel bearing tongues (2" x 3/16" flat bar) + non-slip mat + 1/4-20 machine screws & T-nuts
 - Aluminum L-track offcuts + 7 stud fittings w/ D-rings (WLL 1,333 lb)
-- 7 Erickson 400lb-WLL ratchet straps (4 kitchen criss-cross + 3 to the striker loops)
+- 5 Erickson 400lb-WLL ratchet straps (2 kitchen, in the unit's notches + 3 to the striker loops)
 - 1 low-profile cam strap + 2 screw-eye D-rings (fridge hold-down, hooks to its 2 end handles)
 - 3 screw-mount cable clips (fridge DC line slack, clipped to the slide's fixed outer rail)
 - Utility bay fit-out — 2 low-profile bins + hook-and-loop tape (no door: the bay between the fridge and kitchen stays open)
@@ -1269,7 +1269,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 </div>
 <div class="lego-step">
 <div class="lego-num">4</div>
-<div class="lego-parts"><p class="lego-noparts">2 fans + controller/NTC probe + control enclosure</p></div>
+<div class="lego-parts"><p class="lego-noparts">2 fans + controller/NTC probe + control cluster on its backer board</p></div>
 <div class="lego-main"><img src="renders/fridge-wiring.png" alt="Fridge wiring schematic">
 <p class="lego-caption">Bolt the intake fan over the front wall's fan hole (Component 4 step 3 — blowing IN) and snap the passive low intake louver into the wall's vent opening beside it (cool floor-level air in), install the exhaust fan + NTC probe (NTC just INSIDE the bay at the fridge's kitchen-facing wall, in the hot exhaust airflow, feeding the controller — it blows the warm air INTO the open utility bay and straight out toward the tailgate), and the control panel enclosure (switches + surge protector) at the back of the open bay, screwed to a backer board (the 3/4" sheet's offcut) hung from the deck underside — every switch reachable by just reaching into the bay. Wire everything per the schematic's numbered connection points (P1–P12 — the exact terminal, connector, and crimp for every wire is in Section 5's connection-point table). The CO monitor and fire extinguisher are owner-placed — position them yourself once the build is in the van (the CO monitor stays battery-powered and unwired either way).</p></div>
 </div>
@@ -1283,7 +1283,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">6</div>
 <div class="lego-parts"><p class="lego-noparts">kitchen unit + 4 ratchet straps</p></div>
 <div class="lego-main">
-<p class="lego-caption">Slide the JAGAHAHA kitchen unit into place against Panel C's passenger-side rear corner leg (1.5" in from the edge) — its shelves swing out on that side — and strap it down: 4 Erickson 400lb-WLL ratchet straps, criss-crossed over the top, hooked into the stud-fitting D-rings on the anchor board's L-track (Section 8).</p></div>
+<p class="lego-caption">Slide the JAGAHAHA kitchen unit into place against Panel C's passenger-side rear corner leg (1.5" in from the edge) — its shelves swing out on that side — and strap it down: **2** Erickson 400lb-WLL ratchet straps, one across the front face and one across the back, each dropped into that face's **pair of notches routed in the unit's top edge** so it cannot slide along the box, hooked into the stud-fitting D-rings on the anchor board's L-track (Section 8). The unit's own 4 D-rings (2 per face) give each strap a positive attachment on the box.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">7</div>
@@ -1446,7 +1446,7 @@ Panel A, Panel B, and Panel C each rest unbolted on the van floor — nothing is
   Why one piece is worth the sheet space: the striker straps hold the *bridge*, and everything bolted to the strips hangs off it in a rearward pull. As one piece that load path is continuous plywood instead of three glue lines working in tension. (The steel tongues are not wood joints either — they bolt through the bridge with the 1/4-20 T-nuts.)
 - **Nothing under the fridge tray or under the kitchen unit — this is a skeleton, NOT a full false floor.** The tray keeps hanging between the slide rails at its 0.5" floor clearance and the kitchen sits on the bare van floor as before — the board occupies only the bridge and the strips beside them, so `leg_height`, the 0.33" end-rail clearance, and the kitchen-drawer stack are all unchanged.
 - The **fridge riser angles bolt on top of the rail-line strips** (1/4-20 machine screws into T-nuts from below). The risers — and with them the rails — ride ~0.85" higher on the mat + board stack, but nothing else moves: the moving member simply screws to the 1x3 apron lower down in their shared overlap (~1.9" of the 3" rail still faces the 2.5" apron — enough screw band, asserted in `params.scad`), so the tray keeps its 0.5" floor hang and the fridge stack height is untouched.
-- The **kitchen straps to the board**: short lengths of **aluminum L-track** (rated ≥2,000 lb/ft) screw to the two kitchen-side strips, and the 4 [Erickson ratchet straps](https://www.etrailer.com/Cargo-Tie-Downs/toyota/sienna/Erickson/EM31352.html) (400 lb WLL / 1,200 lb break each) criss-cross over the unit into **L-track stud fittings with D-rings (WLL 1,333 lb each)** — the same criss-cross as the old plan, with the board's track replacing the 4 floor anchors.
+- The **kitchen straps to the board**: short lengths of **aluminum L-track** (rated ≥2,000 lb/ft) screw to the two kitchen-side strips, and **2** [Erickson ratchet straps](https://www.etrailer.com/Cargo-Tie-Downs/toyota/sienna/Erickson/EM31352.html) (400 lb WLL / 1,200 lb break each) run straight across the unit into **L-track stud fittings with D-rings (WLL 1,333 lb each)**. **Straight across, not criss-crossed:** the physical unit turned out to have 4 notches routed in its top edges — 2 per face — and a strap seated in a notch pair cannot slide along the box, which is what the diagonal criss-cross was compensating for on an assumed-smooth top.
 - A **non-slip rubber mat** goes under every strip — friction, trim protection, and rattle control in one.
 
 **Three load paths, each matched to its direction:**
@@ -1502,7 +1502,7 @@ Kept short, so they don't get re-proposed:
 📏 One minor item remains, and it only sets the pin's **length**: how deep the hole is, and whether it breaks through into the channel.
 
 2. **Rearward + lift — 3 ratchet straps** (400 lb WLL each) from stud-fitting D-rings on the bridge, forward and down into the 3 striker loops, tensioned. These also pin the board against the slide's cantilever moment when the loaded fridge is pulled to full extension.
-3. **Lateral** — the kitchen's criss-crossed straps, the striker straps' splay, the well and van walls ~1" away, and the mat's friction.
+3. **Lateral** — the kitchen's 2 notch-seated straps (the notches themselves resist lateral travel), the striker straps' splay, the well and van walls ~1" away, and the mat's friction.
 
 The straps and tongues cross under **Panel B's rear bottom rail** at the B/C seam — cut shallow relief notches in that rail's underside where they cross (3/16" deep for the tongues, a saw kerf for the webbing). That's a modification to build lumber, not to the van.
 
@@ -1516,7 +1516,7 @@ The straps and tongues cross under **Panel B's rear bottom rail** at the B/C sea
 
 1. **Bench-build the board first**: cut the comb outline as ONE piece from the 3/4" sheet's spare (final dimensions only after the F1–F8 survey; grain along the strips, ~1/2" fillet at each inside corner — assembly sheet, V5), then counterbore the underside and seat the 1/4-20 T-nuts flush, then bolt on the riser angles, the L-track lengths, the bridge's stud-fitting D-rings, and the two steel rail tongues (their forward ends drilled/bent to match what F8 found at the rail ends). A drop of **blue medium-strength threadlocker (Loctite 242 or equivalent)** on each machine screw — these fasteners hide under the appliances, so they should never need re-checking. Let it cure per the label (~24h) before loading.
 2. **Set the board in the van** on its non-slip mat, bolt/clamp the tongues to the rear ends of the 2nd-row floor rails (or butt them against the striker-row step, if that's where the survey landed), and notch Panel B's rear bottom rail where the tongues and straps cross under it.
-3. **Hook and tension the 3 striker straps** (bridge D-rings → striker loops), then install the slide, tray, fridge, and kitchen per Component 7 and set the kitchen's 4 criss-cross straps.
+3. **Hook and tension the 3 striker straps** (bridge D-rings → striker loops), then install the slide, tray, fridge, and kitchen per Component 7 and set the kitchen's 2 notch-seated straps.
 4. **Re-tension every strap after the first drive**, then check at the start of each trip — the striker-strap ratchets live under Panel B's open bay, so re-tensioning means lifting the bed platform, not removing any panel.
 5. **Nothing to rustproof, seal, or crawl under the van for** — no holes were cut, so the old yearly rust inspection is gone too. To return the van to stock: release 7 straps, undo the 2 rail-tongue connections (any factory hardware goes back exactly as found), and lift the board out with everything on it. Zero evidence it was ever there — and the 2nd-row seats bolt back onto their untouched rails for passenger mode (Section 9).
 
@@ -1740,7 +1740,9 @@ seated **in** such a notch, running around the box. That is the unit's designed
 hold-down load path: a strap over the top sits down in the notches and cannot
 slide along the box. It supersedes Section 8's original kitchen tie-down, which
 criss-crossed 4 ratchet straps diagonally over what was assumed to be a smooth
-top — the notches make a straight-across strap both simpler and more secure.
+top. There are **4 notches and 4 D-rings — 2 of each per face** (owner, Aug 2
+2026), so it is **2 straps**, one across each face, seated in that face's notch
+pair: simpler, more secure, and two fewer straps to buy and tension.
 The unit also carries folding stainless handles on its ends and two oval
 hand-holds, so lifting points are built in.
 
