@@ -180,7 +180,7 @@ sheet_width)`, so every label on it, the coordinates included, came out near
 | 1 | Intake fan (120mm) — blows IN | X=11.11, Y=35.75 (Panel C's FRONT wall), Z=8.8 | 4× M4×20 machine screws over the wall's fan hole (see the Panel C Front Wall render) |
 | 2 | Exhaust fan (120mm) — blows INTO the open utility bay | X=19.72, Y=14.4, Z=8.8 | 4× M4×20 machine screws, 105mm bolt circle, into a plywood fan ring |
 | 3 | NTC temp sensor | X=18.22, Y=12.2, Z=8.8 | Adhesive thermal pad, or 1× #4 screw through its bracket tab |
-| 4 | Control cluster — switches + surge protector + W1209, **no enclosure** | X≈21.9–23.9, Y≈2, Z=6.5–12.5 — in the OPEN utility bay, no door: reach in | Screwed DIRECTLY to a backer board (3/4" offcut) hung from the deck underside, faces pointing down into the bay; 4× #8×1" screws |
+| 4 | Control cluster — switches + surge protector + W1209, **no enclosure** | X=30–40, Y=35.75 (Panel C's FRONT wall), Z=8–14 — on the wall's **Panel-B face**, standing ~2" off it | Screwed DIRECTLY to a backer board (3/4" offcut) on the wall; 4× #8×1" screws. Reached by lifting one of Panel B's lift-out bed-top halves |
 | 5 | Anchor-board rail strips (2 of the board's 3, under the slide rails) | A mat + 3/4" ply band on each rail line BESIDE the tray (side-mount) — part of the ONE-piece board, not separate strips; the fixed rails' risers bolt to them | 1/4-20 machine screws into T-nuts from below — NO holes in the van (Section 8) |
 | 6 | Kitchen tie-down: L-track + 4 stud D-rings | On the board's kitchen-side strips (the utility-bay gap + the 1.5" band at the panel edge) | **2** ratchet straps (400 lb WLL), one across each face, each dropped into that face's pair of the unit's own top-edge notches, ends into the D-rings |
 | 7 | WAVE 3 hose/cord hook | In the open bay, kitchen side — bundle the hoses so nothing swings out | 1× heavy-duty hook, #8×1.5" screw up into the deck underside |
@@ -552,7 +552,7 @@ Two coordinate conventions, each picked to match how you'd actually stand at the
 | Intake fan (120mm) | C | 11.11 (on the front wall) | ~35 (Panel C's front wall) | 8.8 |
 | Exhaust fan (120mm) | C | 19.7 (fridge's kitchen-facing wall) | ~14.4 | 8.8 |
 | NTC temp sensor | C | ~18.2 (just inside the fridge's exhaust wall) | ~12.2 | 8.8 |
-| Control panel (switches, surge protector) | C | 21.5–24.3 | ~2 (at the tailgate end of the open utility bay) | 6.5–12.5 — in the open utility bay, on a backer board hung from the deck underside |
+| Control cluster (switches, surge protector, W1209) | C | 30–40 | 35.75 (Panel C's FRONT wall) | 8–14 — on the wall's Panel-B face, standing ~2" off it into Panel B's bay |
 | Power strip 2 (cooktop) | C | ~34.5–37.5 | ~26 (kitchen unit's front face) | ~1.5 |
 | Right drawer (the only one) | A | 23.75–43.75 | 2–27 | 0–13.75 |
 | Center divider | A | 22.25–23.75 | 1.5–27.5 | 0–16.25 |
@@ -879,7 +879,7 @@ units wide, so the rows themselves came out near 6pt on paper.
 | 5 | 2-way outlet tap at the rear outlet — Power strip 1 and the cooktop share it |
 | 6 | 1" grommets — deck-edge exits for the two short AC cords |
 | 7 | Power strip 2 — ON the slide-out kitchen unit (cooktop); cord slack for the slide, fed from the rear outlet |
-| 8 | Control cluster (no enclosure) — in the open utility bay (Section 2 below) |
+| 8 | Control cluster (no enclosure) — on Panel C's FRONT wall, Panel-B face (Section 2 below) |
 | 9 | Intake fan, 120mm — on Panel C's FRONT wall, over the fridge's B-facing end |
 | 10 | Exhaust fan, 120mm, into the open bay + NTC probe inside the bay at that wall, in the hot exhaust |
 | 11 | Fridge DC line — DELTA 3 (Panel A) forward to the fridge (Panel C), its own dedicated run |
@@ -1756,6 +1756,37 @@ hand-holds, so lifting points are built in.
 > an `echo`, so every render logs the shortfall rather than refusing to build.
 > Nothing in the measurement is wrong; the layout has to absorb it, and how is
 > an owner call.
+
+**RESOLVED (owner, Aug 2 2026): the control cluster moves out of the bay.** Once
+the full width chain was written out it came to **44.72" of 46"**, leaving the
+bay **1.28"** — and the third error in that chain had nothing to do with the
+kitchen measurement: the **driver-side rail stack was never subtracted
+anywhere**, only the passenger-side one. At 1.28" the bay cannot mount anything,
+so the cluster went looking for room. There is none inside Panel C's void —
+over the fridge stack is 1.09", over the kitchen under the drawer 0.5", over the
+drawer under the deck 1.2". It now mounts on **Panel C's front wall, on the
+wall's Panel-B face, passenger half (X 30–40", Z 8–14")**, which is the one
+surface in the build with real space: 46" × 17" carrying only a 4.75" fan hole,
+a 9"×2" louver and a single 1" grommet. `params.scad` asserts it clears all
+three and stays on the wall.
+
+Panel A was ruled out for a physical reason rather than a spatial one — its
+drawer has excellent access, but the W1209's thermistor lead is about 39" and
+its probe must sit in the **fridge** bay, roughly 59" away through two seams.
+
+**Access:** lift one of Panel B's two lift-out bed-top halves and reach down the
+front wall. Panel B is top-loaded by design — the side doors don't reach it — so
+this is the access route the panel already has, not a new one. **One thing to
+check on the build:** that Panel B's spare-and-tote stack leaves ~2" of
+clearance in front of the cluster's patch of wall. If it doesn't, slide either
+the stack or the cluster sideways — the wall has room to spare in both
+directions.
+
+**What the bay is now.** Not a mounting location: an **air path and a finger
+gap**. The exhaust fan blows the fridge bay's warm air through it and out the
+open tailgate face, and at 1.28" × 17" it presents **21.8 sq in** of cross
+section against the 120mm fan's own **17.7 sq in** aperture, so it does not
+choke the flow — `params.scad` asserts exactly that.
 
 #### The rear floor under Panel C — what does the anchor board actually sit on and strap to? (SURVEYED Aug 1 2026 — findings below)
 

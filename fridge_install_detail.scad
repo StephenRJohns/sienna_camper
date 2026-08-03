@@ -288,9 +288,14 @@ module drawing() {
     // Control panel — at the tailgate end of the OPEN utility bay,
     // on a backer board hung from the deck underside (Z in the
     // side list; a top-down view only shows its footprint).
-    ctrl_x0 = bay_x0 + bay_w/2 - control_panel_width/2;
-    color("Black") translate([ctrl_x0, 1.8]) rect_outline(control_panel_width, 1.5);
-    marker(4, ctrl_x0 + control_panel_width/2, 5.5, "Black");
+    // MOVED Aug 2026: the cluster is on the FRONT WALL's Panel-B face now, not
+    // in the bay — the bay came out 1.28in wide. In this top-down the front
+    // wall is the far edge (Y = panel_c_length), so the cluster's footprint is
+    // a thin band just BEYOND it, standing off into Panel B.
+    ctrl_x0 = cluster_x;
+    color("Black") translate([ctrl_x0, panel_c_length])
+        rect_outline(cluster_w, cluster_proj);
+    marker(4, ctrl_x0 + cluster_w/2, panel_c_length + cluster_proj + 2.4, "Black");
     // MOVED TO THE DOCUMENT: label("(4 sits in the OPEN utility bay — Z in the list.", panel_width/2, -7.6, 1.05);
     // MOVED TO THE DOCUMENT: label("CO monitor + fire extinguisher: owner-placed, not located here)", panel_width/2, -9.3, 1.05);
 

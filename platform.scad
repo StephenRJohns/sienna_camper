@@ -379,11 +379,14 @@ module fridge_bay_module(y_offset, wireframe = false, x_offset = 0, panel_length
     // kitchen, just behind the door, on a backer board hung from the
     // deck underside (simplified representative block, not to exact
     // device scale). The CO monitor is owner-placed, not drawn.
-    ccx = (x_fridge_module + fridge_ext_length/2 + fridge_slide_margin
-           + x_kitchen - kitchen_box_width/2)/2 - x_offset; // cabinet gap center, module-local
+    // MOVED Aug 2026 to Panel C's FRONT wall, Panel-B face: the utility bay it
+    // used to sit in came out 1.28in wide once the kitchen measured 20.5in and
+    // the 1x3 aprons were counted on both sides. Drawn at the front (+Y) face,
+    // standing off it into Panel B.
+    ccx = -panel_width/2 + cluster_x - x_offset;   // module-local, driver-edge datum
     color("Black", 0.85)
-        translate([ccx - control_panel_width/2, y_offset + panel_length - 3.5, 6.5])
-            bx(control_panel_width, 1.5, 6, wireframe); // panel face + switches/surge strip
+        translate([ccx, y_offset + panel_length, cluster_z])
+            bx(cluster_w, cluster_proj, cluster_h, wireframe);
 
     // No-drill anchor board under the fridge's slide rails — see
     // "Securing heavy components" (Section 8): each FIXED rail's steel

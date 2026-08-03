@@ -138,10 +138,19 @@ module drawing() {
     // grommets are all in the driver third.
     // stacked in one column in the wall's empty upper-right quadrant, in the
     // same top-to-bottom order as the features they point at
-    callout(str("FAN ", fan_d, "\" dia"), fan_x + fan_d/2, fan_z + 1.4, 21, 14);
+    callout(str("FAN ", fan_d, "\" dia"), fan_x + fan_d/2, fan_z + 1.4, 21, 7);
     callout(str("LOUVER ", intake_vent_w, "\" x ", intake_vent_h, "\""),
-            intake_vent_x + intake_vent_w/2, intake_vent_z, 21, 11);
-    callout("DC GROMMET 1\"", gr_x + gr_d/2, gr_z, 21, 8);
+            intake_vent_x + intake_vent_w/2, intake_vent_z, 21, 4.4);
+    callout("DC GROMMET 1\"", gr_x + gr_d/2, gr_z, 21, 1.8);
+
+    // The control cluster mounts on THIS wall's far (Panel-B) face — dashed,
+    // because from this side you are looking at the back of it. It moved here
+    // Aug 2026 when Panel C's width chain left the utility bay 1.28in wide.
+    color("DimGray") for (i = [0 : 3]) {
+        translate([cluster_x, cluster_z + i * cluster_h/3]) square([cluster_w, 0.12]);
+        translate([cluster_x + i * cluster_w/3, cluster_z]) square([0.12, cluster_h]);
+    }
+    label("CONTROL CLUSTER", cluster_x + cluster_w/2, cluster_z + cluster_h + 1.4, 1.6);
     // MOVED TO THE DOCUMENT: label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
 
     // ---- title + notes ----

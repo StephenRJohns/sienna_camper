@@ -250,7 +250,7 @@ module section1_content() {
     translate([34.5, y_tg - 3.8]) strip_icon(4);
     mmarker(7, 23, y_tg - 2.6);
 
-    // 8: control cluster (no enclosure) — in the open utility bay (footprint)
+    // 8: control cluster (no enclosure) — on Panel C's FRONT wall, Panel-B face
     translate([33, y_tg - 1.9]) enclosure_icon(5, 2.6);
     mmarker(8, 32, y_tg - 8.5);
 
@@ -294,7 +294,7 @@ module section1_content() {
 // ============================================================
 module section2() {
     z_deck = leg_height + frame_rail_sz; // 18.5
-    label("CONTROL CLUSTER — in the open utility bay", 23, 36, 2.2);
+    label("CONTROL CLUSTER — on Panel C's FRONT wall", 23, 36, 2.2);
     rect_outline(30, 33);                              // wall section, x 0-30, z 0-33
     // MOVED TO THE DOCUMENT: label("backer board at the back of the open bay (no door — reach in)", 15, -2.2, 1.0);
     color("Silver") translate([0, z_deck - 0.1]) square([30, 0.2]);

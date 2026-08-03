@@ -111,7 +111,11 @@ module deployed() {
     bay_x0 = x_fridge_module + fridge_ext_length/2;
     bay_x1 = x_kitchen - kitchen_box_width/2;
     cab_cx = (bay_x0 + bay_x1)/2;
-    color("Black") translate([cab_cx - control_panel_width/2, 4.5]) rect_outline(control_panel_width, 6);
+    // control cluster moved to Panel C's FRONT wall (Aug 2026); dashed here
+    // because in this rear elevation the front wall is the far side
+    color("DimGray") for (i = [0 : 5])
+        translate([-panel_width/2 + cluster_x + i * cluster_w/5, cluster_z])
+            square([cluster_w/9, cluster_h]);
     
     // "open utility bay (no door)" printed at 0.85 inside a 3.3in-wide bay,
     // overflowing it on both sides. Marker 3 plus the legend row carry it now.

@@ -223,8 +223,13 @@ module rear_view() {
     // the backer board hung from the deck underside); everything
     // electrical is reached by just reaching into the bay.
     cab_cx = (bay_x0 + bay_x1)/2;
-    color("Black")
-        translate([cab_cx - control_panel_width/2, 6.5]) rect_outline(control_panel_width, 6);
+    // The control cluster is NOT in this bay any more (Aug 2026 — the bay came
+    // out 1.28in wide). It is on Panel C's FRONT wall, which in this rear
+    // elevation is hidden behind the fridge and kitchen, so it is drawn dashed
+    // at its true X and Z with a note.
+    color("DimGray") for (i = [0 : 5])
+        translate([-panel_width/2 + cluster_x + i * cluster_w/5, cluster_z])
+            square([cluster_w/9, cluster_h]);
     // MOVED TO THE DOCUMENT: label("Control panel: switches + surge protector — at the back of the open bay, reach in", cab_cx - 2, -6.2, 0.85);
 
     // numbered markers on the drawing itself — every legend item
@@ -237,7 +242,7 @@ module rear_view() {
     marker(4, fan_in_x, fan_z + 3.2);                               // intake fan icon
     marker(5, exhaust_x - 6.5, fan_z + 4.2, -1.3);                  // exhaust fan
     marker(6, exhaust_x - 1.8, fan_z + 3);                          // NTC sensor — inside the bay at the exhaust wall
-    marker(7, cab_cx - 3.4, 5.6, -1.3);                             // control panel (inside the cabinet)
+    marker(7, -panel_width/2 + cluster_x + cluster_w/2, cluster_z + cluster_h + 1.6); // control cluster, on the FRONT wall behind this view
     marker(8, kx + 5, 2.5);                                         // power strip 2
     marker(9, -van_interior_width/2 + 1.25, 8.5);                  // vent intrusion (left zone shown)
     marker(10, (bay_x0 + bay_x1)/2 + 2.4, leg_height - 2);        // open utility bay

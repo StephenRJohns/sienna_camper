@@ -784,12 +784,22 @@ exhaust_fan_dia = 4.75; // 120mm, same size as the intake fan
 sensor_dia = 0.4; // NTC thermistor probe, shown as a small marker
 
 /* [Control compartment — power switches, surge protection, CO detector, fan controller] */
-// Mounted on Panel C's tailgate-facing end rail, up at deck height
-// (z_deck = leg_height + frame_rail_sz) — the fridge travels below
-// that, through the open space between the corner legs, so the two
-// don't collide even though the fridge now exits through the same
-// tailgate opening the end rail spans. Small vertical panel, not its
-// own floor footprint.
+// MOVED Aug 2 2026, to Panel C's FRONT WALL, on its PANEL-B facing side.
+// It used to live in the open utility bay between the fridge and the kitchen.
+// Panel C's width chain closed at 44.72 of 46in once the kitchen was measured
+// at 20.5 and the 1x3 aprons were counted on both sides, leaving that bay
+// 1.28in — past any use for mounting anything.
+// Nowhere inside Panel C's void takes a 2.8in-deep cluster: over the fridge
+// stack is 1.09in, over the kitchen under the drawer 0.5in, over the drawer
+// under the deck 1.2in. The front wall is the one surface with real room —
+// 46 x 17in carrying only a 4.75in fan hole, a 9x2in louver and one 1in
+// grommet — so the cluster goes on its Panel-B face, passenger half, clear of
+// all three. Panel A was ruled out for a physical reason, not a spatial one:
+// the W1209's thermistor lead is about 39in and its probe has to sit in the
+// FRIDGE bay, which is ~59in away through two seams.
+// ACCESS: lift one of Panel B's two lift-out bed-top halves and reach down the
+// front wall. Panel B is top-loaded by design (the side doors do not reach it),
+// so this is the access route the panel already has.
 // RE-MOUNTED Aug 2 2026. The LMioEtool ENCLOSURE is gone. It measured 2.8in
 // across at its slimmest, and once the kitchen unit measured 20.5in wide the
 // bay it had to sit in came out 2.78in — the box no longer fit, full stop.
@@ -1016,8 +1026,16 @@ rear_row_width = fridge_module_width + kitchen_box_width; // just for reference/
 x_kitchen       = panel_width/2 - frame_rail_sz - kitchen_box_width/2;
 x_fridge_module = -panel_width/2 + frame_rail_sz + fridge_module_width/2;
 x_fridge        = x_fridge_module; // fridge cavity center = module center now (no separate control-panel column)
-x_control_panel = (x_fridge_module + fridge_ext_length/2 + fridge_slide_margin
-                   + x_kitchen - kitchen_box_width/2)/2; // cabinet-gap center — the panel lives INSIDE the cabinet, behind its door (unused by the drawings, kept as the named reference)
+// Cluster face on the front wall, in wall coordinates (x from the DRIVER edge,
+// z from the van floor — same datum as the fan/louver/grommet).
+cluster_w   = 10;    // face width  — switches, W1209 and surge strip in a row
+cluster_h   = 6;     // face height
+cluster_x   = 30;    // driver edge -> cluster's left edge (passenger half)
+cluster_z   = 8;     // floor -> bottom edge. Upper passenger corner of the
+                     // wall: the three opening callouts read out along the
+                     // LOWER band, so this keeps the two apart.
+cluster_proj = control_panel_across; // how far it stands off the wall into Panel B
+x_control_panel = -panel_width/2 + cluster_x + cluster_w/2; // panel-centred X
 
 // Deck width/length aliases (deck can be wider than usable_floor_width
 // since it's up on legs, clear of the floor-level vent intrusion —
@@ -1090,19 +1108,38 @@ pcw_terms = [
 pcw_used = frame_rail_sz + fridge_rail_stack + fridge_slide_margin
          + fridge_ext_length + fridge_slide_margin + fridge_rail_stack
          + kitchen_box_width + frame_rail_sz;
-utility_bay_gap  = panel_width - pcw_used;   // whatever is left is the bay
-utility_bay_need = control_panel_width + 0.4;
+utility_bay_gap = panel_width - pcw_used;   // whatever is left is the bay
 echo(str("PANEL C WIDTH: ", pcw_used, "in of ", panel_width,
-         "in used -> utility bay ", utility_bay_gap, "in (cluster wants ",
-         utility_bay_need, "in)"));
-if (utility_bay_gap < utility_bay_need)
-    echo(str("OPEN ISSUE (Section 2/6): Panel C's width chain leaves the utility bay ",
-             utility_bay_gap, "in but the control cluster wants ", utility_bay_need,
-             "in — short by ", utility_bay_need - utility_bay_gap,
-             "in. Every term is a measured or catalogue part; see the chain in params.scad."));
+         "in used -> utility bay ", utility_bay_gap, "in"));
+
+// The bay no longer has to HOLD anything — the control cluster moved to the
+// front wall (see above), which is what that 1.28in made necessary. What is
+// left of it still has two jobs, and both are satisfied at this width:
+//
+//  1. the exhaust air path. The exhaust fan blows the fridge bay's warm air
+//     into this slot and out the open tailgate face, so the slot's cross
+//     section has to beat the fan's own aperture or it chokes the flow.
+//  2. a finger gap between two appliances that both slide out past each other.
+utility_bay_area = utility_bay_gap * leg_height;   // slot cross-section
+intake_fan_area  = 3.14159 * pow(intake_fan_dia/2, 2);
+assert(utility_bay_area >= intake_fan_area,
+       str("The utility bay is ", utility_bay_gap, "in wide x ", leg_height,
+           "in tall = ", utility_bay_area, " sq in, under the exhaust fan's own ",
+           intake_fan_area, " sq in — it would choke the fridge bay's air path"));
 assert(utility_bay_gap >= 0,
        str("Panel C is over-committed across its width: ", pcw_used,
            "in of parts in a ", panel_width, "in panel"));
+
+// The cluster's own site has to clear the wall's three openings.
+assert(cluster_x >= intake_vent_x + intake_vent_w/2 + 0.75 &&
+       cluster_x >= pcwall_fan_x + intake_fan_dia/2 + 0.75,
+       str("The control cluster starts at x=", cluster_x,
+           " on the front wall, which is not clear of the louver (ends ",
+           intake_vent_x + intake_vent_w/2, ") or the fan hole (ends ",
+           pcwall_fan_x + intake_fan_dia/2, ")"));
+assert(cluster_x + cluster_w <= panel_width - frame_rail_sz &&
+       cluster_z + cluster_h <= pcwall_h,
+       "The control cluster runs off the front wall's edge");
 assert(panel_width - 2 * leg_inset <= usable_floor_width,
        "Panel legs (deck width minus 2x leg_inset) land inside the vent intrusion zone");
 assert(panel_width <= van_interior_width,
