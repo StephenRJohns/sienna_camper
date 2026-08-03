@@ -217,12 +217,52 @@ module v2_fridge_stack() {
     // MOVED TO THE DOCUMENT: label_left("<- fridge sits on the tray (dashed, continues up)", 6.8*SC, 2.55*SC, 1.0);
     // MOVED TO THE DOCUMENT: label_left("<- 3/8\" ply TRAY — hangs 0.5\" over BARE van floor (no board here)", 6.8*SC, 0.7*SC, 1.0);
     // MOVED TO THE DOCUMENT: label_left("<- 1x3 apron (the slide's moving member screws to it)", 4.0*SC, 2.4*SC + 4.2, 1.0);
-    label_left("<- VADANIA fixed rail (3\") — bottom at 1.1\"", 3.15*SC, 4.0*SC, 1.0);
-    label_left("<- steel riser angle 2\"x2\"x3/16\"", 2.4*SC, 2.75*SC, 1.0);
-    // MOVED TO THE DOCUMENT: label_left("<- 1/4-20 bolt -> T-nut (flange counterbored into the ply bottom)", 1.5*SC, 1.35*SC, 1.0);
-    label_left("<- 3/4\" ply strip", 2.65*SC, 0.55*SC, 1.0);
-    label_left("<- non-slip rubber mat (0.1\")", 2.65*SC, 0.1*SC, 1.0);
-    label("V2 — SIDE section, fridge side (4x scale): riser + rail bolt to the BOARD, never the van", 4.7*SC, -1.6, 1.2);
+    // Five parts in a 3.5in-wide section: labelled in place they sat on each
+    // other and on the rail outline. One leadered column to the right instead,
+    // in the same top-to-bottom order as the parts it points at.
+    LX = 7.4*SC;
+    module part(txt, fx, fz, ty) {
+        color("black") hull() {
+            translate([fx, fz]) circle(r = 0.09, $fn = 8);
+            translate([LX - 0.7, ty]) circle(r = 0.09, $fn = 8);
+        }
+        color("black") translate([fx, fz]) circle(r = 0.28, $fn = 14);
+        label_left(txt, LX, ty, 1.0);
+    }
+    part("VADANIA fixed rail, 3\" (bottom at 1.1\")", 2.62*SC, 3.2*SC, 4.6*SC);
+    part("1x3 APRON, 3/4\" — the slide's moving member",  3.37*SC, 2.4*SC, 3.6*SC);
+    label_left("screws to it; its top edge is the fridge's", LX, 3.6*SC - 1.6, 1.0);
+    label_left("anti-shift lip", LX, 3.6*SC - 3.2, 1.0);
+    part("3/8\" ply TRAY — hangs 0.5\" over BARE floor", 4.6*SC, 0.62*SC, 2.3*SC);
+    part("steel riser angle, 2\"x2\"x3/16\"", 2.15*SC, 1.6*SC, 1.5*SC);
+    part("3/4\" ply strip", 0.8*SC, 0.55*SC, 0.8*SC);
+    part("non-slip rubber mat, 0.1\"", 0.5*SC, 0.05*SC, 0.15*SC);
+    // ---- WIDTH stack-up, called out because params.scad disagrees with it ----
+    // Three narrow runs (0.19-0.75in, so only 0.76-3.0 units wide even at 4x)
+    // cannot each carry a label side by side, so the chain is drawn unlabelled
+    // and read off the lines under it.
+    SY = -0.5*SC;
+    for (xr = [[2.06, 2.25], [2.25, 3.00], [3.00, 3.75]])
+        color("Firebrick") {
+            translate([xr[0]*SC, SY]) square([0.1, 0.55*SC]);
+            translate([xr[1]*SC, SY]) square([0.1, 0.55*SC]);
+            translate([xr[0]*SC, SY + 0.27*SC]) square([(xr[1]-xr[0])*SC, 0.1]);
+        }
+    color("Firebrick") {
+        translate([2.06*SC, SY - 1.6])
+            text("across each side, outboard -> inboard:  riser 0.19\"  |  rail 0.75\"  |  APRON 0.75\"",
+                 size = 1.0, halign = "left", valign = "center");
+        translate([2.06*SC, SY - 3.2])
+            text("The fridge's side lands on the APRON's inner face, so the APRON is what has to fit",
+                 size = 1.0, halign = "left", valign = "center");
+        translate([2.06*SC, SY - 4.8])
+            text("inside fridge_slide_margin — and that is set to 0.5\". A 1x3 is 0.75\" thick, so the",
+                 size = 1.0, halign = "left", valign = "center");
+        translate([2.06*SC, SY - 6.4])
+            text("model is 0.25\"/side short: see the OPEN ISSUE params.scad echoes on every render.",
+                 size = 1.0, halign = "left", valign = "center");
+    }
+    label("V2 — SIDE section, fridge side (4x scale): riser + rail bolt to the BOARD, never the van", 4.7*SC, -0.5*SC - 8.8, 1.2);
     // MOVED TO THE DOCUMENT: label("(the whole stack repeats at the other rail line, on the center strip)", 4.7*SC, -3.2, 1.0);
 }
 
