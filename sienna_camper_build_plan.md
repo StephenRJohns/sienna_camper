@@ -177,7 +177,7 @@ sheet_width)`, so every label on it, the coordinates included, came out near
 
 | # | Component | Position | Fastening |
 |---|---|---|---|
-| 1 | Intake fan (120mm) — blows IN | X=10.86, Y=35.75 (Panel C's FRONT wall), Z=8.8 | 4× M4×20 machine screws over the wall's fan hole (see the Panel C Front Wall render) |
+| 1 | Intake fan (120mm) — blows IN | X=11.11, Y=35.75 (Panel C's FRONT wall), Z=8.8 | 4× M4×20 machine screws over the wall's fan hole (see the Panel C Front Wall render) |
 | 2 | Exhaust fan (120mm) — blows INTO the open utility bay | X=19.72, Y=14.4, Z=8.8 | 4× M4×20 machine screws, 105mm bolt circle, into a plywood fan ring |
 | 3 | NTC temp sensor | X=18.22, Y=12.2, Z=8.8 | Adhesive thermal pad, or 1× #4 screw through its bracket tab |
 | 4 | Control cluster — switches + surge protector + W1209, **no enclosure** | X≈21.9–23.9, Y≈2, Z=6.5–12.5 — in the OPEN utility bay, no door: reach in | Screwed DIRECTLY to a backer board (3/4" offcut) hung from the deck underside, faces pointing down into the bay; 4× #8×1" screws |
@@ -549,7 +549,7 @@ Two coordinate conventions, each picked to match how you'd actually stand at the
 |---|---|---|---|---|
 | Kitchen unit (JAGAHAHA) | C | 24.5–44.5 | 0–26 | 0–11.8 |
 | Fridge (BougeRV Rocky 40) | C | 2–19.7 (slide rails flank at ~0.6–1.5 and ~20.2–21.2) | 0–28.74 | 0.5–16.67 (hanging tray + fridge) |
-| Intake fan (120mm) | C | 10.86 (on the front wall) | ~35 (Panel C's front wall) | 8.8 |
+| Intake fan (120mm) | C | 11.11 (on the front wall) | ~35 (Panel C's front wall) | 8.8 |
 | Exhaust fan (120mm) | C | 19.7 (fridge's kitchen-facing wall) | ~14.4 | 8.8 |
 | NTC temp sensor | C | ~18.2 (just inside the fridge's exhaust wall) | ~12.2 | 8.8 |
 | Control panel (switches, surge protector) | C | 21.5–24.3 | ~2 (at the tailgate end of the open utility bay) | 6.5–12.5 — in the open utility bay, on a backer board hung from the deck underside |
@@ -1156,7 +1156,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">3</div>
 <div class="lego-parts"><p class="lego-noparts">front wall: 46" x 17" 3/8" ply, holes pre-cut per the Panel C Front Wall render</p></div>
 <div class="lego-main"><img src="renders/panel-c-wall-detail.png" alt="Panel C front wall flat pattern">
-<p class="lego-caption">Cut the front wall and its openings to the render's dimensions — the 4.75" (120mm) fan hole centered on the fridge bay (10.86" from the driver edge, 8.8" up), one 1" grommet hole at 3" in, 4" up (fridge DC line — Power strip 1 feeds off the rear outlet, so this wall no longer passes its line), and the 9" x 2" LOW INTAKE LOUVER directly under the fan on its centerline (10.86" over, 4.4" up) — a passive cool-air scoop that feeds the fridge the coolest floor-level cabin air, screened with a snap-in RV louver vent — then screw it to the front (B-facing) face: 2x #8 x 1-1/4" into each front leg + 2 into the top rail + 2 into the bottom rail (8 total). This is the ONLY wall on any panel; the intake fan bolts over the fan hole in Component 7. Panel C's sides stay open and its tailgate face is fully occupied by the fridge, the open utility bay, the kitchen unit, and the kitchen drawer.</p></div>
+<p class="lego-caption">Cut the front wall and its openings to the render's dimensions — the 4.75" (120mm) fan hole centered on the fridge bay (11.11" from the driver edge, 8.8" up), one 1" grommet hole at 3" in, 4" up (fridge DC line — Power strip 1 feeds off the rear outlet, so this wall no longer passes its line), and the 9" x 2" LOW INTAKE LOUVER directly under the fan on its centerline (11.11" over, 4.4" up) — a passive cool-air scoop that feeds the fridge the coolest floor-level cabin air, screened with a snap-in RV louver vent — then screw it to the front (B-facing) face: 2x #8 x 1-1/4" into each front leg + 2 into the top rail + 2 into the bottom rail (8 total). This is the ONLY wall on any panel; the intake fan bolts over the fan hole in Component 7. Panel C's sides stay open and its tailgate face is fully occupied by the fridge, the open utility bay, the kitchen unit, and the kitchen drawer.</p></div>
 </div>
 </div>
 

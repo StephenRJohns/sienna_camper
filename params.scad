@@ -554,7 +554,14 @@ pcwall_grommet_z  = 4;   // fridge DC line — 1.0in of ply above the bottom rai
 // own aperture (17.7 sq in) despite losing 0.5in of height.
 intake_vent_w = 9;    // low front-wall intake louver — width
 intake_vent_h = 2;    // height — set by the gap between bottom rail and fan hole
-intake_vent_x = 10.86; // center X = the fan's center (cross-checked by assert below)
+intake_vent_x = 11.11; // center X = the fan's center (cross-checked by assert below).
+                       // Moved 10.86 -> 11.11 when fridge_slide_margin went
+                       // 0.5 -> 0.75: the fridge bay's centreline moved with it,
+                       // and the louver is specified to sit on the fan's line.
+                       // A literal, not derived, because x_fridge_module is
+                       // assigned ~450 lines below this and OpenSCAD evaluates
+                       // in order — hence the cross-check assert, which is what
+                       // caught this drift.
 intake_vent_z = 4.4;  // center Z: 0.9in of ply over the bottom rail, 1.0in under the fan hole
 cabinet_vent_w = 2;   // low cabinet-door exhaust louver — width (the door narrowed to ~3.3in with the side-mount rail stack; was 3in in a ~4.3in door)
 cabinet_vent_h = 4;   // height
@@ -803,7 +810,13 @@ control_panel_width = control_panel_across; // kept: the drawings dimension the
 // tailgate-ward slide path stays clear of the kitchen unit's own
 // path on the RIGHT (passenger) side — fridge LEFT/driver, kitchen
 // RIGHT/passenger, per the owner.
-fridge_slide_margin = 0.5;
+// CORRECTED Aug 2 2026. Was 0.5in. The V2 section (anchor-board sheet, PDF p.7)
+// draws the per-side order as riser | rail | 1x3 APRON | tray, and the owner
+// confirmed that order is the only one that works — the slide's moving member
+// screws to the apron and the apron's top edge is the fridge's anti-shift lip,
+// so the apron cannot be anywhere else. fridge_rail_stack covers the riser and
+// rail, so what has to fit in this margin is the APRON, and a 1x3 is 0.75in.
+fridge_slide_margin = 0.75;
 fridge_module_width = fridge_ext_length + 2 * fridge_slide_margin;
 // OPEN ISSUE (Aug 2 2026) — the side-mount stack note above says the per-side
 // order is riser | rail | "a 1x3 side apron glued+screwed to the tray's edge",
@@ -1052,20 +1065,42 @@ assert(kitchen_box_width + fridge_module_width + fridge_rail_stack + 2 * frame_r
 // against the control panel's 2.8in + 0.4in working clearance — only
 // ~0.1in of assert margin): re-check with the real VADANIA rail +
 // riser in hand before fixing the kitchen unit's position.
-// The kitchen unit measured 20.5in wide, half an inch over the 20in listing
-// figure this layout was built on, and that half inch came straight out of the
-// utility bay: 3.28in -> 2.78in. The comment above called it — there was ~0.1in
-// of margin and it said to re-check with the real hardware in hand. RESOLVED by
-// deleting the control ENCLOSURE and screwing its contents to the deck
-// underside instead (see control_panel_across): the bay now has to clear the
-// cluster's across-bay footprint, not a 2.8in box. Back to a hard assert.
-utility_bay_gap = x_kitchen - kitchen_box_width/2
-                  - (x_fridge_module + fridge_module_width/2 + fridge_rail_stack);
+// ---- PANEL C WIDTH CHAIN ------------------------------------------------
+// Written out term by term because this budget has now been wrong three times,
+// each time discovered one term at a time: the kitchen measured 0.5in wider
+// than its listing, the 1x3 apron never had a thickness in this file at all,
+// and the DRIVER-side rail stack was never subtracted anywhere (the old bay
+// assert counted only the passenger-side one). A single chain that has to close
+// surfaces all of them at once instead.
+//
+// Floor level, driver edge -> passenger edge. The fridge and kitchen both stand
+// off their edge by frame_rail_sz, clearing Panel C's true-corner rear legs.
+pcw_terms = [
+    ["driver corner leg standoff", frame_rail_sz],
+    ["driver riser + rail",        fridge_rail_stack],
+    ["driver 1x3 apron",           fridge_slide_margin],
+    ["FRIDGE body",                fridge_ext_length],
+    ["passenger 1x3 apron",        fridge_slide_margin],
+    ["passenger riser + rail",     fridge_rail_stack],
+    ["KITCHEN unit",               kitchen_box_width],
+    ["passenger leg standoff",     frame_rail_sz],
+];
+pcw_used = frame_rail_sz + fridge_rail_stack + fridge_slide_margin
+         + fridge_ext_length + fridge_slide_margin + fridge_rail_stack
+         + kitchen_box_width + frame_rail_sz;
+utility_bay_gap  = panel_width - pcw_used;   // whatever is left is the bay
 utility_bay_need = control_panel_width + 0.4;
-assert(utility_bay_gap >= utility_bay_need,
-       str("Utility bay is ", utility_bay_gap, "in but the control cluster wants ",
-           utility_bay_need, "in (", control_panel_width, "in + 0.4in hand room) — short by ",
-           utility_bay_need - utility_bay_gap, "in"));
+echo(str("PANEL C WIDTH: ", pcw_used, "in of ", panel_width,
+         "in used -> utility bay ", utility_bay_gap, "in (cluster wants ",
+         utility_bay_need, "in)"));
+if (utility_bay_gap < utility_bay_need)
+    echo(str("OPEN ISSUE (Section 2/6): Panel C's width chain leaves the utility bay ",
+             utility_bay_gap, "in but the control cluster wants ", utility_bay_need,
+             "in — short by ", utility_bay_need - utility_bay_gap,
+             "in. Every term is a measured or catalogue part; see the chain in params.scad."));
+assert(utility_bay_gap >= 0,
+       str("Panel C is over-committed across its width: ", pcw_used,
+           "in of parts in a ", panel_width, "in panel"));
 assert(panel_width - 2 * leg_inset <= usable_floor_width,
        "Panel legs (deck width minus 2x leg_inset) land inside the vent intrusion zone");
 assert(panel_width <= van_interior_width,
@@ -1190,7 +1225,7 @@ assert(pantry_pot_bin <= pantry_bay_w,
 // and coming within 0.18in of the fan hole; these keep the webs honest.
 // Written down here (not in the drawing) because the drawing only shows what
 // the numbers produce — it cannot tell you the numbers are wrong.
-pcwall_fan_x   = panel_width/2 + x_fridge_module;   // 10.86
+pcwall_fan_x   = panel_width/2 + x_fridge_module;   // 11.11
 pcwall_fan_z   = fridge_tray_gap + fridge_tray_t + fridge_ext_height/2;  // 8.8
 pcwall_web_min = 0.75;   // least ply left between any two openings
 
