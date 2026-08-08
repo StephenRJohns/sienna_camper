@@ -1,6 +1,7 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Image as RLImage,
-                                Table, TableStyle, HRFlowable, PageBreak, KeepTogether)
+                                Table, TableStyle, HRFlowable, PageBreak, CondPageBreak,
+                                KeepTogether)
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib import colors
@@ -58,8 +59,27 @@ disc_accept = ParagraphStyle('DiscA', parent=disc_b, fontSize=9.3, leading=12.4,
                              textColor=colors.HexColor('#111111'), spaceBefore=4, spaceAfter=0)
 credit_li = ParagraphStyle('CredLi', parent=body, fontSize=9.5, leading=13,
                            leftIndent=16, bulletIndent=4, spaceAfter=5)
+# Page 1 carries the full-height disclaimer box, so its title block has to be
+# compact: at the cover's 22pt the box no longer fits on one page and the
+# licence note below it spills onto a page of its own.
+front_title_s = ParagraphStyle('FT', parent=styles['Normal'], fontSize=16, leading=19,
+                               alignment=1, textColor=NAVY, spaceAfter=2)
+front_sub_s = ParagraphStyle('FS', parent=styles['Normal'], fontSize=9.5, leading=12,
+                             alignment=1, textColor=colors.HexColor('#555555'), spaceAfter=8)
 
 st = []
+
+# Page 1 is built separately and prepended at doc.build time: the liability
+# disclaimer leads the document, ahead of the cover, the way the Project
+# S'mores cover sheet does. Collecting it here rather than moving eighty lines
+# of it above the cover keeps the disclaimer text next to the credits it
+# belongs with.
+front = []
+
+# A section heading only forces a new page when less than this much room is
+# left. An unconditional PageBreak per section left 2-6in of white on most
+# pages of the document.
+SECTION_MIN = 2.2 * inch
 
 
 def B(text):
@@ -183,9 +203,9 @@ st.append(Paragraph(
     "Photos are the owner's own install shots plus images shared by installers in the SiennaChat "
     "community thread; the two figures are the kit manufacturer's supplied diagrams. Full source "
     "links are at the end of this guide.<br/><br/>"
-    "<b>This document is a compilation of other people's work.</b> Credits, acknowledgements, "
-    "ownership of rights, and the disclaimer of liability are on the following page &mdash; "
-    "please read that page before starting the job.", small))
+    "<b>This document is a compilation of other people's work.</b> The disclaimer of liability is "
+    "on page 1 and applies throughout; credits, acknowledgements, and ownership of rights are on "
+    "the following page. Read both before starting the job.", small))
 
 # ================== CREDITS / RIGHTS / DISCLAIMER ==================
 # Front matter, deliberately ahead of the content. Two jobs on this page:
@@ -193,7 +213,7 @@ st.append(Paragraph(
 # liability disclaimer. The disclaimer box is styled after the Project S'mores
 # cover sheet so the two documents read as a set.
 st.append(PageBreak())
-st.append(Paragraph("Acknowledgements, Credits, and Disclaimer", h1))
+st.append(Paragraph("Acknowledgements and Credits", h1))
 
 st.append(B(
     "<b>There is almost nothing original in this guide.</b> The procedure, the photographs, the "
@@ -243,12 +263,15 @@ st.append(B(
     "used here and would prefer it credited differently, attributed by name, or removed entirely, "
     "that request will be honoured."))
 
-# ---- liability box ----
-# The box is a single-row table, so it cannot split across a page break: it will
-# always jump whole to the next page. Break explicitly so the disclaimer owns a
-# full page by design (as it does on the Project S'mores cover sheet) instead of
-# leaving an accidental half-empty page behind it.
-st.append(PageBreak())
+# ---- liability box: PAGE 1 ----
+# Everything appended to `front` below lands on page 1, ahead of the cover.
+# A reader must meet the disclaimer before the instructions, so it gets the
+# first page and the visual weight, with only enough of a title above it to
+# identify the document.
+front.append(Paragraph("Power-Folding Mirror Retrofit", front_title_s))
+front.append(Paragraph(
+    "Installation Reference Guide &nbsp;&middot;&nbsp; Toyota Sienna (2021&ndash;2026)",
+    front_sub_s))
 _disc = [
     Paragraph("Read this first &mdash; disclaimer of liability", disc_h),
     Paragraph(
@@ -312,18 +335,18 @@ dbox.setStyle(TableStyle([
     ('VALIGN', (0, 0), (-1, -1), 'TOP'),
     ('LEFTPADDING', (0, 0), (-1, -1), 12), ('RIGHTPADDING', (0, 0), (-1, -1), 12),
     ('TOPPADDING', (0, 0), (-1, -1), 11), ('BOTTOMPADDING', (0, 0), (-1, -1), 11)]))
-st.append(Spacer(1, 6))
-st.append(dbox)
+front.append(dbox)
 
-st.append(Spacer(1, 10))
-st.append(Paragraph(
+front.append(Spacer(1, 8))
+front.append(Paragraph(
     "Free to view and share for personal, non-commercial use. Commercial use or resale is not "
     "permitted. The compilation and original explanatory text are &copy;&nbsp;2026 JJJJJ "
-    "Enterprises, LLC; all third-party material remains the property of its respective owners.",
+    "Enterprises, LLC; all third-party material remains the property of its respective owners. "
+    "Acknowledgements and full credits follow the cover page.",
     small))
 
 # ============================== KIT ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("1. What's in the Kit", h1))
 st.append(B(
     "Everything arrives as two mirror-side subassemblies plus the electronics that tie them into the "
@@ -370,7 +393,7 @@ st.append(Paragraph(
     "for a spare when you order.", warn))
 
 # ============================== DIAGRAMS ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("2. Manufacturer Wiring Figures", h1))
 st.append(B(
     "These two figures are effectively the kit's instruction sheet. Read them before starting; the "
@@ -384,7 +407,6 @@ st.append(photo("fig3_wiring.png",
                 "The lower photo shows all three positions on the door shell.",
                 maxw=4.3, maxh=7.2))
 
-st.append(PageBreak())
 st.append(photo("fig4_switch.png",
                 "<b>Figure 4 &mdash; Switch panel swap.</b> (1) forward connector near the mirror "
                 "harness; (2) the green fold-signal lead; (3) rear connector; (4) the replacement "
@@ -392,7 +414,7 @@ st.append(photo("fig4_switch.png",
                 maxw=4.6, maxh=7.4))
 
 # ============================== TOOLS ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("3. Tools and Preparation", h1))
 
 st.append(Paragraph("Tools", h2))
@@ -429,7 +451,7 @@ st.append(Paragraph(
     "and how much extra time recovery takes.", note))
 
 # ============================== DOOR PANEL ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("4. Step 1 &mdash; Door Panel and Switch Panel Removal", h1))
 st.append(B(
     "Both front doors have to come apart: the driver's side for the switch panel and controller, the "
@@ -470,7 +492,7 @@ st.append(trio([
 ], h=2.3))
 
 # ============================== MIRROR OFF ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("5. Step 2 &mdash; Removing the Mirror Assembly", h1))
 st.append(B(
     "With the door panel off, the mirror's three nuts and its connector are accessible from inside the "
@@ -494,7 +516,7 @@ st.append(pair("4A9271E51A1144F180EBD049A3927BC4.jpeg",
                "motor and feature wires that continue into the cabin.", h=2.8))
 
 # ============================== GLASS ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("6. Step 3 &mdash; Removing the Mirror Glass", h1))
 st.append(B(
     "The glass and its plastic backing plate clip onto the adjustment motor. There is no hidden "
@@ -534,7 +556,7 @@ st.append(pair("f_brokenmotor.jpg",
                "tabs. Photograph this before disturbing anything.", h=2.9))
 
 # ============================== TEARDOWN ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("7. Step 4 &mdash; Opening the Mirror Housing", h1))
 st.append(B(
     "With the glass off, the adjustment motor and the housing screws are exposed. The goal is to "
@@ -560,7 +582,7 @@ st.append(photo("47F2D5E996AB41148CB396BFAD48F057.jpeg",
                 "order and reassembly goes much faster.", maxw=5.6, maxh=4.2))
 
 # ============================== SPRING ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("8. Step 5 &mdash; The Spring and Lock Ring (the hard part)", h1))
 st.append(B(
     "The mirror pivots on a spring-loaded cylinder held by a notched lock ring. To free it, the spring "
@@ -624,7 +646,6 @@ st.append(pair("99C088AB9D474BF0B8276D62D4E2E4B3.jpeg",
                "Compressing the detent spring on the cylinder. Note how little travel is actually "
                "needed.", h=3.1))
 
-st.append(PageBreak())
 st.append(pair("30D133B107C647388646B21AE5D5867F.jpeg",
                "The washer and ring under load, ready to be rotated clear.",
                "457FD7CD4B9B4814B6B3AA91F1E94096.jpeg",
@@ -635,7 +656,6 @@ st.append(photo("DBE5E93AE5344C24998313D194DEB392.jpeg",
                 "Everything that comes out: the detent spring, its nut, the flat washer, and the "
                 "notched lock ring with the tool. Bag these together.", maxw=3.4, maxh=4.6))
 
-st.append(PageBreak())
 st.append(photo("tool_zoom.png",
                 "The kit's tool close up. The four drive lugs around the central bore are what "
                 "actually grip and turn the lock collar; the hex flats outside take the wrench.",
@@ -654,7 +674,7 @@ st.append(Paragraph(
 
 
 # ============================== BRACKET ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("9. Step 6 &mdash; Installing the Power-Fold Bracket", h1))
 st.append(B(
     "The kit's bracket takes the place of the factory pivot, carrying its own fold motor and detent "
@@ -687,7 +707,7 @@ st.append(B(
     "first."))
 
 # ============================== WIRING ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("10. Step 7 &mdash; Wiring and Controller Mounting", h1))
 st.append(B(
     "This is the part of the job that surprises people by being easy. The harness piggybacks onto the "
@@ -717,7 +737,7 @@ st.append(Paragraph(
     "back on.", warn))
 
 # ============================== SWITCH ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("11. Step 8 &mdash; Switch Panel Swap", h1))
 st.append(B(
     "The factory Sienna panel has no fold control, so the kit supplies a complete replacement trim "
@@ -751,7 +771,7 @@ st.append(Paragraph(
     "committing.", note))
 
 # ============================== EXTRAS ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("12. Step 9 &mdash; The Optional Extra-Features Wire", h1))
 st.append(B(
     "The controller has one additional lead beyond what the fold function needs. Connected to the "
@@ -778,7 +798,7 @@ st.append(Paragraph(
     "lead disconnected and insulated &mdash; the power-fold function works perfectly without it.", warn))
 
 # ============================== OPERATION ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("13. Operation and Testing", h1))
 
 st.append(Paragraph(
@@ -808,7 +828,7 @@ for c in checks:
     st.append(Paragraph(f"\u25a1 &nbsp;{c}", bullet))
 
 # ============================== TROUBLE ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("14. Troubleshooting", h1))
 
 issues = [
@@ -843,7 +863,7 @@ for t, d in issues:
     st.append(B(d))
 
 # ============================== SOURCES ==============================
-st.append(PageBreak())
+st.append(CondPageBreak(SECTION_MIN))
 st.append(Paragraph("15. Sources and Further Reading", h1))
 st.append(B(
     "The step sequence in this guide is written in the author's own words, based on the video "
@@ -882,14 +902,23 @@ st.append(Paragraph(
 
 
 # ============================== PAGE FURNITURE ==============================
+# Footer layout follows the Project S'mores build plan: document title left,
+# page number centred, risk note right. Both strings are kept short because at
+# 8pt three elements across a 7in measure will collide otherwise.
+FOOTER_TITLE = "Sienna Power-Folding Mirror Retrofit"
+FOOTER_NOTE = "Work at your own risk \u2014 see the disclaimer on page 1"
+
+
 def deco(canvas, doc):
     canvas.saveState()
     canvas.setFont('Helvetica', 8)
     canvas.setFillColor(colors.HexColor('#888888'))
+    # Page 1 is the disclaimer itself; it needs no footer pointing at itself.
     if doc.page > 1:
-        canvas.drawString(0.75 * inch, 0.5 * inch,
-                          "Sienna Power-Folding Mirror Retrofit \u2014 Installation Guide")
-        canvas.drawRightString(letter[0] - 0.75 * inch, 0.5 * inch, str(doc.page))
+        canvas.drawString(0.75 * inch, 0.5 * inch, FOOTER_TITLE)
+        canvas.drawCentredString(letter[0] / 2, 0.5 * inch, str(doc.page))
+        canvas.setFillColor(colors.HexColor('#8a1c1c'))
+        canvas.drawRightString(letter[0] - 0.75 * inch, 0.5 * inch, FOOTER_NOTE)
         canvas.setStrokeColor(colors.HexColor('#dddddd'))
         canvas.setLineWidth(0.4)
         canvas.line(0.75 * inch, 0.66 * inch, letter[0] - 0.75 * inch, 0.66 * inch)
@@ -902,5 +931,6 @@ doc = SimpleDocTemplate(OUT, pagesize=letter,
                         title="Toyota Sienna Power-Folding Mirror Retrofit - Installation Guide",
                         author="Personal reference document")
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
-doc.build(st, onFirstPage=deco, onLaterPages=deco)
+# front = the liability page, then a hard break, then the cover and the body.
+doc.build(front + [PageBreak()] + st, onFirstPage=deco, onLaterPages=deco)
 print("built", OUT)
