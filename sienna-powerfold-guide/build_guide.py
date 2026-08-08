@@ -45,6 +45,20 @@ link_s = ParagraphStyle('L', parent=styles['Normal'], fontSize=9.5, leading=13, 
 small = ParagraphStyle('S', parent=styles['Normal'], fontSize=8.5, leading=11,
                        textColor=colors.grey)
 
+# Front-matter credit / disclaimer styles. These mirror the cover sheet of the
+# Project S'mores build plan: the liability box carries the visual weight, so it
+# gets its own red-bordered frame rather than being folded into body text.
+DISC_RED = colors.HexColor('#8a1c1c')
+disc_h = ParagraphStyle('DiscH', parent=styles['Heading2'], fontSize=12, leading=15,
+                        textColor=DISC_RED, spaceBefore=0, spaceAfter=7)
+disc_b = ParagraphStyle('DiscB', parent=styles['Normal'], fontSize=9.3, leading=12.4,
+                        spaceAfter=6)
+disc_li = ParagraphStyle('DiscLi', parent=disc_b, leftIndent=14, bulletIndent=3, spaceAfter=4)
+disc_accept = ParagraphStyle('DiscA', parent=disc_b, fontSize=9.3, leading=12.4,
+                             textColor=colors.HexColor('#111111'), spaceBefore=4, spaceAfter=0)
+credit_li = ParagraphStyle('CredLi', parent=body, fontSize=9.5, leading=13,
+                           leftIndent=16, bulletIndent=4, spaceAfter=5)
+
 st = []
 
 
@@ -168,7 +182,145 @@ st.append(Spacer(1, 10))
 st.append(Paragraph(
     "Photos are the owner's own install shots plus images shared by installers in the SiennaChat "
     "community thread; the two figures are the kit manufacturer's supplied diagrams. Full source "
-    "links are at the end of this guide.", small))
+    "links are at the end of this guide.<br/><br/>"
+    "<b>This document is a compilation of other people's work.</b> Credits, acknowledgements, "
+    "ownership of rights, and the disclaimer of liability are on the following page &mdash; "
+    "please read that page before starting the job.", small))
+
+# ================== CREDITS / RIGHTS / DISCLAIMER ==================
+# Front matter, deliberately ahead of the content. Two jobs on this page:
+# credit the people whose work this document is assembled from, and carry the
+# liability disclaimer. The disclaimer box is styled after the Project S'mores
+# cover sheet so the two documents read as a set.
+st.append(PageBreak())
+st.append(Paragraph("Acknowledgements, Credits, and Disclaimer", h1))
+
+st.append(B(
+    "<b>There is almost nothing original in this guide.</b> The procedure, the photographs, the "
+    "wiring figures, and the hard-won details &mdash; which nut turns which way, why the spring is not "
+    "really what you are fighting, what a cracked motor housing looks like when it goes wrong &mdash; "
+    "were all worked out and published by other people. They did this install first, often badly the "
+    "first time, and then took the trouble to write it up for strangers who would never thank them "
+    "in person. This document only gathers that scattered material into one ordered sequence and "
+    "paraphrases it in a consistent voice."))
+st.append(B(
+    "To everyone listed below: <b>thank you. Your work is what made this possible, and it is greatly "
+    "appreciated.</b>"))
+
+st.append(Paragraph("With thanks to", h2))
+for who, what in [
+    ("jays3l33t", "who started the SiennaChat thread &ldquo;Power Folding Side Mirror + Extra "
+     "features&rdquo; in April 2022. That thread is the backbone of this guide."),
+    ("The installers of the SiennaChat community", "who posted their own teardowns, mistakes, and "
+     "photographs across eight pages of discussion &mdash; the 13&nbsp;mm / 19&nbsp;mm distinction, the "
+     "insight that you are clearing the cylinder's ears from a pocket rather than overpowering the "
+     "spring, door wiring photographs for both sides, and the honest reports of vibration and "
+     "angle-adjustment problems afterwards. Several of these details appear nowhere else."),
+    ("The author of the kit installation video walkthrough", "whose full teardown-and-reassembly "
+     "recording is the single most useful reference for this job. More than one installer has said "
+     "the mirror teardown cannot realistically be understood without watching it."),
+    ("The Fly-to-the-sky channel", "for careful door-trim disassembly footage covering this "
+     "generation of Sienna."),
+    ("Contributors to the Toyota Nation threads", "on power-folding mirror installation, who "
+     "documented the same job independently and provided a useful cross-check."),
+    ("The kit manufacturer and seller", "whose two supplied figures &mdash; the wiring diagram and the "
+     "switch-panel diagram &mdash; are reproduced here because no clearer version of that information "
+     "exists."),
+]:
+    st.append(Paragraph(f"<b>{who}</b> &mdash; {what}", credit_li, bulletText='•'))
+
+st.append(Paragraph("Rights and ownership", h2))
+st.append(B(
+    "<b>All rights are retained by their specific owners.</b> Every photograph, diagram, video, and "
+    "forum post referred to in this document remains the property of the person or company who "
+    "created it. Nothing here is claimed as the compiler's own work beyond the arrangement and the "
+    "wording of the explanatory text, and no ownership of any third-party material is asserted or "
+    "implied."))
+st.append(B(
+    "This material is gathered and paraphrased for personal, non-commercial reference only. This "
+    "document is <b>not</b> an official publication of Toyota, or of any kit manufacturer, seller, or "
+    "forum, and no affiliation with or endorsement by any of them is claimed. If you own material "
+    "used here and would prefer it credited differently, attributed by name, or removed entirely, "
+    "that request will be honoured."))
+
+# ---- liability box ----
+# The box is a single-row table, so it cannot split across a page break: it will
+# always jump whole to the next page. Break explicitly so the disclaimer owns a
+# full page by design (as it does on the Project S'mores cover sheet) instead of
+# leaving an accidental half-empty page behind it.
+st.append(PageBreak())
+_disc = [
+    Paragraph("Read this first &mdash; disclaimer of liability", disc_h),
+    Paragraph(
+        "<b>This document is provided for general informational purposes only. It is not "
+        "professional automotive, electrical, or safety advice, and it has not been reviewed or "
+        "certified by Toyota, by any kit manufacturer or seller, or by any qualified technician or "
+        "regulatory body.</b> It is an amateur compilation of third-party accounts, and errors in "
+        "those accounts, in their interpretation, or in transcription are possible throughout.",
+        disc_b),
+    Paragraph(
+        "<b>If you carry out this work, you do so entirely at your own risk, and you accept full and "
+        "sole responsibility for the outcome.</b> The author and JJJJJ Enterprises, LLC make no "
+        "warranty of any kind &mdash; express or implied &mdash; as to the accuracy, completeness, safety, "
+        "legality, or fitness for any purpose of anything described here, and <b>disclaim all "
+        "liability for any personal injury, death, property damage, damage to your vehicle, "
+        "financial loss, or legal consequence</b> arising directly or indirectly from its use, "
+        "whether or not such harm was foreseeable.", disc_b),
+    Paragraph("This job carries real and serious risks, including but not limited to:", disc_b),
+]
+for risk in [
+    "<b>Stored spring energy.</b> The fold cylinder is released against a compressed detent "
+    "spring. Parts can slip or launch without warning. Wear eye protection, and keep your face "
+    "out of line with the assembly.",
+    "<b>Airbag and restraint systems.</b> Front door trim and pillar areas on this vehicle carry "
+    "SRS wiring and impact sensors. Disturbing, pinching, or wrongly reconnecting them can "
+    "disable, damage, or unexpectedly deploy safety systems, which can cause severe injury or "
+    "death. Anything touching these systems is work for a qualified technician.",
+    "<b>Electrical damage and fire.</b> Reversed polarity, a pinched harness, a shorted feed, or a "
+    "wrongly chosen tap point can destroy control modules, blow fuses, or start a fire. The "
+    "optional extra-features wire is the only step that taps a factory circuit and is the "
+    "riskiest part of the job &mdash; it is genuinely optional, and skipping it costs you nothing but "
+    "convenience features.",
+    "<b>Broken and unavailable parts.</b> Cracked motor housings, snapped trim clips, stripped "
+    "tool lugs, and broken mirror glass are the most commonly reported damage. Some of these "
+    "parts are slow or difficult to source, and a vehicle with a broken mirror may not be legal "
+    "to drive.",
+    "<b>Loss of mirror function or view.</b> Faulty reassembly can leave a mirror that vibrates, "
+    "will not adjust, loses its heater or blind-spot function, folds when it should not, or "
+    "obstructs your view. Functioning mirrors are a legal requirement for road use.",
+    "<b>Water intrusion.</b> A housing that is not correctly reseated and sealed can admit water "
+    "into the mirror electronics and into the door.",
+    "<b>Warranty, insurance, and inspection.</b> Modifications may void some or all of your "
+    "manufacturer warranty, and may affect insurance coverage, roadworthiness, inspection "
+    "status, or resale value.",
+    "<b>Kit variation.</b> Parts, wiring, and switch behaviour differ between sellers of "
+    "superficially identical kits. What is described here may not match what arrives in your box. "
+    "Verify every step against the kit and vehicle in front of you.",
+]:
+    _disc.append(Paragraph(risk, disc_li, bulletText='•'))
+_disc.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor('#d8bcbc'),
+                        spaceBefore=8, spaceAfter=6))
+_disc.append(Paragraph(
+    "<b>By reading further, or by relying on this document in any way, you acknowledge and accept "
+    "these risks and this disclaimer. If you are not willing to accept them, do not use this "
+    "document. When in doubt, stop and hire a qualified professional.</b>", disc_accept))
+
+dbox = Table([[_disc]], colWidths=[6.5 * inch])
+dbox.setStyle(TableStyle([
+    ('BACKGROUND', (0, 0), (-1, -1), colors.HexColor('#fdf6f5')),
+    ('BOX', (0, 0), (-1, -1), 1.6, DISC_RED),
+    ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+    ('LEFTPADDING', (0, 0), (-1, -1), 12), ('RIGHTPADDING', (0, 0), (-1, -1), 12),
+    ('TOPPADDING', (0, 0), (-1, -1), 11), ('BOTTOMPADDING', (0, 0), (-1, -1), 11)]))
+st.append(Spacer(1, 6))
+st.append(dbox)
+
+st.append(Spacer(1, 10))
+st.append(Paragraph(
+    "Free to view and share for personal, non-commercial use. Commercial use or resale is not "
+    "permitted. The compilation and original explanatory text are &copy;&nbsp;2026 JJJJJ "
+    "Enterprises, LLC; all third-party material remains the property of its respective owners.",
+    small))
 
 # ============================== KIT ==============================
 st.append(PageBreak())
