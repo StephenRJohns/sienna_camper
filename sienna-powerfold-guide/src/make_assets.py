@@ -49,7 +49,11 @@ CROPS = [
 
     # --- housing ---
     ("Screenshot_from_20260807_155405.png", (18, 185, 866, 1140), "f_covercradle.jpg", 1.6),
-    ("Screenshot_from_20260807_154722.png", (20, 200, 900, 700),  "f_coverinside.jpg", 1.8),
+    # The cover itself sits low in this screenshot (roughly y 480-950); the old
+    # box started at y=200 and caught mostly parked cars and window glass with
+    # only the top sliver of the part. Bottom stops at 948 to stay clear of the
+    # ad banner overlaying the foot of the image.
+    ("Screenshot_from_20260807_154722.png", (22, 478, 882, 948),  "f_coverinside.jpg", 1.8),
 
     # --- wiring ---
     ("Screenshot_from_20260807_155508.png", (18, 215, 866, 850),  "f_extrawire.jpg",  1.6),
@@ -70,7 +74,10 @@ CROPS = [
     ("Screenshot_from_20260807_154611.png", (77, 628, 318, 950),  "f_sw_c.jpg",       3.0),
 
     # --- zoom on the kit's spring tool, cropped out of the bench photo ---
-    ("DBE5E93AE5344C24998313D194DEB392.jpeg", (620, 530, 840, 800), "tool_zoom.png",  4.0),
+    # Pulled in from the image's right edge and bottom: at 840/800 the frame
+    # caught a white strip off the edge of the photo and an orange object in the
+    # bottom-left corner. The drive lugs are the whole point of this crop.
+    ("DBE5E93AE5344C24998313D194DEB392.jpeg", (620, 530, 816, 748), "tool_zoom.png",  4.0),
 ]
 
 
