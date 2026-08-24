@@ -17,12 +17,12 @@ def add(name, cat, wt, y, x, note): R.append([name, cat, round(wt,1), y, x, note
 
 # ---- STRUCTURE ----
 add("Panel A frame (2x2 pine)", "Structure", pine_len(329), 14.5, 0, "rails+legs+divider+bottom rails (16.25in legs — deck recess)")
-add("Panel A drawer box + slides (3/8\" birch, 1/2\" bottom)", "Structure", ply(500,0.5)+ply(1305,0.375)+4, 14.5, 11, "holds the DELTA 3 stack")
+add("Panel A drawer box + slides (3/4\" birch walls, 1/2\" bottom)", "Structure", ply(500,0.5)+ply(1305,0.75)+4, 14.5, 11, "holds the DELTA 3 stack; walls went 3/8->3/4 (Aug 2026, no 3/8\" sheet bought — cut from 3/4\" offcuts)")
 add("Panel B frame (2x2 pine, full cube)", "Structure", pine_len(355), 43.5, 0, "bare-frame deep-storage box (16.25in legs — deck recess)")
 add("Panel C frame (2x2 pine)", "Structure", pine_len(274), 76, 0, "rails+legs+front bottom rail")
 add("Panel C deck (3/4\" birch, 33x43 recessed + cleats)", "Structure", ply(33*43,0.75)+1.0, 76, 0, "drops between the rails onto bearer cleats, flush (deck recess)")
-add("Panel C front wall (3/8\" birch)", "Structure", ply(46*17,0.375), 60, 0, "intake fan + grommets")
-add("Fridge tray (3/8\" birch + 2 1x3 side aprons)", "Structure", ply(17.72*28.74,0.375)+pine_len(2*28.74, 2.5, 0.75), 80, -12, "hangs between the side-mount slide rails")
+add("Panel C front wall (1/2\" birch)", "Structure", ply(46*17,0.5), 60, 0, "intake fan + grommets; 3/8->1/2 (Aug 2026, from the 1/2\" sheet's leftover)")
+add("Fridge tray (1/2\" birch + 2 1x3 side aprons)", "Structure", ply(17.72*28.74,0.5)+pine_len(2*28.74, 2.5, 0.75), 80, -12, "hangs between the side-mount slide rails; 3/8->1/2 (Aug 2026, from the 1/2\" sheet's leftover)")
 # box grew with the Aug 2026 width change: bottom 18x26 + 2 sides 26x4
 # + front/back 17x4 = 812 sq in (was 744 at the 16in box)
 add("Kitchen drawer + cheeks (1/2\" birch)", "Structure", ply(812,0.5)+ply(322,0.5), 80, 13, "hung over the kitchen unit; 18in box (Aug 2026)")

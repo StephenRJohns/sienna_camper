@@ -53,6 +53,18 @@ h2 {
 h2:first-of-type { page-break-before: avoid; }
 h3 { font-size: 12.5pt; color: #26496b; margin-top: 16pt; }
 h3.appendix { page-break-before: always; margin-top: 0; }
+/* Appendix H's STORE COPY: a hand-it-across-the-counter section that has to
+   be printable by page range, so every one of its pages starts on a fresh
+   sheet and nothing else shares the page. Written into the markdown as
+   <div class="pagebreak"></div>. */
+.pagebreak { page-break-before: always; height: 0; margin: 0; }
+/* The per-sheet cut diagrams for Appendix H-S. Sized as a PERCENTAGE, not in
+   inches: headless Chrome lays this document out at a viewport wider than the
+   printable area and scales the result to fit (~0.66x), so a `width: 6in` here
+   prints at ~4in while a percentage of the content column is exact. 85% of the
+   column x this figure's 1:1.05 aspect leaves the table above it on the page,
+   which is the whole point of a one-sheet-per-page store copy. */
+img.cutsheet { display: block; margin: 8pt auto 0; width: 85%; height: auto; }
 p { margin: 6pt 0; }
 hr { display: none; }
 table {
@@ -412,6 +424,13 @@ printed text size, it was holding its own lines — and every label on the drawi
 
     html_body = markdown.markdown(md_text, extensions=["tables", "fenced_code", "sane_lists"])
     html_body = html_body.replace("<h3>Appendix", '<h3 class="appendix">Appendix')
+    # Appendix H-S's per-sheet cut diagrams: bounded height (see .cutsheet)
+    # so each store-copy page keeps its table and its diagram together.
+    html_body = re.sub(
+        r'<img alt="(Sheet \d cut diagram)" src="([^"]+)"([^>]*)/?>',
+        r'<img class="cutsheet" alt="\1" src="\2">',
+        html_body,
+    )
 
     # wrap step-diagram images (renders/steps/) so they render smaller/centered
     html_body = re.sub(

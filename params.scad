@@ -457,7 +457,7 @@ side_door_y0 = 0; // MEASURED (Aug 2026) — seatback is even with the opening (
 drawer_slide_length = 20; // standard full-extension slide hardware size
 drawer_divider_t    = frame_rail_sz; // center divider rail, same 2x2 stock as the frame
 drawer_side_clear   = 0.75; // gap between drawer box and rail/divider each side, for slide hardware
-drawer_box_t        = 0.375; // WEIGHT SWAP (owner, July 2026): 1/2in -> 3/8in birch (-~4lb) — glue + biscuit the corners since it carries the 48lb DELTA stack; keep a 1/2in bottom. Also used below to size clear interior space (thinner box = more clearance, all fit asserts still pass)
+drawer_box_t        = 0.75;  // NO-3/8"-BUY (owner, Aug 2026): 3/8in -> 3/4in birch. The 3/8in sheet purchase is deleted; these 4 walls are the only ex-3/8in parts that no OTHER leftover can hold (they need a 14.5in dimension, and the 1/2in sheet's spare runs out after the front wall + fridge tray) — so they come from the 3/4in sheet's own offcuts: 1 side + 1 front out of the 47x19 strip, the other 2 out of the anchor board's two comb gaps. Costs ~12lb on a drawer that also carries the 48lb DELTA stack (~78lb total on a 100lb slide pair — still inside, margin thins from ~34% to ~22%). Corners go to R3 biscuits, not R1, at this thickness. Interior clearance drops 0.75in per wall vs 3/8in; every fit assert below still passes (clear 18.5 x 23.5 x 13.0 against a 15.95 x 15.7 x 11.16 stack)
 // drawer box footprint, derived from the panel's own dimensions —
 // assumes all three panels are the same length (true above; if you
 // change one panel's length independently, revisit this)
@@ -522,7 +522,7 @@ seam_latch_x     = panel_width/2 - leg_inset;        // 20.5 — latch sits over
 // the fridge), and its tailgate face needs no wall — fully occupied
 // by the fridge, cabinet door, kitchen unit, and kitchen drawer
 // face. See panel_c_wall_detail.scad for the dimensioned holes.
-pcwall_t = 0.375;       // WEIGHT SWAP: 1/2in -> 3/8in ply (-~2.5lb) — non-structural wall, just holds the intake fan + grommets
+pcwall_t = 0.5;         // NO-3/8"-BUY (owner, Aug 2026): 3/8in -> 1/2in ply (+~2.5lb, giving back July's weight swap). Cut from the 1/2in sheet's big 47x44 leftover instead of buying 3/8in stock — still non-structural, just holds the intake fan + grommets
 pcwall_h = leg_height;  // 17 — van floor up to the front rail's underside
 pcwall_grommet_dia = 1; // fridge DC line pass-through
 // ONE grommet, not two. The verified-outlet round (the van has exactly 2 AC
@@ -623,8 +623,8 @@ fridge_side_clearance = 2;  // with forced airflow; manual's passive figures are
 // fridge_rail_stack below and the cabinet-gap assert — the utility
 // cabinet narrows to ~3.3in.
 fridge_slide_length = 24;   // VADANIA VD2576 24in pair, 379lb, locks closed + extended
-fridge_tray_t       = 0.375; // WEIGHT SWAP: 1/2in -> 3/8in ply (-~1.5lb); stiffened by the 2 glued 1x3 side aprons
-fridge_tray_gap     = 0.5;  // clear air under the hanging tray panel (nothing beneath it)
+fridge_tray_t       = 0.5;  // NO-3/8"-BUY (owner, Aug 2026): 3/8in -> 1/2in ply (+~1.6lb) — from the same 1/2in leftover as the front wall. It comes out of that offcut CROSS-GRAIN (face grain along the 17.72in, not the 28.74in), which the extra thickness more than covers: bending stiffness goes as t^3, (0.5/0.375)^3 = 2.4x, against roughly a 2x cross-grain penalty — and the 2 glued 1x3 aprons carry the long span anyway
+fridge_tray_gap     = 0.375; // clear air under the hanging tray panel (nothing beneath it). WAS 0.5 — dropped 1/8in (owner, Aug 2026) to pay for the 1/8in the tray itself gained going 3/8in -> 1/2in: at 0.5 + 0.5 + 15.79 the mounted stack hit 16.79in and BROKE the tailgate-exit assert below (16.75in ceiling). At 0.375 + 0.5 the stack is 16.665in — exactly where the 3/8in tray put it, so nothing downstream of the fridge top moves. Cost: the tray hangs 1/8in closer to the floor, and the slide's screw band into the apron goes 1.75in -> 1.625in (assert needs 1.5in)
 fridge_rail_t       = 0.75; // VADANIA rail thickness (19mm), standing vertically beside the tray
 fridge_riser_t      = 0.25; // steel riser angle between the fixed rail and the anchor board (2x2x3/16in angle + fit allowance)
 fridge_rail_stack   = fridge_rail_t + fridge_riser_t; // 1.0 per side, OUTBOARD of the tray apron (the apron itself lives in fridge_slide_margin)

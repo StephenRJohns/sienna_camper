@@ -93,6 +93,16 @@ echo "Rendering plywood cutting layout (store cuts)..."
 openscad -o renders/sheet-cut-layout.svg sheet_cut_layout.scad
 openscad -o renders/sheet-cut-layout.png --imgsize=3200,2300 $FLAT_CAM sheet_cut_layout.scad
 
+# ...and one page-sized figure PER SHEET for Appendix H's store copy. Same
+# geometry, ONLY=0/1, ~2.2x scale with the numbered cut order printed beside
+# the drawing — these are what actually goes to the panel saw, so the labels
+# have to be readable at arm's length rather than merely present.
+echo "Rendering per-sheet cut diagrams (store copy)..."
+for i in 0 1; do
+    openscad -D ONLY=$i -o renders/sheet-cut-$((i+1)).svg sheet_cut_layout.scad
+    openscad -D ONLY=$i -o renders/sheet-cut-$((i+1)).png --imgsize=1900,2000 $FLAT_CAM sheet_cut_layout.scad
+done
+
 echo "Rendering tongue -> 2nd-row rail connection detail..."
 # 2900x2700: this sheet is 200x195 in its own units, so it wants a
 # near-square frame. Giving it the landscape $IMG clipped the bands.
@@ -250,6 +260,7 @@ python3 normalize_survey_keys.py renders
 # so an earlier trim step silently missed them.
 echo "Trimming bordered sheets..."
 python3 trim_render.py renders/rail-tongue-detail.png renders/sheet-cut-layout.png \
+    renders/sheet-cut-1.png renders/sheet-cut-2.png \
     renders/vanmeas-v*.png renders/survey-f*.png
 
 echo "Done. Renders in ./renders/"

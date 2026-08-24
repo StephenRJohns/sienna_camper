@@ -1,11 +1,11 @@
 Component,Category,Weight (lb),Fore-aft y (in from front),"Lateral x (in, -driver/+pass)",Notes
 Panel A frame (2x2 pine),Structure,12.0,14.5,0,rails+legs+divider+bottom rails (16.25in legs — deck recess)
-"Panel A drawer box + slides (3/8"" birch, 1/2"" bottom)",Structure,22.2,14.5,11,holds the DELTA 3 stack
+"Panel A drawer box + slides (3/4"" birch walls, 1/2"" bottom)",Structure,34.2,14.5,11,"holds the DELTA 3 stack; walls went 3/8->3/4 (Aug 2026, no 3/8"" sheet bought — cut from 3/4"" offcuts)"
 "Panel B frame (2x2 pine, full cube)",Structure,12.9,43.5,0,bare-frame deep-storage box (16.25in legs — deck recess)
 Panel C frame (2x2 pine),Structure,10.0,76,0,rails+legs+front bottom rail
 "Panel C deck (3/4"" birch, 33x43 recessed + cleats)",Structure,27.2,76,0,"drops between the rails onto bearer cleats, flush (deck recess)"
-"Panel C front wall (3/8"" birch)",Structure,7.2,60,0,intake fan + grommets
-"Fridge tray (3/8"" birch + 2 1x3 side aprons)",Structure,6.4,80,-12,hangs between the side-mount slide rails
+"Panel C front wall (1/2"" birch)",Structure,9.6,60,0,"intake fan + grommets; 3/8->1/2 (Aug 2026, from the 1/2"" sheet's leftover)"
+"Fridge tray (1/2"" birch + 2 1x3 side aprons)",Structure,8.0,80,-12,"hangs between the side-mount slide rails; 3/8->1/2 (Aug 2026, from the 1/2"" sheet's leftover)"
 "Kitchen drawer + cheeks (1/2"" birch)",Structure,13.9,80,13,hung over the kitchen unit; 18in box (Aug 2026)
 "Rear pantry: 4x IRIS 12""W drawer units + hold-down",Structure,15.0,87,-10,2x2 prefab cluster (est ~3.2lb/unit) + cleats/strap — replaces the ~42lb plywood pantry
 Panel B: 2x Sterilite 28-Qt under-bed totes (empty),Hardware/misc,4.0,43.5,5,restacked ON the spare (2 of the original 4)
@@ -26,11 +26,11 @@ Seam draw-latches (4) + alignment pins + bumpers,Hardware/misc,1.5,47,0,at the A
 "Electrical (2 fans, controller, fuse, 2 strips, cords)",Hardware/misc,6.0,55,0,cooling + power runs
 Cooktop + cookware (stowed),Hardware/misc,12.0,80,13,induction top + pots in the kitchen
 
-Structure subtotal,,152.5,,,
+Structure subtotal,,168.5,,,
 Hardware/misc subtotal,,115.1,,,
 Appliances subtotal,,85.6,,,
 Power/climate subtotal,,81.7,,,
 Bedding subtotal,,35.0,,,
-BUILD TOTAL (added),,469.9,,,
+BUILD TOTAL (added),,485.9,,,
 Removed: 2nd-row seats x2 (est.),credit,-120,,,WEIGH to confirm; ~48-70 lb each
-NET added vs stock (build - seats),,349.9,,,
+NET added vs stock (build - seats),,365.9,,,
