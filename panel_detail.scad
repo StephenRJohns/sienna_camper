@@ -35,6 +35,7 @@ is_a = (panel == "A");
 W  = panel_width;
 RS = frame_rail_sz;
 LH = is_c ? leg_height : leg_height_ab; // A/B legs 0.75in shorter (deck recess, params.scad)
+LC = is_c ? leg_cut_length : leg_cut_length_ab; // saw cut: 16in (C) / 15.25in (A/B) — the foot makes up the last 1in
 PT = panel_thickness;
 DT = drawer_divider_t;
 L  = is_c ? panel_c_length : panel_b_length; // panel_a_length == panel_b_length, asserted in params.scad
@@ -198,7 +199,7 @@ module drawing_b() {
     }
     color(INK) {
         translate([ix, iy + RS * s3 + 8.4]) text("LEG BOTTOM — all 12 legs", size = 2.34);
-        translate([ix, iy + RS * s3 + 5.4]) text("1/2\" dia x 3/4\" deep, dead", size = 1.98);
+        translate([ix, iy + RS * s3 + 5.4]) text("1/2\" dia x 7/8\" deep, dead", size = 1.98);
         translate([ix, iy + RS * s3 + 2.8]) text("center of the end grain", size = 1.98);
         translate([ix, iy - 3.2]) text("drill BEFORE assembly", size = 1.89);
     }
@@ -230,7 +231,7 @@ module drawing() {
         // MOVED TO THE DOCUMENT: cap("No divider, no drawers — the void stays open for the bought fridge + kitchen unit (Component 7). ONE wall: the front (B-facing) face.", 13, -19, 1.4);
         side_list(56, LH + RS + 9 + PT + 24, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
-            ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\""), "insert hole in each bottom — see the Panel B detail's inset"],
+            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\""), "insert hole in each bottom — see the Panel B detail's inset"],
             ["3", "Fixed top", str(W - 2 * RS, "\" x ", L - 2 * RS, "\", 3/4\" ply — RECESSED between the rails, flush with the rail tops"), "on 3/4x3/4 bearer cleats; screwed down — NOT a lift-off lid, unlike Panel A/B's bed-frame cap"],
             ["4", "Fridge zone (reserved)", str(fridge_ext_length, "\" x ", fridge_ext_width, "\", flush LEFT/driver"), "bought product — see fridge-install-detail"],
             ["5", "Kitchen zone (reserved)", str(kitchen_box_width, "\" x ", kitchen_box_length, "\", flush RIGHT/passenger"), "bought product — see fridge-install-detail"],
@@ -242,14 +243,14 @@ module drawing() {
         // MOVED TO THE DOCUMENT: cap("THE FULL CUBE: bottom rails on all 4 faces (nothing exits Panel B sideways). Both hole types dimensioned in the insets at left.", 13, -21.5, 1.3);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue; grip these rails to lift the panel"],
-            ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 3/4\" insert hole in each bottom (inset at left)"],
+            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 7/8\" insert hole in each bottom (inset at left)"],
             ["3", "Bottom rails (x4 — full cube)", str("2x2 pine, underside at ", bottom_rail_z, "\" (clears the feet/knobs)"), "2x 2\" screws + glue into each leg — the frame racks far less as a closed box"],
         ]);
     } else {
         // MOVED TO THE DOCUMENT: cap("Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.", 13, -19, 1.4);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
-            ["2", "Legs (x4)", str(leg_cut_length, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 3/4\" insert hole in each bottom (Panel B detail's inset)"],
+            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 7/8\" insert hole in each bottom (Panel B detail's inset)"],
             ["3", "Center divider", str(L - 2*RS, "\" cut, 2x2 pine"), "splits the bay — drawer (right) / WAVE 3 (left)"],
             ["4", "Drawer box (right, DELTA 3 side)", str(drw_w, "\" x ", drw_d, "\" x ", drw_h, "\", 3/8\" ply, 1/2\" bottom"), "5 pieces, glued + biscuited"],
             ["5", "Drawer slide (right)", str(drawer_slide_length, "\" full-extension pair"), "box-to-rail + box-to-divider"],

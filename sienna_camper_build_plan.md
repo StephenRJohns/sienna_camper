@@ -319,7 +319,7 @@ Each floor panel, exploded (Panel A: frame + legs + center divider + one right d
 
 **The two hole details in the left margin of each sheet, in full.**
 
-- **LEG BOTTOM** — the same hole on all 12 legs: 1/2" dia × 3/4" deep, dead centre of the 1.5" × 1.5" end grain, taking a 3/8-16 threaded insert. **Drill it before assembly** — see the Leveling Foot render.
+- **LEG BOTTOM** — the same hole on all 12 legs: 1/2" dia × 7/8" deep, dead centre of the 1.5" × 1.5" end grain, taking a 3/8-16 threaded insert. **Drill it before assembly** — see the Leveling Foot render.
 - **END-RAIL SEAM FACE**, both ends — 2× 3/8" dia × 3/8" deep pin holes, 3" in from each side edge, centred on the rail. Drill the mating panel's face **as a matched pair**: clamp both panels together and drill through a guide block (Component 5).
 
 **Per-panel differences:**
@@ -707,7 +707,7 @@ Panel A, Panel B, and Panel C each get their own independent perimeter frame —
 | Panel B deep-storage totes | 2x Sterilite 28-Qt under-bed lidded totes (23.5" x 16.9" x 5.9"), restacked ON the spare in Panel B's bay — containerized top-load storage (lift the platform, lift out whole totes) |
 | Spare tire stowage | RJ-MODINI kit (T155/85R18 on an 18x4 steel wheel, 28.5" dia x ~6.4" stored, ~40 lb w/ 2-ton jack) FLAT in Panel B's bay at the axle: a cradle skid (3x ~3" cleats screwed to 2 battens, from the offcut) over a non-slip liner offcut + 1" cam strap to 2 footman loops on the bottom rails + tool case nested in the wheel — install/access diagrams on the Spare Tire Stowage render |
 | Panel A/B diagonal corner braces | 4 used (2 per panel, Panels A + B) from the purchased Sumnacon 4" 8-pack (4 spares), steel flat-strap — recovers some of the racking rigidity lost by removing each panel's own top |
-| Leg leveling feet | 12 total (4 per panel x 3 panels), 3/8-16 screw-in threaded insert (7/16" OD coarse outer thread — the Anwenk kit's "T-nut") + leveling stud with a 1-3/8" pad, fixed hex collar, and ~2" star-knob hand grip. Legs are CUT to 16" and drilled in the bottom end grain (1/2" dia x 7/8" deep — the maker's spec; test-fit the insert in offcut first) — the foot brings each back to an effective 17" (Leg Leveling Foot Detail render). Tip a corner slightly and spin the knob to level |
+| Leg leveling feet | 12 total (4 per panel x 3 panels), 3/8-16 screw-in threaded insert (7/16" OD coarse outer thread — the Anwenk kit's "T-nut") + leveling stud with a 1-3/8" pad, fixed hex collar, and ~2" star-knob hand grip. Legs are CUT to 16" (Panel C) / 15.25" (Panels A/B) and drilled in the bottom end grain (1/2" dia x 7/8" deep — the maker's spec; test-fit the insert in offcut first) — the foot brings each back to an effective 17" (Leg Leveling Foot Detail render). Tip a corner slightly and spin the knob to level |
 | Bed platform side rails | 6, all **29" x 3.5" x 3/4"** (1x4 pine) — one pair per piece: Panel A's screwed-down section (set 49" apart outside-to-outside, 42" slats between them) and Panel B's two halves (each set 24.5" apart, 17.5" slats between them). One flush 3/4" plane cantilevered 1.5" past the boxes per side (Bed Platform Detail render). **Width set by measurement V7 (Aug 2026) — was 52"/45"; split into three lift-out pieces Aug 2026 — was one pair of 58" rails** |
 | Bed platform slats | 15: **5 × 42"** (Panel A section, ~2.9" gaps) + **10 × 17.5"** (five per Panel B half, ~2.9" gaps), all 3.5" x 3/4" 1x4 pine — two 42" or five 17.5" per 8ft board |
 | Panel B centre bearer | 1, **26" x 3" x 1.5"** — two 2x2s side by side (or one 2x4 laid flat), fore-aft at Panel B's centreline between its end rails, top flush with its long rails. Carries the inner edge of both bed halves (1.5" bearing each) and halves the deck's unsupported span, 46" → ~22" (**NEW, Aug 2026**) |
@@ -1036,7 +1036,7 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 
 - Long rails — 2, 29" cut, 2x2 pine
 - End rails — 2, 46" cut, 2x2 pine
-- Legs — 4, cut to 16", 2x2 pine (1.5" x 1.5" actual — plenty for this load); the leveling foot brings each back to an effective 17"
+- Legs — 4, cut to **15.25"**, 2x2 pine (1.5" x 1.5" actual — plenty for this load); the leveling foot brings each back to an effective 16.25" (Panels A/B run 3/4" shorter than Panel C — the deck recess)
 - Leg leveling feet — 4 (3/8-16 screw-in insert in the leg's bottom end grain + leveling stud + 2" star knob jam-locked on the shaft above the stud's fixed hex collar), one per leg (Leg Leveling Foot Detail render)
 - Bottom rails — 2, 46" cut, 2x2 pine (END faces only — the side faces stay open for the drawer/WAVE 3)
 - Center divider — 1, 26" cut, 2x2 pine
@@ -1110,7 +1110,7 @@ Same frame construction as Panel A — and that's the whole build. **Panel B has
 
 - Long rails — 2, 29" cut, 2x2 pine
 - End rails — 2, 46" cut, 2x2 pine
-- Legs — 4, 16" cut, 2x2 pine (leveling feet make up the inch)
+- Legs — 4, **15.25"** cut, 2x2 pine (leveling feet make up the inch; A/B run 3/4" shorter than Panel C — the deck recess)
 - Bottom rails — 4: 2x 46" + 2x 26" (all four faces — the full cube)
 - Corner brackets — 4
 - Diagonal corner braces — 2

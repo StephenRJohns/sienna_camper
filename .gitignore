@@ -1,5 +1,7 @@
 # intermediate HTML produced by build_pdf.py on the way to the PDF
 build_plan.html
+# same, for the legs subset (build_legs_pdf.py)
+legs_guide.html
 # the old output name, superseded by Project_Smore.pdf
 sienna_camper_build_plan.pdf
 __pycache__/
