@@ -688,9 +688,15 @@ Panel A, Panel B, and Panel C each get their own independent perimeter frame —
 
 **The leg-to-rail joint (owner, Sept 2026).** A leg is **lapped** to the inner face of its end rail and runs up **flush with the rail top** — it is not butted under the rail. The two screws then pass through the rail's *face* into the leg's *side*: long grain, loaded in shear, on a real face-to-face glue joint. Butting the leg under the rail instead puts those screws into end grain, where they have almost no withdrawal strength and the glue does nothing. Two consequences run through this whole section: each lapped leg is **1.5" longer** than the void it stands in, and it sits **1.5" further inboard** along the panel's length. **The two exceptions** are Panel C's rear pair — at a true corner the 46" end rail covers the leg's entire footprint, so there is no face to lap to and no room to move inboard (Panel C's width chain has 1.28" of slack). Those two are butt-under, and the steel angle bracket on each is not optional.
 
-![Leg-to-rail lap joint — side elevation](renders/leg-lap-joint.png)
+<figure>
+<img src="renders/leg-lap-joint.png" alt="Leg-to-rail lap joint — side elevation">
+<figcaption>The lap, in side elevation with the end rail seen in section. The leg's top is <strong>flush with the rail top</strong> — the 18.5" deck plane — not stopped at the rail's underside. The 1.5" of leg above the void is what makes an A/B leg 16.75" and not 15.25".</figcaption>
+</figure>
 
-![Platform leg — shop drawing, all three cut lengths](renders/leg-detail.png)
+<figure>
+<img src="renders/leg-detail.png" alt="Platform leg — shop drawing, all three cut lengths">
+<figcaption>The leg as a part, all three batches: Panel C front (17.5" cut, lapped), Panel A/B (16.75" cut, lapped), Panel C rear corner (16" cut, butt-under), and the bottom end grain with its 1/2" × 1-3/4" insert bore dead centre.</figcaption>
+</figure>
 
 #### Boring the legs and fitting the feet — from the bench
 
