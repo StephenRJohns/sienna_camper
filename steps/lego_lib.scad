@@ -160,9 +160,14 @@ module fastener_light(anchor3, r = 0.55, rot = 0) {
 // lh: leg_height for Panel C, leg_height_ab for A/B (deck recess —
 // A/B legs are 0.75in shorter so the platform-on-rails plane matches
 // Panel C's recessed flush deck).
+// END rails run the full panel width (the outboard pair); SIDE rails fit
+// BETWEEN them, so a side rail is len - 2 x frame_rail_sz, not len. Both
+// were drawn full length until Sept 2026, which overlapped 1.5 x 1.5in at
+// every corner and put an unbuildable side-rail length in the cut list.
 module lib_frame_ring(len, w, ctx = false, lh = leg_height) {
-    wbox([-w/2, 0, lh], [frame_rail_sz, len, frame_rail_sz], [0, 0], ctx);
-    wbox([w/2 - frame_rail_sz, 0, lh], [frame_rail_sz, len, frame_rail_sz], [0, 0], ctx);
+    sl = len - 2 * frame_rail_sz;   // side rail: between the end rails
+    wbox([-w/2, frame_rail_sz, lh], [frame_rail_sz, sl, frame_rail_sz], [0, 0], ctx);
+    wbox([w/2 - frame_rail_sz, frame_rail_sz, lh], [frame_rail_sz, sl, frame_rail_sz], [0, 0], ctx);
     wbox([-w/2, 0, lh], [w, frame_rail_sz, frame_rail_sz], [0, 0], ctx);
     wbox([-w/2, len - frame_rail_sz, lh], [w, frame_rail_sz, frame_rail_sz], [0, 0], ctx);
 }
@@ -199,17 +204,20 @@ module lib_frame_parts(len, w, lc = leg_cut_length, lh = leg_height, lc_corner =
     // axis), leg straight up (Z) — the 2D offsets below account for
     // each part's own projected extent so labels never cross a part
     wbox([0, 0, 0], [w, frame_rail_sz, frame_rail_sz]);
-    cap(str("A  2x end rail 2x2 x ", w, "\""), w * 0.35, -24, 2.6);
-    wbox([0, 0, 0], [frame_rail_sz, len, frame_rail_sz], [0, -46]);
-    cap(str("B  2x side rail 2x2 x ", len, "\""), len * 0.42, -50, 2.6);
+    cap(str("A  2x end rail 2x2 x ", w, "\" (outboard, full deck width)"), w * 0.35, -24, 2.6);
+    wbox([0, 0, 0], [frame_rail_sz, len - 2 * frame_rail_sz, frame_rail_sz], [0, -46]);
     wbox([0, 0, 0], [frame_rail_sz, frame_rail_sz, lh + leg_lap], [w * 1.1, -46]);
+    // B, C, K and the fastener note are STACKED, not laid side by side:
+    // the side-rail and leg captions both grew long enough (BETWEEN /
+    // LAPPED / two Panel C leg lengths) to run into each other on one line.
+    cap(str("B  2x side rail 2x2 x ", len - 2 * frame_rail_sz, "\" — fits BETWEEN the end rails"), w * 0.5, -50, 2.6);
     cap(lc_corner < 0
-          ? str("C  4x leg 2x2 x ", lc, "\" cut (+1\" leveling foot) — LAPPED")
+          ? str("C  4x leg 2x2 x ", lc, "\" cut (+1\" leveling foot) — LAPPED, top flush with the rail top")
           : str("C  2x FRONT leg ", lc, "\" cut (LAPPED) + 2x REAR corner leg ",
                 lc_corner, "\" cut (butt-under)"),
-        w * 1.1 + 2, -50, 2.6);
-    cap(str("K  bottom rails 2x2 (cube frame — count/faces per panel, see assembly)"), w * 0.5, -56, 2.2);
-    cap("+ 4 corner brackets, 2\" screws, glue", w * 0.5, -60, 2.2);
+        w * 0.5, -54.5, 2.6);
+    cap(str("K  bottom rails 2x2 (cube frame — count/faces per panel, see assembly)"), w * 0.5, -59, 2.2);
+    cap("+ 4 corner brackets, 2\" screws, glue", w * 0.5, -62.5, 2.2);
 }
 
 // step: FRAME — exploded assembly (legs dropped, arrows up).

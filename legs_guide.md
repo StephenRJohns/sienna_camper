@@ -190,7 +190,7 @@ Panels A and B also each get **2 diagonal corner braces** up top, which recover 
 
 <figure class="lego-figure">
 <img src="renders/steps/pab-s1a-assembly.png" alt="Panel A frame assembly">
-<figcaption>Panel A, frame step: 2 side rails (B, 29") + 2 end rails (A, 46") with corner brackets and 2" screws, then the 4 legs (C) cut to <strong>16.75"</strong> and bored, lapped to the end rails' inner faces with their tops flush, then the 2 END-face bottom rails (K, 46") and the 2 diagonal corner braces.</figcaption>
+<figcaption>Panel A, frame step: 2 side rails (B, 26") dropped BETWEEN 2 end rails (A, 46" — the outboard pair) with corner brackets and 2" screws, then the 4 legs (C) cut to <strong>16.75"</strong> and bored, lapped to the end rails' inner faces with their tops flush, then the 2 END-face bottom rails (K, 46") and the 2 diagonal corner braces.</figcaption>
 </figure>
 
 <figure class="floorplan-figure">
@@ -209,7 +209,7 @@ Panels A and B also each get **2 diagonal corner braces** up top, which recover 
 
 <figure class="lego-figure">
 <img src="renders/steps/pc-s1-assembly.png" alt="Panel C frame assembly">
-<figcaption>Panel C, frame step: 35.75" side rails (B) + 46" end rails (A), 4 legs (C) in two lengths — <strong>front pair 17.5" and lapped, inset 3.5"; rear pair 16" and butt-under, at the TRUE corners</strong> — and the FRONT-face bottom rail only (46").</figcaption>
+<figcaption>Panel C, frame step: 32.75" side rails (B) between the 46" end rails (A), 4 legs (C) in two lengths — <strong>front pair 17.5" and lapped, inset 3.5"; rear pair 16" and butt-under, at the TRUE corners</strong> — and the FRONT-face bottom rail only (46").</figcaption>
 </figure>
 
 <figure class="floorplan-figure">

@@ -74,11 +74,18 @@ module leg(x, y, len = leg_length) {
 // exposed top rails.)
 module module_frame(length, width, frame_leg_inset = 0, bottom_front = false, bottom_rear = false, bottom_sides = false, rear_inset = -1, lh = leg_height) {
     r_inset = rear_inset < 0 ? frame_leg_inset : rear_inset;
+    // The perimeter ring. END rails run the FULL panel width and are the
+    // outboard pair; SIDE rails fit BETWEEN them. Both used to be drawn
+    // full length, which double-occupied 1.5 x 1.5in at all four corners
+    // and put a side-rail length in the cut list that could not be built
+    // (Sept 2026). The end rails are outboard because they are what the
+    // lapped legs bear against, what Panel C's 46in front wall matches,
+    // and what covers Panel C's true-corner rear legs.
     color("SaddleBrown") {
-        translate([-width/2, 0, lh])
-            cube([frame_rail_sz, length, frame_rail_sz]);
-        translate([width/2 - frame_rail_sz, 0, lh])
-            cube([frame_rail_sz, length, frame_rail_sz]);
+        translate([-width/2, frame_rail_sz, lh])
+            cube([frame_rail_sz, length - 2 * frame_rail_sz, frame_rail_sz]);
+        translate([width/2 - frame_rail_sz, frame_rail_sz, lh])
+            cube([frame_rail_sz, length - 2 * frame_rail_sz, frame_rail_sz]);
         translate([-width/2, 0, lh])
             cube([width, frame_rail_sz, frame_rail_sz]);
         translate([-width/2, length - frame_rail_sz, lh])

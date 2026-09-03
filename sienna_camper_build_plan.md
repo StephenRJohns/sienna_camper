@@ -672,14 +672,14 @@ Honest trade, and how it ended: the swap reshuffled the plywood so it needed 3/8
 
 ### Frame lumber — 2x2 pine (or 1"x1" aluminum L-channel), sold in 8ft (96") lengths
 
-Panel A, Panel B, and Panel C each get their own independent perimeter frame — 2 long rails + 2 end rails sized to that module's own footprint — plus its own 4 legs. No rail is shared between modules, which is what makes each one lift straight out on its own. **The rear pantry needs no frame lumber at all** — it's bought drawer units sitting on Panel C's already-built deck. The fridge and kitchen unit need no frame lumber either.
+Panel A, Panel B, and Panel C each get their own independent perimeter frame — 2 side rails + 2 end rails sized to that module's own footprint — plus its own 4 legs. **Which rail is outboard matters, and this table used to get it wrong** (both were listed at full size, which double-books 1.5" × 1.5" at all four corners): the **end rails run the full 46" width** and the **side rails fit between them**, 3" shorter than the panel's length. End rails are outboard for three reasons — they are the face the lapped legs bear against, Panel C's 46" front wall matches them, and it is the end rail that covers Panel C's true-corner rear legs. No rail is shared between modules, which is what makes each one lift straight out on its own. **The rear pantry needs no frame lumber at all** — it's bought drawer units sitting on Panel C's already-built deck. The fridge and kitchen unit need no frame lumber either.
 
 | Piece | Qty | Cut length | Notes |
 |---|---|---|---|
-| Panel A long rails | 2 | 29" | |
-| Panel B long rails | 2 | 29" | |
-| Panel C long rails | 2 | 35.75" | |
-| End rails (all 3 modules) | 6 | 46" | 2 per module |
+| End rails (all 3 modules) | 6 | 46" | 2 per module. **The OUTBOARD pair** — full panel width, so they set the 46" and the side rails fit between them |
+| Panel A side rails | 2 | 26" | = 29" panel length − 2 × 1.5" of end rail |
+| Panel B side rails | 2 | 26" | = 29" panel length − 2 × 1.5" |
+| Panel C side rails | 2 | 32.75" | = 35.75" panel length − 2 × 1.5" |
 | Center divider | 1 | 26" | Panel A only — splits its bay into drawer (right) + WAVE 3 (left) runs, see Step 2 diagram. Panel B and C have none. |
 | Legs — Panel C, FRONT pair | 2 | 17.5" | **lapped**; cut 1" short, the leveling foot makes each an effective 18.5" — floor to rail TOP (Leg Leveling Foot Detail) |
 | Legs — Panel C, REAR pair | 2 | 16" | **butt-under**, at the true corners — the only 2 legs in the build that are. Effective 17". Each gets its own steel angle bracket into the rail's inner face |
@@ -692,7 +692,7 @@ Panel A, Panel B, and Panel C each get their own independent perimeter frame —
 
 ![Platform leg — shop drawing, all three cut lengths](renders/leg-detail.png)
 
-**Total linear footage needed: 1,018.5"** (4@29 + 2@35.75 + 6@46 + 1@26 + 2@17.5 + 8@16.75 + 2@16, plus the cube-frame bottom rails: 5@46 + 2@23, and Panel B's 2-piece centre bearer 2@26). Twelve 8ft (96") boards hold 1,152" — see the board-by-board packing plan in **Appendix H**.
+**Total linear footage needed: 1,000.5"** (6@46 + 4@26 + 2@32.75 + 1@26 + 2@17.5 + 8@16.75 + 2@16, plus the cube-frame bottom rails: 5@46 + 2@23, and Panel B's 2-piece centre bearer 2@26). Twelve 8ft (96") boards hold 1,152" — see the board-by-board packing plan in **Appendix H**.
 
 ### Hardware sizing
 
@@ -1043,8 +1043,8 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 
 **Parts needed:**
 
-- Long rails — 2, 29" cut, 2x2 pine
-- End rails — 2, 46" cut, 2x2 pine
+- Side rails — 2, 26" cut, 2x2 pine (they fit BETWEEN the end rails: 29" panel − 2 × 1.5")
+- End rails — 2, 46" cut, 2x2 pine (the outboard pair, full deck width)
 - Legs — 4, cut to **16.75"**, 2x2 pine (1.5" x 1.5" actual — plenty for this load); the leveling foot brings each back to an effective 17.75", which is the floor-to-rail-TOP height because these legs are **lapped** to the end rails' inner faces, not butted under them (Section 3)
 - Leg leveling feet — 4 (3/8-16 screw-in insert in the leg's bottom end grain + leveling stud + 2" star knob jam-locked on the shaft above the stud's fixed hex collar), one per leg (Leg Leveling Foot Detail render)
 - Bottom rails — 2, 46" cut, 2x2 pine (END faces only — the side faces stay open for the drawer/WAVE 3)
@@ -1065,7 +1065,7 @@ Panel A and Panel B share the same frame construction — neither has a top of i
 <div class="lego-num">1</div>
 <div class="lego-parts"><img src="renders/steps/pab-s1a-parts.png" alt="Panel A step 1 parts"></div>
 <div class="lego-main"><img src="renders/steps/pab-s1a-assembly.png" alt="Panel A step 1 assembly">
-<p class="lego-caption">Build the frame: 2 side rails (B) + 2 end rails (A) joined with corner brackets and 2" screws, then the 4 legs (C) — CUT to 16.75" (Panels A/B run 3/4" shorter than Panel C's front pair: deck recess), drilled in the bottom end grain (1/2" dia x 7/8" deep, centered — maker's spec; test-fit in offcut) for the 3/8-16 screw-in threaded insert, so the leveling foot brings each leg back to an effective 17.75" (Leg Leveling Foot Detail render). Much easier to drill before assembly. Each leg is **LAPPED** to its end rail — 1.5" inboard, against the rail's inner face, top clamped **flush with the rail top** before you drive the 2 screws through the rail's face into the leg's side (Section 3). Legs inset **3.5"** from the deck's side edges to clear the floor-level vent intrusion (V4, Aug 2026 — was 2.5"). Then close the bottom: 2 END-face bottom rails (K, 46", underside 1" up at the leg bottoms — Panel A's SIDE faces stay open so the drawer and WAVE 3 can exit) plus 2 diagonal corner braces up top — the part-cube racks far less than rails + brackets alone. (Panel B's frame differs only at the bottom rails: it closes all 4 faces.)</p></div>
+<p class="lego-caption">Build the frame: 2 side rails (B, 26") dropped BETWEEN 2 end rails (A, 46" — the outboard pair, full deck width), joined with corner brackets and 2" screws, then the 4 legs (C) — CUT to 16.75" (Panels A/B run 3/4" shorter than Panel C's front pair: deck recess), drilled in the bottom end grain (1/2" dia x 7/8" deep, centered — maker's spec; test-fit in offcut) for the 3/8-16 screw-in threaded insert, so the leveling foot brings each leg back to an effective 17.75" (Leg Leveling Foot Detail render). Much easier to drill before assembly. Each leg is **LAPPED** to its end rail — 1.5" inboard, against the rail's inner face, top clamped **flush with the rail top** before you drive the 2 screws through the rail's face into the leg's side (Section 3). Legs inset **3.5"** from the deck's side edges to clear the floor-level vent intrusion (V4, Aug 2026 — was 2.5"). Then close the bottom: 2 END-face bottom rails (K, 46", underside 1" up at the leg bottoms — Panel A's SIDE faces stay open so the drawer and WAVE 3 can exit) plus 2 diagonal corner braces up top — the part-cube racks far less than rails + brackets alone. (Panel B's frame differs only at the bottom rails: it closes all 4 faces.)</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
@@ -1117,8 +1117,8 @@ Same frame construction as Panel A — and that's the whole build. **Panel B has
 
 **Parts needed:**
 
-- Long rails — 2, 29" cut, 2x2 pine
-- End rails — 2, 46" cut, 2x2 pine
+- Side rails — 2, 26" cut, 2x2 pine (BETWEEN the end rails)
+- End rails — 2, 46" cut, 2x2 pine (outboard, full deck width)
 - Legs — 4, **16.75"** cut, 2x2 pine (leveling feet make up the inch; lapped to the end rails, tops flush with the rail tops)
 - Bottom rails — 4: 2x 46" + 2x **23"** (all four faces — the full cube; the side pair is 23" and not 26" because the lapped legs sit 1.5" inboard at each end)
 - Corner brackets — 4
@@ -1143,7 +1143,7 @@ Same frame construction as Panel A — and that's the whole build. **Panel B has
 <div class="lego-num">1</div>
 <div class="lego-parts"><img src="renders/steps/pab-s1b-parts.png" alt="Panel B step 1 parts"></div>
 <div class="lego-main"><img src="renders/steps/pab-s1b-assembly.png" alt="Panel B step 1 assembly">
-<p class="lego-caption">Build the frame — like Panel A's step 1: side rails (B), end rails (A), corner brackets, 4 legs (C) inset 3.5" from the deck edges and LAPPED to the end rails with their tops flush (V4, Aug 2026 — was 2.5"; drilled for their leveling inserts BEFORE assembly), the 2 diagonal corner braces, and bottom rails on ALL FOUR faces (2x 46" + 2x 23", underside 1" up at the leg bottoms) — **the full cube**: nothing exits Panel B sideways, so every face can close, and this is the stiffest frame of the three. That's the entire panel — no divider, no drawers, nothing else. Drill the alignment-pin holes when mating it to its neighbors (Component 5).</p></div>
+<p class="lego-caption">Build the frame — like Panel A's step 1: side rails (B, 26") between the end rails (A, 46"), corner brackets, 4 legs (C) inset 3.5" from the deck edges and LAPPED to the end rails with their tops flush (V4, Aug 2026 — was 2.5"; drilled for their leveling inserts BEFORE assembly), the 2 diagonal corner braces, and bottom rails on ALL FOUR faces (2x 46" + 2x 23", underside 1" up at the leg bottoms) — **the full cube**: nothing exits Panel B sideways, so every face can close, and this is the stiffest frame of the three. That's the entire panel — no divider, no drawers, nothing else. Drill the alignment-pin holes when mating it to its neighbors (Component 5).</p></div>
 </div>
 </div>
 
@@ -1156,8 +1156,8 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 **Parts needed:**
 
 - Panel C top — 1, 33" x 43", 3/4" ply (drops BETWEEN the rails; **notch 1.5" x 1.5" out of its front edge at 3.5" in from each side**, for the 2 lapped front legs) + 4 bearer cleats (3/4" x 3/4": 2 x 33" + 2 x 40", from the offcut — the front one cut as 3 runs around those 2 legs)
-- Long rails — 2, 35.75" cut, 2x2 pine
-- End rails — 2, 46" cut, 2x2 pine
+- Side rails — 2, 32.75" cut, 2x2 pine (BETWEEN the end rails: 35.75" panel − 2 × 1.5")
+- End rails — 2, 46" cut, 2x2 pine (outboard, full deck width)
 - Legs — 4 in **two lengths**, 2x2 pine (leveling feet make up the inch): FRONT pair **17.5"**, lapped to the front rail's inner face, tops flush with the rail top; REAR pair **16"**, butt-under at the TRUE corners — the one pair in the build that cannot be lapped (Section 3)
 - Bottom rail — 1, 46" cut, 2x2 pine (FRONT face only, on the front legs' line — 1.5" inboard of the front face)
 - Steel angle brackets — 2 extra, one per REAR corner leg (that bracket is the joint; the screws into end grain are alignment only)
@@ -1171,7 +1171,7 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 <div class="lego-num">1</div>
 <div class="lego-parts"><img src="renders/steps/pc-s1-parts.png" alt="Panel C step 1 parts"></div>
 <div class="lego-main"><img src="renders/steps/pc-s1-assembly.png" alt="Panel C step 1 assembly">
-<p class="lego-caption">Build the frame — same construction as Panels A/B, with 35.75" side rails (B): end rails (A), corner brackets, 4 legs (C) in TWO lengths — FRONT pair **17.5"**, inset 3.5" and LAPPED to the front rail's inner face with their tops flush; REAR pair **16"**, BUTT-UNDER at the TRUE corners (the fridge/kitchen slide paths pass exactly where inset rear legs would stand, and at a true corner the 46" end rail covers the whole leg so there is nothing to lap to — give each of those two a steel angle bracket; the rear-corner floor vents were checked Aug 2026 and do NOT reach the leg area, so those legs land on solid floor). Add the FRONT-face bottom rail (46", underside 1" up at the leg bottoms, on the front legs' line) — the tailgate face stays open for the appliances.</p></div>
+<p class="lego-caption">Build the frame — same construction as Panels A/B, with 32.75" side rails (B) between the 46" end rails (A): corner brackets, 4 legs (C) in TWO lengths — FRONT pair **17.5"**, inset 3.5" and LAPPED to the front rail's inner face with their tops flush; REAR pair **16"**, BUTT-UNDER at the TRUE corners (the fridge/kitchen slide paths pass exactly where inset rear legs would stand, and at a true corner the 46" end rail covers the whole leg so there is nothing to lap to — give each of those two a steel angle bracket; the rear-corner floor vents were checked Aug 2026 and do NOT reach the leg area, so those legs land on solid floor). Add the FRONT-face bottom rail (46", underside 1" up at the leg bottoms, on the front legs' line) — the tailgate face stays open for the appliances.</p></div>
 </div>
 <div class="lego-step">
 <div class="lego-num">2</div>
@@ -2024,7 +2024,7 @@ Finished sizes; add saw kerf. Full context in Section 3.
 
 **Battery-drawer walls — 3/4", from the 3/4" sheet's offcuts:** 2× 25×14.5" + 2× 20×14.5". One of each comes out of the 47×19" strip; the other two come out of the anchor board's comb gaps, so **cut the comb first**. 2× R3 biscuits per corner.
 
-**2×2 pine — 12 boards (8ft), 1,018.5" of parts:** Panel A long rails 2× 29"; Panel B long rails 2× 29"; Panel C long rails 2× 35.75"; end rails 6× 46"; center divider (Panel A) 1× 26"; legs **2× 17.5" (Panel C front, lapped) + 2× 16" (Panel C rear, butt-under) + 8× 16.75" (Panels A/B, lapped)** — all cut 1" short, the foot makes up the rest (**Sept 2026: the legs are LAPPED to the rails now, which added 1.5" to the ten that could be. Before that they read 4× 16" + 8× 15.25", and before that "12× 16"", which predated the deck recess**); bottom rails 5× 46" + 2× 23" (Panel B's side pair came down from 26" — the lapped legs sit 1.5" inboard at each end); Panel B centre bearer 2× 26". Section 3's total is 1,018.5" and matches; 12 boards (1,152") still covers it — see the board-by-board packing plan in **Appendix H**.
+**2×2 pine — 12 boards (8ft), 1,000.5" of parts:** end rails 6× 46" (the outboard pair on every panel, full deck width); side rails 2× 26" (Panel A) + 2× 26" (Panel B) + 2× 32.75" (Panel C) — **each 3" shorter than its panel, because it fits BETWEEN the end rails; this line read 29"/35.75" until Sept 2026, which double-booked every corner**; center divider (Panel A) 1× 26"; legs **2× 17.5" (Panel C front, lapped) + 2× 16" (Panel C rear, butt-under) + 8× 16.75" (Panels A/B, lapped)** — all cut 1" short, the foot makes up the rest (**Sept 2026: the legs are LAPPED to the rails now, which added 1.5" to the ten that could be. Before that they read 4× 16" + 8× 15.25", and before that "12× 16"", which predated the deck recess**); bottom rails 5× 46" + 2× 23" (Panel B's side pair came down from 26" — the lapped legs sit 1.5" inboard at each end); Panel B centre bearer 2× 26". Section 3's total is 1,000.5" and matches; 12 boards (1,152") still covers it — see the board-by-board packing plan in **Appendix H**.
 
 **1×4 pine — 7 boards (8ft), bed platform:** side rails 6× 29"; slats 5× 42" + 10× 17.5".
 
@@ -2281,20 +2281,22 @@ Yours, at home — each is either narrower than a store saw will rip, shaped rat
 
 **8-ft boards fit in the van** with the rows out (they run forward between the front seats), so **don't** have the store crosscut them: the cut list needs 34 pieces out of the 2×2s at tighter tolerance than a store crosscut holds. The plywood is the opposite — **uncut 4×8 sheets do not go in a Sienna**, which is why the cut desk isn't optional. After the store cuts, the biggest piece coming home is the **46 × 33** anchor board blank and nothing exceeds 47" in any direction, against a **93.75"** measured interior (V1).
 
-The 2×2 cut list is 34 pieces totalling **1,018.5"**; twelve 8-ft boards hold 1,152". Cut to this plan and it fits with a nearly-whole board spare — cut greedily and you'll be back for a thirteenth. Allow ~⅛" kerf per cut. **Re-cut Sept 2026** for the lapped legs (16" → 17.5" on Panel C's front pair, 15.25" → 16.75" on all eight A/B legs) and Panel B's 23" side bottom rails.
+The 2×2 cut list is 34 pieces totalling **1,000.5"**; twelve 8-ft boards hold 1,152". Cut to this plan and it fits with a whole board spare — cut greedily and you'll be back for a thirteenth. Allow ~⅛" kerf per cut. **Re-cut twice in Sept 2026**: once for the lapped legs (16" → 17.5" on Panel C's front pair, 15.25" → 16.75" on all eight A/B legs, and Panel B's side bottom rails 26" → 23"), and again when the side rails were corrected — they fit *between* the end rails, so they are 26"/32.75", not 29"/35.75".
 
 | Board | Cut into | Used |
 |---|---|---|
 | 1–5 | 46" + 46" each | 92" |
-| 6 | 46" + 29" + 17.5" | 92.5" |
-| 7 | 35.75" + 35.75" + 23" | 94.5" |
-| 8 | 29" + 29" + 29" | 87" |
+| 6 | 46" + 32.75" + 16" | 94.75" |
+| 7 | 32.75" + 26" + 16.75" + 16.75" | 92.25" |
+| 8 | 26" + 26" + 26" + 16.75" | 94.75" |
 | 9 | 26" + 26" + 26" + 16.75" | 94.75" |
-| 10 | 23" + 17.5" + 16" + 16.75" + 16.75" | 90" |
+| 10 | 23" + 23" + 17.5" + 17.5" | 81" |
 | 11 | 16" + 16.75" + 16.75" + 16.75" + 16.75" | 83" |
-| 12 | 16.75" | **spare board** |
+| 12 | — | **spare board, untouched** |
 
-*Which gives exactly: 11× 46" (6 end rails + 5 bottom rails), 4× 29" (Panel A + B long rails), 2× 35.75" (Panel C long rails), 3× 26" (Panel A divider + Panel B's 2-piece centre bearer), 2× 23" (Panel B's side bottom rails), 2× 17.5" (Panel C's lapped front legs), 2× 16" (Panel C's butt-under rear legs) and 8× 16.75" (Panel A/B legs).*
+*Which gives exactly: 11× 46" (6 end rails + 5 bottom rails), 2× 32.75" (Panel C side rails), 7× 26" (4 Panel A/B side rails + Panel A divider + Panel B's 2-piece centre bearer), 2× 23" (Panel B's side bottom rails), 2× 17.5" (Panel C's lapped front legs), 8× 16.75" (Panel A/B legs) and 2× 16" (Panel C's butt-under rear legs).*
+
+**Cut the four leg lengths off a stop block, and label them as they come off the saw.** 16.75" and 16" differ by three-quarters of an inch and are indistinguishable in a pile; boards 6, 7, 8, 9 and 11 each mix a leg in with rail stock.
 
 **1×4 — 7 boards:** 2 boards give the 6 side rails (3 × 29" each); 3 boards give the 5 long slats (2 × 42" each); 2 boards give the 10 short slats (5 × 17.5" each, 87.5" — that one's tight, so cut it first while the board is still square). **1×3 — 1 board:** both 28¾" fridge-tray aprons out of the 6-footer.
 
