@@ -165,12 +165,7 @@ The hex collar's actual job is to be a wrench flat, so you can break a seized fo
 <figcaption>The foot threaded home into the insert — stud, fixed hex collar, and the 1-3/8" pad. Almost none of the stud is showing, which is the whole reason the bore has to be 1-3/4": all of that length is inside the leg.</figcaption>
 </figure>
 
-**The stick-on no-slip pad goes on** (owner, Sept 3 2026 — this reverses the earlier "skip the kit's felt pads" note in this guide). Peel and stick it centred on the foot's face, on a clean dry pad.
-
-<figure class="photo-figure">
-<img src="photos/leg-foot-04-nonslip-pad.jpg" alt="No-slip sticker applied to the leveling foot pad">
-<figcaption>The no-slip sticker applied to the finished foot. Watch this one over the first few trips: the original reason for skipping these was shedding, and the bare pad underneath is still there if a sticker gives up.</figcaption>
-</figure>
+**Skip the kit's stick-on pads.** The bare nylon pad grips the van floor better and doesn't shed — that call was re-confirmed in Sept 2026. The foot in the photo above is how one should leave the bench: nothing stuck to its face.
 
 **The feet, for re-ordering.** The pack's barcode label reads **X002FCXYQT** — "Furniture Leg Leveler", 198 g per pack. That is an Amazon-style seller barcode (the `X00…` prefix), not a manufacturer UPC: it will find the listing again on Amazon, but it will not scan in a store. Photograph the bag before you throw it out.
 
