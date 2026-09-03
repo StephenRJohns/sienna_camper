@@ -46,6 +46,11 @@ h2:first-of-type { margin-top: 8pt; }
 .warn strong:first-child { color: #8a1c1c; }
 .lego-figure img { width: auto; height: auto; max-width: 100%; max-height: 4.6in; }
 .floorplan-figure img { max-height: 6.2in; }
+/* Shop photographs. They are portrait phone shots, so the blanket
+   `figure img { width: 100% }` rule would blow one up to a full page
+   each; cap the HEIGHT and let the width follow. */
+.photo-figure { text-align: center; }
+.photo-figure img { width: auto; height: auto; max-width: 100%; max-height: 4in; }
 h3 { page-break-after: avoid; }
 """
 

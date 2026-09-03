@@ -207,7 +207,7 @@ module drawing_b() {
     }
     color(INK) {
         translate([ix, iy + RS * s3 + 8.4]) text("LEG BOTTOM — all 12 legs", size = 2.34);
-        translate([ix, iy + RS * s3 + 5.4]) text("1/2\" dia x 7/8\" deep, dead", size = 1.98);
+        translate([ix, iy + RS * s3 + 5.4]) text(str(inch_frac(leveling_bore_dia), "\" dia x ", leveling_bore_depth, "\" deep, dead"), size = 1.98);
         translate([ix, iy + RS * s3 + 2.8]) text("center of the end grain", size = 1.98);
         translate([ix, iy - 3.2]) text("drill BEFORE assembly", size = 1.89);
     }
@@ -251,14 +251,14 @@ module drawing() {
         // MOVED TO THE DOCUMENT: cap("THE FULL CUBE: bottom rails on all 4 faces (nothing exits Panel B sideways). Both hole types dimensioned in the insets at left.", 13, -21.5, 1.3);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str("end rails ", W, "\" (full width, outboard); side rails ", L - 2 * RS, "\" BETWEEN them = ", L, "\" x ", W, "\" perimeter"), "corner brackets + 2\" screws + glue; grip these rails to lift the panel"],
-            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "LAPPED to the end rails, tops flush with the rail tops; 1/2\" x 7/8\" insert hole in each bottom (inset at left)"],
+            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), str("LAPPED to the end rails, tops flush with the rail tops; ", inch_frac(leveling_bore_dia), "\" x ", leveling_bore_depth, "\" insert hole in each bottom (inset at left)")],
             ["3", "Bottom rails (x4 — full cube)", str("2x2 pine, underside at ", bottom_rail_z, "\" (clears the feet/knobs)"), "2x 2\" screws + glue into each leg — the frame racks far less as a closed box"],
         ]);
     } else {
         // MOVED TO THE DOCUMENT: cap("Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.", 13, -19, 1.4);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str("end rails ", W, "\" (full width, outboard); side rails ", L - 2 * RS, "\" BETWEEN them = ", L, "\" x ", W, "\" perimeter"), "corner brackets + 2\" screws + glue"],
-            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "LAPPED to the end rails, tops flush with the rail tops; 1/2\" x 7/8\" insert hole in each bottom (Panel B detail's inset)"],
+            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), str("LAPPED to the end rails, tops flush with the rail tops; ", inch_frac(leveling_bore_dia), "\" x ", leveling_bore_depth, "\" insert hole in each bottom (Panel B detail's inset)")],
             ["3", "Center divider", str(L - 2*RS, "\" cut, 2x2 pine"), "splits the bay — drawer (right) / WAVE 3 (left)"],
             ["4", "Drawer box (right, DELTA 3 side)", str(drw_w, "\" x ", drw_d, "\" x ", drw_h, "\", ", inch_frac(drawer_box_t), "\" walls, 1/2\" bottom"), "5 pieces, glued + 2x R3 per corner at this thickness"],
             ["5", "Drawer slide (right)", str(drawer_slide_length, "\" full-extension pair"), "box-to-rail + box-to-divider"],

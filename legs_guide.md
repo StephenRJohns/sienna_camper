@@ -12,7 +12,7 @@ Read this alongside the full plan for context (Section 3 for the whole cut list,
 
 <figure class="floorplan-figure">
 <img src="renders/leg-detail.png" alt="Platform leg shop drawing">
-<figcaption>The leg as a part: the <strong>Panel C front leg</strong> (17.5" cut, 18.5" effective), the <strong>Panel A/B leg</strong> (16.75" cut, 17.75" effective), the <strong>Panel C rear corner leg</strong> (16" cut, 17" effective — the one butt-under leg), and the <strong>bottom end grain</strong> with its 1/2" × 7/8" insert bore dead centre. This is the sheet to take to the saw. Where the legs then stand in the frame is drawn in Section 8.</figcaption>
+<figcaption>The leg as a part: the <strong>Panel C front leg</strong> (17.5" cut, 18.5" effective), the <strong>Panel A/B leg</strong> (16.75" cut, 17.75" effective), the <strong>Panel C rear corner leg</strong> (16" cut, 17" effective — the one butt-under leg), and the <strong>bottom end grain</strong> with its 1/2" × 1-3/4" insert bore dead centre. This is the sheet to take to the saw. Where the legs then stand in the frame is drawn in Section 8.</figcaption>
 </figure>
 
 Twelve legs, 2x2 pine (1.5" × 1.5" actual). Four per panel, one at each corner. Each leg is cut **1" short** of its finished height and gets a screw-in threaded insert in its bottom end grain; a leveling foot threads into that insert and makes up the missing inch, with ±1/2" of adjustment either way.
@@ -71,8 +71,9 @@ Two rows are doing the work here. The **void** row is the height under the deck 
 | For | What |
 |---|---|
 | Cutting | Mitre saw or circular saw + square; a stop block for repeatable length |
-| Boring | 1/2" brad-point bit (a spade bit wanders in end grain), drill press or a drill guide/right-angle jig, depth stop or tape flag |
-| Driving the insert | 3/8-16 bolt ~2" long + two 3/8-16 nuts (jam pair), or the insert's own hex drive; wrench |
+| Boring | 1/2" brad-point bit (a spade bit wanders in end grain) **and** a small pilot bit; drill press or a drill guide/right-angle jig; blue tape for a depth flag |
+| Boring, the fast way | **Two drills** — one holding the pilot bit, one holding the 1/2". Twelve legs is 24 bit changes if you run one drill; with two you never swap |
+| Driving the insert | **10mm (1 cm) hex wrench** — it fits the insert's own hex drive, and this is what the build actually used. Alternative: a 3/8-16 bolt ~2" long + two 3/8-16 nuts (jam pair) and a wrench |
 | Foot stack | 9/16" wrench (3/8-16 jam nut) |
 | Frame | Drill/driver, 2" wood screws, wood glue, 12 × 2"–3" steel corner brackets |
 | Test piece | A 6" 2x2 offcut — bore it and test-fit an insert before touching a real leg |
@@ -90,17 +91,28 @@ All three lengths are dimensioned on the shop drawing in Section 1.
 The same hole goes in every one of the 12 legs, in the **bottom** end grain:
 
 <div class="spec">
-<strong>1/2" diameter × 7/8" deep, dead centre of the 1.5" × 1.5" end grain.</strong>
+<strong>1/2" diameter × 1-3/4" deep, dead centre of the 1.5" × 1.5" end grain.</strong>
 </div>
 
-7/8" is the maker's spec: 3/4" of insert plus a little clearance so the flange can pull down flush on the end grain. Bore it **before the leg goes into the frame** — once the frame is together the hole is nearly impossible to keep square, and squareness here is what keeps the finished foot vertical.
+<div class="warn">
+<strong>1-3/4", not 7/8".</strong> The old number was sized for the insert alone — 3/4" of insert plus a little clearance. But the leveling bolt's <strong>stud</strong> passes straight through the insert and keeps going as the foot winds in. Bored only 7/8", the stud bottoms out on solid wood before the foot is anywhere near home, and the leg loses the bottom half of its adjustment. Bore the full <strong>1-3/4"</strong> so the foot can screw all the way in.
+</div>
+
+Bore it **before the leg goes into the frame** — once the frame is together the hole is nearly impossible to keep square, and squareness here is what keeps the finished foot vertical.
 
 Method:
 
 1. Mark the centre by drawing both diagonals of the end grain.
-2. Bore on a drill press if you have one; otherwise use a drill guide. Freehand into end grain will wander.
-3. Set the depth with a stop or a tape flag on the bit, and measure from the bit's **full diameter**, not the brad point's tip.
-4. Blow the chips out. A packed hole reads as "insert bottomed out" long before it has.
+2. **Pilot first, then the 1/2".** A 1/2" brad point going straight into pine end grain wants to follow the grain; a pilot hole gives it a centre to track.
+3. **Run two drills** — pilot bit in one, 1/2" in the other. Twelve legs means twelve pilots and twelve bores, and swapping one chuck 24 times is how the batch loses its afternoon.
+4. **Flag the depth with tape on the bit.** Wrap blue tape at 1-3/4" and stop when the tape kisses the end grain. Measure from the bit's **full diameter**, not the brad point's tip — the tip is another ~1/8" ahead of the shoulder that actually cuts the 1/2" hole.
+5. Bore on a drill press if you have one; otherwise use a drill guide. Freehand into end grain will wander.
+6. Blow the chips out. A packed hole reads as "insert bottomed out" long before it has.
+
+<figure class="photo-figure">
+<img src="photos/leg-foot-01-two-drills-tape-flag.jpg" alt="Two drills, pilot bit and 1/2 inch bit with a tape depth flag">
+<figcaption>Two drills, so no bit ever gets swapped: the pilot bit on the right, the 1/2" brad point on the left with a <strong>blue-tape depth flag</strong> wrapped at 1-3/4". Bore the pilot, put that drill down, pick the other one up, bore to the tape.</figcaption>
+</figure>
 
 The **BOTTOM END GRAIN** view on the Section 1 shop drawing dimensions the hole and its centre; the Panel B sheet below repeats it in the context of the assembled panel.
 
@@ -113,10 +125,17 @@ The **BOTTOM END GRAIN** view on the Section 1 shop drawing dimensions the hole 
 
 The insert is the screw-in type: a **7/16" OD coarse outer wood thread** with a **3/8-16 bore**, and a 5/8" flange that seats on the end grain.
 
-1. **Test-fit in an offcut first.** Bore a scrap 2x2 to the same 1/2" × 7/8" and drive an insert into it. End grain in soft pine can split; if it does, the fix is a slightly larger pilot, not more force.
-2. Lock two 3/8-16 nuts against each other on a spare bolt, thread the insert onto the bolt up to the jammed nuts, and drive the assembly with a wrench on the bolt head. This drives the insert straight and lets you back the bolt out cleanly afterwards. (The insert's own slot or hex will work too, but the bolt method is far better at keeping it square.)
-3. Drive it until the flange sits **flush** with the end grain — not proud, or the leg will rock on it, and not sunk, or you lose thread engagement.
-4. Back the bolt out by holding the lower nut and turning the upper one loose.
+1. **Test-fit in an offcut first.** Bore a scrap 2x2 to the same 1/2" × 1-3/4" and drive an insert into it. End grain in soft pine can split; if it does, the fix is a slightly larger pilot, not more force.
+2. **Drive it with a 10mm (1 cm) hex wrench** in the insert's own hex socket. That is the size — not 3/8", not 7/16" — and it is the one tool on this list you are least likely to already have out. A long-arm key gives the leverage to start it into end grain.
+3. Keep the wrench square to the end grain as it starts. The first two turns set the angle for all of them, and a crooked insert is a crooked foot you cannot straighten later.
+4. Drive it until the flange sits **flush** with the end grain — not proud, or the leg will rock on it, and not sunk, or you lose thread engagement.
+
+<figure class="photo-figure">
+<img src="photos/leg-foot-02-insert-10mm-hex.jpg" alt="Driving the threaded insert with a 10mm hex wrench">
+<figcaption>Driving the insert with the <strong>10mm hex wrench</strong> ("CRV 10mm" on the shaft), leg clamped in the bench so both hands are free to keep the key square. The insert's own hex drive is what the wrench engages.</figcaption>
+</figure>
+
+**The bolt-and-jam-nut alternative.** If your inserts have a slot rather than a hex, lock two 3/8-16 nuts against each other on a spare bolt, thread the insert onto the bolt up to the jammed nuts, and drive the assembly with a wrench on the bolt head; back the bolt out afterwards by holding the lower nut and turning the upper one loose. It keeps the insert square just as well — it is only slower.
 
 ## 7. Step 4 — Assemble the leveling foot
 
@@ -124,12 +143,12 @@ Five parts per foot, twelve feet. The exploded column on the drawing is keyed **
 
 <figure class="floorplan-figure">
 <img src="renders/leveling-foot-assembly.png" alt="Leg leveling foot engineering drawing">
-<figcaption>Leg leveling foot — <strong>section A-A</strong> installed at mid-travel (6× actual size), the <strong>exploded</strong> assembly order A–E, and the <strong>knob top view</strong>. Dimensions on the sheet: 1-1/2" leg, 7/8" deep bore, 1" exposed foot (travel ±1/2"), 1-3/8" floor pad, 2" knob.</figcaption>
+<figcaption>Leg leveling foot — <strong>section A-A</strong> installed at mid-travel (6× actual size), the <strong>exploded</strong> assembly order A–E, and the <strong>knob top view</strong>. Dimensions on the sheet: 1-1/2" leg, 1-3/4" deep bore, 1" exposed foot (travel ±1/2"), 1-3/8" floor pad, 2" knob.</figcaption>
 </figure>
 
 | Key | Part | What it is / what to do |
 |---|---|---|
-| **A** | The leg | Bored 1/2" dia × 7/8" deep, centred, per Step 2 |
+| **A** | The leg | Bored 1/2" dia × **1-3/4"** deep, centred, per Step 2 |
 | **B** | Screw-in threaded insert | 7/16" OD outer thread, 3/8-16 bore. Driven flush on a spare bolt + jam nut, per Step 3 |
 | **C** | 3/8-16 jam nut | Spin it ~1" up the stud. This is what locks the knob |
 | **D** | PW6103 star knob (hand wheel) | ~2" dia, 3/8-16 thru-hole. Thread it up to the nut, then wrench the nut **down** onto it to lock the two together |
@@ -141,7 +160,24 @@ Jammed on the collar, the knob only grips in the tightening direction: the first
 The hex collar's actual job is to be a wrench flat, so you can break a seized foot loose later.
 </div>
 
-**Skip the kit's stick-on felt pads.** The bare nylon pad grips the van floor better and doesn't shed.
+<figure class="photo-figure">
+<img src="photos/leg-foot-03-foot-threaded-in.jpg" alt="Leveling foot threaded into the insert in the leg's end grain">
+<figcaption>The foot threaded home into the insert — stud, fixed hex collar, and the 1-3/8" pad. Almost none of the stud is showing, which is the whole reason the bore has to be 1-3/4": all of that length is inside the leg.</figcaption>
+</figure>
+
+**The stick-on no-slip pad goes on** (owner, Sept 3 2026 — this reverses the earlier "skip the kit's felt pads" note in this guide). Peel and stick it centred on the foot's face, on a clean dry pad.
+
+<figure class="photo-figure">
+<img src="photos/leg-foot-04-nonslip-pad.jpg" alt="No-slip sticker applied to the leveling foot pad">
+<figcaption>The no-slip sticker applied to the finished foot. Watch this one over the first few trips: the original reason for skipping these was shedding, and the bare pad underneath is still there if a sticker gives up.</figcaption>
+</figure>
+
+**The feet, for re-ordering.** The pack's barcode label reads **X002FCXYQT** — "Furniture Leg Leveler", 198 g per pack. That is an Amazon-style seller barcode (the `X00…` prefix), not a manufacturer UPC: it will find the listing again on Amazon, but it will not scan in a store. Photograph the bag before you throw it out.
+
+<figure class="photo-figure">
+<img src="photos/leg-foot-05-pack-label.jpg" alt="Leveling foot pack barcode label reading X002FCXYQT">
+<figcaption>The pack label: <strong>X002FCXYQT</strong>, "Furniture Leg Leveler … Made in China", 198 g. The code to re-order by if a foot goes missing.</figcaption>
+</figure>
 
 <figure class="floorplan-figure">
 <img src="renders/leveling-foot-detail.png" alt="Leveling foot detail">
@@ -267,7 +303,9 @@ Everything here is generated from or checked against the parametric model:
 | Void under the deck 17" / 16.25" | `params.scad` — `leg_height`, `leg_height_ab` |
 | The 1.5" lap | `params.scad` — `leg_lap` = `frame_rail_sz` |
 | Foot 1" nominal, ±1/2" travel | `params.scad` — `leveling_foot_nominal_h`, `leveling_foot_travel` |
-| Bore 1/2" dia × 7/8" deep | `leveling_foot_assembly.scad` — `bore_d`, `bore_dp` |
+| Bore 1/2" dia × 1-3/4" deep | `params.scad` — `leveling_bore_dia`, `leveling_bore_depth` (both drawings read them) |
+| 10mm hex to drive the insert | MEASURED in the shop (owner, Sept 3 2026) |
+| Feet: pack barcode X002FCXYQT | The bag's own label (owner photo, Sept 3 2026) |
 | Pad 1.375" dia | `params.scad` — `leveling_foot_pad_dia` |
 | Leg inset 3.5" | `params.scad` — `leg_inset` = `vent_intrusion_width`, MEASURED V4 (Aug 2026) |
 | Bottom rail underside 1" | `params.scad` — `bottom_rail_z` |
@@ -284,7 +322,7 @@ Everything here is generated from or checked against the parametric model:
 **Corrections applied Sept 2026 while assembling this subset.** Three leg dimensions were stale in places in the full plan and in the panel-detail drawings, and are corrected in both:
 
 - The **Panel A and Panel B parts lists** called for Panel C's leg length. They have always been their own, shorter length — `leg_cut_length_ab`, now 16.75" after the lap. The panel-detail drawings inherited the same error (they read `leg_cut_length` for all three panels) and have been re-rendered.
-- The **insert bore depth** was quoted as 3/4" in the Floor Panel Detail note and on the Panel A/B/C drawings. It is **7/8"** — the maker's spec, and what the leveling-foot engineering drawing has always shown.
+- The **insert bore depth** was quoted as 3/4" in the Floor Panel Detail note and on the Panel A/B/C drawings, then 7/8" everywhere. Boring the real thing showed both were short: it is **1-3/4"**, because the depth has to clear the foot's whole stud, not just the insert.
 - The **Hardware Sizing** row gave only Panel C's cut; it now gives all three.
 
 **One thing left open, and it is not a leg dimension.** The full plan's frame-lumber table cuts the end-face bottom rails at **46"** — full deck width, matching the end rail above them — while `panel_detail.scad` draws them spanning only leg-to-leg, **39"**. Either length does the bottom rail's job, which is to tie the leg bottoms together with 2 × 2" screws and glue into each leg, and neither changes anything about the legs themselves. Settle it before you cut bottom rails; cutting them at 46" leaves you the option of trimming. The drawing above deliberately carries no length dimension on that rail.

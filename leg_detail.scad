@@ -12,7 +12,7 @@
 //   1  Panel C FRONT leg, elevation — 17.5" cut + 1" foot = 18.5"
 //   2  Panel A/B leg, elevation — 16.75" cut = 17.75" effective
 //   2b Panel C REAR corner leg, elevation — 16" cut = 17" effective
-//   3  Bottom end grain, plan — the 1/2" x 7/8" insert bore, centred
+//   3  Bottom end grain, plan — the 1/2" x 1-3/4" insert bore, centred
 //   4  Leg in the frame, end elevation — the 3.5" inset and the
 //      bottom rail's 1" underside
 //   5  LEG-TO-RAIL JOINT, side elevation — the lap: the leg runs past
@@ -42,8 +42,8 @@ INK = "black";
 WOOD = [0.62, 0.47, 0.31];
 METAL = [0.45, 0.45, 0.48];
 
-bore_d  = 0.5;    // 1/2" — maker's spec (insert core is 7/16")
-bore_dp = 0.875;  // 7/8" deep: 3/4" of insert plus clearance
+bore_d  = leveling_bore_dia;    // from params.scad, so this sheet and the
+bore_dp = leveling_bore_depth;  // leveling-foot sheet cannot disagree
 pad_d   = leveling_foot_pad_dia;  // 1.375
 knob_d  = 2.0;
 foot_h  = leveling_foot_nominal_h; // 1.0 nominal exposure
@@ -105,7 +105,7 @@ module leg_elevation(cut, eff, title, sub, foot_note = true) {
 
     // bore call-out
     leader(w/2 + bore_d/2 * E, bore_dp * E * 0.6, w + 4.2, 7.5);
-    label("1/2\" dia x 7/8\" deep bore", w + 5.4, 7.5, 1.7, "left");
+    label(str(inch_frac(bore_d), "\" dia x ", bore_dp, "\" deep bore"), w + 5.4, 7.5, 1.7, "left");
 
     // width
     dim_h(0, w, h + 3.0);
@@ -151,8 +151,8 @@ module end_grain_plan() {
     label("3/4\" — dead centre", s/2, s + 5.2, 1.9);
 
     leader(s/2 + bore_d * P / 2, s/2, s + 3.0, s * 0.30);
-    label("1/2\" dia bore", s + 3.6, s * 0.30, 2.0, "left");
-    label("7/8\" deep", s + 3.6, s * 0.30 - 2.6, 2.0, "left");
+    label(str(inch_frac(bore_d), "\" dia bore"), s + 3.6, s * 0.30, 2.0, "left");
+    label(str(bore_dp, "\" deep — the STUD needs the depth, not just the insert"), s + 3.6, s * 0.30 - 2.6, 2.0, "left");
     label("bore BEFORE assembly", s + 3.6, s * 0.30 - 5.6, 1.7, "left");
 
     label("BOTTOM END GRAIN — all 12 legs", s/2, -9.0, 2.4);

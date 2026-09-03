@@ -410,6 +410,17 @@ bottom_rail_z  = 1;     // underside of the bottom rails — dropped to the leg 
 // (17in), so nothing else moves. Every leg is exposed at floor level
 // with nothing boxing it in — kneel at the side door, tip that
 // corner slightly, and spin the knob. 12 total: 4 per panel x 3.
+// The leg-bottom bore for the leveling insert. It lives HERE rather than
+// in the two drawings that show it, because both used to carry their own
+// copy of the number and the drawings could disagree with each other.
+leveling_bore_dia   = 0.5;   // 1/2in — the insert maker's spec (insert core is 7/16in, the crests bite wider)
+// 1.75in, MEASURED IN THE SHOP (owner, Sep 3 2026). This was 7/8in, sized
+// for the 3/4in insert and nothing else — but the leveling bolt's STUD has
+// to pass all the way through the insert and keep going as the foot winds
+// in. At 7/8in the stud bottoms out on solid wood before the foot is
+// anywhere near fully home, so the leg loses the bottom half of its
+// adjustment range. 1.75in gives the stud somewhere to go.
+leveling_bore_depth = 1.75;
 leveling_foot_count    = 12;
 leveling_foot_travel   = 0.5;  // in, +/- adjustment from nominal
 leveling_foot_nominal_h = 1;   // in, exposed foot height at mid-adjustment (legs are cut this much short)

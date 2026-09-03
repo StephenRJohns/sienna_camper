@@ -90,7 +90,7 @@ module drawing() {
     // MOVED TO THE DOCUMENT: cap("floor level — nothing boxes it in. The platform above rests DIRECTLY on the box rails (no adjusters up top anymore).", 24, -21.5, 1.3);
 
     side_list(30, 42, [
-        ["1", "Leg (bottom end shown)", str("2x2 pine (1.5\" x 1.5\" actual), cut to ", leg_cut_length, "\" / ", leg_cut_length_ab, "\" / ", leg_cut_length_corner, "\""), "drill centered, 1/2\" dia x 7/8\" deep for the insert — the same hole in all 12"],
+        ["1", "Leg (bottom end shown)", str("2x2 pine (1.5\" x 1.5\" actual), cut to ", leg_cut_length, "\" / ", leg_cut_length_ab, "\" / ", leg_cut_length_corner, "\""), str("drill centered, ", inch_frac(leveling_bore_dia), "\" dia x ", leveling_bore_depth, "\" deep — the same hole in all 12")],
         ["2", str(leveling_foot_thread, " threaded insert"), "driven UP into the leg's end grain", "screw-in style, 7/16\" OD coarse outer thread"],
         ["3", "Star knob, ~2\" dia (hand grip)", "3/8-16 thru-hole knob + jam nut on the bolt shaft", "the adjustment — big enough to turn with the box tipped"],
         ["4", "Leveling glide bolt + pad", str(leveling_foot_pad_dia, "\" floor pad; +/-", leveling_foot_travel, "\" travel around ", NH, "\" nominal"), "threads into the insert — leveling only, not height changes"],

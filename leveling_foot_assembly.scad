@@ -30,8 +30,8 @@ SC = 6;                    // drawing scale: 6x actual size (labels give real in
 
 // real part dims (inches)
 leg_w    = frame_rail_sz;  // 1.5
-bore_d   = 0.5;    // 1/2" hole — the MAKER'S spec (insert core 7/16", crests bite wider)
-bore_dp  = 0.875;  // 7/8" deep: 3/4" insert + a hair of clearance
+bore_d   = leveling_bore_dia;    // from params.scad — see the note there on why
+bore_dp  = leveling_bore_depth;  // the depth is 1.75in and not the insert's 3/4in
 stud_d   = 0.375;
 pad_d    = leveling_foot_pad_dia;   // 1.375 (Anwenk)
 pad_h    = 0.25;
@@ -42,7 +42,7 @@ nut_t    = 0.21;
 tn_flange = 0.625;         // insert flange dia (5/8", sits flush on the end grain)
 tn_barrel = 0.4375;        // insert body OD (7/16" coarse wood thread)
 expose   = leveling_foot_nominal_h; // 1.0 floor -> leg bottom
-leg_show = 2.4;            // portion of leg drawn before the break
+leg_show = 3.0;            // portion of leg drawn before the break (was 2.4 — the 1.75in bore left almost no solid leg above it)
 
 // TXT_K scales EVERY label on this sheet, including the many callers that
 // pass their size positionally (label("...", x, y, 0.9)) and so were missed
@@ -133,7 +133,7 @@ module cross_section() {
     label("(travel +/- 1/2\")", -9.4, y_leg/2 - 1, 1.0, "right");
 
     dim_v(y_leg, y_bore, -6.2);                              // bore depth
-    label("7/8\" deep", -7.0, (y_leg + y_bore)/2, 1.1, "right");
+    label(str(bore_dp, "\" deep"), -7.0, (y_leg + y_bore)/2, 1.1, "right");
 
     dim_h(-lw2, lw2, y_top + 5.2);                           // leg width
     label("1-1/2\" (2x2 leg)", 0, y_top + 6.8, 1.15);
