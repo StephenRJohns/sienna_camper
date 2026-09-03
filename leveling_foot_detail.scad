@@ -6,7 +6,8 @@
 // (leg_cut_length) and gets a 3/8-16 threaded insert in its bottom
 // end grain, taking a leveling glide bolt with a broad floor pad and
 // a ~2in star knob jam-nutted on the shaft as the hand grip.
-// Effective leg height stays 17in, so the deck doesn't move — but
+// The foot always restores exactly the inch that was cut off, so the
+// deck doesn't move whichever leg length this is fitted to — but
 // the old between-layers adjusters (1in) and platform battens
 // (1/4in) are gone, buying 1.25in of extra headroom above the
 // mattress. 12 feet total: 4 per panel x 3 panels. To adjust: kneel
@@ -84,12 +85,12 @@ module drawing() {
     marker3d(4, [RS/2, RS/2, pad_h/2], [22, -9]);
 
     cap(str("LEG LEVELING FOOT — shown ", SC, "x actual size (", leveling_foot_count, " total: 4 per panel x 3 panels)"), 24, -12, 2.0);
-    cap(str("Legs are CUT to ", leg_cut_length, "\" (Panel C) / ", leg_cut_length_ab, "\" (A/B — deck recess) — the foot makes up the last ", NH, "\"."), 24, -15.5, 1.3);
+    cap(str("Legs are CUT to ", leg_cut_length, "\" (Panel C front, lapped) / ", leg_cut_length_ab, "\" (A/B, lapped) / ", leg_cut_length_corner, "\" (Panel C rear corners, butt-under) — the foot makes up the last ", NH, "\"."), 24, -15.5, 1.3);
     // MOVED TO THE DOCUMENT: cap("To level: kneel at the side door, tip that corner of the box slightly, spin the star knob. Every leg is exposed at", 24, -18.5, 1.3);
     // MOVED TO THE DOCUMENT: cap("floor level — nothing boxes it in. The platform above rests DIRECTLY on the box rails (no adjusters up top anymore).", 24, -21.5, 1.3);
 
     side_list(30, 42, [
-        ["1", "Leg (bottom end shown)", str("2x2 pine (1.5\" x 1.5\" actual), cut to ", leg_cut_length, "\" (Panel C) / ", leg_cut_length_ab, "\" (A/B)"), "drill centered, 1/2\" dia x 7/8\" deep for the insert"],
+        ["1", "Leg (bottom end shown)", str("2x2 pine (1.5\" x 1.5\" actual), cut to ", leg_cut_length, "\" / ", leg_cut_length_ab, "\" / ", leg_cut_length_corner, "\""), "drill centered, 1/2\" dia x 7/8\" deep for the insert — the same hole in all 12"],
         ["2", str(leveling_foot_thread, " threaded insert"), "driven UP into the leg's end grain", "screw-in style, 7/16\" OD coarse outer thread"],
         ["3", "Star knob, ~2\" dia (hand grip)", "3/8-16 thru-hole knob + jam nut on the bolt shaft", "the adjustment — big enough to turn with the box tipped"],
         ["4", "Leveling glide bolt + pad", str(leveling_foot_pad_dia, "\" floor pad; +/-", leveling_foot_travel, "\" travel around ", NH, "\" nominal"), "threads into the insert — leveling only, not height changes"],

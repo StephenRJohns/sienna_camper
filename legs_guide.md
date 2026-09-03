@@ -5,53 +5,66 @@ A working subset of the full build plan: everything needed to make all **12 plat
 Read this alongside the full plan for context (Section 3 for the whole cut list, Component 2–4 for the rest of each panel's assembly). Nothing in this document supersedes the full plan; it is the same numbers, gathered.
 
 <div class="callout">
-<strong>The one thing to get right.</strong> The three panels do <strong>not</strong> use the same leg. Panel C's legs are cut <strong>16"</strong>; Panels A and B's are cut <strong>15.25"</strong> — 3/4" shorter, because Panel C's deck is recessed <em>into</em> its rail plane while A and B are capped by a 3/4" bed platform sitting <em>on</em> theirs. Both arrangements land the sleeping surface in the same 18.5" plane. Cut them in two clearly-labelled batches.
+<strong>The one thing to get right.</strong> There are <strong>three</strong> leg lengths, not one. Panels A and B take <strong>8 at 16.75"</strong>; Panel C takes <strong>2 at 17.5"</strong> (its front pair) and <strong>2 at 16"</strong> (its rear pair, at the true corners). Two things drive the spread: Panel C's deck is recessed <em>into</em> its rail plane while A and B are capped by a 3/4" bed platform sitting <em>on</em> theirs, and every leg but Panel C's rear pair is <strong>lapped</strong> to its end rail — running past the rail's underside to finish flush with the rail <em>top</em>, which makes it 1.5" longer than the void it stands in. All three arrangements land the sleeping surface in the same 18.5" plane. Cut them in three clearly-labelled batches.
 </div>
 
 ## 1. What the legs are
 
 <figure class="floorplan-figure">
 <img src="renders/leg-detail.png" alt="Platform leg shop drawing">
-<figcaption>The leg as a part: the <strong>Panel C leg</strong> (16" cut, 17" effective), the <strong>Panel A/B leg</strong> (15.25" cut, 16.25" effective), and the <strong>bottom end grain</strong> with its 1/2" × 7/8" insert bore dead centre. This is the sheet to take to the saw. Where the legs then stand in the frame is drawn in Section 8.</figcaption>
+<figcaption>The leg as a part: the <strong>Panel C front leg</strong> (17.5" cut, 18.5" effective), the <strong>Panel A/B leg</strong> (16.75" cut, 17.75" effective), the <strong>Panel C rear corner leg</strong> (16" cut, 17" effective — the one butt-under leg), and the <strong>bottom end grain</strong> with its 1/2" × 7/8" insert bore dead centre. This is the sheet to take to the saw. Where the legs then stand in the frame is drawn in Section 8.</figcaption>
 </figure>
 
 Twelve legs, 2x2 pine (1.5" × 1.5" actual). Four per panel, one at each corner. Each leg is cut **1" short** of its finished height and gets a screw-in threaded insert in its bottom end grain; a leveling foot threads into that insert and makes up the missing inch, with ±1/2" of adjustment either way.
 
+**How a leg meets its rail — read this before you cut.** Ten of the twelve legs are **lapped**: the leg stands 1.5" inboard of its end rail, against that rail's inner face, and runs up **flush with the rail top**. The two screws then pass through the rail's face into the leg's *side* — long grain, and loaded in shear. A leg lapped this way is 1.5" longer than the void beneath the deck, which is where every one of these cut lengths comes from.
+
+<figure class="floorplan-figure">
+<img src="renders/leg-lap-joint.png" alt="Leg-to-rail lap joint, side elevation">
+<figcaption>The lap, in side elevation with the end rail seen in section. The leg's top is <strong>flush with the rail top</strong> — the 18.5" deck plane — not stopped at the rail's underside. The 1.5" of leg above the void is what makes an A/B leg 16.75" and not 15.25". <strong>Do not butt the leg under the rail:</strong> that hangs the panel on two screws driven into the leg's end grain, where they have almost no withdrawal strength and glue does nothing.</figcaption>
+</figure>
+
+**The two exceptions** are Panel C's rear pair. They stand at the *true corners*, where the 46" end rail passes over the leg's whole 1.5" × 1.5" footprint — there is no rail face left to lap against, and they cannot move inboard because Panel C's width chain has only 1.28" of slack (the appliances have to slide past them). Those two are cut **16"** and butt under the rail, and they are the two legs that get a **steel angle bracket** into the rail's inner face to carry the load the lap carries everywhere else.
+
 Leveling therefore lives **at the floor**, not between the frame and the platform. Every foot is exposed at floor level — tip the corner of the box slightly and spin the knob.
 
-| | Panel A | Panel B | Panel C |
-|---|---|---|---|
-| Legs | 4 | 4 | 4 |
-| **Saw cut length** | **15.25"** | **15.25"** | **16"** |
-| Foot, nominal exposed | 1" | 1" | 1" |
-| **Effective leg height** | **16.25"** | **16.25"** | **17"** |
-| + top rail (2x2) | 1.5" | 1.5" | 1.5" |
-| = rail-top height | 17.75" | 17.75" | 18.5" |
-| What sits on the rails | 3/4" bed platform | 3/4" bed platform | deck is *recessed*, flush with the rails |
-| **Sleeping surface** | **18.5"** | **18.5"** | **18.5"** |
+| | Panel A | Panel B | Panel C — front pair | Panel C — rear pair |
+|---|---|---|---|---|
+| Legs | 4 | 4 | 2 | 2 |
+| Joint at the rail | lapped | lapped | lapped | **butt-under** |
+| **Saw cut length** | **16.75"** | **16.75"** | **17.5"** | **16"** |
+| Foot, nominal exposed | 1" | 1" | 1" | 1" |
+| **Effective leg height** | **17.75"** | **17.75"** | **18.5"** | **17"** |
+| Void under the deck (rail underside) | 16.25" | 16.25" | 17" | 17" |
+| + top rail (2x2) | 1.5" | 1.5" | 1.5" | 1.5" |
+| = rail-top height | 17.75" | 17.75" | 18.5" | 18.5" |
+| What sits on the rails | 3/4" bed platform | 3/4" bed platform | deck is *recessed*, flush with the rails | (same deck) |
+| **Sleeping surface** | **18.5"** | **18.5"** | **18.5"** | **18.5"** |
 
-The last row is the reason for the two lengths. Get one leg batch wrong and that panel's share of the mattress sits 3/4" proud of its neighbour.
+Two rows are doing the work here. The **void** row is the height under the deck — what the fridge, the drawer and the front wall are all sized against; it is unchanged by any of this. The **effective leg height** row is what you actually stand on the floor, and for a lapped leg it is the void *plus* the rail. Get one leg batch wrong and that panel's share of the mattress sits proud of its neighbour.
 
 ## 2. Cut list
 
 | Piece | Qty | Cut length | Stock |
 |---|---|---|---|
-| Legs — Panel C | 4 | **16"** | 2x2 pine (or 1"×1" aluminum L-channel) |
-| Legs — Panel A | 4 | **15.25"** | 2x2 pine |
-| Legs — Panel B | 4 | **15.25"** | 2x2 pine |
+| Legs — Panel A | 4 | **16.75"** | 2x2 pine |
+| Legs — Panel B | 4 | **16.75"** | 2x2 pine |
+| Legs — Panel C, FRONT pair | 2 | **17.5"** | 2x2 pine |
+| Legs — Panel C, REAR corner pair | 2 | **16"** | 2x2 pine |
 
-**Total: 186" of 2x2** — two 8-ft (96") boards out of the twelve the full build buys.
+**Total: 201" of 2x2.** Cut on their own that is three 8-ft (96") boards, the third barely touched; the full build instead packs the legs alongside the rails so the twelve boards still cover everything — see Appendix H of the full plan.
 
-**Cutting plan, two boards:**
+**Cutting plan, legs alone:**
 
-- **Board 1** — 4 × 16" (Panel C) = 64", then 2 × 15.25" out of the remainder. At a 1/8" kerf that is ~95.3" of a 96" board, so it only works if both ends of the board are sound and square. Check the last 31" before you commit to it; if the end is bowed, split, or has a bad knot, take those two legs off Board 2 instead and open a third board for the shortfall.
-- **Board 2** — 6 × 15.25" = 91.5" plus kerf ≈ 92.3". Comfortable.
+- **Board 1** — 2 × 17.5" + 2 × 16" + 1 × 16.75" = 83.75", ≈84.4" with kerf. All of Panel C plus one A/B leg, so the odd lengths stay on one board and can't get mixed into the A/B pile.
+- **Board 2** — 5 × 16.75" = 83.75", ≈84.4" with kerf.
+- **Board 3** — 2 × 16.75" = 33.5". The remaining ~62" is rail stock, not waste.
 
 **Before cutting:**
 
 - Sight down each board and reject anything bowed or crowned — a leg is a short column, and a bowed one puts the load off-axis and racks the frame.
 - Cut all four of one length in one setup, off a stop block. Legs that differ by 1/16" are legs the feet have to spend their travel correcting.
-- Square ends matter more than exact length here: the bottom end grain takes a bore that must be perpendicular, and the top end butts the rail.
+- Square ends matter more than exact length here: the bottom end grain takes a bore that must be perpendicular, and the top end has to finish flush with the rail top (or, on Panel C's rear pair, bear flat against the rail's underside).
 
 ## 3. Tools and consumables
 
@@ -66,11 +79,11 @@ The last row is the reason for the two lengths. Get one leg batch wrong and that
 
 ## 4. Step 1 — Cut the legs
 
-Cut **4 at 16"** (mark them "C") and **8 at 15.25"** (mark them "A/B"). Write the length on each leg in pencil on a face that will end up hidden. Keep the two batches physically separated on the bench.
+Cut **8 at 16.75"** (mark them "A/B"), **2 at 17.5"** (mark them "C FRONT") and **2 at 16"** (mark them "C REAR"). Write the length on each leg in pencil on a face that will end up hidden. Keep the three batches physically separated on the bench — 16" and 16.75" are three-quarters of an inch apart and look identical in a pile.
 
-Stack the four legs of one panel and check them end-to-end against each other — the ends should form one flat plane with no daylight.
+Stack the four legs of one panel and check them end-to-end against each other. Panels A and B should form one flat plane with no daylight. **Panel C will not** — its front pair is deliberately 1.5" longer than its rear pair, and that is the correct result, not a miscut.
 
-Both lengths are dimensioned on the shop drawing in Section 1.
+All three lengths are dimensioned on the shop drawing in Section 1.
 
 ## 5. Step 2 — Bore the insert hole
 
@@ -144,12 +157,13 @@ Legs go in as part of each panel's frame, before anything else — with the inse
 **Position, all three panels:**
 
 - **Across the width (46"):** legs are inset **3.5"** from each deck side edge, so their outer faces sit 3.5" in and the pair stands 39" apart outside-to-outside. The inset clears the van's floor-level rear heat-vent intrusion, measured at 3.5" per side (V4, Aug 2026 — it was 2.5" in earlier revisions of the plan; use 3.5").
-- **Along the length:** legs sit tight in the corners, their outer faces flush with the outside of the end rails. No inset in this direction.
-- **Exception — Panel C's REAR pair:** those two go at the **true corners**, not inset. The fridge and kitchen slide paths pass exactly where an inset rear leg would stand. The rear-corner floor vents were checked (Aug 2026) and do not reach the leg area, so those legs land on solid floor.
+- **Along the length:** a lapped leg sits **1.5" inboard**, its outer face against the **inner** face of its end rail, top flush with the rail top. That is 1.5" further in than the old butt-under position, and the **bottom rails move in with it** — they screw into the legs, so they sit on the same line.
+- **Exception 1 — Panel C's REAR pair, position:** those two go at the **true corners**, not inset across the width. The fridge and kitchen slide paths pass exactly where an inset rear leg would stand. The rear-corner floor vents were checked (Aug 2026) and do not reach the leg area, so those legs land on solid floor.
+- **Exception 2 — Panel C's REAR pair, joint:** the same two legs are the only ones **butted under** the rail (16" cut, not 17.5"). At a true corner the 46" end rail covers the leg's whole footprint, so there is nothing to lap to. Give each of those two a steel angle bracket into the rail's inner face — that bracket is doing the job the lap does everywhere else, so do not skip it.
 
 <figure class="floorplan-figure">
 <img src="renders/leg-position.png" alt="Leg position end elevation">
-<figcaption>Leg position, end elevation (Panel A/B shown — Panel C is identical except its rear pair). <strong>3.5" inset per side</strong>, <strong>39" leg to leg</strong> across the 46" deck, and the bottom rail's underside level with the leg bottoms, <strong>1"</strong> above the floor. The feet are what stand on the van floor; the leg bottoms never touch it.</figcaption>
+<figcaption>Leg position, end elevation (Panel A/B shown — Panel C is identical except its rear pair). <strong>3.5" inset per side</strong>, <strong>39" leg to leg</strong> across the 46" deck, and the bottom rail's underside level with the leg bottoms, <strong>1"</strong> above the floor. The feet are what stand on the van floor; the leg bottoms never touch it. In this projection the legs are <em>behind</em> the end rail, so they are drawn stopping at its underside — they actually run on up flush with the rail top (Section 1's joint detail).</figcaption>
 </figure>
 
 **Joinery — the one place in the build with no biscuits:**
@@ -158,7 +172,9 @@ Legs go in as part of each panel's frame, before anything else — with the inse
 Every 2x2 frame joint — rail-to-rail, rail-to-leg, bottom-rail-to-leg — is <strong>2 × 2" wood screws + glue, plus a steel corner bracket</strong>. A biscuit would blow out 1.5" stock.
 </div>
 
-Twelve corner brackets total, four per panel.
+Twelve corner brackets total, four per panel, at the rail-to-rail corners. **Panel C's 2 rear corner legs need 2 more brackets on top of that** — they are the butt-under pair, and the bracket is their only withdrawal resistance. Buy 14.
+
+On a lapped leg the two screws go through the **rail's face** into the leg's side, not down through the rail into the leg's end. Clamp the leg to the rail with its top flush before you drill: the top face is the reference surface for the whole deck plane, and 1/16" of leg standing proud of the rail is 1/16" of rock under the mattress.
 
 **Bottom rails.** Each panel gets 2x2 bottom rails with their **underside at 1"** — level with the leg bottoms, i.e. as low as they go without fouling the feet and knobs below. Two 2" screws + glue into each leg. Which faces get one differs by panel, and it is about what has to exit the panel sideways:
 
@@ -174,7 +190,7 @@ Panels A and B also each get **2 diagonal corner braces** up top, which recover 
 
 <figure class="lego-figure">
 <img src="renders/steps/pab-s1a-assembly.png" alt="Panel A frame assembly">
-<figcaption>Panel A, frame step: 2 side rails (B, 29") + 2 end rails (A, 46") with corner brackets and 2" screws, then the 4 legs (C) cut to <strong>15.25"</strong> and bored, then the 2 END-face bottom rails (K, 46") and the 2 diagonal corner braces.</figcaption>
+<figcaption>Panel A, frame step: 2 side rails (B, 29") + 2 end rails (A, 46") with corner brackets and 2" screws, then the 4 legs (C) cut to <strong>16.75"</strong> and bored, lapped to the end rails' inner faces with their tops flush, then the 2 END-face bottom rails (K, 46") and the 2 diagonal corner braces.</figcaption>
 </figure>
 
 <figure class="floorplan-figure">
@@ -186,14 +202,14 @@ Panels A and B also each get **2 diagonal corner braces** up top, which recover 
 
 <figure class="lego-figure">
 <img src="renders/steps/pab-s1b-assembly.png" alt="Panel B frame assembly">
-<figcaption>Panel B, frame step — identical to Panel A's except the bottom rails close <strong>all four</strong> faces (2 × 46" + 2 × 26"). Same 15.25" legs, same 3.5" inset. That is the entire panel: no divider, no drawers.</figcaption>
+<figcaption>Panel B, frame step — identical to Panel A's except the bottom rails close <strong>all four</strong> faces (2 × 46" + 2 × 26"). Same 16.75" legs, same 3.5" inset — but its 4 side bottom rails are <strong>23"</strong>, not 26", since the lapped legs moved 1.5" inboard at each end. That is the entire panel: no divider, no drawers.</figcaption>
 </figure>
 
 ### Panel C
 
 <figure class="lego-figure">
 <img src="renders/steps/pc-s1-assembly.png" alt="Panel C frame assembly">
-<figcaption>Panel C, frame step: 35.75" side rails (B) + 46" end rails (A), 4 legs (C) cut to <strong>16"</strong> — <strong>front pair inset 3.5", rear pair at the TRUE corners</strong> — and the FRONT-face bottom rail only (46").</figcaption>
+<figcaption>Panel C, frame step: 35.75" side rails (B) + 46" end rails (A), 4 legs (C) in two lengths — <strong>front pair 17.5" and lapped, inset 3.5"; rear pair 16" and butt-under, at the TRUE corners</strong> — and the FRONT-face bottom rail only (46").</figcaption>
 </figure>
 
 <figure class="floorplan-figure">
@@ -246,18 +262,29 @@ Everything here is generated from or checked against the parametric model:
 
 | Value | Source |
 |---|---|
-| Leg cut 16" / 15.25" | `params.scad` — `leg_cut_length`, `leg_cut_length_ab` |
-| Effective 17" / 16.25" | `params.scad` — `leg_height`, `leg_height_ab` |
+| Leg cut 17.5" / 16.75" / 16" | `params.scad` — `leg_cut_length`, `leg_cut_length_ab`, `leg_cut_length_corner` |
+| Effective 18.5" / 17.75" / 17" | `params.scad` — `leg_length`, `leg_length_ab`, `leg_length_corner` |
+| Void under the deck 17" / 16.25" | `params.scad` — `leg_height`, `leg_height_ab` |
+| The 1.5" lap | `params.scad` — `leg_lap` = `frame_rail_sz` |
 | Foot 1" nominal, ±1/2" travel | `params.scad` — `leveling_foot_nominal_h`, `leveling_foot_travel` |
 | Bore 1/2" dia × 7/8" deep | `leveling_foot_assembly.scad` — `bore_d`, `bore_dp` |
 | Pad 1.375" dia | `params.scad` — `leveling_foot_pad_dia` |
 | Leg inset 3.5" | `params.scad` — `leg_inset` = `vent_intrusion_width`, MEASURED V4 (Aug 2026) |
 | Bottom rail underside 1" | `params.scad` — `bottom_rail_z` |
 
+**The leg lengths changed in Sept 2026 — if you have an older copy, throw it away.** The legs are now **lapped** to the rails rather than butted under them (owner, Sept 2026), which added 1.5" to ten of the twelve legs and moved them 1.5" inboard along each panel's length. Everything that followed from that:
+
+- **Every leg got longer.** A/B 15.25" → **16.75"**; Panel C's front pair 16" → **17.5"**. Panel C's rear corner pair stays at **16"** — it is the one pair that cannot be lapped.
+- **The deck plane did not move.** It is still 18.5", and the void under it is still 17" (Panel C) / 16.25" (A/B), so the fridge, the drawer height and Panel C's front wall are all untouched.
+- **Panel A's drawer lost 3" of depth** — 25" → **22"** — because the lapped legs at both ends narrowed the bay's fore-aft clear span from 26" to 23". The DELTA 3 stack is 15.7" deep against 20.5" of clear interior, so this spends slack, not margin.
+- **Panel B's side bottom rails** are now **23"**, not 26", for the same reason. The 46" end-face bottom rails are unchanged in length; they just sit 1.5" further in.
+- **Panel C's front wall** moved 1.5" inboard with the front legs it screws into.
+- **2x2 lumber** went from 1,009.5" to 1,018.5" over the same 34 pieces — still twelve boards, but the Appendix H packing table is re-cut.
+
 **Corrections applied Sept 2026 while assembling this subset.** Three leg dimensions were stale in places in the full plan and in the panel-detail drawings, and are corrected in both:
 
-- The **Panel A and Panel B parts lists** called for 16" legs. They are **15.25"** — `leg_cut_length_ab`. The panel-detail drawings inherited the same error (they read `leg_cut_length` for all three panels) and have been re-rendered.
+- The **Panel A and Panel B parts lists** called for Panel C's leg length. They have always been their own, shorter length — `leg_cut_length_ab`, now 16.75" after the lap. The panel-detail drawings inherited the same error (they read `leg_cut_length` for all three panels) and have been re-rendered.
 - The **insert bore depth** was quoted as 3/4" in the Floor Panel Detail note and on the Panel A/B/C drawings. It is **7/8"** — the maker's spec, and what the leveling-foot engineering drawing has always shown.
-- The **Hardware Sizing** row gave only Panel C's 16" cut; it now gives both.
+- The **Hardware Sizing** row gave only Panel C's cut; it now gives all three.
 
 **One thing left open, and it is not a leg dimension.** The full plan's frame-lumber table cuts the end-face bottom rails at **46"** — full deck width, matching the end rail above them — while `panel_detail.scad` draws them spanning only leg-to-leg, **39"**. Either length does the bottom rail's job, which is to tie the leg bottoms together with 2 × 2" screws and glue into each leg, and neither changes anything about the legs themselves. Settle it before you cut bottom rails; cutting them at 46" leaves you the option of trimming. The drawing above deliberately carries no length dimension on that rail.

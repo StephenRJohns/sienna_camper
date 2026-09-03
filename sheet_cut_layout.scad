@@ -137,8 +137,11 @@ module sheet_A(col) {
     txt("gap B", cx(col, 24) + 1.2, cy(col, 74), 2.1, "left", GRY);
     part(col, 0, 19, 33, 43, "PANEL C DECK", "33 x 43");
     spare(col, 33, 19, 14, 43, "-> bearer cleats");
-    part(col, 0, 4.5, 25, 14.5, "BATT SIDE", "25 x 14.5");
-    part(col, 25, 4.5, 20, 14.5, "BATT FRONT", "20 x 14.5");
+    // the side wall's length IS drawer_depth — it came down 25 -> 22 when
+    // the lapped legs narrowed Panel A's bay, so it is read from the
+    // parameter now instead of being a literal that can go stale
+    part(col, 0, 4.5, drawer_depth, 14.5, "BATT SIDE", str(drawer_depth, " x 14.5"));
+    part(col, drawer_depth, 4.5, drawer_travel, 14.5, "BATT FRONT", str(drawer_travel, " x 14.5"));
     spare(col, 0, 0, 47, 4.5, "-> pantry cleats");
     scut(col, "S1", "y", 62, 0, 47);
     scut(col, "S2", "y", 19, 0, 47);

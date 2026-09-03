@@ -350,11 +350,45 @@ leg_inset      = vent_intrusion_width; // legs sit inset this much from the deck
 deck_drop      = panel_thickness;              // 0.75 — how far the sleeping plane dropped
 leg_height_ab  = leg_height - deck_drop;       // 16.25 — Panel A/B legs (platform-on-rails matches C's flush deck)
 deck_surface_z = leg_height + frame_rail_sz;   // 18.5 — the ONE deck/sleeping plane (Panel C rail tops)
-// EXCEPTION: Panel C's REAR leg pair sits at the TRUE corners (zero
-// inset) — the fridge/kitchen slide paths pass exactly where inset
+
+// LEG-TO-RAIL JOINT (owner, Sep 2026): legs are LAPPED to the INNER
+// face of their end rail and run FLUSH WITH THE RAIL TOPS — they are
+// NOT butted under the rails. The old butt-under joint hung each
+// panel on 2 screws driven down into the leg's END GRAIN (plus glue,
+// which does almost nothing there); lapped, the same screws pass
+// through the rail's face into the leg's long-grain side and work in
+// SHEAR, on a real face-to-face glue joint.
+// Two consequences, and both ripple:
+//   1. every lapped leg is frame_rail_sz LONGER — it now spans the
+//      floor to the rail TOP, not the rail underside;
+//   2. every lapped leg moves frame_rail_sz INBOARD along the panel's
+//      length, since it sits behind its end rail instead of under it.
+// leg_height / leg_height_ab keep their old meaning — the RAIL
+// UNDERSIDE, i.e. the height of the void under the deck — which is
+// what the fridge, drawer, front-wall and door dimensions are all
+// built on, so none of those move.
+leg_lap        = frame_rail_sz;                // 1.5 — the lap: added to each leg's length, subtracted from the fore-aft clear span between legs
+leg_length     = leg_height + leg_lap;         // 18.5 — Panel C lapped legs, floor to rail top
+leg_length_ab  = leg_height_ab + leg_lap;      // 17.75 — Panel A/B lapped legs
+// EXCEPTION 1 — POSITION: Panel C's REAR leg pair sits at the TRUE corners
+// (zero inset) — the fridge/kitchen slide paths pass exactly where inset
 // legs would stand. CONFIRMED CLEAR (owner, Aug 2026, Appendix A row 5b):
 // the rear-corner floor vents do NOT reach the last ~4in at the tailgate
 // corners, so those legs land on solid floor.
+// EXCEPTION 2 — JOINT: those same 2 legs CANNOT be lapped. At a true
+// corner the 46in end rail passes over the leg's whole 1.5 x 1.5in
+// footprint, so there is no rail face left to lap against; the only ways
+// out are to move them inboard (the Panel C width chain has 1.28in of
+// slack — see utility_bay_gap, so no) or to shorten Panel C's side rails
+// to 32.75in and make those 2 legs corner POSTS (a rail cut-list change
+// this revision did not take). They stay BUTT-UNDER at leg_height, and
+// they are the 2 legs that get a steel angle bracket into the rail's
+// inner face to carry the withdrawal load the lap carries everywhere else.
+leg_length_corner = leg_height;                // 17 — Panel C's 2 true-corner rear legs, still butted under the rail
+// a leg is lapped iff it is INSET; a true-corner leg (inset 0) is not
+function leg_is_lapped(inset) = inset > 0;
+function leg_len(lh, inset) = leg_is_lapped(inset) ? lh + leg_lap : lh;
+function leg_y_lap(inset)   = leg_is_lapped(inset) ? leg_lap : 0;
 
 // CUBE FRAMES (owner, July 2026): each box also gets BOTTOM rails
 // (2x2, between the legs just above the leveling feet) wherever a
@@ -389,8 +423,9 @@ leveling_foot_thread   = "3/8-16"; // insert + glide bolt thread size, text only
 // the wheels per site (leveling blocks + the Block Calculator); the
 // interior feet are set ONCE. Electric feet were considered and
 // REJECTED (owner, July 2026).
-leg_cut_length    = leg_height - leveling_foot_nominal_h;    // 16 — Panel C's actual saw cut; foot makes up the rest
-leg_cut_length_ab = leg_height_ab - leveling_foot_nominal_h; // 15.25 — Panel A/B legs (deck recess, see above)
+leg_cut_length        = leg_length - leveling_foot_nominal_h;        // 17.5 — Panel C's 2 FRONT (lapped) legs; foot makes up the rest
+leg_cut_length_ab     = leg_length_ab - leveling_foot_nominal_h;     // 16.75 — Panel A/B legs, all 8 lapped (deck recess, see above)
+leg_cut_length_corner = leg_length_corner - leveling_foot_nominal_h; // 16 — Panel C's 2 REAR true-corner legs, butt-under (see EXCEPTION 2)
 
 // deck surface -> mattress underside: just the flush platform now —
 // it rests DIRECTLY on the box top rails, no adjusters between
@@ -457,11 +492,16 @@ side_door_y0 = 0; // MEASURED (Aug 2026) — seatback is even with the opening (
 drawer_slide_length = 20; // standard full-extension slide hardware size
 drawer_divider_t    = frame_rail_sz; // center divider rail, same 2x2 stock as the frame
 drawer_side_clear   = 0.75; // gap between drawer box and rail/divider each side, for slide hardware
-drawer_box_t        = 0.75;  // NO-3/8"-BUY (owner, Aug 2026): 3/8in -> 3/4in birch. The 3/8in sheet purchase is deleted; these 4 walls are the only ex-3/8in parts that no OTHER leftover can hold (they need a 14.5in dimension, and the 1/2in sheet's spare runs out after the front wall + fridge tray) — so they come from the 3/4in sheet's own offcuts: 1 side + 1 front out of the 47x19 strip, the other 2 out of the anchor board's two comb gaps. Costs ~12lb on a drawer that also carries the 48lb DELTA stack (~78lb total on a 100lb slide pair — still inside, margin thins from ~34% to ~22%). Corners go to R3 biscuits, not R1, at this thickness. Interior clearance drops 0.75in per wall vs 3/8in; every fit assert below still passes (clear 18.5 x 23.5 x 13.0 against a 15.95 x 15.7 x 11.16 stack)
+drawer_box_t        = 0.75;  // NO-3/8"-BUY (owner, Aug 2026): 3/8in -> 3/4in birch. The 3/8in sheet purchase is deleted; these 4 walls are the only ex-3/8in parts that no OTHER leftover can hold (they need a 14.5in dimension, and the 1/2in sheet's spare runs out after the front wall + fridge tray) — so they come from the 3/4in sheet's own offcuts: 1 side + 1 front out of the 47x19 strip, the other 2 out of the anchor board's two comb gaps. Costs ~12lb on a drawer that also carries the 48lb DELTA stack (~78lb total on a 100lb slide pair — still inside, margin thins from ~34% to ~22%). Corners go to R3 biscuits, not R1, at this thickness. Interior clearance drops 0.75in per wall vs 3/8in; every fit assert below still passes (clear 18.5 x 20.5 x 13.0 against a 15.95 x 15.7 x 11.16 stack — the depth was 23.5 before the lapped legs shortened the box)
 // drawer box footprint, derived from the panel's own dimensions —
 // assumes all three panels are the same length (true above; if you
 // change one panel's length independently, revisit this)
-drawer_depth   = panel_a_length - 2 * frame_rail_sz - 1; // fore-aft (Y) span, between the front/back legs
+// fore-aft (Y) span, between the front/back legs. The lapped legs sit
+// leg_lap further inboard at BOTH ends, so the clear span between them
+// dropped 26 -> 23in and the box came down with it (25 -> 22in). The
+// DELTA 3 stack is only 15.7in deep, so this spends slack, not margin —
+// the clear interior is still 20.5in against it.
+drawer_depth   = panel_a_length - 2 * (frame_rail_sz + leg_lap) - 1;
 drawer_travel  = panel_width/2 - frame_rail_sz - drawer_divider_t/2 - drawer_side_clear; // X extent (how far it slides); drawer box's own outer width too, per drawer_module()
 drawer_height  = leg_height_ab - frame_rail_sz - 1; // 13.75 — Z, inside Panel A's bay under the recessed platform plane (A/B legs are leg_height_ab now)
 // interior clear space once the box's own walls/floor are subtracted —

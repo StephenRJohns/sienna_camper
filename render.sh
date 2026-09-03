@@ -141,8 +141,15 @@ openscad -o renders/leveling-foot-assembly.svg leveling_foot_assembly.scad
 openscad -o renders/leveling-foot-assembly.png --imgsize=3200,2200 $FLAT_CAM leveling_foot_assembly.scad
 
 echo "Rendering leg shop drawing..."
-openscad -o renders/leg-detail.svg leg_detail.scad
-openscad -o renders/leg-detail.png --imgsize=3250,2000 $FLAT_CAM leg_detail.scad
+# three sheets out of one file (-D sheet=...): the parts, the leg's
+# position in the frame, and the leg-to-rail LAP joint. leg-position was
+# being rendered by hand and drifted; all three are wired up now.
+openscad -o renders/leg-detail.svg -D 'sheet="part"' leg_detail.scad
+openscad -o renders/leg-detail.png --imgsize=3250,2000 $FLAT_CAM -D 'sheet="part"' leg_detail.scad
+openscad -o renders/leg-position.svg -D 'sheet="position"' leg_detail.scad
+openscad -o renders/leg-position.png --imgsize=3250,1800 $FLAT_CAM -D 'sheet="position"' leg_detail.scad
+openscad -o renders/leg-lap-joint.svg -D 'sheet="joint"' leg_detail.scad
+openscad -o renders/leg-lap-joint.png --imgsize=3000,2000 $FLAT_CAM -D 'sheet="joint"' leg_detail.scad
 
 echo "Rendering bed frame detail..."
 openscad -o renders/bed-frame-detail.svg bed_frame_detail.scad

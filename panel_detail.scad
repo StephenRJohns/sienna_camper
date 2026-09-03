@@ -35,7 +35,7 @@ is_a = (panel == "A");
 W  = panel_width;
 RS = frame_rail_sz;
 LH = is_c ? leg_height : leg_height_ab; // A/B legs 0.75in shorter (deck recess, params.scad)
-LC = is_c ? leg_cut_length : leg_cut_length_ab; // saw cut: 16in (C) / 15.25in (A/B) — the foot makes up the last 1in
+LC = is_c ? leg_cut_length : leg_cut_length_ab; // saw cut: 17.5in (C's lapped front pair) / 16.75in (A/B) — the foot makes up the last 1in. Panel C's REAR corner pair is butt-under at leg_cut_length_corner (16in); the parts table below spells that out.
 PT = panel_thickness;
 DT = drawer_divider_t;
 L  = is_c ? panel_c_length : panel_b_length; // panel_a_length == panel_b_length, asserted in params.scad
@@ -78,21 +78,29 @@ module side_list(list_x, top_y, items) {
 // bottom: cube-frame bottom rails — "ends" (Panel A), "all" (Panel
 // B, full cube), "front" (Panel C: tailgate face open, rear legs at
 // the TRUE corners so the appliances slide past them)
+// LH (this panel's rail underside) was never being passed down to the
+// ring/legs, so Panels A and B drew at Panel C's 17in — fixed with the
+// leg-lap revision (Sep 2026), which made the difference visible.
 module frame_and_legs(drop = 9, bottom = "ends") {
     ri = bottom == "front" ? 0 : leg_inset;
-    lib_frame_ring(L, W);
-    lib_legs(L, W, drop, false, ri);
+    fy = leg_y_lap(leg_inset);   // lapped legs sit this far inboard
+    ry = leg_y_lap(ri);          // 0 at Panel C's true rear corners
+    lib_frame_ring(L, W, false, LH);
+    lib_legs(L, W, drop, false, ri, LH);
     for (x = [-W/2 + leg_inset, W/2 - RS - leg_inset])
-        iarrow([x + RS/2, RS/2, LH - drop + 1.5], [x + RS/2, RS/2, LH - 0.5]);
+        iarrow([x + RS/2, fy + RS/2, LH - drop + 1.5],
+               [x + RS/2, fy + RS/2, leg_len(LH, leg_inset) - 0.5]);
     for (x = [-W/2 + ri, W/2 - RS - ri])
-        iarrow([x + RS/2, L - RS/2, LH - drop + 1.5], [x + RS/2, L - RS/2, LH - 0.5]);
-    // bottom rails, underside at bottom_rail_z (just above the feet)
-    wbox([-W/2 + leg_inset, 0, bottom_rail_z], [W - 2 * leg_inset, RS, RS]);
+        iarrow([x + RS/2, L - ry - RS/2, LH - drop + 1.5],
+               [x + RS/2, L - ry - RS/2, leg_len(LH, ri) - 0.5]);
+    // bottom rails, underside at bottom_rail_z (just above the feet).
+    // They screw into the legs, so they moved inboard with them.
+    wbox([-W/2 + leg_inset, fy, bottom_rail_z], [W - 2 * leg_inset, RS, RS]);
     if (bottom != "front")
-        wbox([-W/2 + ri, L - RS, bottom_rail_z], [W - 2 * ri, RS, RS]);
+        wbox([-W/2 + ri, L - ry - RS, bottom_rail_z], [W - 2 * ri, RS, RS]);
     if (bottom == "all")
         for (x = [-W/2 + leg_inset, W/2 - RS - leg_inset])
-            wbox([x, RS, bottom_rail_z], [RS, L - 2 * RS, RS]);
+            wbox([x, RS + fy, bottom_rail_z], [RS, L - 2 * RS - fy - ry, RS]);
 }
 
 module drawing_ab() {
@@ -231,26 +239,26 @@ module drawing() {
         // MOVED TO THE DOCUMENT: cap("No divider, no drawers — the void stays open for the bought fridge + kitchen unit (Component 7). ONE wall: the front (B-facing) face.", 13, -19, 1.4);
         side_list(56, LH + RS + 9 + PT + 24, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
-            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\""), "insert hole in each bottom — see the Panel B detail's inset"],
-            ["3", "Fixed top", str(W - 2 * RS, "\" x ", L - 2 * RS, "\", 3/4\" ply — RECESSED between the rails, flush with the rail tops"), "on 3/4x3/4 bearer cleats; screwed down — NOT a lift-off lid, unlike Panel A/B's bed-frame cap"],
+            ["2", "Legs (x4, TWO lengths)", str("FRONT x2: ", LC, "\" cut, LAPPED, inset ", leg_inset, "\"  /  REAR x2: ", leg_cut_length_corner, "\" cut, BUTT-UNDER at the true corners"), "insert hole in each bottom — see the Panel B detail's inset; the 2 rear legs each need a steel angle bracket"],
+            ["3", "Fixed top", str(W - 2 * RS, "\" x ", L - 2 * RS, "\", 3/4\" ply — RECESSED between the rails, flush with the rail tops"), "on 3/4x3/4 bearer cleats; NOTCH 1.5x1.5 at the 2 lapped front legs; screwed down — NOT a lift-off lid"],
             ["4", "Fridge zone (reserved)", str(fridge_ext_length, "\" x ", fridge_ext_width, "\", flush LEFT/driver"), "bought product — see fridge-install-detail"],
             ["5", "Kitchen zone (reserved)", str(kitchen_box_width, "\" x ", kitchen_box_length, "\", flush RIGHT/passenger"), "bought product — see fridge-install-detail"],
             ["6", "Front wall (the ONLY wall)", str(W, "\" x ", pcwall_h, "\", 3/8\" ply, on the B-facing face"), "fan hole + 2 grommets — Panel C Front Wall render"],
-            ["7", "Bottom rail (x1, FRONT face only)", str("2x2 pine, underside at ", bottom_rail_z, "\", behind the wall"), "tailgate face stays open (appliances exit there); REAR legs at the TRUE corners"],
+            ["7", "Bottom rail (x1, FRONT face only)", str("2x2 pine, underside at ", bottom_rail_z, "\", on the front legs' line"), "tailgate face stays open (appliances exit there); REAR legs at the TRUE corners"],
         ]);
     } else if (!is_a) {
         // MOVED TO THE DOCUMENT: cap("NO divider, NO drawers, no skirts — the side doors don't reach Panel B, so its whole bay is deep storage, loaded from above.", 13, -19, 1.4);
         // MOVED TO THE DOCUMENT: cap("THE FULL CUBE: bottom rails on all 4 faces (nothing exits Panel B sideways). Both hole types dimensioned in the insets at left.", 13, -21.5, 1.3);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue; grip these rails to lift the panel"],
-            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 7/8\" insert hole in each bottom (inset at left)"],
+            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "LAPPED to the end rails, tops flush with the rail tops; 1/2\" x 7/8\" insert hole in each bottom (inset at left)"],
             ["3", "Bottom rails (x4 — full cube)", str("2x2 pine, underside at ", bottom_rail_z, "\" (clears the feet/knobs)"), "2x 2\" screws + glue into each leg — the frame racks far less as a closed box"],
         ]);
     } else {
         // MOVED TO THE DOCUMENT: cap("Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.", 13, -19, 1.4);
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str(L, "\" x ", W, "\" perimeter, 2x2 pine"), "corner brackets + 2\" screws + glue"],
-            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "1/2\" x 7/8\" insert hole in each bottom (Panel B detail's inset)"],
+            ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "LAPPED to the end rails, tops flush with the rail tops; 1/2\" x 7/8\" insert hole in each bottom (Panel B detail's inset)"],
             ["3", "Center divider", str(L - 2*RS, "\" cut, 2x2 pine"), "splits the bay — drawer (right) / WAVE 3 (left)"],
             ["4", "Drawer box (right, DELTA 3 side)", str(drw_w, "\" x ", drw_d, "\" x ", drw_h, "\", 3/8\" ply, 1/2\" bottom"), "5 pieces, glued + biscuited"],
             ["5", "Drawer slide (right)", str(drawer_slide_length, "\" full-extension pair"), "box-to-rail + box-to-divider"],

@@ -19,7 +19,9 @@ L = panel_c_length; // 36
 W = panel_width;    // 46
 
 if (view == "parts") {
-    if (step == 1) lib_frame_parts(L, W);
+    // Panel C is the one panel with two leg lengths: its 2 FRONT legs are
+    // lapped, its 2 REAR ones stand at the true corners and stay butt-under
+    if (step == 1) lib_frame_parts(L, W, leg_cut_length, leg_height, leg_cut_length_corner);
     else if (step == 2) lib_top_parts(L, W);
 } else {
     if (step == 1) lib_frame_assembly(L, W, "front");

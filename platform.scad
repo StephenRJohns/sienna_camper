@@ -46,12 +46,13 @@ module bx(w, l, h, wireframe = false) {
     else cube([w, l, h]);
 }
 
-// A single leg support, standing on the van floor (Z=0) up to the
-// underside of a module's frame (Z=lh — leg_height for Panel C,
-// leg_height_ab for A/B since the deck recess).
-module leg(x, y, lh = leg_height) {
+// A single leg support, standing on the van floor (Z=0). A LAPPED leg
+// runs past the rail underside to the rail TOP (see leg_lap in
+// params.scad); the caller passes the already-resolved height, so this
+// module just stands the stick up.
+module leg(x, y, len = leg_length) {
     translate([x, y, 0])
-        cube([frame_rail_sz, frame_rail_sz, lh]);
+        cube([frame_rail_sz, frame_rail_sz, len]);
 }
 
 // Independent perimeter frame + 4 corner legs for one module.
@@ -84,23 +85,30 @@ module module_frame(length, width, frame_leg_inset = 0, bottom_front = false, bo
             cube([width, frame_rail_sz, frame_rail_sz]);
 
         // bottom rails, just above the leveling feet
+        // bottom rails screw into the LEGS, so they move inboard with them
         if (bottom_front)
-            translate([-width/2 + frame_leg_inset, 0, bottom_rail_z])
+            translate([-width/2 + frame_leg_inset, leg_y_lap(frame_leg_inset), bottom_rail_z])
                 cube([width - 2 * frame_leg_inset, frame_rail_sz, frame_rail_sz]);
         if (bottom_rear)
-            translate([-width/2 + r_inset, length - frame_rail_sz, bottom_rail_z])
+            translate([-width/2 + r_inset, length - frame_rail_sz - leg_y_lap(r_inset), bottom_rail_z])
                 cube([width - 2 * r_inset, frame_rail_sz, frame_rail_sz]);
         if (bottom_sides)
             for (x = [-width/2 + frame_leg_inset, width/2 - frame_rail_sz - frame_leg_inset])
-                translate([x, frame_rail_sz, bottom_rail_z])
-                    cube([frame_rail_sz, length - 2 * frame_rail_sz, frame_rail_sz]);
+                translate([x, frame_rail_sz + leg_y_lap(frame_leg_inset), bottom_rail_z])
+                    cube([frame_rail_sz, length - 2 * frame_rail_sz
+                                        - leg_y_lap(frame_leg_inset) - leg_y_lap(r_inset),
+                          frame_rail_sz]);
     }
 
+    // Legs. An INSET leg is LAPPED: it sits leg_lap inboard of its end
+    // rail, against that rail's inner face, and runs up flush with the
+    // rail TOP. A TRUE-CORNER leg (inset 0 — Panel C's rear pair) has no
+    // rail face to lap against, so it stays under the rail at lh.
     color("SaddleBrown") {
         for (x = [-width/2 + frame_leg_inset, width/2 - frame_rail_sz - frame_leg_inset])
-            leg(x, 0, lh);
+            leg(x, leg_y_lap(frame_leg_inset), leg_len(lh, frame_leg_inset));
         for (x = [-width/2 + r_inset, width/2 - frame_rail_sz - r_inset])
-            leg(x, length - frame_rail_sz, lh);
+            leg(x, length - frame_rail_sz - leg_y_lap(r_inset), leg_len(lh, r_inset));
     }
 }
 
@@ -195,8 +203,11 @@ module panel_module(length, width, y_offset, wireframe = false, has_kitchen_frid
         // away), and the tailgate face needs none — it's fully
         // occupied by the fridge, cabinet door, kitchen unit, and
         // kitchen drawer face. See panel_c_wall_detail.scad.
+        // It screws into the FRONT LEGS' inner faces (the cluster on it
+        // covers those screws at x 41.75), so when the legs lapped
+        // inboard the wall had to follow — hence the + leg_lap.
         color("Tan", 0.9)
-            translate([-width/2, y_offset + frame_rail_sz, 0])
+            translate([-width/2, y_offset + frame_rail_sz + leg_lap, 0])
                 bx(width, pcwall_t, leg_height, wireframe);
         fridge_bay_module(y_offset, wireframe, x_fridge_module, length);
         kitchen_box_module(y_offset, wireframe, x_kitchen, length);

@@ -6,8 +6,10 @@
 //     + glide stud w/ 1.375" nylon pad (1,320 lb/ft rating)
 //   - Peachtree PW6103 star thru-hole knob, 3/8-16, ~2" dia
 //   - 3/8-16 jam nut (12x, hardware store)
-// 12 feet total: 4 per panel x 3 panels. Legs cut to 16";
-// the foot's 1" nominal exposure restores the effective 17".
+// 12 feet total: 4 per panel x 3 panels. Legs are cut 1" short in
+// three lengths (17.5" / 16.75" / 16" — see the leg shop drawing);
+// the foot's 1" nominal exposure restores each to its effective
+// height. The foot itself is identical on all 12.
 //
 // Render with: openscad -o renders/leveling-foot-assembly.png \
 //   --imgsize=3200,2200 $FLAT_CAM leveling_foot_assembly.scad

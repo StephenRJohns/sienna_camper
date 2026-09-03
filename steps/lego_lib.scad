@@ -167,22 +167,34 @@ module lib_frame_ring(len, w, ctx = false, lh = leg_height) {
     wbox([-w/2, len - frame_rail_sz, lh], [w, frame_rail_sz, frame_rail_sz], [0, 0], ctx);
 }
 
+// An INSET leg is LAPPED to its end rail's inner face: leg_lap inboard
+// of the rail, and running up flush with the rail TOP. A TRUE-CORNER leg
+// (inset 0 — Panel C's rear pair) has no rail face to lap, so it stays
+// under the rail. See the leg-joint note in params.scad.
 module lib_legs(len, w, drop = 0, ctx = false, rear_inset = -1, lh = leg_height) {
     ri = rear_inset < 0 ? leg_inset : rear_inset;
     for (x = [-w/2 + leg_inset, w/2 - frame_rail_sz - leg_inset])
-        wbox([x, 0, -drop], [frame_rail_sz, frame_rail_sz, lh], [0, 0], ctx);
+        wbox([x, leg_y_lap(leg_inset), -drop],
+             [frame_rail_sz, frame_rail_sz, leg_len(lh, leg_inset)], [0, 0], ctx);
     for (x = [-w/2 + ri, w/2 - frame_rail_sz - ri])
-        wbox([x, len - frame_rail_sz, -drop], [frame_rail_sz, frame_rail_sz, lh], [0, 0], ctx);
+        wbox([x, len - frame_rail_sz - leg_y_lap(ri), -drop],
+             [frame_rail_sz, frame_rail_sz, leg_len(lh, ri)], [0, 0], ctx);
 }
 
 module lib_frame_ctx(len, w, lh = leg_height) { // whole frame as previous-step context
     lib_frame_ring(len, w, true, lh);
-    lib_legs(len, w, 0, true, lh);
+    // lh was being passed into rear_inset here, which put the context
+    // frame's rear legs 17in in from the panel edge — fixed with the
+    // leg-lap revision (Sep 2026)
+    lib_legs(len, w, 0, true, -1, lh);
 }
 
 // step: FRAME — parts kit (plain labels, no leader lines — a kit
 // view is sparse enough that a label under each part reads fine)
-module lib_frame_parts(len, w, lc = leg_cut_length, lh = leg_height) {
+// lc_corner: set on Panel C only, where the 2 REAR true-corner legs are
+// butt-under and so cut shorter than the 2 lapped FRONT ones. -1 = all
+// four legs are the same lapped length.
+module lib_frame_parts(len, w, lc = leg_cut_length, lh = leg_height, lc_corner = -1) {
     // end rail recedes DOWN-right (X axis), side rail UP-right (Y
     // axis), leg straight up (Z) — the 2D offsets below account for
     // each part's own projected extent so labels never cross a part
@@ -190,8 +202,12 @@ module lib_frame_parts(len, w, lc = leg_cut_length, lh = leg_height) {
     cap(str("A  2x end rail 2x2 x ", w, "\""), w * 0.35, -24, 2.6);
     wbox([0, 0, 0], [frame_rail_sz, len, frame_rail_sz], [0, -46]);
     cap(str("B  2x side rail 2x2 x ", len, "\""), len * 0.42, -50, 2.6);
-    wbox([0, 0, 0], [frame_rail_sz, frame_rail_sz, lh], [w * 1.1, -46]);
-    cap(str("C  4x leg 2x2 x ", lc, "\" cut (+1\" leveling foot)"), w * 1.1 + 2, -50, 2.6);
+    wbox([0, 0, 0], [frame_rail_sz, frame_rail_sz, lh + leg_lap], [w * 1.1, -46]);
+    cap(lc_corner < 0
+          ? str("C  4x leg 2x2 x ", lc, "\" cut (+1\" leveling foot) — LAPPED")
+          : str("C  2x FRONT leg ", lc, "\" cut (LAPPED) + 2x REAR corner leg ",
+                lc_corner, "\" cut (butt-under)"),
+        w * 1.1 + 2, -50, 2.6);
     cap(str("K  bottom rails 2x2 (cube frame — count/faces per panel, see assembly)"), w * 0.5, -56, 2.2);
     cap("+ 4 corner brackets, 2\" screws, glue", w * 0.5, -60, 2.2);
 }
@@ -206,20 +222,24 @@ module lib_frame_assembly(len, w, bottom = "ends", lh = leg_height) {
     ri = bottom == "front" ? 0 : leg_inset; // rear-leg inset (Panel C: corners)
     lib_frame_ring(len, w, false, lh);
     lib_legs(len, w, drop, false, ri, lh);
+    fy = leg_y_lap(leg_inset);   // front legs' lap offset
+    ry = leg_y_lap(ri);          // rear legs' (0 at Panel C's true corners)
     for (x = [-w/2 + leg_inset, w/2 - frame_rail_sz - leg_inset])
-        iarrow([x + frame_rail_sz/2, frame_rail_sz/2, lh - drop + 1.5],
-               [x + frame_rail_sz/2, frame_rail_sz/2, lh - 0.5]);
+        iarrow([x + frame_rail_sz/2, fy + frame_rail_sz/2, lh - drop + 1.5],
+               [x + frame_rail_sz/2, fy + frame_rail_sz/2, leg_len(lh, leg_inset) - 0.5]);
     for (x = [-w/2 + ri, w/2 - frame_rail_sz - ri])
-        iarrow([x + frame_rail_sz/2, len - frame_rail_sz/2, lh - drop + 1.5],
-               [x + frame_rail_sz/2, len - frame_rail_sz/2, lh - 0.5]);
+        iarrow([x + frame_rail_sz/2, len - ry - frame_rail_sz/2, lh - drop + 1.5],
+               [x + frame_rail_sz/2, len - ry - frame_rail_sz/2, leg_len(lh, ri) - 0.5]);
 
-    // bottom rails (part K)
-    wbox([-w/2 + leg_inset, 0, bottom_rail_z], [w - 2 * leg_inset, frame_rail_sz, frame_rail_sz]);
+    // bottom rails (part K) — they screw into the legs, so they moved
+    // inboard with them
+    wbox([-w/2 + leg_inset, fy, bottom_rail_z], [w - 2 * leg_inset, frame_rail_sz, frame_rail_sz]);
     if (bottom != "front")
-        wbox([-w/2 + ri, len - frame_rail_sz, bottom_rail_z], [w - 2 * ri, frame_rail_sz, frame_rail_sz]);
+        wbox([-w/2 + ri, len - ry - frame_rail_sz, bottom_rail_z], [w - 2 * ri, frame_rail_sz, frame_rail_sz]);
     if (bottom == "all")
         for (x = [-w/2 + leg_inset, w/2 - frame_rail_sz - leg_inset])
-            wbox([x, frame_rail_sz, bottom_rail_z], [frame_rail_sz, len - 2 * frame_rail_sz, frame_rail_sz]);
+            wbox([x, frame_rail_sz + fy, bottom_rail_z],
+                 [frame_rail_sz, len - 2 * frame_rail_sz - fy - ry, frame_rail_sz]);
 
     // corner bracket screws — end rail meets side rail at all 4 corners
     for (x = [frame_rail_sz/2 - w/2, w/2 - frame_rail_sz/2])
@@ -227,8 +247,8 @@ module lib_frame_assembly(len, w, bottom = "ends", lh = leg_height) {
             fastener([x, y, lh + frame_rail_sz * 0.75]);
     callout("A", [0, len - frame_rail_sz/2, lh + frame_rail_sz], [7, 6]);
     callout("B", [w/2 - frame_rail_sz/2, len * 0.35, lh + frame_rail_sz], [8, -4]);
-    callout("C", [w/2 - frame_rail_sz - leg_inset + frame_rail_sz/2, 0, lh/2 - drop], [7, -3]);
-    callout("K", [0, frame_rail_sz/2, bottom_rail_z + frame_rail_sz], [-8, -5]);
+    callout("C", [w/2 - frame_rail_sz - leg_inset + frame_rail_sz/2, fy, lh/2 - drop], [7, -3]);
+    callout("K", [0, fy + frame_rail_sz/2, bottom_rail_z + frame_rail_sz], [-8, -5]);
     cap(str("K: bottom rails (2x2, underside at ", bottom_rail_z, "\") close the frame into a box — ",
             bottom == "all" ? "all 4 faces (full cube)" :
             bottom == "front" ? "front face only (appliances exit the tailgate; rear legs at the TRUE corners)" :

@@ -8,17 +8,22 @@
 // only ever appeared as text in a parts list — which is exactly
 // where they went stale.
 //
-// Four views:
-//   1  Panel C leg, elevation — 16" cut + 1" foot = 17" effective
-//   2  Panel A/B leg, elevation — 15.25" cut = 16.25" effective
+// Five views:
+//   1  Panel C FRONT leg, elevation — 17.5" cut + 1" foot = 18.5"
+//   2  Panel A/B leg, elevation — 16.75" cut = 17.75" effective
+//   2b Panel C REAR corner leg, elevation — 16" cut = 17" effective
 //   3  Bottom end grain, plan — the 1/2" x 7/8" insert bore, centred
 //   4  Leg in the frame, end elevation — the 3.5" inset and the
 //      bottom rail's 1" underside
+//   5  LEG-TO-RAIL JOINT, side elevation — the lap: the leg runs past
+//      the rail's underside to sit flush with the rail TOP, screwed
+//      through the rail's face into the leg's long grain
 //
 // Every number comes from params.scad (leg_cut_length,
-// leg_cut_length_ab, leg_height, leg_height_ab, leg_inset,
-// bottom_rail_z, frame_rail_sz, panel_width, leveling_foot_*) or,
-// for the bore, from leveling_foot_assembly.scad's bore_d/bore_dp.
+// leg_cut_length_ab, leg_cut_length_corner, leg_length, leg_lap,
+// leg_height, leg_height_ab, leg_inset, bottom_rail_z, frame_rail_sz,
+// panel_width, leveling_foot_*) or, for the bore, from
+// leveling_foot_assembly.scad's bore_d/bore_dp.
 //
 // Render with: openscad -o renders/leg-detail.png \
 //   --imgsize=3250,2000 $FLAT_CAM leg_detail.scad
@@ -167,7 +172,9 @@ module frame_position() {
     color(WOOD) translate([0, LH]) square([W, RS]);
     color(INK) frame_rect_outline(0, LH, W, RS);
 
-    // the two legs, inset
+    // The two legs, inset. In THIS projection they are behind the end
+    // rail, so they are drawn only up to the rail's underside — they
+    // actually continue up flush with the rail top (view 5).
     for (x = [IN, W - IN - RS]) {
         color(WOOD) translate([x, 0]) square([RS, LH]);
         color(INK) frame_rect_outline(x, 0, RS, LH);
@@ -201,7 +208,72 @@ module frame_position() {
     leader(W - IN, bottom_rail_z * F - foot_h * F + RS, W - IN - 12, 14.0);
     label("bottom rail", W - IN - 12.6, 14.0, 2.4, "right");
 
+    leader(IN + RS, LH, IN + RS + 14, LH + 7.0);
+    label("legs continue BEHIND this rail,", IN + RS + 15, LH + 8.6, 2.2, "left");
+    label("tops flush with it — see the joint detail", IN + RS + 15, LH + 5.6, 2.2, "left");
+
     label("LEG POSITION — end elevation (Panel A/B)", W/2, -foot_h * F - 6.0, 3.0);
+}
+
+// ------------------------------------------------------------
+// VIEW 5 — LEG-TO-RAIL JOINT, side elevation (looking across the
+// panel's width, so the end rail is seen in section). This is the
+// view the sheet never had, and the one the whole leg length hangs
+// on: the leg is LAPPED to the rail's inner face and runs flush with
+// the rail TOP, so it is frame_rail_sz longer than the void it
+// stands in. Screws pass through the rail's face into the leg's LONG
+// GRAIN and work in shear.
+// ------------------------------------------------------------
+module lap_joint() {
+    J   = 5.0;              // units per inch
+    RS  = frame_rail_sz * J;
+    VIS = 7.0 * J;          // how much of the leg's length is drawn
+
+    // end rail, in section
+    color(WOOD) translate([0, 0]) square([RS, RS]);
+    color(INK) frame_rect_outline(0, 0, RS, RS, 0.18);
+
+    // the leg, lapped against the rail's inner face, top flush
+    color(WOOD) translate([RS, -VIS]) square([RS, VIS + RS]);
+    color(INK) frame_rect_outline(RS, -VIS, RS, VIS + RS, 0.18);
+
+    // break line at the bottom of the drawn leg
+    color(INK) for (i = [0 : 1.4 : RS]) translate([RS + i, -VIS - 0.9]) square([min(0.8, RS - i), 0.18]);
+
+    // the 2 screws: through the rail's face, into the leg's side
+    for (zz = [RS * 0.30, RS * 0.72]) {
+        color("Crimson") translate([RS * 0.30, zz - 0.12]) square([RS * 1.15, 0.24]);
+        color("Crimson") translate([RS * 0.30, zz]) circle(0.42, $fn = 16);
+    }
+    leader(RS * 1.2, RS * 0.72, RS * 2 + 5, RS * 1.55);
+    label("2 x 2\" screws + glue,", RS * 2 + 6, RS * 1.55 + 1.5, 2.0, "left");
+    label("through the rail INTO the leg's side", RS * 2 + 6, RS * 1.55 - 1.4, 2.0, "left");
+
+    // flush-top call-out
+    color(INK) translate([-4, RS - 0.09]) square([RS * 2 + 4, 0.18]);
+    label("RAIL TOP = deck plane. Leg top FLUSH.", -5, RS, 2.2, "right");
+
+    // the two heights that this joint separates
+    dim_v(0, RS, RS * 2 + 22);
+    label(str(frame_rail_sz, "\" rail"), RS * 2 + 23, RS/2, 2.0, "left");
+    dim_v(-VIS, 0, RS * 2 + 22);
+    label("void under the deck", RS * 2 + 23, -VIS/2 + 1.4, 2.0, "left");
+    label("(leg_height: 17\" Panel C, 16.25\" A/B)", RS * 2 + 23, -VIS/2 - 1.4, 1.7, "left");
+
+    dim_h(0, RS, -VIS - 5.0);
+    label(str(leg_lap, "\" lap"), RS/2, -VIS - 7.2, 2.0);
+    label("the leg sits this far inboard of the rail — and is this much LONGER",
+          RS * 1.2, -VIS - 10.4, 2.0, "left");
+
+    label("LEG-TO-RAIL JOINT — side elevation", RS, -VIS - 14.5, 2.8, "left");
+    label("NOT butt-under: the old joint put 2 screws into the leg's END GRAIN",
+          RS, -VIS - 17.5, 2.0, "left");
+    label("EXCEPTION: Panel C's 2 REAR legs stand at the true corners, where the",
+          RS, -VIS - 20.3, 2.0, "left");
+    label("46\" end rail covers the whole leg. Those 2 stay butt-under, 16\" cut,",
+          RS, -VIS - 22.8, 2.0, "left");
+    label("with a steel angle bracket into the rail's inner face.",
+          RS, -VIS - 25.3, 2.0, "left");
 }
 
 // a hollow rectangle from 4 strips — see dim_style.scad's frame_rect
@@ -220,15 +292,18 @@ module frame_rect_outline(x, y, w, h, t = 0.2) {
 // drawing, and a figure's printed text height is size x (page_width /
 // sheet_width) — so at one page column every label on it printed at
 // ~5pt. Split, each sheet gets the full column to itself.
-sheet = "part";  // "part" or "position"
+sheet = "part";  // "part", "position" or "joint"
 
 if (sheet == "part") {
-    translate([16,  14]) leg_elevation(leg_cut_length,    leg_height,    "PANEL C LEG x4", "the tall pair of lengths");
-    translate([56,  14]) leg_elevation(leg_cut_length_ab, leg_height_ab, "PANEL A + B LEG x8", "3/4\" shorter — deck recess", false);
-    translate([100, 24]) end_grain_plan();
+    translate([16,  14]) leg_elevation(leg_cut_length,        leg_length,        "PANEL C FRONT LEG x2", "lapped — the longest leg");
+    translate([56,  14]) leg_elevation(leg_cut_length_ab,     leg_length_ab,     "PANEL A + B LEG x8", "lapped, 3/4\" shorter — deck recess", false);
+    translate([96,  14]) leg_elevation(leg_cut_length_corner, leg_length_corner, "PANEL C REAR LEG x2", "true corners — BUTT-UNDER", false);
+    translate([140, 24]) end_grain_plan();
 
     color(INK) translate([2, 62]) text("PLATFORM LEG — shop drawing (12 legs: 4 per panel x 3 panels)", size = 3.2);
-    color(INK) translate([2, 57]) text("Cut in TWO batches: 4 at 16\" (Panel C), 8 at 15.25\" (Panels A and B). Same bore in every one.", size = 2.3);
+    color(INK) translate([2, 57]) text(str("THREE batches: 8 at ", leg_cut_length_ab, "\" (Panels A/B), 2 at ", leg_cut_length, "\" (Panel C front), 2 at ", leg_cut_length_corner, "\" (Panel C rear corners). Same bore in every one."), size = 2.3);
+} else if (sheet == "joint") {
+    translate([30, 45]) lap_joint();
 } else {
     translate([10, 16]) frame_position();
 }
