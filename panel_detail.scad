@@ -252,7 +252,7 @@ module drawing() {
         side_list(48, LH + 14, [
             ["1", "End rails (x2) + side rails (x2)", str("end rails ", W, "\" (full width, outboard); side rails ", L - 2 * RS, "\" BETWEEN them = ", L, "\" x ", W, "\" perimeter"), "corner brackets + 2\" screws + glue; grip these rails to lift the panel"],
             ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), str("LAPPED to the end rails, tops flush with the rail tops; ", inch_frac(leveling_bore_dia), "\" x ", leveling_bore_depth, "\" insert hole in each bottom (inset at left)")],
-            ["3", "Bottom rails (x4 — full cube)", str("2x2 pine, underside at ", bottom_rail_z, "\" (clears the feet/knobs)"), "2x 2\" screws + glue into each leg — the frame racks far less as a closed box"],
+            ["3", "Bottom rails (x4 — full cube)", str("2x2 pine, underside at ", bottom_rail_z, "\" (clears the feet below)"), "2x 2\" screws + glue into each leg — the frame racks far less as a closed box"],
         ]);
     } else {
         // MOVED TO THE DOCUMENT: cap("Left (driver-side) bay: WAVE 3 open storage, no drawer box or slide — the unit is too wide for a boxed drawer.", 13, -19, 1.4);

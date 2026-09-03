@@ -400,16 +400,16 @@ function leg_y_lap(inset)   = leg_is_lapped(inset) ? leg_lap : 0;
 // Panel C gets its FRONT face only (the appliances slide out the
 // tailgate at floor level, and their bays occupy both sides' floor
 // runs). The existing diagonal corner braces stay on top.
-bottom_rail_z  = 1;     // underside of the bottom rails — dropped to the leg bottoms (owner, July 2026): as low as they go without hitting the leveling feet (0-1in) below, giving the tallest box section (marginally stiffer) and the lowest floor-edge curb. Leaves hand room at the corners to reach the star knobs.
+bottom_rail_z  = 1;     // underside of the bottom rails — dropped to the leg bottoms (owner, July 2026): as low as they go without hitting the leveling feet (0-1in) below, giving the tallest box section (marginally stiffer) and the lowest floor-edge curb. Leaves room at the corners to get a wrench onto the feet's hex collars.
 
 // Leg leveling feet — back at the FLOOR (the between-layers
 // adjusters cost 1.25in of headroom for no real gain): each leg is
 // CUT 1in short (leg_cut below) and gets a 3/8"-16 threaded insert
 // in its bottom end grain, taking a leveling glide bolt with a broad
-// pad + star-knob hand grip. Effective leg height stays leg_height
+// pad, turned by the stud's own hex collar. Effective leg height stays leg_height
 // (17in), so nothing else moves. Every leg is exposed at floor level
 // with nothing boxing it in — kneel at the side door, tip that
-// corner slightly, and spin the knob. 12 total: 4 per panel x 3.
+// corner slightly, and turn the collar. 12 total: 4 per panel x 3.
 // The leg-bottom bore for the leveling insert. It lives HERE rather than
 // in the two drawings that show it, because both used to carry their own
 // copy of the number and the drawings could disagree with each other.
@@ -426,6 +426,16 @@ leveling_foot_travel   = 0.5;  // in, +/- adjustment from nominal
 leveling_foot_nominal_h = 1;   // in, exposed foot height at mid-adjustment (legs are cut this much short)
 leveling_foot_pad_dia  = 1.375; // in, floor pad diameter (Anwenk kit, from the listing — VERIFY on arrival)
 leveling_foot_thread   = "3/8-16"; // insert + glide bolt thread size, text only (not a dimension)
+leveling_insert_hex    = "10mm";   // MEASURED (owner, Sep 2026): the hex wrench that fits the insert's own drive. Not 3/8in, not 7/16in — metric, and the one tool for this job you are least likely to own
+// THE STAR KNOB IS DELETED (owner, Sept 2026). A ~2in hand wheel hanging
+// off the bottom of all 12 legs took up too much room down there. Its jam
+// nut went with it (the nut existed only to lock the knob), and so did the
+// lock-the-knob-with-the-jam-nut rule that used to be the loudest warning
+// in the leg section. The stud's FIXED HEX COLLAR was always described as
+// the wrench flat for breaking a seized foot loose; it is now the only
+// adjustment interface, so leveling is done with a wrench rather than by
+// hand. Measure your collar before you pack a wrench — it is not the 9/16in
+// the deleted jam nut used.
 // LOAD CHECK (owner concern, July 2026): worst case ~700lb total
 // (2 people + mattress + platform + boxes + cargo) over 12 feet =
 // ~60lb/foot nominal vs the feet's 330lb rating each — a 5x margin

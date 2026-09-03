@@ -5,7 +5,8 @@
 // Leveling lives at the FLOOR now: each leg is cut 1in short
 // (leg_cut_length) and gets a 3/8-16 threaded insert in its bottom
 // end grain, taking a leveling glide bolt with a broad floor pad and
-// a ~2in star knob jam-nutted on the shaft as the hand grip.
+// The star knob and its jam nut are GONE (owner, Sept 2026 — too much
+// bulk under the leg); the stud's own fixed hex collar is the wrench flat.
 // The foot always restores exactly the inch that was cut off, so the
 // deck doesn't move whichever leg length this is fitted to — but
 // the old between-layers adjusters (1in) and platform battens
@@ -69,10 +70,9 @@ module drawing() {
             cylinder(h = insert_h, d = 0.5, $fn = 16);
         iarrow([RS/2, RS/2, NH + 1.9], [RS/2, RS/2, NH + 2.4]);
 
-        // glide bolt: shank up into the insert, star knob jam-nutted
+        // glide bolt: shank up into the insert; the collar is the wrench flat
         // mid-shaft, broad pad on the floor
         ifill(COL_HARDWARE) translate([RS/2, RS/2, pad_h]) cylinder(h = NH + 1.6, d = 0.5, $fn = 16);
-        ifill(COL_HARDWARE) translate([RS/2, RS/2, pad_h + 0.35]) cylinder(h = 0.4, d = 2.0, $fn = 5); // 2in star knob
         ifill("Black") translate([RS/2, RS/2, 0]) cylinder(h = pad_h, d1 = leveling_foot_pad_dia, d2 = leveling_foot_pad_dia * 0.7, $fn = 24);
 
         // floor line
@@ -81,8 +81,7 @@ module drawing() {
 
     marker3d(1, [RS/2, RS/2, NH + 2.5 + leg_show_h * 0.5], [14, 10]);
     marker3d(2, [RS/2, RS/2, NH + 2.5 + insert_h/2], [16, -2]);
-    marker3d(3, [RS/2, RS/2, pad_h + 0.55], [22, -5]);
-    marker3d(4, [RS/2, RS/2, pad_h/2], [22, -9]);
+    marker3d(3, [RS/2, RS/2, pad_h/2], [22, -7]);
 
     cap(str("LEG LEVELING FOOT — shown ", SC, "x actual size (", leveling_foot_count, " total: 4 per panel x 3 panels)"), 24, -12, 2.0);
     cap(str("Legs are CUT to ", leg_cut_length, "\" (Panel C front, lapped) / ", leg_cut_length_ab, "\" (A/B, lapped) / ", leg_cut_length_corner, "\" (Panel C rear corners, butt-under) — the foot makes up the last ", NH, "\"."), 24, -15.5, 1.3);
@@ -91,9 +90,8 @@ module drawing() {
 
     side_list(30, 42, [
         ["1", "Leg (bottom end shown)", str("2x2 pine (1.5\" x 1.5\" actual), cut to ", leg_cut_length, "\" / ", leg_cut_length_ab, "\" / ", leg_cut_length_corner, "\""), str("drill centered, ", inch_frac(leveling_bore_dia), "\" dia x ", leveling_bore_depth, "\" deep — the same hole in all 12")],
-        ["2", str(leveling_foot_thread, " threaded insert"), "driven UP into the leg's end grain", "screw-in style, 7/16\" OD coarse outer thread"],
-        ["3", "Star knob, ~2\" dia (hand grip)", "3/8-16 thru-hole knob + jam nut on the bolt shaft", "the adjustment — big enough to turn with the box tipped"],
-        ["4", "Leveling glide bolt + pad", str(leveling_foot_pad_dia, "\" floor pad; +/-", leveling_foot_travel, "\" travel around ", NH, "\" nominal"), "threads into the insert — leveling only, not height changes"],
+        ["2", str(leveling_foot_thread, " threaded insert"), "driven UP into the leg's end grain", str("screw-in style, 7/16\" OD coarse outer thread; drive it with a ", leveling_insert_hex, " hex wrench")],
+        ["3", "Leveling glide bolt + pad", str(leveling_foot_pad_dia, "\" floor pad; +/-", leveling_foot_travel, "\" travel around ", NH, "\" nominal"), "threads into the insert; TURN IT BY ITS FIXED HEX COLLAR — no knob since Sept 2026"],
     ]);
 }
 

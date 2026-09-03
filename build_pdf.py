@@ -120,6 +120,11 @@ figure img { width: 100%; height: auto; }
    on one page; it ends up slightly narrower than full width,
    which a portrait drawing can afford. */
 .floorplan-figure img { width: auto; height: auto; max-width: 100%; max-height: 9in; }
+/* Shop photographs (photos/). Portrait phone shots, so the blanket
+   `figure img { width: 100% }` rule above would blow one up to a full page
+   each; cap the HEIGHT and let the width follow. */
+.photo-figure { text-align: center; }
+.photo-figure img { width: auto; height: auto; max-width: 100%; max-height: 4in; }
 figcaption {
     font-size: 9pt;
     color: #555;

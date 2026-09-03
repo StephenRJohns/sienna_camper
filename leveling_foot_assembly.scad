@@ -1,11 +1,14 @@
 // ============================================================
 // Leg leveling foot — ENGINEERING DRAWING (2D orthographic)
-// Cross-section + exploded assembly + knob top view, dimensioned,
-// drawn to the ACTUAL purchased parts (July 2026):
+// Cross-section + exploded assembly, dimensioned, drawn to the ACTUAL
+// purchased parts:
 //   - Anwenk "Heavy Duty Furniture Levelers" 4-pack: 3/8-16 T-nut
 //     + glide stud w/ 1.375" nylon pad (1,320 lb/ft rating)
-//   - Peachtree PW6103 star thru-hole knob, 3/8-16, ~2" dia
-//   - 3/8-16 jam nut (12x, hardware store)
+// THE STAR KNOB IS GONE (owner, Sept 2026). A ~2" hand wheel on the
+// bottom of every leg took up too much room down there, and with it went
+// its jam nut, the third view on this sheet, and the whole
+// lock-the-knob-with-the-jam-nut rule. The stud's fixed hex collar was
+// always the wrench flat; it is now the ONLY adjustment interface.
 // 12 feet total: 4 per panel x 3 panels. Legs are cut 1" short in
 // three lengths (17.5" / 16.75" / 16" — see the leg shop drawing);
 // the foot's 1" nominal exposure restores each to its effective
@@ -35,9 +38,7 @@ bore_dp  = leveling_bore_depth;  // the depth is 1.75in and not the insert's 3/4
 stud_d   = 0.375;
 pad_d    = leveling_foot_pad_dia;   // 1.375 (Anwenk)
 pad_h    = 0.25;
-knob_d   = 2.0;
-knob_t   = 0.4;
-nut_w    = 0.5625;         // 9/16 hex across flats
+nut_w    = 0.5625;         // 9/16 hex across flats — still used to draw the collar
 nut_t    = 0.21;
 tn_flange = 0.625;         // insert flange dia (5/8", sits flush on the end grain)
 tn_barrel = 0.4375;        // insert body OD (7/16" coarse wood thread)
@@ -70,7 +71,7 @@ module p_stud(len_in) {
     color("gray") translate([-stud_d/2*SC, 0]) square([stud_d*SC, len_in*SC]);
     color("black") for (yy = [0.06 : 0.09 : len_in - 0.05]) translate([-stud_d/2*SC, yy*SC]) square([stud_d*SC, 0.06]);
 }
-module p_knob() {
+module p_knob_unused() {
     color([0.12, 0.12, 0.12]) {
         translate([-knob_d/2*SC, 0]) square([knob_d*SC, knob_t*SC]);
         for (sx = [-1, 1]) translate([sx*knob_d/2*SC, knob_t/2*SC]) circle(knob_t/2*SC*0.8, $fn = 20);
@@ -101,12 +102,11 @@ module cross_section() {
     color("black") translate([-11, -0.8]) square([25, 0.8]);
     label("van floor", -13, -0.4, 1.2, "right");
 
-    // foot stack: pad, hex collar, stud, knob, jam nut
+    // foot stack: pad, hex collar, stud. No knob and no jam nut since
+    // Sept 2026 — the collar is the wrench flat you turn.
     p_pad();
     color("silver") translate([-0.28*SC, pad_h*SC]) square([0.56*SC, 0.14*SC]);  // fixed hex collar
     translate([0, pad_h*SC]) p_stud(expose + bore_dp - 0.15 - pad_h);
-    translate([0, 0.30*SC]) p_knob();
-    translate([0, (0.30 + knob_t + 0.03)*SC]) p_nut();
 
     // leg in section: two cheeks + block above the bore, hatched
     color("BurlyWood") {
@@ -140,8 +140,7 @@ module cross_section() {
 
     dim_h(-pad_d/2*SC, pad_d/2*SC, -3.6);                    // pad dia
     label("1-3/8\" pad", 0, -5.2, 1.1);
-    dim_h(-knob_d/2*SC, knob_d/2*SC, -7.4);                  // knob dia
-    label("2\" knob", 0, -9.0, 1.1);
+    label("turn the hex collar to level — no knob", 0, -7.4, 1.15);
 
     // ---- leaders, staggered on the right ----
     //   // MOVED TO THE DOCUMENT: part name "1/2\" hole, maker's spec (test-fit in offcut first)" — it crossed the exploded column
@@ -166,7 +165,7 @@ module exploded() {
     lw2 = leg_w/2*SC;  b2 = bore_d/2*SC;
 
     // centerline
-    color(DIM_ORANGE) translate([-0.05, -1]) square([0.1, 42.5]);
+    color(DIM_ORANGE) translate([-0.05, 7]) square([0.1, 34.5]);
 
     // A: leg, bore shown dashed
     frame_rect_at(-lw2, 27, leg_w*SC, 13);
@@ -180,49 +179,30 @@ module exploded() {
     translate([0, 21.5]) p_tnut();
     lmark("B", -lw2 - 3, 22.8);
 
-    // C: jam nut
-    translate([0, 17.8]) p_nut();
-    lmark("C", -lw2 - 3, 18.4);
-
-    // D: star knob
-    translate([0, 13.4]) p_knob();
-    lmark("D", -knob_d/2*SC - 3, 14.6);
-
-    // E: stud + pad
-    p_pad();
-    translate([0, pad_h*SC]) p_stud(1.55);
-    lmark("E", -pad_d/2*SC - 3, 2);
+    // C: stud + pad. What used to be C and D (jam nut, star knob) is
+    // gone with the knob — three parts per foot now, not five, so C moves
+    // up into the space they left rather than floating at the bottom.
+    translate([0, 8]) {
+        p_pad();
+        translate([0, pad_h*SC]) p_stud(1.55);
+    }
+    lmark("C", -pad_d/2*SC - 3, 10);
 
     label("EXPLODED — assembly order", 0, 44.5, 1.5);
 }
 
-// ------------------------------------------------------------
-// VIEW 3 — star knob, top view
-// ------------------------------------------------------------
-module knob_top() {
-    color([0.12, 0.12, 0.12]) {
-        circle(0.68*SC, $fn = 48);
-        for (a = [0 : 72 : 288]) rotate(a) translate([0.70*SC, 0]) circle(0.34*SC, $fn = 24);
-    }
-    color("white") circle(stud_d/2*SC, $fn = 24);
-    color("black") for (a = [0, 60, 120]) rotate(a) translate([-stud_d/2*SC - 0.14, -0.06]) square([stud_d*SC + 0.28, 0.12]);
-    dim_h(-knob_d/2*SC, knob_d/2*SC, -8.2);
-    label("2\"", 0, -9.8, 1.15);
-    label("3/8-16 thru-hole", 0, 8.2, 1.1);
-    label("KNOB — top view", 0, 10.4, 1.4);
-}
+// VIEW 3 (star knob, top view) DELETED Sept 2026 with the knob itself.
 
 // ------------------------------------------------------------
 // layout
 // ------------------------------------------------------------
 cross_section();
 translate([44, -14]) exploded();
-translate([78, 6]) knob_top();
 
 // MOVED TO THE DOCUMENT: the ASSEMBLY step list (8 lines of prose) — it was
 // the widest block on the sheet. The A-E badges on the drawing key to it.
 
 // MOVED TO THE DOCUMENT: label("LEG LEVELING FOOT — engineering drawing (parts as purchased, July 2026)", 34, 39, 1.9);
-// MOVED TO THE DOCUMENT: label("12 feet total (4 per panel x 3 panels): 3x Anwenk leveler 4-packs + 3x Peachtree PW6103 knob 4-packs + 12x 3/8-16 jam nuts", 34, 36.4, 1.2);
+// MOVED TO THE DOCUMENT: label("12 feet total (4 per panel x 3 panels): 3x Anwenk leveler 4-packs", 34, 36.4, 1.2);
 // MOVED TO THE DOCUMENT: label("Rating: 1,320 lb per foot (Anwenk) — 4 feet under the heaviest panel = ~5,280 lb capacity vs ~450 lb actual load.", 22, -42, 1.2, "left");
 // MOVED TO THE DOCUMENT: label("NOTE: skip the kit's stick-on felt pads — the bare nylon pad grips the van floor better and doesn't shed.", 22, -44.4, 1.2, "left");

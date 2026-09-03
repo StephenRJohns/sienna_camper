@@ -45,7 +45,6 @@ METAL = [0.45, 0.45, 0.48];
 bore_d  = leveling_bore_dia;    // from params.scad, so this sheet and the
 bore_dp = leveling_bore_depth;  // leveling-foot sheet cannot disagree
 pad_d   = leveling_foot_pad_dia;  // 1.375
-knob_d  = 2.0;
 foot_h  = leveling_foot_nominal_h; // 1.0 nominal exposure
 
 E  = 2.0;   // elevation views: drawing units per inch
@@ -85,10 +84,10 @@ module leg_elevation(cut, eff, title, sub, foot_note = true) {
     // the bore, hidden -> dashed
     dashed_rect(w/2 - bore_d/2 * E, 0, bore_d * E, bore_dp * E);
 
-    // the foot, schematic: stud down to the floor, pad, knob
+    // the foot, schematic: stud down to the floor, then the pad. (The
+    // star knob that used to be drawn here went with the part, Sept 2026.)
     color(METAL) translate([w/2 - 0.375/2 * E, -foot_h * E]) square([0.375 * E, foot_h * E]);
     color(METAL) translate([w/2 - pad_d/2 * E, -foot_h * E]) square([pad_d * E, 0.22 * E]);
-    color(INK) translate([w/2 - knob_d/2 * E, -0.34 * E]) square([knob_d * E, 0.30 * E]);
     // floor line
     color(INK) translate([-5, -foot_h * E - 0.5]) square([w + 10, 0.28]);
 

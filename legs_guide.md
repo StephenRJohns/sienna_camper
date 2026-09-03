@@ -1,5 +1,7 @@
 # Project S'mores — Legs & Leveling Feet
 
+> **No longer built into a PDF** (owner, Sept 2026). `Project_Smores_Legs.pdf` and its builder are gone; everything a builder needs at the saw — the three cut lengths, the 1-3/4" bore, the 10mm hex, the shop photos and the feet's re-order code — now lives in **Section 3 of the full plan** and prints with it. This markdown stays as the long-form leg walkthrough, but **the full plan is authoritative**: if the two disagree, the full plan is right.
+
 A working subset of the full build plan: everything needed to make all **12 platform legs** and fit their leveling hardware, and nothing else. Every dimension here is taken from `params.scad`, which is what drives the drawings.
 
 Read this alongside the full plan for context (Section 3 for the whole cut list, Component 2–4 for the rest of each panel's assembly). Nothing in this document supersedes the full plan; it is the same numbers, gathered.
@@ -26,7 +28,7 @@ Twelve legs, 2x2 pine (1.5" × 1.5" actual). Four per panel, one at each corner.
 
 **The two exceptions** are Panel C's rear pair. They stand at the *true corners*, where the 46" end rail passes over the leg's whole 1.5" × 1.5" footprint — there is no rail face left to lap against, and they cannot move inboard because Panel C's width chain has only 1.28" of slack (the appliances have to slide past them). Those two are cut **16"** and butt under the rail, and they are the two legs that get a **steel angle bracket** into the rail's inner face to carry the load the lap carries everywhere else.
 
-Leveling therefore lives **at the floor**, not between the frame and the platform. Every foot is exposed at floor level — tip the corner of the box slightly and spin the knob.
+Leveling therefore lives **at the floor**, not between the frame and the platform. Every foot is exposed at floor level — tip the corner of the box slightly and wrench the foot's hex collar.
 
 | | Panel A | Panel B | Panel C — front pair | Panel C — rear pair |
 |---|---|---|---|---|
@@ -74,7 +76,7 @@ Two rows are doing the work here. The **void** row is the height under the deck 
 | Boring | 1/2" brad-point bit (a spade bit wanders in end grain) **and** a small pilot bit; drill press or a drill guide/right-angle jig; blue tape for a depth flag |
 | Boring, the fast way | **Two drills** — one holding the pilot bit, one holding the 1/2". Twelve legs is 24 bit changes if you run one drill; with two you never swap |
 | Driving the insert | **10mm (1 cm) hex wrench** — it fits the insert's own hex drive, and this is what the build actually used. Alternative: a 3/8-16 bolt ~2" long + two 3/8-16 nuts (jam pair) and a wrench |
-| Foot stack | 9/16" wrench (3/8-16 jam nut) |
+| Foot stack | A wrench that fits the stud's fixed hex collar — **measure yours**. It is not the 9/16" the deleted jam nut used |
 | Frame | Drill/driver, 2" wood screws, wood glue, 12 × 2"–3" steel corner brackets |
 | Test piece | A 6" 2x2 offcut — bore it and test-fit an insert before touching a real leg |
 
@@ -139,25 +141,22 @@ The insert is the screw-in type: a **7/16" OD coarse outer wood thread** with a 
 
 ## 7. Step 4 — Assemble the leveling foot
 
-Five parts per foot, twelve feet. The exploded column on the drawing is keyed **A–E** and that is also the assembly order:
+**Three** parts per foot, twelve feet. The exploded column on the drawing is keyed **A–C** and that is also the assembly order:
 
 <figure class="floorplan-figure">
 <img src="renders/leveling-foot-assembly.png" alt="Leg leveling foot engineering drawing">
-<figcaption>Leg leveling foot — <strong>section A-A</strong> installed at mid-travel (6× actual size), the <strong>exploded</strong> assembly order A–E, and the <strong>knob top view</strong>. Dimensions on the sheet: 1-1/2" leg, 1-3/4" deep bore, 1" exposed foot (travel ±1/2"), 1-3/8" floor pad, 2" knob.</figcaption>
+<figcaption>Leg leveling foot — <strong>section A-A</strong> installed at mid-travel (6× actual size) and the <strong>exploded</strong> assembly order A–C. Dimensions on the sheet: 1-1/2" leg, 1-3/4" deep bore, 1" exposed foot (travel ±1/2"), 1-3/8" floor pad. The knob top view that used to be the third panel went with the knob.</figcaption>
 </figure>
 
 | Key | Part | What it is / what to do |
 |---|---|---|
 | **A** | The leg | Bored 1/2" dia × **1-3/4"** deep, centred, per Step 2 |
 | **B** | Screw-in threaded insert | 7/16" OD outer thread, 3/8-16 bore. Driven flush on a spare bolt + jam nut, per Step 3 |
-| **C** | 3/8-16 jam nut | Spin it ~1" up the stud. This is what locks the knob |
-| **D** | PW6103 star knob (hand wheel) | ~2" dia, 3/8-16 thru-hole. Thread it up to the nut, then wrench the nut **down** onto it to lock the two together |
-| **E** | Leveling stud + fixed hex collar + pad | 1-3/8" floor pad. Screw the stud into the insert to **1" exposure** |
+| **C** | Leveling stud + fixed hex collar + pad | 1-3/8" floor pad. Screw the stud into the insert to **1" exposure**, turning it by the collar |
 
 <div class="warn">
-<strong>Lock the knob with the JAM NUT, wrenched down on top of it — never by jamming the knob against the stud's fixed hex collar.</strong>
-Jammed on the collar, the knob only grips in the tightening direction: the first time you spin it the other way to <em>lower</em> a corner, it unscrews itself off the stud instead of driving it. Knob and jam nut locked to each other grip in <strong>both</strong> directions, so one knob both raises and lowers the leg.
-The hex collar's actual job is to be a wrench flat, so you can break a seized foot loose later.
+<strong>There is no hand grip on these feet — bring a wrench.</strong>
+The ~2" PW6103 star knob and the 3/8-16 jam nut that locked it were <strong>deleted in Sept 2026</strong>: a hand wheel on the bottom of all twelve legs took up too much room down there. The stud's fixed hex collar, which this guide used to describe only as "a wrench flat for breaking a seized foot loose", is now the <em>only</em> adjustment interface. <strong>Measure your collar before you pack a wrench</strong> — it is not the 9/16" the jam nut used, and finding that out under a loaded van is no fun.
 </div>
 
 <figure class="photo-figure">
@@ -176,7 +175,7 @@ The hex collar's actual job is to be a wrench flat, so you can break a seized fo
 
 <figure class="floorplan-figure">
 <img src="renders/leveling-foot-detail.png" alt="Leveling foot detail">
-<figcaption>The same foot as a component call-out: <strong>1</strong> the leg, <strong>2</strong> the threaded insert driven up into the end grain, <strong>3</strong> the star knob + jam nut (the adjustment — big enough to turn with the box tipped), <strong>4</strong> the leveling glide bolt and its 1.375" pad, ±0.5" of travel around the 1" nominal. Shown 3× actual size.</figcaption>
+<figcaption>The same foot as a component call-out: <strong>1</strong> the leg, <strong>2</strong> the threaded insert driven up into the end grain with a 10mm hex wrench, <strong>3</strong> the leveling glide bolt and its 1.375" pad, ±0.5" of travel around the 1" nominal, turned by its own hex collar. Shown 3× actual size.</figcaption>
 </figure>
 
 **Set every foot to 1" exposure before the panels go in the van.** That is mid-travel, and it means the first real leveling pass has adjustment available in both directions. Feet set at the ends of their travel are feet that can only correct one way.
@@ -207,7 +206,7 @@ Twelve corner brackets total, four per panel, at the rail-to-rail corners. **Pan
 
 On a lapped leg the two screws go through the **rail's face** into the leg's side, not down through the rail into the leg's end. Clamp the leg to the rail with its top flush before you drill: the top face is the reference surface for the whole deck plane, and 1/16" of leg standing proud of the rail is 1/16" of rock under the mattress.
 
-**Bottom rails.** Each panel gets 2x2 bottom rails with their **underside at 1"** — level with the leg bottoms, i.e. as low as they go without fouling the feet and knobs below. Two 2" screws + glue into each leg. Which faces get one differs by panel, and it is about what has to exit the panel sideways:
+**Bottom rails.** Each panel gets 2x2 bottom rails with their **underside at 1"** — level with the leg bottoms, i.e. as low as they go without fouling the feet below, and leaving room to get a wrench onto their collars. Two 2" screws + glue into each leg. Which faces get one differs by panel, and it is about what has to exit the panel sideways:
 
 | Panel | Bottom rails | Why |
 |---|---|---|
@@ -256,9 +255,9 @@ To set them:
 
 1. Put all three panels in the van, in position, with the bed platform resting on Panels A and B.
 2. Put a level on the platform. The build's two stick-on bar levels read the same thing permanently: **pitch** on the platform's driver-side rail edge, **roll** on the rear-pantry deck edge.
-3. Kneel at the side door, **tip that corner of the box slightly**, and spin that leg's star knob. Every foot is exposed at floor level — nothing boxes it in.
+3. Kneel at the side door, **tip that corner of the box slightly**, and wrench that foot's hex collar. Every foot is exposed at floor level — nothing boxes it in.
 4. Work around the corners until both bubbles centre. Re-check with the van parked on ground you know is level.
-5. After that first setup you should not need to touch a knob again.
+5. After that first setup you should not need to touch a foot again.
 
 If you would rather delete the feet entirely, fixed shims set once will do the same job and let the wheel blocks handle all site leveling — it saves ~$72 and loses the fine-trim option.
 
@@ -279,13 +278,12 @@ The feet are not the weak point of this build under any of those numbers. If you
 |---|---|---|
 | 2x2 pine, 8 ft | 2 boards | Of the 12 the full build buys. Aluminum 1"×1" L-channel is the documented alternative |
 | Leg leveling feet, 3/8-16, with threaded-insert ("T-nut") kit | 12 | 3 × 4-packs. See the rating note in Section 10 before ordering |
-| Star knobs, 3/8-16 thru-hole, ~2" dia | 12 | 3 × 4-packs — Peachtree PW6103 |
 | **3/8-16 jam nuts** | **12** | **Bought separately — they are not in either kit.** Everbilt 6-packs, 2 packs |
 | Steel corner brackets, 2"–3" | 12 | 4 per panel |
 | 2" wood screws | — | 2 per frame joint, 2 per bottom-rail-to-leg joint |
 | Wood glue | — | Every frame joint |
 
-The jam nuts are the part this build has repeatedly nearly forgotten — they are not supplied with the levelers or the knobs, and without them the knob cannot lock. Count them before you start.
+The jam nuts this guide used to insist on counting are no longer needed: they existed only to lock the star knob, and both are gone. What to count instead is the wrench — one that fits the studs' hex collars, checked against a real foot before the panels go in the van.
 
 ## 12. Where these numbers come from
 
