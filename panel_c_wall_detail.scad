@@ -156,7 +156,7 @@ module drawing() {
     // MOVED TO THE DOCUMENT: label("8x #8 x 1-1/4\" perimeter screws: 2 into each front leg + 2 into the top rail + 2 into the bottom rail", WW/2, WH + 1.4, 1.05);
 
     // ---- title + notes ----
-    label("PANEL C FRONT WALL — 3/8\" ply, flat pattern", WW/2, WH + 4.5, 2.4);
+    label(str("PANEL C FRONT WALL — ", inch_frac(pcwall_t), "\" ply, flat pattern"), WW/2, WH + 4.5, 2.4);
     // MOVED TO THE DOCUMENT: label("Mounts on Panel C's front (B-facing) face, floor to rail underside. Intake fan bolts over the big hole (blows IN); the low louver is a passive cool-air scoop below it.", WW/2, WH + 4.4, 1.15);
     // MOVED TO THE DOCUMENT: label("Panel A/B: no walls or skirts anywhere. Panel C sides: open. Panel C tailgate face: no wall — fridge + open utility bay + kitchen + kitchen drawer fill it.", WW/2, WH + 3.1, 1.05);
     label("DRIVER side at left (the fridge bay) — PASSENGER at right", WW/2, -15.5, 1.9);

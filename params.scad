@@ -562,6 +562,22 @@ seam_latch_x     = panel_width/2 - leg_inset;        // 20.5 — latch sits over
 // the fridge), and its tailgate face needs no wall — fully occupied
 // by the fridge, cabinet door, kitchen unit, and kitchen drawer
 // face. See panel_c_wall_detail.scad for the dimensioned holes.
+// Shop-fraction label for a thickness, so a drawing can print "1/2" FROM
+// the parameter instead of carrying a literal beside it. Every ply
+// thickness that changed in the Aug 2026 no-3/8-buy round left a stale
+// literal behind in at least one drawing — the front wall, the drawer box
+// and the fridge tray all still read 3/8in a year later. Labels that call
+// this cannot drift from the number they describe.
+function inch_frac(v) =
+      v == 0.125 ? "1/8"
+    : v == 0.25  ? "1/4"
+    : v == 0.375 ? "3/8"
+    : v == 0.5   ? "1/2"
+    : v == 0.625 ? "5/8"
+    : v == 0.75  ? "3/4"
+    : v == 1     ? "1"
+    : str(v);
+
 pcwall_t = 0.5;         // NO-3/8"-BUY (owner, Aug 2026): 3/8in -> 1/2in ply (+~2.5lb, giving back July's weight swap). Cut from the 1/2in sheet's big 47x44 leftover instead of buying 3/8in stock — still non-structural, just holds the intake fan + grommets
 pcwall_h = leg_height;  // 17 — van floor up to the front rail's underside
 pcwall_grommet_dia = 1; // fridge DC line pass-through
@@ -1322,7 +1338,7 @@ assert(pantry_pot_bin <= pantry_bay_w,
        str("Pot bin (", pantry_pot_bin, "in) is wider than the open deck bay (", pantry_bay_w, "in)"));
 
 // ---- Panel C front wall: the four openings must not eat each other ----
-// This wall is 3/8in ply with a 120mm fan hole, a 9x2 louver and two 1in
+// This wall is 1/2in ply (pcwall_t) with a 120mm fan hole, a 9x2 louver and two 1in
 // cord grommets in it. In Aug 2026 the vent was overlapping BOTH grommets
 // and coming within 0.18in of the fan hole; these keep the webs honest.
 // Written down here (not in the drawing) because the drawing only shows what

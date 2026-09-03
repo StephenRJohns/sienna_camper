@@ -243,7 +243,7 @@ module drawing() {
             ["3", "Fixed top", str(W - 2 * RS, "\" x ", L - 2 * RS, "\", 3/4\" ply — RECESSED between the rails, flush with the rail tops"), "on 3/4x3/4 bearer cleats; NOTCH 1.5x1.5 at the 2 lapped front legs; screwed down — NOT a lift-off lid"],
             ["4", "Fridge zone (reserved)", str(fridge_ext_length, "\" x ", fridge_ext_width, "\", flush LEFT/driver"), "bought product — see fridge-install-detail"],
             ["5", "Kitchen zone (reserved)", str(kitchen_box_width, "\" x ", kitchen_box_length, "\", flush RIGHT/passenger"), "bought product — see fridge-install-detail"],
-            ["6", "Front wall (the ONLY wall)", str(W, "\" x ", pcwall_h, "\", 3/8\" ply, on the B-facing face"), "fan hole + 2 grommets — Panel C Front Wall render"],
+            ["6", "Front wall (the ONLY wall)", str(W, "\" x ", pcwall_h, "\", ", inch_frac(pcwall_t), "\" ply, on the B-facing face"), "fan hole + 2 grommets — Panel C Front Wall render"],
             ["7", "Bottom rail (x1, FRONT face only)", str("2x2 pine, underside at ", bottom_rail_z, "\", on the front legs' line"), "tailgate face stays open (appliances exit there); REAR legs at the TRUE corners"],
         ]);
     } else if (!is_a) {
@@ -260,7 +260,7 @@ module drawing() {
             ["1", "End rails (x2) + side rails (x2)", str("end rails ", W, "\" (full width, outboard); side rails ", L - 2 * RS, "\" BETWEEN them = ", L, "\" x ", W, "\" perimeter"), "corner brackets + 2\" screws + glue"],
             ["2", "Legs (x4)", str(LC, "\" cut + leveling foot, inset ", leg_inset, "\" from the edge"), "LAPPED to the end rails, tops flush with the rail tops; 1/2\" x 7/8\" insert hole in each bottom (Panel B detail's inset)"],
             ["3", "Center divider", str(L - 2*RS, "\" cut, 2x2 pine"), "splits the bay — drawer (right) / WAVE 3 (left)"],
-            ["4", "Drawer box (right, DELTA 3 side)", str(drw_w, "\" x ", drw_d, "\" x ", drw_h, "\", 3/8\" ply, 1/2\" bottom"), "5 pieces, glued + biscuited"],
+            ["4", "Drawer box (right, DELTA 3 side)", str(drw_w, "\" x ", drw_d, "\" x ", drw_h, "\", ", inch_frac(drawer_box_t), "\" walls, 1/2\" bottom"), "5 pieces, glued + 2x R3 per corner at this thickness"],
             ["5", "Drawer slide (right)", str(drawer_slide_length, "\" full-extension pair"), "box-to-rail + box-to-divider"],
             ["6", "Drawer catch (right)", "friction catch or small turn latch", "keeps the drawer shut in transit"],
             ["7", "WAVE 3 + glide strips (left)", "2x glide strip, UHMW/laminate scrap", "no box, no slide — rests directly on the bay floor"],

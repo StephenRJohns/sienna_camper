@@ -233,7 +233,7 @@ module v2_fridge_stack() {
     part("1x3 APRON, 3/4\" — the slide's moving member",  3.37*SC, 2.4*SC, 3.6*SC);
     label_left("screws to it; its top edge is the fridge's", LX, 3.6*SC - 1.6, 1.0);
     label_left("anti-shift lip", LX, 3.6*SC - 3.2, 1.0);
-    part("3/8\" ply TRAY — hangs 0.5\" over BARE floor", 4.6*SC, 0.62*SC, 2.3*SC);
+    part(str(inch_frac(fridge_tray_t), "\" ply TRAY — hangs ", fridge_tray_gap, "\" over BARE floor"), 4.6*SC, 0.62*SC, 2.3*SC);
     part("steel riser angle, 2\"x2\"x3/16\"", 2.15*SC, 1.6*SC, 1.5*SC);
     part("3/4\" ply strip", 0.8*SC, 0.55*SC, 0.8*SC);
     part("non-slip rubber mat, 0.1\"", 0.5*SC, 0.05*SC, 0.15*SC);
