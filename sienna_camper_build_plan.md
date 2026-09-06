@@ -1025,7 +1025,7 @@ A second, independent cord charges the DELTA 3 stack itself from the front conso
 
 **Outlet facts (VERIFIED): 2 AC outlets total, both fed by the van's single 1500W inverter.** The rear outlet sits on the **passenger-side rear quarter trim: 22.5" above the cargo floor, ~10" forward of the liftgate scuff plate**, socket center **10" laterally in from the right sidewall** (MEASURED V9b, owner Aug 1 2026 — this **corrects the ~9.5" / ~16" figures** carried in earlier drafts), directly above the 12V battery access panel and below the rear cup holders. **That is 4" ABOVE deck level (18.5"), not below it — which makes the cord runs easier than planned:** both cords reach the socket from deck level instead of having to drop down the gap between the kitchen unit's outer face and the van wall. Plug access no longer depends on sliding the kitchen out. **Serviceability note: the 12V battery access panel sits under/behind the kitchen's passenger rear corner — keep it clear: the anchor board's kitchen-side strip stops short of it (Section 8), and battery service = unstrap + slide the kitchen out (Component 7).**
 
-**Shared-inverter wattage: every AC load shares one 1500W pool (confirmed — both outlets ride the same inverter).** Plugging the cooktop + Power strip 1 into the rear outlet and the DELTA 3 charger into the front one cleans up the *cords*, but not the *budget*: the DELTA 3's AC input alone (up to 1500W at full X-Stream speed) can consume the entire rated capacity. Running the induction cooktop while fast-charging the DELTA 3 could oversubscribe the inverter. In practice this rarely collides — cooktop use happens at camp with the engine off, DELTA 3 charging while driving — but if you ever want both at once (e.g., cooking at a rest stop with the engine idling), cap the DELTA 3's AC charge rate in its app (EcoFlow lets you limit input wattage) to leave headroom.
+**Shared-inverter wattage: every AC load shares one 1500W pool (confirmed — both outlets ride the same inverter).** Plugging the cooktop + Power strip 1 into the rear outlet and the DELTA 3 charger into the front one cleans up the *cords*, but not the *budget*: the DELTA 3's AC input alone (up to 1500W at full X-Stream speed) can consume the entire rated capacity. Running the induction cooktop while fast-charging the DELTA 3 could oversubscribe the inverter. In practice this rarely collides — cooktop use happens at camp with the engine off, DELTA 3 charging while driving — but if you ever want both at once (e.g., cooking at a rest stop with the engine idling), cap the DELTA 3's AC charge rate in its app (EcoFlow lets you limit input wattage) to leave headroom. **The cooktop's own half of that budget is now measured, not guessed:** both burners at P6 draw ~1460W and a single burner at max ~950W (bench-tested Sept 2026 — Section 7), so dual-burner cooking uses essentially the whole inverter on its own.
 
 **The WAVE 3 is the one thing still fully self-contained.** It draws from the DELTA 3 Plus (in Panel A's drawer) via its own charge cable, and isn't wired to any van circuit at all.
 
@@ -1443,11 +1443,35 @@ Build this one before Component 1 (Rear Pantry) — the prefab drawer cluster si
 - **Real measurements confirmed from the JAGAHAHA's own listing photos**: the stove tray is **23"L x 15.7"W, with 5.7" of clearance** when pulled out.
 - The **JAGAHAHA kitchen unit is built for a 2-burner stove** (per its own listing) — a single-burner cooktop would leave half its designed stove space unused.
 - An earlier draft of this plan recommended the **Duxtop 9620LS dual burner** — its manufacturer manual gives its actual footprint as **23.9"L x 14.2"W x 2.4"H**, which is **0.9" too long for the 23" tray**. Dropped in favor of the option below.
-- **Confirmed exact product** (real listing photos with dimension callouts): **18.1"L x 9.1"W x 4.3"H** (briefcase-style unit with a fold-down handle) — fits the tray with real margin: ~4.9" of length, ~6.6" of width, ~1.4" of height to spare. Two 6.3"-diameter induction zones, 1800W total, plus an included removable non-stick cast-iron griddle pan that lays across both zones — a direct match for "two burner or griddle" in one unit.
+- **Confirmed exact product** (real listing photos with dimension callouts): **18.1"L x 9.1"W x 4.3"H** (briefcase-style unit with a fold-down handle) — fits the tray with real margin: ~4.9" of length, ~6.6" of width, ~1.4" of height to spare. Two 6.3"-diameter induction zones, **1800W nameplate** (only reachable via the unit's boost mode — in normal P-level operation it draws well under that; see the bench test below), plus an included removable non-stick cast-iron griddle pan that lays across both zones — a direct match for "two burner or griddle" in one unit.
 - **Price: $189.99** (confirmed current listing price).
 - Requires magnetic (induction-compatible) cookware — test with a magnet before buying pots/pans if you don't already own compatible ones (the included griddle pan is already induction-ready). See the cookware recommendation below.
 
 **Power check — confirmed:** the front console AC outlet is rated at **1500W (verified against the real van, Appendix A)**, and a second AC outlet exists in the **back passenger area** (the cooktop + Power strip 1 plug in there — Section 5). Both outlets are CONFIRMED to share the van's single 1500W inverter — treat 1500W as the TOTAL AC budget across everything at once.
+
+### Bench test — measured draw, Sept 2026 (TESTED, not estimated)
+
+The COOKTRON was run **off the EcoFlow DELTA 3 Plus on the bench, base unit only (no Smart Extra Battery), with the van not involved at all**. That is a valid stand-in for the real install: the DELTA 3's inverter and the van's are **both 1500W**, so every number below transfers straight to the rear outlet. Method: one burner stepped through P1–P9 watching the power station's output display, then the second burner brought in on top.
+
+| Setting | Measured draw | Verdict |
+|---|---|---|
+| 1 burner, P1 | ~380W | Ramp from P1 to P9 was clean — no faults, no voltage instability |
+| 1 burner, P5–P6 | ~650–700W | Stable continuous draw — the setting for long or unattended simmering |
+| 1 burner, P9 (max) | ~934–1000W, mostly under 950W | Fine on its own; ~55–60 min of runtime from 74% charge |
+| **2 burners, P6 + P6** | **~1460W combined, sustained without fault** | **The confirmed maximum for continuous dual-burner cooking** |
+| 2 burners, one pushed to P9 | ~1600W combined | Handled briefly, but at/over the inverter ceiling — NOT safe as a sustained setting |
+| Sync/boost button (middle button, steam/pot icon) | Forces BOTH burners to max, overriding the individual P levels | **Tripped the overload (EO/EU) in earlier testing — leave it alone** |
+
+**Working limits that come out of this:**
+
+- **Both burners at P6, ~1460W combined, is the ceiling for continuous cooking** — on the DELTA 3 or on the van's rear outlet, same 1500W either way.
+- Pushing either burner past P6 while both are running walks into the inverter's limit; earlier testing faulted (EO/EU) there. One burner alone can go to P9 freely.
+- **Never use the sync/boost button in the van.** It takes combined wattage out of your hands — that button is what caused the overload trip.
+- **Runtime, DELTA 3 Plus base unit alone:** ~35–40 min at P6/P6 (~1460W), or ~55–60 min at single-burner P9 (~950W) from ~74% charge. Enough for a normal meal; a longer cook session wants the Smart Extra Battery in the loop (2048Wh combined).
+- **A useful side finding: the cooktop runs fine straight off the DELTA 3.** The routing in Section 5 feeds it from the van's rear outlet, but this test proves the fallback works — you can cook with the van's own inverter off or unavailable.
+- In the van, that ~1460W sits against the ONE 1500W inverter both outlets share, so dual-burner cooking means nothing else meaningful on AC at the same time, and the DELTA 3's own charging cord has to be capped in the app or unplugged (Section 5).
+
+**The COOKTRON stays** — the test confirmed the unit itself, so the plan keeps it rather than looking for a lower-draw replacement.
 
 ### Cookware: UMETRE 9-Piece Detachable-Handle Induction Set (PURCHASED July 2026)
 
